@@ -277,6 +277,30 @@
   filter: invert(65%) sepia(40%) saturate(350%) hue-rotate(70deg) brightness(1.1);
 }
 
+/* Alias: __icon works the same as __icon-wrap for cross-page compatibility */
+.angebot-card-v2__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md, 0.75rem);
+  background: rgba(109, 151, 68, 0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  font-size: 1.5rem;
+  color: var(--ibc-green);
+  transition: background 0.3s, transform 0.35s var(--ease-spring);
+  flex-shrink: 0;
+}
+.angebot-card-v2:hover .angebot-card-v2__icon {
+  background: rgba(109, 151, 68, 0.18);
+  transform: scale(1.1) rotate(-4deg);
+}
+[data-theme="dark"] .angebot-card-v2__icon {
+  background: rgba(125, 179, 86, 0.12);
+  color: var(--ibc-green-light);
+}
+
 .angebot-card-v2__title {
   font-size: 1.05rem;
   font-weight: 700;
@@ -674,7 +698,7 @@
 }
 
 /* ============================================================
-   INSTAGRAM SECTION (improved)
+   INSTAGRAM SECTION (see full redesign below)
    ============================================================ */
 .instagram-section-v2 {
   padding: 5rem 0;
@@ -690,11 +714,8 @@
   margin-top: 2.5rem;
 }
 .instagram-frame-wrap {
-  flex: 1 1 300px;
-  max-width: 360px;
-  border-radius: var(--radius-xl, 1.25rem);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg);
+  flex: 0 0 auto;
+  overflow: visible;
 }
 .instagram-frame-wrap iframe {
   display: block;
@@ -1346,7 +1367,7 @@
     0 12px 28px rgba(0, 0, 0, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.07);
   transition: transform 0.45s cubic-bezier(0.34, 1.36, 0.64, 1), box-shadow 0.35s ease;
-  /* Side buttons via outline-based box-shadow on sides */
+  overflow: visible;
   outline: none;
 }
 /* Left volume buttons */
@@ -1658,4 +1679,326 @@
     animation: none !important;
     transform: none !important;
   }
+}
+
+/* ============================================================
+   CTA BANNER SUB-ELEMENTS
+   ============================================================ */
+.cta-banner__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1.25rem;
+  position: relative;
+  z-index: 2;
+  padding: 1rem 0;
+}
+.cta-banner__title {
+  font-size: clamp(1.8rem, 3.5vw + 0.5rem, 3rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin: 0;
+  max-width: 680px;
+}
+.cta-banner__subtitle {
+  font-size: clamp(1rem, 1.5vw + 0.15rem, 1.2rem);
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.7;
+  margin: 0;
+  max-width: 560px;
+}
+.cta-banner__buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+@media (max-width: 575.98px) {
+  .cta-banner__title { font-size: clamp(1.5rem, 7vw, 2.2rem); }
+  .cta-banner__buttons { flex-direction: column; }
+  .cta-banner__buttons .ethereal-button { width: 100%; justify-content: center; }
+}
+
+/* ============================================================
+   FILTER CHIPS  –  referenzen.html
+   ============================================================ */
+.references-filter {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.filter-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  padding-top: 0.45rem;
+  white-space: nowrap;
+}
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.filter-chip {
+  padding: 0.38rem 0.9rem;
+  border-radius: 9999px;
+  border: 1.5px solid var(--border-medium);
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.22s cubic-bezier(0.34, 1.36, 0.64, 1);
+  white-space: nowrap;
+}
+.filter-chip:hover {
+  border-color: var(--ibc-green);
+  color: var(--ibc-green);
+  background: rgba(109, 151, 68, 0.06);
+}
+.filter-chip.filter-chip--active,
+.filter-chip[aria-pressed="true"] {
+  background: var(--ibc-green);
+  border-color: var(--ibc-green);
+  color: #fff;
+  box-shadow: 0 4px 14px rgba(109, 151, 68, 0.35);
+}
+[data-theme="dark"] .filter-chip {
+  background: var(--bg-elevated);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: var(--text-secondary);
+}
+[data-theme="dark"] .filter-chip:hover {
+  border-color: var(--ibc-green-light);
+  color: var(--ibc-green-light);
+  background: rgba(125, 179, 86, 0.08);
+}
+[data-theme="dark"] .filter-chip.filter-chip--active,
+[data-theme="dark"] .filter-chip[aria-pressed="true"] {
+  background: var(--ibc-green);
+  border-color: var(--ibc-green);
+  color: #fff;
+}
+
+/* ============================================================
+   SKELETON LOADING  –  referenzen.html initial state
+   ============================================================ */
+@keyframes skeleton-shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+.skeleton-reference-card {
+  height: 280px;
+  border-radius: var(--radius-lg, 20px);
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 25%,
+    var(--bg-tertiary) 50%,
+    var(--bg-secondary) 75%
+  );
+  background-size: 1200px 100%;
+  animation: skeleton-shimmer 1.8s ease-in-out infinite;
+  border: 1px solid var(--border-subtle);
+}
+
+/* ============================================================
+   REFERENCES TIMELINE  –  generated by references-loader.js
+   ============================================================ */
+.timeline-year-section {
+  margin-bottom: 3rem;
+}
+.timeline-year-marker {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.timeline-year-marker h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 900;
+  color: var(--ibc-green);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 0;
+}
+[data-theme="dark"] .timeline-year-marker h2 { color: var(--ibc-green-light); }
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ibc-green);
+  box-shadow: 0 0 0 4px rgba(109, 151, 68, 0.15);
+}
+.timeline-projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+.timeline-project-item {
+  position: relative;
+}
+.ref-card-image {
+  height: 180px;
+  overflow: hidden;
+  border-radius: var(--radius-md, 14px) var(--radius-md, 14px) 0 0;
+  background: var(--bg-tertiary);
+}
+.ref-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s var(--ease);
+}
+.ref-card:hover .ref-card-image img { transform: scale(1.06); }
+.ref-card-content { flex: 1; }
+.ref-category {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ibc-green);
+  display: block;
+  margin-bottom: 0.5rem;
+}
+[data-theme="dark"] .ref-category { color: var(--ibc-green-light); }
+.ref-card h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
+}
+.ref-card p {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+@media (max-width: 575.98px) {
+  .timeline-projects { grid-template-columns: 1fr; }
+}
+
+/* ============================================================
+   ALUMNI FEATURES  –  unser-netzwerk.html
+   ============================================================ */
+.alumni-feature {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg, 20px);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  height: 100%;
+  transition: transform 0.35s var(--ease-spring), box-shadow 0.3s ease, border-color 0.25s;
+}
+.alumni-feature:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(109, 151, 68, 0.3);
+}
+[data-theme="dark"] .alumni-feature {
+  background: var(--bg-elevated);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+.alumni-feature__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(109, 151, 68, 0.1);
+  border: 1px solid rgba(109, 151, 68, 0.2);
+  color: var(--ibc-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  margin: 0 auto 1rem;
+  transition: background 0.25s, transform 0.25s;
+}
+[data-theme="dark"] .alumni-feature__icon {
+  background: rgba(125, 179, 86, 0.12);
+  border-color: rgba(125, 179, 86, 0.25);
+  color: var(--ibc-green-light);
+}
+.alumni-feature:hover .alumni-feature__icon {
+  background: rgba(109, 151, 68, 0.18);
+  transform: scale(1.1) rotate(-5deg);
+}
+.alumni-feature__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem;
+}
+.alumni-feature__text {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ============================================================
+   COOP CARDS  –  unser-netzwerk.html cooperation partner cards
+   ============================================================ */
+.coop-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg, 20px);
+  padding: 2rem 1.75rem;
+  height: 100%;
+  transition: transform 0.35s var(--ease-spring), box-shadow 0.3s ease, background 0.25s;
+}
+.coop-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+.coop-card__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(109, 151, 68, 0.15);
+  border: 1px solid rgba(109, 151, 68, 0.3);
+  color: var(--ibc-green-light, #7db356);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 1.25rem;
+  transition: transform 0.25s var(--ease-spring);
+}
+.coop-card:hover .coop-card__icon { transform: scale(1.1) rotate(-5deg); }
+.coop-card__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 0.6rem;
+}
+.coop-card__text {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ============================================================
+   SKELETON LOADING CARD  –  general purpose
+   ============================================================ */
+.skeleton-card {
+  height: 180px;
+  border-radius: var(--radius-lg, 20px);
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 25%,
+    var(--bg-tertiary) 50%,
+    var(--bg-secondary) 75%
+  );
+  background-size: 1200px 100%;
+  animation: skeleton-shimmer 1.8s ease-in-out infinite;
+  border: 1px solid var(--border-subtle);
 }
