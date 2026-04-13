@@ -1011,10 +1011,14 @@ p:last-child { margin-bottom: 0; }
   margin: 0 auto 1.5rem;
   text-shadow: 0 1px 12px rgba(0,0,0,0.3);
 }
+/* Ensure hero subtitle is always white regardless of inherited p color */
+#hero-section .hero-subtitle-text {
+  color: rgba(255,255,255,0.92) !important;
+}
 /* Keep old fs-5 rule for backwards compat but override with hero-subtitle-text */
 #hero-section .fs-5 {
   font-size: clamp(0.95rem, 1.4vw + 0.3rem, 1.2rem) !important;
-  color: rgba(255,255,255,0.92);
+  color: rgba(255,255,255,0.92) !important;
   line-height: 1.65;
   max-width: 54ch;
   margin: 0 auto 0;
@@ -1314,19 +1318,22 @@ p:last-child { margin-bottom: 0; }
 
 /* ── Mobile Swipe Carousel ──────────────────────────────────── */
 
-/* JS adds .swipe-carousel on viewports < 768 px */
+/* JS adds .swipe-carousel on viewports < 1024 px */
 .swipe-carousel {
   display: flex;
   flex-direction: row;
   overflow-x: scroll;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
+  scroll-padding-left: 1.25rem;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   gap: 1rem;
   padding: 0.5rem 1.25rem 1.75rem;
   cursor: grab;
+  user-select: none;
 }
+.swipe-carousel.is-dragging { cursor: grabbing; scroll-snap-type: none; }
 .swipe-carousel::-webkit-scrollbar { display: none; }
 .swipe-carousel:active { cursor: grabbing; }
 
