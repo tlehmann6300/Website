@@ -68,7 +68,33 @@
       setTimeout(() => {
         el.style.opacity = '1';
         el.style.transform = 'translateY(0)';
+        /* Hero-Trust-Strip: Zähler starten nach Einblenden */
+        if (sel === '.hero-trust-strip') {
+          setTimeout(() => startHeroTrustCounters(el), 400);
+        }
       }, BASE_OFFSET + delay);
+    });
+  }
+
+  /* ── Hero-Trust-Strip Zähler-Animation ──────────────────────── */
+  function startHeroTrustCounters(strip) {
+    if (!strip) return;
+    strip.querySelectorAll('.hero-trust-num[data-count]').forEach(el => {
+      const target = parseInt(el.getAttribute('data-count'), 10);
+      const suffix = el.getAttribute('data-suffix') || '';
+      if (isNaN(target)) return;
+      const duration = 1200;
+      const start = performance.now();
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        /* Ease-out cubic */
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const value = Math.round(ease * target);
+        el.textContent = value + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
     });
   }
 

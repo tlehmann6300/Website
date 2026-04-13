@@ -1842,12 +1842,17 @@ p:last-child { margin-bottom: 0; }
 /* Brand column */
 .fat-footer__logo-link { display: inline-block; }
 .fat-footer__logo-img {
-  height: 52px;
+  height: 80px;
   width: auto;
   object-fit: contain;
   margin-bottom: 1.25rem;
   filter: brightness(0) invert(1);
   opacity: 0.9;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.fat-footer__logo-link:hover .fat-footer__logo-img {
+  opacity: 1;
+  transform: scale(1.04);
 }
 .fat-footer__tagline {
   font-size: 0.875rem;
@@ -5263,4 +5268,130 @@ p:last-child { margin-bottom: 0; }
 .swipe-carousel .competency-card__badge {
   width: 40px; height: 40px;
   font-size: 0.95rem;
+}
+
+/* ============================================================
+   LIGHT MODE ENHANCEMENTS
+   ============================================================ */
+
+/* Subtle page background gradient in light mode */
+:root body,
+[data-theme="light"] body {
+  background: linear-gradient(180deg,
+    #f8f9fc 0%,
+    #ffffff 30%,
+    #f5f7fa 70%,
+    #f0f2f7 100%);
+  background-attachment: fixed;
+}
+
+/* Nav in light mode: crisper scrolled state */
+:root .navbar.is-scrolled,
+[data-theme="light"] .navbar.is-scrolled {
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom-color: rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Competency cards in light mode: stronger depth */
+:root .competency-card,
+[data-theme="light"] .competency-card {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06), 0 1px 3px rgba(0, 0, 0, 0.04);
+  background: #ffffff;
+}
+:root .competency-card:hover,
+[data-theme="light"] .competency-card:hover {
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.11), 0 4px 16px rgba(109, 151, 68, 0.12);
+}
+
+/* Info glass cards: more premium feel in light mode */
+:root .info-glass-card,
+[data-theme="light"] .info-glass-card {
+  background: #ffffff;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+}
+:root .info-glass-card-link:hover .info-glass-card,
+[data-theme="light"] .info-glass-card-link:hover .info-glass-card {
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10), 0 4px 16px rgba(109, 151, 68, 0.10);
+}
+
+/* Section headings: subtle gradient in light mode */
+:root .ibc-heading,
+[data-theme="light"] .ibc-heading {
+  color: var(--ibc-blue);
+}
+
+/* Competencies section background: soft gradient */
+:root .competencies-section,
+[data-theme="light"] .competencies-section {
+  background: linear-gradient(160deg, #f4f7f2 0%, #eef1f8 60%, #f0f4ee 100%);
+}
+
+/* Wave dividers in light mode */
+:root .section-wave-divider path,
+[data-theme="light"] .section-wave-divider path {
+  /* already fine */
+}
+
+/* Page hero sections on sub-pages */
+:root .page-hero-section,
+[data-theme="light"] .page-hero-section {
+  background: linear-gradient(135deg, var(--ibc-blue) 0%, #2d3168 60%, #1a1c2e 100%);
+}
+
+/* Better scrollbar in light mode */
+:root {
+  scrollbar-color: rgba(109, 151, 68, 0.4) rgba(0, 0, 0, 0.06);
+  scrollbar-width: thin;
+}
+
+/* Buttons hover glow in light mode */
+:root .hero-cta-primary:hover,
+[data-theme="light"] .hero-cta-primary:hover {
+  box-shadow: 0 8px 32px rgba(109, 151, 68, 0.35);
+}
+
+/* Better footer logo area spacing */
+.fat-footer__brand {
+  padding-top: 0.5rem;
+}
+
+/* Mobile hero animations – ensure full opacity on small screens */
+@media (max-width: 767px) {
+  #hero-section .hero-content-col > * {
+    /* Reduced initial transform distance on mobile */
+    transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .hero-trust-strip {
+    gap: 0.15rem;
+  }
+
+  /* Ensure reveal-fx works on mobile */
+  .reveal-fx {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal-fx.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Fade-in-up on mobile */
+  .fade-in-up {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-in-up.is-visible,
+  .fade-in-up.visible,
+  .fade-in-up.in-view {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  /* Stat cards on mobile */
+  .stat-card {
+    margin-bottom: 0.5rem;
+  }
 }
