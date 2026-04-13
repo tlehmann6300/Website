@@ -961,7 +961,7 @@ p:last-child { margin-bottom: 0; }
   text-shadow: 0 2px 40px rgba(0,0,0,0.3);
   margin-bottom: 1rem !important;
   /* Extra bottom space so descenders (e.g. "g") are not clipped by background-clip */
-  padding-bottom: 0.12em;
+  padding-bottom: 0.28em;
   /* Prevent ugly mid-word hyphenation of long German compound words */
   hyphens: none !important;
   -webkit-hyphens: none !important;
@@ -5071,16 +5071,40 @@ p:last-child { margin-bottom: 0; }
    ENHANCED PAGE LOADER — Particles, Entrance, Shimmer
    ============================================================ */
 
-/* Animated ambient light via pseudo-element (doesn't conflict with exit animation) */
+/* Animated ambient rotating gradient — breathtaking green & pink sweep */
+@keyframes lp-bg-rotate {
+  0%   { transform: rotate(0deg)   scale(1.4); }
+  50%  { transform: rotate(180deg) scale(1.6); }
+  100% { transform: rotate(360deg) scale(1.4); }
+}
+@keyframes lp-bg-pulse {
+  0%,100% { opacity: 0.55; }
+  50%      { opacity: 0.85; }
+}
+
 #page-loader::before {
   content: '';
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 70% 55% at 15% 40%, rgba(109,151,68,0.22) 0%, transparent 60%),
-    radial-gradient(ellipse 55% 45% at 85% 65%, rgba(79,142,247,0.18) 0%, transparent 60%);
+  inset: -40%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    rgba(125,179,86,0.00)  0deg,
+    rgba(125,179,86,0.40) 40deg,
+    rgba(72,199,142,0.30) 80deg,
+    rgba(236, 64,204,0.00) 120deg,
+    rgba(236, 64,204,0.38) 160deg,
+    rgba(219, 39,119,0.32) 200deg,
+    rgba(109,151,68,0.00)  240deg,
+    rgba(109,151,68,0.38) 280deg,
+    rgba(52,211,153,0.28) 320deg,
+    rgba(125,179,86,0.00)  360deg
+  );
+  animation:
+    lp-bg-rotate 12s linear infinite,
+    lp-bg-pulse  6s ease-in-out infinite;
   pointer-events: none;
   z-index: 0;
+  filter: blur(60px);
 }
 
 /* Floating ambient particles */
@@ -5089,41 +5113,90 @@ p:last-child { margin-bottom: 0; }
   border-radius: 50%;
   pointer-events: none;
   z-index: 0;
+  filter: blur(2px);
 }
+/* Large green orb – top-right */
 .lp-1 {
-  width: 340px; height: 340px;
-  top: -90px; right: -90px;
-  background: radial-gradient(circle, rgba(109,151,68,0.28) 0%, transparent 65%);
-  animation: lp-drift-a 7s ease-in-out infinite;
+  width: 520px; height: 520px;
+  top: -140px; right: -140px;
+  background: radial-gradient(circle at 40% 40%,
+    rgba(125,179,86,0.65) 0%,
+    rgba(72,199,142,0.35) 40%,
+    transparent 70%);
+  animation: lp-drift-a 8s ease-in-out infinite;
 }
+/* Large pink orb – bottom-left */
 .lp-2 {
-  width: 260px; height: 260px;
-  bottom: -70px; left: -70px;
-  background: radial-gradient(circle, rgba(79,142,247,0.22) 0%, transparent 65%);
-  animation: lp-drift-b 9s ease-in-out infinite;
+  width: 480px; height: 480px;
+  bottom: -120px; left: -120px;
+  background: radial-gradient(circle at 60% 60%,
+    rgba(236,64,204,0.60) 0%,
+    rgba(219,39,119,0.35) 40%,
+    transparent 70%);
+  animation: lp-drift-b 10s ease-in-out infinite;
 }
+/* Mid pink accent – top-left */
 .lp-3 {
-  width: 150px; height: 150px;
-  top: 22%; right: 22%;
-  background: radial-gradient(circle, rgba(168,85,247,0.18) 0%, transparent 65%);
-  animation: lp-drift-a 5.5s ease-in-out 1.5s infinite;
+  width: 300px; height: 300px;
+  top: 8%; left: 5%;
+  background: radial-gradient(circle at 50% 50%,
+    rgba(244,114,182,0.55) 0%,
+    rgba(236,64,204,0.25) 50%,
+    transparent 70%);
+  animation: lp-drift-c 7s ease-in-out 0.8s infinite;
 }
+/* Mid green accent – bottom-right */
 .lp-4 {
-  width: 100px; height: 100px;
-  bottom: 28%; left: 18%;
-  background: radial-gradient(circle, rgba(125,179,86,0.22) 0%, transparent 65%);
-  animation: lp-drift-b 8s ease-in-out 0.5s infinite;
+  width: 280px; height: 280px;
+  bottom: 10%; right: 8%;
+  background: radial-gradient(circle at 50% 50%,
+    rgba(109,151,68,0.55) 0%,
+    rgba(52,211,153,0.28) 50%,
+    transparent 70%);
+  animation: lp-drift-d 9s ease-in-out 1.2s infinite;
+}
+/* Small bright pink sparkle – center-right */
+.lp-5 {
+  width: 160px; height: 160px;
+  top: 42%; right: 15%;
+  background: radial-gradient(circle,
+    rgba(251,113,133,0.70) 0%,
+    rgba(244,114,182,0.40) 45%,
+    transparent 70%);
+  animation: lp-drift-a 5s ease-in-out 2s infinite;
+}
+/* Small bright green sparkle – center-left */
+.lp-6 {
+  width: 140px; height: 140px;
+  top: 55%; left: 12%;
+  background: radial-gradient(circle,
+    rgba(74,222,128,0.65) 0%,
+    rgba(125,179,86,0.35) 45%,
+    transparent 70%);
+  animation: lp-drift-b 6s ease-in-out 0.4s infinite;
 }
 
 @keyframes lp-drift-a {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%       { transform: translate(30px, -40px) scale(1.08); }
-  66%       { transform: translate(-18px, 22px) scale(0.94); }
+  0%,100% { transform: translate(0, 0)      scale(1);    }
+  25%      { transform: translate(40px,-55px) scale(1.12); }
+  50%      { transform: translate(20px, 30px) scale(0.90); }
+  75%      { transform: translate(-25px,-20px) scale(1.06); }
 }
 @keyframes lp-drift-b {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  40%       { transform: translate(-28px, 22px) scale(1.1); }
-  70%       { transform: translate(14px, -14px) scale(0.96); }
+  0%,100% { transform: translate(0, 0)       scale(1);    }
+  30%      { transform: translate(-40px, 30px) scale(1.10); }
+  60%      { transform: translate(25px,-40px)  scale(0.92); }
+  80%      { transform: translate(-10px, 15px) scale(1.04); }
+}
+@keyframes lp-drift-c {
+  0%,100% { transform: translate(0, 0)       scale(1);    }
+  35%      { transform: translate(30px, 50px) scale(1.08); }
+  65%      { transform: translate(-20px,-30px) scale(0.94); }
+}
+@keyframes lp-drift-d {
+  0%,100% { transform: translate(0, 0)       scale(1);    }
+  40%      { transform: translate(-35px,-45px) scale(1.09); }
+  70%      { transform: translate(18px, 25px) scale(0.95); }
 }
 
 /* Ensure loader inner content sits above pseudo-element and particles */
@@ -5183,6 +5256,7 @@ p:last-child { margin-bottom: 0; }
 
 /* Reduced-motion: skip all loader extras */
 @media (prefers-reduced-motion: reduce) {
+  #page-loader::before { animation: none !important; }
   .lp                   { animation: none !important; }
   .loader-logo-wrap     { animation: none !important; opacity: 1; transform: none; }
   .loader-bar-fill::after { animation: none !important; }
