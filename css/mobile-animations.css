@@ -94,9 +94,11 @@
         animation: fadeInUp 0.5s 0.1s forwards ease-out !important;
     }
 
-    /* Hero subtitle (p.fs-5 in hero) */
-    #hero-section p.fs-5 {
+    /* Hero subtitle – target both legacy .fs-5 and current .hero-subtitle-text */
+    #hero-section p.fs-5,
+    #hero-section .hero-subtitle-text {
         opacity: 0;
+        color: rgba(255,255,255,0.92) !important;
         animation: fadeInUp 0.55s 0.45s forwards ease-out !important;
     }
 
