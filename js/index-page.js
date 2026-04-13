@@ -46,6 +46,15 @@
         const el = col.querySelector(sel);
         if (el) { el.style.opacity = '1'; el.style.transform = ''; }
       });
+      /* Auch bei Reduced Motion die Zahlen direkt auf den Zielwert setzen */
+      const strip = col.querySelector('.hero-trust-strip');
+      if (strip) {
+        strip.querySelectorAll('.hero-trust-num[data-count]').forEach(el => {
+          const target = parseInt(el.getAttribute('data-count'), 10);
+          const suffix = el.getAttribute('data-suffix') || '';
+          if (!isNaN(target)) el.textContent = target + suffix;
+        });
+      }
       return;
     }
 
@@ -66,13 +75,20 @@
     items.forEach(({ sel, delay }) => {
       const el = col.querySelector(sel);
       if (!el) return;
+      /* Hero-Trust-Strip: Werte auf 0 zurücksetzen, damit Zähler von 0 startet */
+      if (sel === '.hero-trust-strip') {
+        el.querySelectorAll('.hero-trust-num[data-count]').forEach(numEl => {
+          const suffix = numEl.getAttribute('data-suffix') || '';
+          numEl.textContent = '0' + suffix;
+        });
+      }
       setTimeout(() => {
         el.style.opacity = '1';
         el.style.transform = 'translateY(0)';
         el.style.filter = 'blur(0)';
-        /* Hero-Trust-Strip: Zähler starten nach Einblenden */
+        /* Hero-Trust-Strip: Zähler sofort nach Einblenden starten */
         if (sel === '.hero-trust-strip') {
-          setTimeout(() => startHeroTrustCounters(el), 400);
+          startHeroTrustCounters(el);
         }
       }, BASE_OFFSET + delay);
     });
@@ -515,7 +531,17 @@
     let counterEl  = null;
     let scrollTimer = null;
 
+    /* Pointer-drag state */
+    let isDragging   = false;
+    let dragStartX   = 0;
+    let dragScrollX  = 0;
+
     const getCards = () => grid.querySelectorAll('.competency-card');
+
+    /* ── Left-padding helper (matches CSS .swipe-carousel padding-left) ─ */
+    function getGridPaddingLeft() {
+      return parseFloat(getComputedStyle(grid).paddingLeft) || 0;
+    }
 
     /* ── Dots aufbauen ─────────────────────────────────────── */
     function buildDots() {
@@ -552,14 +578,17 @@
     function scrollToCard(idx) {
       const cards = getCards();
       if (!cards[idx]) return;
-      grid.scrollTo({ left: cards[idx].offsetLeft - 20, behavior: 'smooth' });
+      const padLeft = getGridPaddingLeft();
+      grid.scrollTo({ left: cards[idx].offsetLeft - padLeft, behavior: 'smooth' });
     }
 
     function getActiveIndex() {
       const cards = getCards();
+      const gridRect = grid.getBoundingClientRect();
       let closest = 0, minDist = Infinity;
       cards.forEach((card, i) => {
-        const d = Math.abs(card.offsetLeft - 20 - grid.scrollLeft);
+        const cardRect = card.getBoundingClientRect();
+        const d = Math.abs(cardRect.left - gridRect.left);
         if (d < minDist) { minDist = d; closest = i; }
       });
       return closest;
@@ -590,6 +619,31 @@
       scrollTimer = setTimeout(() => closeOffscreenAccordions(idx), 300);
     }
 
+    /* ── Pointer-drag (Maus-Drag für Desktop) ──────────────── */
+    function onPointerDown(e) {
+      if (e.pointerType === 'touch') return; /* touch handled natively */
+      isDragging  = true;
+      dragStartX  = e.clientX;
+      dragScrollX = grid.scrollLeft;
+      grid.classList.add('is-dragging');
+      grid.setPointerCapture(e.pointerId);
+    }
+
+    function onPointerMove(e) {
+      if (!isDragging) return;
+      const dx = dragStartX - e.clientX;
+      grid.scrollLeft = dragScrollX + dx;
+    }
+
+    function onPointerUp(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      grid.classList.remove('is-dragging');
+      /* Snap to closest card */
+      const idx = getActiveIndex();
+      scrollToCard(idx);
+    }
+
     /* ── Karussell aktivieren ──────────────────────────────── */
     function enableCarousel() {
       if (isCarousel) return;
@@ -601,6 +655,10 @@
       buildCounter();
       setActiveCard(0);
       grid.addEventListener('scroll', updateDots, { passive: true });
+      grid.addEventListener('pointerdown', onPointerDown);
+      grid.addEventListener('pointermove', onPointerMove);
+      grid.addEventListener('pointerup', onPointerUp);
+      grid.addEventListener('pointercancel', onPointerUp);
     }
 
     function disableCarousel() {
@@ -612,6 +670,10 @@
       if (counterEl) { counterEl.remove(); counterEl = null; }
       getCards().forEach(c => c.classList.remove('is-carousel-active'));
       grid.removeEventListener('scroll', updateDots);
+      grid.removeEventListener('pointerdown', onPointerDown);
+      grid.removeEventListener('pointermove', onPointerMove);
+      grid.removeEventListener('pointerup', onPointerUp);
+      grid.removeEventListener('pointercancel', onPointerUp);
       if (scrollTimer) { clearTimeout(scrollTimer); scrollTimer = null; }
     }
 
