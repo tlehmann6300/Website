@@ -1102,7 +1102,7 @@
     "fr": "Nos consultants sont des étudiants engagés issus de divers départements de la HFU."
   },
   "stat-advisors-title": {
-    "de": "Aktive Berater",
+    "de": "Aktive Berater:innen",
     "en": "Active Consultants",
     "fr": "Consultants actifs"
   },
@@ -1132,9 +1132,9 @@
     "fr": "Notre réseau compte plus de 150 anciens membres qui occupent aujourd'hui des postes de direction."
   },
   "stat-alumni-title": {
-    "de": "Alumni",
-    "en": "Alumni",
-    "fr": "Alumni"
+    "de": "Alumni/Alumnae",
+    "en": "Alumni/Alumnae",
+    "fr": "Alumni/Alumnae"
   },
   "info-students-heading": {
     "de": "Informationen für Studierende",
@@ -3647,12 +3647,12 @@
     "fr": "Statistiques sur l'institut"
   },
   "stat-advisors-info-aria": {
-    "de": "Informationen zu Aktiven Beratern",
+    "de": "Informationen zu Aktiven Berater:innen",
     "en": "Information about Active Consultants",
     "fr": "Informations sur les consultants actifs"
   },
   "stat-advisors-sr": {
-    "de": "34 Aktive Berater",
+    "de": "34 Aktive Berater:innen",
     "en": "34 Active Consultants",
     "fr": "34 consultants actifs"
   },
@@ -3677,13 +3677,13 @@
     "fr": "Fondé en 1998"
   },
   "stat-alumni-info-aria": {
-    "de": "Informationen zu Alumni",
-    "en": "Information about Alumni",
+    "de": "Informationen zu Alumni/Alumnae",
+    "en": "Information about Alumni/Alumnae",
     "fr": "Informations sur les anciens"
   },
   "stat-alumni-sr": {
-    "de": "Über 152 Alumni",
-    "en": "Over 152 Alumni",
+    "de": "Über 152 Alumni/Alumnae",
+    "en": "Over 152 Alumni/Alumnae",
     "fr": "Plus de 152 anciens"
   },
   "flip-tap": {
