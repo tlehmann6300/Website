@@ -1,0 +1,646 @@
+/* ============================================================
+   IBC Furtwangen — ibc-improvements.css
+   Umfassendes Design-Upgrade: Responsive, Mobile, Dark/Light
+   Lädt nach premium-redesign.css – höchste Priorität
+   ============================================================
+
+   INHALT
+   ──────
+    1.  Typografie-Fixes (Abstände, Word-Spacing)
+    2.  Verbesserte Carousel-Controls (Events & Testimonials)
+    3.  Instagram Smartphone-Frames
+    4.  Abschnitt-Header (einheitliche Optik)
+    5.  Karten- & Hover-Verbesserungen
+    6.  Allgemeine Design-Verbesserungen
+    7.  Mobile-First Responsive (komplett)
+    8.  Animationen & Micro-Interactions
+   ============================================================ */
+
+/* ============================================================
+   1. TYPOGRAFIE-FIXES
+   Stellt sicher, dass große Überschriften immer lesbar bleiben
+   ============================================================ */
+
+/* Genereller word-spacing für alle ibc-headings */
+.ibc-heading {
+  word-spacing: 0.08em;
+}
+
+/* Großes Anzeigeheading (Hero-H1) – noch etwas mehr Abstand */
+.display-heading,
+h1.ibc-heading {
+  word-spacing: 0.12em;
+  letter-spacing: -0.025em; /* weniger negativ als Standard */
+  hyphens: none;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+/* Gradient-Text in Headings bleibt inline, kein Brechen */
+.ibc-heading .text-gradient {
+  display: inline;
+  word-spacing: inherit;
+}
+
+/* ============================================================
+   2. EVENTS-KARUSSELL – Premium Controls
+   ============================================================ */
+
+/* Wrapper gibt genug Platz für die außen-positionierten Buttons */
+.event-slider-v2 {
+  /* Desktop: Seitenabstand für die herausstehenden Buttons */
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+/* Carousel-Control-Buttons – größer, stilvoller */
+.carousel-ctrl {
+  width: 52px;
+  height: 52px;
+  font-size: 0.9rem;
+  background: var(--bg-elevated, #ffffff);
+  border: 1.5px solid var(--border-subtle);
+  color: var(--text-primary);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.12),
+    0 1px 8px rgba(0, 0, 0, 0.06);
+  transition:
+    background 0.25s cubic-bezier(0.34, 1.36, 0.64, 1),
+    border-color 0.25s,
+    color 0.25s,
+    transform 0.25s cubic-bezier(0.34, 1.36, 0.64, 1),
+    box-shadow 0.25s;
+}
+
+.carousel-ctrl:hover {
+  background: var(--ibc-green, #6d9744);
+  border-color: var(--ibc-green, #6d9744);
+  color: #ffffff;
+  box-shadow:
+    0 8px 32px rgba(109, 151, 68, 0.40),
+    0 2px 10px rgba(109, 151, 68, 0.25);
+  transform: translateY(-50%) scale(1.14);
+}
+
+[data-theme="dark"] .carousel-ctrl {
+  background: rgba(20, 23, 50, 0.96);
+  border-color: rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.45),
+    0 1px 8px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .carousel-ctrl:hover {
+  background: var(--ibc-green, #6d9744);
+  border-color: var(--ibc-green, #6d9744);
+  color: #ffffff;
+  box-shadow:
+    0 8px 32px rgba(109, 151, 68, 0.45),
+    0 2px 10px rgba(109, 151, 68, 0.3);
+}
+
+/* Desktop: etwas weiter außen */
+.carousel-ctrl--prev { left: -26px; }
+.carousel-ctrl--next { right: -26px; }
+
+/* Dot-Indikatoren – etwas größer und besser sichtbar */
+.carousel-dot-v2 {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  opacity: 0.45;
+  transition:
+    width 0.35s cubic-bezier(0.34, 1.36, 0.64, 1),
+    opacity 0.3s,
+    border-radius 0.35s;
+}
+
+.carousel-dot-v2.active,
+.carousel-dot-v2[aria-current="true"] {
+  width: 32px;
+  border-radius: 4px;
+  opacity: 1;
+  background: var(--ibc-green, #6d9744);
+}
+
+.carousel-indicators-v2 {
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+/* ============================================================
+   3. TESTIMONIALS – einheitliche Karteigröße & Controls
+   ============================================================ */
+
+/* Sicherstellen, dass alle Karten gleich hoch sind */
+.ibc-testimonial-card {
+  min-height: 460px;
+}
+
+/* Nav-Buttons sind immer 44px (touch-freundlich) */
+.ibc-testimonial-nav-btn,
+.ibc-testimonial-toggle-btn {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  font-size: 0.85rem;
+  border-radius: 50%;
+  transition:
+    background 0.25s cubic-bezier(0.34, 1.36, 0.64, 1),
+    border-color 0.25s,
+    color 0.25s,
+    transform 0.25s cubic-bezier(0.34, 1.36, 0.64, 1),
+    box-shadow 0.25s;
+}
+
+.ibc-testimonial-nav-btn:hover,
+.ibc-testimonial-toggle-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 4px 20px rgba(109, 151, 68, 0.35);
+}
+
+/* Progress-Bar etwas breiter für bessere Sichtbarkeit */
+.ibc-testimonial-timeline-track {
+  height: 4px;
+  border-radius: 2px;
+}
+
+.ibc-testimonial-timeline-fill {
+  background: linear-gradient(
+    90deg,
+    var(--ibc-green, #6d9744) 0%,
+    var(--ibc-green-light, #7db356) 100%
+  );
+}
+
+/* ============================================================
+   4. INSTAGRAM SMARTPHONE-FRAMES – Polish & Responsive
+   ============================================================ */
+
+/* Sicherstellen, dass der Abschnitt gut ausgerichtet ist */
+.instagram-section-v2 {
+  padding: 6rem 0 8rem;
+}
+
+/* ============================================================
+   5. ABSCHNITTS-HEADER – Einheitliche Optik
+   ============================================================ */
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+/* Section-Chip einheitlich */
+.section-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  background: rgba(109, 151, 68, 0.10);
+  border: 1px solid rgba(109, 151, 68, 0.28);
+  color: var(--ibc-green, #6d9744);
+  margin-bottom: 1rem;
+  transition: background 0.2s, transform 0.2s;
+}
+
+[data-theme="dark"] .section-chip {
+  background: rgba(125, 179, 86, 0.12);
+  border-color: rgba(125, 179, 86, 0.30);
+  color: var(--ibc-green-light, #7db356);
+}
+
+/* ============================================================
+   6. KARTEN & HOVER-VERBESSERUNGEN
+   ============================================================ */
+
+/* Einheitlicher Card-Hover für alle page-section Cards */
+.angebot-card-v2,
+.highlight-stat-card,
+.feature-card,
+.ref-card,
+.network-card {
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.36, 0.64, 1),
+    box-shadow 0.3s ease;
+}
+
+.angebot-card-v2:hover,
+.highlight-stat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dark"] .angebot-card-v2:hover,
+[data-theme="dark"] .highlight-stat-card:hover {
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.45);
+}
+
+/* CTA Banner – schönerer Gradient */
+.cta-banner {
+  background:
+    linear-gradient(135deg,
+      rgba(109, 151, 68, 0.15) 0%,
+      rgba(99, 102, 241, 0.10) 50%,
+      rgba(139, 92, 246, 0.08) 100%
+    ),
+    var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+[data-theme="dark"] .cta-banner {
+  background:
+    linear-gradient(135deg,
+      rgba(109, 151, 68, 0.12) 0%,
+      rgba(99, 102, 241, 0.08) 50%,
+      rgba(139, 92, 246, 0.06) 100%
+    ),
+    var(--bg-primary);
+}
+
+/* ============================================================
+   7. MOBILE-FIRST RESPONSIVE – Vollständig
+   ============================================================ */
+
+/* ── Tablet (≤ 1099px) ── */
+@media (max-width: 1099.98px) {
+  .event-slider-v2 {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+}
+
+/* ── Mobile-L (≤ 767px) ── */
+@media (max-width: 767.98px) {
+
+  /* Headings */
+  .ibc-heading {
+    word-spacing: 0.08em;
+  }
+  h1.ibc-heading,
+  .display-heading {
+    word-spacing: 0.1em;
+    letter-spacing: -0.02em;
+  }
+
+  /* Events Slider – Controls in den Sides, kleiner, semi-transparent */
+  .event-slider-v2 {
+    margin-left: 0;
+    margin-right: 0;
+    padding-bottom: 0;
+  }
+
+  /* Carousel auf Mobilgeräten: Controls inside the slide */
+  .carousel-ctrl {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    font-size: 0.7rem;
+    /* Semi-transparent for overlay feel */
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+  }
+
+  [data-theme="dark"] .carousel-ctrl {
+    background: rgba(12, 14, 32, 0.88);
+    border-color: rgba(255, 255, 255, 0.18);
+  }
+
+  .carousel-ctrl:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .carousel-ctrl--prev {
+    left: 10px;
+  }
+
+  .carousel-ctrl--next {
+    right: 10px;
+  }
+
+  /* Indicators – klarer, mehr Abstand */
+  .carousel-indicators-v2 {
+    margin-top: 1.25rem;
+  }
+
+  /* Testimonials – Bild über Text */
+  .ibc-testimonial-card {
+    min-height: auto;
+  }
+
+  .ibc-testimonial-visual {
+    border-radius: 20px 20px 0 0;
+    min-height: 220px;
+    max-height: 260px;
+  }
+
+  .ibc-testimonial-content {
+    padding: 1.5rem 1.25rem;
+  }
+
+  /* Instagram – horizontales Scroll-Schnappen */
+  .instagram-container-v2 {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .instagram-section-v2 {
+    padding: 4rem 0 5rem;
+  }
+
+  /* Section Chips und Headings */
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
+  /* Abstand zwischen Sections */
+  .page-section {
+    padding: 4rem 0;
+  }
+
+  /* CTA Buttons nebeneinander oder untereinander */
+  .page-hero__cta-row {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  /* Apply Steps auf Mobilgeräten */
+  .apply-steps::before {
+    left: 22px;
+  }
+
+  .apply-step__num {
+    width: 44px;
+    height: 44px;
+    font-size: 0.95rem;
+  }
+}
+
+/* ── Mobile-S (≤ 575px) ── */
+@media (max-width: 575.98px) {
+
+  /* Headings noch kompakter */
+  .ibc-heading {
+    font-size: clamp(1.6rem, 7.5vw, 2.2rem) !important;
+    word-spacing: 0.08em;
+  }
+
+  .display-heading,
+  h1.ibc-heading {
+    font-size: clamp(1.75rem, 9.5vw, 2.5rem) !important;
+    word-spacing: 0.1em;
+  }
+
+  /* Section chip */
+  .section-chip {
+    font-size: 0.68rem;
+    padding: 0.35rem 0.85rem;
+  }
+
+  /* Abstand */
+  .page-section {
+    padding: 3rem 0;
+  }
+
+  /* Event-Card: weniger Padding */
+  .event-slider-content-v2 {
+    padding: 1.25rem;
+  }
+
+  .event-slider-content-v2 h3 {
+    font-size: 1rem;
+  }
+
+  /* Testimonial Controls größer für Touch */
+  .ibc-testimonial-nav-btn,
+  .ibc-testimonial-toggle-btn {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+  }
+
+  /* Instagram Phone-Frames auf kleinen Geräten */
+  .instagram-container-v2 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* CTA-Banner */
+  .cta-banner {
+    padding: 3rem 0;
+  }
+
+  /* Stats cards auf ganz kleinen Screens */
+  .highlight-stat-card {
+    padding: 1.75rem 1rem;
+  }
+
+  .highlight-stat-card__num {
+    font-size: clamp(2rem, 10vw, 3rem) !important;
+  }
+}
+
+/* ── Klein (≤ 479px) ── */
+@media (max-width: 479.98px) {
+
+  /* Carousel Controls: etwas kleiner */
+  .carousel-ctrl {
+    width: 38px;
+    height: 38px;
+  }
+
+  .carousel-ctrl--prev {
+    left: 8px;
+  }
+
+  .carousel-ctrl--next {
+    right: 8px;
+  }
+
+  /* Abstand Navigation */
+  .carousel-indicators-v2 {
+    gap: 0.35rem;
+  }
+
+  .carousel-dot-v2 {
+    width: 7px;
+    height: 7px;
+  }
+
+  .carousel-dot-v2.active,
+  .carousel-dot-v2[aria-current="true"] {
+    width: 26px;
+  }
+
+  /* Hero */
+  .page-hero-section {
+    padding: calc(var(--nav-height, 60px) + 2rem) 0 3rem;
+  }
+
+  .ibc-lead {
+    font-size: 0.95rem;
+  }
+}
+
+/* ── Hover-Optimierung für Touch-Geräte ── */
+@media (hover: none) {
+  .carousel-ctrl:hover {
+    transform: translateY(-50%) !important; /* keep centering, remove scale */
+  }
+
+  .ibc-testimonial-nav-btn:hover,
+  .ibc-testimonial-toggle-btn:hover {
+    transform: none;
+  }
+
+  .angebot-card-v2:hover,
+  .highlight-stat-card:hover,
+  .apply-step:hover .apply-step__body,
+  .event-slider-item-v2:hover .event-img-col img {
+    transform: none;
+  }
+}
+
+/* ============================================================
+   8. ANIMATIONEN & MICRO-INTERACTIONS
+   ============================================================ */
+
+/* Phone-Frame Erscheinungs-Animation ist bereits im Abschnitt 4 */
+
+/* Scroll-Fortschrittsbalken (Pageloader-Animation) */
+.loader-bar-fill {
+  background: linear-gradient(
+    90deg,
+    var(--ibc-green, #6d9744),
+    var(--ibc-green-light, #7db356),
+    #6366f1
+  ) !important;
+}
+
+/* Verbesserte Focus-Styles für Accessibility */
+:focus-visible {
+  outline: 2px solid var(--ibc-green, #6d9744);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--ibc-green, #6d9744);
+  outline-offset: 4px;
+  border-radius: 6px;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .carousel-ctrl,
+  .ibc-testimonial-nav-btn,
+  .ibc-testimonial-toggle-btn,
+  .angebot-card-v2,
+  .highlight-stat-card {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   EXTRA: Verbesserte Event-Slider-Inhalt-Typografie
+   ============================================================ */
+
+.event-slider-content-v2 h3 {
+  font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+  font-weight: 700;
+  word-spacing: 0.06em;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: 0.8rem;
+  color: var(--text-primary);
+}
+
+.event-slider-content-v2 p {
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+/* Testimonials – Name & Zitat */
+.ibc-testimonial-name {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  word-spacing: 0.08em;
+}
+
+.ibc-testimonial-quote {
+  font-size: clamp(0.9rem, 1.6vw, 1.05rem);
+  line-height: 1.8;
+}
+
+/* ============================================================
+   EXTRA: Schönere Abschnitte - Seiten-übergreifend
+   ============================================================ */
+
+/* Seiten-Hero einheitlich */
+.page-hero-section {
+  padding: calc(var(--nav-height, 72px) + 4.5rem) 0 6rem;
+}
+
+/* Infoabend-Spotlight responsive */
+@media (max-width: 767.98px) {
+  .infoabend-spotlight {
+    padding: 3.5rem 0;
+  }
+
+  .infoabend-detail-row {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .infoabend-detail {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Referenzen-Seite – Reference Cards */
+.ref-card,
+.skeleton-reference-card {
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.34, 1.36, 0.64, 1), box-shadow 0.3s;
+}
+
+/* Kontakt-Seite – Formular */
+@media (max-width: 575.98px) {
+  .contact-form-wrapper,
+  .kontakt-form-card {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+}
+
+/* Netzwerk-Seite – Partner-Logos */
+@media (max-width: 575.98px) {
+  .partner-logo,
+  .netzwerk-logo {
+    max-width: 120px;
+  }
+}
+
+/* Über-uns Seite – Team-Cards */
+@media (max-width: 575.98px) {
+  .team-card,
+  .board-card {
+    padding: 1.25rem;
+  }
+}
