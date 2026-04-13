@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <script>
+    (function(){var t=localStorage.getItem('ibc-theme');var d=(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':t;if(d==='dark'||d==='light')document.documentElement.setAttribute('data-theme',d);})();
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wartungsarbeiten | IBC e.V.</title>
+    <link rel="icon" href="assets/img/cropped_maskottchen_32x32.webp" type="image/webp" sizes="32x32" />
+    <link rel="icon" href="assets/img/cropped_maskottchen_192x192.webp" type="image/webp" sizes="192x192" />
+    <link rel="apple-touch-icon" href="assets/img/cropped_maskottchen_180x180.webp" />
+
+    <script src="js/title-i18n.js"></script>
+
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/premium-redesign.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-xl is-scrolled" aria-label="Hauptnavigation" role="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" aria-label="Zur Startseite">
+                <img src="assets/img/ibc_logo_original_navbar.webp" alt="IBC Logo" class="navbar-logo">
+            </a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#mainNav"
+                    aria-controls="mainNav"
+                    aria-expanded="false"
+                    aria-label="Hauptmenü öffnen"
+                    data-i18n-aria="navbar-toggle">
+                <span class="toggler-icon" aria-hidden="true">
+                    <span class="toggler-bar"></span>
+                    <span class="toggler-bar"></span>
+                    <span class="toggler-bar"></span>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center" role="menubar">
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="fuer-studierende.html" role="menuitem" data-i18n="nav-students">Für Studierende</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="fuer-unternehmen.html" role="menuitem" data-i18n="nav-companies">Für Unternehmen</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="ueber-uns.html" role="menuitem" data-i18n="nav-about">Über uns</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="unser-netzwerk.html" role="menuitem" data-i18n="nav-network">Unser Netzwerk</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="referenzen.html" role="menuitem" data-i18n="nav-references">Referenzen</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="kontakt.html" role="menuitem" data-i18n="nav-contact">Kontakt</a>
+                    </li>
+                                        <li class="nav-item ms-lg-2" role="none">
+                        <button class="dark-mode-toggle" id="darkModeToggle" type="button"
+                                aria-label="Dark Mode aktivieren" aria-pressed="false">
+                            <i class="fas fa-moon" aria-hidden="true" id="darkModeIcon"></i>
+                        </button>
+                    </li>
+                    <li class="nav-item dropdown ms-lg-3" role="none">
+                        <button class="lang-toggle dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                aria-haspopup="true"
+                                aria-label="Sprache wählen"
+                                data-i18n-aria="navbar-lang-toggle">
+                            <img id="activeFlag" src="assets/img/flags/de.svg" alt="" class="flag-img" aria-hidden="true">
+                            <span class="d-lg-none ms-2" data-i18n="navbar-lang-change">Sprache ändern</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end lang-dropdown" role="menu" aria-label="Sprachauswahl" data-i18n-aria="navbar-lang-menu">
+                            <li role="none">
+                                <a class="lang-item"
+                                   href="?lang=de"
+                                   role="menuitem"
+                                   data-flag="assets/img/flags/de.svg"
+                                   data-lang="de"
+                                   aria-current="true"
+                                   aria-label="Deutsch">
+                                    <img src="assets/img/flags/de.svg" alt="" class="flag-img" aria-hidden="true">
+                                    <span>Deutsch</span>
+                                </a>
+                            </li>
+                            <li role="none">
+                                <a class="lang-item"
+                                   href="?lang=en"
+                                   role="menuitem"
+                                   data-flag="assets/img/flags/gb.svg"
+                                   data-lang="en"
+                                   aria-label="English">
+                                    <img src="assets/img/flags/gb.svg" alt="" class="flag-img" aria-hidden="true">
+                                    <span>English</span>
+                                </a>
+                            </li>
+                            <li role="none">
+                                <a class="lang-item"
+                                   href="?lang=fr"
+                                   role="menuitem"
+                                   data-flag="assets/img/flags/fr.svg"
+                                   data-lang="fr"
+                                   aria-label="Français">
+                                    <img src="assets/img/flags/fr.svg" alt="" class="flag-img" aria-hidden="true">
+                                    <span>Français</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="maintenance-content" id="main-content" role="main" aria-labelledby="maintenance-heading">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-10 col-xl-8 text-center">
+                    <div class="crane-scene">
+                        <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg" class="crane-svg" role="img" aria-labelledby="crane-title crane-desc">
+                            <title id="crane-title" data-i18n="maintenance_crane_title">Baukran Animation</title>
+                            <desc id="crane-desc" data-i18n="maintenance_crane_desc">Ein animierter Baukran symbolisiert die laufenden Wartungsarbeiten an der Website</desc>
+                            <defs>
+                                <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ef9e27;stop-opacity:1"/>
+                                    <stop offset="100%" style="stop-color:#d88920;stop-opacity:1"/>
+                                </linearGradient>
+                                <linearGradient id="blueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#20234A;stop-opacity:1"/>
+                                    <stop offset="100%" style="stop-color:#151730;stop-opacity:1"/>
+                                </linearGradient>
+                                <linearGradient id="lightBlue" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="0%" style="stop-color:#20234A;stop-opacity:1"/>
+                                    <stop offset="100%" style="stop-color:#151730;stop-opacity:1"/>
+                                </linearGradient>
+                                <linearGradient id="greenGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#6D9744;stop-opacity:1"/>
+                                    <stop offset="100%" style="stop-color:#355B2C;stop-opacity:1"/>
+                                </linearGradient>
+                                <linearGradient id="woodGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#8B6914;stop-opacity:1"/>
+                                    <stop offset="50%" style="stop-color:#A0742D;stop-opacity:1"/>
+                                    <stop offset="100%" style="stop-color:#6B5710;stop-opacity:1"/>
+                                </linearGradient>
+                                <linearGradient id="lightBlueAccent" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#3481B9;stop-opacity:1"/>
+                                    <stop offset="100%" style="stop-color:#2a6a9a;stop-opacity:1"/>
+                                </linearGradient>
+                                <filter id="softShadow">
+                                    <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+                                    <feOffset dx="0" dy="4" result="offsetblur"/>
+                                    <feComponentTransfer><feFuncA type="linear" slope="0.25"/></feComponentTransfer>
+                                    <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+                                </filter>
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                                    <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                                </filter>
+                            </defs>
+                            <g class="crane-container" filter="url(#softShadow)">
+                                <g class="crane-base" role="presentation">
+                                    <rect x="240" y="320" width="120" height="15" fill="url(#blueGrad)" rx="3"/>
+                                    <rect x="245" y="322" width="110" height="6" fill="#20234A" opacity="0.6"/>
+                                    <rect x="255" y="328" width="15" height="7" fill="#6D9744" opacity="0.8"/>
+                                    <rect x="280" y="328" width="15" height="7" fill="#6D9744" opacity="0.8"/>
+                                    <rect x="305" y="328" width="15" height="7" fill="#6D9744" opacity="0.8"/>
+                                    <rect x="330" y="328" width="15" height="7" fill="#6D9744" opacity="0.8"/>
+                                </g>
+                                <g class="crane-tower" role="presentation">
+                                    <rect x="285" y="120" width="30" height="200" fill="none" stroke="url(#blueGrad)" stroke-width="5" rx="2"/>
+                                    <line x1="290" y1="125" x2="290" y2="320" stroke="#20234A" stroke-width="2.5" opacity="0.7"/>
+                                    <line x1="300" y1="125" x2="300" y2="320" stroke="#20234A" stroke-width="2.5" opacity="0.9"/>
+                                    <line x1="310" y1="125" x2="310" y2="320" stroke="#20234A" stroke-width="2.5" opacity="0.7"/>
+                                    <line x1="287" y1="140" x2="300" y2="160" stroke="#4D5061" stroke-width="2" opacity="0.6"/>
+                                    <line x1="300" y1="140" x2="313" y2="160" stroke="#4D5061" stroke-width="2" opacity="0.6"/>
+                                    <line x1="287" y1="180" x2="300" y2="200" stroke="#4D5061" stroke-width="2" opacity="0.6"/>
+                                    <line x1="300" y1="180" x2="313" y2="200" stroke="#4D5061" stroke-width="2" opacity="0.6"/>
+                                    <line x1="287" y1="220" x2="300" y2="240" stroke="#4D5061" stroke-width="2" opacity="0.6"/>
+                                    <line x1="300" y1="220" x2="313" y2="240" stroke="#4D5061" stroke-width="2" opacity="0.6"/>
+                                    <line x1="287" y1="260" x2="300" y2="280" stroke="#4D5061" stroke-width="2" opacity="0.6"/>
+                                    <line x1="300" y1="260" x2="313" y2="280" stroke="#4D5061" stroke-width="2" opacity="0.6"/>
+                                    <line x1="287" y1="300" x2="300" y2="315" stroke="#4D5061" stroke-width="2" opacity="0.6"/>
+                                    <line x1="300" y1="300" x2="313" y2="315" stroke="#4D5061" stroke-width="2" opacity="0.6"/>
+                                    <rect x="285" y="160" width="30" height="3" fill="#20234A" opacity="0.8"/>
+                                    <rect x="285" y="200" width="30" height="3" fill="#20234A" opacity="0.8"/>
+                                    <rect x="285" y="240" width="30" height="3" fill="#20234A" opacity="0.8"/>
+                                    <rect x="285" y="280" width="30" height="3" fill="#20234A" opacity="0.8"/>
+                                </g>
+                                <g class="crane-cabin" filter="url(#glow)" role="presentation">
+                                    <rect x="278" y="105" width="44" height="22" fill="url(#blueGrad)" rx="4"/>
+                                    <rect x="283" y="110" width="15" height="11" fill="#3481B9" opacity="0.9" rx="1"/>
+                                    <rect x="302" y="110" width="15" height="11" fill="#3481B9" opacity="0.9" rx="1"/>
+                                    <rect x="285" y="112" width="5" height="7" fill="#4a9dd6" opacity="0.6"/>
+                                    <rect x="304" y="112" width="5" height="7" fill="#4a9dd6" opacity="0.6"/>
+                                    <rect x="280" y="124" width="40" height="3" fill="#151730" opacity="0.5"/>
+                                </g>
+                                <g class="crane-jib-assembly" style="transform-origin: 300px 115px">
+                                    <g class="counter-jib" role="presentation">
+                                        <line x1="300" y1="115" x2="140" y2="115" stroke="url(#lightBlue)" stroke-width="6"/>
+                                        <line x1="300" y1="112" x2="140" y2="112" stroke="#20234A" stroke-width="2.5"/>
+                                        <line x1="300" y1="118" x2="140" y2="118" stroke="#20234A" stroke-width="2.5"/>
+                                        <line x1="280" y1="112" x2="285" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                        <line x1="260" y1="112" x2="265" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                        <line x1="240" y1="112" x2="245" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                        <line x1="220" y1="112" x2="225" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                        <line x1="200" y1="112" x2="205" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                        <line x1="180" y1="112" x2="185" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                        <line x1="160" y1="112" x2="165" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                        <rect x="115" y="102" width="35" height="26" fill="url(#greenGrad)" rx="3"/>
+                                        <rect x="118" y="105" width="29" height="7" fill="#355B2C" opacity="0.5"/>
+                                        <rect x="118" y="115" width="29" height="7" fill="#355B2C" opacity="0.5"/>
+                                        <rect x="120" y="107" width="10" height="4" fill="#ef9e27" opacity="0.8"/>
+                                        <rect x="135" y="107" width="10" height="4" fill="#ef9e27" opacity="0.8"/>
+                                        <rect x="120" y="117" width="10" height="4" fill="#ef9e27" opacity="0.8"/>
+                                        <rect x="135" y="117" width="10" height="4" fill="#ef9e27" opacity="0.8"/>
+                                    </g>
+                                    <g class="main-jib" role="presentation">
+                                        <line x1="300" y1="115" x2="480" y2="115" stroke="url(#lightBlue)" stroke-width="6"/>
+                                        <line x1="300" y1="112" x2="480" y2="112" stroke="#20234A" stroke-width="2.5"/>
+                                        <line x1="300" y1="118" x2="480" y2="118" stroke="#20234A" stroke-width="2.5"/>
+                                        <line x1="320" y1="112" x2="325" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                        <line x1="345" y1="112" x2="350" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                        <line x1="370" y1="112" x2="375" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                        <line x1="395" y1="112" x2="400" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                        <line x1="420" y1="112" x2="425" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                        <line x1="445" y1="112" x2="450" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                        <line x1="465" y1="112" x2="470" y2="118" stroke="#4D5061" stroke-width="1.8" opacity="0.7"/>
+                                    </g>
+                                    <g class="crane-trolley" role="presentation">
+                                        <rect x="371" y="106" width="24" height="14" fill="url(#blueGrad)" rx="2"/>
+                                        <circle cx="376" cy="120" r="4" fill="#4D5061"/>
+                                        <circle cx="390" cy="120" r="4" fill="#4D5061"/>
+                                        <rect x="374" y="108" width="8" height="6" fill="#ef9e27" opacity="0.8"/>
+                                        <rect x="384" y="108" width="8" height="6" fill="#ef9e27" opacity="0.8"/>
+                                        <g class="crane-hook-system" role="presentation">
+                                            <line x1="383" y1="120" x2="383" y2="240" stroke="#4D5061" stroke-width="2.5" stroke-dasharray="2,2" opacity="0.8"/>
+                                            <circle cx="383" cy="120" r="3" fill="#4D5061"/>
+                                            <g class="hook-animation">
+                                                <circle cx="383" cy="245" r="6" fill="none" stroke="#4D5061" stroke-width="3"/>
+                                                <path d="M 383 245 Q 389 251 383 257 Q 377 253 383 245" fill="#4D5061"/>
+                                                <circle cx="383" cy="245" r="3" fill="#ef9e27" filter="url(#glow)"/>
+                                                <g class="wooden-block">
+                                                    <rect x="368" y="260" width="30" height="35" fill="url(#woodGrad)" rx="2"/>
+                                                    <line x1="370" y1="263" x2="396" y2="263" stroke="#6B5710" stroke-width="1" opacity="0.4"/>
+                                                    <line x1="370" y1="270" x2="396" y2="270" stroke="#6B5710" stroke-width="0.8" opacity="0.3"/>
+                                                    <line x1="370" y1="277" x2="396" y2="277" stroke="#6B5710" stroke-width="1" opacity="0.4"/>
+                                                    <line x1="370" y1="285" x2="396" y2="285" stroke="#6B5710" stroke-width="0.8" opacity="0.3"/>
+                                                    <line x1="370" y1="292" x2="396" y2="292" stroke="#6B5710" stroke-width="1" opacity="0.4"/>
+                                                    <rect x="368" y="260" width="30" height="3" fill="#A0742D" opacity="0.6"/>
+                                                    <rect x="368" y="292" width="30" height="3" fill="#6B5710" opacity="0.5"/>
+                                                    <rect x="368" y="260" width="3" height="35" fill="#A0742D" opacity="0.4"/>
+                                                    <rect x="395" y="260" width="3" height="35" fill="#6B5710" opacity="0.6"/>
+                                                    <circle cx="383" cy="258" r="3" fill="#4D5061" stroke="#20234A" stroke-width="1"/>
+                                                    <circle cx="383" cy="258" r="1.5" fill="none" stroke="#6D7C8F" stroke-width="0.5"/>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                            <g class="particles" opacity="0.3" role="presentation" aria-hidden="true">
+                                <circle cx="150" cy="80" r="2" fill="#ef9e27" class="particle p1"/>
+                                <circle cx="450" cy="120" r="1.5" fill="#ef9e27" class="particle p2"/>
+                                <circle cx="200" cy="200" r="1" fill="#6D9744" class="particle p3"/>
+                                <circle cx="420" cy="180" r="2" fill="#ef9e27" class="particle p4"/>
+                                <circle cx="280" cy="60" r="1.5" fill="#6D9744" class="particle p5"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="maintenance-text-content fade-in-up">
+                        <h1 class="maintenance-title" id="maintenance-heading" data-i18n="maintenance_title">
+                            <span class="title-word word-1">Wir</span>
+                            <span class="title-word word-2">bauen</span>
+                            <span class="title-word word-3">für</span>
+                            <span class="title-word word-4">Sie</span>
+                            <span class="title-word word-5">um</span>
+                        </h1>
+                        <p class="maintenance-description" data-i18n="maintenance_desc">
+                            Unsere Website wird aktuell überarbeitet und erhält ein frisches Design.
+                        </p>
+                        <a href="kontakt.html" 
+                           class="btn-maintenance-glass" 
+                           data-i18n="maintenance_btn"
+                           aria-label="Kontakt aufnehmen - Navigieren zur Kontaktseite">
+                            <span class="btn-bg-layer" aria-hidden="true"></span>
+                            <span class="btn-glow-layer" aria-hidden="true"></span>
+                            <span class="btn-content">
+                                <span class="btn-text">Kontakt aufnehmen</span>
+                                <span class="btn-icon" aria-hidden="true">→</span>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer-section fat-footer">
+        <!-- ── Pre-Footer CTA ── -->
+    <div class="fat-footer__cta">
+        <div class="fat-footer__cta-inner">
+            <div class="fat-footer__cta-text">
+                <p class="fat-footer__cta-eyebrow" aria-hidden="true">
+                    <i class="fa-solid fa-rocket"></i>
+                    <span data-i18n="footer-cta-eyebrow">Jetzt loslegen</span>
+                </p>
+                <h3 class="fat-footer__cta-heading" data-i18n="footer-cta-heading">Bereit, Ihr Projekt zu starten?</h3>
+                <p class="fat-footer__cta-sub" data-i18n="footer-cta-text">Wir freuen uns auf Ihre Nachricht.</p>
+            </div>
+            <a href="kontakt.html"
+               class="ethereal-button fat-footer__cta-btn"
+>
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                <span data-i18n="footer-cta-button">Zum Kontaktformular</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="fat-footer__body">
+
+        <!-- ── Bereich 1: IBC-Logo (φ² Spalten – größte Fläche) ── -->
+        <div class="fat-footer__brand">
+            <a href="index.html" class="fat-footer__logo-link">
+                <img data-media-id="footer-logo"
+                     class="fat-footer__logo-img"
+                     alt="Institut für Business Consulting e.V. – Logo"
+                     loading="lazy">
+            </a>
+            <p class="fat-footer__tagline" data-i18n="footer-description">Das Institut für Business Consulting ist eine studentische Unternehmensberatung der Hochschule Furtwangen.</p>
+            <div class="fat-footer__social">
+                <span class="fat-footer__social-label" data-i18n="footer-follow-us">Folgen Sie uns</span>
+                <ul class="social-button-list">
+                    <li>
+                        <a href="https://www.facebook.com/IBC.Furtwangen/"
+                           data-link-id="link-facebook"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <i class="fa-brands fa-facebook-f" aria-hidden="true"></i>
+                            <span class="visually-hidden" data-i18n="footer-social-facebook-sr">IBC auf Facebook besuchen (öffnet in neuem Tab)</span>
+                            <span aria-hidden="true">Facebook</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/ibc_e.v/"
+                           data-link-id="link-instagram"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                            <span class="visually-hidden" data-i18n="footer-social-instagram-sr">IBC auf Instagram besuchen (öffnet in neuem Tab)</span>
+                            <span aria-hidden="true">Instagram</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.linkedin.com/company/institut-f%C3%BCr-business-consulting-e-v/"
+                           data-link-id="link-linkedin"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
+                            <span class="visually-hidden" data-i18n="footer-social-linkedin-sr">IBC auf LinkedIn besuchen (öffnet in neuem Tab)</span>
+                            <span aria-hidden="true">LinkedIn</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- ── Bereich 2: Sitemap (1 Spalte – kleinster Bereich) ── -->
+        <div class="fat-footer__sitemap">
+            <h3 class="fat-footer__heading footer-column-title footer-title-uniform footer-heading-uniform footer-title-main footer-heading-standard" data-i18n="footer-navigation-heading">Navigation</h3>
+            <nav aria-label="Hauptnavigation Footer">
+                <ul class="fat-footer__nav-list">
+                    <li><a href="index.html" data-i18n="footer-nav-home">Startseite</a></li>
+                    <li><a href="fuer-studierende.html" data-i18n="footer-nav-students">Für Studierende</a></li>
+                    <li><a href="fuer-unternehmen.html" data-i18n="footer-nav-companies">Für Unternehmen</a></li>
+                    <li><a href="ueber-uns.html" data-i18n="footer-nav-about">Über uns</a></li>
+                    <li><a href="unser-netzwerk.html" data-i18n="footer-nav-network">Unser Netzwerk</a></li>
+                    <li><a href="referenzen.html" data-i18n="footer-nav-references">Referenzen</a></li>
+                    <li><a href="kontakt.html" data-i18n="footer-nav-contact">Kontakt</a></li>
+                </ul>
+            </nav>
+            <h3 class="fat-footer__heading fat-footer__heading--secondary footer-column-title footer-title-uniform footer-heading-uniform footer-title-main footer-heading-standard" data-i18n="footer-legal-heading">Rechtliches</h3>
+            <nav aria-label="Rechtliche Hinweise Footer">
+                <ul class="fat-footer__nav-list">
+                    <li><a href="impressum.html" data-i18n="footer-legal-imprint">Impressum</a></li>
+                    <li><a href="datenschutzerklaerung.html" data-i18n="footer-legal-privacy">Datenschutzerklärung</a></li>
+                    <li><a href="cookie-richtlinie-eu.html" data-i18n="footer-legal-cookies">Cookie-Richtlinie (EU)</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- ── Bereich 3: Let's Connect (φ Spalten – mittlerer Bereich) ── -->
+        <div class="fat-footer__connect">
+            <h3 class="fat-footer__connect-title footer-column-title footer-title-uniform footer-heading-uniform footer-title-main footer-heading-standard">Let's Connect</h3>
+            <address class="fat-footer__connect-address">
+                <div class="fat-footer__connect-item">
+                    <span class="fat-footer__connect-icon-wrap"><img src="assets/icons/Markierung.svg" class="fat-footer__connect-icon svg-icon" alt="" aria-hidden="true"></span>
+                    <div class="fat-footer__connect-text">
+                        <span class="fat-footer__connect-label" data-i18n="footer-location-heading">Finden Sie uns</span>
+                        <a href="https://maps.google.com/?q=Robert-Gerwig-Platz+1,+78120+Furtwangen"
+                           data-link-id="link-maps"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           data-i18n="footer-location-text"
+                           class="footer-location-link fat-footer__connect-link">Robert-Gerwig-Platz 1, 78120 Furtwangen<span class="visually-hidden" data-i18n="opens-in-new-tab"> (öffnet in neuem Tab)</span></a>
+                    </div>
+                </div>
+                <div class="fat-footer__connect-item email-cta">
+                    <span class="fat-footer__connect-icon-wrap"><img src="assets/icons/envelope-closed.svg" class="fat-footer__connect-icon svg-icon" alt="" aria-hidden="true"></span>
+                    <div class="fat-footer__connect-text">
+                        <span class="fat-footer__connect-label" data-i18n="footer-email-heading">Mailen Sie uns</span>
+                        <a href="#" class="copy-email-link fat-footer__connect-link">vorstand@business-consulting.de</a>
+                    </div>
+                </div>
+            </address>
+            <h3 class="fat-footer__heading fat-footer__heading--secondary footer-column-title footer-title-uniform footer-heading-uniform footer-title-main footer-heading-standard" data-i18n="footer-intra-heading">Intranet</h3>
+            <nav aria-label="Interne Links Footer">
+                <ul class="fat-footer__nav-list">
+                    <li><a href="https://ibcfurtwangen.sharepoint.com/SitePages/home.aspx" target="_blank" rel="noopener noreferrer" data-i18n="footer-intra-sharepoint">SharePoint<span class="visually-hidden"> (öffnet in neuem Tab)</span></a></li>
+                    <li><a href="https://intra.business-consulting.de" target="_blank" rel="noopener noreferrer" data-i18n="footer-intra-intranet">Intranet<span class="visually-hidden"> (öffnet in neuem Tab)</span></a></li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+    <div class="footer-divider-continuous" role="separator" aria-hidden="true"></div>
+    <div class="copyright-area">
+        <div class="container">
+            <div class="copyright-text">
+                <p>Copyright &copy; <span id="current-year">2025</span>, Institut für Business Consulting <abbr title="eingetragener Verein">e.V.</abbr> &ndash; <span data-i18n="footer-rights">Alle Rechte vorbehalten.</span></p>
+            </div>
+        </div>
+    </div>
+</footer>
+    <div id="copy-banner">
+        <i class="fas fa-check-circle" role="img" aria-label="Bestätigung Symbol"></i>
+        <span>E-Mail-Adresse kopiert!</span>
+    </div>
+    <!-- Mobile Sticky CTA – shown as toast pop-up after 15 seconds -->
+    <div id="mobile-sticky-cta" aria-hidden="true" style="display:none;">
+        <div class="mobile-cta-inner">
+            <div class="mobile-cta-header">
+                <span class="mobile-cta-icon" aria-hidden="true">🚀</span>
+                <span class="mobile-cta-label" data-i18n="mobile-cta-label">Projekt starten?</span>
+                <button class="mobile-cta-close" aria-label="Schließen">&times;</button>
+            </div>
+            <p class="mobile-cta-tagline" data-i18n="mobile-cta-tagline">Ihr Projekt, unsere Expertise.</p>
+            <p class="mobile-cta-sub" data-i18n="mobile-cta-sub">Kostenlos anfragen – wir melden uns schnell.</p>
+            <a href="kontakt.html" class="mobile-cta-btn" data-i18n="hero-cta" aria-label="Projekt anfragen">
+                Projekt anfragen
+                <i class="mobile-cta-arrow" aria-hidden="true">→</i>
+            </a>
+        </div>
+    </div>
+    <!-- Floating Action Button – replaces hamburger on scroll (mobile only) -->
+    <button id="nav-fab"
+            aria-label="Menü öffnen"
+            aria-expanded="false"
+            aria-controls="fab-overlay-menu"
+            data-i18n-aria="fab-menu-open">
+        <span class="fab-icon" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </span>
+    </button>
+    <!-- Full-screen overlay navigation menu -->
+    <nav id="fab-overlay-menu"
+         role="dialog"
+         aria-modal="true"
+         aria-label="Hauptnavigation"
+         data-i18n-aria="fab-overlay-label">
+        <img src="assets/img/ibc_logo_original_navbar.webp" alt="IBC Logo" class="fab-overlay-logo" loading="lazy">
+        <ul class="fab-nav-list" role="menu">
+            <li role="none">
+                <a href="index.html" role="menuitem" data-i18n="nav-home">Startseite</a>
+            </li>
+            <li role="none"><div class="fab-nav-divider"></div></li>
+            <li role="none">
+                <a href="fuer-studierende.html" role="menuitem" data-i18n="nav-students">Für Studierende</a>
+            </li>
+            <li role="none"><div class="fab-nav-divider"></div></li>
+            <li role="none">
+                <a href="fuer-unternehmen.html" role="menuitem" data-i18n="nav-companies">Für Unternehmen</a>
+            </li>
+            <li role="none"><div class="fab-nav-divider"></div></li>
+            <li role="none">
+                <a href="ueber-uns.html" role="menuitem" data-i18n="nav-about">Über uns</a>
+            </li>
+            <li role="none"><div class="fab-nav-divider"></div></li>
+            <li role="none">
+                <a href="unser-netzwerk.html" role="menuitem" data-i18n="nav-network">Unser Netzwerk</a>
+            </li>
+            <li role="none"><div class="fab-nav-divider"></div></li>
+            <li role="none">
+                <a href="referenzen.html" role="menuitem" data-i18n="nav-references">Referenzen</a>
+            </li>
+            <li role="none"><div class="fab-nav-divider"></div></li>
+            <li role="none">
+                <a href="kontakt.html" role="menuitem" data-i18n="nav-contact">Kontakt</a>
+            </li>
+        </ul>
+        <div class="fab-lang-row">
+            <a href="?lang=de" class="fab-lang-btn" aria-label="Deutsch">
+                <img src="assets/img/flags/de.svg" alt="" aria-hidden="true"><span>DE</span>
+            </a>
+            <a href="?lang=en" class="fab-lang-btn" aria-label="English">
+                <img src="assets/img/flags/gb.svg" alt="" aria-hidden="true"><span>EN</span>
+            </a>
+            <a href="?lang=fr" class="fab-lang-btn" aria-label="Français">
+                <img src="assets/img/flags/fr.svg" alt="" aria-hidden="true"><span>FR</span>
+            </a>
+        </div>
+    </nav>
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/navbar-scroll.js" defer></script>
+    <script src="js/language-switcher.js" defer></script>
+    <script src="js/cookie-consent.js" defer></script>
+    <script src="js/content-loader.js" defer></script>
+    <script src="js/fade-in-animation.js" defer></script>
+    <script src="js/icon-loader.js" defer></script>
+    <script src="js/index-page.js" defer></script>
+    <script src="js/scroll-progress.js" defer></script>
+    <script src="js/keyboard-nav.js" defer></script>
+    <script src="js/design-effects.js" defer></script>
+    <script src="js/premium-animations.js" defer></script>
+</body>
+</html>

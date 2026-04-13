@@ -1,0 +1,106 @@
+:root {
+  --ibc-green: #6D9744;
+  --ibc-green-dark: #5d8438;
+  --ibc-blue: #20234A;
+  --ibc-text-primary: #20234A;
+  --ibc-text-secondary: #4d5061;
+  --shadow-soft: 0 20px 40px rgba(32, 35, 74, 0.14);
+  --border-radius-card: 24px;
+  --border-radius-pill: 999px;
+  --bg-light: #f8f9fa;
+}
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-light);
+  color: var(--ibc-text-primary);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 0;
+  position: relative;
+  overflow-x: clip;
+}
+.page-404-wrapper {
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+  padding: clamp(100px, 15vh, 140px) clamp(1rem, 3vw, 2rem) clamp(2rem, 5vh, 3rem);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.page-404-card {
+  background: #ffffff;
+  padding: clamp(2.5rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3rem);
+  border-radius: var(--border-radius-card);
+  box-shadow: 0 10px 40px rgba(32, 35, 74, 0.1);
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.page-404-illustration {
+  margin: 0 auto 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page-404-illustration .error-gif {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+}
+.page-404-heading {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  color: var(--ibc-blue);
+}
+.page-404-text {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.125rem);
+  color: var(--ibc-text-secondary);
+  margin-bottom: clamp(2rem, 4vw, 2.5rem);
+  line-height: 1.6;
+}
+.page-404-card .ethereal-button {
+  margin-top: 0;
+}
+@media (max-width: 768px) {
+  .page-404-wrapper {
+    padding-top: 100px;
+  }
+  .page-404-illustration .error-gif {
+    max-width: 320px;
+  }
+}
+@media (max-width: 480px) {
+  .page-404-wrapper {
+    padding: 80px 1rem 2rem;
+  }
+  .page-404-card {
+    padding: 2rem 1.5rem;
+  }
+  .page-404-illustration .error-gif {
+    max-width: 260px;
+  }
+  .page-404-card .ethereal-button {
+    width: 100%;
+    justify-content: center;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-404-card,
+  .page-404-card .ethereal-button {
+    transition: none !important;
+  }
+}

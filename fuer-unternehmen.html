@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <script>(function(){var t=localStorage.getItem('ibc-theme');var d=(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':t;if(d==='dark'||d==='light')document.documentElement.setAttribute('data-theme',d);})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Für Unternehmen | Beratung buchen – IBC e.V.</title>
+    <meta name="description" content="Profitieren Sie von frischen Ideen und aktuellem Know-how: IBC bietet Beratung in Marketing, Business, IT und Schulungen durch qualifizierte HFU-Studierende.">
+    <meta name="keywords"
+        content="studentische Unternehmensberatung, Beratungsleistungen, IT-Beratung, Web-Entwicklung, Furtwangen">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://business-consulting.de/fuer-unternehmen.html">
+    <meta property="og:title" content="Für Unternehmen | Studentische Beratung buchen">
+    <meta property="og:description" content="Profitieren Sie von frischen Ideen & aktuellstem Know-how: IBC bietet State-of-the-Art Beratung durch qualifizierte Studierende zu fairen Konditionen.">
+    <meta property="og:image" content="https://business-consulting.de/assets/img/Maskottchen.webp">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://business-consulting.de/fuer-unternehmen.html">
+    <meta property="twitter:title" content="Für Unternehmen | Studentische Beratung buchen">
+    <meta property="twitter:description" content="Profitieren Sie von frischen Ideen & aktuellstem Know-how: IBC bietet State-of-the-Art Beratung durch qualifizierte Studierende zu fairen Konditionen.">
+    <meta property="twitter:image" content="https://business-consulting.de/assets/img/Maskottchen.webp">
+    <link rel="alternate" hreflang="de" href="https://business-consulting.de/fuer-unternehmen.html?lang=de">
+    <link rel="alternate" hreflang="en" href="https://business-consulting.de/fuer-unternehmen.html?lang=en">
+    <link rel="alternate" hreflang="fr" href="https://business-consulting.de/fuer-unternehmen.html?lang=fr">
+    <link rel="alternate" hreflang="x-default" href="https://business-consulting.de/fuer-unternehmen.html">
+    <script src="js/title-i18n.js"></script>
+    <script src="js/gtag-consent-init.js"></script>
+    <script type="text/plain" data-cookiecategory="analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-GLT586XQ3P"></script>
+    <script type="text/plain" data-cookiecategory="analytics" src="js/gtag-config.js"></script>
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/pages.css">
+    <link rel="stylesheet" href="css/premium-redesign.css">
+    <link rel="icon" href="assets/img/cropped_maskottchen_32x32.webp" type="image/webp" sizes="32x32" />
+    <style>
+    /* ── Timeline ── */
+    .timeline-v2 { position: relative; padding: 2rem 0; }
+    .timeline-v2::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--ibc-green) 0%, #6366f1 100%);
+      transform: translateX(-50%);
+    }
+    .timeline-v2__item {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      margin-bottom: 3.5rem;
+      align-items: start;
+    }
+    .timeline-v2__item:last-child { margin-bottom: 0; }
+    .timeline-v2__content {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl, 1.25rem);
+      padding: 1.75rem 2rem;
+      position: relative;
+      transition: transform 0.3s var(--ease-spring), box-shadow 0.3s;
+    }
+    .timeline-v2__content:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(109,151,68,0.08);
+    }
+    [data-theme="dark"] .timeline-v2__content {
+      background: var(--bg-elevated, #12152e);
+      border-color: rgba(255,255,255,0.07);
+    }
+    .timeline-v2__content::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ibc-green), #6366f1);
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .timeline-v2__content:hover::before { opacity: 1; }
+    .timeline-v2__item--left .timeline-v2__content { grid-column: 1; }
+    .timeline-v2__item--left .timeline-v2__spacer { grid-column: 2; }
+    .timeline-v2__item--left .timeline-v2__empty { grid-column: 3; }
+    .timeline-v2__item--right .timeline-v2__empty { grid-column: 1; }
+    .timeline-v2__item--right .timeline-v2__spacer { grid-column: 2; }
+    .timeline-v2__item--right .timeline-v2__content { grid-column: 3; }
+    .timeline-v2__spacer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 1.75rem;
+    }
+    .timeline-v2__dot {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--bg-primary);
+      border: 3px solid var(--ibc-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ibc-green);
+      z-index: 2;
+      position: relative;
+      box-shadow: 0 0 0 6px var(--bg-primary);
+      transition: background 0.3s, color 0.3s;
+    }
+    .timeline-v2__item:hover .timeline-v2__dot {
+      background: var(--ibc-green);
+      color: #fff;
+    }
+    .timeline-v2__content-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ibc-green);
+      margin-bottom: 0.5rem;
+    }
+    .timeline-v2__content-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .timeline-v2__content-text {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin: 0;
+    }
+    @media (max-width: 767.98px) {
+      .timeline-v2::before { left: 22px; }
+      .timeline-v2__item { grid-template-columns: 44px 1fr; grid-template-rows: auto; }
+      .timeline-v2__item--left .timeline-v2__empty,
+      .timeline-v2__item--right .timeline-v2__empty { display: none; }
+      .timeline-v2__item--left .timeline-v2__spacer,
+      .timeline-v2__item--right .timeline-v2__spacer { grid-column: 1; grid-row: 1; }
+      .timeline-v2__item--left .timeline-v2__content,
+      .timeline-v2__item--right .timeline-v2__content { grid-column: 2; grid-row: 1; }
+      .timeline-v2__dot { width: 36px; height: 36px; font-size: 0.85rem; }
+    }
+    /* ── Trust strip ── */
+    .trust-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+      padding: 2rem 0;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .trust-strip__item {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+    .trust-strip__item i { color: var(--ibc-green); font-size: 1.1rem; }
+    /* ── Service grid enhanced ── */
+    .service-grid-v3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.25rem;
+    }
+    .service-card-v3 {
+      background: var(--bg-primary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: transform 0.28s var(--ease-spring), box-shadow 0.28s, border-color 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card-v3::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ibc-green), #6366f1);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card-v3:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: rgba(109,151,68,0.3); }
+    .service-card-v3:hover::before { transform: scaleX(1); }
+    [data-theme="dark"] .service-card-v3 { background: var(--bg-elevated, #12152e); border-color: rgba(255,255,255,0.07); }
+    [data-theme="dark"] .service-card-v3:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.4); border-color: rgba(125,179,86,0.3); }
+    .service-card-v3__icon {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-md, 0.75rem);
+      background: rgba(109,151,68,0.1);
+      color: var(--ibc-green);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .service-card-v3:hover .service-card-v3__icon { background: rgba(109,151,68,0.18); transform: scale(1.1) rotate(-5deg); }
+    [data-theme="dark"] .service-card-v3__icon { background: rgba(125,179,86,0.12); }
+    .service-card-v3__title { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 0; line-height: 1.3; }
+    .service-card-v3__text { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.65; margin: 0; flex: 1; }
+    </style>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Institut für Business Consulting e.V.",
+        "alternateName": "IBC e.V.",
+        "url": "https://business-consulting.de",
+        "logo": "https://business-consulting.de/assets/img/Maskottchen.webp",
+        "description": "Das Institut für Business Consulting ist eine studentische Unternehmensberatung der Hochschule Furtwangen im Schwarzwald.",
+        "foundingDate": "1998",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Robert-Gerwig-Platz 1, Gebäude I",
+            "addressLocality": "Furtwangen im Schwarzwald",
+            "postalCode": "78120",
+            "addressCountry": "DE"
+        },
+        "sameAs": [
+            "https://www.facebook.com/IBC.Furtwangen/",
+            "https://www.instagram.com/ibc_e.v/",
+            "https://www.linkedin.com/company/institut-f%C3%BCr-business-consulting-e-v/"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "email": "vorstand@business-consulting.de",
+            "contactType": "customer service"
+        }
+    }
+    </script>
+</head>
+<body>
+
+<div id="page-loader" role="presentation" aria-hidden="true">
+    <div class="loader-content">
+        <div class="loader-logo-wrap"><img src="assets/img/ibc_logo_original_navbar.webp" alt="" width="120" height="auto"></div>
+        <div class="loader-bar-track"><div class="loader-bar-fill"></div></div>
+    </div>
+</div>
+
+<nav class="navbar navbar-expand-xl is-scrolled" aria-label="Hauptnavigation" role="navigation">
+    <div class="container">
+        <a class="navbar-brand" href="index.html" aria-label="Zur Startseite">
+            <img src="assets/img/ibc_logo_original_navbar.webp" alt="IBC Logo" class="navbar-logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Hauptmenü öffnen">
+            <span class="toggler-icon" aria-hidden="true"><span class="toggler-bar"></span><span class="toggler-bar"></span><span class="toggler-bar"></span></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center" role="menubar">
+                <li class="nav-item" role="none"><a class="nav-link" href="fuer-studierende.html" role="menuitem" data-i18n="nav-students">Für Studierende</a></li>
+                <li class="nav-item" role="none"><a class="nav-link active" href="fuer-unternehmen.html" role="menuitem" aria-current="page" data-i18n="nav-companies">Für Unternehmen</a></li>
+                <li class="nav-item" role="none"><a class="nav-link" href="ueber-uns.html" role="menuitem" data-i18n="nav-about">Über uns</a></li>
+                <li class="nav-item" role="none"><a class="nav-link" href="unser-netzwerk.html" role="menuitem" data-i18n="nav-network">Unser Netzwerk</a></li>
+                <li class="nav-item" role="none"><a class="nav-link" href="referenzen.html" role="menuitem" data-i18n="nav-references">Referenzen</a></li>
+                <li class="nav-item" role="none"><a class="nav-link" href="kontakt.html" role="menuitem" data-i18n="nav-contact">Kontakt</a></li>
+                <li class="nav-item ms-lg-2" role="none">
+                    <button class="dark-mode-toggle" id="darkModeToggle" type="button" aria-label="Dark Mode aktivieren" aria-pressed="false">
+                        <i class="fas fa-moon" aria-hidden="true" id="darkModeIcon"></i>
+                    </button>
+                </li>
+                <li class="nav-item dropdown ms-lg-3" role="none">
+                    <button class="lang-toggle dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Sprache wählen">
+                        <img id="activeFlag" src="assets/img/flags/de.svg" alt="" class="flag-img" aria-hidden="true">
+                        <span class="d-lg-none ms-2" data-i18n="navbar-lang-change">Sprache ändern</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end lang-dropdown" role="menu">
+                        <li role="none"><a class="lang-item" href="?lang=de" role="menuitem" data-lang="de" aria-current="true"><img src="assets/img/flags/de.svg" alt="" class="flag-img" aria-hidden="true"><span>Deutsch</span></a></li>
+                        <li role="none"><a class="lang-item" href="?lang=en" role="menuitem" data-lang="en"><img src="assets/img/flags/gb.svg" alt="" class="flag-img" aria-hidden="true"><span>English</span></a></li>
+                        <li role="none"><a class="lang-item" href="?lang=fr" role="menuitem" data-lang="fr"><img src="assets/img/flags/fr.svg" alt="" class="flag-img" aria-hidden="true"><span>Français</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<main id="main-content" tabindex="-1">
+
+    <!-- ══ HERO ══════════════════════════════════════════════ -->
+    <section class="page-hero-section" aria-labelledby="hero-companies-heading">
+        <div class="page-hero__mesh" aria-hidden="true">
+            <div class="page-hero__mesh-orb page-hero__mesh-orb--1"></div>
+            <div class="page-hero__mesh-orb page-hero__mesh-orb--2"></div>
+            <div class="page-hero__mesh-orb page-hero__mesh-orb--3"></div>
+        </div>
+        <div class="container" style="position:relative;z-index:2;">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 text-center">
+                    <span class="page-hero__eyebrow fade-in-up" data-i18n="companies-hero-eyebrow">
+                        <i class="fas fa-briefcase" aria-hidden="true"></i>
+                        Für Unternehmen
+                    </span>
+                    <h1 id="hero-companies-heading" class="ibc-heading display-heading fade-in-up" style="transition-delay:0.1s" data-i18n="companies-hero-heading">
+                        Beratung auf <span class="text-gradient">Augenhöhe</span>
+                    </h1>
+                    <p class="ibc-lead fade-in-up" style="transition-delay:0.2s;max-width:600px;margin:0 auto;" data-i18n="companies-hero-subtitle">
+                        Profitieren Sie von frischen Ideen, aktuellem Hochschul-Know-how und einem motivierten Team – zu fairen Konditionen.
+                    </p>
+                    <div class="page-hero__cta-row fade-in-up" style="transition-delay:0.3s">
+                        <a href="kontakt.html" class="ethereal-button" data-i18n="companies-hero-cta-primary">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                            Projekt anfragen
+                        </a>
+                        <a href="#uebersicht" class="hero-btn-ghost" data-i18n="companies-hero-cta-secondary">
+                            <i class="fas fa-arrow-down" aria-hidden="true"></i>
+                            Leistungen entdecken
+                        </a>
+                    </div>
+                    <a href="#uebersicht" class="page-hero__scroll-hint fade-in-up" style="transition-delay:0.45s" aria-label="Zu den Leistungen scrollen">
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                        <span data-i18n="scroll-down">Scrollen</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ TRUST STRIP ═══════════════════════════════════════ -->
+    <div class="container py-3">
+        <div class="trust-strip fade-in-up">
+            <div class="trust-strip__item"><i class="fas fa-graduation-cap"></i><span data-i18n="trust-students">HFU-Studierende</span></div>
+            <div class="trust-strip__item"><i class="fas fa-check-circle"></i><span data-i18n="trust-projects">182+ Projekte</span></div>
+            <div class="trust-strip__item"><i class="fas fa-calendar-alt"></i><span data-i18n="trust-since">Seit 1998</span></div>
+            <div class="trust-strip__item"><i class="fas fa-bolt"></i><span data-i18n="trust-speed">Schnelle Umsetzung</span></div>
+            <div class="trust-strip__item"><i class="fas fa-coins"></i><span data-i18n="trust-cost">Faire Konditionen</span></div>
+        </div>
+    </div>
+
+    <!-- ══ ÜBERSICHT / BERATUNGSFELDER ═══════════════════════ -->
+    <section id="uebersicht" class="page-section page-section--alt" aria-labelledby="beratungsfelder-heading">
+        <div class="container">
+            <div class="section-intro fade-in-up">
+                <span class="section-chip" aria-hidden="true"><i class="fas fa-th-large"></i> Alle Bereiche</span>
+                <h2 id="beratungsfelder-heading" class="ibc-heading" data-i18n="companies-beratungsfelder-heading">
+                    Unsere <span class="text-gradient">Beratungsfelder</span>
+                </h2>
+                <p class="ibc-lead" data-i18n="companies-beratungsfelder-subtitle">Von Strategie bis Digitalisierung – wir decken alle relevanten Themen ab.</p>
+            </div>
+            <div class="beratungsfeld-grid">
+                <a href="#marketing" class="beratungsfeld-card-v2 fade-in-up" data-animation-delay="0ms" aria-label="Zum Bereich Marketing">
+                    <div class="beratungsfeld-card-v2__icon"><i class="fas fa-bullhorn" aria-hidden="true"></i></div>
+                    <h3 class="beratungsfeld-card-v2__title" data-i18n="companies-overview-marketing">Marketing</h3>
+                    <p class="beratungsfeld-card-v2__desc" data-i18n="companies-overview-marketing-desc">Strategie und Branding für maximale Sichtbarkeit Ihrer Marke.</p>
+                    <span class="beratungsfeld-card-v2__arrow"><span data-i18n="companies-learn-more">Mehr erfahren</span> <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="#schulungen" class="beratungsfeld-card-v2 fade-in-up" data-animation-delay="100ms" aria-label="Zum Bereich Schulungen">
+                    <div class="beratungsfeld-card-v2__icon"><i class="fas fa-chalkboard-user" aria-hidden="true"></i></div>
+                    <h3 class="beratungsfeld-card-v2__title" data-i18n="companies-overview-workshops">Schulungen</h3>
+                    <p class="beratungsfeld-card-v2__desc" data-i18n="companies-overview-workshops-desc">Maßgeschneiderte Workshops und Weiterbildungen für Ihr Team.</p>
+                    <span class="beratungsfeld-card-v2__arrow"><span data-i18n="companies-learn-more">Mehr erfahren</span> <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="#business" class="beratungsfeld-card-v2 fade-in-up" data-animation-delay="200ms" aria-label="Zum Bereich Business">
+                    <div class="beratungsfeld-card-v2__icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+                    <h3 class="beratungsfeld-card-v2__title" data-i18n="companies-overview-business">Business</h3>
+                    <p class="beratungsfeld-card-v2__desc" data-i18n="companies-overview-business-desc">Prozessoptimierung und strategisches Wachstum für Ihr Unternehmen.</p>
+                    <span class="beratungsfeld-card-v2__arrow"><span data-i18n="companies-learn-more">Mehr erfahren</span> <i class="fas fa-arrow-right"></i></span>
+                </a>
+                <a href="#digitalisierung" class="beratungsfeld-card-v2 fade-in-up" data-animation-delay="300ms" aria-label="Zum Bereich Digitalisierung">
+                    <div class="beratungsfeld-card-v2__icon"><i class="fas fa-microchip" aria-hidden="true"></i></div>
+                    <h3 class="beratungsfeld-card-v2__title" data-i18n="companies-overview-digitalization">Digital</h3>
+                    <p class="beratungsfeld-card-v2__desc" data-i18n="companies-overview-digital-desc">Digitale Transformation und moderne IT-Lösungen.</p>
+                    <span class="beratungsfeld-card-v2__arrow"><span data-i18n="companies-learn-more">Mehr erfahren</span> <i class="fas fa-arrow-right"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ MARKETING ══════════════════════════════════════════ -->
+    <section id="marketing" class="page-section" aria-labelledby="marketing-heading">
+        <div class="service-section__ambient" aria-hidden="true">
+            <div class="service-section__ambient-orb service-section__ambient-orb--1"></div>
+            <div class="service-section__ambient-orb service-section__ambient-orb--2"></div>
+        </div>
+        <div class="container" style="position:relative;z-index:2;">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <span class="service-section__label"><i class="fas fa-bullhorn" aria-hidden="true"></i> Beratungsfeld</span>
+                    <h2 id="marketing-heading" class="ibc-heading fade-in-up" data-i18n="companies-marketing-heading">
+                        <span class="text-gradient">Marketing</span>
+                    </h2>
+                    <p class="ibc-lead fade-in-up" style="transition-delay:0.1s" data-i18n="companies-marketing-desc">
+                        Wir unterstützen Sie bei der Entwicklung wirkungsvoller Marketingstrategien, die Ihre Zielgruppe erreichen und Ihre Marke stärken.
+                    </p>
+                    <a href="kontakt.html?subject=Marketing" class="ethereal-button fade-in-up" style="transition-delay:0.2s" data-i18n="companies-cta-inquire">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        Jetzt anfragen
+                    </a>
+                </div>
+                <div class="col-lg-7">
+                    <div class="service-grid-v3">
+                        <div class="service-card-v3 fade-in-up" data-animation-delay="0ms">
+                            <div class="service-card-v3__icon"><i class="fas fa-film" aria-hidden="true"></i></div>
+                            <h3 class="service-card-v3__title" data-i18n="companies-marketing-media-title">Medienkonzeption</h3>
+                            <p class="service-card-v3__text" data-i18n="companies-marketing-media-desc">Konzepte für Print, Digital und Social Media – abgestimmt auf Ihre Zielgruppe.</p>
+                        </div>
+                        <div class="service-card-v3 fade-in-up" data-animation-delay="100ms">
+                            <div class="service-card-v3__icon"><i class="fas fa-magnifying-glass-chart" aria-hidden="true"></i></div>
+                            <h3 class="service-card-v3__title" data-i18n="companies-marketing-image-title">Imageanalyse</h3>
+                            <p class="service-card-v3__text" data-i18n="companies-marketing-image-desc">Tiefgehende Analyse Ihrer Markenwahrnehmung mit konkreten Handlungsempfehlungen.</p>
+                        </div>
+                        <div class="service-card-v3 fade-in-up" data-animation-delay="200ms">
+                            <div class="service-card-v3__icon"><i class="fas fa-chess" aria-hidden="true"></i></div>
+                            <h3 class="service-card-v3__title" data-i18n="companies-marketing-strategy-title">Marketingstrategie</h3>
+                            <p class="service-card-v3__text" data-i18n="companies-marketing-strategy-desc">Ganzheitliche Strategieentwicklung mit klarem Fokus auf messbaren Ergebnissen.</p>
+                        </div>
+                        <div class="service-card-v3 fade-in-up" data-animation-delay="300ms">
+                            <div class="service-card-v3__icon"><i class="fas fa-comments" aria-hidden="true"></i></div>
+                            <h3 class="service-card-v3__title" data-i18n="companies-marketing-communication-title">Kommunikationskonzepte</h3>
+                            <p class="service-card-v3__text" data-i18n="companies-marketing-communication-desc">Klare Botschaften, die Ihre Kunden begeistern und Vertrauen aufbauen.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ CTA BANNER ══════════════════════════════════════════ -->
+    <section class="cta-banner fade-in-up" aria-labelledby="cta-1-heading">
+        <div class="container">
+            <h2 id="cta-1-heading" class="ibc-heading mb-3" data-i18n="companies-cta-heading">
+                Bereit für den <span class="text-gradient">nächsten Schritt?</span>
+            </h2>
+            <p class="ibc-lead mb-4" data-i18n="companies-cta-text">Kontaktieren Sie uns und erfahren Sie, wie wir Ihr Unternehmen voranbringen können.</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="kontakt.html" class="ethereal-button" data-i18n="companies-cta-btn">
+                    <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                    Beratung anfragen
+                </a>
+                <a href="#uebersicht" class="hero-btn-ghost" style="color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.25);" data-i18n="companies-cta-btn-2">
+                    Alle Leistungen
+                </a>
+            </div>
+            <div class="cta-trust-row mt-4">
+                <span class="cta-trust-chip"><i class="fas fa-clock"></i> Schnelle Reaktion</span>
+                <span class="cta-trust-chip"><i class="fas fa-euro-sign"></i> Fair pricing</span>
+                <span class="cta-trust-chip"><i class="fas fa-star"></i> Top Qualität</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ SCHULUNGEN ══════════════════════════════════════════ -->
+    <section id="schulungen" class="page-section page-section--alt" aria-labelledby="schulungen-heading">
+        <div class="container">
+            <div class="section-intro fade-in-up">
+                <span class="section-chip" aria-hidden="true"><i class="fas fa-chalkboard-user"></i> Beratungsfeld</span>
+                <h2 id="schulungen-heading" class="ibc-heading" data-i18n="companies-workshops-heading">
+                    Schulungen & <span class="text-gradient">Workshops</span>
+                </h2>
+                <p class="ibc-lead" data-i18n="companies-workshops-desc">Kompetenzaufbau für Ihr Team durch praxisnahe Trainings auf dem neuesten Stand der Wissenschaft.</p>
+            </div>
+            <div class="service-grid-v3">
+                <div class="service-card-v3 fade-in-up" data-animation-delay="0ms">
+                    <div class="service-card-v3__icon"><i class="fas fa-person-chalkboard" aria-hidden="true"></i></div>
+                    <h3 class="service-card-v3__title" data-i18n="companies-workshops-presentation-title">Präsentationstechnik</h3>
+                    <p class="service-card-v3__text" data-i18n="companies-workshops-presentation-desc">Überzeugende Präsentationen erstellen und souverän vor Publikum präsentieren.</p>
+                </div>
+                <div class="service-card-v3 fade-in-up" data-animation-delay="100ms">
+                    <div class="service-card-v3__icon"><i class="fas fa-microsoft" aria-hidden="true"></i></div>
+                    <h3 class="service-card-v3__title" data-i18n="companies-workshops-office365-title">Office 365</h3>
+                    <p class="service-card-v3__text" data-i18n="companies-workshops-office365-desc">Effiziente Nutzung der Microsoft 365 Suite – von Excel bis Teams.</p>
+                </div>
+                <div class="service-card-v3 fade-in-up" data-animation-delay="200ms">
+                    <div class="service-card-v3__icon"><i class="fas fa-diagram-project" aria-hidden="true"></i></div>
+                    <h3 class="service-card-v3__title" data-i18n="companies-workshops-projectmgmt-title">Projektmanagement</h3>
+                    <p class="service-card-v3__text" data-i18n="companies-workshops-projectmgmt-desc">Agile und klassische Methoden für erfolgreiche Projektdurchführung.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ BUSINESS ════════════════════════════════════════════ -->
+    <section id="business" class="page-section" aria-labelledby="business-heading">
+        <div class="service-section__ambient" aria-hidden="true">
+            <div class="service-section__ambient-orb service-section__ambient-orb--1" style="background:radial-gradient(circle,rgba(99,102,241,0.1),transparent 70%);"></div>
+            <div class="service-section__ambient-orb service-section__ambient-orb--2" style="background:radial-gradient(circle,rgba(109,151,68,0.08),transparent 70%);"></div>
+        </div>
+        <div class="container" style="position:relative;z-index:2;">
+            <div class="row align-items-center g-5 flex-lg-row-reverse">
+                <div class="col-lg-5">
+                    <span class="service-section__label" style="background:rgba(99,102,241,0.08);border-color:rgba(99,102,241,0.2);color:#6366f1;"><i class="fas fa-chart-pie" aria-hidden="true"></i> Beratungsfeld</span>
+                    <h2 id="business-heading" class="ibc-heading fade-in-up" data-i18n="companies-business-heading">
+                        <span class="text-gradient">Business</span> Consulting
+                    </h2>
+                    <p class="ibc-lead fade-in-up" style="transition-delay:0.1s" data-i18n="companies-business-desc">
+                        Wir analysieren Ihre Geschäftsprozesse, identifizieren Verbesserungspotenziale und entwickeln tragfähige Strategien für nachhaltiges Wachstum.
+                    </p>
+                    <a href="kontakt.html?subject=Business" class="ethereal-button fade-in-up" style="transition-delay:0.2s">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        Jetzt anfragen
+                    </a>
+                </div>
+                <div class="col-lg-7">
+                    <div class="service-grid-v3">
+                        <div class="service-card-v3 fade-in-up" data-animation-delay="0ms">
+                            <div class="service-card-v3__icon" style="background:rgba(99,102,241,0.1);color:#6366f1;"><i class="fas fa-magnifying-glass" aria-hidden="true"></i></div>
+                            <h3 class="service-card-v3__title" data-i18n="companies-business-analysis-title">Prozessanalyse</h3>
+                            <p class="service-card-v3__text" data-i18n="companies-business-analysis-desc">Systematische Analyse Ihrer Geschäftsprozesse zur Aufdeckung von Optimierungspotenzialen.</p>
+                        </div>
+                        <div class="service-card-v3 fade-in-up" data-animation-delay="100ms">
+                            <div class="service-card-v3__icon" style="background:rgba(99,102,241,0.1);color:#6366f1;"><i class="fas fa-gears" aria-hidden="true"></i></div>
+                            <h3 class="service-card-v3__title" data-i18n="companies-business-optimization-title">Prozessoptimierung</h3>
+                            <p class="service-card-v3__text" data-i18n="companies-business-optimization-desc">Konkrete Maßnahmen zur Steigerung von Effizienz und Produktivität.</p>
+                        </div>
+                        <div class="service-card-v3 fade-in-up" data-animation-delay="200ms">
+                            <div class="service-card-v3__icon" style="background:rgba(99,102,241,0.1);color:#6366f1;"><i class="fas fa-file-invoice-dollar" aria-hidden="true"></i></div>
+                            <h3 class="service-card-v3__title" data-i18n="companies-business-plan-title">Businessplan</h3>
+                            <p class="service-card-v3__text" data-i18n="companies-business-plan-desc">Professionelle Businesspläne für Gründungen, Investoren und Banken.</p>
+                        </div>
+                        <div class="service-card-v3 fade-in-up" data-animation-delay="300ms">
+                            <div class="service-card-v3__icon" style="background:rgba(99,102,241,0.1);color:#6366f1;"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
+                            <h3 class="service-card-v3__title" data-i18n="companies-business-benchmarking-title">Benchmarking</h3>
+                            <p class="service-card-v3__text" data-i18n="companies-business-benchmarking-desc">Vergleichsanalysen mit Branchenbest Practices zur Positionierung.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ DIGITALISIERUNG ═════════════════════════════════════ -->
+    <section id="digitalisierung" class="page-section page-section--alt" aria-labelledby="digital-heading">
+        <div class="container">
+            <div class="section-intro fade-in-up">
+                <span class="section-chip" aria-hidden="true"><i class="fas fa-microchip"></i> Beratungsfeld</span>
+                <h2 id="digital-heading" class="ibc-heading" data-i18n="companies-digital-heading">
+                    <span class="text-gradient">Digitalisierung</span> & IT
+                </h2>
+                <p class="ibc-lead" data-i18n="companies-digital-desc">Wir begleiten Sie auf dem Weg in die digitale Zukunft – von der Strategie bis zur Umsetzung.</p>
+            </div>
+            <div class="service-grid-v3">
+                <div class="service-card-v3 fade-in-up" data-animation-delay="0ms">
+                    <div class="service-card-v3__icon"><i class="fas fa-code" aria-hidden="true"></i></div>
+                    <h3 class="service-card-v3__title" data-i18n="companies-digital-web-title">Web-Entwicklung</h3>
+                    <p class="service-card-v3__text" data-i18n="companies-digital-web-desc">Moderne, responsive Webseiten mit aktuellem Tech-Stack und optimaler UX.</p>
+                </div>
+                <div class="service-card-v3 fade-in-up" data-animation-delay="100ms">
+                    <div class="service-card-v3__icon"><i class="fas fa-mobile-screen" aria-hidden="true"></i></div>
+                    <h3 class="service-card-v3__title" data-i18n="companies-digital-app-title">App-Entwicklung</h3>
+                    <p class="service-card-v3__text" data-i18n="companies-digital-app-desc">Native und Cross-Platform Apps für iOS und Android mit Fokus auf Usability.</p>
+                </div>
+                <div class="service-card-v3 fade-in-up" data-animation-delay="200ms">
+                    <div class="service-card-v3__icon"><i class="fas fa-cloud" aria-hidden="true"></i></div>
+                    <h3 class="service-card-v3__title" data-i18n="companies-digital-cloud-title">Cloud-Lösungen</h3>
+                    <p class="service-card-v3__text" data-i18n="companies-digital-cloud-desc">Migration, Implementierung und Optimierung von Cloud-Infrastrukturen.</p>
+                </div>
+                <div class="service-card-v3 fade-in-up" data-animation-delay="300ms">
+                    <div class="service-card-v3__icon"><i class="fas fa-robot" aria-hidden="true"></i></div>
+                    <h3 class="service-card-v3__title" data-i18n="companies-digital-automation-title">Automatisierung</h3>
+                    <p class="service-card-v3__text" data-i18n="companies-digital-automation-desc">Prozessautomatisierung mit RPA, KI und modernen Integrationsplattformen.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ PROJEKTABLAUF TIMELINE ══════════════════════════════ -->
+    <section id="projektablauf" class="page-section" aria-labelledby="timeline-heading">
+        <div class="service-section__ambient" aria-hidden="true">
+            <div class="service-section__ambient-orb service-section__ambient-orb--1"></div>
+            <div class="service-section__ambient-orb service-section__ambient-orb--2"></div>
+        </div>
+        <div class="container" style="position:relative;z-index:2;">
+            <div class="section-intro fade-in-up">
+                <span class="section-chip" aria-hidden="true"><i class="fas fa-route"></i> Unser Prozess</span>
+                <h2 id="timeline-heading" class="ibc-heading" data-i18n="companies-process-heading">
+                    So läuft Ihr <span class="text-gradient">Projekt ab</span>
+                </h2>
+                <p class="ibc-lead" data-i18n="companies-process-desc">Von der ersten Anfrage bis zum finalen Ergebnis – transparent und strukturiert.</p>
+            </div>
+            <div class="timeline-v2" role="list">
+                <div class="timeline-v2__item timeline-v2__item--left fade-in-up" role="listitem">
+                    <div class="timeline-v2__content">
+                        <p class="timeline-v2__content-label">Schritt 1</p>
+                        <h3 class="timeline-v2__content-title" data-i18n="companies-process-step1-title">Erstkontakt & Briefing</h3>
+                        <p class="timeline-v2__content-text" data-i18n="companies-process-step1-desc">Sie nehmen Kontakt auf und schildern Ihr Anliegen. Wir hören aufmerksam zu und stellen gezielte Fragen, um Ihr Projekt vollständig zu verstehen.</p>
+                    </div>
+                    <div class="timeline-v2__spacer"><div class="timeline-v2__dot">1</div></div>
+                    <div class="timeline-v2__empty"></div>
+                </div>
+                <div class="timeline-v2__item timeline-v2__item--right fade-in-up" data-animation-delay="100ms" role="listitem">
+                    <div class="timeline-v2__empty"></div>
+                    <div class="timeline-v2__spacer"><div class="timeline-v2__dot">2</div></div>
+                    <div class="timeline-v2__content">
+                        <p class="timeline-v2__content-label">Schritt 2</p>
+                        <h3 class="timeline-v2__content-title" data-i18n="companies-process-step2-title">Angebotserstellung</h3>
+                        <p class="timeline-v2__content-text" data-i18n="companies-process-step2-desc">Basierend auf dem Briefing erstellen wir ein individuelles Angebot mit klarem Leistungsumfang, Zeitplan und Konditionen.</p>
+                    </div>
+                </div>
+                <div class="timeline-v2__item timeline-v2__item--left fade-in-up" data-animation-delay="200ms" role="listitem">
+                    <div class="timeline-v2__content">
+                        <p class="timeline-v2__content-label">Schritt 3</p>
+                        <h3 class="timeline-v2__content-title" data-i18n="companies-process-step3-title">Teamzusammenstellung</h3>
+                        <p class="timeline-v2__content-text" data-i18n="companies-process-step3-desc">Wir stellen ein passendes Team aus spezialisierten Studierenden zusammen, das perfekt auf Ihre Anforderungen zugeschnitten ist.</p>
+                    </div>
+                    <div class="timeline-v2__spacer"><div class="timeline-v2__dot">3</div></div>
+                    <div class="timeline-v2__empty"></div>
+                </div>
+                <div class="timeline-v2__item timeline-v2__item--right fade-in-up" data-animation-delay="300ms" role="listitem">
+                    <div class="timeline-v2__empty"></div>
+                    <div class="timeline-v2__spacer"><div class="timeline-v2__dot">4</div></div>
+                    <div class="timeline-v2__content">
+                        <p class="timeline-v2__content-label">Schritt 4</p>
+                        <h3 class="timeline-v2__content-title" data-i18n="companies-process-step4-title">Projektdurchführung</h3>
+                        <p class="timeline-v2__content-text" data-i18n="companies-process-step4-desc">Unser Team arbeitet strukturiert an Ihrem Projekt. Regelmäßige Status-Updates halten Sie stets informiert über den Fortschritt.</p>
+                    </div>
+                </div>
+                <div class="timeline-v2__item timeline-v2__item--left fade-in-up" data-animation-delay="400ms" role="listitem">
+                    <div class="timeline-v2__content">
+                        <p class="timeline-v2__content-label">Schritt 5</p>
+                        <h3 class="timeline-v2__content-title" data-i18n="companies-process-step5-title">Abschlusspräsentation</h3>
+                        <p class="timeline-v2__content-text" data-i18n="companies-process-step5-desc">Die Ergebnisse werden professionell präsentiert und übergeben. Auf Wunsch beantworten wir Rückfragen und zeigen Handlungsempfehlungen auf.</p>
+                    </div>
+                    <div class="timeline-v2__spacer"><div class="timeline-v2__dot" style="border-color:var(--ibc-green);background:var(--ibc-green);color:#fff;"><i class="fas fa-check" aria-hidden="true"></i></div></div>
+                    <div class="timeline-v2__empty"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ FINAL CTA ═══════════════════════════════════════════ -->
+    <section class="cta-banner" aria-labelledby="final-cta-heading">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center fade-in-up">
+                    <h2 id="final-cta-heading" class="ibc-heading mb-3" data-i18n="companies-final-cta-heading">
+                        Ihr Projekt wartet. <span class="text-gradient">Wir auch.</span>
+                    </h2>
+                    <p class="ibc-lead mb-4" data-i18n="companies-final-cta-text">
+                        Nehmen Sie jetzt Kontakt auf – kostenlos und unverbindlich. Wir melden uns innerhalb von 48 Stunden.
+                    </p>
+                    <a href="kontakt.html" class="ethereal-button" data-i18n="companies-final-cta-btn">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        Jetzt Projekt anfragen
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="footer-section fat-footer">
+    <div class="fat-footer__cta">
+        <div class="fat-footer__cta-inner">
+            <div class="fat-footer__cta-text">
+                <p class="fat-footer__cta-eyebrow" aria-hidden="true"><i class="fa-solid fa-rocket"></i> <span data-i18n="footer-cta-eyebrow">Jetzt loslegen</span></p>
+                <h3 class="fat-footer__cta-heading" data-i18n="footer-cta-heading">Bereit, Ihr Projekt zu starten?</h3>
+                <p class="fat-footer__cta-sub" data-i18n="footer-cta-text">Wir freuen uns auf Ihre Nachricht.</p>
+            </div>
+            <a href="kontakt.html" class="ethereal-button fat-footer__cta-btn">
+                <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                <span data-i18n="footer-cta-button">Zum Kontaktformular</span>
+            </a>
+        </div>
+    </div>
+    <div class="fat-footer__body">
+        <div class="fat-footer__brand">
+            <a href="index.html" class="fat-footer__logo-link"><img data-media-id="footer-logo" class="fat-footer__logo-img" alt="IBC Logo" loading="lazy"></a>
+            <p class="fat-footer__tagline" data-i18n="footer-description">Das Institut für Business Consulting ist eine studentische Unternehmensberatung der Hochschule Furtwangen.</p>
+            <div class="fat-footer__social">
+                <span class="fat-footer__social-label" data-i18n="footer-follow-us">Folgen Sie uns</span>
+                <ul class="social-button-list">
+                    <li><a href="https://www.facebook.com/IBC.Furtwangen/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-facebook-f" aria-hidden="true"></i><span aria-hidden="true">Facebook</span></a></li>
+                    <li><a href="https://www.instagram.com/ibc_e.v/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram" aria-hidden="true"></i><span aria-hidden="true">Instagram</span></a></li>
+                    <li><a href="https://www.linkedin.com/company/institut-f%C3%BCr-business-consulting-e-v/" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i><span aria-hidden="true">LinkedIn</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="fat-footer__sitemap">
+            <h3 class="fat-footer__heading" data-i18n="footer-navigation-heading">Navigation</h3>
+            <nav aria-label="Footer Navigation"><ul class="fat-footer__nav-list">
+                <li><a href="index.html" data-i18n="footer-nav-home">Startseite</a></li>
+                <li><a href="fuer-studierende.html" data-i18n="footer-nav-students">Für Studierende</a></li>
+                <li><a href="fuer-unternehmen.html" data-i18n="footer-nav-companies">Für Unternehmen</a></li>
+                <li><a href="ueber-uns.html" data-i18n="footer-nav-about">Über uns</a></li>
+                <li><a href="unser-netzwerk.html" data-i18n="footer-nav-network">Unser Netzwerk</a></li>
+                <li><a href="referenzen.html" data-i18n="footer-nav-references">Referenzen</a></li>
+                <li><a href="kontakt.html" data-i18n="footer-nav-contact">Kontakt</a></li>
+            </ul></nav>
+            <h3 class="fat-footer__heading fat-footer__heading--secondary" data-i18n="footer-legal-heading">Rechtliches</h3>
+            <nav aria-label="Rechtliches"><ul class="fat-footer__nav-list">
+                <li><a href="impressum.html" data-i18n="footer-legal-imprint">Impressum</a></li>
+                <li><a href="datenschutzerklaerung.html" data-i18n="footer-legal-privacy">Datenschutzerklärung</a></li>
+                <li><a href="cookie-richtlinie-eu.html" data-i18n="footer-legal-cookies">Cookie-Richtlinie (EU)</a></li>
+            </ul></nav>
+        </div>
+        <div class="fat-footer__connect">
+            <h3 class="fat-footer__connect-title">Let's Connect</h3>
+            <address class="fat-footer__connect-address">
+                <div class="fat-footer__connect-item">
+                    <span class="fat-footer__connect-icon-wrap"><img src="assets/icons/Markierung.svg" class="fat-footer__connect-icon svg-icon" alt="" aria-hidden="true"></span>
+                    <div class="fat-footer__connect-text"><span class="fat-footer__connect-label" data-i18n="footer-location-heading">Finden Sie uns</span><a href="https://maps.google.com/?q=Robert-Gerwig-Platz+1,+78120+Furtwangen" target="_blank" rel="noopener noreferrer" class="fat-footer__connect-link" data-i18n="footer-location-text">Robert-Gerwig-Platz 1, 78120 Furtwangen</a></div>
+                </div>
+                <div class="fat-footer__connect-item email-cta">
+                    <span class="fat-footer__connect-icon-wrap"><img src="assets/icons/envelope-closed.svg" class="fat-footer__connect-icon svg-icon" alt="" aria-hidden="true"></span>
+                    <div class="fat-footer__connect-text"><span class="fat-footer__connect-label" data-i18n="footer-email-heading">Mailen Sie uns</span><a href="#" class="copy-email-link fat-footer__connect-link">vorstand@business-consulting.de</a></div>
+                </div>
+            </address>
+            <h3 class="fat-footer__heading fat-footer__heading--secondary" data-i18n="footer-intra-heading">Intranet</h3>
+            <nav aria-label="Intranet"><ul class="fat-footer__nav-list">
+                <li><a href="https://ibcfurtwangen.sharepoint.com/SitePages/home.aspx" target="_blank" rel="noopener noreferrer" data-i18n="footer-intra-sharepoint">SharePoint</a></li>
+                <li><a href="https://intra.business-consulting.de" target="_blank" rel="noopener noreferrer" data-i18n="footer-intra-intranet">Intranet</a></li>
+            </ul></nav>
+        </div>
+    </div>
+    <div class="footer-divider-continuous" role="separator" aria-hidden="true"></div>
+    <div class="copyright-area"><div class="container"><div class="copyright-text"><p>Copyright &copy; <span id="current-year">2025</span>, Institut für Business Consulting e.V. &ndash; <span data-i18n="footer-rights">Alle Rechte vorbehalten.</span></p></div></div></div>
+</footer>
+
+<button id="nav-fab" aria-label="Menü öffnen" aria-expanded="false" aria-controls="fab-overlay-menu">
+    <span class="fab-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+<nav id="fab-overlay-menu" role="dialog" aria-modal="true" aria-label="Hauptnavigation">
+    <img src="assets/img/ibc_logo_original_navbar.webp" alt="IBC Logo" class="fab-overlay-logo" loading="lazy">
+    <ul class="fab-nav-list" role="menu">
+        <li role="none"><a href="index.html" role="menuitem" data-i18n="nav-home">Startseite</a></li>
+        <li role="none"><div class="fab-nav-divider"></div></li>
+        <li role="none"><a href="fuer-studierende.html" role="menuitem" data-i18n="nav-students">Für Studierende</a></li>
+        <li role="none"><div class="fab-nav-divider"></div></li>
+        <li role="none"><a href="fuer-unternehmen.html" role="menuitem" data-i18n="nav-companies">Für Unternehmen</a></li>
+        <li role="none"><div class="fab-nav-divider"></div></li>
+        <li role="none"><a href="ueber-uns.html" role="menuitem" data-i18n="nav-about">Über uns</a></li>
+        <li role="none"><div class="fab-nav-divider"></div></li>
+        <li role="none"><a href="unser-netzwerk.html" role="menuitem" data-i18n="nav-network">Unser Netzwerk</a></li>
+        <li role="none"><div class="fab-nav-divider"></div></li>
+        <li role="none"><a href="referenzen.html" role="menuitem" data-i18n="nav-references">Referenzen</a></li>
+        <li role="none"><div class="fab-nav-divider"></div></li>
+        <li role="none"><a href="kontakt.html" role="menuitem" data-i18n="nav-contact">Kontakt</a></li>
+    </ul>
+    <div class="fab-lang-row">
+        <a href="?lang=de" class="fab-lang-btn" aria-label="Deutsch"><img src="assets/img/flags/de.svg" alt="" aria-hidden="true"><span>DE</span></a>
+        <a href="?lang=en" class="fab-lang-btn" aria-label="English"><img src="assets/img/flags/gb.svg" alt="" aria-hidden="true"><span>EN</span></a>
+        <a href="?lang=fr" class="fab-lang-btn" aria-label="Français"><img src="assets/img/flags/fr.svg" alt="" aria-hidden="true"><span>FR</span></a>
+    </div>
+</nav>
+
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js" defer></script>
+<script src="js/main.js" defer></script>
+<script src="js/navbar-scroll.js" defer></script>
+<script src="js/language-switcher.js" defer></script>
+<script src="js/fuer-unternehmen.js" defer></script>
+<script src="js/cookie-consent.js" defer></script>
+<script src="js/content-loader.js" defer></script>
+<script src="js/fade-in-animation.js" defer></script>
+<script src="js/icon-loader.js" defer></script>
+<script src="js/keyboard-nav.js" defer></script>
+<script src="js/index-page.js" defer></script>
+<script src="js/scroll-progress.js" defer></script>
+<script src="js/design-effects.js" defer></script>
+<script src="js/premium-animations.js" defer></script>
+</body>
+</html>

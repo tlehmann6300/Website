@@ -1,0 +1,55 @@
+{
+  "_kommentar_datei": "Diese Datei enthält alle externen Links der Website: Social Media, Formulare, Partner-Websites und eingebettete Inhalte",
+  "_kommentar_verwendung": "Die Datei wird von content-loader.js geladen und auf der gesamten Website verwendet",
+  "_kommentar_wichtig": "Alle Links müssen mit https:// oder http:// beginnen. Prüfen Sie Links nach dem Ändern!",
+  
+  "socialMedia": {
+    "_kommentar": "Social Media Links - werden in Header und Footer angezeigt",
+    "facebook": "https://www.facebook.com/IBC.Furtwangen/",
+    "_kommentar_facebook": "Link zur Facebook-Seite des IBC",
+    "instagram": "https://www.instagram.com/ibc_e.v/",
+    "_kommentar_instagram": "Link zum Instagram-Profil des IBC",
+    "linkedin": "https://www.linkedin.com/company/institut-f%C3%BCr-business-consulting-e-v/",
+    "_kommentar_linkedin": "Link zur LinkedIn-Unternehmensseite des IBC"
+  },
+  
+  "forms": {
+    "_kommentar": "Links zu Online-Formularen",
+    "eventRegistration": "https://forms.office.com/e/0hyfcKWkwL",
+    "_kommentar_eventRegistration": "Link zum Event-Anmeldeformular (Microsoft Forms)"
+  },
+  
+  "externalPages": {
+    "_kommentar": "Links zu externen Seiten und Social Media Posts",
+    "sharepoint": "https://ibcfurtwangen.sharepoint.com/SitePages/home.aspx",
+    "_kommentar_sharepoint": "Link zur internen SharePoint-Seite für Mitglieder",
+    "gluehweinstandPost": "https://www.instagram.com/p/C1MoJBpMvSk/?hl=de",
+    "_kommentar_gluehweinstandPost": "Link zu einem spezifischen Instagram-Post über den Glühweinstand",
+    "instagramCtaPost": "https://www.instagram.com/p/Cygd9QTIxw1/?hl=de&img_index=1",
+    "_kommentar_instagramCtaPost": "Link zu einem Instagram-Post für Call-to-Action Buttons",
+    "mapsLocation": "https://maps.app.goo.gl/XYGTVyeUL9ckeoJf6",
+    "_kommentar_mapsLocation": "Google Maps Link zum IBC Standort (verkürzte URL)"
+  },
+  
+  "partnerWebsites": {
+    "_kommentar": "Links zu Websites von Partnern und Kooperationspartnern",
+    "vduFurtwangen": "https://www.vdu-furtwangen.de/",
+    "_kommentar_vduFurtwangen": "Website des VDU (Verband Deutscher Unternehmer) Furtwangen",
+    "gvo": "https://www.gvo-vs.de/",
+    "_kommentar_gvo": "Website der GVO (Gewerbeverein und Verkehrsverein) Villingen-Schwenningen",
+    "easyVerein": "https://easyverein.com/",
+    "_kommentar_easyVerein": "Website von EasyVerein (Vereinsverwaltungs-Software)"
+  },
+  
+  "iframes": {
+    "_kommentar": "URLs für eingebettete Inhalte (Karten, Instagram-Posts) auf der Website",
+    "googleMaps": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2667.0540637964514!2d8.205213176901765!3d48.05129387123414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4108f8d06b694f9d%3A0xa040bf1f949b5d69!2sInstitut%20f%C3%BCr%20Business%20Consulting!5e0!3m2!1sde!2sde!4v1765188473947!5m2!1sde!2sde",
+    "_kommentar_googleMaps": "Embed-URL für die eingebettete Google Maps Karte - Zeigt den IBC Standort an",
+    "instagramEmbeds": [
+      "https://www.instagram.com/reel/DQeoSSkCPhy/embed/",
+      "https://www.instagram.com/reel/DPbSLC-iHdd/embed/",
+      "https://www.instagram.com/reel/DPv0VTiCEFb/embed/"
+    ],
+    "_kommentar_instagramEmbeds": "Liste von Instagram Reel Embed-URLs - werden als eingebettete Videos auf der Website angezeigt. WICHTIG: URLs müssen mit /embed/ enden!"
+  }
+}

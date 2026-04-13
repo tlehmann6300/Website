@@ -1,0 +1,783 @@
+/* ==========================================================================
+ * ui-refactoring.css
+ * Comprehensive UI Refactoring – IBC Website
+ *
+ * 1. Breathing Room – generous, consistent spacing between sections,
+ *    cards, and content blocks for a premium, high-quality look.
+ * 2. Mobile Responsiveness – all elements (cards, videos, text blocks,
+ *    iframes) are constrained to 100% viewport width at ≤ 768 px; no
+ *    horizontal overflow.
+ * 3. Soft Shadows & Rounded Edges – a unified, layered-shadow system
+ *    with consistent border-radius values so the page reads as a single
+ *    cohesive design.
+ *
+ * Load order: last stylesheet, after design-effects.css /
+ *             card-glassmorphism.css so these rules take effect.
+ * ========================================================================== */
+
+/* ══════════════════════════════════════════════════════════════════════════
+   §1  DESIGN TOKENS
+   ══════════════════════════════════════════════════════════════════════════ */
+:root {
+    /* Breathing-room spacing scale */
+    --br-xs:  0.75rem;   /*  12 px – tight inner padding */
+    --br-sm:  1.25rem;   /*  20 px – between icon + text */
+    --br-md:  2rem;      /*  32 px – card internal padding */
+    --br-lg:  3rem;      /*  48 px – between content blocks */
+    --br-xl:  4.5rem;    /*  72 px – section padding top/bottom */
+    --br-2xl: 6rem;      /*  96 px – hero / standout sections */
+
+    /* Card grid gap */
+    --card-gap: clamp(1.25rem, 3vw, 2rem);
+
+    /* Mobile safe-area side padding (used in viewport width calculations) */
+    --mobile-side-padding: 2.5rem;
+
+    /* Unified soft-shadow tokens */
+    --shadow-level-0: none;
+    --shadow-level-1:
+        0 1px  3px  rgba(32, 35, 74, 0.05),
+        0 4px  12px rgba(32, 35, 74, 0.06);
+    --shadow-level-2:
+        0 2px  8px  rgba(32, 35, 74, 0.06),
+        0 10px 28px rgba(32, 35, 74, 0.09);
+    --shadow-level-3:
+        0 4px  16px rgba(32, 35, 74, 0.08),
+        0 18px 40px rgba(32, 35, 74, 0.12);
+    --shadow-level-4:
+        0 8px  24px rgba(32, 35, 74, 0.10),
+        0 28px 56px rgba(32, 35, 74, 0.16);
+    --shadow-hover-lift:
+        0 12px 32px rgba(32, 35, 74, 0.12),
+        0 32px 64px rgba(32, 35, 74, 0.18);
+
+    /* Border-radius tokens (aligned with existing style.css) */
+    --radius-xs:   6px;
+    --radius-sm:  12px;
+    --radius-md:  16px;
+    --radius-lg:  24px;
+    --radius-xl:  32px;
+    --radius-pill: 50px;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   §2  BREATHING ROOM – section-level spacing
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* --- 2a. Global section vertical rhythm ---------------------------------- */
+section {
+    padding-top:    clamp(4.5rem, 10vw, 8rem);
+    padding-bottom: clamp(4.5rem, 10vw, 8rem);
+}
+
+@media (max-width: 768px) {
+    section {
+        padding-top:    clamp(3rem, 8vw, 5rem);
+        padding-bottom: clamp(3rem, 8vw, 5rem);
+    }
+}
+
+/* Hero section keeps its own padding */
+#hero-section {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* --- 2b. Section heading bottom margin ----------------------------------- */
+.section-heading {
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+@media (max-width: 768px) {
+    .section-heading {
+        margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+    }
+}
+
+/* --- 2c. Intro text block below heading ---------------------------------- */
+.section-heading + .lead,
+.section-heading + p,
+.section-heading + .ibc-lead {
+    margin-bottom: clamp(2rem, 4vw, 3.5rem);
+}
+
+@media (max-width: 768px) {
+    .section-heading + .lead,
+    .section-heading + p,
+    .section-heading + .ibc-lead {
+        margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+    }
+}
+
+/* --- 2d. Card grid gap --------------------------------------------------- */
+.row.g-4 {
+    --bs-gutter-x: var(--card-gap);
+    --bs-gutter-y: var(--card-gap);
+}
+
+.competencies-cards-grid {
+    gap: var(--card-gap);
+}
+
+/* --- 2e. Inner card padding ---------------------------------------------- */
+.service-card,
+.info-card,
+.stat-card,
+.angebot-card,
+.beratungsfeld-card,
+.value-card,
+.partner-card,
+.team-member-card,
+.member-card {
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem);
+}
+
+/* --- 2f. Section sub-group spacing --------------------------------------- */
+.competencies-section .competencies-section-header {
+    margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.stats-section .row {
+    row-gap: var(--card-gap);
+}
+
+/* --- 2g. CTA sections ---------------------------------------------------- */
+.cta-section-students,
+.cta-section-companies,
+.infoabend-section {
+    padding-top:    clamp(4.5rem, 10vw, 7rem);
+    padding-bottom: clamp(4.5rem, 10vw, 7rem);
+}
+
+/* --- 2h. Footer breathing room ------------------------------------------- */
+.fat-footer__body {
+    padding-top:    clamp(3rem, 6vw, 5rem);
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+/* --- 2i. Text block line spacing ----------------------------------------- */
+.ibc-lead,
+.lead {
+    margin-bottom: 1.5rem;
+}
+
+/* Ensure headings within sections have breathing room below */
+.ibc-heading {
+    margin-bottom: clamp(0.75rem, 2vw, 1.25rem);
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   §3  MOBILE RESPONSIVENESS – max-width: 768 px
+   ══════════════════════════════════════════════════════════════════════════
+   Goal: no element may overflow the viewport on small screens.
+   All fixed widths are replaced with responsive equivalents.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* --- 3a. Overflow guard for layout containers and known problem elements -- */
+@media (max-width: 768px) {
+    /*
+     * Apply only to layout containers and common block elements.
+     * The universal selector is avoided for performance; instead we target the
+     * elements most likely to cause horizontal overflow on narrow viewports.
+     */
+    .container,
+    .container-fluid,
+    .row,
+    section,
+    article,
+    aside,
+    main,
+    footer,
+    header,
+    nav,
+    div,
+    figure,
+    .card,
+    .card-body,
+    .card-img-top,
+    .col,
+    [class*="col-"] {
+        max-width: 100%;
+        min-width: 0;   /* flex/grid children may shrink below content size */
+    }
+
+    /* Embedded media fills its container (hero video is abs. positioned – excluded)
+       .navbar-logo is excluded because its height is controlled by .navbar-logo rule */
+    img:not(#hero-video):not(.navbar-logo),
+    iframe,
+    embed,
+    object,
+    canvas {
+        max-width: 100% !important; /* !important overrides card-glassmorphism inline sizes */
+        height: auto;
+    }
+
+    /* SVG icons should not exceed their container */
+    svg {
+        max-width: 100%;
+    }
+
+    /* Bootstrap container padding keeps content off the edges */
+    .container,
+    .container-fluid {
+        padding-left:  clamp(1.25rem, 4vw, 1.5rem);
+        padding-right: clamp(1.25rem, 4vw, 1.5rem);
+    }
+}
+
+/* --- 3b. Instagram phone-mockup frames ----------------------------------- */
+/*
+ * The mockup uses a fixed 328 px / 320 px width plus a 12 px border and
+ * `margin: 1rem`.  On screens narrower than ~360 px the mockup overflows.
+ * We make the width fluid while preserving the aspect ratio.
+ */
+@media (max-width: 768px) {
+    .instagram-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 0 1.25rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .instagram-frame-mockup {
+        /* fluid width: never wider than the available area */
+        width: min(320px, calc(100vw - var(--mobile-side-padding))) !important;
+        max-width: calc(100vw - var(--mobile-side-padding)) !important;
+        height: auto !important;
+        /* keep 9:16 aspect ratio */
+        aspect-ratio: 9 / 16 !important;
+        margin: 0.5rem auto !important;
+        /* undo the desktop scale() that could push content off-screen */
+        transform: none !important;
+    }
+
+    .instagram-frame-mockup:hover {
+        transform: translateY(-6px) !important;
+    }
+
+    .instagram-frame-mockup iframe {
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+/* --- 3c. Competency cards on mobile -------------------------------------- */
+@media (max-width: 768px) {
+    /* Only enforce full-width when NOT in carousel mode */
+    .competencies-cards-grid:not(.swipe-carousel) .competency-card {
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .competency-card__content {
+        padding-left:  1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+    .competency-card__trigger {
+        padding: 1.5rem !important;
+    }
+}
+
+/* --- 3d. Info / service / stat cards on mobile --------------------------- */
+@media (max-width: 768px) {
+    .info-glass-card,
+    .service-card,
+    .stat-card,
+    .angebot-card,
+    .beratungsfeld-card,
+    .testimonial-card,
+    .partner-card,
+    .value-card {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* --- 3e. Hero glass panel ------------------------------------------------ */
+@media (max-width: 768px) {
+    .hero-glass-panel {
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 1.75rem 1.25rem 2rem !important;
+        border-radius: var(--radius-md) !important;
+    }
+}
+
+/* --- 3f. Video embeds (background videos in cards) ----------------------- */
+@media (max-width: 768px) {
+    .competency-card__video-bg {
+        width: 100% !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+    }
+}
+
+/* --- 3g. Timeline section ------------------------------------------------ */
+@media (max-width: 768px) {
+    .timeline-item,
+    .timeline-content {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+}
+
+/* --- 3h. Tables (legal pages) -------------------------------------------- */
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+        max-width: 100%;
+        table-layout: fixed;
+        font-size: 0.85em;
+    }
+    table th,
+    table td {
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+}
+
+/* --- 3i. Sections with inline-width containers --------------------------- */
+@media (max-width: 768px) {
+    /* Ueber-uns team grid */
+    .team-grid,
+    .members-grid {
+        grid-template-columns: 1fr !important;
+        width: 100% !important;
+    }
+
+    /* Referenzen partner logo grid */
+    .partner-logos-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   §4  SOFT SHADOWS & ROUNDED EDGES
+   ══════════════════════════════════════════════════════════════════════════
+   Replace hard, high-opacity shadows and square corners with layered,
+   diffuse shadows and consistent border-radius values.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* --- 4a. Global card shadow upgrade -------------------------------------- */
+.card,
+.service-card,
+.info-card,
+.angebot-card,
+.beratungsfeld-card,
+.member-card,
+.team-card,
+.partner-card {
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-level-2) !important;
+    border: none !important;
+}
+
+.card:hover,
+.service-card:hover,
+.info-card:hover,
+.angebot-card:hover,
+.beratungsfeld-card:hover,
+.member-card:hover,
+.team-card:hover,
+.partner-card:hover {
+    box-shadow: var(--shadow-level-4) !important;
+}
+
+/* --- 4b. Stat cards (dark background) ------------------------------------ */
+.stat-card {
+    border-radius: var(--radius-lg) !important;
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        0 12px 32px rgba(0, 0, 0, 0.16) !important;
+}
+
+.stat-card:hover {
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.18),
+        0 24px 48px rgba(0, 0, 0, 0.22),
+        0 0 32px rgba(109, 151, 68, 0.18) !important;
+}
+
+/* --- 4c. Testimonial / quote cards --------------------------------------- */
+.testimonial-card,
+.testimonial-quote {
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-level-2) !important;
+}
+
+.testimonial-card:hover,
+.testimonial-quote:hover {
+    box-shadow: var(--shadow-level-3) !important;
+}
+
+/* --- 4d. Competency cards ------------------------------------------------ */
+.competency-card {
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-level-2) !important;
+}
+
+.competency-card:hover,
+.competency-card.is-active {
+    box-shadow: var(--shadow-level-3) !important;
+}
+
+/* --- 4e. Info glass cards ------------------------------------------------ */
+.info-glass-card {
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-level-2) !important;
+    border: none !important;
+}
+
+.info-glass-card:hover {
+    box-shadow: var(--shadow-level-3) !important;
+}
+
+/* --- 4f. Hero glass panel ------------------------------------------------ */
+.hero-glass-panel {
+    border-radius: var(--radius-lg) !important;
+    box-shadow:
+        0 24px 64px rgba(0, 0, 0, 0.28),
+        0 8px 24px  rgba(0, 0, 0, 0.16),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+/* --- 4g. Instagram mockup ------------------------------------------------ */
+.instagram-frame-mockup {
+    border-radius: var(--radius-xl) !important;
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.14),
+        0 20px 44px rgba(0, 0, 0, 0.18) !important;
+}
+
+.instagram-frame-mockup:hover {
+    box-shadow:
+        0 16px 40px rgba(0, 0, 0, 0.20),
+        0 32px 64px rgba(0, 0, 0, 0.24),
+        0 0 32px rgba(93, 167, 57, 0.22) !important;
+}
+
+/* --- 4h. Value / physics cards ------------------------------------------- */
+.value-card {
+    border-radius: var(--radius-md) !important;
+    box-shadow: var(--shadow-level-1) !important;
+}
+
+.value-card:hover {
+    box-shadow: var(--shadow-level-3) !important;
+}
+
+/* --- 4i. Buttons --------------------------------------------------------- */
+.btn,
+.btn-ibc,
+.ethereal-button,
+.competency-btn-clean,
+.bubble-btn,
+.bubbly-button {
+    border-radius: var(--radius-pill) !important;
+}
+
+/* --- 4j. Form inputs ----------------------------------------------------- */
+.form-control,
+.form-select {
+    border-radius: var(--radius-sm) !important;
+    box-shadow: var(--shadow-level-1) !important;
+    border: 1px solid var(--ibc-border-light, #E5E7EB) !important;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow:
+        0 0 0 3px rgba(32, 35, 74, 0.12),
+        var(--shadow-level-2) !important;
+}
+
+/* --- 4k. Navbar floating pill -------------------------------------------- */
+.navbar.scrolled {
+    border-radius: var(--radius-pill) !important;
+}
+
+/* --- 4l. Section dividers ------------------------------------------------ */
+.section-wave-divider {
+    margin-top: -3px;
+    margin-bottom: -3px;
+}
+
+/* --- 4m. Glassmorphism cards (card-glassmorphism overrides) -------------- */
+.card,
+.angebot-card,
+.beratungsfeld-card,
+.member-card,
+.team-card {
+    --glass-card-shadow:
+        0 1px  4px  rgba(32, 35, 74, 0.04),
+        0 6px  24px rgba(32, 35, 74, 0.07),
+        inset 0 1px 0 rgba(255, 255, 255, 0.50);
+    --glass-card-shadow-hover:
+        0 4px  16px rgba(32, 35, 74, 0.08),
+        0 20px 44px rgba(32, 35, 74, 0.13),
+        inset 0 1px 0 rgba(255, 255, 255, 0.80);
+}
+
+/* --- 4n. Section background transitions ---------------------------------- */
+/* Smooth colour ramp between adjacent sections removes jarring hard breaks */
+.competencies-section,
+.info-cards-section,
+.physics-values-section,
+.infoabend-section,
+.stats-section,
+.cta-section-students,
+.cta-section-companies,
+.ibc-testimonials-section,
+.timeline-section-new,
+.alumni-section {
+    position: relative;
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   §5  ADDITIONAL MOBILE POLISH
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+    /* --- 5a. Remove hover transforms that cause layout shifts on touch --- */
+    .instagram-frame-mockup {
+        transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+    }
+
+    /* --- 5b. Cards: no vertical lift on touch (avoids jitter) ------------ */
+    .service-card:hover,
+    .info-card:hover,
+    .angebot-card:hover,
+    .beratungsfeld-card:hover,
+    .member-card:hover,
+    .team-card:hover,
+    .stat-card:hover,
+    .value-card:hover,
+    .competency-card:hover,
+    .partner-card:hover {
+        transform: none !important;
+    }
+
+    /* --- 5c. Full-width CTA buttons -------------------------------------- */
+    .cta-section-students .btn,
+    .cta-section-companies .btn,
+    .infoabend-section .btn {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+
+    /* --- 5d. Stats grid: 2 columns on phone ----------------------------- */
+    .stats-section .row {
+        --bs-gutter-x: 0.875rem;
+        --bs-gutter-y: 0.875rem;
+    }
+
+    /* --- 5e. Section headings: tighter letter-spacing on small screens -- */
+    .ibc-heading:not(.hero-title) {
+        letter-spacing: -0.02em;
+    }
+
+}
+
+/* --- 5f. Card internal padding reduction for very small screens ---------- */
+@media (max-width: 400px) {
+    .service-card,
+    .info-card,
+    .angebot-card,
+    .stat-card {
+        padding: 1.25rem !important;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   §6  REDUCED-MOTION SAFETY OVERRIDES
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+    .instagram-frame-mockup,
+    .instagram-frame-mockup:hover,
+    .value-card,
+    .partner-card {
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   §7  FOOTER — MOBILE RESPONSIVENESS
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Smartphone (≤ 767 px): Sektionen elegant untereinander stapeln ── */
+@media (max-width: 767px) {
+
+    /* Die drei Sitemap-Sektionen (Navigation, Rechtliches, Internes)
+       klar untereinander – nicht nebeneinander gequetscht.
+       display:flex überschreibt das display:block aus style.css. */
+    .fat-footer__sitemap {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Spaltenüberschriften: mehr Abstand nach oben für klare Trennung
+       zwischen den einzelnen Bereichen */
+    .fat-footer__heading--secondary {
+        margin-top: 2.5rem;
+    }
+
+    /* Listenpunkte: touch-freundliche Klickfläche (mind. 44 × 44 px für den Daumen).
+       Erhöhter Zeilenabstand und Padding machen jeden Link komfortabel tippbar.
+       line-height wird an das <a>-Kindelement vererbt. */
+    .fat-footer__nav-list li {
+        line-height: 1.6;
+        padding: 0.25rem 0;
+    }
+}
+
+/* ── Extra-klein (≤ 480 px): etwas größere Touch-Ziele für kleine Displays ── */
+@media (max-width: 480px) {
+
+    .fat-footer__nav-list li {
+        line-height: 1.7;
+        padding: 0.375rem 0;
+    }
+
+    /* Etwas mehr Abstand bei sehr schmalen Viewports */
+    .fat-footer__heading--secondary {
+        margin-top: 2.75rem;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   §8  HERO — DESKTOP SINGLE-LINE TITLE
+   Keep "Ihre studentische Unternehmensberatung" on one line at
+   desktop breakpoints by capping the font size to fit the container.
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (min-width: 992px) {
+    /* Reduce from the base rule in style.css which uses
+       `font-size: var(--gs-hero-title-size, clamp(2rem, 5vw + 0.5rem, 8rem)) !important`.
+       We must also use !important here to override that existing !important declaration. */
+    #hero-section h1 {
+        font-size: clamp(1.8rem, 3vw, 3.1rem) !important;
+        white-space: nowrap;
+    }
+
+    /* Prevent the eyebrow badge from wrapping on desktop */
+    .hero-eyebrow-badge {
+        white-space: nowrap;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   §9  FOOTER — MOBILE CENTERING
+   Centre all footer column content on narrow screens for a cleaner look.
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+
+    /* Override the left-aligned default from style.css §fat-footer 767px */
+    .fat-footer__body {
+        text-align: center;
+    }
+
+    /* Logo centred */
+    .fat-footer__brand .fat-footer__logo-img {
+        margin: 0 auto;
+    }
+
+    /* Social button row centred */
+    .fat-footer__brand .social-button-list {
+        justify-content: center;
+    }
+
+    /* Navigation and legal lists centred */
+    .fat-footer__nav-list {
+        list-style: none;
+        padding-left: 0;
+    }
+
+    /* Nav links and connect links are flex containers – centre their text too */
+    .fat-footer__nav-list a,
+    .fat-footer__connect-link {
+        justify-content: center;
+    }
+
+    /* "Let's Connect" contact items centred */
+    .fat-footer__connect .fat-footer__contact-item {
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* Copyright bar centred */
+    .copyright-area .container {
+        justify-content: center;
+    }
+}
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   §10  MOBILE POLISH – card padding, hero title size, touch targets
+   Fine-grained rules that ensure an "Elite" feel on smartphones:
+   clean breathing room inside cards, a well-proportioned hero heading,
+   and reliable 44 px touch targets for every interactive element.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── 10a. info-glass-card: safe inner padding on mobile ── */
+@media (max-width: 767px) {
+    .info-glass-card {
+        /* Reduce the 3rem 2.5rem desktop padding to a mobile-safe value.
+           clamp() ensures the card never feels cramped on very narrow screens
+           (e.g. Galaxy Fold) while keeping generous spacing on typical phones. */
+        padding: clamp(1.25rem, 4vw, 1.75rem) clamp(1.25rem, 4vw, 1.5rem) !important;
+    }
+}
+
+/* ── 10b. competency-card: consistent inner padding on mobile ── */
+@media (max-width: 767px) {
+    /* Card trigger (heading/accordion button) */
+    .competency-card__trigger {
+        padding: clamp(1.25rem, 3.5vw, 1.5rem) clamp(1.25rem, 4vw, 1.5rem) !important;
+    }
+
+    /* Expanded content body */
+    .competency-card__content {
+        padding-left:  clamp(1.25rem, 4vw, 1.5rem) !important;
+        padding-right: clamp(1.25rem, 4vw, 1.5rem) !important;
+        padding-bottom: clamp(1.25rem, 3vw, 1.5rem) !important;
+    }
+}
+
+/* ── 10c. Hero h1: clamp font-size for smallest screens (iPhone SE etc.) ── */
+/* The Bootstrap display-2 class renders ~40 px at 375 px viewport width,
+   which can feel oversized and cause awkward line breaks.  A tight clamp
+   lets the heading scale smoothly from ~22 px (tiny phone) to ~34 px (tablet)
+   while still reading as the dominant heading on the page. */
+@media (max-width: 767px) {
+    #hero-section h1 {
+        font-size: clamp(1.5rem, 5vw + 0.5rem, 2.2rem) !important;
+        white-space: normal !important;
+        overflow-wrap: break-word;
+    }
+}
+
+/* ── 10d. All .btn elements: minimum 44 px touch target on mobile ── */
+/* Catches any Bootstrap button (.btn, .btn-*) that isn't already targeted
+   by the specific rules in mobile-first.css §2. */
+@media (max-width: 767px) {
+    .btn {
+        min-height: 44px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+}
