@@ -5632,16 +5632,44 @@ p:last-child { margin-bottom: 0; }
   box-shadow: 0 20px 60px rgba(32,35,74,0.11), 0 4px 16px rgba(109,151,68,0.12) !important;
 }
 
-/* Stats section stays dark but with a richer gradient */
+/* Stats section: soft blue-tinted light background in light mode */
 :root .stats-section,
 [data-theme="light"] .stats-section {
-  background: linear-gradient(135deg, #20234a 0%, #1a1c3e 60%, #151730 100%) !important;
+  background: linear-gradient(135deg, #eef1f8 0%, #e8effc 60%, #f0f4ff 100%) !important;
 }
 
-/* Stat card text in light mode */
+/* Stat cards: white elevated cards in light mode */
+:root .stat-card,
+[data-theme="light"] .stat-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(32,35,74,0.09) !important;
+  box-shadow: 0 2px 16px rgba(32,35,74,0.07), 0 1px 4px rgba(0,0,0,0.04) !important;
+}
+:root .stat-card:hover,
+[data-theme="light"] .stat-card:hover {
+  border-color: rgba(109,151,68,0.3) !important;
+  box-shadow: 0 16px 48px rgba(32,35,74,0.12), 0 4px 16px rgba(109,151,68,0.1) !important;
+}
+
+/* Stat number: use brand dark blue in light mode */
 :root .stat-number,
 [data-theme="light"] .stat-number {
-  color: #ffffff;
+  color: var(--ibc-blue) !important;
+  -webkit-text-fill-color: initial !important;
+  background: none !important;
+  filter: none !important;
+}
+:root .stat-number .counter-animated,
+[data-theme="light"] .stat-number .counter-animated {
+  color: var(--ibc-blue) !important;
+  -webkit-text-fill-color: var(--ibc-blue) !important;
+  background: none !important;
+}
+
+/* Stat title: dark secondary text in light mode */
+:root .stat-title,
+[data-theme="light"] .stat-title {
+  color: var(--text-secondary) !important;
 }
 
 /* Values / about sections: soft tinted background */
@@ -5794,11 +5822,9 @@ p:last-child { margin-bottom: 0; }
   box-shadow: 0 0 0 3px rgba(109,151,68,0.14);
 }
 
-/* Section divider waves */
-:root .section-wave-divider svg path,
-[data-theme="light"] .section-wave-divider svg path {
-  fill: var(--bg-primary);
-}
+/* Section divider waves: waves between light sections use the light bg colour.
+   The wave from competencies → stats is intentionally dark (fills #20234A in HTML)
+   so we do NOT override that one here. */
 
 /* Navbar logo — light mode: show with slight tint for brand color recognition */
 :root .navbar-logo,
