@@ -932,3 +932,730 @@
 @media (max-width: 479.98px) {
   .beratungsfeld-grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   PAGE HERO INNER  –  ueber-uns, referenzen, unser-netzwerk
+   ============================================================ */
+.page-hero-inner {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: calc(var(--nav-height, 72px) + 4rem) 0 6rem;
+  overflow: hidden;
+}
+
+.page-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.page-hero__title {
+  font-size: clamp(2.6rem, 6vw + 0.5rem, 4.8rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+  word-spacing: 0.06em;
+  color: var(--text-primary);
+  margin: 0 0 1.25rem;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.page-hero__subtitle {
+  font-size: clamp(1.05rem, 1.8vw + 0.2rem, 1.3rem);
+  line-height: 1.75;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 0 2rem;
+  opacity: 0.9;
+}
+
+.page-hero__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Hero stat strip (inline stats in hero) */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.hero-stat {
+  text-align: center;
+}
+.hero-stat__number,
+.hero-stat .hero-stat__number {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--ibc-green);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  display: block;
+}
+[data-theme="dark"] .hero-stat__number,
+[data-theme="dark"] .hero-stat .hero-stat__number {
+  color: var(--ibc-green-light);
+}
+.hero-stat__label,
+.hero-stat .hero-stat__label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Stat card – light background version */
+.stat-card--light {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-subtle) !important;
+  border-radius: var(--radius-lg, 20px);
+  padding: 1.75rem 1.25rem;
+  text-align: center;
+  transition: transform 0.35s var(--ease-spring), box-shadow 0.3s ease, border-color 0.25s;
+  box-shadow: var(--shadow-sm);
+}
+.stat-card--light:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(109, 151, 68, 0.35) !important;
+}
+[data-theme="dark"] .stat-card--light {
+  background: var(--bg-elevated) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+.stat-card--light .stat-card__number {
+  font-size: clamp(2.2rem, 4vw, 3rem);
+  font-weight: 900;
+  color: var(--ibc-green) !important;
+  -webkit-text-fill-color: var(--ibc-green) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  letter-spacing: -0.04em;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+[data-theme="dark"] .stat-card--light .stat-card__number {
+  color: var(--ibc-green-light) !important;
+  -webkit-text-fill-color: var(--ibc-green-light) !important;
+}
+.stat-card--light .stat-card__label {
+  font-size: 0.88rem;
+  color: var(--text-secondary) !important;
+  -webkit-text-fill-color: var(--text-secondary) !important;
+  background: none !important;
+  font-weight: 500;
+}
+
+/* Section intro text (used in alt-bg sections) */
+.section-intro-text {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  max-width: 580px;
+}
+
+/* Alumni stat (unser-netzwerk) */
+.alumni-stat {
+  text-align: center;
+  padding: 2rem;
+}
+.alumni-stat__number {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 900;
+  color: var(--ibc-green);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  display: block;
+}
+[data-theme="dark"] .alumni-stat__number { color: var(--ibc-green-light); }
+.alumni-stat__label {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* Hero page-hero__stat */
+.page-hero__stat { margin-top: 1.75rem; }
+
+/* Responsive for inner hero */
+@media (max-width: 767.98px) {
+  .page-hero-inner {
+    padding: calc(var(--nav-height, 60px) + 2.5rem) 0 4rem;
+  }
+  .page-hero__title {
+    font-size: clamp(2rem, 9vw, 3rem);
+  }
+  .page-hero__buttons {
+    flex-direction: column;
+    gap: 0.65rem;
+    width: 100%;
+  }
+  .page-hero__buttons .ethereal-button,
+  .page-hero__buttons .hero-btn-ghost {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero-stats { gap: 1.5rem; }
+}
+@media (max-width: 479.98px) {
+  .page-hero__title { font-size: clamp(1.85rem, 10vw, 2.5rem); }
+}
+
+/* ============================================================
+   DISPLAY HEADING  –  proper word-spacing for large hero titles
+   (Prevents words from running together at large font sizes)
+   ============================================================ */
+.display-heading {
+  word-spacing: 0.06em;
+  white-space: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
+  line-height: 1.08;
+}
+
+/* ============================================================
+   APPLY STEPS  –  "So wirst du Mitglied"
+   Full base styles with premium card layout and progress line
+   ============================================================ */
+.apply-steps {
+  position: relative;
+  max-width: 700px;
+  margin: 3rem auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Vertical progress line */
+.apply-steps::before {
+  content: '';
+  position: absolute;
+  left: 27px;
+  top: 28px;
+  bottom: 28px;
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--ibc-green) 0%,
+    rgba(109, 151, 68, 0.2) 100%
+  );
+  z-index: 0;
+  border-radius: 2px;
+}
+
+.apply-step {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 1.75rem;
+}
+.apply-step:last-child { padding-bottom: 0; }
+
+/* Numbered circle */
+.apply-step__num {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2.5px solid var(--ibc-green);
+  color: var(--ibc-green);
+  font-size: 1.1rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 0 0 5px var(--bg-primary), 0 4px 14px rgba(109, 151, 68, 0.2);
+  transition: background 0.35s var(--ease-spring), color 0.35s, transform 0.35s var(--ease-spring), box-shadow 0.35s;
+}
+[data-theme="dark"] .apply-step__num {
+  background: var(--bg-primary);
+  box-shadow: 0 0 0 5px var(--bg-primary), 0 4px 14px rgba(109, 151, 68, 0.25);
+}
+.apply-step:hover .apply-step__num {
+  background: var(--ibc-green);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 0 5px var(--bg-primary), 0 6px 24px rgba(109, 151, 68, 0.4);
+}
+
+/* Content card */
+.apply-step__body {
+  flex: 1;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg, 20px);
+  padding: 1.5rem 1.75rem;
+  box-shadow: var(--shadow-xs);
+  transition: transform 0.35s var(--ease-spring), box-shadow 0.35s ease, border-color 0.25s;
+  min-height: 0;
+}
+[data-theme="dark"] .apply-step__body {
+  background: var(--bg-elevated);
+  border-color: rgba(255, 255, 255, 0.07);
+}
+.apply-step:hover .apply-step__body {
+  transform: translateX(6px);
+  box-shadow: var(--shadow-md);
+  border-color: rgba(109, 151, 68, 0.3);
+}
+[data-theme="dark"] .apply-step:hover .apply-step__body {
+  border-color: rgba(125, 179, 86, 0.22);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
+.apply-step__label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ibc-green);
+  margin: 0 0 0.3rem;
+  display: block;
+}
+[data-theme="dark"] .apply-step__label { color: var(--ibc-green-light); }
+
+.apply-step__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 0.5rem;
+  line-height: 1.3;
+}
+
+.apply-step__text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ============================================================
+   EVENT CAROUSEL  –  better navigation button positioning
+   ============================================================ */
+
+/* Give the outer wrapper extra horizontal room so the
+   absolutely-placed buttons never overlap the content */
+.event-slider-v2 {
+  margin-left: clamp(0px, 2.5vw, 40px);
+  margin-right: clamp(0px, 2.5vw, 40px);
+}
+
+/* Refined control buttons */
+.carousel-ctrl {
+  width: 52px;
+  height: 52px;
+  background: var(--bg-elevated, #fff);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: 50%;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.13), 0 2px 8px rgba(0, 0, 0, 0.07);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  transition: all 0.28s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.carousel-ctrl:hover {
+  background: var(--ibc-green);
+  border-color: var(--ibc-green);
+  color: #fff;
+  box-shadow: 0 10px 32px rgba(109, 151, 68, 0.4);
+  transform: translateY(-50%) scale(1.14);
+}
+[data-theme="dark"] .carousel-ctrl {
+  background: rgba(20, 24, 50, 0.96);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+[data-theme="dark"] .carousel-ctrl:hover {
+  background: var(--ibc-green);
+  border-color: var(--ibc-green);
+}
+
+/* ============================================================
+   INSTAGRAM  –  Smartphone / Phone-frame design
+   ============================================================ */
+.instagram-section-v2 {
+  padding: 6rem 0 7rem;
+  position: relative;
+  overflow: hidden;
+}
+.instagram-section-v2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(109, 151, 68, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 0% 0%, rgba(99, 102, 241, 0.04) 0%, transparent 55%);
+  pointer-events: none;
+}
+[data-theme="dark"] .instagram-section-v2::before {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 100%, rgba(109, 151, 68, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 0% 0%, rgba(99, 102, 241, 0.06) 0%, transparent 55%);
+}
+
+.instagram-container-v2 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 3.5rem;
+  padding: 1rem 0 2rem;
+}
+
+/* ──── Phone frame ──── */
+.instagram-frame-wrap {
+  position: relative;
+  width: 288px;
+  flex: 0 0 auto;
+  /* Phone body gradient */
+  background: linear-gradient(160deg, #252538 0%, #141422 60%, #0f0f1c 100%);
+  border-radius: 50px;
+  /* Top/bottom notch padding, side screen padding */
+  padding: 68px 14px 54px;
+  /* Layered shadow: rim highlight + depth + glow */
+  box-shadow:
+    0 0 0 1.5px rgba(255, 255, 255, 0.13),
+    0 0 0 3.5px rgba(12, 12, 26, 0.95),
+    0 0 0 4px rgba(255, 255, 255, 0.04),
+    0 40px 80px rgba(0, 0, 0, 0.55),
+    0 12px 28px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  transition: transform 0.45s cubic-bezier(0.34, 1.36, 0.64, 1), box-shadow 0.35s ease;
+  /* Side buttons via outline-based box-shadow on sides */
+  outline: none;
+}
+/* Left volume buttons */
+.instagram-frame-wrap::before {
+  content: '';
+  position: absolute;
+  /* Dynamic island / pill notch */
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 106px;
+  height: 30px;
+  background: #080812;
+  border-radius: 15px;
+  z-index: 10;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.05);
+}
+/* Home indicator bar */
+.instagram-frame-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 116px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 3px;
+  transition: background 0.3s;
+}
+
+/* Hover lift */
+.instagram-frame-wrap:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow:
+    0 0 0 1.5px rgba(255, 255, 255, 0.16),
+    0 0 0 3.5px rgba(12, 12, 26, 0.95),
+    0 0 0 4px rgba(255, 255, 255, 0.05),
+    0 64px 100px rgba(0, 0, 0, 0.6),
+    0 24px 44px rgba(0, 0, 0, 0.35),
+    0 0 60px rgba(109, 151, 68, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+}
+.instagram-frame-wrap:hover::after {
+  background: rgba(255, 255, 255, 0.38);
+}
+
+/* The screen (iframe) */
+.instagram-frame-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 490px;
+  border: none;
+  border-radius: 22px;
+  background: #000;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Subtle glare on screen top */
+.instagram-frame-wrap > iframe::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 50px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+  border-radius: 22px 22px 0 0;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Dark mode — deeper frame */
+[data-theme="dark"] .instagram-frame-wrap {
+  background: linear-gradient(160deg, #1a1a2a 0%, #0e0e1c 60%, #090910 100%);
+  box-shadow:
+    0 0 0 1.5px rgba(255, 255, 255, 0.08),
+    0 0 0 3.5px rgba(6, 6, 15, 0.98),
+    0 0 0 4px rgba(255, 255, 255, 0.03),
+    0 40px 80px rgba(0, 0, 0, 0.75),
+    0 12px 28px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+[data-theme="dark"] .instagram-frame-wrap:hover {
+  box-shadow:
+    0 0 0 1.5px rgba(255, 255, 255, 0.1),
+    0 0 0 3.5px rgba(6, 6, 15, 0.98),
+    0 0 0 4px rgba(255, 255, 255, 0.04),
+    0 64px 100px rgba(0, 0, 0, 0.8),
+    0 24px 44px rgba(0, 0, 0, 0.5),
+    0 0 60px rgba(109, 151, 68, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+/* ──── Responsive ──── */
+@media (max-width: 1099.98px) {
+  .instagram-container-v2 { gap: 2rem; }
+  .instagram-frame-wrap { width: 265px; }
+  .instagram-frame-wrap iframe { height: 460px; }
+}
+
+@media (max-width: 767.98px) {
+  .instagram-container-v2 {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    padding: 0.5rem 1.5rem 2rem;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-top: 2.5rem;
+  }
+  .instagram-container-v2::-webkit-scrollbar { display: none; }
+  .instagram-frame-wrap {
+    scroll-snap-align: center;
+    flex-shrink: 0;
+    width: 255px;
+  }
+  .instagram-frame-wrap iframe { height: 450px; }
+}
+
+@media (max-width: 479.98px) {
+  .instagram-frame-wrap {
+    width: 230px;
+    padding: 58px 11px 46px;
+    border-radius: 42px;
+  }
+  .instagram-frame-wrap::before {
+    width: 86px;
+    height: 24px;
+    top: 18px;
+  }
+  .instagram-frame-wrap::after {
+    width: 94px;
+    bottom: 14px;
+  }
+  .instagram-frame-wrap iframe {
+    height: 410px;
+    border-radius: 18px;
+  }
+}
+
+/* ============================================================
+   TESTIMONIALS  –  extra polish for "Was unsere Alumnis sagen"
+   ============================================================ */
+.ibc-testimonials-section-v2 {
+  padding: 6rem 0 7rem;
+}
+
+/* On mobile, show image on top instead of left */
+@media (max-width: 767.98px) {
+  .ibc-testimonial-card .row {
+    flex-direction: column;
+  }
+  .ibc-testimonial-visual {
+    height: 260px !important;
+    min-height: 260px !important;
+    width: 100%;
+  }
+  .ibc-testimonial-visual::after {
+    background: linear-gradient(0deg, var(--bg-secondary) 0%, transparent 55%) !important;
+  }
+  [data-theme="dark"] .ibc-testimonial-visual::after {
+    background: linear-gradient(0deg, #0e1226 0%, transparent 55%) !important;
+  }
+  .ibc-testimonial-content {
+    padding: 1.5rem !important;
+  }
+  .ibc-testimonial-name {
+    font-size: 1.4rem !important;
+  }
+}
+
+/* ============================================================
+   COMPREHENSIVE MOBILE RESPONSIVE  –  all pages
+   ============================================================ */
+
+/* Extra-small (≤ 575px) */
+@media (max-width: 575.98px) {
+  /* Hero */
+  .page-hero-section {
+    padding: calc(var(--nav-height, 60px) + 2rem) 0 3.5rem;
+    text-align: center;
+  }
+  .page-hero__eyebrow { font-size: 0.7rem; }
+  .display-heading { font-size: clamp(1.85rem, 10vw, 2.6rem) !important; }
+  .page-hero__cta-row { flex-direction: column; gap: 0.65rem; }
+  .page-hero__cta-row .ethereal-button,
+  .page-hero__cta-row .hero-btn-ghost {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Apply steps */
+  .apply-steps::before { left: 20px; }
+  .apply-step__num { width: 40px; height: 40px; font-size: 0.9rem; box-shadow: 0 0 0 4px var(--bg-primary); }
+  .apply-step { gap: 1rem; }
+  .apply-step__body { padding: 1.2rem; }
+  .apply-step__title { font-size: 1rem; }
+  .apply-step__text { font-size: 0.88rem; }
+
+  /* Carousel */
+  .carousel-ctrl { width: 38px; height: 38px; font-size: 0.7rem; }
+  .carousel-ctrl--prev { left: 6px; }
+  .carousel-ctrl--next { right: 6px; }
+
+  /* Sections */
+  .page-section { padding: clamp(3rem, 8vw, 5rem) 0; }
+  .section-intro { margin-bottom: 2rem; }
+  .section-chip { font-size: 0.68rem; }
+
+  /* Infoabend */
+  .infoabend-v2 { padding: 3rem 0; }
+  .infoabend-date-badge { font-size: 0.85rem; }
+
+  /* Events */
+  .event-slider-v2 { margin-left: 0; margin-right: 0; }
+  .event-slider-item-v2 { grid-template-columns: 1fr; min-height: auto; }
+  .event-slider-item-v2 .event-img-col { height: 200px; min-height: 200px; }
+  .event-slider-content-v2 { padding: 1.25rem; }
+  .event-slider-content-v2 h3 { font-size: 1.1rem; }
+}
+
+/* Medium (576px – 767px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .apply-steps { max-width: 100%; }
+  .page-hero__cta-row { flex-direction: row; }
+}
+
+/* ============================================================
+   DESIGN IMPROVEMENTS  –  all non-index pages
+   ============================================================ */
+
+/* Nicer page-section alternating backgrounds */
+.page-section--alt {
+  background: var(--bg-secondary);
+}
+[data-theme="dark"] .page-section--alt {
+  background: var(--bg-tertiary);
+}
+
+/* Section header underline accent */
+.section-header {
+  position: relative;
+  margin-bottom: 3rem;
+}
+.section-header::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ibc-green), rgba(99, 102, 241, 0.6));
+  border-radius: 2px;
+  margin: 1.25rem auto 0;
+}
+.section-header.text-start::after { margin-left: 0; }
+
+/* Page hero mesh orbs visible */
+.page-hero__mesh-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+  opacity: 0.65;
+}
+.page-hero__mesh-orb--1 {
+  width: clamp(300px, 40vw, 600px);
+  height: clamp(300px, 40vw, 600px);
+  top: -20%;
+  left: -10%;
+  background: radial-gradient(circle, rgba(109, 151, 68, 0.18) 0%, transparent 70%);
+  animation: orb-drift 20s ease-in-out infinite alternate;
+}
+.page-hero__mesh-orb--2 {
+  width: clamp(200px, 30vw, 450px);
+  height: clamp(200px, 30vw, 450px);
+  bottom: -15%;
+  right: -5%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+  animation: orb-drift 24s ease-in-out infinite alternate-reverse;
+}
+.page-hero__mesh-orb--3 {
+  width: clamp(150px, 20vw, 300px);
+  height: clamp(150px, 20vw, 300px);
+  top: 40%;
+  right: 20%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+  animation: orb-drift 18s ease-in-out infinite alternate;
+}
+@keyframes orb-drift {
+  0%   { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, -20px) scale(1.08); }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .instagram-frame-wrap,
+  .instagram-frame-wrap:hover,
+  .apply-step__body,
+  .apply-step:hover .apply-step__body,
+  .apply-step:hover .apply-step__num,
+  .carousel-ctrl,
+  .page-hero__mesh-orb {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}

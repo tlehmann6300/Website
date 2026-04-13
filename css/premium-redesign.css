@@ -306,8 +306,12 @@ img {
   font-size: clamp(2.4rem, 6vw + 0.5rem, 4.5rem);
   font-weight: 900;
   line-height: 1.05;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
+  word-spacing: 0.06em;
   margin-bottom: 1.25rem;
+  white-space: normal;
+  overflow-wrap: break-word;
+  hyphens: none;
 }
 
 /* Hero Lead Text */
