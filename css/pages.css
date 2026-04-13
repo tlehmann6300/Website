@@ -1370,11 +1370,10 @@
   overflow: visible;
   outline: none;
 }
-/* Left volume buttons */
+/* Dynamic island / pill notch */
 .instagram-frame-wrap::before {
   content: '';
   position: absolute;
-  /* Dynamic island / pill notch */
   top: 22px;
   left: 50%;
   transform: translateX(-50%);
@@ -1426,18 +1425,6 @@
   position: relative;
   z-index: 1;
   overflow: hidden;
-}
-
-/* Subtle glare on screen top */
-.instagram-frame-wrap > iframe::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 50px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
-  border-radius: 22px 22px 0 0;
-  pointer-events: none;
-  z-index: 5;
 }
 
 /* Dark mode — deeper frame */
