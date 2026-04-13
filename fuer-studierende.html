@@ -35,113 +35,11 @@
     <link rel="stylesheet" href="css/pages.css">
     <link rel="stylesheet" href="css/premium-redesign.css">
     <link rel="stylesheet" href="css/ibc-improvements.css">
+    <link rel="stylesheet" href="css/fuer-studierende-v2.css">
     <link rel="icon" href="assets/img/cropped_maskottchen_32x32.webp" type="image/webp" sizes="32x32" />
     <style>
-    /* ── Bewerbungsablauf Timeline (vertical mobile-first) ── */
-    .apply-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      position: relative;
-      max-width: 700px;
-      margin: 0 auto;
-    }
-    .apply-steps::before {
-      content: '';
-      position: absolute;
-      left: 28px; top: 28px; bottom: 28px;
-      width: 2px;
-      background: linear-gradient(180deg, var(--ibc-green), #6366f1, #a855f7);
-    }
-    .apply-step {
-      display: flex;
-      gap: 1.5rem;
-      padding-bottom: 2.5rem;
-      align-items: flex-start;
-    }
-    .apply-step:last-child { padding-bottom: 0; }
-    .apply-step__num {
-      width: 56px; height: 56px; flex-shrink: 0;
-      border-radius: 50%;
-      background: var(--bg-primary);
-      border: 2px solid var(--ibc-green);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 1.1rem; color: var(--ibc-green);
-      position: relative; z-index: 2;
-      box-shadow: 0 0 0 5px var(--bg-primary);
-      transition: background 0.3s, color 0.3s;
-    }
-    .apply-step:hover .apply-step__num { background: var(--ibc-green); color: #fff; }
-    .apply-step__body {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-xl);
-      padding: 1.5rem 1.75rem;
-      flex: 1;
-      transition: transform 0.3s var(--ease-spring), box-shadow 0.3s;
-    }
-    .apply-step:hover .apply-step__body {
-      transform: translateX(4px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-    }
-    [data-theme="dark"] .apply-step__body { background: var(--bg-elevated, #12152e); border-color: rgba(255,255,255,0.07); }
-    [data-theme="dark"] .apply-step__num { box-shadow: 0 0 0 5px var(--bg-primary, #0D1117); }
-    .apply-step__label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ibc-green); margin-bottom: 0.4rem; }
-    .apply-step__title { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.4rem; }
-    .apply-step__text { font-size: 0.87rem; color: var(--text-secondary); line-height: 1.7; margin: 0; }
-    /* ── Number highlight cards ── */
-    .highlight-stat-card {
-      text-align: center;
-      padding: 2.5rem 1.5rem;
-      border-radius: var(--radius-xl);
-      background: var(--bg-primary);
-      border: 1px solid var(--border-subtle);
-      transition: transform 0.3s var(--ease-spring), box-shadow 0.3s;
-    }
-    .highlight-stat-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-    [data-theme="dark"] .highlight-stat-card { background: var(--bg-elevated, #12152e); border-color: rgba(255,255,255,0.07); }
-    .highlight-stat-card__num {
-      font-size: clamp(2.5rem, 6vw, 3.5rem);
-      font-weight: 900;
-      background: var(--gradient-primary, linear-gradient(135deg, #6D9744, #6366f1));
-      -webkit-background-clip: text; background-clip: text;
-      -webkit-text-fill-color: transparent;
-      line-height: 1.1; margin-bottom: 0.4rem;
-    }
-    .highlight-stat-card__label { font-size: 0.9rem; color: var(--text-secondary); font-weight: 600; }
-    /* ── Infoabend spotlight ── */
-    .infoabend-spotlight {
-      background: var(--stats-bg, #0a0d1a);
-      color: #fff;
-      padding: 5rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .infoabend-spotlight::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse 80% 60% at 30% 50%, rgba(109,151,68,0.15) 0%, transparent 60%),
-                  radial-gradient(ellipse 60% 60% at 80% 50%, rgba(99,102,241,0.12) 0%, transparent 60%);
-    }
-    .infoabend-spotlight .container { position: relative; z-index: 2; }
-    .infoabend-detail-row {
-      display: flex;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-top: 1.5rem;
-    }
-    .infoabend-detail {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 0.6rem 1.1rem;
-      border-radius: 9999px;
-      font-size: 0.88rem;
-      color: rgba(255,255,255,0.88);
-    }
-    .infoabend-detail i { color: var(--ibc-green-light, #7db356); }
+    /* Page-specific overrides – fuer-studierende.html */
+    /* All main styles are in css/fuer-studierende-v2.css */
     </style>
     <script type="application/ld+json">
     {
@@ -281,7 +179,7 @@
     <section class="page-section" aria-labelledby="highlights-heading">
         <div class="container">
             <div class="section-intro fade-in-up">
-                <span class="section-chip" aria-hidden="true"><i class="fas fa-chart-simple"></i> Das IBC in Zahlen</span>
+                <span class="section-chip" aria-hidden="true"><i class="fas fa-chart-simple"></i> Was dich erwartet</span>
                 <h2 id="highlights-heading" class="ibc-heading" data-i18n="students-highlights-heading">
                     Was dich <span class="text-gradient">erwartet</span>
                 </h2>
@@ -359,53 +257,53 @@
         <div class="container">
             <div class="row align-items-center g-5">
                 <div class="col-lg-6 fade-in-up">
-                    <span class="page-hero__eyebrow" style="margin-bottom:1rem;" data-i18n="students-why-eyebrow">
+                    <span class="page-hero__eyebrow" style="margin-bottom:1.25rem;" data-i18n="students-why-eyebrow">
                         <i class="fas fa-star" aria-hidden="true"></i>
                         Warum das IBC?
                     </span>
                     <h2 id="why-ibc-heading" class="ibc-heading" style="color:#fff;" data-i18n="students-cta-heading">
                         Warum das IBC zu Dir <span class="text-gradient">passen könnte!</span>
                     </h2>
-                    <p style="color:rgba(255,255,255,0.78);font-size:1rem;line-height:1.75;margin-bottom:1.5rem;" data-i18n="students-why-text">
+                    <p style="color:rgba(255,255,255,0.8);font-size:1rem;line-height:1.8;margin-bottom:1.75rem;" data-i18n="students-why-text">
                         Das IBC bietet dir eine einzigartige Kombination aus echter Praxiserfahrung, persönlicher Entwicklung und einem Netzwerk, das über dein Studium hinaus Bestand hat.
                     </p>
                     <div class="infoabend-detail-row">
-                        <span class="infoabend-detail"><i class="fas fa-check"></i> <span data-i18n="students-why-1">Echte Projekte</span></span>
-                        <span class="infoabend-detail"><i class="fas fa-check"></i> <span data-i18n="students-why-2">Starkes Team</span></span>
-                        <span class="infoabend-detail"><i class="fas fa-check"></i> <span data-i18n="students-why-3">Karrierestart</span></span>
-                        <span class="infoabend-detail"><i class="fas fa-check"></i> <span data-i18n="students-why-4">Alumni-Netzwerk</span></span>
+                        <span class="infoabend-detail"><i class="fas fa-check" aria-hidden="true"></i> <span data-i18n="students-why-1">Echte Projekte</span></span>
+                        <span class="infoabend-detail"><i class="fas fa-check" aria-hidden="true"></i> <span data-i18n="students-why-2">Starkes Team</span></span>
+                        <span class="infoabend-detail"><i class="fas fa-check" aria-hidden="true"></i> <span data-i18n="students-why-3">Karrierestart</span></span>
+                        <span class="infoabend-detail"><i class="fas fa-check" aria-hidden="true"></i> <span data-i18n="students-why-4">Alumni-Netzwerk</span></span>
                     </div>
-                    <div style="margin-top:2rem;">
+                    <div style="margin-top:2.25rem;">
                         <a href="kontakt.html?subject=Bewerbung" class="ethereal-button" data-i18n="students-apply-now">
                             <i class="fas fa-rocket" aria-hidden="true"></i>
                             Jetzt bewerben
                         </a>
                     </div>
                 </div>
-                <div class="col-lg-6 fade-in-up" style="transition-delay:0.2s">
+                <div class="col-lg-6 fade-in-up" style="transition-delay:0.15s">
                     <div class="row g-3">
                         <div class="col-6">
-                            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-xl);padding:1.75rem;text-align:center;">
-                                <i class="fas fa-laptop-code" style="font-size:2rem;color:var(--ibc-green-light,#7db356);margin-bottom:0.75rem;" aria-hidden="true"></i>
-                                <div style="font-size:0.9rem;font-weight:600;color:#fff;" data-i18n="students-benefit-experience">Echte Projekterfahrung</div>
+                            <div class="why-ibc-benefit-card">
+                                <i class="fas fa-laptop-code benefit-icon" style="color:#7db356;" aria-hidden="true"></i>
+                                <div class="benefit-label" data-i18n="students-benefit-experience">Echte Projekterfahrung</div>
                             </div>
                         </div>
                         <div class="col-6">
-                            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-xl);padding:1.75rem;text-align:center;">
-                                <i class="fas fa-users" style="font-size:2rem;color:#a78bfa;margin-bottom:0.75rem;" aria-hidden="true"></i>
-                                <div style="font-size:0.9rem;font-weight:600;color:#fff;" data-i18n="students-benefit-team">Tolles Team</div>
+                            <div class="why-ibc-benefit-card">
+                                <i class="fas fa-users benefit-icon" style="color:#a78bfa;" aria-hidden="true"></i>
+                                <div class="benefit-label" data-i18n="students-benefit-team">Tolles Team</div>
                             </div>
                         </div>
                         <div class="col-6">
-                            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-xl);padding:1.75rem;text-align:center;">
-                                <i class="fas fa-handshake" style="font-size:2rem;color:#60a5fa;margin-bottom:0.75rem;" aria-hidden="true"></i>
-                                <div style="font-size:0.9rem;font-weight:600;color:#fff;" data-i18n="students-benefit-network">Netzwerk</div>
+                            <div class="why-ibc-benefit-card">
+                                <i class="fas fa-handshake benefit-icon" style="color:#60a5fa;" aria-hidden="true"></i>
+                                <div class="benefit-label" data-i18n="students-benefit-network">Netzwerk</div>
                             </div>
                         </div>
                         <div class="col-6">
-                            <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:var(--radius-xl);padding:1.75rem;text-align:center;">
-                                <i class="fas fa-arrow-trend-up" style="font-size:2rem;color:#34d399;margin-bottom:0.75rem;" aria-hidden="true"></i>
-                                <div style="font-size:0.9rem;font-weight:600;color:#fff;" data-i18n="students-benefit-growth">Persönliches Wachstum</div>
+                            <div class="why-ibc-benefit-card">
+                                <i class="fas fa-arrow-trend-up benefit-icon" style="color:#34d399;" aria-hidden="true"></i>
+                                <div class="benefit-label" data-i18n="students-benefit-growth">Persönliches Wachstum</div>
                             </div>
                         </div>
                     </div>
@@ -426,61 +324,61 @@
             </div>
             <div class="row g-4 justify-content-center">
                 <div class="col-lg-3 col-md-6 fade-in-up" data-animation-delay="0ms">
-                    <button class="flip-card h-100 w-100" aria-pressed="false" style="min-height:200px;">
+                    <button class="flip-card" aria-pressed="false">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <i class="fas fa-university" style="font-size:2.5rem;color:var(--ibc-green);margin-bottom:1rem;" aria-hidden="true"></i>
-                                <h3 class="flip-card-title" style="font-size:1.1rem;font-weight:700;" data-i18n="students-req-student-title">Student an der HFU</h3>
-                                <p style="font-size:0.82rem;color:var(--text-secondary);margin:0.5rem 0 0;" data-i18n="flip-hint">Karte drehen</p>
+                                <h3 class="flip-card-title" style="font-size:1.05rem;font-weight:700;" data-i18n="students-req-student-title">Student an der HFU</h3>
+                                <p style="font-size:0.8rem;margin:0.5rem 0 0;" data-i18n="flip-hint">Karte drehen</p>
                             </div>
                             <div class="flip-card-back" aria-hidden="true">
-                                <i class="fas fa-check-circle" style="font-size:1.8rem;color:#fff;margin-bottom:0.75rem;" aria-hidden="true"></i>
-                                <p style="font-size:0.9rem;line-height:1.6;margin:0;" data-i18n="students-req-student-desc">Du bist eingeschrieben an der Hochschule Furtwangen – das ist die einzige formale Voraussetzung.</p>
+                                <i class="fas fa-check-circle" style="font-size:1.8rem;margin-bottom:0.75rem;" aria-hidden="true"></i>
+                                <p style="font-size:0.88rem;line-height:1.65;margin:0;" data-i18n="students-req-student-desc">Du bist eingeschrieben an der Hochschule Furtwangen – das ist die einzige formale Voraussetzung.</p>
                             </div>
                         </div>
                     </button>
                 </div>
                 <div class="col-lg-3 col-md-6 fade-in-up" data-animation-delay="100ms">
-                    <button class="flip-card h-100 w-100" aria-pressed="false" style="min-height:200px;">
+                    <button class="flip-card" aria-pressed="false">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <i class="fas fa-fire" style="font-size:2.5rem;color:var(--ibc-green);margin-bottom:1rem;" aria-hidden="true"></i>
-                                <h3 class="flip-card-title" style="font-size:1.1rem;font-weight:700;" data-i18n="students-req-motivated-title">Motiviert</h3>
-                                <p style="font-size:0.82rem;color:var(--text-secondary);margin:0.5rem 0 0;" data-i18n="flip-hint">Karte drehen</p>
+                                <h3 class="flip-card-title" style="font-size:1.05rem;font-weight:700;" data-i18n="students-req-motivated-title">Motiviert</h3>
+                                <p style="font-size:0.8rem;margin:0.5rem 0 0;" data-i18n="flip-hint">Karte drehen</p>
                             </div>
                             <div class="flip-card-back" aria-hidden="true">
-                                <i class="fas fa-check-circle" style="font-size:1.8rem;color:#fff;margin-bottom:0.75rem;" aria-hidden="true"></i>
-                                <p style="font-size:0.9rem;line-height:1.6;margin:0;" data-i18n="students-req-motivated-desc">Du bist bereit, Eigeninitiative zu zeigen und engagiert über dein Studium hinaus zu wachsen.</p>
+                                <i class="fas fa-check-circle" style="font-size:1.8rem;margin-bottom:0.75rem;" aria-hidden="true"></i>
+                                <p style="font-size:0.88rem;line-height:1.65;margin:0;" data-i18n="students-req-motivated-desc">Du bist bereit, Eigeninitiative zu zeigen und engagiert über dein Studium hinaus zu wachsen.</p>
                             </div>
                         </div>
                     </button>
                 </div>
                 <div class="col-lg-3 col-md-6 fade-in-up" data-animation-delay="200ms">
-                    <button class="flip-card h-100 w-100" aria-pressed="false" style="min-height:200px;">
+                    <button class="flip-card" aria-pressed="false">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <i class="fas fa-lightbulb" style="font-size:2.5rem;color:var(--ibc-green);margin-bottom:1rem;" aria-hidden="true"></i>
-                                <h3 class="flip-card-title" style="font-size:1.1rem;font-weight:700;" data-i18n="students-req-interested-title">Neugierig</h3>
-                                <p style="font-size:0.82rem;color:var(--text-secondary);margin:0.5rem 0 0;" data-i18n="flip-hint">Karte drehen</p>
+                                <h3 class="flip-card-title" style="font-size:1.05rem;font-weight:700;" data-i18n="students-req-interested-title">Neugierig</h3>
+                                <p style="font-size:0.8rem;margin:0.5rem 0 0;" data-i18n="flip-hint">Karte drehen</p>
                             </div>
                             <div class="flip-card-back" aria-hidden="true">
-                                <i class="fas fa-check-circle" style="font-size:1.8rem;color:#fff;margin-bottom:0.75rem;" aria-hidden="true"></i>
-                                <p style="font-size:0.9rem;line-height:1.6;margin:0;" data-i18n="students-req-interested-desc">Du interessierst dich für Unternehmensberatung, Wirtschaft, Technologie oder interdisziplinäres Arbeiten.</p>
+                                <i class="fas fa-check-circle" style="font-size:1.8rem;margin-bottom:0.75rem;" aria-hidden="true"></i>
+                                <p style="font-size:0.88rem;line-height:1.65;margin:0;" data-i18n="students-req-interested-desc">Du interessierst dich für Unternehmensberatung, Wirtschaft, Technologie oder interdisziplinäres Arbeiten.</p>
                             </div>
                         </div>
                     </button>
                 </div>
                 <div class="col-lg-3 col-md-6 fade-in-up" data-animation-delay="300ms">
-                    <button class="flip-card h-100 w-100" aria-pressed="false" style="min-height:200px;">
+                    <button class="flip-card" aria-pressed="false">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <i class="fas fa-people-roof" style="font-size:2.5rem;color:var(--ibc-green);margin-bottom:1rem;" aria-hidden="true"></i>
-                                <h3 class="flip-card-title" style="font-size:1.1rem;font-weight:700;" data-i18n="students-req-team-title">Teamfähig</h3>
-                                <p style="font-size:0.82rem;color:var(--text-secondary);margin:0.5rem 0 0;" data-i18n="flip-hint">Karte drehen</p>
+                                <h3 class="flip-card-title" style="font-size:1.05rem;font-weight:700;" data-i18n="students-req-team-title">Teamfähig</h3>
+                                <p style="font-size:0.8rem;margin:0.5rem 0 0;" data-i18n="flip-hint">Karte drehen</p>
                             </div>
                             <div class="flip-card-back" aria-hidden="true">
-                                <i class="fas fa-check-circle" style="font-size:1.8rem;color:#fff;margin-bottom:0.75rem;" aria-hidden="true"></i>
-                                <p style="font-size:0.9rem;line-height:1.6;margin:0;" data-i18n="students-req-team-desc">Du arbeitest gerne mit anderen zusammen und kannst sowohl führen als auch unterstützen.</p>
+                                <i class="fas fa-check-circle" style="font-size:1.8rem;margin-bottom:0.75rem;" aria-hidden="true"></i>
+                                <p style="font-size:0.88rem;line-height:1.65;margin:0;" data-i18n="students-req-team-desc">Du arbeitest gerne mit anderen zusammen und kannst sowohl führen als auch unterstützen.</p>
                             </div>
                         </div>
                     </button>
@@ -558,7 +456,8 @@
                     <strong class="text-gradient" id="dynamic-event-location">–</strong>
                     <span data-i18n="students-info-text-part4">an der HFU statt.</span>
                 </p>
-                <a href="https://forms.office.com/e/0hyfcKWkwL" id="dynamic-event-link" target="_blank" rel="noopener noreferrer" class="ethereal-button">
+                <!-- "Zur Anmeldung" button: ausgeblendet – zum Einblenden einfach style="display:none;" entfernen -->
+                <a href="https://forms.office.com/e/0hyfcKWkwL" id="dynamic-event-link" target="_blank" rel="noopener noreferrer" class="ethereal-button" style="display:none;">
                     <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                     <span data-i18n="students-info-button">Zur Anmeldung</span>
                 </a>
@@ -569,10 +468,10 @@
     <!-- ══ EVENTS SECTION ═══════════════════════════════════════ -->
     <section id="events" class="page-section page-section--alt" aria-labelledby="events-heading">
         <div class="container">
-            <div class="section-header fade-in-up" data-animation-delay="0ms">
-                <span class="section-chip">Events</span>
+            <div class="section-header text-center fade-in-up" data-animation-delay="0ms">
+                <span class="section-chip" aria-hidden="true"><i class="fas fa-calendar-star"></i> Aktivitäten</span>
                 <h2 id="events-heading" class="ibc-heading reveal-fx" data-i18n="students-events-heading">
-                    <span class="text-gradient">Bisherige</span> Events
+                    Events &amp; <span class="text-gradient">Aktivitäten</span>
                 </h2>
             </div>
             <div class="event-slider-v2 mt-5 fade-in-up" data-animation-delay="100ms">
@@ -660,7 +559,7 @@
             <div class="section-header text-center fade-in-up" data-animation-delay="0ms">
                 <span id="testimonial-stories-label" class="section-chip">Erfolgsgeschichten</span>
                 <h2 id="testimonial-section-heading" class="ibc-heading reveal-fx" data-i18n="students-testimonials-heading">
-                    Was unsere <span class="text-gradient">Alumnis</span> sagen
+                    Was unsere <span class="text-gradient">Mitglieder</span> sagen
                 </h2>
             </div>
             <div class="mt-5 fade-in-up" data-animation-delay="100ms">
@@ -693,49 +592,50 @@
     <section id="instagram-section" class="instagram-section-v2" aria-labelledby="instagram-heading">
         <div class="container">
             <div class="section-header text-center fade-in-up" data-animation-delay="0ms">
+                <span class="section-chip" aria-hidden="true"><i class="fa-brands fa-instagram"></i> Social Media</span>
                 <h2 id="instagram-heading" class="ibc-heading reveal-fx" data-i18n="instagram-highlights-title">
                     Unsere <span class="text-gradient">Instagram Highlights</span>
                 </h2>
             </div>
             <div class="instagram-container-v2">
-                <div class="instagram-frame-wrap fade-in-up" data-animation-delay="0ms">
+                <div class="instagram-frame-wrap" data-animation-delay="0ms">
                     <iframe data-instagram-embed="0"
                             src="https://www.instagram.com/reel/DQeoSSkCPhy/embed/"
                             title="Instagram Reel: IBC Veranstaltungshighlights"
                             frameborder="0"
                             scrolling="no"
                             allowtransparency="true"
-                            loading="lazy"
-                            height="480"
-                            onerror="this.style.display='none'"></iframe>
+                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            loading="lazy"></iframe>
                     <noscript>
                         <p><a href="https://www.instagram.com/reel/DQeoSSkCPhy/" target="_blank" rel="noopener noreferrer">Instagram Reel ansehen</a></p>
                     </noscript>
                 </div>
-                <div class="instagram-frame-wrap fade-in-up" data-animation-delay="100ms">
+                <div class="instagram-frame-wrap" data-animation-delay="100ms">
                     <iframe data-instagram-embed="1"
                             src="https://www.instagram.com/reel/DPbSLC-iHdd/embed/"
                             title="Instagram Reel: IBC Events und Aktivitäten"
                             frameborder="0"
                             scrolling="no"
                             allowtransparency="true"
-                            loading="lazy"
-                            height="480"
-                            onerror="this.style.display='none'"></iframe>
+                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            loading="lazy"></iframe>
                     <noscript>
                         <p><a href="https://www.instagram.com/reel/DPbSLC-iHdd/" target="_blank" rel="noopener noreferrer">Instagram Reel ansehen</a></p>
                     </noscript>
                 </div>
-                <div class="instagram-frame-wrap fade-in-up" data-animation-delay="200ms">
+                <div class="instagram-frame-wrap" data-animation-delay="200ms">
                     <iframe data-instagram-embed="2"
                             src="https://www.instagram.com/reel/DPv0VTiCEFb/embed/"
                             title="Instagram Reel: IBC Teamwork und Projekte"
                             frameborder="0"
                             scrolling="no"
                             allowtransparency="true"
-                            loading="lazy"
-                            height="480"
-                            onerror="this.style.display='none'"></iframe>
+                            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            loading="lazy"></iframe>
                     <noscript>
                         <p><a href="https://www.instagram.com/reel/DPv0VTiCEFb/" target="_blank" rel="noopener noreferrer">Instagram Reel ansehen</a></p>
                     </noscript>
