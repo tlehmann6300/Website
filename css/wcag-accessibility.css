@@ -512,3 +512,28 @@ footer .text-muted,
 .bg-dark .text-muted {
   color: #b0b8c1 !important; /* ~5.8:1 on #20234A – passes AA for large text */
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SKIP LINK — Keyboard navigation shortcut to skip repeated nav content
+   WCAG 2.4.1: Bypass Blocks
+   ───────────────────────────────────────────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 100000;
+  padding: 0.75rem 1.5rem;
+  background: var(--ibc-blue, #20234A);
+  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 0 0 8px 8px;
+  text-decoration: none;
+  transition: top 0.15s ease;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+}
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid var(--ibc-green, #6D9744);
+  outline-offset: 2px;
+}
