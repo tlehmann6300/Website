@@ -55,7 +55,8 @@
       if (!el) return;
       el.style.opacity = '0';
       el.style.transform = `translateY(${fromY}px)`;
-      el.style.transition = 'opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1)';
+      el.style.filter = 'blur(8px)';
+      el.style.transition = 'opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.85s cubic-bezier(0.16, 1, 0.3, 1)';
     });
 
     /* Gestaffeltes Einblenden synchronisiert mit Loader-Exit
@@ -68,6 +69,7 @@
       setTimeout(() => {
         el.style.opacity = '1';
         el.style.transform = 'translateY(0)';
+        el.style.filter = 'blur(0)';
         /* Hero-Trust-Strip: Zähler starten nach Einblenden */
         if (sel === '.hero-trust-strip') {
           setTimeout(() => startHeroTrustCounters(el), 400);
@@ -503,7 +505,7 @@
    * Horizontales Wisch-Karussell mit Scroll-Snap + Paginierungspunkte
    * ══════════════════════════════════════════════════════════════ */
   function initCompetencyCarousel() {
-    const MOBILE_BP = 768;
+    const MOBILE_BP = 1024;
     const grid       = document.getElementById('competenciesAccordionGroup');
     const dotsWrap   = document.getElementById('competencyCarouselDots');
     const hintEl     = document.getElementById('competencyCarouselHint');

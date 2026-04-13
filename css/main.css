@@ -964,6 +964,27 @@ p:last-child { margin-bottom: 0; }
   -ms-hyphens: none !important;
   overflow-wrap: normal;
   word-break: normal;
+  /* Gradient shimmer: subtle white-to-green highlight sweeps across the title */
+  background: linear-gradient(110deg, #ffffff 20%, #b8f0a0 48%, #ffffff 56%, #b8f0a0 84%, #ffffff 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hero-title-shimmer 6s ease-in-out infinite;
+  animation-delay: 3s;
+}
+@keyframes hero-title-shimmer {
+  0%   { background-position: 100% 0; }
+  50%  { background-position:   0% 0; }
+  100% { background-position: 100% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #hero-section h1.display-2 {
+    animation: none;
+    background: none;
+    -webkit-text-fill-color: #ffffff;
+    color: #ffffff;
+  }
 }
 
 /* Hero subtitle */
@@ -2579,7 +2600,7 @@ p:last-child { margin-bottom: 0; }
   .ms-lg-3 { margin-left: 0 !important; }
   .fab-button { display: flex; }
 
-  .competencies-cards-grid {
+  .competencies-cards-grid:not(.swipe-carousel) {
     grid-template-columns: repeat(2, 1fr);
   }
   .fat-footer__body { grid-template-columns: 1fr 1fr; }
@@ -2600,6 +2621,12 @@ p:last-child { margin-bottom: 0; }
   .fat-footer__social { display: flex; flex-direction: column; align-items: center; }
 
   .hero-video-toggle { bottom: 4rem; right: 1rem; }
+}
+
+/* Tablet carousel: show pagination dots and hint on screens up to 1023px */
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .competency-carousel-dots { display: flex; }
+  .competency-carousel-hint { display: flex; }
 }
 
 /* Small mobile */
@@ -4539,14 +4566,14 @@ p:last-child { margin-bottom: 0; }
   .hero-trust-sep { height: 1.5rem; }
 
   /* Competencies grid: 2-col on tablet */
-  .competencies-cards-grid {
+  .competencies-cards-grid:not(.swipe-carousel) {
     grid-template-columns: repeat(2, 1fr) !important;
     overflow-x: visible !important;
     display: grid !important;
     flex-wrap: unset !important;
   }
-  .competency-card--featured { grid-column: span 2; }
-  .competency-card--wide { grid-column: span 1; }
+  .competencies-cards-grid:not(.swipe-carousel) .competency-card--featured { grid-column: span 2; }
+  .competencies-cards-grid:not(.swipe-carousel) .competency-card--wide { grid-column: span 1; }
 
   /* Stats: 2×2 on tablet */
   .stats-section .col-xl-3 { flex: 0 0 50%; max-width: 50%; }
@@ -5227,12 +5254,12 @@ p:last-child { margin-bottom: 0; }
 
 /* MD (768px – 1199px): 2 columns, featured spans full row */
 @media (min-width: 768px) and (max-width: 1199.98px) {
-  .competencies-cards-grid {
+  .competencies-cards-grid:not(.swipe-carousel) {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.125rem;
   }
-  .competency-card--featured { grid-column: span 2; }
-  .competency-card--wide     { grid-column: span 1; }
+  .competencies-cards-grid:not(.swipe-carousel) .competency-card--featured { grid-column: span 2; }
+  .competencies-cards-grid:not(.swipe-carousel) .competency-card--wide     { grid-column: span 1; }
 }
 
 /* SM (576px – 767px): 2 columns, JS activates carousel on smaller */
