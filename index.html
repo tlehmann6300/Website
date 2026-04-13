@@ -90,12 +90,21 @@
          LOADING SCREEN
     ════════════════════════════════════════ -->
     <div id="page-loader" role="presentation" aria-hidden="true">
+        <span class="lp lp-1" aria-hidden="true"></span>
+        <span class="lp lp-2" aria-hidden="true"></span>
+        <span class="lp lp-3" aria-hidden="true"></span>
+        <span class="lp lp-4" aria-hidden="true"></span>
         <div class="loader-content">
             <div class="loader-logo-wrap">
                 <img src="assets/img/ibc_logo_original_navbar.webp" alt="" width="120" height="auto">
             </div>
             <div class="loader-bar-track">
                 <div class="loader-bar-fill"></div>
+            </div>
+            <div class="loader-dots" aria-hidden="true">
+                <span class="loader-dot"></span>
+                <span class="loader-dot"></span>
+                <span class="loader-dot"></span>
             </div>
         </div>
     </div>
@@ -284,13 +293,14 @@
                     <p class="ibc-lead gs-measure mx-auto" data-i18n="competencies-subtitle">Wir bringen frische Perspektiven und aktuelles Wissen in Ihr Projekt.</p>
                 </header>
                 <div class="competencies-cards-grid" id="competenciesAccordionGroup" role="region" data-i18n-aria="competencies-section-aria-label" aria-label="Unsere Kompetenzen">
-                    <article class="competency-card competency-card--featured reveal-fx">
+                    <article class="competency-card competency-card--featured cc-indigo reveal-fx">
                         <div class="competency-card__video-bg" aria-hidden="true">
                             <video autoplay loop muted playsinline title="Hintergrundvideo App-Entwicklung">
                                 <source src="assets/img/hero_video.mp4" type="video/mp4">
                             </video>
                         </div>
                         <div class="competency-card__image-wrapper">
+                            <span class="competency-card__badge" aria-hidden="true"><i class="fa-solid fa-mobile-screen-button"></i></span>
                             <img src="assets/img/competencies/app-development.webp"
                                  alt="Moderne mobile Anwendung auf Smartphone-Display" class="competency-card__image" loading="lazy" data-i18n-alt="competency-app-img-alt">
                         </div>
@@ -316,8 +326,9 @@
                             </div>
                         </div>
                     </article>
-                    <article class="competency-card reveal-fx delay-100">
+                    <article class="competency-card cc-sky reveal-fx delay-100">
                         <div class="competency-card__image-wrapper">
+                            <span class="competency-card__badge" aria-hidden="true"><i class="fa-solid fa-globe"></i></span>
                             <img src="assets/img/competencies/web-development.webp"
                                  alt="Responsives Webdesign auf verschiedenen Geräten" class="competency-card__image" loading="lazy" data-i18n-alt="competency-web-img-alt">
                         </div>
@@ -343,8 +354,9 @@
                             </div>
                         </div>
                     </article>
-                    <article class="competency-card reveal-fx delay-200">
+                    <article class="competency-card cc-emerald reveal-fx delay-200">
                         <div class="competency-card__image-wrapper">
+                            <span class="competency-card__badge" aria-hidden="true"><i class="fa-solid fa-chart-line"></i></span>
                             <img src="assets/img/competencies/market-analysis.webp"
                                  alt="Datenvisualisierung und Statistiken auf Bildschirm" class="competency-card__image" loading="lazy" data-i18n-alt="competency-market-img-alt">
                         </div>
@@ -370,8 +382,9 @@
                             </div>
                         </div>
                     </article>
-                    <article class="competency-card reveal-fx delay-300">
+                    <article class="competency-card cc-amber reveal-fx delay-300">
                         <div class="competency-card__image-wrapper">
+                            <span class="competency-card__badge" aria-hidden="true"><i class="fa-solid fa-gears"></i></span>
                             <img src="assets/img/competencies/process-optimization.webp"
                                  alt="Team bei Strategieplanung und Prozessanalyse" class="competency-card__image" loading="lazy" data-i18n-alt="competency-process-img-alt">
                         </div>
@@ -397,8 +410,9 @@
                             </div>
                         </div>
                     </article>
-                    <article class="competency-card reveal-fx delay-100">
+                    <article class="competency-card cc-violet reveal-fx delay-100">
                         <div class="competency-card__image-wrapper">
+                            <span class="competency-card__badge" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></span>
                             <img src="assets/img/competencies/mime2022_scaled.webp"
                                  alt="Weiterbildung und Seminarsituation mit Teilnehmern" class="competency-card__image" loading="lazy" data-i18n-alt="competency-training-img-alt">
                         </div>
@@ -424,8 +438,9 @@
                             </div>
                         </div>
                     </article>
-                    <article class="competency-card competency-card--wide reveal-fx delay-200">
+                    <article class="competency-card competency-card--wide cc-rose reveal-fx delay-200">
                         <div class="competency-card__image-wrapper">
+                            <span class="competency-card__badge" aria-hidden="true"><i class="fa-solid fa-puzzle-piece"></i></span>
                             <img src="assets/img/competencies/custom-solutions.webp"
                                  alt="Maßgeschneiderte Beratung und individuelle Lösungen" class="competency-card__image" loading="lazy" data-i18n-alt="competency-custom-img-alt">
                         </div>
@@ -451,8 +466,9 @@
                             </div>
                         </div>
                     </article>
-                    <article class="competency-card competency-card--wide reveal-fx">
+                    <article class="competency-card competency-card--wide cc-orange reveal-fx">
                         <div class="competency-card__image-wrapper">
+                            <span class="competency-card__badge" aria-hidden="true"><i class="fa-solid fa-film"></i></span>
                             <img src="assets/img/competencies/video-bearbeitung.webp"
                                  alt="Professionelle Video- und Bildbearbeitung" class="competency-card__image" loading="lazy" data-i18n-alt="competency-image-video-img-alt">
                         </div>
@@ -478,8 +494,9 @@
                             </div>
                         </div>
                     </article>
-                    <article class="competency-card competency-card--wide reveal-fx delay-100">
+                    <article class="competency-card competency-card--wide cc-teal reveal-fx delay-100">
                         <div class="competency-card__image-wrapper">
+                            <span class="competency-card__badge" aria-hidden="true"><i class="fa-solid fa-share-nodes"></i></span>
                             <img src="assets/img/competencies/social-media.webp"
                                  alt="Social Media Marketing und Community Management" class="competency-card__image" loading="lazy" data-i18n-alt="competency-social-media-img-alt">
                         </div>
