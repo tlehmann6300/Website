@@ -2431,6 +2431,41 @@
     "en": "Teaching Areas:",
     "fr": "Domaines d'enseignement :"
   },
+  "network-coop-intro": {
+    "de": "Wir arbeiten mit ausgewählten Unternehmen zusammen, die uns in unserer Mission unterstützen, praktische Consulting-Erfahrung zu vermitteln und innovative Lösungen zu entwickeln. Diese strategischen Partnerschaften ermöglichen uns, modernste Technologien und Best Practices in unsere Projekte einzubeziehen.",
+    "en": "We work with selected companies that support us in our mission to provide practical consulting experience and develop innovative solutions. These strategic partnerships enable us to integrate state-of-the-art technologies and best practices into our projects.",
+    "fr": "Nous travaillons avec des entreprises sélectionnées qui nous soutiennent dans notre mission de transmettre une expérience pratique du conseil et de développer des solutions innovantes. Ces partenariats stratégiques nous permettent d'intégrer des technologies de pointe et les meilleures pratiques dans nos projets."
+  },
+  "network-coop-technology-title": {
+    "de": "Technologie-Partner",
+    "en": "Technology Partners",
+    "fr": "Partenaires technologiques"
+  },
+  "network-coop-technology-desc": {
+    "de": "Firmen, die uns neueste Tools und Plattformen für unsere Projekte zur Verfügung stellen.",
+    "en": "Companies that provide us with the latest tools and platforms for our projects.",
+    "fr": "Des entreprises qui mettent à notre disposition les outils et plateformes les plus récents pour nos projets."
+  },
+  "network-coop-academic-title": {
+    "de": "Akademische Partner",
+    "en": "Academic Partners",
+    "fr": "Partenaires académiques"
+  },
+  "network-coop-academic-desc": {
+    "de": "Hochschulen und Institute, mit denen wir Wissen und Erfahrungen austauschen.",
+    "en": "Universities and institutes with which we exchange knowledge and experience.",
+    "fr": "Des universités et instituts avec lesquels nous échangeons des connaissances et des expériences."
+  },
+  "network-coop-corporate-title": {
+    "de": "Unternehmens-Partner",
+    "en": "Corporate Partners",
+    "fr": "Partenaires d'entreprise"
+  },
+  "network-coop-corporate-desc": {
+    "de": "Unternehmen, die regelmäßig mit uns an Projekten arbeiten und in unser Team investieren.",
+    "en": "Companies that regularly work with us on projects and invest in our team.",
+    "fr": "Des entreprises qui travaillent régulièrement avec nous sur des projets et investissent dans notre équipe."
+  },
   "contact-form-name-error": {
     "de": "Bitte geben Sie Ihren Namen ein",
     "en": "Please enter your name",

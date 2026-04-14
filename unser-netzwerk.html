@@ -234,38 +234,8 @@
             <p class="section-intro-text" style="margin-top: 20px; max-width: 600px;" data-i18n="network-sponsors-subtitle">Unsere Förderkreismitglieder unterstützen uns ideell und finanziell und ermöglichen dadurch hochwertige Beratungsprojekte.</p>
         </div>
         <ul id="foerderkreis-list" class="row g-4 justify-content-center list-unstyled mt-5">
-            <li class="col-lg-3 col-md-6 mb-4 align-items-stretch fade-in-up" data-animation-delay="100ms">
-                <button class="flip-card h-100" aria-pressed="false">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front"><div class="icon-box"><img loading="lazy" data-media-id="partner-mlp" alt="Zum Unternehmensprofil von MLP Consulting" class="card-logo"></div></div>
-                        <div class="flip-card-back" aria-hidden="true"><p data-i18n="network-sponsors-mlp-desc"></p><div class="tap-hint" aria-hidden="true"><i class="fas fa-undo"></i> <span data-i18n="flip-back">Zurück</span></div></div>
-                    </div>
-                </button>
-            </li>
-            <li class="col-lg-3 col-md-6 mb-4 align-items-stretch fade-in-up" data-animation-delay="200ms">
-                <button class="flip-card h-100" aria-pressed="false">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front"><div class="icon-box"><img loading="lazy" data-media-id="partner-accenture" alt="Zum Unternehmensprofil von Accenture" class="card-logo"></div></div>
-                        <div class="flip-card-back" aria-hidden="true"><p data-i18n="network-sponsors-accenture-desc"></p><div class="tap-hint" aria-hidden="true"><i class="fas fa-undo"></i> <span data-i18n="flip-back">Zurück</span></div></div>
-                    </div>
-                </button>
-            </li>
-            <li class="col-lg-3 col-md-6 mb-4 align-items-stretch fade-in-up" data-animation-delay="300ms">
-                <button class="flip-card h-100" aria-pressed="false">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front"><div class="icon-box"><img loading="lazy" data-media-id="partner-atos" alt="Zum Unternehmensprofil von Atos Consulting" class="card-logo"></div></div>
-                        <div class="flip-card-back" aria-hidden="true"><p data-i18n="network-sponsors-atos-desc"></p><div class="tap-hint" aria-hidden="true"><i class="fas fa-undo"></i> <span data-i18n="flip-back">Zurück</span></div></div>
-                    </div>
-                </button>
-            </li>
-            <li class="col-lg-3 col-md-6 mb-4 align-items-stretch fade-in-up" data-animation-delay="400ms">
-                <button class="flip-card h-100" aria-pressed="false">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front"><div class="icon-box"><img loading="lazy" data-media-id="partner-plw" alt="Zum Unternehmensprofil von purple line warrior" class="card-logo"></div></div>
-                        <div class="flip-card-back" aria-hidden="true"><p data-i18n="network-sponsors-plw-desc"></p><div class="tap-hint" aria-hidden="true"><i class="fas fa-undo"></i> <span data-i18n="flip-back">Zurück</span></div></div>
-                    </div>
-                </button>
-            </li>
+            <li class="col-lg-3 col-md-6 mb-4 align-items-stretch fade-in-up" data-animation-delay="100ms"><div class="skeleton-card"></div></li>
+            <li class="col-lg-3 col-md-6 mb-4 align-items-stretch fade-in-up" data-animation-delay="200ms"><div class="skeleton-card"></div></li>
         </ul>
     </div>
 </section>
@@ -327,36 +297,11 @@
         </div>
         
         <div id="kooperationspartner-container" class="mt-5 fade-in-up" data-animation-delay="0ms">
-            <p class="section-intro-text" style="color: rgba(255,255,255,0.8);">Wir arbeiten mit ausgewählten Unternehmen zusammen, die uns in unserer Mission unterstützen, praktische Consulting-Erfahrung zu vermitteln und innovative Lösungen zu entwickeln. Diese strategischen Partnerschaften ermöglichen uns, modernste Technologien und Best Practices in unsere Projekte einzubeziehen.</p>
-            
-            <div class="row g-4 mt-4">
-                <div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="100ms">
-                    <div class="coop-card">
-                        <div class="coop-card__icon">
-                            <i class="fa-solid fa-handshake" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="coop-card__title">Technologie-Partner</h3>
-                        <p class="coop-card__text">Firmen, die uns neueste Tools und Plattformen für unsere Projekte zur Verfügung stellen.</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="200ms">
-                    <div class="coop-card">
-                        <div class="coop-card__icon">
-                            <i class="fa-solid fa-book-open" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="coop-card__title">Akademische Partner</h3>
-                        <p class="coop-card__text">Hochschulen und Institute, mit denen wir Wissen und Erfahrungen austauschen.</p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="300ms">
-                    <div class="coop-card">
-                        <div class="coop-card__icon">
-                            <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
-                        </div>
-                        <h3 class="coop-card__title">Unternehmens-Partner</h3>
-                        <p class="coop-card__text">Unternehmen, die regelmäßig mit uns an Projekten arbeiten und in unser Team investieren.</p>
-                    </div>
-                </div>
+            <p id="kooperationspartner-intro" class="section-intro-text" style="color: rgba(255,255,255,0.8);"></p>
+
+            <div id="kooperationspartner-list" class="row g-4 mt-4">
+                <div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="100ms"><div class="skeleton-card"></div></div>
+                <div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="200ms"><div class="skeleton-card"></div></div>
             </div>
         </div>
     </div>

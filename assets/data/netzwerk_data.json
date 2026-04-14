@@ -1,6 +1,6 @@
 {
-  "_kommentar_datei": "Diese Datei enthält alle Inhalte für die Sektionen 'Unsere Förderkreismitglieder' und 'Unser Kuratorium' auf der Seite unser-netzwerk.html",
-  "_kommentar_verwendung": "Die Datei wird von js/netzwerk-loader.js geladen und rendert beide Sektionen dynamisch – so können neue Einträge hinzugefügt werden, ohne den HTML-Code zu bearbeiten",
+  "_kommentar_datei": "Diese Datei enthält alle Inhalte für die Sektionen 'Unsere Förderkreismitglieder', 'Unser Kuratorium' und 'Kooperationspartner' auf der Seite unser-netzwerk.html",
+  "_kommentar_verwendung": "Die Datei wird von js/netzwerk-loader.js geladen und rendert die Sektionen dynamisch – so können neue Einträge hinzugefügt werden, ohne den HTML-Code zu bearbeiten",
   "_kommentar_bilder": "Alle Bildpfade sind relativ zum Website-Root (z.B. assets/img/...). Die Bilder müssen bereits im angegebenen Ordner vorhanden sein.",
   "_kommentar_texte": "Die 'i18nKey'-Felder verweisen auf Übersetzungsschlüssel in assets/data/translations/translations.json. Neue Einträge müssen dort ebenfalls ergänzt werden.",
 
@@ -76,5 +76,30 @@
       "quoteI18nKey": "network-curators-marx-quote",
       "subjectsI18nKey": "network-curators-marx-subjects"
     }
-  ]
+  ],
+
+  "kooperationspartner": {
+    "_kommentar": "Inhalte für den Kooperationspartner-Bereich auf unser-netzwerk.html",
+    "introI18nKey": "network-coop-intro",
+    "cards": [
+      {
+        "id": "technology",
+        "iconClass": "fa-solid fa-handshake",
+        "titleI18nKey": "network-coop-technology-title",
+        "descI18nKey": "network-coop-technology-desc"
+      },
+      {
+        "id": "academic",
+        "iconClass": "fa-solid fa-book-open",
+        "titleI18nKey": "network-coop-academic-title",
+        "descI18nKey": "network-coop-academic-desc"
+      },
+      {
+        "id": "corporate",
+        "iconClass": "fa-solid fa-briefcase",
+        "titleI18nKey": "network-coop-corporate-title",
+        "descI18nKey": "network-coop-corporate-desc"
+      }
+    ]
+  }
 }

@@ -1,8 +1,9 @@
 /**
  * Netzwerk-Loader-Modul
  *
- * Lädt die Inhalte der Sektionen „Unsere Förderkreismitglieder" und
- * „Unser Kuratorium" dynamisch aus assets/data/netzwerk_data.json.
+ * Lädt die Inhalte der Sektionen „Unsere Förderkreismitglieder",
+ * „Unser Kuratorium" und „Kooperationspartner" dynamisch
+ * aus assets/data/netzwerk_data.json.
  * Dadurch können neue Einträge hinzugefügt werden, ohne den HTML-Code
  * der Seite unser-netzwerk.html zu bearbeiten.
  *
@@ -52,6 +53,12 @@
             .replace(/>/g, '&gt;')
             .replace(/"/g, '&quot;')
             .replace(/'/g, '&#39;');
+    }
+
+    function sanitizeIconClass(iconClass) {
+        const value = String(iconClass || '').trim();
+        if (/^[a-z0-9\- ]+$/i.test(value)) return value;
+        return 'fa-solid fa-circle';
     }
 
     /* ══════════════════════════════════════════════════════════════════
@@ -139,6 +146,35 @@
         container.innerHTML = '<div class="row g-5">' + cards + '</div>';
     }
 
+    function renderKooperationspartner(partnersData) {
+        const introElement = document.getElementById('kooperationspartner-intro');
+        const listElement = document.getElementById('kooperationspartner-list');
+        const cards = partnersData && Array.isArray(partnersData.cards) ? partnersData.cards : [];
+
+        if (!introElement || !listElement || cards.length === 0) return;
+
+        if (partnersData.introI18nKey) {
+            introElement.setAttribute('data-i18n', escapeHtml(partnersData.introI18nKey));
+        }
+
+        listElement.innerHTML = cards.map(function (partner, index) {
+            const delay = (index + 1) * 100;
+            const iconClass = sanitizeIconClass(partner.iconClass);
+
+            return (
+                '<div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="' + delay + 'ms">' +
+                '  <div class="coop-card">' +
+                '    <div class="coop-card__icon">' +
+                '      <i class="' + iconClass + '" aria-hidden="true"></i>' +
+                '    </div>' +
+                '    <h3 class="coop-card__title" data-i18n="' + escapeHtml(partner.titleI18nKey) + '"></h3>' +
+                '    <p class="coop-card__text" data-i18n="' + escapeHtml(partner.descI18nKey) + '"></p>' +
+                '  </div>' +
+                '</div>'
+            );
+        }).join('');
+    }
+
     /* ── Scroll-Animationen für neu gerenderte Elemente ────────────── */
     function observeFadeInElements() {
         const observer = new IntersectionObserver(
@@ -177,6 +213,7 @@
 
         renderFoerderkreis(data.foerderkreismitglieder);
         renderKuratorium(data.kuratorium);
+        renderKooperationspartner(data.kooperationspartner);
 
         /* Übersetzungen auf die neu erstellten data-i18n-Elemente anwenden */
         applyTranslations();
