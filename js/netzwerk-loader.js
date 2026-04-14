@@ -1,13 +1,17 @@
 /**
  * Netzwerk-Loader-Modul
  *
- * Lädt die Inhalte der Sektionen „Unsere Förderkreismitglieder" und
- * „Unser Kuratorium" dynamisch aus assets/data/netzwerk_data.json.
+ * Lädt die Inhalte der drei Netzwerk-Sektionen jeweils aus einer
+ * eigenen JSON-Datei und rendert sie dynamisch in unser-netzwerk.html:
+ *
+ *  - assets/data/foerderkreis_data.json       → Förderkreismitglieder
+ *  - assets/data/kuratorium_data.json         → Kuratorium
+ *  - assets/data/kooperationspartner_data.json → Kooperationspartner
+ *
  * Dadurch können neue Einträge hinzugefügt werden, ohne den HTML-Code
  * der Seite unser-netzwerk.html zu bearbeiten.
  *
  * Abhängigkeiten:
- *  - assets/data/netzwerk_data.json   (Inhalte / Bildpfade / i18n-Keys)
  *  - assets/data/translations/translations.json  (via language-switcher.js)
  *  - js/language-switcher.js          (Übersetzungen & ibcLanguageSwitcher-API)
  *  - js/content-loader.js             (optional – wird NICHT vorausgesetzt)
@@ -54,14 +58,20 @@
             .replace(/'/g, '&#39;');
     }
 
+    function sanitizeIconClass(iconClass) {
+        const value = String(iconClass || '').trim();
+        if (/^[a-z0-9\- ]+$/i.test(value)) return value;
+        return 'fa-solid fa-circle';
+    }
+
     /* ══════════════════════════════════════════════════════════════════
        §1  FÖRDERKREISMITGLIEDER – Flip-Cards
-       Hinweis: Bildpfade werden direkt aus netzwerk_data.json gelesen
+       Hinweis: Bildpfade werden direkt aus foerderkreis_data.json gelesen
        und per src-Attribut gesetzt. Das ist bewusst so gewählt, weil
        content-loader.js's updateGenericMediaElements() Punkt-Pfade
        benötigt (z.B. "partners.mlp") und Bindestriche nicht auflösen
-       kann. Das vereinheitlichte JSON ist dadurch vollständig
-       eigenständig und benötigt keine Abhängigkeit auf media_config.json.
+       kann. Die JSON-Datei ist dadurch vollständig eigenständig und
+       benötigt keine Abhängigkeit auf media_config.json.
     ══════════════════════════════════════════════════════════════════ */
     function renderFoerderkreis(members) {
         const container = document.getElementById('foerderkreis-list');
@@ -99,7 +109,7 @@
 
     /* ══════════════════════════════════════════════════════════════════
        §2  KURATORIUM – Horizontale Einzelkarten (übereinander gestapelt)
-       Hinweis: Bildpfade werden direkt aus netzwerk_data.json gelesen
+       Hinweis: Bildpfade werden direkt aus kuratorium_data.json gelesen
        (gleicher Grund wie bei §1 oben).
     ══════════════════════════════════════════════════════════════════ */
     function renderKuratorium(members) {
@@ -139,6 +149,35 @@
         container.innerHTML = '<div class="row g-5">' + cards + '</div>';
     }
 
+    function renderKooperationspartner(partnersData) {
+        const introElement = document.getElementById('kooperationspartner-intro');
+        const listElement = document.getElementById('kooperationspartner-list');
+        const cards = partnersData && Array.isArray(partnersData.cards) ? partnersData.cards : [];
+
+        if (!introElement || !listElement || cards.length === 0) return;
+
+        if (partnersData.introI18nKey) {
+            introElement.setAttribute('data-i18n', escapeHtml(partnersData.introI18nKey));
+        }
+
+        listElement.innerHTML = cards.map(function (partner, index) {
+            const delay = (index + 1) * 100;
+            const iconClass = sanitizeIconClass(partner.iconClass);
+
+            return (
+                '<div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="' + delay + 'ms">' +
+                '  <div class="coop-card">' +
+                '    <div class="coop-card__icon">' +
+                '      <i class="' + iconClass + '" aria-hidden="true"></i>' +
+                '    </div>' +
+                '    <h3 class="coop-card__title" data-i18n="' + escapeHtml(partner.titleI18nKey) + '"></h3>' +
+                '    <p class="coop-card__text" data-i18n="' + escapeHtml(partner.descI18nKey) + '"></p>' +
+                '  </div>' +
+                '</div>'
+            );
+        }).join('');
+    }
+
     /* ── Scroll-Animationen für neu gerenderte Elemente ────────────── */
     function observeFadeInElements() {
         const observer = new IntersectionObserver(
@@ -172,11 +211,16 @@
 
     /* ── Haupt-Initialisierung ──────────────────────────────────────── */
     async function init() {
-        const data = await fetchJSON('assets/data/netzwerk_data.json');
-        if (!data) return;
+        const [foerderkreisData, kuratoriumData, kooperationspartnerData] =
+            await Promise.all([
+                fetchJSON('assets/data/foerderkreis_data.json'),
+                fetchJSON('assets/data/kuratorium_data.json'),
+                fetchJSON('assets/data/kooperationspartner_data.json')
+            ]);
 
-        renderFoerderkreis(data.foerderkreismitglieder);
-        renderKuratorium(data.kuratorium);
+        renderFoerderkreis(foerderkreisData && foerderkreisData.members);
+        renderKuratorium(kuratoriumData && kuratoriumData.members);
+        renderKooperationspartner(kooperationspartnerData);
 
         /* Übersetzungen auf die neu erstellten data-i18n-Elemente anwenden */
         applyTranslations();

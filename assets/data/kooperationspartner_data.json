@@ -1,0 +1,27 @@
+{
+  "_kommentar_datei": "Enthält alle Einträge für die Sektion 'Kooperationspartner' auf der Seite unser-netzwerk.html",
+  "_kommentar_verwendung": "Wird von js/netzwerk-loader.js geladen. Neue Partner in 'cards' einfügen – kein HTML-Code muss geändert werden.",
+  "_kommentar_texte": "Die 'i18nKey'-Felder verweisen auf Übersetzungsschlüssel in assets/data/translations/translations.json. Neue Einträge müssen dort ebenfalls ergänzt werden.",
+
+  "introI18nKey": "network-coop-intro",
+  "cards": [
+    {
+      "id": "technology",
+      "iconClass": "fa-solid fa-handshake",
+      "titleI18nKey": "network-coop-technology-title",
+      "descI18nKey": "network-coop-technology-desc"
+    },
+    {
+      "id": "academic",
+      "iconClass": "fa-solid fa-book-open",
+      "titleI18nKey": "network-coop-academic-title",
+      "descI18nKey": "network-coop-academic-desc"
+    },
+    {
+      "id": "corporate",
+      "iconClass": "fa-solid fa-briefcase",
+      "titleI18nKey": "network-coop-corporate-title",
+      "descI18nKey": "network-coop-corporate-desc"
+    }
+  ]
+}
