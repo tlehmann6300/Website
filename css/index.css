@@ -2155,3 +2155,301 @@ a.btn:focus:not(:focus-visible) {
     }
 }
 
+/* ============================================================
+   DARK MODE OVERRIDES
+   Activated via [data-theme="dark"] on the <html> element.
+   ============================================================ */
+
+/* ---------- 1. Instagram section ---------- */
+[data-theme="dark"] .instagram-section {
+    background: linear-gradient(135deg, #0D1117 0%, #161B2E 100%);
+}
+[data-theme="dark"] .instagram-card {
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+[data-theme="dark"] .instagram-card:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(93, 167, 57, 0.15);
+}
+
+/* ---------- 2. Legacy value cards ---------- */
+[data-theme="dark"] .values-section .value-card h3,
+[data-theme="dark"] .core-values-section h3,
+[data-theme="dark"] .value-item h3 {
+    color: #f0f0f0 !important;
+}
+[data-theme="dark"] .values-section .value-card,
+[data-theme="dark"] .core-values-section .value-item,
+[data-theme="dark"] .value-item,
+[data-theme="dark"] .value-card {
+    background: linear-gradient(135deg, #161B2E 0%, #1E2640 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+[data-theme="dark"] .value-card p {
+    color: #98A0B4 !important;
+}
+
+/* ---------- 3. Testimonial card ---------- */
+[data-theme="dark"] .testimonial-card {
+    background: #161B2E;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+[data-theme="dark"] .testimonial-card:hover {
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+[data-theme="dark"] .testimonial-quote-text {
+    color: #f0f0f0;
+}
+[data-theme="dark"] .testimonial-author {
+    color: var(--ibc-green-light, #7db356);
+    border-top-color: rgba(125, 179, 86, 0.3);
+}
+
+/* ---------- 4. Partner card ---------- */
+[data-theme="dark"] .partner-card {
+    background: #161B2E;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .partner-card:hover {
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5),
+                0 0 0 3px rgba(64, 84, 178, 0.15);
+    border-color: rgba(64, 84, 178, 0.3);
+}
+[data-theme="dark"] .partner-content h3 {
+    color: #f0f0f0;
+}
+[data-theme="dark"] .partner-content p {
+    color: #98A0B4;
+}
+[data-theme="dark"] .partner-logo {
+    filter: grayscale(0.2) brightness(0.9);
+}
+[data-theme="dark"] .partner-card:hover .partner-logo {
+    filter: grayscale(0) brightness(1);
+}
+
+/* ---------- 5. Read-more button ---------- */
+[data-theme="dark"] .read-more-btn {
+    background: rgba(64, 84, 178, 0.12);
+    color: var(--ibc-green-light, #7db356);
+}
+[data-theme="dark"] .read-more-btn:hover {
+    background-color: rgba(64, 84, 178, 0.2);
+    color: #f0f0f0;
+}
+
+/* ---------- 6. Section headings ---------- */
+[data-theme="dark"] .section-heading-animated {
+    color: #f0f0f0;
+}
+
+/* ---------- 7. Values section (new / accordion) ---------- */
+[data-theme="dark"] .values-section-new {
+    --values-bg-body: #0D1117;
+    --values-color-primary: #f0f0f0;
+    --values-color-text: #98A0B4;
+    --values-color-primary-hover: #d0d4dc;
+    --values-orb-1: rgba(96, 151, 68, 0.08);
+    --values-orb-2: rgba(26, 28, 46, 0.12);
+    --values-shadow-card:
+        0 1px 2px rgba(0, 0, 0, 0.2),
+        0 4px 16px rgba(0, 0, 0, 0.25),
+        0 24px 40px rgba(0, 0, 0, 0.2);
+    --values-shadow-hover:
+        0 1px 2px rgba(0, 0, 0, 0.25),
+        0 8px 24px rgba(0, 0, 0, 0.35),
+        0 30px 60px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .value-card-new {
+    background: #161B2E;
+}
+[data-theme="dark"] .value-card-new.is-active {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(125, 179, 86, 0.25);
+}
+[data-theme="dark"] .value-card__image-wrapper {
+    background-color: #1E2640;
+}
+[data-theme="dark"] .value-card__trigger {
+    color: #f0f0f0;
+}
+[data-theme="dark"] .value-card__trigger:focus-visible {
+    background-color: rgba(37, 99, 235, 0.1);
+}
+
+/* ---------- 8. Physics values section ---------- */
+[data-theme="dark"] .physics-values-section {
+    background: linear-gradient(to bottom, #0D1117 0%, #161B2E 100%);
+}
+[data-theme="dark"] .physics-ambient-layer {
+    background-image:
+        radial-gradient(at 0% 0%, rgba(109, 151, 68, 0.06) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(32, 35, 74, 0.08) 0px, transparent 50%);
+}
+[data-theme="dark"] .physics-blob-1 {
+    background: rgba(109, 151, 68, 0.08);
+}
+[data-theme="dark"] .physics-blob-2 {
+    background: rgba(32, 35, 74, 0.1);
+}
+[data-theme="dark"] .physics-title-display {
+    color: #f0f0f0;
+}
+[data-theme="dark"] .physics-subtitle {
+    color: #98A0B4;
+}
+[data-theme="dark"] .physics-card {
+    background: rgba(22, 27, 46, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15), 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .physics-card-wrap:hover .physics-card,
+[data-theme="dark"] .physics-card-wrap:focus-visible .physics-card {
+    box-shadow: 0 30px 60px -10px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(125, 179, 86, 0.25);
+}
+[data-theme="dark"] .physics-card::before {
+    background: radial-gradient(
+        600px circle at var(--bg-x) var(--bg-y),
+        rgba(255, 255, 255, 0.08),
+        transparent 40%
+    );
+}
+[data-theme="dark"] .physics-icon-box {
+    background: #1E2640;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+[data-theme="dark"] .physics-card h3 {
+    color: #f0f0f0;
+}
+[data-theme="dark"] .physics-card p {
+    color: #98A0B4;
+}
+
+/* ---------- 9. Info cards section ---------- */
+[data-theme="dark"] .info-cards-section {
+    --text-main: #f0f0f0;
+    --text-muted: #98A0B4;
+    --glass-bg: rgba(22, 27, 46, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.06);
+    background-color: #0D1117;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+[data-theme="dark"] .info-blob-1 {
+    background: rgba(109, 151, 68, 0.06);
+}
+[data-theme="dark"] .info-blob-2 {
+    background: rgba(32, 35, 74, 0.08);
+}
+[data-theme="dark"] .info-glass-card {
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .info-glass-card:hover,
+[data-theme="dark"] .info-glass-card:focus-within {
+    background: rgba(22, 27, 46, 0.95);
+    box-shadow: 0 25px 50px -10px rgba(0, 0, 0, 0.5);
+    border-color: rgba(125, 179, 86, 0.3);
+}
+[data-theme="dark"] .info-icon-box {
+    background: linear-gradient(135deg, #1E2640 0%, #161B2E 100%);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .info-glass-card h2 {
+    color: #f0f0f0;
+}
+[data-theme="dark"] .info-link-arrow {
+    color: var(--ibc-green-light, #7db356);
+}
+[data-theme="dark"] .info-glass-card:focus-within {
+    box-shadow: 0 0 0 4px var(--ibc-green, #6D9744), 0 25px 60px -15px rgba(0, 0, 0, 0.5);
+}
+[data-theme="dark"] .info-link-arrow:focus-visible {
+    background-color: rgba(96, 151, 68, 0.15);
+}
+
+/* ---------- 10. Competencies section ---------- */
+[data-theme="dark"] .competencies-section {
+    --competencies-bg-body: #0D1117;
+    --competencies-color-primary: #f0f0f0;
+    --competencies-color-text: #98A0B4;
+    --competencies-color-primary-hover: #d0d4dc;
+    --competencies-orb-1: rgba(96, 151, 68, 0.05);
+    --competencies-orb-2: rgba(26, 28, 46, 0.06);
+    --competencies-shadow-card:
+        0 1px 3px rgba(0, 0, 0, 0.2),
+        0 6px 18px rgba(0, 0, 0, 0.3),
+        0 20px 40px rgba(0, 0, 0, 0.2);
+    --competencies-shadow-hover:
+        0 2px 6px rgba(0, 0, 0, 0.25),
+        0 12px 32px rgba(0, 0, 0, 0.4),
+        0 28px 56px rgba(0, 0, 0, 0.3);
+    --competencies-shadow-featured:
+        inset 0 2px 8px rgba(0, 0, 0, 0.3),
+        inset 0 8px 24px rgba(0, 0, 0, 0.2),
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        0 16px 48px rgba(0, 0, 0, 0.25);
+}
+[data-theme="dark"] .competency-card {
+    background: #161B2E;
+}
+[data-theme="dark"] .competency-card--featured {
+    background: #1E2640;
+}
+[data-theme="dark"] .competency-card--featured .competency-card__video-bg::after {
+    background: linear-gradient(
+        160deg,
+        rgba(22, 27, 46, 0.92) 0%,
+        rgba(13, 17, 23, 0.88) 100%
+    );
+}
+[data-theme="dark"] .competency-card.is-active {
+    background: #161B2E;
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        0 16px 40px rgba(0, 0, 0, 0.4);
+}
+[data-theme="dark"] .competency-card__image-wrapper {
+    background-color: #1E2640;
+}
+[data-theme="dark"] .competency-card__trigger {
+    color: #f0f0f0;
+}
+[data-theme="dark"] .competency-card__trigger:focus-visible {
+    background-color: rgba(37, 99, 235, 0.1);
+}
+
+/* ---------- 11. Popover (stats info) ---------- */
+[data-theme="dark"] .popover-header {
+    background-color: #1E2640;
+    color: #f0f0f0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ---------- 12. Mobile card shadows ---------- */
+@media (max-width: 600px) {
+    [data-theme="dark"] .value-card-new {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    }
+    [data-theme="dark"] .competency-card {
+        box-shadow:
+            0 1px 3px rgba(0, 0, 0, 0.2),
+            0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+    [data-theme="dark"] .competency-card--featured {
+        box-shadow:
+            inset 0 2px 8px rgba(0, 0, 0, 0.25),
+            inset 0 6px 18px rgba(0, 0, 0, 0.2),
+            0 4px 16px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* ---------- 13. Touch-device active state ---------- */
+@media (hover: none) and (pointer: coarse) {
+    [data-theme="dark"] .competency-card:active {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    }
+}
+

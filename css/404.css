@@ -75,6 +75,24 @@ body {
 .page-404-card .ethereal-button {
   margin-top: 0;
 }
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+[data-theme="dark"] body {
+    background: var(--bg-primary, #0D1117);
+    color: var(--text-primary, #f0f0f0);
+}
+[data-theme="dark"] .page-404-card {
+    background: var(--bg-elevated, #1E2640);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+[data-theme="dark"] .page-404-heading {
+    color: var(--ibc-green-light, #7db356);
+}
+[data-theme="dark"] .page-404-text {
+    color: var(--text-secondary, #98A0B4);
+}
+
 @media (max-width: 768px) {
   .page-404-wrapper {
     padding-top: 100px;

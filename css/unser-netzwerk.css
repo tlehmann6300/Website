@@ -1259,3 +1259,184 @@ body:not(.homepage) main {
     -webkit-text-fill-color: transparent;
     color: var(--ibc-blue, #20234A);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   §19  DARK MODE OVERRIDES  –  [data-theme="dark"]
+   Only light-background sections are overridden here.
+   The hero and alumni/facts sections already use dark
+   backgrounds and need no changes.
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Section backgrounds ───────────────────────────────── */
+[data-theme="dark"] .foerderkreis-section {
+    background: #0D1117;
+}
+[data-theme="dark"] .foerderkreis-section::after {
+    background: radial-gradient(circle, rgba(109, 151, 68, 0.08) 0%, transparent 70%);
+}
+
+[data-theme="dark"] .kooperationspartner-section {
+    background: linear-gradient(160deg, #0D1117 0%, #161B2E 55%, #131a24 100%);
+}
+[data-theme="dark"] .kooperationspartner-section::after {
+    background: radial-gradient(circle, rgba(64, 84, 178, 0.1) 0%, transparent 70%);
+}
+
+[data-theme="dark"] .kuratorium-section {
+    background: linear-gradient(160deg, #0D1117 0%, #161B2E 50%, #0D1117 100%);
+}
+[data-theme="dark"] .kuratorium-section::after {
+    background: radial-gradient(circle, rgba(109, 151, 68, 0.08) 0%, transparent 70%);
+}
+
+/* ── Section divider ───────────────────────────────────── */
+[data-theme="dark"] .network-section-divider {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06) 30%, rgba(255, 255, 255, 0.06) 70%, transparent);
+}
+
+/* ── Section headings (light sections → dark) ──────────── */
+[data-theme="dark"] .foerderkreis-section .ibc-heading,
+[data-theme="dark"] .kooperationspartner-section .ibc-heading,
+[data-theme="dark"] .kuratorium-section .ibc-heading {
+    color: #f0f0f0;
+    -webkit-text-fill-color: #f0f0f0;
+}
+[data-theme="dark"] .foerderkreis-section .ibc-heading .text-gradient,
+[data-theme="dark"] .foerderkreis-section .ibc-heading .word.text-gradient,
+[data-theme="dark"] .kooperationspartner-section .ibc-heading .text-gradient,
+[data-theme="dark"] .kooperationspartner-section .ibc-heading .word.text-gradient,
+[data-theme="dark"] .kuratorium-section .ibc-heading .text-gradient,
+[data-theme="dark"] .kuratorium-section .ibc-heading .word.text-gradient {
+    background: linear-gradient(135deg, #8a9cff 0%, var(--ibc-green-light, #7db356) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: #8a9cff;
+}
+[data-theme="dark"] .section-heading + .lead {
+    color: #98A0B4;
+}
+
+/* ── Partner cards ─────────────────────────────────────── */
+[data-theme="dark"] .partner-card {
+    background: #161B2E;
+    border-color: rgba(255, 255, 255, 0.07);
+    box-shadow:
+        0 4px 20px rgba(0, 0, 0, 0.3),
+        0 1px 4px rgba(0, 0, 0, 0.2);
+}
+[data-theme="dark"] .partner-card::after {
+    background: radial-gradient(circle, rgba(64, 84, 178, 0.08) 0%, transparent 70%);
+}
+[data-theme="dark"] .partner-card:hover {
+    box-shadow:
+        0 28px 56px rgba(0, 0, 0, 0.5),
+        0 8px 20px rgba(0, 0, 0, 0.35);
+    border-color: rgba(125, 179, 86, 0.3);
+}
+
+[data-theme="dark"] .partner-content h3 {
+    color: #f0f0f0;
+}
+[data-theme="dark"] .partner-content p {
+    color: #98A0B4;
+}
+
+/* ── Logo container & partner logos ────────────────────── */
+[data-theme="dark"] .logo-container {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+}
+[data-theme="dark"] .partner-logo {
+    filter: grayscale(15%) brightness(0.9);
+}
+[data-theme="dark"] .partner-card:hover .partner-logo {
+    filter: grayscale(0%) brightness(1);
+}
+
+/* ── Read-more / filter button ─────────────────────────── */
+[data-theme="dark"] .read-more-btn {
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--ibc-green-light, #7db356);
+}
+[data-theme="dark"] .read-more-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #f0f0f0;
+}
+
+/* ── Kuratorium cards ──────────────────────────────────── */
+[data-theme="dark"] .kuratorium-mitglied {
+    background: #161B2E;
+    border-color: rgba(255, 255, 255, 0.07);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.3),
+        0 1px 6px rgba(0, 0, 0, 0.2);
+}
+[data-theme="dark"] .kuratorium-mitglied:hover {
+    box-shadow:
+        0 20px 56px rgba(0, 0, 0, 0.5),
+        0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Kuratorium portrait ring – swap white ring for dark surface */
+[data-theme="dark"] .kuratorium-img {
+    box-shadow:
+        0 0 0 3px #161B2E,
+        0 0 0 6px var(--ibc-green, #6D9744),
+        0 0 0 10px rgba(var(--rgb-primary-green), 0.15),
+        0 24px 64px rgba(0, 0, 0, 0.4),
+        0 8px 20px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .kuratorium-mitglied:hover .kuratorium-img {
+    box-shadow:
+        0 0 0 3px #161B2E,
+        0 0 0 6px var(--ibc-green, #6D9744),
+        0 0 0 14px rgba(var(--rgb-primary-green), 0.28),
+        0 0 50px rgba(var(--rgb-primary-green), 0.15),
+        0 36px 80px rgba(0, 0, 0, 0.45),
+        0 14px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Kuratorium text content */
+[data-theme="dark"] .kuratorium-content h3 {
+    color: #8a9cff;
+}
+[data-theme="dark"] .kuratorium-content .blockquote {
+    color: #98A0B4;
+    background: linear-gradient(135deg, rgba(109, 151, 68, 0.08) 0%, rgba(64, 84, 178, 0.06) 100%);
+    border-left-color: var(--ibc-green-light, #7db356);
+}
+[data-theme="dark"] .kuratorium-content .blockquote::before {
+    color: rgba(125, 179, 86, 0.3);
+}
+[data-theme="dark"] .kuratorium-content .lehrgebiete {
+    background: rgba(255, 255, 255, 0.04);
+    border-left-color: rgba(138, 156, 255, 0.3);
+    color: #98A0B4;
+}
+[data-theme="dark"] .kuratorium-content .lehrgebiete strong {
+    color: #f0f0f0;
+}
+
+/* ── Touch devices – dark-mode shadow resets ───────────── */
+@media (hover: none) {
+    [data-theme="dark"] .partner-card:hover {
+        box-shadow:
+            0 4px 20px rgba(0, 0, 0, 0.3),
+            0 1px 4px rgba(0, 0, 0, 0.2);
+        border-color: rgba(255, 255, 255, 0.07);
+    }
+    [data-theme="dark"] .kuratorium-mitglied:hover {
+        box-shadow:
+            0 4px 24px rgba(0, 0, 0, 0.3),
+            0 1px 6px rgba(0, 0, 0, 0.2);
+    }
+    [data-theme="dark"] .kuratorium-mitglied:hover .kuratorium-img {
+        box-shadow:
+            0 0 0 3px #161B2E,
+            0 0 0 6px var(--ibc-green, #6D9744),
+            0 0 0 10px rgba(var(--rgb-primary-green), 0.15),
+            0 24px 64px rgba(0, 0, 0, 0.4),
+            0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+}

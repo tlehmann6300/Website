@@ -810,3 +810,153 @@
 .hidden {
     display: none !important;
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   §13  DARK MODE OVERRIDES
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Section background ── */
+[data-theme="dark"] .references-section {
+    background: var(--bg-color-dark, #0D1117);
+}
+
+/* ── Filters wrapper ── */
+[data-theme="dark"] .filters-wrapper {
+    background: var(--bg-elevated, #1E2640);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.25),
+        0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .filter-group + .filter-group {
+    border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Filter group title ── */
+[data-theme="dark"] .filter-group-title {
+    color: #f0f0f0;
+}
+
+[data-theme="dark"] .filter-group-title::before {
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.1));
+}
+
+[data-theme="dark"] .filter-group-title::after {
+    background: linear-gradient(to left, transparent, rgba(255, 255, 255, 0.1));
+}
+
+/* ── Filter buttons ── */
+[data-theme="dark"] .filter-btn {
+    background: var(--bg-secondary, #161B2E);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #98A0B4;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    [data-theme="dark"] .filter-btn:hover {
+        border-color: var(--ibc-green-light, #7db356);
+        color: var(--ibc-green-light, #7db356);
+        background: rgba(125, 179, 86, 0.08);
+        box-shadow: 0 4px 14px rgba(125, 179, 86, 0.2);
+    }
+}
+
+[data-theme="dark"] .filter-btn.active {
+    box-shadow: 0 4px 16px rgba(125, 179, 86, 0.35);
+}
+
+/* ── Project cards ── */
+[data-theme="dark"] .project-card {
+    background: var(--bg-secondary, #161B2E);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.3),
+        0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme="dark"] .project-card-image {
+    background: linear-gradient(135deg, #1E2640 0%, #161B2E 100%);
+}
+
+[data-theme="dark"] .project-year-badge {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .project-category {
+    color: var(--ibc-green-light, #7db356);
+    background: rgba(125, 179, 86, 0.12);
+}
+
+[data-theme="dark"] .project-card h3 {
+    color: #f0f0f0;
+}
+
+[data-theme="dark"] .project-card p {
+    color: #98A0B4;
+}
+
+/* ── Card hover – dark mode ── */
+@media (hover: hover) and (pointer: fine) {
+    [data-theme="dark"] .project-card:hover {
+        box-shadow:
+            0 16px 40px rgba(0, 0, 0, 0.45),
+            0 6px 16px rgba(125, 179, 86, 0.12);
+        border-color: rgba(125, 179, 86, 0.25);
+    }
+
+    [data-theme="dark"] .project-card:hover .project-year-badge {
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    [data-theme="dark"] .project-card:hover .project-category {
+        background: rgba(125, 179, 86, 0.18);
+    }
+
+    [data-theme="dark"] .project-card:hover h3 {
+        color: var(--ibc-green-light, #7db356);
+    }
+}
+
+/* ── Touch devices – dark mode ── */
+@media (hover: none) {
+    [data-theme="dark"] .project-card:active {
+        box-shadow:
+            0 2px 8px rgba(0, 0, 0, 0.35),
+            0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* ── CTA card – dark mode adjustments ── */
+[data-theme="dark"] .cta-card {
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    [data-theme="dark"] .cta-card:hover {
+        box-shadow:
+            0 20px 50px rgba(0, 0, 0, 0.5),
+            0 6px 16px rgba(125, 179, 86, 0.18);
+    }
+}
+
+/* ── CTA button – dark mode ── */
+[data-theme="dark"] .cta-button {
+    box-shadow: 0 4px 18px rgba(125, 179, 86, 0.35);
+}
+
+@media (hover: hover) and (pointer: fine) {
+    [data-theme="dark"] .cta-button:hover {
+        box-shadow: 0 8px 24px rgba(125, 179, 86, 0.45);
+    }
+}
+
+/* ── Mobile scroll mask – dark mode ── */
+@media (max-width: 767px) {
+    [data-theme="dark"] .filter-container {
+        mask-image: linear-gradient(to right, transparent 0%, black 5%, black 90%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 90%, transparent 100%);
+    }
+}

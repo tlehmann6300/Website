@@ -2711,3 +2711,430 @@
     }
 }
 /* ─────────────────────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════════
+   DARK MODE OVERRIDES – [data-theme="dark"]
+   All dark mode styles for ueber-uns.css in a single block.
+   Uses the site-wide dark palette:
+     Primary BG   #0D1117 | Secondary BG  #161B2E | Tertiary BG  #1E2640
+     Primary Text #f0f0f0 | Secondary Text #98A0B4 | Muted Text   #5A6377
+     Green Accent  var(--ibc-green-light, #7db356)
+     Borders subtle rgba(255,255,255,0.06) | medium rgba(255,255,255,0.1)
+     Glass surface  rgba(22,27,46,0.85)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Mission section ───────────────────────────────────────────── */
+[data-theme="dark"] .mission-section,
+[data-theme="dark"] #mission {
+    background: #0D1117;
+}
+
+[data-theme="dark"] .mission-section::before {
+    background-image:
+        radial-gradient(circle at 80% 20%, rgba(125, 179, 86, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 15% 80%, rgba(90, 120, 200, 0.05) 0%, transparent 45%);
+}
+
+[data-theme="dark"] .mission-section::after {
+    background: linear-gradient(90deg, var(--ibc-green-light, #7db356), #6b8ecf);
+}
+
+[data-theme="dark"] #mission .ibc-lead,
+[data-theme="dark"] .mission-section .ibc-lead {
+    color: #98A0B4;
+}
+
+[data-theme="dark"] #mission .ibc-lead .text-gradient {
+    color: var(--ibc-green-light, #7db356) !important;
+    -webkit-text-fill-color: var(--ibc-green-light, #7db356) !important;
+}
+
+[data-theme="dark"] #mission .highlight {
+    color: var(--ibc-green-light, #7db356);
+}
+
+/* ── Mission badge ─────────────────────────────────────────────── */
+[data-theme="dark"] .mission-badge {
+    background: linear-gradient(135deg, rgba(125, 179, 86, 0.15), rgba(90, 120, 200, 0.15));
+    border-color: rgba(125, 179, 86, 0.3);
+    color: var(--ibc-green-light, #7db356);
+}
+
+/* ── Mission stats row ─────────────────────────────────────────── */
+[data-theme="dark"] .mission-stats-row {
+    background: linear-gradient(135deg, #161B2E 0%, #1E2640 100%);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .mission-stats-row::before {
+    background: linear-gradient(90deg, rgba(125, 179, 86, 0.06) 0%, rgba(90, 120, 200, 0.06) 100%);
+}
+
+[data-theme="dark"] .mission-stat__label {
+    color: #98A0B4;
+}
+
+[data-theme="dark"] .mission-stat__icon {
+    background: linear-gradient(135deg, rgba(125, 179, 86, 0.18), rgba(90, 120, 200, 0.18));
+    border-color: rgba(125, 179, 86, 0.3);
+}
+
+[data-theme="dark"] .mission-stat-divider {
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+
+/* ── Mission pillar cards ──────────────────────────────────────── */
+[data-theme="dark"] .mission-pillar {
+    background: #161B2E;
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .mission-pillar__text {
+    color: #98A0B4;
+}
+
+[data-theme="dark"] .mission-pillar__text strong {
+    color: #f0f0f0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    [data-theme="dark"] .mission-pillar:hover {
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(125, 179, 86, 0.1);
+    }
+}
+
+/* ── Vision box ────────────────────────────────────────────────── */
+[data-theme="dark"] .vision-box {
+    background: linear-gradient(135deg, #161B2E 0%, #1E2640 50%, #161B2E 100%);
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.4),
+        0 4px 12px rgba(0, 0, 0, 0.3);
+    border-color: transparent;
+}
+
+[data-theme="dark"] .vision-box::before {
+    opacity: 0.25;
+}
+
+[data-theme="dark"] .vision-box .h4 {
+    color: #f0f0f0;
+}
+
+[data-theme="dark"] .vision-box:hover {
+    box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.5),
+        0 8px 24px rgba(125, 179, 86, 0.08);
+}
+
+/* ── Section badges ────────────────────────────────────────────── */
+[data-theme="dark"] .section-badge {
+    background: linear-gradient(135deg, rgba(125, 179, 86, 0.15), rgba(90, 120, 200, 0.15));
+    border-color: rgba(125, 179, 86, 0.25);
+    color: var(--ibc-green-light, #7db356);
+}
+
+/* ── Team / Ressort / Plattform sections ───────────────────────── */
+[data-theme="dark"] #team,
+[data-theme="dark"] #plattform {
+    background: #0D1117;
+}
+
+[data-theme="dark"] #ressorts {
+    background: linear-gradient(160deg, #111520 0%, #0D1117 100%);
+}
+
+[data-theme="dark"] #team::before,
+[data-theme="dark"] #plattform::before {
+    background:
+        radial-gradient(circle at 90% 10%, rgba(125, 179, 86, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 10% 90%, rgba(90, 120, 200, 0.04) 0%, transparent 50%);
+}
+
+@media (min-width: 992px) {
+    [data-theme="dark"] #team::after,
+    [data-theme="dark"] #plattform::after {
+        background: radial-gradient(circle, rgba(125, 179, 86, 0.04) 0%, transparent 65%);
+    }
+    [data-theme="dark"] #ressorts::after {
+        background: radial-gradient(circle, rgba(90, 120, 200, 0.04) 0%, transparent 65%);
+    }
+}
+
+/* ── Section headings & lead text (light sections) ─────────────── */
+[data-theme="dark"] #mission .ibc-heading,
+[data-theme="dark"] #team .ibc-heading,
+[data-theme="dark"] #ressorts .ibc-heading,
+[data-theme="dark"] #plattform .ibc-heading,
+[data-theme="dark"] #mitglieder .ibc-heading,
+[data-theme="dark"] #werte .ibc-heading {
+    color: #f0f0f0;
+}
+
+[data-theme="dark"] #mission .ibc-lead,
+[data-theme="dark"] #team .ibc-lead,
+[data-theme="dark"] #ressorts .ibc-lead,
+[data-theme="dark"] #plattform .ibc-lead,
+[data-theme="dark"] #mitglieder .ibc-lead {
+    color: #98A0B4;
+}
+
+/* ── Team cards ────────────────────────────────────────────────── */
+[data-theme="dark"] .team-card {
+    background: #161B2E;
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .team-card h3 {
+    color: #f0f0f0;
+}
+
+[data-theme="dark"] .team-card h4 {
+    color: var(--ibc-green-light, #7db356);
+}
+
+[data-theme="dark"] .team-card-tasks,
+[data-theme="dark"] .team-card-tasks li {
+    color: #98A0B4;
+}
+
+[data-theme="dark"] .team-card-tasks li::before {
+    color: var(--ibc-green-light, #7db356);
+}
+
+[data-theme="dark"] .team-card-social a:not(.ethereal-button) {
+    background-color: #1E2640;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #98A0B4;
+}
+
+[data-theme="dark"] .team-card-social a:not(.ethereal-button):hover {
+    color: #fff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    [data-theme="dark"] .team-card:hover {
+        background: linear-gradient(135deg,
+            rgba(125, 179, 86, 0.08) 0%,
+            rgba(90, 120, 200, 0.08) 100%);
+        border-color: rgba(125, 179, 86, 0.2);
+        box-shadow: 0 24px 56px rgba(0, 0, 0, 0.6), 0 8px 20px rgba(125, 179, 86, 0.08);
+    }
+    [data-theme="dark"] .team-card:hover h3 {
+        color: #f0f0f0;
+    }
+    [data-theme="dark"] .team-card:hover h4 {
+        color: var(--ibc-green-light, #7db356);
+    }
+    [data-theme="dark"] .team-card:hover .team-card-tasks,
+    [data-theme="dark"] .team-card:hover .team-card-tasks li {
+        color: #98A0B4;
+    }
+}
+
+@media (hover: none) {
+    [data-theme="dark"] .team-card:hover {
+        background: #161B2E !important;
+        border-color: rgba(255, 255, 255, 0.06) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+    }
+}
+
+/* ── Member cards (about / mitglieder) ─────────────────────────── */
+[data-theme="dark"] .member-card {
+    background: linear-gradient(135deg, #161B2E 0%, #1E2640 100%);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .member-card h3 {
+    color: #f0f0f0;
+}
+
+[data-theme="dark"] .member-card:hover h3 {
+    color: var(--ibc-green-light, #7db356);
+}
+
+[data-theme="dark"] .member-card p {
+    color: #98A0B4;
+}
+
+[data-theme="dark"] .member-card:hover p {
+    color: #f0f0f0;
+}
+
+[data-theme="dark"] .member-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.55);
+    border-color: rgba(125, 179, 86, 0.25);
+}
+
+/* ── Members section (#mitglieder) ─────────────────────────────── */
+[data-theme="dark"] #mitglieder {
+    background: linear-gradient(160deg, #111520 0%, #0D1117 100%) !important;
+}
+
+/* ── Board member cards ────────────────────────────────────────── */
+[data-theme="dark"] .board-member-card {
+    background: #161B2E;
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    color: #f0f0f0;
+}
+
+[data-theme="dark"] .board-member-card h3,
+[data-theme="dark"] .board-member-card h4,
+[data-theme="dark"] .board-member-card .board-member-name {
+    color: #f0f0f0;
+}
+
+[data-theme="dark"] .board-member-card p,
+[data-theme="dark"] .board-member-card .board-member-role {
+    color: #98A0B4;
+}
+
+[data-theme="dark"] .board-member-card:hover {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+}
+
+/* ── Values section (#werte) ───────────────────────────────────── */
+[data-theme="dark"] .values-section {
+    background: linear-gradient(135deg, #0D1117 0%, #111520 100%);
+}
+
+[data-theme="dark"] .values-section::before {
+    background: radial-gradient(circle at 30% 40%, rgba(125, 179, 86, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(90, 120, 200, 0.05) 0%, transparent 50%);
+}
+
+[data-theme="dark"] .values-section .ibc-lead {
+    color: #98A0B4;
+}
+
+/* ── Value cards (modern style) ────────────────────────────────── */
+[data-theme="dark"] .value-card-modern {
+    background: rgba(22, 27, 46, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+}
+
+[data-theme="dark"] .value-card-modern:hover {
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.55),
+        0 10px 30px rgba(125, 179, 86, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+
+[data-theme="dark"] .value-card-modern::before {
+    background: linear-gradient(135deg, rgba(125, 179, 86, 0.06) 0%, rgba(90, 120, 200, 0.06) 100%);
+}
+
+[data-theme="dark"] .value-card-modern h3 {
+    color: #f0f0f0;
+}
+
+[data-theme="dark"] .value-card-modern:hover h3 {
+    color: var(--ibc-green-light, #7db356);
+}
+
+[data-theme="dark"] .value-card-modern p {
+    color: #98A0B4;
+}
+
+[data-theme="dark"] .value-card-modern:hover p {
+    color: #f0f0f0;
+}
+
+/* ── Flip cards ────────────────────────────────────────────────── */
+[data-theme="dark"] .flip-card-front {
+    background-color: #161B2E;
+    background-image: radial-gradient(circle at 100% 0%, rgba(90, 120, 200, 0.06), transparent 30%);
+    color: #f0f0f0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .flip-card-front h3,
+[data-theme="dark"] .flip-card-front h4 {
+    color: var(--ibc-green-light, #7db356);
+}
+
+[data-theme="dark"] .flip-card-front .icon-box {
+    background: linear-gradient(135deg, rgba(125, 179, 86, 0.15), rgba(90, 120, 200, 0.15));
+    color: var(--ibc-green-light, #7db356);
+}
+
+[data-theme="dark"] .flip-card-front,
+[data-theme="dark"] .flip-card-back {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .flip-card:hover .flip-card-front,
+[data-theme="dark"] .flip-card:hover .flip-card-back,
+[data-theme="dark"] .flip-card.active .flip-card-front,
+[data-theme="dark"] .flip-card.active .flip-card-back {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .tap-hint {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Hero wave SVG fill ────────────────────────────────────────── */
+[data-theme="dark"] .hero-wave svg path,
+[data-theme="dark"] .hero-wave svg polygon {
+    fill: #0D1117;
+}
+
+/* ── Copy banner ───────────────────────────────────────────────── */
+[data-theme="dark"] #copy-banner {
+    background-color: var(--ibc-green-light, #7db356);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Parallax sections (already dark overlays – minor tweaks) ── */
+[data-theme="dark"] .parallax-overlay {
+    background: linear-gradient(to right, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.75) 100%);
+}
+
+[data-theme="dark"] .parallax-overlay-right {
+    background: linear-gradient(to left, rgba(13, 17, 23, 0.95) 0%, rgba(13, 17, 23, 0.80) 100%);
+}
+
+/* ── Value card wrapper (parallax value cards) ─────────────────── */
+[data-theme="dark"] .value-card-wrapper {
+    background: linear-gradient(135deg, rgba(22, 27, 46, 0.35) 0%, rgba(22, 27, 46, 0.2) 50%, rgba(22, 27, 46, 0.3) 100%);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 35px 70px rgba(0, 0, 0, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+        0 0 100px rgba(125, 179, 86, 0.1);
+}
+
+[data-theme="dark"] .value-card-wrapper:hover {
+    box-shadow:
+        0 50px 100px rgba(0, 0, 0, 0.7),
+        0 0 60px rgba(125, 179, 86, 0.25),
+        0 0 0 2px rgba(255, 255, 255, 0.15) inset;
+}
+
+/* ── Leistungen parallax section ───────────────────────────────── */
+[data-theme="dark"] .parallax-section:has([data-i18n="about-values-performance-title"]) .parallax-overlay-right {
+    background: linear-gradient(
+        to left,
+        rgba(13, 17, 23, 0.95) 0%,
+        rgba(13, 17, 23, 0.88) 50%,
+        rgba(13, 17, 23, 0.75) 100%
+    );
+}
+
+[data-theme="dark"] .parallax-section:has([data-i18n="about-values-performance-title"]) .row {
+    background: rgba(22, 27, 46, 0.4);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+/* ─────────────────────────── END DARK MODE ─────────────────────── */
