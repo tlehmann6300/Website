@@ -2223,3 +2223,235 @@
   .highlight-stat-card::after { transition: none; }
   .skills-grid.is-visible .skill-badge { animation: none; }
 }
+
+/* ============================================================
+   27. PHONE MOCKUP – Camera dot inside Dynamic Island (v4 realism)
+   ============================================================ */
+
+/* Camera lens dot positioned inside the Dynamic Island notch.
+   The Dynamic Island pill is created by .instagram-frame-wrap::before
+   at top:24px, centered. The camera sits to the right of center.  */
+.phone-notch-camera {
+  position: absolute;
+  top: 31px;
+  left: 50%;
+  transform: translateX(28px);
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  /* Multi-layer radial gradient for a realistic lens look */
+  background:
+    radial-gradient(circle at 35% 35%, #2a2a40 0%, #06060f 55%, #0a0a18 100%);
+  border: 1.5px solid rgba(255,255,255,0.07);
+  z-index: 11;
+  box-shadow:
+    inset 0 1px 3px rgba(0,0,0,0.9),
+    0 0 0 1px rgba(99,102,241,0.12),
+    0 0 5px rgba(99,102,241,0.2);
+}
+/* Tiny lens reflection for realism */
+.phone-notch-camera::after {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 3px;
+  height: 3px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 50%;
+}
+
+/* Mobile size adjustments */
+@media (max-width: 767.98px) {
+  .phone-notch-camera {
+    top: 24px;
+    width: 9px;
+    height: 9px;
+    transform: translateX(22px);
+  }
+}
+@media (max-width: 575.98px) {
+  .phone-notch-camera {
+    top: 21px;
+    width: 8px;
+    height: 8px;
+    transform: translateX(18px);
+  }
+}
+
+/* ============================================================
+   28. EVENTS SLIDER – Prevent mobile content layout shift
+   ============================================================ */
+
+/* On mobile the content area can vary in height when the
+   carousel switches slides. Give it a fixed min-height so
+   the container never jumps in height during transitions.   */
+@media (max-width: 767.98px) {
+  .event-slider-content-v2 {
+    min-height: 220px;
+  }
+}
+
+/* ============================================================
+   29. TESTIMONIALS – Loading state skeleton to prevent shift
+   ============================================================ */
+
+/* When the carousel-inner is empty (JS loading) show a
+   shimmer skeleton at the right height so no layout jump
+   occurs once slides are injected.                         */
+#ibcTestimonialTarget:empty {
+  min-height: 440px;
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 25%,
+    var(--bg-tertiary, #eef0f5) 50%,
+    var(--bg-secondary) 75%
+  );
+  background-size: 400% 100%;
+  animation: skeletonShimmer 1.6s ease-in-out infinite;
+  border-radius: 24px;
+}
+@keyframes skeletonShimmer {
+  0%   { background-position: 100% 50%; }
+  100% { background-position:   0% 50%; }
+}
+@media (max-width: 767.98px) {
+  #ibcTestimonialTarget:empty { min-height: 380px; }
+}
+
+/* ============================================================
+   30. HERO – Richer gradient & trust strip enhancement
+   ============================================================ */
+
+/* Richer gradient overlay on hero */
+.page-hero-section {
+  background: linear-gradient(
+    145deg,
+    #060a14 0%,
+    #0d1020 20%,
+    #121635 45%,
+    #1a1040 65%,
+    #0d1020 85%,
+    #060a14 100%
+  );
+}
+:root:not([data-theme="dark"]) .page-hero-section {
+  background: linear-gradient(
+    145deg,
+    #0a0e1e 0%,
+    #101425 20%,
+    #151a3a 45%,
+    #1c1248 65%,
+    #101425 85%,
+    #0a0e1e 100%
+  );
+}
+
+/* Hero social-proof strip */
+.hero-social-proof {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 9999px;
+  padding: 0.6rem 1.5rem;
+  margin: 1.5rem auto 2rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.hero-sp-item {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+.hero-sp-item i {
+  color: var(--ibc-green-light, #7db356);
+  font-size: 0.7rem;
+}
+.hero-sp-sep {
+  color: rgba(255,255,255,0.25);
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   31. TIMELINE (apply-steps) – Slide-in from left when revealed
+   (Complements the existing fade-in-up animation)
+   ============================================================ */
+
+/* Add a horizontal slide to the existing fade-in-up for steps */
+.apply-step.fade-in-up {
+  transform: translateX(-16px) translateY(24px);
+}
+.apply-step.fade-in-up.is-visible {
+  transform: translateX(0) translateY(0);
+}
+
+/* ============================================================
+   32. FLIP CARDS – Enhanced front border glow on hover (v4)
+   ============================================================ */
+.flip-card-front {
+  transition: box-shadow 0.35s ease, border-color 0.35s ease, transform 0.35s var(--ease-spring);
+}
+@media (hover: hover) {
+  .flip-card:not(.active):hover .flip-card-front {
+    box-shadow:
+      0 12px 40px rgba(109,151,68,0.15),
+      0 4px 16px rgba(0,0,0,0.06);
+    border-color: rgba(109,151,68,0.4);
+  }
+}
+
+/* ============================================================
+   33. HIGHLIGHT STAT CARDS – Light mode contrast fix (v4)
+   ============================================================ */
+:root:not([data-theme="dark"]) .highlight-stat-card {
+  background: var(--bg-primary, #ffffff);
+  box-shadow:
+    0 2px 12px rgba(0,0,0,0.07),
+    0 1px 4px rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.07);
+}
+:root:not([data-theme="dark"]) .highlight-stat-card:hover {
+  box-shadow: 0 16px 40px rgba(0,0,0,0.12);
+  border-color: rgba(109,151,68,0.25);
+}
+
+/* ============================================================
+   34. SECTION-CHIP – More polished pill badge (v4)
+   ============================================================ */
+.section-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  padding: 0.4rem 1rem;
+  border-radius: 9999px;
+  background: rgba(109,151,68,0.1);
+  border: 1px solid rgba(109,151,68,0.25);
+  color: var(--ibc-green, #6d9744);
+  margin-bottom: 1rem;
+}
+[data-theme="dark"] .section-chip {
+  background: rgba(125,179,86,0.1);
+  border-color: rgba(125,179,86,0.25);
+  color: var(--ibc-green-light, #7db356);
+}
+
+/* ============================================================
+   35. PREFERS-REDUCED-MOTION PATCH (v4)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .phone-notch-camera { box-shadow: none; }
+  #ibcTestimonialTarget:empty { animation: none; }
+  .apply-step { opacity: 1; transform: none; transition: none; }
+}
