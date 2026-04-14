@@ -2548,9 +2548,9 @@
 .highlight-stat-card {
   animation: statCardFloat 7.5s ease-in-out infinite;
 }
-[data-animation-delay="100ms"] .highlight-stat-card { animation-delay: 0.1s; }
-[data-animation-delay="200ms"] .highlight-stat-card { animation-delay: 0.2s; }
-[data-animation-delay="300ms"] .highlight-stat-card { animation-delay: 0.3s; }
+[data-animation-delay="100ms"] .highlight-stat-card { animation-delay: 100ms; }
+[data-animation-delay="200ms"] .highlight-stat-card { animation-delay: 200ms; }
+[data-animation-delay="300ms"] .highlight-stat-card { animation-delay: 300ms; }
 .highlight-stat-card:hover {
   animation-play-state: paused;
 }
