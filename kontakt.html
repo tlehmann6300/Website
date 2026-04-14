@@ -70,6 +70,8 @@
     <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/mobile-first.css">
+    <link rel="stylesheet" href="css/mobile-animations.css">
     <link rel="stylesheet" href="css/wcag-accessibility.css">
     <link rel="stylesheet" href="css/enhancements.css">
     <link rel="stylesheet" href="css/pages.css">
@@ -78,6 +80,28 @@
 </head>
 <body>
     <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
+
+    <div id="page-loader" role="presentation" aria-hidden="true">
+        <span class="lp lp-1" aria-hidden="true"></span>
+        <span class="lp lp-2" aria-hidden="true"></span>
+        <span class="lp lp-3" aria-hidden="true"></span>
+        <span class="lp lp-4" aria-hidden="true"></span>
+        <span class="lp lp-5" aria-hidden="true"></span>
+        <span class="lp lp-6" aria-hidden="true"></span>
+        <div class="loader-content">
+            <div class="loader-logo-wrap">
+                <img src="assets/img/ibc_logo_original_navbar.webp" alt="" width="200" height="auto">
+            </div>
+            <div class="loader-bar-track">
+                <div class="loader-bar-fill"></div>
+            </div>
+            <div class="loader-dots" aria-hidden="true">
+                <span class="loader-dot"></span>
+                <span class="loader-dot"></span>
+                <span class="loader-dot"></span>
+            </div>
+        </div>
+    </div>
 
     <nav class="navbar navbar-expand-xl is-scrolled" aria-label="Hauptnavigation" role="navigation">
         <div class="container">
@@ -116,14 +140,16 @@
                         <a class="nav-link" href="referenzen.html" role="menuitem" data-i18n="nav-references">Referenzen</a>
                     </li>
                     <li class="nav-item" role="none">
-                        <a class="nav-link" href="kontakt.html" role="menuitem" data-i18n="nav-contact">Kontakt</a>
+                        <a class="nav-link active" href="kontakt.html" role="menuitem" aria-current="page" data-i18n="nav-contact">Kontakt</a>
                     </li>
-                                        <li class="nav-item ms-lg-2" role="none">
+                    <!-- Dark Mode Toggle -->
+                    <li class="nav-item ms-lg-2" role="none">
                         <button class="dark-mode-toggle" id="darkModeToggle" type="button"
                                 aria-label="Dark Mode aktivieren" aria-pressed="false">
                             <i class="fas fa-moon" aria-hidden="true" id="darkModeIcon"></i>
                         </button>
                     </li>
+                    <!-- Language Switcher -->
                     <li class="nav-item dropdown ms-lg-3" role="none">
                         <button class="lang-toggle dropdown-toggle"
                                 type="button"
@@ -172,32 +198,10 @@
                             </li>
                         </ul>
                     </li>
-
                 </ul>
             </div>
         </div>
     </nav>
-    <div id="page-loader" role="presentation" aria-hidden="true">
-    <span class="lp lp-1" aria-hidden="true"></span>
-    <span class="lp lp-2" aria-hidden="true"></span>
-    <span class="lp lp-3" aria-hidden="true"></span>
-    <span class="lp lp-4" aria-hidden="true"></span>
-    <span class="lp lp-5" aria-hidden="true"></span>
-    <span class="lp lp-6" aria-hidden="true"></span>
-    <div class="loader-content">
-        <div class="loader-logo-wrap">
-            <img src="assets/img/ibc_logo_original_navbar.webp" alt="" width="200" height="auto">
-        </div>
-        <div class="loader-bar-track">
-            <div class="loader-bar-fill"></div>
-        </div>
-        <div class="loader-dots" aria-hidden="true">
-            <span class="loader-dot"></span>
-            <span class="loader-dot"></span>
-            <span class="loader-dot"></span>
-        </div>
-    </div>
-</div>
     <main id="main-content" tabindex="-1">
         <section class="page-hero-section">
             <div class="container text-center js-reveal">
