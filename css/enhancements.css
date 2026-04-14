@@ -715,7 +715,125 @@ svg {
 
 
 /* ============================================================
-   7. REDUCED MOTION
+   7. INSTAGRAM 2-CLICK DSGVO CONSENT OVERLAY
+   ============================================================ */
+
+/* Consent overlay covering the iframe area */
+.ig-consent-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(145deg, #1a1c2e 0%, #0D1117 50%, #1a2a1a 100%);
+  border-radius: inherit;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.ig-consent-overlay:hover {
+  background: linear-gradient(145deg, #22253e 0%, #151730 50%, #1e3220 100%);
+}
+
+.ig-consent-overlay__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  animation: ig-icon-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes ig-icon-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(225, 48, 108, 0.4); }
+  50% { transform: scale(1.08); box-shadow: 0 0 0 12px rgba(225, 48, 108, 0); }
+}
+
+.ig-consent-overlay__text {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 220px;
+}
+
+.ig-consent-overlay__text a {
+  color: var(--ibc-green-light, #7db356);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ig-consent-overlay__text a:hover {
+  color: #fff;
+}
+
+.ig-consent-overlay__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--ibc-green, #6D9744), var(--ibc-green-light, #7db356));
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.ig-consent-overlay__btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 24px rgba(109, 151, 68, 0.4);
+}
+
+.ig-consent-overlay__btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* When consent is given and iframe loads, hide overlay */
+.ig-consent-overlay.ig-consent-given {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Show the iframe when consent overlay is dismissed */
+.instagram-frame-wrap iframe[data-instagram-embed].ig-loaded {
+  display: block !important;
+}
+
+/* Responsive adjustments for consent overlay */
+@media (max-width: 480px) {
+  .ig-consent-overlay__icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.4rem;
+  }
+
+  .ig-consent-overlay__text {
+    font-size: 0.7rem;
+    max-width: 180px;
+  }
+
+  .ig-consent-overlay__btn {
+    font-size: 0.8rem;
+    padding: 0.5rem 1.1rem;
+  }
+}
+
+
+/* ============================================================
+   8. REDUCED MOTION
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   /* Disable all custom animations */

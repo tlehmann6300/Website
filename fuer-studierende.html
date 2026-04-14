@@ -766,11 +766,18 @@
                         <div class="phone-side-btn phone-side-btn--vol-down" aria-hidden="true"></div>
                         <span class="phone-notch-camera" aria-hidden="true"></span>
                         <div class="phone-screen-glare" aria-hidden="true"></div>
+                        <!-- DSGVO 2-Click: Placeholder shown first, iframe loads on consent -->
+                        <div class="ig-consent-overlay" data-instagram-index="0" role="button" tabindex="0" aria-label="Klicken um Instagram Video zu laden">
+                            <div class="ig-consent-overlay__icon"><i class="fa-brands fa-instagram" aria-hidden="true"></i></div>
+                            <p class="ig-consent-overlay__text">Durch Laden des Videos akzeptieren Sie die <a href="datenschutzerklaerung.html" target="_blank" rel="noopener">Datenschutzerklärung</a> von Instagram.</p>
+                            <button type="button" class="ig-consent-overlay__btn"><i class="fas fa-play" aria-hidden="true"></i> Video laden</button>
+                        </div>
                         <iframe data-instagram-embed
                                 title="IBC Instagram Reel 1"
                                 allowfullscreen
                                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                                loading="lazy">
+                                loading="lazy"
+                                style="display:none;">
                         </iframe>
                     </div>
                 </li>
@@ -781,11 +788,17 @@
                         <div class="phone-side-btn phone-side-btn--vol-down" aria-hidden="true"></div>
                         <span class="phone-notch-camera" aria-hidden="true"></span>
                         <div class="phone-screen-glare" aria-hidden="true"></div>
+                        <div class="ig-consent-overlay" data-instagram-index="1" role="button" tabindex="0" aria-label="Klicken um Instagram Video zu laden">
+                            <div class="ig-consent-overlay__icon"><i class="fa-brands fa-instagram" aria-hidden="true"></i></div>
+                            <p class="ig-consent-overlay__text">Durch Laden des Videos akzeptieren Sie die <a href="datenschutzerklaerung.html" target="_blank" rel="noopener">Datenschutzerklärung</a> von Instagram.</p>
+                            <button type="button" class="ig-consent-overlay__btn"><i class="fas fa-play" aria-hidden="true"></i> Video laden</button>
+                        </div>
                         <iframe data-instagram-embed
                                 title="IBC Instagram Reel 2"
                                 allowfullscreen
                                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                                loading="lazy">
+                                loading="lazy"
+                                style="display:none;">
                         </iframe>
                     </div>
                 </li>
@@ -796,11 +809,17 @@
                         <div class="phone-side-btn phone-side-btn--vol-down" aria-hidden="true"></div>
                         <span class="phone-notch-camera" aria-hidden="true"></span>
                         <div class="phone-screen-glare" aria-hidden="true"></div>
+                        <div class="ig-consent-overlay" data-instagram-index="2" role="button" tabindex="0" aria-label="Klicken um Instagram Video zu laden">
+                            <div class="ig-consent-overlay__icon"><i class="fa-brands fa-instagram" aria-hidden="true"></i></div>
+                            <p class="ig-consent-overlay__text">Durch Laden des Videos akzeptieren Sie die <a href="datenschutzerklaerung.html" target="_blank" rel="noopener">Datenschutzerklärung</a> von Instagram.</p>
+                            <button type="button" class="ig-consent-overlay__btn"><i class="fas fa-play" aria-hidden="true"></i> Video laden</button>
+                        </div>
                         <iframe data-instagram-embed
                                 title="IBC Instagram Reel 3"
                                 allowfullscreen
                                 allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                                loading="lazy">
+                                loading="lazy"
+                                style="display:none;">
                         </iframe>
                     </div>
                 </li>
@@ -1078,6 +1097,84 @@
         document.addEventListener('DOMContentLoaded', initCarouselIndicators);
     } else {
         initCarouselIndicators();
+    }
+}());
+</script>
+<script>
+/* ── DSGVO 2-Click Instagram Embed ──
+   Shows consent overlay; on click, loads the Instagram iframe.
+   Checks cookie consent (marketing category) before loading.
+   Compliant with DSGVO Art. 6(1)(a) and ePrivacy/TTDSG. */
+(function () {
+    'use strict';
+    function hasMarketingConsent() {
+        try {
+            var c = JSON.parse(localStorage.getItem('consent_settings') || '{}');
+            return c.marketing === true;
+        } catch (e) { return false; }
+    }
+    function loadInstagramEmbed(overlay) {
+        var wrap = overlay.closest('.instagram-frame-wrap');
+        if (!wrap) return;
+        var iframe = wrap.querySelector('iframe[data-instagram-embed]');
+        if (!iframe) return;
+        /* If src is already set by content-loader, just show it */
+        var src = iframe.getAttribute('src') || iframe.getAttribute('data-src');
+        if (src) {
+            if (!iframe.getAttribute('src')) iframe.setAttribute('src', src);
+            iframe.classList.add('ig-loaded');
+            iframe.style.display = '';
+            overlay.classList.add('ig-consent-given');
+            return;
+        }
+        /* Fallback: try loading from JSON config */
+        var idx = parseInt(overlay.getAttribute('data-instagram-index') || '0', 10);
+        fetch('assets/data/external_links.json')
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+                if (data && data.iframes && data.iframes.instagramEmbeds && data.iframes.instagramEmbeds[idx]) {
+                    iframe.setAttribute('src', data.iframes.instagramEmbeds[idx]);
+                    iframe.classList.add('ig-loaded');
+                    iframe.style.display = '';
+                    overlay.classList.add('ig-consent-given');
+                }
+            })
+            .catch(function () { /* silently fail */ });
+    }
+    function handleConsentClick(e) {
+        var overlay = e.currentTarget;
+        /* If marketing consent is needed and not given, grant it for Instagram */
+        if (!hasMarketingConsent()) {
+            try {
+                var c = JSON.parse(localStorage.getItem('consent_settings') || '{}');
+                c.marketing = true;
+                c.timestamp = new Date().toISOString();
+                localStorage.setItem('consent_settings', JSON.stringify(c));
+            } catch (err) { /* ignore */ }
+        }
+        loadInstagramEmbed(overlay);
+    }
+    function init() {
+        var overlays = document.querySelectorAll('.ig-consent-overlay');
+        overlays.forEach(function (overlay) {
+            overlay.addEventListener('click', handleConsentClick);
+            overlay.addEventListener('keydown', function (e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleConsentClick(e);
+                }
+            });
+            /* If marketing consent already given, auto-load */
+            if (hasMarketingConsent()) {
+                loadInstagramEmbed(overlay);
+            }
+        });
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        /* Delay slightly to let content-loader set iframe srcs first */
+        setTimeout(init, 500);
     }
 }());
 </script>
