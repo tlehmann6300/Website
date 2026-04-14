@@ -1254,13 +1254,11 @@
 }
 
 #instagram-section .instagram-container .instagram-media {
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  font-style: normal !important;
-  width: 100% !important;
-  min-width: 100% !important;
-  max-width: 100% !important;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-style: normal;
+  line-height: normal;
 }
 
 #instagram-section .instagram-container iframe {
