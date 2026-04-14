@@ -769,7 +769,7 @@
                         <!-- DSGVO 2-Click: Placeholder shown first, iframe loads on consent -->
                         <div class="ig-consent-overlay" data-instagram-index="0" role="button" tabindex="0" aria-label="Klicken um Instagram Video zu laden">
                             <div class="ig-consent-overlay__icon"><i class="fa-brands fa-instagram" aria-hidden="true"></i></div>
-                            <p class="ig-consent-overlay__text">Durch Laden des Videos akzeptieren Sie die <a href="datenschutzerklaerung.html" target="_blank" rel="noopener">Datenschutzerklärung</a> von Instagram.</p>
+                            <p class="ig-consent-overlay__text">Mit Klick auf „Video laden" stimmen Sie der Übertragung von Daten an Instagram (Meta) zu. Es gelten die <a href="datenschutzerklaerung.html" target="_blank" rel="noopener">Datenschutzerklärung</a> und <a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener noreferrer">Instagram-Datenschutzrichtlinie</a>.</p>
                             <button type="button" class="ig-consent-overlay__btn"><i class="fas fa-play" aria-hidden="true"></i> Video laden</button>
                         </div>
                         <iframe data-instagram-embed
@@ -790,7 +790,7 @@
                         <div class="phone-screen-glare" aria-hidden="true"></div>
                         <div class="ig-consent-overlay" data-instagram-index="1" role="button" tabindex="0" aria-label="Klicken um Instagram Video zu laden">
                             <div class="ig-consent-overlay__icon"><i class="fa-brands fa-instagram" aria-hidden="true"></i></div>
-                            <p class="ig-consent-overlay__text">Durch Laden des Videos akzeptieren Sie die <a href="datenschutzerklaerung.html" target="_blank" rel="noopener">Datenschutzerklärung</a> von Instagram.</p>
+                            <p class="ig-consent-overlay__text">Mit Klick auf „Video laden" stimmen Sie der Übertragung von Daten an Instagram (Meta) zu. Es gelten die <a href="datenschutzerklaerung.html" target="_blank" rel="noopener">Datenschutzerklärung</a> und <a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener noreferrer">Instagram-Datenschutzrichtlinie</a>.</p>
                             <button type="button" class="ig-consent-overlay__btn"><i class="fas fa-play" aria-hidden="true"></i> Video laden</button>
                         </div>
                         <iframe data-instagram-embed
@@ -811,7 +811,7 @@
                         <div class="phone-screen-glare" aria-hidden="true"></div>
                         <div class="ig-consent-overlay" data-instagram-index="2" role="button" tabindex="0" aria-label="Klicken um Instagram Video zu laden">
                             <div class="ig-consent-overlay__icon"><i class="fa-brands fa-instagram" aria-hidden="true"></i></div>
-                            <p class="ig-consent-overlay__text">Durch Laden des Videos akzeptieren Sie die <a href="datenschutzerklaerung.html" target="_blank" rel="noopener">Datenschutzerklärung</a> von Instagram.</p>
+                            <p class="ig-consent-overlay__text">Mit Klick auf „Video laden" stimmen Sie der Übertragung von Daten an Instagram (Meta) zu. Es gelten die <a href="datenschutzerklaerung.html" target="_blank" rel="noopener">Datenschutzerklärung</a> und <a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener noreferrer">Instagram-Datenschutzrichtlinie</a>.</p>
                             <button type="button" class="ig-consent-overlay__btn"><i class="fas fa-play" aria-hidden="true"></i> Video laden</button>
                         </div>
                         <iframe data-instagram-embed
@@ -1117,7 +1117,8 @@
         if (!url || typeof url !== 'string') return false;
         try {
             var parsed = new URL(url.trim());
-            return parsed.protocol === 'https:' && parsed.hostname.endsWith('instagram.com');
+            return parsed.protocol === 'https:' &&
+                   (parsed.hostname === 'www.instagram.com' || parsed.hostname === 'instagram.com');
         } catch (e) { return false; }
     }
     function loadInstagramEmbed(overlay) {
