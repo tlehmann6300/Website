@@ -1583,6 +1583,28 @@
   .carousel-dot-v2[aria-current="true"] { width: 24px; }
 }
 
+/* ── Hero ghost button: always white/light on the always-dark hero ── */
+.page-hero-section .hero-btn-ghost {
+  color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.page-hero-section .hero-btn-ghost:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* ── Testimonials carousel: min-height prevents layout shift while JS loads ── */
+#ibcTestimonialsCarousel .carousel-inner {
+  min-height: 440px;
+}
+@media (max-width: 767.98px) {
+  #ibcTestimonialsCarousel .carousel-inner {
+    min-height: 380px;
+  }
+}
+
 /* ── Touch devices – disable hover transforms ── */
 @media (hover: none) {
   .instagram-frame-wrap:hover { transform: none; }
