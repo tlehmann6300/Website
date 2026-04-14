@@ -219,8 +219,10 @@
                 if (!optionLang) return;
                 if (optionLang === this.currentLang) {
                     option.setAttribute('aria-current', 'true');
+                    option.classList.add('active');
                 } else {
                     option.removeAttribute('aria-current');
+                    option.classList.remove('active');
                 }
             });
         }
@@ -259,9 +261,6 @@
             this.currentLang = newLang;
             const options = document.querySelectorAll('.lang-item, .language-option, .lang-option');
             this.updateActiveLanguageOption(options);
-            document.querySelectorAll('.lang-option').forEach((option) => {
-                option.classList.toggle('active', option.getAttribute('data-lang') === newLang);
-            });
             localStorage.setItem('language', newLang);
             document.cookie = `language=${newLang}; path=/; max-age=31536000; SameSite=Strict`;
             const url = new URL(window.location.href);

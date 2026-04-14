@@ -115,11 +115,15 @@
             });
         });
         // Init Language
+        const validLanguages = new Set(['de', 'en', 'fr']);
         const switcherLang = window.ibcLanguageSwitcher && window.ibcLanguageSwitcher.currentLang
             ? window.ibcLanguageSwitcher.currentLang
             : null;
         const urlLang = new URLSearchParams(window.location.search).get('lang');
-        const savedLang = switcherLang || (urlLang === 'en' || urlLang === 'fr' || urlLang === 'de' ? urlLang : null) || localStorage.getItem('language') || 'de';
+        const normalizedUrlLang = validLanguages.has(urlLang) ? urlLang : null;
+        const storedLang = localStorage.getItem('language');
+        const normalizedStoredLang = validLanguages.has(storedLang) ? storedLang : null;
+        const savedLang = switcherLang || normalizedUrlLang || normalizedStoredLang || 'de';
         currentLangEl.textContent = savedLang.toUpperCase();
         document.querySelectorAll('.lang-option').forEach(opt => {
             opt.classList.remove('active');
