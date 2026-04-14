@@ -1,14 +1,17 @@
 /**
  * Netzwerk-Loader-Modul
  *
- * Lädt die Inhalte der Sektionen „Unsere Förderkreismitglieder",
- * „Unser Kuratorium" und „Kooperationspartner" dynamisch
- * aus assets/data/netzwerk_data.json.
+ * Lädt die Inhalte der drei Netzwerk-Sektionen jeweils aus einer
+ * eigenen JSON-Datei und rendert sie dynamisch in unser-netzwerk.html:
+ *
+ *  - assets/data/foerderkreis_data.json       → Förderkreismitglieder
+ *  - assets/data/kuratorium_data.json         → Kuratorium
+ *  - assets/data/kooperationspartner_data.json → Kooperationspartner
+ *
  * Dadurch können neue Einträge hinzugefügt werden, ohne den HTML-Code
  * der Seite unser-netzwerk.html zu bearbeiten.
  *
  * Abhängigkeiten:
- *  - assets/data/netzwerk_data.json   (Inhalte / Bildpfade / i18n-Keys)
  *  - assets/data/translations/translations.json  (via language-switcher.js)
  *  - js/language-switcher.js          (Übersetzungen & ibcLanguageSwitcher-API)
  *  - js/content-loader.js             (optional – wird NICHT vorausgesetzt)
@@ -63,12 +66,12 @@
 
     /* ══════════════════════════════════════════════════════════════════
        §1  FÖRDERKREISMITGLIEDER – Flip-Cards
-       Hinweis: Bildpfade werden direkt aus netzwerk_data.json gelesen
+       Hinweis: Bildpfade werden direkt aus foerderkreis_data.json gelesen
        und per src-Attribut gesetzt. Das ist bewusst so gewählt, weil
        content-loader.js's updateGenericMediaElements() Punkt-Pfade
        benötigt (z.B. "partners.mlp") und Bindestriche nicht auflösen
-       kann. Das vereinheitlichte JSON ist dadurch vollständig
-       eigenständig und benötigt keine Abhängigkeit auf media_config.json.
+       kann. Die JSON-Datei ist dadurch vollständig eigenständig und
+       benötigt keine Abhängigkeit auf media_config.json.
     ══════════════════════════════════════════════════════════════════ */
     function renderFoerderkreis(members) {
         const container = document.getElementById('foerderkreis-list');
@@ -106,7 +109,7 @@
 
     /* ══════════════════════════════════════════════════════════════════
        §2  KURATORIUM – Horizontale Einzelkarten (übereinander gestapelt)
-       Hinweis: Bildpfade werden direkt aus netzwerk_data.json gelesen
+       Hinweis: Bildpfade werden direkt aus kuratorium_data.json gelesen
        (gleicher Grund wie bei §1 oben).
     ══════════════════════════════════════════════════════════════════ */
     function renderKuratorium(members) {
@@ -208,12 +211,16 @@
 
     /* ── Haupt-Initialisierung ──────────────────────────────────────── */
     async function init() {
-        const data = await fetchJSON('assets/data/netzwerk_data.json');
-        if (!data) return;
+        const [foerderkreisData, kuratoriumData, kooperationspartnerData] =
+            await Promise.all([
+                fetchJSON('assets/data/foerderkreis_data.json'),
+                fetchJSON('assets/data/kuratorium_data.json'),
+                fetchJSON('assets/data/kooperationspartner_data.json')
+            ]);
 
-        renderFoerderkreis(data.foerderkreismitglieder);
-        renderKuratorium(data.kuratorium);
-        renderKooperationspartner(data.kooperationspartner);
+        renderFoerderkreis(foerderkreisData && foerderkreisData.members);
+        renderKuratorium(kuratoriumData && kuratoriumData.members);
+        renderKooperationspartner(kooperationspartnerData);
 
         /* Übersetzungen auf die neu erstellten data-i18n-Elemente anwenden */
         applyTranslations();

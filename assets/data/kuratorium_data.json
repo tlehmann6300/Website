@@ -1,0 +1,45 @@
+{
+  "_kommentar_datei": "Enthält alle Einträge für die Sektion 'Unser Kuratorium' auf der Seite unser-netzwerk.html",
+  "_kommentar_verwendung": "Wird von js/netzwerk-loader.js geladen. Neue Kuratoriumsmitglieder hier einfügen – kein HTML-Code muss geändert werden.",
+  "_kommentar_bilder": "Alle Bildpfade sind relativ zum Website-Root (z.B. assets/img/...). Die Bilder müssen bereits im angegebenen Ordner vorhanden sein.",
+  "_kommentar_texte": "Die 'i18nKey'-Felder verweisen auf Übersetzungsschlüssel in assets/data/translations/translations.json. Neue Einträge müssen dort ebenfalls ergänzt werden.",
+
+  "members": [
+    {
+      "_kommentar": "Prof. Jörg Jacobi M.A.",
+      "id": "jacobi",
+      "image": "assets/img/171212_portraet_jacobi_jj_225x300_1.webp",
+      "altText": "Portrait von Prof. Jörg Jacobi M.A.",
+      "nameI18nKey": "network-curators-jacobi-name",
+      "quoteI18nKey": "network-curators-jacobi-quote",
+      "subjectsI18nKey": "network-curators-jacobi-subjects"
+    },
+    {
+      "_kommentar": "Prof. Dr. Dirk Eisenbiegler",
+      "id": "eisenbiegler",
+      "image": "assets/img/eisenbiegler_scaled.webp",
+      "altText": "Portrait von Prof. Dr. Dirk Eisenbiegler",
+      "nameI18nKey": "network-curators-eisenbiegler-name",
+      "quoteI18nKey": "network-curators-eisenbiegler-quote",
+      "subjectsI18nKey": "network-curators-eisenbiegler-subjects"
+    },
+    {
+      "_kommentar": "Prof. Dr. rer. pol. Guido Siestrup",
+      "id": "siestrup",
+      "image": "assets/img/siestrup_guido_i_bau.webp",
+      "altText": "Portrait von Prof. Dr. rer. pol. Guido Siestrup",
+      "nameI18nKey": "network-curators-siestrup-name",
+      "quoteI18nKey": "network-curators-siestrup-quote",
+      "subjectsI18nKey": "network-curators-siestrup-subjects"
+    },
+    {
+      "_kommentar": "Prof. Dr. Thomas Marx",
+      "id": "marx",
+      "image": "assets/img/whatsapp_bild_2025_05_29_um_20.37.29_5f346a9b.webp",
+      "altText": "Portrait von Prof. Dr. Thomas Marx",
+      "nameI18nKey": "network-curators-marx-name",
+      "quoteI18nKey": "network-curators-marx-quote",
+      "subjectsI18nKey": "network-curators-marx-subjects"
+    }
+  ]
+}
