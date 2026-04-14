@@ -197,8 +197,8 @@
             return `[Translation missing: ${key}]`;
         }
         setupToggleButton() {
-            const toggleBtn = document.querySelector('.lang-toggle, .language-selected');
-            const options = document.querySelectorAll('.lang-item, .language-option');
+            const toggleBtn = document.querySelector('.lang-toggle, .language-selected, #langBtn');
+            const options = document.querySelectorAll('.lang-item, .language-option, .lang-option');
             if (toggleBtn) {
                 this.updateButtonContent(toggleBtn);
             }
@@ -226,10 +226,7 @@
         }
         updateButtonContent(button) {
             const flagImg = button.querySelector('#activeFlag, .flag-img');
-            if (!flagImg) {
-                console.warn('No flag image found in language toggle button');
-                return;
-            }
+            const currentLangLabel = document.getElementById('currentLang');
             const flagUrls = {
                 'de': 'assets/img/flags/de.svg',
                 'en': 'assets/img/flags/gb.svg',
@@ -240,8 +237,11 @@
                 'en': 'English',
                 'fr': 'Français'
             };
-            if (flagUrls[this.currentLang]) {
+            if (flagImg && flagUrls[this.currentLang]) {
                 flagImg.src = flagUrls[this.currentLang];
+            }
+            if (currentLangLabel) {
+                currentLangLabel.textContent = this.currentLang.toUpperCase();
             }
             if (langNames[this.currentLang]) {
                 const currentLangName = langNames[this.currentLang];
@@ -257,8 +257,11 @@
                 newLang = 'de';
             }
             this.currentLang = newLang;
-            const options = document.querySelectorAll('.lang-item, .language-option');
+            const options = document.querySelectorAll('.lang-item, .language-option, .lang-option');
             this.updateActiveLanguageOption(options);
+            document.querySelectorAll('.lang-option').forEach((option) => {
+                option.classList.toggle('active', option.getAttribute('data-lang') === newLang);
+            });
             localStorage.setItem('language', newLang);
             document.cookie = `language=${newLang}; path=/; max-age=31536000; SameSite=Strict`;
             const url = new URL(window.location.href);
@@ -271,7 +274,7 @@
             this.applyTranslations();
             this.updateAllLinks();
             this.updateHtmlLang();
-            const toggleBtn = document.querySelector('.lang-toggle, .language-selected');
+            const toggleBtn = document.querySelector('.lang-toggle, .language-selected, #langBtn');
             if (toggleBtn) {
                 this.updateButtonContent(toggleBtn);
             }

@@ -3,7 +3,7 @@
 <html lang="de">
 <head>
     <script>
-    (function(){var t=localStorage.getItem('ibc-theme');var d=(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':t;if(d==='dark'||d==='light')document.documentElement.setAttribute('data-theme',d);})();
+    (function(){var t=localStorage.getItem('theme')||localStorage.getItem('ibc-theme');var d=(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':t;if(d==='dark'||d==='light')document.documentElement.setAttribute('data-theme',d);})();
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
