@@ -698,7 +698,7 @@
     const overlay = document.getElementById('fab-overlay-menu');
     if (!fab || !overlay) return;
 
-    const MOBILE_BP       = 992; /* entspricht navbar-expand-xl → xl breakpoint */
+    const MOBILE_BP       = 0; /* FAB deaktiviert – Hamburger bleibt in der Navbar */
     const SCROLL_THRESHOLD = 80;
     let rafPending = false;
     let isOpen     = false;
