@@ -678,6 +678,15 @@ p:last-child { margin-bottom: 0; }
   height: 100%;
 }
 
+/* Center all content when scrolled (desktop only) */
+@media (min-width: 1200px) {
+  .navbar.is-scrolled .container,
+  .navbar.scrolled .container {
+    justify-content: center;
+    gap: 2rem;
+  }
+}
+
 /* Logo */
 .navbar-brand {
   display: flex;
