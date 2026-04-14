@@ -176,6 +176,14 @@
   --ibc-text-primary:  var(--text-primary);
   --ibc-text-secondary:var(--text-secondary);
   --ibc-text-muted:    var(--text-muted);
+
+  /* Legacy aliases — dark mode overrides */
+  --ibc-light-grey:    var(--bg-secondary);
+  --ibc-dark:          var(--text-primary);
+  --ibc-border-light:  rgba(255, 255, 255, 0.1);
+  --bg-color-light:    var(--bg-primary);
+  --shadow-soft:       var(--shadow-sm);
+  --shadow-hover:      var(--shadow-md);
 }
 
 

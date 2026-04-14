@@ -146,26 +146,43 @@ body {
 .impressum-card a:hover::after {
     width: 100%;
 }
-@media (max-width: 768px) {
-    .page-hero-section {
-        padding: clamp(6rem, 12vw, 10rem) 0 clamp(5rem, 8vw, 7rem) 0;
-    }
-     .page-hero-section h1 {
-        font-size: clamp(2.5rem, 6vw, 3.5rem);
-    }
-     .page-hero-section .lead {
-        font-size: clamp(1rem, 2.5vw, 1.25rem);
-    }
-    .impressum-card {
-        padding: 2rem 1.5rem;
-    }
-    .impressum-card h2 {
-        font-size: 1.8rem;
-    }
-    .impressum-card h3 {
-        font-size: 1.4rem;
-    }
-    .contact-info-block .icon {
-        margin-right: 1rem;
-    }
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+[data-theme="dark"] .impressum-section {
+    background-color: var(--bg-primary);
 }
+[data-theme="dark"] .impressum-card {
+    background-color: var(--bg-elevated);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .impressum-card:hover {
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+}
+[data-theme="dark"] .impressum-card h2 {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .impressum-card h3 {
+    color: var(--ibc-green-light, #7db356);
+    border-top-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .impressum-card p,
+[data-theme="dark"] .impressum-card ul {
+    color: var(--text-secondary);
+}
+[data-theme="dark"] .impressum-card strong {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .impressum-card a {
+    color: var(--ibc-green-light, #7db356);
+}
+[data-theme="dark"] .impressum-card a::after {
+    background-color: var(--ibc-green-light, #7db356);
+}
+[data-theme="dark"] .impressum-card a:hover {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .contact-info-block .icon {
+    color: var(--ibc-green-light, #7db356);
+}
+

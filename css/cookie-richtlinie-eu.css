@@ -157,6 +157,49 @@ body {
     color: var(--ibc-dark);
     font-weight: 600;
 }
+/* ============================================================
+   DARK MODE
+   ============================================================ */
+[data-theme="dark"] .cookie-section {
+    background-color: var(--bg-primary);
+}
+[data-theme="dark"] .cookie-content {
+    background-color: var(--bg-elevated);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .cookie-content h2 {
+    color: var(--text-primary);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .cookie-content h3 {
+    color: var(--ibc-green-light, #7db356);
+}
+[data-theme="dark"] .cookie-content p,
+[data-theme="dark"] .cookie-content ul,
+[data-theme="dark"] .cookie-content li {
+    color: var(--text-secondary);
+}
+[data-theme="dark"] .cookie-content strong {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .cookie-content a {
+    color: var(--ibc-green-light, #7db356);
+}
+[data-theme="dark"] .cookie-content a:hover {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .cookie-content table th {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+[data-theme="dark"] .cookie-content table td {
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-secondary);
+}
+[data-theme="dark"] .cookie-content table tbody tr:hover {
+    background-color: rgba(109, 151, 68, 0.1);
+}
+
 @media (max-width: 768px) {
     .page-hero-section {
         padding: clamp(6rem, 12vw, 10rem) 0 clamp(5rem, 8vw, 7rem) 0;
