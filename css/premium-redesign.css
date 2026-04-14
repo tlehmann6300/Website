@@ -1448,6 +1448,97 @@ blockquote {
   }
 }
 
+/* ============================================================
+   15b. NAVBAR-KONSISTENZ ZUR STARTSEITE (index.html)
+   ============================================================ */
+.navbar-brand:hover .navbar-logo {
+  transform: none;
+  opacity: 1;
+}
+
+.navbar .nav-link {
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em !important;
+  padding: 0.45rem 0.85rem !important;
+  border-bottom: none !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+.navbar .nav-link::after,
+.navbar .nav-link[aria-current="page"]::before {
+  display: none !important;
+}
+
+.navbar .dark-mode-toggle {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: var(--radius-pill) !important;
+  font-size: 0.875rem !important;
+}
+
+.navbar .dark-mode-toggle:hover {
+  transform: rotate(15deg) scale(1.05) !important;
+}
+
+.navbar .lang-dropdown {
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-lg) !important;
+  border: 1px solid var(--border-subtle) !important;
+}
+
+.navbar .lang-item {
+  padding: 0.5rem 0.75rem !important;
+  margin: 0 !important;
+  border-radius: var(--radius-sm) !important;
+}
+
+@media (max-width: 1199.98px) {
+  .navbar-collapse {
+    left: 0 !important;
+    right: 0 !important;
+    top: var(--nav-height) !important;
+    padding: 1rem 1.5rem 1.5rem !important;
+    box-shadow: var(--shadow-md) !important;
+    transform: none !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    animation: none !important;
+  }
+
+  .navbar-collapse.show {
+    animation: none !important;
+  }
+
+  .navbar-nav .nav-item,
+  .navbar-collapse.show .navbar-nav .nav-item {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .navbar .nav-link {
+    font-size: 0.9rem !important;
+    padding: 0.7rem 1rem !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .navbar .dark-mode-toggle {
+    font-size: inherit !important;
+    padding: 0 !important;
+    height: 36px !important;
+    width: 36px !important;
+  }
+
+  .navbar .lang-toggle {
+    font-size: inherit !important;
+    width: auto !important;
+    min-height: 36px !important;
+    padding: 0.3rem 0.75rem !important;
+  }
+}
+
 
 /* ============================================================
    16. EVENTS-SLIDER – PREMIUM REDESIGN
