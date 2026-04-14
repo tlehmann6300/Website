@@ -32,109 +32,103 @@
     <link rel="stylesheet" href="css/premium-redesign.css">
     <link rel="stylesheet" href="css/ibc-improvements.css">
     <link rel="stylesheet" href="css/datenschutzerklaerung.css">
+    <link href="css/new-navbar.css" rel="stylesheet">
 </head>
 <body>
-    <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
 
-    <nav class="navbar navbar-expand-xl is-scrolled" aria-label="Hauptnavigation" role="navigation">
-        <div class="container">
-            <a class="navbar-brand" href="index.html" aria-label="Zur Startseite">
-                <img src="assets/img/ibc_logo_original_navbar.webp" alt="IBC Logo" class="navbar-logo">
+<div class="scroll-progress" id="scrollProgress"></div>
+    <!-- Theme Transition Kreis -->
+    <div class="theme-transition" id="themeTransition"></div>
+    <!-- Navigation -->
+    <nav class="navbar at-top" id="navbar">
+        <div class="nav-container">
+            <!-- Logo: NUR BILD (ibc_logo_original.webp) -->
+            <a href="index.html" class="logo magnetic">
+                <div class="logo-wrapper">
+                    <img src="assets/img/ibc_logo_original_navbar.webp" alt="IBC Logo" width="75" height="75">
+                </div>
             </a>
-            <button class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#mainNav"
-                    aria-controls="mainNav"
-                    aria-expanded="false"
-                    aria-label="Hauptmenü öffnen"
-                    data-i18n-aria="navbar-toggle">
-                <span class="toggler-icon" aria-hidden="true">
-                    <span class="toggler-bar"></span>
-                    <span class="toggler-bar"></span>
-                    <span class="toggler-bar"></span>
-                </span>
-            </button>
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav ms-auto align-items-lg-center" role="menubar">
-                    <li class="nav-item" role="none">
-                        <a class="nav-link" href="fuer-studierende.html" role="menuitem" data-i18n="nav-students">Für Studierende</a>
+            <!-- Desktop Navigation -->
+            <div class="desktop-nav">
+                <ul class="nav-links">
+                    <li class="nav-item"><a href="index.html" class="nav-link" data-page="index.html">Startseite</a>
                     </li>
-                    <li class="nav-item" role="none">
-                        <a class="nav-link" href="fuer-unternehmen.html" role="menuitem" data-i18n="nav-companies">Für Unternehmen</a>
-                    </li>
-                    <li class="nav-item" role="none">
-                        <a class="nav-link" href="ueber-uns.html" role="menuitem" data-i18n="nav-about">Über uns</a>
-                    </li>
-                    <li class="nav-item" role="none">
-                        <a class="nav-link" href="unser-netzwerk.html" role="menuitem" data-i18n="nav-network">Unser Netzwerk</a>
-                    </li>
-                    <li class="nav-item" role="none">
-                        <a class="nav-link" href="referenzen.html" role="menuitem" data-i18n="nav-references">Referenzen</a>
-                    </li>
-                    <li class="nav-item" role="none">
-                        <a class="nav-link" href="kontakt.html" role="menuitem" data-i18n="nav-contact">Kontakt</a>
-                    </li>
-                    <!-- Dark Mode Toggle -->
-                    <li class="nav-item ms-lg-2" role="none">
-                        <button class="dark-mode-toggle" id="darkModeToggle" type="button"
-                                aria-label="Dark Mode aktivieren" aria-pressed="false">
-                            <i class="fas fa-moon" aria-hidden="true" id="darkModeIcon"></i>
-                        </button>
-                    </li>
-                    <!-- Language Switcher -->
-                    <li class="nav-item dropdown ms-lg-3" role="none">
-                        <button class="lang-toggle dropdown-toggle"
-                                type="button"
-                                data-bs-toggle="dropdown"
-                                aria-expanded="false"
-                                aria-haspopup="true"
-                                aria-label="Sprache wählen"
-                                data-i18n-aria="navbar-lang-toggle">
-                            <img id="activeFlag" src="assets/img/flags/de.svg" alt="" class="flag-img" aria-hidden="true">
-                            <span class="d-lg-none ms-2" data-i18n="navbar-lang-change">Sprache ändern</span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end lang-dropdown" role="menu" aria-label="Sprachauswahl" data-i18n-aria="navbar-lang-menu">
-                            <li role="none">
-                                <a class="lang-item"
-                                   href="?lang=de"
-                                   role="menuitem"
-                                   data-flag="assets/img/flags/de.svg"
-                                   data-lang="de"
-                                   aria-current="true"
-                                   aria-label="Deutsch">
-                                    <img src="assets/img/flags/de.svg" alt="" class="flag-img" aria-hidden="true">
-                                    <span>Deutsch</span>
-                                </a>
-                            </li>
-                            <li role="none">
-                                <a class="lang-item"
-                                   href="?lang=en"
-                                   role="menuitem"
-                                   data-flag="assets/img/flags/gb.svg"
-                                   data-lang="en"
-                                   aria-label="English">
-                                    <img src="assets/img/flags/gb.svg" alt="" class="flag-img" aria-hidden="true">
-                                    <span>English</span>
-                                </a>
-                            </li>
-                            <li role="none">
-                                <a class="lang-item"
-                                   href="?lang=fr"
-                                   role="menuitem"
-                                   data-flag="assets/img/flags/fr.svg"
-                                   data-lang="fr"
-                                   aria-label="Français">
-                                    <img src="assets/img/flags/fr.svg" alt="" class="flag-img" aria-hidden="true">
-                                    <span>Français</span>
-                                </a>
-                            </li>
-                        </ul>
+                    <li class="nav-item"><a href="fuer-studierende.html" class="nav-link"
+                            data-page="fuer-studierende.html">Für Studierende</a></li>
+                    <li class="nav-item"><a href="fuer-unternehmen.html" class="nav-link"
+                            data-page="fuer-unternehmen.html">Für Unternehmen</a></li>
+                    <li class="nav-item"><a href="ueber-uns.html" class="nav-link" data-page="ueber-uns.html">Über
+                            uns</a></li>
+                    <li class="nav-item"><a href="unser-netzwerk.html" class="nav-link"
+                            data-page="unser-netzwerk.html">Netzwerk</a></li>
+                    <li class="nav-item"><a href="referenzen.html" class="nav-link"
+                            data-page="referenzen.html">Referenzen</a></li>
+                    <li class="nav-item"><a href="kontakt.html" class="nav-link" data-page="kontakt.html">Kontakt</a>
                     </li>
                 </ul>
             </div>
+            <!-- Utilities -->
+            <div class="nav-utilities">
+                <div class="theme-toggle" id="themeToggle" title="Theme wechseln">
+                    <div class="theme-toggle-ball"></div>
+                    <i class="theme-icon-pos theme-sun fas fa-sun"></i>
+                    <i class="theme-icon-pos theme-moon fas fa-moon"></i>
+                </div>
+                <div class="lang-dropdown">
+                    <button class="lang-btn" id="langBtn">
+                        <i class="fas fa-globe"></i>
+                        <span id="currentLang">DE</span>
+                        <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
+                    </button>
+                    <div class="lang-menu" id="langMenu">
+                        <div class="lang-option active" data-lang="de">🇩🇪 Deutsch</div>
+                        <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
+                        <div class="lang-option" data-lang="en">🇬🇧 English</div>
+                    </div>
+                </div>
+                <div class="mobile-toggle" id="mobileToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
     </nav>
+    <!-- Mobile Bottom Sheet Menu -->
+    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-handle" id="mobileHandle"></div>
+        <div class="mobile-menu-content">
+            <ul class="mobile-nav-links">
+                <li class="mobile-nav-item"><a href="index.html" class="mobile-nav-link" data-page="index.html"><i
+                            class="fas fa-home"></i> Startseite</a></li>
+                <li class="mobile-nav-item"><a href="fuer-studierende.html" class="mobile-nav-link"
+                        data-page="fuer-studierende.html"><i class="fas fa-user-graduate"></i> Für Studierende</a></li>
+                <li class="mobile-nav-item"><a href="fuer-unternehmen.html" class="mobile-nav-link"
+                        data-page="fuer-unternehmen.html"><i class="fas fa-building"></i> Für Unternehmen</a></li>
+                <li class="mobile-nav-item"><a href="ueber-uns.html" class="mobile-nav-link"
+                        data-page="ueber-uns.html"><i class="fas fa-info-circle"></i> Über uns</a></li>
+                <li class="mobile-nav-item"><a href="unser-netzwerk.html" class="mobile-nav-link"
+                        data-page="unser-netzwerk.html"><i class="fas fa-network-wired"></i> Netzwerk</a></li>
+                <li class="mobile-nav-item"><a href="referenzen.html" class="mobile-nav-link"
+                        data-page="referenzen.html"><i class="fas fa-star"></i> Referenzen</a></li>
+                <li class="mobile-nav-item"><a href="kontakt.html" class="mobile-nav-link" data-page="kontakt.html"><i
+                            class="fas fa-envelope"></i> Kontakt</a></li>
+            </ul>
+            <div class="mobile-utilities">
+                <span class="mobile-theme-text">Erscheinungsbild</span>
+                <div class="theme-toggle" id="mobileThemeToggle" style="width: 50px; height: 26px;">
+                    <div class="theme-toggle-ball" style="width: 18px; height: 18px; top: 2px; left: 2px;"></div>
+                    <i class="theme-icon-pos theme-sun fas fa-sun" style="right: 5px; font-size: 0.65rem;"></i>
+                    <i class="theme-icon-pos theme-moon fas fa-moon" style="left: 5px; font-size: 0.65rem;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
+
+    
         <div id="page-loader" role="presentation" aria-hidden="true">
     <span class="lp lp-1" aria-hidden="true"></span>
     <span class="lp lp-2" aria-hidden="true"></span>
@@ -460,16 +454,15 @@
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="js/app.js" defer></script>
     <script src="js/main.js" defer></script>
-    <script src="js/navbar-scroll.js" defer></script>
     <script src="js/language-switcher.js" defer></script>
     <script src="js/cookie-consent.js" defer></script>
     <script src="js/content-loader.js" defer></script>
     <script src="js/fade-in-animation.js" defer></script>
     <script src="js/icon-loader.js" defer></script>
-    <script src="js/scroll-progress.js" defer></script>
     <script src="js/keyboard-nav.js" defer></script>
     <script src="js/design-effects.js" defer></script>
     <script src="js/index-page.js" defer></script>
     <script src="js/premium-animations.js" defer></script>
+    <script src="js/new-navbar.js" defer></script>
 </body>
 </html>
