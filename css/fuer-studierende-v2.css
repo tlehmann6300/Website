@@ -1717,6 +1717,14 @@
   color: var(--ibc-green) !important;
 }
 
+/* Infoabend Spotlight: eyebrow badge light mode */
+:root:not([data-theme="dark"]) .infoabend-spotlight__eyebrow,
+[data-theme="light"] .infoabend-spotlight__eyebrow {
+  background: rgba(109,151,68,0.12) !important;
+  border-color: rgba(109,151,68,0.35) !important;
+  color: var(--ibc-green) !important;
+}
+
 /* ============================================================
    12. HERO SOCIAL PROOF BAR
    ============================================================ */
@@ -2477,4 +2485,112 @@
   .phone-notch-camera { box-shadow: none; }
   #ibcTestimonialTarget:empty { animation: none; }
   .apply-step { opacity: 1; transform: none; transition: none; }
+}
+
+/* ============================================================
+   36. INFOABEND SPOTLIGHT – class-based styling (replaces inline)
+   ============================================================ */
+
+/* Eyebrow badge inside spotlight */
+.infoabend-spotlight__eyebrow {
+  margin-bottom: 1.25rem;
+}
+
+/* Heading inside spotlight */
+.infoabend-spotlight__heading {
+  color: #fff;
+}
+[data-theme="dark"] .infoabend-spotlight__heading {
+  color: #fff;
+}
+
+/* Body text inside spotlight */
+.infoabend-spotlight__text {
+  color: rgba(255,255,255,0.8);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 1.75rem;
+}
+[data-theme="dark"] .infoabend-spotlight__text {
+  color: rgba(255,255,255,0.8);
+}
+
+/* Light mode overrides for infoabend spotlight heading & text */
+:root:not([data-theme="dark"]) .infoabend-spotlight__heading,
+[data-theme="light"] .infoabend-spotlight__heading {
+  color: var(--ibc-blue) !important;
+  -webkit-text-fill-color: initial !important;
+  background: none !important;
+}
+:root:not([data-theme="dark"]) .infoabend-spotlight__text,
+[data-theme="light"] .infoabend-spotlight__text {
+  color: var(--text-secondary) !important;
+}
+
+/* ============================================================
+   37. CTA BANNER – class-based styling (replaces inline)
+   ============================================================ */
+
+/* CTA banner eyebrow badge */
+.cta-banner__eyebrow {
+  margin-bottom: 1.25rem;
+}
+
+/* CTA banner ghost button – always white-ish on the always-dark banner */
+.cta-banner__ghost {
+  color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.cta-banner__ghost:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================
+   38. DARK MODE TOGGLE – Navbar sizing fix
+   ============================================================ */
+
+/* Ensure the dark mode toggle button in navbar maintains correct
+   circle shape and doesn't get distorted by conflicting CSS.
+   The icon (moon/sun) should be properly centered and visible. */
+.navbar .dark-mode-toggle {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex-shrink: 0;
+}
+.navbar .dark-mode-toggle i {
+  font-size: 0.875rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* On mobile viewports, keep the toggle circular – override premium-redesign
+   which sets width:auto and distorts the circle shape */
+@media (max-width: 1199px) {
+  .navbar .dark-mode-toggle {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    padding: 0 !important;
+    border-radius: 50% !important;
+  }
+}
+@media (max-width: 767.98px) {
+  .navbar .dark-mode-toggle {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    font-size: 0.85rem !important;
+  }
 }
