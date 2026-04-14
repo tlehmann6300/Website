@@ -1142,7 +1142,7 @@
   box-shadow:
     0 0 0 2px var(--phone-shadow-border),
     0 25px 50px var(--phone-shadow-outer);
-  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.5s ease;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   position: relative;
   opacity: 0;
   transform: translateY(80px) scale(0.95);
@@ -1251,6 +1251,14 @@
 
 #instagram-section .instagram-container.loaded {
   opacity: 1;
+}
+
+#instagram-section .instagram-container .instagram-media {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-style: normal;
+  line-height: normal;
 }
 
 #instagram-section .instagram-container iframe {
