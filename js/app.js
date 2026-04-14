@@ -59,6 +59,10 @@
         );
         btn.setAttribute('aria-pressed', theme === DARK ? 'true' : 'false');
       });
+      // Update FAB overlay dark mode label if present
+      $$('.fab-dark-mode-label').forEach(label => {
+        label.textContent = theme === DARK ? 'Light Mode' : 'Dark Mode';
+      });
     }
 
     function toggle() {
