@@ -946,5 +946,33 @@
     }
 }());
 </script>
+<script>
+/* Events Carousel Indicators – sync active dot state with Bootstrap carousel navigation */
+(function () {
+    function initCarouselIndicators() {
+        var carouselEl = document.getElementById('eventCarousel');
+        if (!carouselEl) return;
+        /* Locate indicator dots via a stable selector scoped to a known ancestor */
+        var sliderSection = document.getElementById('events');
+        carouselEl.addEventListener('slid.bs.carousel', function (e) {
+            var dots = (sliderSection || document).querySelectorAll('[data-bs-target="#eventCarousel"].carousel-dot-v2');
+            dots.forEach(function (dot, i) {
+                var isActive = i === e.to;
+                dot.classList.toggle('active', isActive);
+                if (isActive) {
+                    dot.setAttribute('aria-current', 'true');
+                } else {
+                    dot.removeAttribute('aria-current');
+                }
+            });
+        });
+    }
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCarouselIndicators);
+    } else {
+        initCarouselIndicators();
+    }
+}());
+</script>
 </body>
 </html>
