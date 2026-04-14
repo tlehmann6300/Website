@@ -1,4 +1,5 @@
-// Elemente
+(() => {
+        // Elemente
         const navbar = document.getElementById('navbar');
         const scrollProgress = document.getElementById('scrollProgress');
         const mobileToggle = document.getElementById('mobileToggle');
@@ -9,6 +10,8 @@
         const mobileThemeToggle = document.getElementById('mobileThemeToggle');
         const langBtn = document.getElementById('langBtn');
         const langMenu = document.getElementById('langMenu');
+        const currentLangEl = document.getElementById('currentLang');
+        if (!navbar || !scrollProgress || !mobileToggle || !mobileMenu || !mobileOverlay || !mobileHandle || !themeToggle || !mobileThemeToggle || !langBtn || !langMenu || !currentLangEl) return;
         // Aktive Seite markieren
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
         document.querySelectorAll('.nav-link').forEach(link => {
@@ -100,17 +103,16 @@
         });
         document.querySelectorAll('.lang-option').forEach(option => {
             option.addEventListener('click', () => {
-                document.querySelectorAll('.lang-option').forEach(opt => opt.classList.remove(
-                'active'));
+                document.querySelectorAll('.lang-option').forEach(opt => opt.classList.remove('active'));
                 option.classList.add('active');
-                document.getElementById('currentLang').textContent = option.dataset.lang.toUpperCase();
+                currentLangEl.textContent = option.dataset.lang.toUpperCase();
                 localStorage.setItem('language', option.dataset.lang);
                 langMenu.classList.remove('active');
             });
         });
         // Init Language
         const savedLang = localStorage.getItem('language') || 'de';
-        document.getElementById('currentLang').textContent = savedLang.toUpperCase();
+        currentLangEl.textContent = savedLang.toUpperCase();
         document.querySelectorAll('.lang-option').forEach(opt => {
             opt.classList.remove('active');
             if (opt.dataset.lang === savedLang) opt.classList.add('active');
@@ -122,3 +124,4 @@
                 if (langMenu.classList.contains('active')) langMenu.classList.remove('active');
             }
         });
+})();
