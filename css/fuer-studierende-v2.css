@@ -1105,6 +1105,7 @@
   --screen-bg: #000000;
   --phone-shadow-outer: rgba(0,0,0,0.3);
   --phone-shadow-border: rgba(128,128,128,0.2);
+  --ig-embed-delay: 3s;
 }
 [data-theme="dark"] .instagram-section-v2 {
   --phone-body: #ffffff;
@@ -1279,12 +1280,12 @@
 
 #instagram-section .phone-frame.visible .boot-screen {
   animation: igBootScreenHideFallback 0.8s ease-out forwards;
-  animation-delay: 3s;
+  animation-delay: var(--ig-embed-delay);
 }
 
 #instagram-section .phone-frame.visible .instagram-container {
   animation: igInstagramShowFallback 0s linear forwards;
-  animation-delay: 3s;
+  animation-delay: var(--ig-embed-delay);
 }
 
 @keyframes igBootScreenHideFallback {
