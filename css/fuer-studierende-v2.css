@@ -2543,49 +2543,68 @@
 }
 
 /* ============================================================
-   38. DARK MODE TOGGLE – Navbar sizing fix
+   38. EXTRA MICRO-ANIMATIONEN
    ============================================================ */
-
-/* Ensure the dark mode toggle button in navbar maintains correct
-   circle shape and doesn't get distorted by conflicting CSS.
-   The icon (moon/sun) should be properly centered and visible. */
-.navbar .dark-mode-toggle {
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
-  min-height: 36px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  flex-shrink: 0;
+.highlight-stat-card {
+  animation: statCardFloat 7.5s ease-in-out infinite;
 }
-.navbar .dark-mode-toggle i {
-  font-size: 0.875rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.row .col-lg-3:nth-child(2) .highlight-stat-card { animation-delay: 0.25s; }
+.row .col-lg-3:nth-child(3) .highlight-stat-card { animation-delay: 0.5s; }
+.row .col-lg-3:nth-child(4) .highlight-stat-card { animation-delay: 0.75s; }
+.highlight-stat-card:hover {
+  animation-play-state: paused;
 }
 
-/* On mobile viewports, keep the toggle circular – override premium-redesign
-   which sets width:auto and distorts the circle shape */
-@media (max-width: 1199px) {
-  .navbar .dark-mode-toggle {
-    width: 36px !important;
-    height: 36px !important;
-    min-width: 36px !important;
-    padding: 0 !important;
-    border-radius: 50% !important;
-  }
+.why-ibc-benefit-card .benefit-icon {
+  animation: benefitIconBob 3.8s ease-in-out infinite;
 }
-@media (max-width: 767.98px) {
-  .navbar .dark-mode-toggle {
-    width: 34px !important;
-    height: 34px !important;
-    min-width: 34px !important;
-    font-size: 0.85rem !important;
+
+.angebot-card-v2__icon-wrap i {
+  animation: offerIconPulse 4.2s ease-in-out infinite;
+}
+
+.faq-item.is-open {
+  animation: faqOpenPop 0.35s var(--ease-spring) both;
+}
+
+.cta-banner__checklist span {
+  animation: checklistGlow 5.5s ease-in-out infinite;
+}
+.cta-banner__checklist span:nth-child(2) { animation-delay: 0.3s; }
+.cta-banner__checklist span:nth-child(3) { animation-delay: 0.6s; }
+
+@keyframes statCardFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+@keyframes benefitIconBob {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-3px) scale(1.04); }
+}
+
+@keyframes offerIconPulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50%      { transform: scale(1.07); filter: brightness(1.12); }
+}
+
+@keyframes faqOpenPop {
+  0%   { transform: translateY(6px); opacity: 0.6; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes checklistGlow {
+  0%, 100% { transform: translateY(0); opacity: 0.92; }
+  50%      { transform: translateY(-2px); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .highlight-stat-card,
+  .why-ibc-benefit-card .benefit-icon,
+  .angebot-card-v2__icon-wrap i,
+  .faq-item.is-open,
+  .cta-banner__checklist span {
+    animation: none !important;
   }
 }
 
