@@ -557,9 +557,9 @@
     "fr": "Pour les étudiants"
   },
   "students-hero-subtitle": {
-    "de": "Werde Teil unseres Teams",
-    "en": "Become Part of Our Team",
-    "fr": "Rejoins notre équipe"
+    "de": "Sammle echte Projekterfahrung, baue ein starkes Netzwerk auf und forme deine Karriere – noch während des Studiums.",
+    "en": "Gain real project experience, build a strong network, and shape your career – while still studying.",
+    "fr": "Acquiers une expérience de projets réels, développe un solide réseau et forge ta carrière – encore pendant tes études."
   },
   "students-benefits-heading": {
     "de": "Unser Angebot für Dich",
@@ -4630,5 +4630,385 @@
     "de": "Künstliche Intelligenz, Statistik, Data Science, Finance.",
     "en": "Artificial Intelligence, Statistics, Data Science, Finance.",
     "fr": "Intelligence artificielle, Statistiques, Science des données, Finance."
+  },
+  "apply-step-1-label": {
+    "de": "Erste Schritte",
+    "en": "First Steps",
+    "fr": "Premiers pas"
+  },
+  "apply-step-1-title": {
+    "de": "Bewerbung einreichen",
+    "en": "Submit Application",
+    "fr": "Soumettre une candidature"
+  },
+  "apply-step-1-desc": {
+    "de": "Schick uns eine kurze Bewerbung per E-Mail oder über das Kontaktformular. Erzähl uns von dir und deiner Motivation.",
+    "en": "Send us a short application by email or via the contact form. Tell us about yourself and your motivation.",
+    "fr": "Envoie-nous une courte candidature par e-mail ou via le formulaire de contact. Parle-nous de toi et de ta motivation."
+  },
+  "apply-step-2-label": {
+    "de": "Kennenlernen",
+    "en": "Getting to Know Each Other",
+    "fr": "Faire connaissance"
+  },
+  "apply-step-2-title": {
+    "de": "Informationsabend besuchen",
+    "en": "Attend an Info Evening",
+    "fr": "Assister à une soirée d'information"
+  },
+  "apply-step-2-desc": {
+    "de": "Komm zu einem unserer Informationsabende und lerne das Team persönlich kennen. Alle offenen Fragen werden beantwortet.",
+    "en": "Come to one of our info evenings and meet the team in person. All your questions will be answered.",
+    "fr": "Viens à l'une de nos soirées d'information et rencontre l'équipe en personne. Toutes tes questions seront répondues."
+  },
+  "apply-step-3-label": {
+    "de": "Vorstellung",
+    "en": "Introduction",
+    "fr": "Présentation"
+  },
+  "apply-step-3-title": {
+    "de": "Gespräch & Kennenlernen",
+    "en": "Interview & Getting Acquainted",
+    "fr": "Entretien et prise de contact"
+  },
+  "apply-step-3-desc": {
+    "de": "In einem lockeren Gespräch lernen wir uns besser kennen. Kein Bewerbungsstress – wir wollen einfach herausfinden, ob es passt.",
+    "en": "In a relaxed conversation, we get to know each other better. No application stress – we just want to find out if it's a good fit.",
+    "fr": "Dans une conversation détendue, on apprend à mieux se connaître. Pas de pression – on veut juste voir si c'est une bonne adéquation."
+  },
+  "apply-step-4-label": {
+    "de": "Willkommen!",
+    "en": "Welcome!",
+    "fr": "Bienvenue !"
+  },
+  "apply-step-4-title": {
+    "de": "Mitglied werden",
+    "en": "Become a Member",
+    "fr": "Devenir membre"
+  },
+  "apply-step-4-desc": {
+    "de": "Nach erfolgreicher gegenseitiger Entscheidung bist du Teil des IBC! Du wirst in die laufenden Projekte und das Team integriert.",
+    "en": "After a successful mutual decision, you are part of the IBC! You will be integrated into the ongoing projects and the team.",
+    "fr": "Après une décision mutuelle positive, tu fais partie de l'IBC ! Tu seras intégré(e) aux projets en cours et à l'équipe."
+  },
+  "flip-hint": {
+    "de": "Karte drehen",
+    "en": "Flip Card",
+    "fr": "Retourner la carte"
+  },
+  "students-apply-heading": {
+    "de": "So wirst du <span class=\"text-gradient\">Mitglied</span>",
+    "en": "How to Become <span class=\"text-gradient\">a Member</span>",
+    "fr": "Comment <span class=\"text-gradient\">devenir membre</span>"
+  },
+  "students-apply-now": {
+    "de": "Jetzt bewerben",
+    "en": "Apply Now",
+    "fr": "Postuler maintenant"
+  },
+  "students-apply-subtitle": {
+    "de": "Der Einstieg ist unkompliziert – wir freuen uns auf deine Bewerbung!",
+    "en": "Getting started is easy – we look forward to your application!",
+    "fr": "L'entrée est simple – nous avons hâte de recevoir ta candidature !"
+  },
+  "students-benefit-experience": {
+    "de": "Echte Projekterfahrung",
+    "en": "Real Project Experience",
+    "fr": "Expérience de projets réels"
+  },
+  "students-benefit-growth": {
+    "de": "Persönliches Wachstum",
+    "en": "Personal Growth",
+    "fr": "Développement personnel"
+  },
+  "students-benefit-network": {
+    "de": "Netzwerk",
+    "en": "Network",
+    "fr": "Réseau"
+  },
+  "students-benefit-team": {
+    "de": "Tolles Team",
+    "en": "Great Team",
+    "fr": "Super équipe"
+  },
+  "students-faq-heading": {
+    "de": "Häufige Fragen",
+    "en": "Frequently Asked Questions",
+    "fr": "Questions fréquentes"
+  },
+  "students-faq-subtitle": {
+    "de": "Du hast noch Fragen? Wir haben die Antworten.",
+    "en": "Still have questions? We have the answers.",
+    "fr": "Tu as encore des questions ? Nous avons les réponses."
+  },
+  "students-faq-q1": {
+    "de": "Muss ich Business-Student sein, um mich zu bewerben?",
+    "en": "Do I need to be a business student to apply?",
+    "fr": "Dois-je être étudiant en commerce pour postuler ?"
+  },
+  "students-faq-a1": {
+    "de": "Nein! Das IBC ist offen für Studierende aller Fachrichtungen der HFU. Egal ob Informatik, Medien oder Wirtschaft – interdisziplinäre Teams machen uns stark.",
+    "en": "No! IBC is open to students of all subjects at HFU. Whether IT, media, or business – interdisciplinary teams make us strong.",
+    "fr": "Non ! L'IBC est ouvert aux étudiants de toutes les disciplines de la HFU. Informatique, médias ou économie – les équipes interdisciplinaires font notre force."
+  },
+  "students-faq-q2": {
+    "de": "Wie viel Zeit muss ich einplanen?",
+    "en": "How much time do I need to commit?",
+    "fr": "Combien de temps dois-je prévoir ?"
+  },
+  "students-faq-a2": {
+    "de": "Als Mitglied planst du etwa 4–8 Stunden pro Woche ein – je nach aktiver Projektphase und deiner Rolle. Flexibilität ist uns wichtig: Wir wissen, dass das Studium Vorrang hat.",
+    "en": "As a member, you can expect around 4–8 hours per week – depending on the active project phase and your role. Flexibility is important to us: we know that your studies come first.",
+    "fr": "En tant que membre, compte environ 4 à 8 heures par semaine – selon la phase de projet active et ton rôle. La flexibilité est importante pour nous : nous savons que tes études passent en premier."
+  },
+  "students-faq-q3": {
+    "de": "Wird die Arbeit im IBC bezahlt?",
+    "en": "Is the work at IBC paid?",
+    "fr": "Le travail au sein de l'IBC est-il rémunéré ?"
+  },
+  "students-faq-a3": {
+    "de": "Ja! Projektmitglieder können für ihre Arbeit vergütet werden. Dabei richtet sich die Vergütung nach der Komplexität und dem Umfang des Projekts.",
+    "en": "Yes! Project members can be compensated for their work. The compensation depends on the complexity and scope of the project.",
+    "fr": "Oui ! Les membres de projet peuvent être rémunérés pour leur travail. La rémunération dépend de la complexité et de l'envergure du projet."
+  },
+  "students-faq-q4": {
+    "de": "Wann ist die nächste Bewerbungsrunde?",
+    "en": "When is the next application round?",
+    "fr": "Quand a lieu le prochain tour de candidatures ?"
+  },
+  "students-faq-a4": {
+    "de": "Wir nehmen grundsätzlich das ganze Jahr Bewerbungen entgegen. Neue Mitglieder werden in der Regel zu Semesterbeginn besonders intensiv eingearbeitet. Schreib uns einfach jederzeit an!",
+    "en": "We generally accept applications throughout the year. New members are typically onboarded most intensively at the start of the semester. Just reach out to us anytime!",
+    "fr": "Nous acceptons généralement les candidatures tout au long de l'année. Les nouveaux membres sont généralement intégrés de façon intensive en début de semestre. Écris-nous simplement à tout moment !"
+  },
+  "students-faq-q5": {
+    "de": "Hilft das IBC-Engagement bei der späteren Jobsuche?",
+    "en": "Does IBC involvement help with future job searching?",
+    "fr": "L'engagement au sein de l'IBC aide-t-il pour la recherche d'emploi future ?"
+  },
+  "students-faq-a5": {
+    "de": "Absolut! Viele unserer Alumni berichten, dass das IBC ein entscheidender Vorteil im Bewerbungsprozess war. Echte Praxiserfahrung, ein starkes Netzwerk und konkrete Projekterfolge machen deinen Lebenslauf zu einem echten Hingucker.",
+    "en": "Absolutely! Many of our alumni report that IBC was a decisive advantage in their application process. Real practical experience, a strong network, and concrete project successes make your CV stand out.",
+    "fr": "Absolument ! Beaucoup de nos anciens membres rapportent que l'IBC a été un avantage décisif dans leur processus de candidature. Une expérience pratique réelle, un réseau solide et des réussites de projet concrètes font de ton CV un véritable atout."
+  },
+  "students-final-cta-heading": {
+    "de": "Dein Abenteuer <span class=\"text-gradient\">beginnt hier.</span>",
+    "en": "Your Adventure <span class=\"text-gradient\">Starts Here.</span>",
+    "fr": "Ton aventure <span class=\"text-gradient\">commence ici.</span>"
+  },
+  "students-final-cta-text": {
+    "de": "Werde Teil des IBC und gestalte deine Zukunft aktiv mit. Bewerbungen sind jederzeit möglich – wir freuen uns auf dich!",
+    "en": "Become part of IBC and actively shape your future. Applications are accepted at any time – we look forward to hearing from you!",
+    "fr": "Rejoins l'IBC et participe activement à la construction de ton avenir. Les candidatures sont acceptées à tout moment – nous avons hâte de te rencontrer !"
+  },
+  "students-hero-cta-apply": {
+    "de": "Jetzt bewerben",
+    "en": "Apply Now",
+    "fr": "Postuler maintenant"
+  },
+  "students-hero-cta-learn": {
+    "de": "Was bieten wir?",
+    "en": "What do we offer?",
+    "fr": "Qu'offrons-nous ?"
+  },
+  "students-hero-eyebrow": {
+    "de": "Für Studierende der HFU",
+    "en": "For HFU Students",
+    "fr": "Pour les étudiants de la HFU"
+  },
+  "students-hero-heading": {
+    "de": "Wachse über dich <span class=\"text-gradient\">hinaus</span>",
+    "en": "Grow <span class=\"text-gradient\">Beyond Yourself</span>",
+    "fr": "Dépasse tes <span class=\"text-gradient\">limites</span>"
+  },
+  "students-highlights-heading": {
+    "de": "Was dich <span class=\"text-gradient\">erwartet</span>",
+    "en": "What <span class=\"text-gradient\">Awaits You</span>",
+    "fr": "Ce qui <span class=\"text-gradient\">t'attend</span>"
+  },
+  "students-learn-more-about": {
+    "de": "Über das IBC",
+    "en": "About IBC",
+    "fr": "À propos de l'IBC"
+  },
+  "students-offer-freelance-desc": {
+    "de": "Sammle vergütete Projekterfahrung und baue dir dein Portfolio für deinen Berufseinstieg auf.",
+    "en": "Gain paid project experience and build your portfolio for your career entry.",
+    "fr": "Acquiers une expérience de projet rémunérée et construis ton portfolio pour ton entrée dans la vie professionnelle."
+  },
+  "students-offer-learn-more": {
+    "de": "Mehr erfahren",
+    "en": "Learn More",
+    "fr": "En savoir plus"
+  },
+  "students-offer-learnings-desc": {
+    "de": "Profitiere von internen Schulungen, Workshops und dem Wissen erfahrener Mitglieder und Alumni.",
+    "en": "Benefit from internal training sessions, workshops, and the knowledge of experienced members and alumni.",
+    "fr": "Profite des formations internes, des ateliers et du savoir des membres expérimentés et des anciens."
+  },
+  "students-offer-networking-desc": {
+    "de": "Knüpfe wertvolle Kontakte zu Unternehmen, Förderkreismitgliedern und einem starken Alumni-Netzwerk.",
+    "en": "Build valuable connections with companies, supporting members, and a strong alumni network.",
+    "fr": "Noue des contacts précieux avec des entreprises, des membres bienfaiteurs et un solide réseau d'anciens."
+  },
+  "students-offer-teamwork-desc": {
+    "de": "Arbeite in motivierten, interdisziplinären Teams an echten Kundenprojekten und entwickle deine Zusammenarbeitsfähigkeiten.",
+    "en": "Work in motivated, interdisciplinary teams on real client projects and develop your collaboration skills.",
+    "fr": "Travaille dans des équipes motivées et interdisciplinaires sur de vrais projets clients et développe tes compétences de collaboration."
+  },
+  "students-req-interested-desc": {
+    "de": "Du interessierst dich für Unternehmensberatung, Wirtschaft, Technologie oder interdisziplinäres Arbeiten.",
+    "en": "You are interested in business consulting, economics, technology, or interdisciplinary work.",
+    "fr": "Tu t'intéresses au conseil aux entreprises, à l'économie, à la technologie ou au travail interdisciplinaire."
+  },
+  "students-req-motivated-desc": {
+    "de": "Du bist bereit, Eigeninitiative zu zeigen und engagiert über dein Studium hinaus zu wachsen.",
+    "en": "You are ready to show initiative and grow with commitment beyond your studies.",
+    "fr": "Tu es prêt(e) à faire preuve d'initiative et à t'épanouir avec engagement au-delà de tes études."
+  },
+  "students-req-student-desc": {
+    "de": "Du bist eingeschrieben an der Hochschule Furtwangen – das ist die einzige formale Voraussetzung.",
+    "en": "You are enrolled at Furtwangen University – that is the only formal requirement.",
+    "fr": "Tu es inscrit(e) à l'Université de Furtwangen – c'est la seule condition formelle."
+  },
+  "students-req-team-desc": {
+    "de": "Du arbeitest gerne mit anderen zusammen und kannst sowohl führen als auch unterstützen.",
+    "en": "You enjoy working with others and can both lead and support.",
+    "fr": "Tu aimes travailler avec les autres et tu sais aussi bien diriger que soutenir."
+  },
+  "students-req-team-title": {
+    "de": "Teamfähig",
+    "en": "Team Player",
+    "fr": "Esprit d'équipe"
+  },
+  "students-requirements-subtitle": {
+    "de": "Klicke auf die Karten und finde heraus, ob das IBC zu dir passt.",
+    "en": "Click on the cards and find out if IBC is right for you.",
+    "fr": "Clique sur les cartes et découvre si l'IBC est fait pour toi."
+  },
+  "students-skill-client": {
+    "de": "Kundenmanagement",
+    "en": "Client Management",
+    "fr": "Gestion de la clientèle"
+  },
+  "students-skill-concept": {
+    "de": "Konzeptarbeit",
+    "en": "Concept Development",
+    "fr": "Élaboration de concepts"
+  },
+  "students-skill-consulting": {
+    "de": "Consulting Methodiken",
+    "en": "Consulting Methodologies",
+    "fr": "Méthodologies de conseil"
+  },
+  "students-skill-data": {
+    "de": "Datenanalyse",
+    "en": "Data Analysis",
+    "fr": "Analyse de données"
+  },
+  "students-skill-digital": {
+    "de": "Digitale Tools",
+    "en": "Digital Tools",
+    "fr": "Outils numériques"
+  },
+  "students-skill-intercultural": {
+    "de": "Interkulturelles Arbeiten",
+    "en": "Intercultural Collaboration",
+    "fr": "Travail interculturel"
+  },
+  "students-skill-leadership": {
+    "de": "Teamführung",
+    "en": "Team Leadership",
+    "fr": "Leadership d'équipe"
+  },
+  "students-skill-pitch": {
+    "de": "Präsentation & Pitch",
+    "en": "Presentation & Pitch",
+    "fr": "Présentation et pitch"
+  },
+  "students-skill-pm": {
+    "de": "Projektmanagement",
+    "en": "Project Management",
+    "fr": "Gestion de projet"
+  },
+  "students-skill-strategy": {
+    "de": "Strategieentwicklung",
+    "en": "Strategy Development",
+    "fr": "Développement de stratégie"
+  },
+  "students-skill-thinking": {
+    "de": "Kritisches Denken",
+    "en": "Critical Thinking",
+    "fr": "Pensée critique"
+  },
+  "students-skill-time": {
+    "de": "Zeitmanagement",
+    "en": "Time Management",
+    "fr": "Gestion du temps"
+  },
+  "students-skills-heading": {
+    "de": "Was du bei uns <span class=\"text-gradient\">lernst</span>",
+    "en": "What You <span class=\"text-gradient\">Learn with Us</span>",
+    "fr": "Ce que tu <span class=\"text-gradient\">apprends chez nous</span>"
+  },
+  "students-skills-subtitle": {
+    "de": "Vom ersten Projekt bis zum Alumni – du sammelst Skills, die dich im Job-Markt wirklich weiterbringen.",
+    "en": "From your first project to alumni – you gain skills that truly advance you in the job market.",
+    "fr": "Du premier projet jusqu'au statut d'ancien – tu acquiers des compétences qui te font vraiment progresser sur le marché du travail."
+  },
+  "students-stat-alumni": {
+    "de": "Alumni weltweit",
+    "en": "Alumni worldwide",
+    "fr": "Anciens dans le monde entier"
+  },
+  "students-stat-members": {
+    "de": "Aktive Mitglieder",
+    "en": "Active Members",
+    "fr": "Membres actifs"
+  },
+  "students-stat-projects": {
+    "de": "Abgeschlossene Projekte",
+    "en": "Completed Projects",
+    "fr": "Projets réalisés"
+  },
+  "students-stat-since": {
+    "de": "Gegründet",
+    "en": "Founded",
+    "fr": "Fondé"
+  },
+  "students-why-1": {
+    "de": "Echte Projekte",
+    "en": "Real Projects",
+    "fr": "Vrais projets"
+  },
+  "students-why-2": {
+    "de": "Starkes Team",
+    "en": "Strong Team",
+    "fr": "Équipe solide"
+  },
+  "students-why-3": {
+    "de": "Karrierestart",
+    "en": "Career Start",
+    "fr": "Lancement de carrière"
+  },
+  "students-why-4": {
+    "de": "Alumni-Netzwerk",
+    "en": "Alumni Network",
+    "fr": "Réseau des anciens"
+  },
+  "students-why-eyebrow": {
+    "de": "Warum das IBC?",
+    "en": "Why IBC?",
+    "fr": "Pourquoi l'IBC ?"
+  },
+  "students-why-text": {
+    "de": "Das IBC bietet dir eine einzigartige Kombination aus echter Praxiserfahrung, persönlicher Entwicklung und einem Netzwerk, das über dein Studium hinaus Bestand hat.",
+    "en": "IBC offers you a unique combination of real practical experience, personal development, and a network that lasts beyond your studies.",
+    "fr": "L'IBC t'offre une combinaison unique d'expérience pratique réelle, de développement personnel et d'un réseau qui dure au-delà de tes études."
+  },
+  "scroll-down": {
+    "de": "Scrollen",
+    "en": "Scroll",
+    "fr": "Défiler"
   }
 }
