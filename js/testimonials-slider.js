@@ -44,60 +44,60 @@
         const initials = sanitizedName.split(' ').filter(n => n).map(n => n[0]).join('');
         const encodedInitials = encodeURIComponent(initials || '?');
         const fallbackImg = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect fill='%23609744' width='400' height='400'/%3E%3Ctext fill='%23ffffff' font-family='Arial,sans-serif' font-size='120' font-weight='bold' text-anchor='middle' x='200' y='240'%3E${encodedInitials}%3C/text%3E%3C/svg%3E`;
+        const totalSlides = testimonialData?.slides?.length || 1;
         return `
             <div class="carousel-item ${activeClass}"
                  role="tabpanel"
                  id="testimonial-slide-${index}"
                  aria-labelledby="testimonial-tab-${index}"
                  aria-hidden="${!isActive}">
-                <div class="ibc-testimonial-card">
-                    <div class="row g-0 h-100">
-                        <div class="col-lg-5 ibc-testimonial-visual">
+                <div class="tsv3-card">
+                    <div class="tsv3-profile-col tsv3-fade tsv3-d1">
+                        <div class="tsv3-avatar-frame">
                             <img src="${item.img}"
                                  alt="${item.name}"
                                  loading="${index === 0 ? 'eager' : 'lazy'}"
                                  onerror="this.onerror=null; this.src='${fallbackImg}';">
                         </div>
-                        <div class="col-lg-7 ibc-testimonial-content">
-                            <div class="ibc-testimonial-fade d-1">
-                                <span class="ibc-testimonial-role">${roleText}</span>
-                            </div>
-                            <div class="ibc-testimonial-fade d-1">
-                                <h3 class="ibc-testimonial-name">${item.name}</h3>
-                            </div>
-                            <div class="ibc-testimonial-quote-box ibc-testimonial-fade d-2">
-                                <blockquote class="ibc-testimonial-quote">
-                                    "${quoteText}"
-                                </blockquote>
-                            </div>
-                            <div class="ibc-testimonial-controls ibc-testimonial-fade d-3">
-                                <button class="ibc-testimonial-nav-btn"
-                                        data-action="prev"
-                                        aria-label="${labels.prevSlide[lang] || labels.prevSlide['de']}">
-                                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
-                                </button>
-                                <div class="ibc-testimonial-timeline"
-                                     role="progressbar"
-                                     aria-valuenow="0"
-                                     aria-valuemin="0"
-                                     aria-valuemax="100"
-                                     aria-label="Slide progress">
-                                    <div class="ibc-testimonial-timeline-track">
-                                        <div class="ibc-testimonial-timeline-fill" id="testimonial-bar-${index}"></div>
-                                    </div>
+                        <div class="tsv3-stars" aria-label="5 von 5 Sternen">
+                            <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
+                        </div>
+                        <p class="tsv3-name">${item.name}</p>
+                        <span class="tsv3-role-badge">${roleText}</span>
+                    </div>
+                    <div class="tsv3-quote-col">
+                        <div class="tsv3-open-quote tsv3-fade tsv3-d1" aria-hidden="true">&ldquo;</div>
+                        <blockquote class="tsv3-quote-text tsv3-fade tsv3-d2">
+                            ${quoteText}
+                        </blockquote>
+                        <div class="tsv3-controls tsv3-fade tsv3-d3">
+                            <button class="tsv3-ctrl-btn"
+                                    data-action="prev"
+                                    aria-label="${labels.prevSlide[lang] || labels.prevSlide['de']}">
+                                <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                            </button>
+                            <div class="tsv3-progress"
+                                 role="progressbar"
+                                 aria-valuenow="0"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100"
+                                 aria-label="Slide Fortschritt">
+                                <div class="tsv3-progress-track">
+                                    <div class="tsv3-progress-fill" id="testimonial-bar-${index}"></div>
                                 </div>
-                                <button class="ibc-testimonial-nav-btn"
-                                        data-action="next"
-                                        aria-label="${labels.nextSlide[lang] || labels.nextSlide['de']}">
-                                    <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                                </button>
-                                <button class="ibc-testimonial-toggle-btn"
-                                        data-action="toggle"
-                                        aria-label="${labels.playPause[lang] || labels.playPause['de']}"
-                                        aria-pressed="${isAutoplayEnabled}">
-                                    <i class="fas ${isAutoplayEnabled ? 'fa-pause' : 'fa-play'}" aria-hidden="true"></i>
-                                </button>
                             </div>
+                            <span class="tsv3-slide-counter" aria-hidden="true">${index + 1}&thinsp;/&thinsp;${totalSlides}</span>
+                            <button class="tsv3-ctrl-btn"
+                                    data-action="next"
+                                    aria-label="${labels.nextSlide[lang] || labels.nextSlide['de']}">
+                                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                            </button>
+                            <button class="tsv3-ctrl-btn tsv3-pause-btn"
+                                    data-action="toggle"
+                                    aria-label="${labels.playPause[lang] || labels.playPause['de']}"
+                                    aria-pressed="${isAutoplayEnabled}">
+                                <i class="fas ${isAutoplayEnabled ? 'fa-pause' : 'fa-play'}" aria-hidden="true"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -143,16 +143,17 @@
     function attachControlListeners() {
         const container = document.getElementById('ibcTestimonialTarget');
         if (!container) return;
-        container.querySelectorAll('.ibc-testimonial-nav-btn').forEach(btn => {
+        container.querySelectorAll('.tsv3-ctrl-btn').forEach(btn => {
             btn.addEventListener('click', handleNavClick);
-        });
-        container.querySelectorAll('.ibc-testimonial-toggle-btn').forEach(btn => {
-            btn.addEventListener('click', handleToggleClick);
         });
     }
     function handleNavClick(e) {
         e.preventDefault();
         const action = e.currentTarget.dataset.action;
+        if (action === 'toggle') {
+            handleToggleClick(e);
+            return;
+        }
         resetAndStart();
         if (action === 'prev') {
             goToSlide(currentSlideIndex - 1);
@@ -172,10 +173,10 @@
     }
     function updateToggleIcons() {
         const icon = isAutoplayEnabled ? 'fa-pause' : 'fa-play';
-        document.querySelectorAll('.ibc-testimonial-toggle-btn i').forEach(i => {
+        document.querySelectorAll('.tsv3-pause-btn i').forEach(i => {
             i.className = `fas ${icon}`;
         });
-        document.querySelectorAll('.ibc-testimonial-toggle-btn').forEach(btn => {
+        document.querySelectorAll('.tsv3-pause-btn').forEach(btn => {
             btn.setAttribute('aria-pressed', isAutoplayEnabled);
         });
     }
@@ -189,7 +190,7 @@
         // Force-reset the incoming slide's fade elements so the entry animation
         // always starts cleanly from opacity 0, regardless of any prior state.
         const targetSlide = slides[index];
-        const fadeEls = targetSlide.querySelectorAll('.ibc-testimonial-fade');
+        const fadeEls = targetSlide.querySelectorAll('.tsv3-fade');
         fadeEls.forEach(el => {
             el.style.transition = 'none';
             el.style.opacity = '0';
@@ -238,10 +239,8 @@
     }
     function resetAndStart() {
         cancelAnimationFrame(animationFrameId);
-        document.querySelectorAll('.ibc-testimonial-timeline-fill').forEach(bar => {
-            // Resetten mit Transform
+        document.querySelectorAll('.tsv3-progress-fill').forEach(bar => {
             bar.style.transform = 'scaleX(0)';
-            // Fallback für alte CSS Logik entfernen, falls vorhanden, oder auf 100% setzen für Scale-Basis
             bar.style.width = '100%'; 
         });
         elapsedTime = 0;

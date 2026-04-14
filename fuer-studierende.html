@@ -587,82 +587,147 @@
                     Events &amp; <span class="text-gradient">Aktivitäten</span>
                 </h2>
             </div>
-            <div class="event-slider-v2 mt-5 fade-in-up" data-animation-delay="100ms">
-                <div id="eventCarousel" class="carousel slide" data-bs-ride="false" data-bs-interval="false" data-bs-wrap="true">
-                    <div class="carousel-inner">
+            <!-- ── Events Slider v3 ── -->
+            <div class="esv3-shell fade-in-up" data-animation-delay="100ms">
+                <div class="esv3-card" id="eventCarousel" data-bs-ride="false" data-bs-interval="false" data-bs-wrap="true">
+
+                    <div class="carousel-inner esv3-slides">
+
+                        <!-- Slide 1 – Glühweinstand -->
                         <div class="carousel-item active">
-                            <div class="event-slider-item-v2">
-                                <div class="event-img-col">
+                            <div class="esv3-slide">
+                                <div class="esv3-img-pane">
                                     <img loading="lazy" data-media-id="student-event1" alt="Jährlicher Glühweinstand">
+                                    <div class="esv3-img-overlay" aria-hidden="true"></div>
+                                    <span class="esv3-cat-badge"><i class="fas fa-snowflake" aria-hidden="true"></i> Winter</span>
+                                    <div class="esv3-counter-badge" aria-hidden="true"><b>01</b>&thinsp;/&thinsp;04</div>
                                 </div>
-                                <div class="event-slider-content-v2">
-                                    <h3 data-i18n="students-event1-title">Jährlicher Glühweinstand</h3>
-                                    <p data-i18n="students-event1-text">Zum Start der Winterzeit gehört unser Glühweinstand fest zum Campusleben
-                                        in Furtwangen. Bei einem heißen Getränk in lockerer Atmosphäre kommen
-                                        wir ins Gespräch und genießen gemeinsam die Winterstimmung.</p>
-                                    <a href="https://www.instagram.com/p/C1MoJBpMvSk/" target="_blank" rel="noopener noreferrer"
-                                        id="gluehweinstand-btn" class="ethereal-button mt-auto" style="align-self:flex-start;">
-                                        <i class="fa-brands fa-instagram" aria-hidden="true"></i>
-                                        <span id="gluehweinstand-text"></span>
-                                    </a>
+                                <div class="esv3-content-pane">
+                                    <span class="esv3-bg-number" aria-hidden="true">01</span>
+                                    <div class="esv3-content-inner">
+                                        <h3 class="esv3-title" data-i18n="students-event1-title">Jährlicher Glühweinstand</h3>
+                                        <p class="esv3-desc" data-i18n="students-event1-text">Zum Start der Winterzeit gehört unser Glühweinstand fest zum Campusleben
+                                            in Furtwangen. Bei einem heißen Getränk in lockerer Atmosphäre kommen
+                                            wir ins Gespräch und genießen gemeinsam die Winterstimmung.</p>
+                                        <a href="https://www.instagram.com/p/C1MoJBpMvSk/" target="_blank" rel="noopener noreferrer"
+                                            id="gluehweinstand-btn" class="ethereal-button esv3-cta">
+                                            <i class="fa-brands fa-instagram" aria-hidden="true"></i>
+                                            <span id="gluehweinstand-text"></span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Slide 2 – Unity Treffen -->
                         <div class="carousel-item">
-                            <div class="event-slider-item-v2">
-                                <div class="event-img-col">
+                            <div class="esv3-slide">
+                                <div class="esv3-img-pane">
                                     <img loading="lazy" data-media-id="student-event2" alt="Consulting-Treffen bei Unity">
+                                    <div class="esv3-img-overlay" aria-hidden="true"></div>
+                                    <span class="esv3-cat-badge"><i class="fas fa-handshake" aria-hidden="true"></i> Netzwerk</span>
+                                    <div class="esv3-counter-badge" aria-hidden="true"><b>02</b>&thinsp;/&thinsp;04</div>
                                 </div>
-                                <div class="event-slider-content-v2">
-                                    <h3 data-i18n="students-event2-title">Consulting-Treffen bei Unity</h3>
-                                    <p data-i18n="students-event2-text">Das Beratungsunternehmen Unity ist seit Langem ein wertvoller Partner
-                                        unseres Vereins. Jährlich organisieren wir gemeinsame Events, bei denen
-                                        wir bestehende Kontakte pflegen und neue knüpfen.</p>
+                                <div class="esv3-content-pane">
+                                    <span class="esv3-bg-number" aria-hidden="true">02</span>
+                                    <div class="esv3-content-inner">
+                                        <h3 class="esv3-title" data-i18n="students-event2-title">Consulting-Treffen bei Unity</h3>
+                                        <p class="esv3-desc" data-i18n="students-event2-text">Das Beratungsunternehmen Unity ist seit Langem ein wertvoller Partner
+                                            unseres Vereins. Jährlich organisieren wir gemeinsame Events, bei denen
+                                            wir bestehende Kontakte pflegen und neue knüpfen.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Slide 3 – Mittwochsmeeting -->
                         <div class="carousel-item">
-                            <div class="event-slider-item-v2">
-                                <div class="event-img-col">
+                            <div class="esv3-slide">
+                                <div class="esv3-img-pane">
                                     <img data-media-id="student-event3" alt="Mittwochsmeeting" loading="lazy">
+                                    <div class="esv3-img-overlay" aria-hidden="true"></div>
+                                    <span class="esv3-cat-badge"><i class="fas fa-calendar-check" aria-hidden="true"></i> Weekly</span>
+                                    <div class="esv3-counter-badge" aria-hidden="true"><b>03</b>&thinsp;/&thinsp;04</div>
                                 </div>
-                                <div class="event-slider-content-v2">
-                                    <h3 data-i18n="students-event3-title">Mittwochsmeeting</h3>
-                                    <p data-i18n="students-event3-text">Jeden Mittwoch kommen wir zu unseren Meetings zusammen, um uns
-                                        weiterzubilden und unsere Ziele voranzutreiben. Neben Schulungen und
-                                        Workshops nutzen wir die Gelegenheit, kommende Projekte und Events zu
-                                        planen.</p>
+                                <div class="esv3-content-pane">
+                                    <span class="esv3-bg-number" aria-hidden="true">03</span>
+                                    <div class="esv3-content-inner">
+                                        <h3 class="esv3-title" data-i18n="students-event3-title">Mittwochsmeeting</h3>
+                                        <p class="esv3-desc" data-i18n="students-event3-text">Jeden Mittwoch kommen wir zu unseren Meetings zusammen, um uns
+                                            weiterzubilden und unsere Ziele voranzutreiben. Neben Schulungen und
+                                            Workshops nutzen wir die Gelegenheit, kommende Projekte und Events zu
+                                            planen.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Slide 4 – Grillstand -->
                         <div class="carousel-item">
-                            <div class="event-slider-item-v2">
-                                <div class="event-img-col">
+                            <div class="esv3-slide">
+                                <div class="esv3-img-pane">
                                     <img data-media-id="student-event4" alt="Grillstand" loading="lazy">
+                                    <div class="esv3-img-overlay" aria-hidden="true"></div>
+                                    <span class="esv3-cat-badge"><i class="fas fa-fire" aria-hidden="true"></i> Campus</span>
+                                    <div class="esv3-counter-badge" aria-hidden="true"><b>04</b>&thinsp;/&thinsp;04</div>
                                 </div>
-                                <div class="event-slider-content-v2">
-                                    <h3 data-i18n="students-event4-title">Grillstand</h3>
-                                    <p data-i18n="students-event4-text">Bei besonderen Hochschul-Events, wie der Ersti-Party, organisieren wir
-                                        unseren Grillstand. Hier treffen sich gute Gespräche und leckeres Essen
-                                        – die perfekte Kombination.</p>
+                                <div class="esv3-content-pane">
+                                    <span class="esv3-bg-number" aria-hidden="true">04</span>
+                                    <div class="esv3-content-inner">
+                                        <h3 class="esv3-title" data-i18n="students-event4-title">Grillstand</h3>
+                                        <p class="esv3-desc" data-i18n="students-event4-text">Bei besonderen Hochschul-Events, wie der Ersti-Party, organisieren wir
+                                            unseren Grillstand. Hier treffen sich gute Gespräche und leckeres Essen
+                                            – die perfekte Kombination.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <button class="carousel-ctrl carousel-ctrl--prev" type="button" data-bs-target="#eventCarousel" data-bs-slide="prev" aria-label="Vorheriges Event">
+
+                    </div><!-- /carousel-inner -->
+
+                </div><!-- /esv3-card -->
+
+                <!-- ── Tab navigation bar ── -->
+                <nav class="esv3-tabbar" aria-label="Events auswählen">
+                    <button class="esv3-arrow" type="button" data-bs-target="#eventCarousel" data-bs-slide="prev" aria-label="Vorheriges Event">
                         <i class="fas fa-chevron-left" aria-hidden="true"></i>
                     </button>
-                    <button class="carousel-ctrl carousel-ctrl--next" type="button" data-bs-target="#eventCarousel" data-bs-slide="next" aria-label="Nächstes Event">
+                    <div class="esv3-tabs" role="tablist">
+                        <button class="esv3-tab active" type="button"
+                                data-bs-target="#eventCarousel" data-bs-slide-to="0"
+                                role="tab" aria-selected="true" aria-label="Jährlicher Glühweinstand">
+                            <i class="fas fa-snowflake esv3-tab-icon" aria-hidden="true"></i>
+                            <span class="esv3-tab-label">Glühweinstand</span>
+                            <span class="esv3-tab-line" aria-hidden="true"></span>
+                        </button>
+                        <button class="esv3-tab" type="button"
+                                data-bs-target="#eventCarousel" data-bs-slide-to="1"
+                                role="tab" aria-selected="false" aria-label="Consulting-Treffen bei Unity">
+                            <i class="fas fa-handshake esv3-tab-icon" aria-hidden="true"></i>
+                            <span class="esv3-tab-label">Unity Treffen</span>
+                            <span class="esv3-tab-line" aria-hidden="true"></span>
+                        </button>
+                        <button class="esv3-tab" type="button"
+                                data-bs-target="#eventCarousel" data-bs-slide-to="2"
+                                role="tab" aria-selected="false" aria-label="Mittwochsmeeting">
+                            <i class="fas fa-calendar-check esv3-tab-icon" aria-hidden="true"></i>
+                            <span class="esv3-tab-label">Mittwochsmeeting</span>
+                            <span class="esv3-tab-line" aria-hidden="true"></span>
+                        </button>
+                        <button class="esv3-tab" type="button"
+                                data-bs-target="#eventCarousel" data-bs-slide-to="3"
+                                role="tab" aria-selected="false" aria-label="Grillstand">
+                            <i class="fas fa-fire esv3-tab-icon" aria-hidden="true"></i>
+                            <span class="esv3-tab-label">Grillstand</span>
+                            <span class="esv3-tab-line" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <button class="esv3-arrow" type="button" data-bs-target="#eventCarousel" data-bs-slide="next" aria-label="Nächstes Event">
                         <i class="fas fa-chevron-right" aria-hidden="true"></i>
                     </button>
-                </div>
-                <div class="carousel-indicators-v2" aria-label="Event Navigation">
-                    <button class="carousel-dot-v2 active" type="button" data-bs-target="#eventCarousel" data-bs-slide-to="0" aria-current="true" aria-label="Slide 1"></button>
-                    <button class="carousel-dot-v2" type="button" data-bs-target="#eventCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button class="carousel-dot-v2" type="button" data-bs-target="#eventCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    <button class="carousel-dot-v2" type="button" data-bs-target="#eventCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                </div>
-            </div>
+                </nav>
+
+            </div><!-- /esv3-shell -->
         </div>
     </section>
 
@@ -1106,30 +1171,25 @@
 }());
 </script>
 <script>
-/* Events Carousel Indicators – sync active dot state with Bootstrap carousel navigation */
+/* Events Carousel – sync active tab state with Bootstrap carousel navigation */
 (function () {
-    function initCarouselIndicators() {
+    function initCarouselTabs() {
         var carouselEl = document.getElementById('eventCarousel');
         if (!carouselEl) return;
-        /* Locate indicator dots via a stable selector scoped to a known ancestor */
-        var sliderSection = document.getElementById('events');
+        var eventsSection = document.getElementById('events');
         carouselEl.addEventListener('slid.bs.carousel', function (e) {
-            var dots = (sliderSection || document).querySelectorAll('[data-bs-target="#eventCarousel"].carousel-dot-v2');
-            dots.forEach(function (dot, i) {
+            var tabs = (eventsSection || document).querySelectorAll('.esv3-tab[data-bs-target="#eventCarousel"]');
+            tabs.forEach(function (tab, i) {
                 var isActive = i === e.to;
-                dot.classList.toggle('active', isActive);
-                if (isActive) {
-                    dot.setAttribute('aria-current', 'true');
-                } else {
-                    dot.removeAttribute('aria-current');
-                }
+                tab.classList.toggle('active', isActive);
+                tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
             });
         });
     }
     if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initCarouselIndicators);
+        document.addEventListener('DOMContentLoaded', initCarouselTabs);
     } else {
-        initCarouselIndicators();
+        initCarouselTabs();
     }
 }());
 </script>
