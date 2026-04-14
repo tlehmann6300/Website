@@ -125,7 +125,7 @@
 
 /* --- 1e. "Wird geladen..." text below dots ------------------------------- */
 .loader-dots::after {
-  content: 'Wird geladen\2026';
+  content: 'Wird geladen…';
   display: block;
   width: 100%;
   text-align: center;

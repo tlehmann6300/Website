@@ -1113,6 +1113,13 @@
             return c.marketing === true;
         } catch (e) { return false; }
     }
+    function isValidInstagramUrl(url) {
+        if (!url || typeof url !== 'string') return false;
+        try {
+            var parsed = new URL(url.trim());
+            return parsed.protocol === 'https:' && parsed.hostname.endsWith('instagram.com');
+        } catch (e) { return false; }
+    }
     function loadInstagramEmbed(overlay) {
         var wrap = overlay.closest('.instagram-frame-wrap');
         if (!wrap) return;
@@ -1120,7 +1127,7 @@
         if (!iframe) return;
         /* If src is already set by content-loader, just show it */
         var src = iframe.getAttribute('src') || iframe.getAttribute('data-src');
-        if (src) {
+        if (src && isValidInstagramUrl(src)) {
             if (!iframe.getAttribute('src')) iframe.setAttribute('src', src);
             iframe.classList.add('ig-loaded');
             iframe.style.display = '';
@@ -1132,8 +1139,9 @@
         fetch('assets/data/external_links.json')
             .then(function (r) { return r.json(); })
             .then(function (data) {
-                if (data && data.iframes && data.iframes.instagramEmbeds && data.iframes.instagramEmbeds[idx]) {
-                    iframe.setAttribute('src', data.iframes.instagramEmbeds[idx]);
+                var embedUrl = data && data.iframes && data.iframes.instagramEmbeds && data.iframes.instagramEmbeds[idx];
+                if (embedUrl && isValidInstagramUrl(embedUrl)) {
+                    iframe.setAttribute('src', embedUrl);
                     iframe.classList.add('ig-loaded');
                     iframe.style.display = '';
                     overlay.classList.add('ig-consent-given');
