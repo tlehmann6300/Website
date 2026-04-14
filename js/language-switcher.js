@@ -197,8 +197,8 @@
             return `[Translation missing: ${key}]`;
         }
         setupToggleButton() {
-            const toggleBtn = document.querySelector('.lang-toggle, .language-selected');
-            const options = document.querySelectorAll('.lang-item, .language-option');
+            const toggleBtn = document.querySelector('.lang-toggle, .language-selected, #langBtn');
+            const options = document.querySelectorAll('.lang-item, .language-option, .lang-option');
             if (toggleBtn) {
                 this.updateButtonContent(toggleBtn);
             }
@@ -219,17 +219,16 @@
                 if (!optionLang) return;
                 if (optionLang === this.currentLang) {
                     option.setAttribute('aria-current', 'true');
+                    option.classList.add('active');
                 } else {
                     option.removeAttribute('aria-current');
+                    option.classList.remove('active');
                 }
             });
         }
         updateButtonContent(button) {
             const flagImg = button.querySelector('#activeFlag, .flag-img');
-            if (!flagImg) {
-                console.warn('No flag image found in language toggle button');
-                return;
-            }
+            const currentLangLabel = document.getElementById('currentLang');
             const flagUrls = {
                 'de': 'assets/img/flags/de.svg',
                 'en': 'assets/img/flags/gb.svg',
@@ -240,8 +239,11 @@
                 'en': 'English',
                 'fr': 'Français'
             };
-            if (flagUrls[this.currentLang]) {
+            if (flagImg && flagUrls[this.currentLang]) {
                 flagImg.src = flagUrls[this.currentLang];
+            }
+            if (currentLangLabel) {
+                currentLangLabel.textContent = this.currentLang.toUpperCase();
             }
             if (langNames[this.currentLang]) {
                 const currentLangName = langNames[this.currentLang];
@@ -257,7 +259,7 @@
                 newLang = 'de';
             }
             this.currentLang = newLang;
-            const options = document.querySelectorAll('.lang-item, .language-option');
+            const options = document.querySelectorAll('.lang-item, .language-option, .lang-option');
             this.updateActiveLanguageOption(options);
             localStorage.setItem('language', newLang);
             document.cookie = `language=${newLang}; path=/; max-age=31536000; SameSite=Strict`;
@@ -271,7 +273,7 @@
             this.applyTranslations();
             this.updateAllLinks();
             this.updateHtmlLang();
-            const toggleBtn = document.querySelector('.lang-toggle, .language-selected');
+            const toggleBtn = document.querySelector('.lang-toggle, .language-selected, #langBtn');
             if (toggleBtn) {
                 this.updateButtonContent(toggleBtn);
             }

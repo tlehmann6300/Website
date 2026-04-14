@@ -18,7 +18,8 @@
   'use strict';
 
   /* ─── Constants ─────────────────────────────────────────── */
-  const THEME_KEY      = 'ibc-theme';
+  const THEME_KEY      = 'theme';
+  const LEGACY_THEME_KEY = 'ibc-theme';
   const DARK           = 'dark';
   const LIGHT          = 'light';
   const SCROLLED_CLASS = 'is-scrolled';
@@ -39,7 +40,7 @@
 
     /** Resolve initial theme: localStorage → system preference */
     function resolveInitial() {
-      const stored = localStorage.getItem(THEME_KEY);
+      const stored = localStorage.getItem(THEME_KEY) || localStorage.getItem(LEGACY_THEME_KEY);
       if (stored === DARK || stored === LIGHT) return stored;
       return window.matchMedia('(prefers-color-scheme: dark)').matches ? DARK : LIGHT;
     }
@@ -47,6 +48,7 @@
     function apply(theme) {
       htmlEl.setAttribute('data-theme', theme);
       localStorage.setItem(THEME_KEY, theme);
+      localStorage.setItem(LEGACY_THEME_KEY, theme);
       // Update all dark-mode-toggle icons (covers original + clones in overlays)
       $$('.dark-mode-toggle i').forEach(icon => {
         icon.className = theme === DARK ? 'fas fa-sun' : 'fas fa-moon';

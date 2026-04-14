@@ -51,19 +51,20 @@
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
             const transition = document.getElementById('themeTransition');
-            transition.classList.add('active');
+            if (transition) transition.classList.add('active');
             setTimeout(() => {
                 document.documentElement.setAttribute('data-theme', newTheme);
                 localStorage.setItem('theme', newTheme);
+                localStorage.setItem('ibc-theme', newTheme);
                 setTimeout(() => {
-                    transition.classList.remove('active');
+                    if (transition) transition.classList.remove('active');
                 }, 100);
             }, 300);
         }
         themeToggle.addEventListener('click', toggleTheme);
         mobileThemeToggle.addEventListener('click', toggleTheme);
         // Init Theme
-        const savedTheme = localStorage.getItem('theme') || 'light';
+        const savedTheme = localStorage.getItem('theme') || localStorage.getItem('ibc-theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
         // Mobile Menu
         function toggleMobileMenu() {
@@ -107,11 +108,22 @@
                 option.classList.add('active');
                 currentLangEl.textContent = option.dataset.lang.toUpperCase();
                 localStorage.setItem('language', option.dataset.lang);
+                if (window.ibcLanguageSwitcher && typeof window.ibcLanguageSwitcher.switchLanguage === 'function') {
+                    window.ibcLanguageSwitcher.switchLanguage(option.dataset.lang);
+                }
                 langMenu.classList.remove('active');
             });
         });
         // Init Language
-        const savedLang = localStorage.getItem('language') || 'de';
+        const validLanguages = new Set(['de', 'en', 'fr']);
+        const switcherLang = window.ibcLanguageSwitcher && window.ibcLanguageSwitcher.currentLang
+            ? window.ibcLanguageSwitcher.currentLang
+            : null;
+        const urlLang = new URLSearchParams(window.location.search).get('lang');
+        const normalizedUrlLang = validLanguages.has(urlLang) ? urlLang : null;
+        const storedLang = localStorage.getItem('language');
+        const normalizedStoredLang = validLanguages.has(storedLang) ? storedLang : null;
+        const savedLang = switcherLang || normalizedUrlLang || normalizedStoredLang || 'de';
         currentLangEl.textContent = savedLang.toUpperCase();
         document.querySelectorAll('.lang-option').forEach(opt => {
             opt.classList.remove('active');
