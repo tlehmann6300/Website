@@ -1113,11 +1113,20 @@
   margin-right: 0;
 }
 
+/* ── Phone float wrapper (handles floating animation separately from hover) ── */
+.phone-float-wrap {
+  flex: 0 0 auto;
+  list-style: none;
+  animation: phoneEntrance 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+             phoneFloat 6s ease-in-out infinite;
+}
+.phone-float-wrap:nth-child(2) { animation-delay: 0.15s, 1s; }
+.phone-float-wrap:nth-child(3) { animation-delay: 0.3s, 2s; }
+
 /* ── Phone frame ── */
 .instagram-frame-wrap {
   position: relative;
   width: 290px;
-  flex: 0 0 auto;
   background: linear-gradient(160deg, #2e2e4a 0%, #1a1a30 40%, #0f0f1e 100%);
   border-radius: 54px;
   padding: 72px 16px 58px;
@@ -1137,16 +1146,7 @@
   outline: none;
   cursor: pointer;
   transform-style: preserve-3d;
-  perspective: 1000px;
   will-change: transform;
-  animation: phoneEntrance 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both,
-             phoneFloat 6s ease-in-out infinite;
-}
-.instagram-frame-wrap:nth-child(2) {
-  animation-delay: 0.15s, 1s;
-}
-.instagram-frame-wrap:nth-child(3) {
-  animation-delay: 0.3s, 2s;
 }
 
 /* Dynamic island notch with camera dot */
@@ -1182,7 +1182,6 @@
 /* Hover: lift + gentle 3D tilt */
 .instagram-frame-wrap:hover {
   transform: translateY(-18px) scale(1.03) rotateX(3deg);
-  animation-play-state: paused;
   box-shadow:
     0 0 0 1.5px rgba(255,255,255,0.2),
     0 0 0 3.5px rgba(10,10,22,0.97),
@@ -1520,9 +1519,11 @@
     margin-top: 2.5rem;
   }
   .instagram-container-v2::-webkit-scrollbar { display: none; }
-  .instagram-frame-wrap {
+  .phone-float-wrap {
     scroll-snap-align: center;
     flex-shrink: 0;
+  }
+  .instagram-frame-wrap {
     width: 255px;
   }
   .instagram-frame-wrap iframe,
@@ -1584,10 +1585,7 @@
 
 /* ── Touch devices – disable hover transforms ── */
 @media (hover: none) {
-  .instagram-frame-wrap:hover {
-    transform: none;
-    animation-play-state: running;
-  }
+  .instagram-frame-wrap:hover { transform: none; }
   .angebot-card-v2:hover { transform: none; }
   .highlight-stat-card:hover { transform: none; }
   .apply-step:hover .apply-step__body { transform: none; }
@@ -2030,9 +2028,9 @@
    19. INSTAGRAM PHONES – reduced-motion override
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
-  .instagram-frame-wrap {
-    animation: none !important;
-    transition: box-shadow 0.3s ease !important;
+  /* Disable only the continuous floating; keep instant entrance */
+  .phone-float-wrap {
+    animation: phoneEntrance 0.01ms both !important;
   }
   .instagram-frame-wrap:hover {
     transform: translateY(-8px) !important;
