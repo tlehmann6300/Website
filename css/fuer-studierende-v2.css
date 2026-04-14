@@ -1520,3 +1520,62 @@
   .page-hero__mesh-orb { animation: none; }
   .page-hero__scroll-hint { animation: none; }
 }
+
+/* ============================================================
+   LIGHT MODE OVERRIDES
+   ============================================================ */
+
+/* Infoabend Spotlight section: light background with dark text */
+:root .infoabend-spotlight,
+[data-theme="light"] .infoabend-spotlight {
+  background: linear-gradient(135deg, #eef1f8 0%, #e8effc 50%, #f0f4ff 100%) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Override inline white colour on heading inside spotlight */
+:root .infoabend-spotlight .ibc-heading,
+[data-theme="light"] .infoabend-spotlight .ibc-heading {
+  color: var(--ibc-blue) !important;
+  -webkit-text-fill-color: initial !important;
+  background: none !important;
+}
+
+/* Override inline white colour on body text inside spotlight */
+:root .infoabend-spotlight p,
+[data-theme="light"] .infoabend-spotlight p {
+  color: var(--text-secondary) !important;
+}
+
+/* Benefit cards: white elevated style in light mode */
+:root .why-ibc-benefit-card,
+[data-theme="light"] .why-ibc-benefit-card {
+  background: #ffffff !important;
+  border-color: rgba(32,35,74,0.09) !important;
+  box-shadow: 0 2px 16px rgba(32,35,74,0.07), 0 1px 4px rgba(0,0,0,0.04) !important;
+}
+:root .why-ibc-benefit-card:hover,
+[data-theme="light"] .why-ibc-benefit-card:hover {
+  background: #ffffff !important;
+  border-color: rgba(109,151,68,0.25) !important;
+  box-shadow: 0 16px 48px rgba(32,35,74,0.11), 0 4px 16px rgba(109,151,68,0.10) !important;
+}
+:root .why-ibc-benefit-card .benefit-label,
+[data-theme="light"] .why-ibc-benefit-card .benefit-label {
+  color: var(--text-primary) !important;
+}
+
+/* Infoabend detail tags: dark text on light tinted background */
+:root .infoabend-detail,
+[data-theme="light"] .infoabend-detail {
+  color: var(--text-primary) !important;
+  background: rgba(109,151,68,0.10) !important;
+  border-color: rgba(109,151,68,0.30) !important;
+}
+:root .infoabend-detail:hover,
+[data-theme="light"] .infoabend-detail:hover {
+  background: rgba(109,151,68,0.18) !important;
+}
+:root .infoabend-detail i,
+[data-theme="light"] .infoabend-detail i {
+  color: var(--ibc-green) !important;
+}
