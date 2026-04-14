@@ -205,7 +205,7 @@
       banner.innerHTML = `
         <div class="cookie-consent__content">
           <div class="cookie-consent__header-row">
-            <h2 id="cookie-consent-heading" data-cookie-i18n="heading">${t.heading}</h2>
+            <h2 id="cookie-consent-heading" data-cookie-i18n="heading"><i class="fas fa-shield-alt" aria-hidden="true" style="margin-right:0.5rem;opacity:0.8;"></i>${t.heading}</h2>
             <div class="cookie-consent__lang-switcher">
               <button type="button" class="cookie-lang-btn" data-lang="de" aria-label="Deutsch">DE</button>
               <button type="button" class="cookie-lang-btn" data-lang="en" aria-label="English">EN</button>

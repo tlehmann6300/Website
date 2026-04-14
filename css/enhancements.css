@@ -586,12 +586,35 @@ html[data-theme="dark"] .navbar .nav-link:focus-visible {
     justify-content: center;
   }
 
+  /* Cookie consent dialog: full-width at bottom on mobile */
   .cookie-consent {
-    left: 0.75rem;
-    right: 0.75rem;
-    max-width: none;
-    width: calc(100vw - 1.5rem);
-    bottom: 0.75rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 100%;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    margin: 0;
+  }
+
+  .cookie-consent__actions {
+    gap: 0.5rem;
+  }
+
+  .cookie-consent__button {
+    min-height: 48px;
+    font-size: 0.9rem;
+  }
+
+  .cookie-consent__categories {
+    max-height: 35vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .cookie-consent__categories::-webkit-scrollbar {
+    display: none;
   }
 }
 
