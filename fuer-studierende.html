@@ -22,13 +22,19 @@
     <link rel="alternate" hreflang="en" href="https://business-consulting.de/fuer-studierende.html?lang=en">
     <link rel="alternate" hreflang="fr" href="https://business-consulting.de/fuer-studierende.html?lang=fr">
     <link rel="alternate" hreflang="x-default" href="https://business-consulting.de/fuer-studierende.html">
-    <script src="js/title-i18n.js"></script>
-    <script src="js/gtag-consent-init.js"></script>
-    <script type="text/plain" data-cookiecategory="analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-GLT586XQ3P"></script>
-    <script type="text/plain" data-cookiecategory="analytics" src="js/gtag-config.js"></script>
-    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <!-- ── Vendor CSS ── -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+
+    <!-- ── Font preloading ── -->
+    <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- ── Icons ── -->
     <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+
+    <!-- ── Design System ── -->
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/mobile-first.css">
@@ -39,11 +45,17 @@
     <link rel="stylesheet" href="css/premium-redesign.css">
     <link rel="stylesheet" href="css/ibc-improvements.css">
     <link rel="stylesheet" href="css/fuer-studierende-v2.css">
+
+    <!-- ── Favicons ── -->
     <link rel="icon" href="assets/img/cropped_maskottchen_32x32.webp" type="image/webp" sizes="32x32" />
-    <style>
-    /* Page-specific overrides – fuer-studierende.html */
-    /* All main styles are in css/fuer-studierende-v2.css */
-    </style>
+    <link rel="icon" href="assets/img/cropped_maskottchen_192x192.webp" type="image/webp" sizes="192x192" />
+    <link rel="apple-touch-icon" href="assets/img/cropped_maskottchen_180x180.webp" />
+
+    <!-- ── i18n & Analytics (head) ── -->
+    <script src="js/title-i18n.js"></script>
+    <script src="js/gtag-consent-init.js"></script>
+    <script type="text/plain" data-cookiecategory="analytics" async src="https://www.googletagmanager.com/gtag/js?id=G-GLT586XQ3P"></script>
+    <script type="text/plain" data-cookiecategory="analytics" src="js/gtag-config.js"></script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -939,6 +951,27 @@
     <div class="footer-divider-continuous" role="separator" aria-hidden="true"></div>
     <div class="copyright-area"><div class="container"><div class="copyright-text"><p>Copyright &copy; <span id="current-year">2025</span>, Institut für Business Consulting e.V. &ndash; <span data-i18n="footer-rights">Alle Rechte vorbehalten.</span></p></div></div></div>
 </footer>
+
+    <div id="copy-banner">
+        <i class="fas fa-check-circle" role="img" aria-label="Bestätigung Symbol"></i>
+        <span>E-Mail-Adresse kopiert!</span>
+    </div>
+    <!-- Mobile Sticky CTA – shown as toast pop-up after 15 seconds (positioned bottom-left, opens from the left) -->
+    <div id="mobile-sticky-cta" aria-hidden="true" style="display:none;">
+        <div class="mobile-cta-inner">
+            <div class="mobile-cta-header">
+                <span class="mobile-cta-icon" aria-hidden="true">🚀</span>
+                <span class="mobile-cta-label" data-i18n="mobile-cta-label">Projekt starten?</span>
+                <button class="mobile-cta-close" aria-label="Schließen">&times;</button>
+            </div>
+            <p class="mobile-cta-tagline" data-i18n="mobile-cta-tagline">Ihr Projekt, unsere Expertise.</p>
+            <p class="mobile-cta-sub" data-i18n="mobile-cta-sub">Kostenlos anfragen – wir melden uns schnell.</p>
+            <a href="kontakt.html" class="mobile-cta-btn" data-i18n="hero-cta" aria-label="Projekt anfragen">
+                Projekt anfragen
+                <i class="mobile-cta-arrow" aria-hidden="true">→</i>
+            </a>
+        </div>
+    </div>
 
 <button id="nav-fab"
         aria-label="Menü öffnen"

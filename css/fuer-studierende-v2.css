@@ -2588,3 +2588,176 @@
     font-size: 0.85rem !important;
   }
 }
+
+/* ============================================================
+   39. COMPLETE DARK MODE REDESIGN – Fuer Studierende Page
+   Comprehensive dark-mode adaptations for all content sections
+   ============================================================ */
+
+/* ── Global dark section rhythm ── */
+[data-theme="dark"] .page-section {
+  background: linear-gradient(180deg, #0B0E1C 0%, #0D1117 100%);
+}
+[data-theme="dark"] .page-section--alt {
+  background: linear-gradient(180deg, #111520 0%, #0E1220 100%);
+}
+[data-theme="dark"] .skills-section {
+  background: linear-gradient(180deg, #0D1117 0%, #0B0E1C 100%);
+}
+[data-theme="dark"] .flip-section {
+  background: linear-gradient(180deg, #0E1220 0%, #0D1117 100%);
+}
+[data-theme="dark"] .infoabend-v2 {
+  background: linear-gradient(135deg, #060916 0%, #0A0F20 40%, #0D1220 100%);
+}
+
+/* ── Stat cards – richer dark appearance ── */
+[data-theme="dark"] .highlight-stat-card {
+  background: linear-gradient(135deg, rgba(20,25,50,0.95) 0%, rgba(16,20,42,0.9) 100%);
+  border-color: rgba(255,255,255,0.07);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.35);
+}
+[data-theme="dark"] .highlight-stat-card:hover {
+  background: linear-gradient(135deg, rgba(25,32,65,0.98) 0%, rgba(20,26,55,0.95) 100%);
+  border-color: rgba(109,151,68,0.3);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.55), 0 0 0 1px rgba(109,151,68,0.15);
+}
+[data-theme="dark"] .highlight-stat-card__num {
+  background: linear-gradient(135deg, var(--ibc-green-light, #7db356) 0%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Angebot cards – glass morphism in dark mode ── */
+[data-theme="dark"] .angebot-card-v2 {
+  background: linear-gradient(135deg, rgba(20,25,52,0.92) 0%, rgba(16,20,44,0.88) 100%);
+  border-color: rgba(255,255,255,0.07);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+[data-theme="dark"] .angebot-card-v2:hover {
+  background: linear-gradient(135deg, rgba(25,32,68,0.97) 0%, rgba(22,28,58,0.95) 100%);
+  border-color: rgba(109,151,68,0.28);
+  box-shadow: 0 20px 52px rgba(0,0,0,0.55), 0 0 0 1px rgba(109,151,68,0.12);
+}
+
+/* ── Skill badges – darker elevated look ── */
+[data-theme="dark"] .skill-badge {
+  background: linear-gradient(135deg, rgba(22,28,56,0.9) 0%, rgba(18,22,48,0.85) 100%);
+  border-color: rgba(255,255,255,0.08);
+}
+[data-theme="dark"] .skill-badge:hover {
+  background: linear-gradient(135deg, rgba(109,151,68,0.18) 0%, rgba(99,102,241,0.12) 100%);
+  border-color: rgba(109,151,68,0.4);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35), 0 0 0 1px rgba(109,151,68,0.1);
+}
+
+/* ── Apply steps – improved depth ── */
+[data-theme="dark"] .apply-step__body {
+  background: linear-gradient(135deg, rgba(20,25,52,0.9) 0%, rgba(16,20,44,0.85) 100%);
+  border-color: rgba(255,255,255,0.07);
+}
+[data-theme="dark"] .apply-step:hover .apply-step__body {
+  background: linear-gradient(135deg, rgba(25,32,68,0.95) 0%, rgba(22,28,58,0.92) 100%);
+  border-color: rgba(109,151,68,0.3);
+  box-shadow: 0 16px 44px rgba(0,0,0,0.5);
+}
+
+/* ── FAQ items – subtle glass cards ── */
+[data-theme="dark"] .faq-item {
+  background: linear-gradient(135deg, rgba(18,22,48,0.9) 0%, rgba(15,18,40,0.85) 100%);
+  border-color: rgba(255,255,255,0.07);
+}
+[data-theme="dark"] .faq-item.is-open {
+  background: linear-gradient(135deg, rgba(22,28,58,0.96) 0%, rgba(18,22,50,0.93) 100%);
+  border-color: rgba(109,151,68,0.3);
+}
+
+/* ── Flip cards – richer dark look ── */
+[data-theme="dark"] .flip-card-front {
+  background: linear-gradient(135deg, rgba(20,25,56,0.95) 0%, rgba(16,20,48,0.9) 100%);
+  border-color: rgba(255,255,255,0.08);
+}
+
+/* ── Infoabend date badge dark ── */
+[data-theme="dark"] .infoabend-date-badge {
+  background: rgba(109,151,68,0.12);
+  border: 1px solid rgba(109,151,68,0.25);
+  color: var(--ibc-green-light, #7db356);
+}
+
+/* ── CTA banner – deepen the dark gradient ── */
+[data-theme="dark"] .cta-banner {
+  background: linear-gradient(135deg, #060916 0%, #0A0F20 50%, #070B18 100%);
+}
+
+/* ── Event slider items – dark refinement ── */
+[data-theme="dark"] .event-slider-item-v2 {
+  background: linear-gradient(135deg, rgba(18,22,50,0.95) 0%, rgba(14,18,42,0.9) 100%);
+  border-color: rgba(255,255,255,0.07);
+}
+
+/* ── Testimonial cards – dark glass ── */
+[data-theme="dark"] .ibc-testimonial-card {
+  background: linear-gradient(135deg, rgba(20,25,54,0.96) 0%, rgba(16,20,46,0.92) 100%);
+  border-color: rgba(255,255,255,0.07);
+}
+
+/* ── Smooth theme transition for all surfaces ── */
+[data-theme="dark"] .highlight-stat-card,
+[data-theme="dark"] .angebot-card-v2,
+[data-theme="dark"] .skill-badge,
+[data-theme="dark"] .faq-item,
+[data-theme="dark"] .flip-card-front,
+[data-theme="dark"] .apply-step__body,
+[data-theme="dark"] .event-slider-item-v2,
+[data-theme="dark"] .ibc-testimonial-card {
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Section ambient light accents in dark mode ── */
+/* Base pseudo-element setup for page-section */
+.page-section,
+.page-section--alt {
+  position: relative;
+  overflow: hidden;
+}
+.page-section::before,
+.page-section--alt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+[data-theme="dark"] .page-section::before {
+  opacity: 1;
+  background:
+    radial-gradient(ellipse 50% 50% at 80% 20%, rgba(109,151,68,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(99,102,241,0.05) 0%, transparent 60%);
+}
+[data-theme="dark"] .page-section--alt::before {
+  opacity: 1;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 30%, rgba(109,151,68,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 85% 70%, rgba(99,102,241,0.06) 0%, transparent 60%);
+}
+[data-theme="dark"] .skills-section::before {
+  background:
+    radial-gradient(ellipse 55% 60% at 90% 50%, rgba(109,151,68,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 55% at 10% 50%, rgba(99,102,241,0.07) 0%, transparent 60%);
+}
+
+/* Ensure inner content is above the ::before overlay */
+.page-section > .container,
+.page-section--alt > .container {
+  position: relative;
+  z-index: 1;
+}
