@@ -1524,8 +1524,7 @@ blockquote {
 }
 
 @media (max-width: 767.98px) {
-  .navbar .dark-mode-toggle,
-  .navbar .lang-toggle {
+  .navbar .dark-mode-toggle {
     font-size: inherit !important;
     padding: 0 !important;
     height: 36px !important;
@@ -1533,6 +1532,7 @@ blockquote {
   }
 
   .navbar .lang-toggle {
+    font-size: inherit !important;
     width: auto !important;
     min-height: 36px !important;
     padding: 0.3rem 0.75rem !important;
