@@ -1207,6 +1207,8 @@
 <script>
 (function () {
     'use strict';
+    var FIRST_PHONE_FALLBACK_DELAY_MS = 500;
+
     function processInstagramEmbeds() {
         if (window.instgrm && window.instgrm.Embeds && typeof window.instgrm.Embeds.process === 'function') {
             window.instgrm.Embeds.process();
@@ -1218,9 +1220,22 @@
     function ensureInstagramEmbedsProcessed() {
         if (processInstagramEmbeds()) return;
         var script = document.querySelector('script[data-instagram-embed-script]');
-        if (!script || script.getAttribute('data-instagram-listener-bound') === 'true') return;
+        if (!script) return;
+        if (script.getAttribute('data-instagram-loaded') === 'true') {
+            processInstagramEmbeds();
+            return;
+        }
+        if (script.readyState === 'complete' || script.readyState === 'loaded') {
+            script.setAttribute('data-instagram-loaded', 'true');
+            processInstagramEmbeds();
+            return;
+        }
+        if (script.getAttribute('data-instagram-listener-bound') === 'true') return;
         script.setAttribute('data-instagram-listener-bound', 'true');
-        script.addEventListener('load', processInstagramEmbeds, { once: true });
+        script.addEventListener('load', function () {
+            script.setAttribute('data-instagram-loaded', 'true');
+            processInstagramEmbeds();
+        }, { once: true });
     }
 
     function bootPhone(phoneFrame) {
@@ -1267,7 +1282,7 @@
                             bootPhone(phone);
                         }
                     }
-                }, 500);
+                }, FIRST_PHONE_FALLBACK_DELAY_MS);
             }
         });
     }
