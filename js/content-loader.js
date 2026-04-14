@@ -160,21 +160,6 @@
         if (mapsIframe && data.iframes?.googleMaps && isValidUrl(data.iframes.googleMaps)) {
             mapsIframe.setAttribute('src', data.iframes.googleMaps);
         }
-        const instagramIframes = document.querySelectorAll('[data-instagram-embed]');
-        if (instagramIframes.length > 0 && data.iframes?.instagramEmbeds) {
-            instagramIframes.forEach((iframe, index) => {
-                if (data.iframes.instagramEmbeds[index] && isValidUrl(data.iframes.instagramEmbeds[index])) {
-                    // DSGVO 2-click: store URL as data attribute; let consent overlay handle loading
-                    const wrap = iframe.closest('.instagram-frame-wrap');
-                    const hasOverlay = wrap && wrap.querySelector('.ig-consent-overlay');
-                    if (hasOverlay) {
-                        iframe.setAttribute('data-src', data.iframes.instagramEmbeds[index]);
-                    } else {
-                        iframe.setAttribute('src', data.iframes.instagramEmbeds[index]);
-                    }
-                }
-            });
-        }
     }
     async function loadMediaConfig() {
         if (!dataCache.mediaConfig) {
