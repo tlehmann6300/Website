@@ -1113,72 +1113,147 @@
   margin-right: 0;
 }
 
+/* ── Phone float wrapper (handles floating animation separately from hover) ── */
+.phone-float-wrap {
+  flex: 0 0 auto;
+  list-style: none;
+  animation: phoneEntrance 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+             phoneFloat 6s ease-in-out infinite;
+}
+.phone-float-wrap:nth-child(2) { animation-delay: 0.15s, 1s; }
+.phone-float-wrap:nth-child(3) { animation-delay: 0.3s, 2s; }
+
 /* ── Phone frame ── */
 .instagram-frame-wrap {
   position: relative;
   width: 290px;
-  flex: 0 0 auto;
-  background: linear-gradient(160deg, #252538 0%, #141422 60%, #0f0f1c 100%);
-  border-radius: 52px;
-  padding: 68px 14px 54px;
+  background: linear-gradient(160deg, #2e2e4a 0%, #1a1a30 40%, #0f0f1e 100%);
+  border-radius: 54px;
+  padding: 72px 16px 58px;
   box-shadow:
-    0 0 0 1.5px rgba(255,255,255,0.13),
-    0 0 0 3.5px rgba(12,12,26,0.95),
-    0 0 0 4.5px rgba(255,255,255,0.05),
+    0 0 0 1.5px rgba(255,255,255,0.15),
+    0 0 0 3.5px rgba(10,10,22,0.97),
+    0 0 0 5px rgba(255,255,255,0.06),
     0 40px 80px rgba(0,0,0,0.55),
     0 12px 28px rgba(0,0,0,0.3),
-    inset 0 1px 0 rgba(255,255,255,0.07);
+    0 55px 60px -20px rgba(99,102,241,0.35),
+    0 55px 80px -30px rgba(109,151,68,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.09);
   transition:
-    transform 0.45s var(--ease-spring),
-    box-shadow 0.35s ease;
+    transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.4s ease;
   overflow: visible;
   outline: none;
   cursor: pointer;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
-/* Dynamic island notch */
+/* Dynamic island notch with camera dot */
 .instagram-frame-wrap::before {
   content: '';
   position: absolute;
-  top: 22px;
+  top: 24px;
   left: 50%;
   transform: translateX(-50%);
-  width: 108px;
-  height: 30px;
-  background: #080812;
-  border-radius: 15px;
+  width: 110px;
+  height: 32px;
+  background: #06060f;
+  border-radius: 16px;
   z-index: 10;
-  box-shadow: inset 0 1px 2px rgba(255,255,255,0.05);
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,0.06),
+    0 1px 4px rgba(0,0,0,0.6);
 }
 /* Home indicator bar */
 .instagram-frame-wrap::after {
   content: '';
   position: absolute;
-  bottom: 18px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 116px;
+  width: 120px;
   height: 5px;
-  background: rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.25);
   border-radius: 3px;
-  transition: background 0.3s;
+  transition: background 0.3s, width 0.3s;
 }
 
-/* Hover lift */
+/* Hover: lift + gentle 3D tilt */
 .instagram-frame-wrap:hover {
-  transform: translateY(-14px) scale(1.02);
+  transform: translateY(-18px) scale(1.03) rotateX(3deg);
   box-shadow:
-    0 0 0 1.5px rgba(255,255,255,0.16),
-    0 0 0 3.5px rgba(12,12,26,0.95),
-    0 0 0 4.5px rgba(255,255,255,0.06),
-    0 64px 100px rgba(0,0,0,0.6),
-    0 24px 44px rgba(0,0,0,0.35),
-    0 0 60px rgba(109,151,68,0.15),
-    inset 0 1px 0 rgba(255,255,255,0.09);
+    0 0 0 1.5px rgba(255,255,255,0.2),
+    0 0 0 3.5px rgba(10,10,22,0.97),
+    0 0 0 5px rgba(255,255,255,0.08),
+    0 70px 110px rgba(0,0,0,0.65),
+    0 28px 48px rgba(0,0,0,0.4),
+    0 70px 80px -20px rgba(99,102,241,0.5),
+    0 70px 100px -30px rgba(109,151,68,0.35),
+    0 0 70px rgba(109,151,68,0.2),
+    inset 0 1px 0 rgba(255,255,255,0.12);
 }
-.instagram-frame-wrap:hover::after { background: rgba(255,255,255,0.4); }
+.instagram-frame-wrap:hover::after {
+  background: rgba(255,255,255,0.45);
+  width: 100px;
+}
 
-/* The iframe screen */
+/* Side buttons – power button (right side) */
+.phone-side-btn {
+  position: absolute;
+  background: linear-gradient(180deg, #2e2e48, #1a1a2e);
+  border-radius: 3px;
+  z-index: 5;
+}
+.phone-side-btn--power {
+  right: -4px;
+  top: 120px;
+  width: 4px;
+  height: 70px;
+  border-radius: 0 3px 3px 0;
+  box-shadow: 2px 0 6px rgba(0,0,0,0.4), inset -1px 0 0 rgba(255,255,255,0.08);
+}
+.phone-side-btn--vol-up {
+  left: -4px;
+  top: 100px;
+  width: 4px;
+  height: 45px;
+  border-radius: 3px 0 0 3px;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.4), inset 1px 0 0 rgba(255,255,255,0.08);
+}
+.phone-side-btn--vol-down {
+  left: -4px;
+  top: 156px;
+  width: 4px;
+  height: 45px;
+  border-radius: 3px 0 0 3px;
+  box-shadow: -2px 0 6px rgba(0,0,0,0.4), inset 1px 0 0 rgba(255,255,255,0.08);
+}
+
+/* Screen glare – diagonal highlight */
+.phone-screen-glare {
+  position: absolute;
+  top: 72px;
+  left: 16px;
+  right: 16px;
+  bottom: 58px;
+  border-radius: 24px;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.07) 0%,
+    rgba(255,255,255,0.02) 30%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 4;
+  transition: opacity 0.3s;
+}
+.instagram-frame-wrap:hover .phone-screen-glare {
+  opacity: 0.5;
+}
+
+/* Video / iframe screen */
+.instagram-frame-wrap video,
 .instagram-frame-wrap iframe {
   display: block;
   width: 100%;
@@ -1187,42 +1262,48 @@
   border-radius: 24px;
   background: #000;
   position: relative;
-  z-index: 1;
+  z-index: 2;
   overflow: hidden;
   pointer-events: auto;
+  object-fit: cover;
 }
 
 /* Dark mode – deeper frame */
 [data-theme="dark"] .instagram-frame-wrap {
-  background: linear-gradient(160deg, #1a1a2a 0%, #0e0e1c 60%, #090910 100%);
+  background: linear-gradient(160deg, #1e1e30 0%, #111120 40%, #080810 100%);
   box-shadow:
-    0 0 0 1.5px rgba(255,255,255,0.07),
-    0 0 0 3.5px rgba(6,6,15,0.98),
-    0 0 0 4.5px rgba(255,255,255,0.03),
+    0 0 0 1.5px rgba(255,255,255,0.09),
+    0 0 0 3.5px rgba(4,4,12,0.98),
+    0 0 0 5px rgba(255,255,255,0.04),
     0 40px 80px rgba(0,0,0,0.75),
     0 12px 28px rgba(0,0,0,0.45),
-    inset 0 1px 0 rgba(255,255,255,0.04);
+    0 55px 60px -20px rgba(99,102,241,0.4),
+    0 55px 80px -30px rgba(109,151,68,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.05);
 }
 [data-theme="dark"] .instagram-frame-wrap:hover {
   box-shadow:
-    0 0 0 1.5px rgba(255,255,255,0.1),
-    0 0 0 3.5px rgba(6,6,15,0.98),
-    0 0 0 4.5px rgba(255,255,255,0.04),
-    0 64px 100px rgba(0,0,0,0.82),
-    0 24px 44px rgba(0,0,0,0.5),
-    0 0 60px rgba(109,151,68,0.12),
-    inset 0 1px 0 rgba(255,255,255,0.06);
+    0 0 0 1.5px rgba(255,255,255,0.13),
+    0 0 0 3.5px rgba(4,4,12,0.98),
+    0 0 0 5px rgba(255,255,255,0.05),
+    0 70px 110px rgba(0,0,0,0.85),
+    0 28px 48px rgba(0,0,0,0.55),
+    0 70px 80px -20px rgba(99,102,241,0.55),
+    0 70px 100px -30px rgba(109,151,68,0.4),
+    0 0 70px rgba(109,151,68,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.07);
 }
 
-/* Entrance animation for phone frames */
-.instagram-frame-wrap {
-  animation: phoneEntrance 0.8s var(--ease-out-expo) both;
-}
-.instagram-frame-wrap:nth-child(2) { animation-delay: 0.1s; }
-.instagram-frame-wrap:nth-child(3) { animation-delay: 0.2s; }
+/* Entrance animation */
 @keyframes phoneEntrance {
-  from { opacity: 0; transform: translateY(30px) scale(0.94); }
-  to   { opacity: 1; transform: translateY(0) scale(1); }
+  from { opacity: 0; transform: translateY(50px) scale(0.88) rotateX(12deg); }
+  to   { opacity: 1; transform: translateY(0)    scale(1)    rotateX(0deg); }
+}
+
+/* Floating animation */
+@keyframes phoneFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
 }
 
 /* ============================================================
@@ -1337,7 +1418,8 @@
   .carousel-ctrl--next { right: -22px; }
   .instagram-container-v2 { gap: 2rem; }
   .instagram-frame-wrap { width: 265px; }
-  .instagram-frame-wrap iframe { height: 470px; }
+  .instagram-frame-wrap iframe,
+  .instagram-frame-wrap video { height: 470px; }
 }
 
 /* ── Mobile L (≤ 767px) ── */
@@ -1437,12 +1519,15 @@
     margin-top: 2.5rem;
   }
   .instagram-container-v2::-webkit-scrollbar { display: none; }
-  .instagram-frame-wrap {
+  .phone-float-wrap {
     scroll-snap-align: center;
     flex-shrink: 0;
+  }
+  .instagram-frame-wrap {
     width: 255px;
   }
-  .instagram-frame-wrap iframe { height: 460px; }
+  .instagram-frame-wrap iframe,
+  .instagram-frame-wrap video { height: 460px; }
 
   /* Timeline */
   .apply-steps::before { left: 22px; }
@@ -1472,10 +1557,14 @@
     width: 96px;
     bottom: 14px;
   }
-  .instagram-frame-wrap iframe {
+  .instagram-frame-wrap iframe,
+  .instagram-frame-wrap video {
     height: 420px;
     border-radius: 20px;
   }
+  .phone-side-btn--power { top: 100px; height: 58px; }
+  .phone-side-btn--vol-up { top: 88px; height: 38px; }
+  .phone-side-btn--vol-down { top: 136px; height: 38px; }
 
   .flip-card { height: 190px !important; min-height: 190px !important; }
 
@@ -1936,67 +2025,16 @@
 }
 
 /* ============================================================
-   19. INSTAGRAM PHONES – bottom glow (v3 polish)
+   19. INSTAGRAM PHONES – reduced-motion override
    ============================================================ */
-/* CSS custom properties for the layered phone box-shadows */
-:root {
-  --phone-ring-light: 0 0 0 1.5px rgba(255,255,255,0.13),
-                      0 0 0 3.5px rgba(12,12,26,0.95),
-                      0 0 0 4.5px rgba(255,255,255,0.05);
-  --phone-depth-light: 0 40px 80px rgba(0,0,0,0.55),
-                       0 12px 28px rgba(0,0,0,0.3);
-  --phone-glow-light:  0 55px 60px -20px rgba(99,102,241,0.35),
-                       0 55px 80px -30px rgba(109,151,68,0.2);
-  --phone-inset-light: inset 0 1px 0 rgba(255,255,255,0.07);
-
-  --phone-ring-dark:   0 0 0 1.5px rgba(255,255,255,0.07),
-                       0 0 0 3.5px rgba(6,6,15,0.98),
-                       0 0 0 4.5px rgba(255,255,255,0.03);
-  --phone-depth-dark:  0 40px 80px rgba(0,0,0,0.75),
-                       0 12px 28px rgba(0,0,0,0.45);
-  --phone-glow-dark:   0 55px 60px -20px rgba(99,102,241,0.4),
-                       0 55px 80px -30px rgba(109,151,68,0.25);
-  --phone-inset-dark:  inset 0 1px 0 rgba(255,255,255,0.04);
-}
-
-/* Override box-shadow to include glow */
-.instagram-container-v2 .instagram-frame-wrap {
-  box-shadow:
-    var(--phone-ring-light),
-    var(--phone-depth-light),
-    var(--phone-glow-light),
-    var(--phone-inset-light);
-}
-.instagram-container-v2 .instagram-frame-wrap:hover {
-  box-shadow:
-    0 0 0 1.5px rgba(255,255,255,0.16),
-    0 0 0 3.5px rgba(12,12,26,0.95),
-    0 0 0 4.5px rgba(255,255,255,0.06),
-    0 64px 100px rgba(0,0,0,0.6),
-    0 24px 44px rgba(0,0,0,0.35),
-    0 65px 80px -20px rgba(99,102,241,0.45),
-    0 65px 100px -30px rgba(109,151,68,0.3),
-    0 0 60px rgba(109,151,68,0.15),
-    inset 0 1px 0 rgba(255,255,255,0.09);
-}
-[data-theme="dark"] .instagram-container-v2 .instagram-frame-wrap {
-  box-shadow:
-    var(--phone-ring-dark),
-    var(--phone-depth-dark),
-    var(--phone-glow-dark),
-    var(--phone-inset-dark);
-}
-[data-theme="dark"] .instagram-container-v2 .instagram-frame-wrap:hover {
-  box-shadow:
-    0 0 0 1.5px rgba(255,255,255,0.1),
-    0 0 0 3.5px rgba(6,6,15,0.98),
-    0 0 0 4.5px rgba(255,255,255,0.04),
-    0 64px 100px rgba(0,0,0,0.82),
-    0 24px 44px rgba(0,0,0,0.5),
-    0 65px 80px -20px rgba(99,102,241,0.5),
-    0 65px 100px -30px rgba(109,151,68,0.35),
-    0 0 60px rgba(109,151,68,0.12),
-    inset 0 1px 0 rgba(255,255,255,0.06);
+@media (prefers-reduced-motion: reduce) {
+  /* Disable only the continuous floating; keep instant entrance */
+  .phone-float-wrap {
+    animation: phoneEntrance 0.01ms both !important;
+  }
+  .instagram-frame-wrap:hover {
+    transform: translateY(-8px) !important;
+  }
 }
 
 /* ============================================================
