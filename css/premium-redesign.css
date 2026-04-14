@@ -1468,7 +1468,6 @@ blockquote {
 .navbar .nav-link::after,
 .navbar .nav-link[aria-current="page"]::before {
   display: none !important;
-  content: none !important;
 }
 
 .navbar .dark-mode-toggle {
