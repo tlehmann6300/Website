@@ -691,8 +691,8 @@
                     Unsere <span class="text-gradient">Instagram Highlights</span>
                 </h2>
             </div>
-            <div class="instagram-container-v2" role="list" aria-label="Instagram Reels">
-                <div class="instagram-frame-wrap" data-animation-delay="0ms" role="listitem">
+            <ul class="instagram-container-v2" aria-label="Instagram Reels">
+                <li class="instagram-frame-wrap" data-animation-delay="0ms">
                     <!-- sandbox: allow-scripts + allow-same-origin ermöglicht Instagrams JS/Cookies;
                          allow-popups öffnet Link-Klicks als neuen Tab statt die übergeordnete Seite zu verlassen;
                          allow-popups-to-escape-sandbox stellt sicher, dass das Popup normal funktioniert.
@@ -710,8 +710,8 @@
                     <noscript>
                         <p><a href="https://www.instagram.com/reel/DQeoSSkCPhy/" target="_blank" rel="noopener noreferrer">Instagram Reel ansehen</a></p>
                     </noscript>
-                </div>
-                <div class="instagram-frame-wrap" data-animation-delay="100ms" role="listitem">
+                </li>
+                <li class="instagram-frame-wrap" data-animation-delay="100ms">
                     <iframe data-instagram-embed="1"
                             src="https://www.instagram.com/reel/DPbSLC-iHdd/embed/"
                             title="Instagram Reel: IBC Events und Aktivitäten"
@@ -725,8 +725,8 @@
                     <noscript>
                         <p><a href="https://www.instagram.com/reel/DPbSLC-iHdd/" target="_blank" rel="noopener noreferrer">Instagram Reel ansehen</a></p>
                     </noscript>
-                </div>
-                <div class="instagram-frame-wrap" data-animation-delay="200ms" role="listitem">
+                </li>
+                <li class="instagram-frame-wrap" data-animation-delay="200ms">
                     <iframe data-instagram-embed="2"
                             src="https://www.instagram.com/reel/DPv0VTiCEFb/embed/"
                             title="Instagram Reel: IBC Teamwork und Projekte"
@@ -740,10 +740,10 @@
                     <noscript>
                         <p><a href="https://www.instagram.com/reel/DPv0VTiCEFb/" target="_blank" rel="noopener noreferrer">Instagram Reel ansehen</a></p>
                     </noscript>
-                </div>
-            </div>
-            <p class="instagram-scroll-hint" aria-hidden="true">
-                <i class="fas fa-hand-pointer"></i> Wische, um mehr zu sehen
+                </li>
+            </ul>
+            <p class="instagram-scroll-hint">
+                <i class="fas fa-hand-pointer" aria-hidden="true"></i> Wische, um mehr zu sehen
             </p>
             <div class="text-center mt-5 fade-in-up" data-animation-delay="300ms">
                 <a href="https://www.instagram.com/ibc_e.v/" target="_blank" rel="noopener noreferrer" class="ethereal-button">
@@ -934,7 +934,7 @@
                     btn.setAttribute('aria-expanded', 'true');
                     answer.hidden = false;
                     /* Smooth scroll into view on mobile */
-                    if (window.innerWidth < 768) {
+                    if (window.matchMedia('(max-width: 767px)').matches) {
                         setTimeout(function () {
                             item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                         }, 100);

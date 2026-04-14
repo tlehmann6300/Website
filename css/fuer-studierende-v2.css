@@ -1108,6 +1108,9 @@
   align-items: flex-start;
   margin-top: 3.5rem;
   padding: 1rem 0 2rem;
+  list-style: none;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 /* ── Phone frame ── */
