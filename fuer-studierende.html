@@ -599,6 +599,10 @@
             </div>
             <div class="instagram-container-v2">
                 <div class="instagram-frame-wrap" data-animation-delay="0ms">
+                    <!-- sandbox: allow-scripts + allow-same-origin ermöglicht Instagrams JS/Cookies;
+                         allow-popups öffnet Link-Klicks als neuen Tab statt die übergeordnete Seite zu verlassen;
+                         allow-popups-to-escape-sandbox stellt sicher, dass das Popup normal funktioniert.
+                         allow-top-navigation ist BEWUSST weggelassen, damit Nutzer nie von dieser Seite weggeleitet werden. -->
                     <iframe data-instagram-embed="0"
                             src="https://www.instagram.com/reel/DQeoSSkCPhy/embed/"
                             title="Instagram Reel: IBC Veranstaltungshighlights"
@@ -606,6 +610,7 @@
                             scrolling="no"
                             allowtransparency="true"
                             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                            sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox"
                             referrerpolicy="strict-origin-when-cross-origin"
                             loading="lazy"></iframe>
                     <noscript>
@@ -620,6 +625,7 @@
                             scrolling="no"
                             allowtransparency="true"
                             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                            sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox"
                             referrerpolicy="strict-origin-when-cross-origin"
                             loading="lazy"></iframe>
                     <noscript>
@@ -634,6 +640,7 @@
                             scrolling="no"
                             allowtransparency="true"
                             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                            sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-popups-to-escape-sandbox"
                             referrerpolicy="strict-origin-when-cross-origin"
                             loading="lazy"></iframe>
                     <noscript>
