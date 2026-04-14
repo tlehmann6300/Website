@@ -849,10 +849,10 @@
                         <div class="instagram-container" id="content-1">
                             <blockquote class="instagram-media"
                                         data-instgrm-captioned
-                                        data-instgrm-permalink="https://www.instagram.com/reel/DWOGn1ACMNI/?utm_source=ig_embed&amp;utm_campaign=loading"
+                                        data-instgrm-permalink="https://www.instagram.com/reel/DQeoSSkCPhy/?utm_source=ig_embed&amp;utm_campaign=loading"
                                         data-instgrm-version="14">
                                 <div style="padding:0;">
-                                    <a href="https://www.instagram.com/reel/DWOGn1ACMNI/" style="text-decoration:none;" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://www.instagram.com/reel/DQeoSSkCPhy/" style="text-decoration:none;" target="_blank" rel="noopener noreferrer">
                                         <div style="padding:19% 0; background:#f4f4f4;"></div>
                                     </a>
                                 </div>
@@ -874,10 +874,10 @@
                         <div class="instagram-container" id="content-2">
                             <blockquote class="instagram-media"
                                         data-instgrm-captioned
-                                        data-instgrm-permalink="https://www.instagram.com/reel/DWOGn1ACMNI/?utm_source=ig_embed&amp;utm_campaign=loading"
+                                        data-instgrm-permalink="https://www.instagram.com/reel/DPbSLC-iHdd/?utm_source=ig_embed&amp;utm_campaign=loading"
                                         data-instgrm-version="14">
                                 <div style="padding:0;">
-                                    <a href="https://www.instagram.com/reel/DWOGn1ACMNI/" style="text-decoration:none;" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://www.instagram.com/reel/DPbSLC-iHdd/" style="text-decoration:none;" target="_blank" rel="noopener noreferrer">
                                         <div style="padding:19% 0; background:#f4f4f4;"></div>
                                     </a>
                                 </div>
@@ -899,10 +899,10 @@
                         <div class="instagram-container" id="content-3">
                             <blockquote class="instagram-media"
                                         data-instgrm-captioned
-                                        data-instgrm-permalink="https://www.instagram.com/reel/DWOGn1ACMNI/?utm_source=ig_embed&amp;utm_campaign=loading"
+                                        data-instgrm-permalink="https://www.instagram.com/reel/DPv0VTiCEFb/?utm_source=ig_embed&amp;utm_campaign=loading"
                                         data-instgrm-version="14">
                                 <div style="padding:0;">
-                                    <a href="https://www.instagram.com/reel/DWOGn1ACMNI/" style="text-decoration:none;" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://www.instagram.com/reel/DPv0VTiCEFb/" style="text-decoration:none;" target="_blank" rel="noopener noreferrer">
                                         <div style="padding:19% 0; background:#f4f4f4;"></div>
                                     </a>
                                 </div>
@@ -1203,10 +1203,26 @@
     }
 }());
 </script>
-<script async src="//www.instagram.com/embed.js"></script>
+<script async src="https://www.instagram.com/embed.js" data-instagram-embed-script></script>
 <script>
 (function () {
     'use strict';
+    function processInstagramEmbeds() {
+        if (window.instgrm && window.instgrm.Embeds && typeof window.instgrm.Embeds.process === 'function') {
+            window.instgrm.Embeds.process();
+            return true;
+        }
+        return false;
+    }
+
+    function ensureInstagramEmbedsProcessed() {
+        if (processInstagramEmbeds()) return;
+        var script = document.querySelector('script[data-instagram-embed-script]');
+        if (!script || script.getAttribute('data-instagram-listener-bound') === 'true') return;
+        script.setAttribute('data-instagram-listener-bound', 'true');
+        script.addEventListener('load', processInstagramEmbeds, { once: true });
+    }
+
     function bootPhone(phoneFrame) {
         var id = phoneFrame.getAttribute('data-id');
         var bootScreen = document.getElementById('boot-' + id);
@@ -1218,9 +1234,7 @@
             if (bootScreen) bootScreen.classList.add('booted');
             if (content) content.classList.add('loaded');
 
-            if (window.instgrm) {
-                window.instgrm.Embeds.process();
-            }
+            ensureInstagramEmbedsProcessed();
         }, 2000);
     }
 
