@@ -1197,6 +1197,7 @@
 (function () {
     'use strict';
     var FIRST_PHONE_FALLBACK_DELAY_MS = 500;
+    var PHONE_BOOT_DURATION_MS = 3000;
 
     function processInstagramEmbeds() {
         if (window.instgrm && window.instgrm.Embeds && typeof window.instgrm.Embeds.process === 'function') {
@@ -1239,7 +1240,7 @@
             if (content) content.classList.add('loaded');
 
             ensureInstagramEmbedsProcessed();
-        }, 2000);
+        }, PHONE_BOOT_DURATION_MS);
     }
 
     function initPhoneEmbeds() {
