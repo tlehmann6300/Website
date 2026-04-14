@@ -123,7 +123,7 @@ img {
   opacity: 0.92;
 }
 
-/* Nav-Links mit animiertem Underline */
+/* Nav-Links mit animiertem Underline (nicht in der Navbar) */
 .nav-link {
   position: relative;
   padding-bottom: 0.45rem !important;
@@ -145,6 +145,10 @@ img {
 .nav-link.active::after,
 .nav-link[aria-current="page"]::after {
   transform: scaleX(1);
+}
+/* Navbar nav-links match index.html – no underline animation */
+.navbar .nav-link::after {
+  display: none;
 }
 
 /* Mobile Nav Verbesserungen */
@@ -881,12 +885,7 @@ textarea.form-control {
   box-shadow: 0 0 8px rgba(125,179,86,0.4);
 }
 
-/* Darkmode Navigation – eleganter Übergang */
-[data-theme="dark"] .navbar.is-scrolled,
-[data-theme="dark"] .navbar.scrolled {
-  background: rgba(7, 9, 20, 0.97) !important;
-  box-shadow: 0 4px 40px rgba(0,0,0,0.7), 0 1px 0 rgba(255,255,255,0.05) !important;
-}
+/* Darkmode Navigation – dark-mode scrolled state is handled by mobile-first.css */
 
 
 /* ============================================================
@@ -1430,7 +1429,7 @@ blockquote {
 }
 
 @media (max-width: 767.98px) {
-  .navbar {
+  .navbar:not(.scrolled) {
     height: var(--nav-height) !important;
   }
   .navbar-logo {
