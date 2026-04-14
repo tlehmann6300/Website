@@ -2500,9 +2500,6 @@
 .infoabend-spotlight__heading {
   color: #fff;
 }
-[data-theme="dark"] .infoabend-spotlight__heading {
-  color: #fff;
-}
 
 /* Body text inside spotlight */
 .infoabend-spotlight__text {
@@ -2510,9 +2507,6 @@
   font-size: 1rem;
   line-height: 1.8;
   margin-bottom: 1.75rem;
-}
-[data-theme="dark"] .infoabend-spotlight__text {
-  color: rgba(255,255,255,0.8);
 }
 
 /* Light mode overrides for infoabend spotlight heading & text */
