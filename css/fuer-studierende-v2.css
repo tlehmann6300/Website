@@ -1232,8 +1232,11 @@
   width: 0;
   height: 100%;
   background: #fff;
-  animation: igBootLoad 1.5s ease-out forwards;
-  animation-delay: 0.5s;
+}
+
+#instagram-section .phone-frame.visible .boot-progress::after {
+  animation: igBootLoad 2.5s ease-out forwards;
+  animation-delay: 0.3s;
 }
 
 @keyframes igBootLoad {
