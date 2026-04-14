@@ -27,7 +27,6 @@
             --transition-medium: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             --navbar-height: 95px;
-            --navbar-height-scrolled: 95px;
         }
 
         [data-theme="dark"] {
@@ -111,7 +110,7 @@
 
         #navbar.scrolled,
         #navbar.is-scrolled {
-            height: var(--navbar-height-scrolled) !important;
+            height: var(--navbar-height) !important;
             width: 100% !important;
             top: 0 !important;
             border-radius: 0 !important;
@@ -376,7 +375,6 @@
             min-width: 160px;
             opacity: 0;
             visibility: hidden;
-            pointer-events: none;
             transform: translateY(-15px) scale(0.95);
             transition: all var(--transition-medium);
             box-shadow: 0 20px 50px var(--shadow-lg);
