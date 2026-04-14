@@ -2267,6 +2267,32 @@ p:last-child { margin-bottom: 0; }
   color: var(--ibc-green-light);
 }
 
+/* FAB overlay – dark mode toggle row */
+.fab-dark-mode-row {
+  margin-top: 1.5rem;
+}
+.fab-dark-mode-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.65);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--t-fast) var(--ease);
+}
+.fab-dark-mode-btn:hover {
+  background: rgba(109,151,68,0.25);
+  color: var(--ibc-green-light);
+}
+.fab-dark-mode-label {
+  font-size: 0.85rem;
+}
+
 
 /* ============================================================
    18. COOKIE CONSENT

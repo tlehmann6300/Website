@@ -92,32 +92,97 @@
 </div>
 <nav class="navbar navbar-expand-xl is-scrolled" aria-label="Hauptnavigation" role="navigation">
     <div class="container">
-        <a class="navbar-brand" href="index.html"><img src="assets/img/ibc_logo_original_navbar.webp" alt="IBC Logo" class="navbar-logo"></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Hauptmenü öffnen">
-            <span class="toggler-icon" aria-hidden="true"><span class="toggler-bar"></span><span class="toggler-bar"></span><span class="toggler-bar"></span></span>
+        <a class="navbar-brand" href="index.html" aria-label="Zur Startseite">
+            <img src="assets/img/ibc_logo_original_navbar.webp" alt="IBC Logo" class="navbar-logo">
+        </a>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNav"
+                aria-controls="mainNav"
+                aria-expanded="false"
+                aria-label="Hauptmenü öffnen"
+                data-i18n-aria="navbar-toggle">
+            <span class="toggler-icon" aria-hidden="true">
+                <span class="toggler-bar"></span>
+                <span class="toggler-bar"></span>
+                <span class="toggler-bar"></span>
+            </span>
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
             <ul class="navbar-nav ms-auto align-items-lg-center" role="menubar">
-                <li class="nav-item" role="none"><a class="nav-link" href="fuer-studierende.html" role="menuitem">Für Studierende</a></li>
-                <li class="nav-item" role="none"><a class="nav-link" href="fuer-unternehmen.html" role="menuitem">Für Unternehmen</a></li>
-                <li class="nav-item" role="none"><a class="nav-link" href="ueber-uns.html" role="menuitem">Über uns</a></li>
-                <li class="nav-item" role="none"><a class="nav-link" href="unser-netzwerk.html" role="menuitem">Unser Netzwerk</a></li>
-                <li class="nav-item" role="none"><a class="nav-link" href="referenzen.html" role="menuitem">Referenzen</a></li>
-                <li class="nav-item" role="none"><a class="nav-link" href="kontakt.html" role="menuitem">Kontakt</a></li>
+                <li class="nav-item" role="none">
+                    <a class="nav-link" href="fuer-studierende.html" role="menuitem" data-i18n="nav-students">Für Studierende</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a class="nav-link" href="fuer-unternehmen.html" role="menuitem" data-i18n="nav-companies">Für Unternehmen</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a class="nav-link" href="ueber-uns.html" role="menuitem" data-i18n="nav-about">Über uns</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a class="nav-link" href="unser-netzwerk.html" role="menuitem" data-i18n="nav-network">Unser Netzwerk</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a class="nav-link active" href="referenzen.html" role="menuitem" aria-current="page" data-i18n="nav-references">Referenzen</a>
+                </li>
+                <li class="nav-item" role="none">
+                    <a class="nav-link" href="kontakt.html" role="menuitem" data-i18n="nav-contact">Kontakt</a>
+                </li>
+                <!-- Dark Mode Toggle -->
                 <li class="nav-item ms-lg-2" role="none">
-                    <button class="dark-mode-toggle" id="darkModeToggle" type="button" aria-label="Dark Mode aktivieren" aria-pressed="false">
+                    <button class="dark-mode-toggle" id="darkModeToggle" type="button"
+                            aria-label="Dark Mode aktivieren" aria-pressed="false">
                         <i class="fas fa-moon" aria-hidden="true" id="darkModeIcon"></i>
                     </button>
                 </li>
+                <!-- Language Switcher -->
                 <li class="nav-item dropdown ms-lg-3" role="none">
-                    <button class="lang-toggle dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="lang-toggle dropdown-toggle"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            aria-haspopup="true"
+                            aria-label="Sprache wählen"
+                            data-i18n-aria="navbar-lang-toggle">
                         <img id="activeFlag" src="assets/img/flags/de.svg" alt="" class="flag-img" aria-hidden="true">
-                        <span class="d-lg-none ms-2">Sprache ändern</span>
+                        <span class="d-lg-none ms-2" data-i18n="navbar-lang-change">Sprache ändern</span>
                     </button>
-                    <ul class="dropdown-menu dropdown-menu-end lang-dropdown" role="menu">
-                        <li role="none"><a class="lang-item" href="?lang=de" role="menuitem" data-lang="de" aria-current="true"><img src="assets/img/flags/de.svg" alt="" class="flag-img" aria-hidden="true"><span>Deutsch</span></a></li>
-                        <li role="none"><a class="lang-item" href="?lang=en" role="menuitem" data-lang="en"><img src="assets/img/flags/gb.svg" alt="" class="flag-img" aria-hidden="true"><span>English</span></a></li>
-                        <li role="none"><a class="lang-item" href="?lang=fr" role="menuitem" data-lang="fr"><img src="assets/img/flags/fr.svg" alt="" class="flag-img" aria-hidden="true"><span>Français</span></a></li>
+                    <ul class="dropdown-menu dropdown-menu-end lang-dropdown" role="menu" aria-label="Sprachauswahl" data-i18n-aria="navbar-lang-menu">
+                        <li role="none">
+                            <a class="lang-item"
+                               href="?lang=de"
+                               role="menuitem"
+                               data-flag="assets/img/flags/de.svg"
+                               data-lang="de"
+                               aria-current="true"
+                               aria-label="Deutsch">
+                                <img src="assets/img/flags/de.svg" alt="" class="flag-img" aria-hidden="true">
+                                <span>Deutsch</span>
+                            </a>
+                        </li>
+                        <li role="none">
+                            <a class="lang-item"
+                               href="?lang=en"
+                               role="menuitem"
+                               data-flag="assets/img/flags/gb.svg"
+                               data-lang="en"
+                               aria-label="English">
+                                <img src="assets/img/flags/gb.svg" alt="" class="flag-img" aria-hidden="true">
+                                <span>English</span>
+                            </a>
+                        </li>
+                        <li role="none">
+                            <a class="lang-item"
+                               href="?lang=fr"
+                               role="menuitem"
+                               data-flag="assets/img/flags/fr.svg"
+                               data-lang="fr"
+                               aria-label="Français">
+                                <img src="assets/img/flags/fr.svg" alt="" class="flag-img" aria-hidden="true">
+                                <span>Français</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -272,30 +337,70 @@
     <div class="copyright-area"><div class="container"><div class="copyright-text"><p>Copyright &copy; <span id="current-year">2025</span>, Institut für Business Consulting e.V. &ndash; Alle Rechte vorbehalten.</p></div></div></div>
 </footer>
 
-<button id="nav-fab" aria-label="Menü öffnen" aria-expanded="false" aria-controls="fab-overlay-menu">
-    <span class="fab-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+<button id="nav-fab"
+        aria-label="Menü öffnen"
+        aria-expanded="false"
+        aria-controls="fab-overlay-menu"
+        data-i18n-aria="fab-menu-open">
+    <span class="fab-icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+    </span>
 </button>
-<nav id="fab-overlay-menu" role="dialog" aria-modal="true" aria-label="Hauptnavigation">
+<!-- Full-screen overlay navigation menu -->
+<nav id="fab-overlay-menu"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Hauptnavigation"
+     data-i18n-aria="fab-overlay-label">
     <img src="assets/img/ibc_logo_original_navbar.webp" alt="IBC Logo" class="fab-overlay-logo" loading="lazy">
     <ul class="fab-nav-list" role="menu">
-        <li role="none"><a href="index.html" role="menuitem">Startseite</a></li>
+        <li role="none">
+            <a href="index.html" role="menuitem" data-i18n="nav-home">Startseite</a>
+        </li>
         <li role="none"><div class="fab-nav-divider"></div></li>
-        <li role="none"><a href="fuer-studierende.html" role="menuitem">Für Studierende</a></li>
+        <li role="none">
+            <a href="fuer-studierende.html" role="menuitem" data-i18n="nav-students">Für Studierende</a>
+        </li>
         <li role="none"><div class="fab-nav-divider"></div></li>
-        <li role="none"><a href="fuer-unternehmen.html" role="menuitem">Für Unternehmen</a></li>
+        <li role="none">
+            <a href="fuer-unternehmen.html" role="menuitem" data-i18n="nav-companies">Für Unternehmen</a>
+        </li>
         <li role="none"><div class="fab-nav-divider"></div></li>
-        <li role="none"><a href="ueber-uns.html" role="menuitem">Über uns</a></li>
+        <li role="none">
+            <a href="ueber-uns.html" role="menuitem" data-i18n="nav-about">Über uns</a>
+        </li>
         <li role="none"><div class="fab-nav-divider"></div></li>
-        <li role="none"><a href="unser-netzwerk.html" role="menuitem">Unser Netzwerk</a></li>
+        <li role="none">
+            <a href="unser-netzwerk.html" role="menuitem" data-i18n="nav-network">Unser Netzwerk</a>
+        </li>
         <li role="none"><div class="fab-nav-divider"></div></li>
-        <li role="none"><a href="referenzen.html" role="menuitem">Referenzen</a></li>
+        <li role="none">
+            <a href="referenzen.html" role="menuitem" data-i18n="nav-references">Referenzen</a>
+        </li>
         <li role="none"><div class="fab-nav-divider"></div></li>
-        <li role="none"><a href="kontakt.html" role="menuitem">Kontakt</a></li>
+        <li role="none">
+            <a href="kontakt.html" role="menuitem" data-i18n="nav-contact">Kontakt</a>
+        </li>
     </ul>
     <div class="fab-lang-row">
-        <a href="?lang=de" class="fab-lang-btn"><img src="assets/img/flags/de.svg" alt="" aria-hidden="true"><span>DE</span></a>
-        <a href="?lang=en" class="fab-lang-btn"><img src="assets/img/flags/gb.svg" alt="" aria-hidden="true"><span>EN</span></a>
-        <a href="?lang=fr" class="fab-lang-btn"><img src="assets/img/flags/fr.svg" alt="" aria-hidden="true"><span>FR</span></a>
+        <a href="?lang=de" class="fab-lang-btn" aria-label="Deutsch">
+            <img src="assets/img/flags/de.svg" alt="" aria-hidden="true"><span>DE</span>
+        </a>
+        <a href="?lang=en" class="fab-lang-btn" aria-label="English">
+            <img src="assets/img/flags/gb.svg" alt="" aria-hidden="true"><span>EN</span>
+        </a>
+        <a href="?lang=fr" class="fab-lang-btn" aria-label="Français">
+            <img src="assets/img/flags/fr.svg" alt="" aria-hidden="true"><span>FR</span>
+        </a>
+    </div>
+    <div class="fab-dark-mode-row">
+        <button class="dark-mode-toggle fab-dark-mode-btn" type="button"
+                aria-label="Dark Mode aktivieren" aria-pressed="false">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+            <span class="fab-dark-mode-label">Dark Mode</span>
+        </button>
     </div>
 </nav>
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
