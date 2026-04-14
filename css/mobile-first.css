@@ -52,15 +52,34 @@
     border: none !important;
 }
 
+/* Dark mode: at rest navbar gets dark background */
+[data-theme="dark"] .navbar:not(.scrolled) {
+    background: rgba(13, 17, 23, 0.95) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
 /* Always black nav-link text for full readability */
 .navbar:not(.scrolled) .nav-link {
     color: #111 !important;
     text-shadow: none !important;
 }
 
+/* Dark mode: light nav-link text on dark navbar */
+[data-theme="dark"] .navbar:not(.scrolled) .nav-link {
+    color: #e2e4ef !important;
+    text-shadow: none !important;
+}
+
 /* Homepage hero: keep link colour black, no text-shadow */
 body.homepage .navbar:not(.scrolled) .nav-link {
     color: #111 !important;
+    text-shadow: none !important;
+}
+
+/* Dark mode homepage hero: light text */
+[data-theme="dark"] body.homepage .navbar:not(.scrolled) .nav-link,
+body.homepage [data-theme="dark"] .navbar:not(.scrolled) .nav-link {
+    color: #e2e4ef !important;
     text-shadow: none !important;
 }
 
@@ -94,6 +113,15 @@ body.homepage .navbar:not(.scrolled) .nav-link {
        pill bounds without being clipped. */
 }
 
+/* Dark mode scrolled navbar */
+[data-theme="dark"] .navbar.scrolled {
+    background: rgba(13, 17, 23, 0.92) !important;
+    backdrop-filter: blur(16px) saturate(130%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(130%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5) !important;
+}
+
 /* Hide the flat gradient accent line – the pill border replaces it */
 .navbar.scrolled::before {
     opacity: 0 !important;
@@ -117,6 +145,19 @@ body.homepage .navbar:not(.scrolled) .nav-link {
 body.homepage .navbar.scrolled .nav-link {
     color: var(--blue, #20234A) !important;
     text-shadow: none !important;
+}
+
+/* Dark mode: light nav-link text on dark scrolled navbar */
+[data-theme="dark"] .navbar.scrolled .nav-link,
+[data-theme="dark"] body.homepage .navbar.scrolled .nav-link {
+    color: #e2e4ef !important;
+    text-shadow: none !important;
+}
+
+[data-theme="dark"] .navbar.scrolled .nav-link:hover,
+[data-theme="dark"] .navbar.scrolled .nav-link:focus-visible {
+    color: var(--ibc-green-light, #7db356) !important;
+    background: rgba(125, 179, 86, 0.12);
 }
 
 /* ============================================================
@@ -154,8 +195,8 @@ body.homepage .navbar.scrolled .nav-link {
    ============================================================ */
 @media (max-width: 1199px) {
     .navbar.scrolled {
-        /* Floating pill – 70 % wide, centred */
-        width: 70% !important;
+        /* Floating pill – wider on mobile for better usability */
+        width: 92% !important;
         border-radius: 50px !important;
         top: 8px !important;
         overflow: visible !important;
@@ -168,6 +209,13 @@ body.homepage .navbar.scrolled .nav-link {
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12) !important;
         padding-top: 0.25rem !important;
         padding-bottom: 0.25rem !important;
+    }
+
+    /* Dark mode mobile scrolled navbar */
+    [data-theme="dark"] .navbar.scrolled {
+        background: rgba(13, 17, 23, 0.92) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5) !important;
     }
 
     /* Hide the gradient accent line – the rounded border replaces it */
@@ -187,10 +235,45 @@ body.homepage .navbar.scrolled .nav-link {
         text-shadow: none !important;
     }
 
+    /* Dark mode: light text on dark mobile scrolled navbar */
+    [data-theme="dark"] .navbar.scrolled .nav-link,
+    [data-theme="dark"] body.homepage .navbar.scrolled .nav-link {
+        color: #e2e4ef !important;
+        text-shadow: none !important;
+    }
+
+    [data-theme="dark"] .navbar.scrolled .nav-link:hover,
+    [data-theme="dark"] .navbar.scrolled .nav-link:focus-visible {
+        color: var(--ibc-green-light, #7db356) !important;
+    }
+
     /* Toggler stays square-and-thumb-friendly in compact state */
     .navbar.scrolled .navbar-toggler {
         width: 44px;
         height: 44px;
+    }
+
+    /* Dark mode toggler bars */
+    [data-theme="dark"] .navbar .toggler-bar {
+        background: #e2e4ef;
+    }
+
+    /* Dark mode: at-rest navbar dark background */
+    [data-theme="dark"] .navbar:not(.scrolled) {
+        background: rgba(13, 17, 23, 0.95) !important;
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+    }
+
+    /* Dark mode dark-mode-toggle visibility */
+    [data-theme="dark"] .dark-mode-toggle {
+        color: #e2e4ef;
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Dark mode language toggle */
+    [data-theme="dark"] .lang-toggle {
+        color: #e2e4ef;
+        border-color: rgba(255, 255, 255, 0.15);
     }
 }
 
