@@ -1029,3 +1029,208 @@ html {
         transform: none !important;
     }
 }
+
+/* ============================================================
+   §8  DARK MODE OVERRIDES  [data-theme="dark"]
+   ============================================================ */
+
+/* ── §8.1  Section backgrounds ────────────────────────────── */
+[data-theme="dark"] #uebersicht {
+    background: #0D1117;
+}
+[data-theme="dark"] #marketing,
+[data-theme="dark"] #business {
+    background: #0D1117;
+}
+[data-theme="dark"] #schulungen,
+[data-theme="dark"] #digitalisierung {
+    background: #161B2E;
+}
+
+/* Top accent stripe on alternate sections — keep gradient, no change needed */
+
+/* ── §8.2  Section category chip ──────────────────────────── */
+[data-theme="dark"] .section-category-chip {
+    background: rgba(125, 179, 86, 0.12);
+    color: var(--ibc-green-light, #7db356);
+    border-color: rgba(125, 179, 86, 0.22);
+}
+
+/* ── §8.3  Section lead / subtitle text ───────────────────── */
+[data-theme="dark"] #marketing .ibc-lead,
+[data-theme="dark"] #marketing .lead,
+[data-theme="dark"] #schulungen .ibc-lead,
+[data-theme="dark"] #schulungen .lead,
+[data-theme="dark"] #business .ibc-lead,
+[data-theme="dark"] #business .lead,
+[data-theme="dark"] #digitalisierung .ibc-lead,
+[data-theme="dark"] #digitalisierung .lead {
+    color: #98A0B4;
+}
+
+/* ── §8.4  Beratungsfeld overview cards ───────────────────── */
+[data-theme="dark"] .beratungsfeld-card {
+    background: #161B2E;
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .beratungsfeld-card-link:hover .beratungsfeld-card,
+[data-theme="dark"] .beratungsfeld-card-link:focus-visible .beratungsfeld-card {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+    border-color: rgba(125, 179, 86, 0.35);
+}
+
+/* Icon circle */
+[data-theme="dark"] .beratungsfeld-card__icon {
+    background: linear-gradient(135deg, rgba(125, 179, 86, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border-color: rgba(125, 179, 86, 0.22);
+    color: var(--ibc-green-light, #7db356);
+}
+
+/* Title */
+[data-theme="dark"] .beratungsfeld-card__title {
+    color: #f0f0f0;
+}
+[data-theme="dark"] .beratungsfeld-card-link:hover .beratungsfeld-card__title {
+    color: var(--ibc-green-light, #7db356);
+}
+
+/* Description */
+[data-theme="dark"] .beratungsfeld-card__desc {
+    color: #98A0B4;
+}
+
+/* Arrow link */
+[data-theme="dark"] .beratungsfeld-card__arrow {
+    color: var(--ibc-green-light, #7db356);
+}
+
+/* ── §8.5  Angebot / service cards ────────────────────────── */
+[data-theme="dark"] #marketing .angebot-card,
+[data-theme="dark"] #schulungen .angebot-card,
+[data-theme="dark"] #business .angebot-card,
+[data-theme="dark"] #digitalisierung .angebot-card {
+    background-color: #161B2E;
+    border-color: rgba(255, 255, 255, 0.06);
+    border-top-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+[data-theme="dark"] #marketing .angebot-card:hover,
+[data-theme="dark"] #schulungen .angebot-card:hover,
+[data-theme="dark"] #business .angebot-card:hover,
+[data-theme="dark"] #digitalisierung .angebot-card:hover {
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
+}
+[data-theme="dark"] #marketing .angebot-card:focus-visible,
+[data-theme="dark"] #schulungen .angebot-card:focus-visible,
+[data-theme="dark"] #business .angebot-card:focus-visible,
+[data-theme="dark"] #digitalisierung .angebot-card:focus-visible {
+    box-shadow: 0 0 0 4px #1E2640, 0 0 0 8px var(--ibc-green-light, #7db356);
+}
+
+/* Card icon gradient — lighten for dark bg */
+[data-theme="dark"] #marketing .angebot-card i,
+[data-theme="dark"] #schulungen .angebot-card i,
+[data-theme="dark"] #business .angebot-card i,
+[data-theme="dark"] #digitalisierung .angebot-card i {
+    background: linear-gradient(90deg, var(--ibc-green-light, #7db356) 20%, #7fc5f0 80%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Card h3 */
+[data-theme="dark"] #marketing .angebot-card h3,
+[data-theme="dark"] #schulungen .angebot-card h3,
+[data-theme="dark"] #business .angebot-card h3,
+[data-theme="dark"] #digitalisierung .angebot-card h3 {
+    color: #f0f0f0;
+}
+[data-theme="dark"] #marketing .angebot-card:hover h3,
+[data-theme="dark"] #schulungen .angebot-card:hover h3,
+[data-theme="dark"] #business .angebot-card:hover h3,
+[data-theme="dark"] #digitalisierung .angebot-card:hover h3 {
+    color: var(--ibc-green-light, #7db356);
+}
+
+/* Card paragraph */
+[data-theme="dark"] #marketing .angebot-card p,
+[data-theme="dark"] #schulungen .angebot-card p,
+[data-theme="dark"] #business .angebot-card p,
+[data-theme="dark"] #digitalisierung .angebot-card p {
+    color: #98A0B4;
+}
+
+/* Shimmer overlay — slightly brighter for dark */
+[data-theme="dark"] #marketing .angebot-card::after,
+[data-theme="dark"] #schulungen .angebot-card::after,
+[data-theme="dark"] #business .angebot-card::after,
+[data-theme="dark"] #digitalisierung .angebot-card::after {
+    background: linear-gradient(135deg, rgba(125, 179, 86, 0.06) 0%, transparent 60%);
+}
+
+/* ── §8.6  Timeline / Projektablauf ───────────────────────── */
+[data-theme="dark"] .timeline-section-new {
+    --tl-bg-body:    #0D1117;
+    --tl-bg-card:    #161B2E;
+    --tl-text-main:  #f0f0f0;
+    --tl-text-muted: #98A0B4;
+}
+
+[data-theme="dark"] .timeline-line-track-new {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .timeline-card-new {
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.35);
+}
+[data-theme="dark"] .timeline-card-new:hover,
+[data-theme="dark"] .timeline-item-new.active-focus .timeline-card-new {
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+    border-color: rgba(125, 179, 86, 0.3);
+}
+
+/* Phase badge */
+[data-theme="dark"] .timeline-phase-badge-new {
+    background: rgba(125, 179, 86, 0.12);
+    color: var(--ibc-green-light, #7db356);
+}
+
+/* Step label */
+[data-theme="dark"] .timeline-date-new {
+    color: #98A0B4;
+}
+
+/* Timeline marker ring — match dark body bg */
+[data-theme="dark"] .timeline-marker-new {
+    box-shadow: 0 0 0 5px #0D1117, 0 6px 20px rgba(109, 151, 68, 0.35);
+}
+
+/* ── §8.7  Section heading underline — keep gradient ──────── */
+
+/* ── §8.8  Section headings (ibc-heading / h2) ───────────── */
+[data-theme="dark"] #uebersicht .ibc-heading,
+[data-theme="dark"] #uebersicht h2,
+[data-theme="dark"] #marketing .ibc-heading,
+[data-theme="dark"] #marketing h2,
+[data-theme="dark"] #schulungen .ibc-heading,
+[data-theme="dark"] #schulungen h2,
+[data-theme="dark"] #business .ibc-heading,
+[data-theme="dark"] #business h2,
+[data-theme="dark"] #digitalisierung .ibc-heading,
+[data-theme="dark"] #digitalisierung h2 {
+    color: #f0f0f0;
+    -webkit-text-fill-color: #f0f0f0;
+}
+
+/* ── §8.9  Hero wave SVG fill — match next section bg ─────── */
+[data-theme="dark"] .hero-wave svg path,
+[data-theme="dark"] .hero-wave svg {
+    fill: #0D1117;
+}
+
+/* Section divider SVGs */
+[data-theme="dark"] .section-divider svg path,
+[data-theme="dark"] .section-divider svg {
+    fill: #161B2E;
+}
