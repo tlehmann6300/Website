@@ -76,6 +76,7 @@
             prefersDark = typeof window.matchMedia === 'function'
                 && window.matchMedia('(prefers-color-scheme: dark)').matches;
         } catch {
+            // Some embedded/legacy environments may not fully support matchMedia.
             prefersDark = false;
         }
         const savedTheme = localStorage.getItem('theme')
