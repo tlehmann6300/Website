@@ -24,6 +24,9 @@
 section:has(#contact-form) {
     background: linear-gradient(135deg, #eef2ff 0%, #f0f9f0 55%, #fafbff 100%);
 }
+[data-theme="dark"] section:has(#contact-form) {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 55%, var(--bg-primary) 100%);
+}
 
 .col-lg-6:has(#contact-form) {
     background: transparent;
@@ -81,7 +84,7 @@ section:has(.contact-info) .col-lg-6 {
     padding: 1.25rem 1rem 0.5rem 1rem;
     height: auto;
     font-size: 1rem;
-    color: #333;
+    color: var(--text-primary);
     transition: all var(--transition-speed) cubic-bezier(0.25, 0.8, 0.25, 1);
     box-shadow: 0 2px 10px rgba(32, 35, 74, 0.06), inset 0 1px 2px rgba(255,255,255,0.7);
     touch-action: manipulation;
@@ -153,21 +156,21 @@ section:has(.contact-info) .col-lg-6 {
 .kontakt-content input::placeholder,
 .kontakt-content textarea::placeholder,
 .kontakt-content select::placeholder {
-    color: #6b7280;
+    color: var(--text-muted);
     opacity: 1;
 }
 .kontakt-content input::-webkit-input-placeholder,
 .kontakt-content textarea::-webkit-input-placeholder {
-    color: #6b7280;
+    color: var(--text-muted);
 }
 .kontakt-content input::-moz-placeholder,
 .kontakt-content textarea::-moz-placeholder {
-    color: #6b7280;
+    color: var(--text-muted);
     opacity: 1;
 }
 .kontakt-content input:-ms-input-placeholder,
 .kontakt-content textarea:-ms-input-placeholder {
-    color: #6b7280;
+    color: var(--text-muted);
 }
 .form-group-animated {
     margin-bottom: 1.5rem;
@@ -177,7 +180,7 @@ section:has(.contact-info) .col-lg-6 {
     position: absolute;
     top: 1rem;
     left: 1rem;
-    color: #888;
+    color: var(--text-muted);
     font-weight: 500;
     pointer-events: none;
     transform-origin: left top;
@@ -188,7 +191,7 @@ section:has(.contact-info) .col-lg-6 {
     font-size: 1rem;
 }
 .form-group-animated label .text-danger {
-    color: #bbb !important;
+    color: var(--text-muted) !important;
     transition: color 0.3s ease;
 }
 .form-control:focus ~ label,
@@ -347,13 +350,13 @@ section:has(.contact-info) .col-lg-6 {
 .infoabend-section .lead { color: var(--ibc-text-secondary, #4d5061); max-width: 700px; margin-left: auto; margin-right: auto; }
 .infoabend-section .highlight { color: var(--ibc-green); font-weight: 600; }
 .timeline { position: relative; max-width: 900px; margin: 40px auto; }
-.timeline-line { position: absolute; width: 4px; background-color: #e9ecef; top: 0; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 0; }
+.timeline-line { position: absolute; width: 4px; background-color: var(--border-medium); top: 0; bottom: 0; left: 50%; transform: translateX(-50%); z-index: 0; }
 .timeline-line-progress { position: absolute; width: 100%; height: 0; background-color: var(--ibc-green); top: 0; left: 0; }
 .timeline-item { padding: 10px 30px; position: relative; width: 50%; margin-bottom: 30px; opacity: 1; transform: none; }
 .timeline-item.is-visible { opacity: 1; transform: none; }
 .timeline-item:nth-child(odd) { left: 0; padding-right: 30px; }
 .timeline-item:nth-child(even) { left: 50%; padding-left: 30px; }
-.timeline-content { padding: 2rem; background-color: white; position: relative; border-radius: 15px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); transition: all 0.4s ease; border-left: 4px solid var(--ibc-green); word-wrap: break-word; overflow-wrap: break-word; max-width: 100%; }
+.timeline-content { padding: 2rem; background-color: var(--bg-primary); position: relative; border-radius: 15px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08); transition: all 0.4s ease; border-left: 4px solid var(--ibc-green); word-wrap: break-word; overflow-wrap: break-word; max-width: 100%; }
 .timeline-item:hover .timeline-content { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12); }
 .timeline-phase { display: inline-block; background-color: var(--ibc-green); color: var(--ibc-white); padding: 0.25rem 0.75rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; margin-bottom: 1rem; }
 .timeline-content h3 { margin-top: 0; color: var(--ibc-blue); word-wrap: break-word; overflow-wrap: break-word; }
@@ -403,7 +406,7 @@ section:has(.contact-info) .col-lg-6 {
 .event-slider-content h2 { color: var(--ibc-green); font-size: 2.5rem; font-weight: 700; }
 .carousel-navigation { display: flex; justify-content: center; align-items: center; margin-top: 1.5rem; }
 #eventCarousel .carousel-indicators { position: static; margin: 0 1rem; }
-#eventCarousel .carousel-indicators button { width: 10px; height: 10px; border-radius: 50%; background-color: #ccc; border: none; }
+#eventCarousel .carousel-indicators button { width: 10px; height: 10px; border-radius: 50%; background-color: var(--border-medium); border: none; }
 #eventCarousel .carousel-indicators button.active { background-color: var(--ibc-blue); }
 #eventCarousel .carousel-control-prev, #eventCarousel .carousel-control-next { position: static; width: auto; height: auto; background: none; opacity: 1; font-size: 1.5rem; color: var(--ibc-text); }
 #eventCarousel .carousel-control-prev:hover, #eventCarousel .carousel-control-next:hover { color: var(--ibc-blue); }
@@ -963,7 +966,7 @@ body.modal-open {
     left: 50%;
     width: 90vw;
     max-width: 420px;
-    background-color: #fff;
+    background-color: var(--bg-primary);
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     padding: 24px;
@@ -1005,14 +1008,14 @@ body.modal-open {
     font-family: 'Roboto', 'Inter', sans-serif;
     font-weight: 700;
     font-size: 1.4em;
-    color: #212121;
+    color: var(--text-primary);
     margin: 0 0 10px;
     text-align: center;
 }
 .my-modal-box p {
     font-size: 1rem;
     line-height: 1.6;
-    color: #757575;
+    color: var(--text-secondary);
     margin: 0 0 24px;
     text-align: center;
 }
@@ -1161,7 +1164,7 @@ body.modal-open {
 }
 .toast-message {
     font-size: 0.9rem;
-    color: #666;
+    color: var(--text-secondary);
     margin: 0;
 }
 .toast-close {
@@ -1169,13 +1172,13 @@ body.modal-open {
     border: none;
     font-size: 1.5rem;
     cursor: pointer;
-    color: #999;
+    color: var(--text-muted);
     padding: 0;
     line-height: 1;
     transition: color 0.2s ease;
 }
 .toast-close:hover {
-    color: #333;
+    color: var(--text-primary);
 }
 .toast-notification.fade-out {
     animation: slideOutRight 0.3s cubic-bezier(0.19, 1, 0.22, 1) forwards;

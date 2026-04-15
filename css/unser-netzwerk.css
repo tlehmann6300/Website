@@ -183,7 +183,7 @@ body:not(.homepage) main {
 /* Förderkreis section */
 .foerderkreis-section {
     padding: clamp(4.5rem, 9vw, 7rem) 0;
-    background: #ffffff;
+    background: var(--bg-primary);
     position: relative;
     overflow: hidden;
 }
@@ -502,7 +502,7 @@ body:not(.homepage) main {
 
 /* ── §4  KOOPERATIONSPARTNER – PARTNER CARDS ───────────── */
 .partner-card {
-    background: #ffffff;
+    background: var(--bg-primary);
     border-radius: 24px;
     padding: clamp(1.75rem, 3vw, 2.5rem) clamp(1.5rem, 2.5vw, 2rem);
     box-shadow:
@@ -689,7 +689,7 @@ body:not(.homepage) main {
 
 /* ── §5  KURATORIUM SECTION ────────────────────────────── */
 .kuratorium-mitglied {
-    background: #ffffff;
+    background: var(--bg-primary);
     border-radius: 24px;
     padding: clamp(2.5rem, 5vw, 4rem);
     margin-bottom: 2rem;

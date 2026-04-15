@@ -35,7 +35,7 @@
     color: var(--ibc-green);
 }
 .vision-box {
-    background: #f4f6f8;
+    background: var(--bg-secondary);
     padding: 2.5rem 3rem;
     border-radius: var(--border-radius-large);
     box-shadow: var(--shadow-medium);
@@ -57,7 +57,7 @@
     margin-bottom: 0;
 }
 .member-card {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     padding: 2.5rem 2rem;
     border-radius: 20px;
     text-align: center;
@@ -148,7 +148,7 @@
     color: var(--ibc-text-primary);
 }
 .team-card {
-    background: #f4f6f8;
+    background: var(--bg-secondary);
     border-radius: var(--border-radius-large);
     overflow: hidden;
     text-align: center;
@@ -708,7 +708,7 @@
     position: relative;
 }
 #mission {
-    background: #ffffff;
+    background: var(--bg-primary);
     position: relative;
     overflow: hidden;
 }
@@ -1606,7 +1606,7 @@
 
 /* ── §2  MISSION SECTION ENHANCEMENT ───────────────────────────── */
 .mission-section {
-    background: #ffffff;
+    background: var(--bg-primary);
     position: relative;
     overflow: hidden;
 }
@@ -1748,7 +1748,7 @@
     align-items: center;
     padding: clamp(1.75rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.25rem);
     border-radius: 20px;
-    background: #ffffff;
+    background: var(--bg-primary);
     border: 1px solid rgba(64, 84, 178, 0.08);
     box-shadow: 0 4px 20px rgba(32, 35, 74, 0.06);
     position: relative;
@@ -2345,7 +2345,7 @@
 
 /* BASE (all devices): clean neutral card */
 .team-card {
-    background: #ffffff;
+    background: var(--bg-primary);
     border: 1px solid rgba(64, 84, 178, 0.07);
 }
 
@@ -2386,7 +2386,7 @@
     .team-card:hover {
         transform: none !important;
         box-shadow: 0 4px 16px rgba(0,0,0,0.07) !important;
-        background: #ffffff !important;
+        background: var(--bg-primary) !important;
         border-color: rgba(64, 84, 178, 0.07) !important;
     }
 }
@@ -2615,7 +2615,7 @@
 /* Keep the section visually distinct without heavy background */
 .mission-section,
 #mission {
-    background: #ffffff;
+    background: var(--bg-primary);
 }
 
 /* Subtle bottom accent line on mission section
@@ -2637,11 +2637,11 @@
 
 /* ── §N  TEAM / RESSORT / PLATTFORM SECTIONS – BG ALTERNATION ──── */
 /* Alternating subtle backgrounds for visual rhythm */
-#team   { background: #ffffff; }
+#team   { background: var(--bg-primary); }
 #ressorts {
     background: linear-gradient(160deg, #f6f8fb 0%, #eef2f7 100%);
 }
-#plattform { background: #ffffff; }
+#plattform { background: var(--bg-primary); }
 
 /* Subtle decorative corner blob (desktop only) */
 @media (min-width: 992px) {
