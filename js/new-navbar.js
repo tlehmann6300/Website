@@ -71,9 +71,16 @@
         themeToggle.addEventListener('click', toggleTheme);
         mobileThemeToggle.addEventListener('click', toggleTheme);
         // Init Theme
+        let prefersDark = false;
+        try {
+            prefersDark = typeof window.matchMedia === 'function'
+                && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        } catch (_) {
+            prefersDark = false;
+        }
         const savedTheme = localStorage.getItem('theme')
             || localStorage.getItem('ibc-theme')
-            || (window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light');
+            || (prefersDark ? 'dark' : 'light');
         applyTheme(savedTheme);
         // Mobile Menu
         function toggleMobileMenu() {
