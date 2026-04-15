@@ -46,6 +46,15 @@
                 ticking = true;
             }
         });
+        function applyTheme(theme) {
+            if (window.IBCApp && window.IBCApp.Theme && typeof window.IBCApp.Theme.apply === 'function') {
+                window.IBCApp.Theme.apply(theme);
+                return;
+            }
+            document.documentElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            localStorage.setItem('ibc-theme', theme);
+        }
         // Theme Toggle mit Kreis-Animation
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
@@ -53,9 +62,7 @@
             const transition = document.getElementById('themeTransition');
             if (transition) transition.classList.add('active');
             setTimeout(() => {
-                document.documentElement.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                localStorage.setItem('ibc-theme', newTheme);
+                applyTheme(newTheme);
                 setTimeout(() => {
                     if (transition) transition.classList.remove('active');
                 }, 100);
@@ -64,8 +71,10 @@
         themeToggle.addEventListener('click', toggleTheme);
         mobileThemeToggle.addEventListener('click', toggleTheme);
         // Init Theme
-        const savedTheme = localStorage.getItem('theme') || localStorage.getItem('ibc-theme') || 'light';
-        document.documentElement.setAttribute('data-theme', savedTheme);
+        const savedTheme = localStorage.getItem('theme')
+            || localStorage.getItem('ibc-theme')
+            || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        applyTheme(savedTheme);
         // Mobile Menu
         function toggleMobileMenu() {
             const isActive = mobileMenu.classList.contains('active');

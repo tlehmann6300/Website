@@ -215,6 +215,45 @@
     [data-theme="dark"] .service-card-v3__icon { background: rgba(125,179,86,0.12); }
     .service-card-v3__title { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin: 0; line-height: 1.3; }
     .service-card-v3__text { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.65; margin: 0; flex: 1; }
+
+    /* ── Theme compatibility helpers (companies page) ── */
+    .cta-banner__ghost-link {
+      color: rgba(255,255,255,0.85);
+      border-color: rgba(255,255,255,0.28);
+    }
+    .cta-banner__ghost-link:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.55);
+    }
+    .business-ambient-orb--1 {
+      background: radial-gradient(circle, rgba(99,102,241,0.1), transparent 70%);
+    }
+    .business-ambient-orb--2 {
+      background: radial-gradient(circle, rgba(109,151,68,0.08), transparent 70%);
+    }
+    .business-label {
+      background: rgba(99,102,241,0.08);
+      border-color: rgba(99,102,241,0.2);
+      color: #6366f1;
+    }
+    [data-theme="dark"] .business-label {
+      background: rgba(129,140,248,0.16);
+      border-color: rgba(129,140,248,0.35);
+      color: #a5b4fc;
+    }
+    .business-icon {
+      background: rgba(99,102,241,0.1);
+      color: #6366f1;
+    }
+    [data-theme="dark"] .business-icon {
+      background: rgba(129,140,248,0.18);
+      color: #a5b4fc;
+    }
+    .timeline-v2__dot--complete {
+      border-color: var(--ibc-green);
+      background: var(--ibc-green);
+      color: #fff;
+    }
     </style>
     <script type="application/ld+json">
     {
@@ -515,7 +554,7 @@
                     <i class="fas fa-paper-plane" aria-hidden="true"></i>
                     Beratung anfragen
                 </a>
-                <a href="#uebersicht" class="hero-btn-ghost" style="color:rgba(255,255,255,0.8);border-color:rgba(255,255,255,0.25);" data-i18n="companies-cta-btn-2">
+                <a href="#uebersicht" class="hero-btn-ghost cta-banner__ghost-link" data-i18n="companies-cta-btn-2">
                     Alle Leistungen
                 </a>
             </div>
@@ -560,13 +599,13 @@
     <!-- ══ BUSINESS ════════════════════════════════════════════ -->
     <section id="business" class="page-section" aria-labelledby="business-heading">
         <div class="service-section__ambient" aria-hidden="true">
-            <div class="service-section__ambient-orb service-section__ambient-orb--1" style="background:radial-gradient(circle,rgba(99,102,241,0.1),transparent 70%);"></div>
-            <div class="service-section__ambient-orb service-section__ambient-orb--2" style="background:radial-gradient(circle,rgba(109,151,68,0.08),transparent 70%);"></div>
+            <div class="service-section__ambient-orb service-section__ambient-orb--1 business-ambient-orb--1"></div>
+            <div class="service-section__ambient-orb service-section__ambient-orb--2 business-ambient-orb--2"></div>
         </div>
         <div class="container" style="position:relative;z-index:2;">
             <div class="row align-items-center g-5 flex-lg-row-reverse">
                 <div class="col-lg-5">
-                    <span class="service-section__label" style="background:rgba(99,102,241,0.08);border-color:rgba(99,102,241,0.2);color:#6366f1;"><i class="fas fa-chart-pie" aria-hidden="true"></i> Beratungsfeld</span>
+                    <span class="service-section__label business-label"><i class="fas fa-chart-pie" aria-hidden="true"></i> Beratungsfeld</span>
                     <h2 id="business-heading" class="ibc-heading fade-in-up" data-i18n="companies-business-heading">
                         <span class="text-gradient">Business</span> Consulting
                     </h2>
@@ -581,22 +620,22 @@
                 <div class="col-lg-7">
                     <div class="service-grid-v3">
                         <div class="service-card-v3 fade-in-up" data-animation-delay="0ms">
-                            <div class="service-card-v3__icon" style="background:rgba(99,102,241,0.1);color:#6366f1;"><i class="fas fa-magnifying-glass" aria-hidden="true"></i></div>
+                            <div class="service-card-v3__icon business-icon"><i class="fas fa-magnifying-glass" aria-hidden="true"></i></div>
                             <h3 class="service-card-v3__title" data-i18n="companies-business-analysis-title">Prozessanalyse</h3>
                             <p class="service-card-v3__text" data-i18n="companies-business-analysis-desc">Systematische Analyse Ihrer Geschäftsprozesse zur Aufdeckung von Optimierungspotenzialen.</p>
                         </div>
                         <div class="service-card-v3 fade-in-up" data-animation-delay="100ms">
-                            <div class="service-card-v3__icon" style="background:rgba(99,102,241,0.1);color:#6366f1;"><i class="fas fa-gears" aria-hidden="true"></i></div>
+                            <div class="service-card-v3__icon business-icon"><i class="fas fa-gears" aria-hidden="true"></i></div>
                             <h3 class="service-card-v3__title" data-i18n="companies-business-optimization-title">Prozessoptimierung</h3>
                             <p class="service-card-v3__text" data-i18n="companies-business-optimization-desc">Konkrete Maßnahmen zur Steigerung von Effizienz und Produktivität.</p>
                         </div>
                         <div class="service-card-v3 fade-in-up" data-animation-delay="200ms">
-                            <div class="service-card-v3__icon" style="background:rgba(99,102,241,0.1);color:#6366f1;"><i class="fas fa-file-invoice-dollar" aria-hidden="true"></i></div>
+                            <div class="service-card-v3__icon business-icon"><i class="fas fa-file-invoice-dollar" aria-hidden="true"></i></div>
                             <h3 class="service-card-v3__title" data-i18n="companies-business-plan-title">Businessplan</h3>
                             <p class="service-card-v3__text" data-i18n="companies-business-plan-desc">Professionelle Businesspläne für Gründungen, Investoren und Banken.</p>
                         </div>
                         <div class="service-card-v3 fade-in-up" data-animation-delay="300ms">
-                            <div class="service-card-v3__icon" style="background:rgba(99,102,241,0.1);color:#6366f1;"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
+                            <div class="service-card-v3__icon business-icon"><i class="fas fa-scale-balanced" aria-hidden="true"></i></div>
                             <h3 class="service-card-v3__title" data-i18n="companies-business-benchmarking-title">Benchmarking</h3>
                             <p class="service-card-v3__text" data-i18n="companies-business-benchmarking-desc">Vergleichsanalysen mit Branchenbest Practices zur Positionierung.</p>
                         </div>
@@ -698,7 +737,7 @@
                         <h3 class="timeline-v2__content-title" data-i18n="companies-process-step5-title">Abschlusspräsentation</h3>
                         <p class="timeline-v2__content-text" data-i18n="companies-process-step5-desc">Die Ergebnisse werden professionell präsentiert und übergeben. Auf Wunsch beantworten wir Rückfragen und zeigen Handlungsempfehlungen auf.</p>
                     </div>
-                    <div class="timeline-v2__spacer"><div class="timeline-v2__dot" style="border-color:var(--ibc-green);background:var(--ibc-green);color:#fff;"><i class="fas fa-check" aria-hidden="true"></i></div></div>
+                    <div class="timeline-v2__spacer"><div class="timeline-v2__dot timeline-v2__dot--complete"><i class="fas fa-check" aria-hidden="true"></i></div></div>
                     <div class="timeline-v2__empty"></div>
                 </div>
             </div>
