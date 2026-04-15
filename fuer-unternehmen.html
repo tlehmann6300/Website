@@ -217,13 +217,25 @@
     .service-card-v3__text { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.65; margin: 0; flex: 1; }
 
     /* ── Theme compatibility helpers (companies page) ── */
+    .cta-banner {
+      --cta-ghost-text: rgba(255,255,255,0.85);
+      --cta-ghost-border: rgba(255,255,255,0.28);
+      --cta-ghost-text-hover: #fff;
+      --cta-ghost-border-hover: rgba(255,255,255,0.55);
+    }
+    [data-theme="dark"] .cta-banner {
+      --cta-ghost-text: rgba(255,255,255,0.9);
+      --cta-ghost-border: rgba(255,255,255,0.34);
+      --cta-ghost-text-hover: #fff;
+      --cta-ghost-border-hover: rgba(255,255,255,0.62);
+    }
     .cta-banner__ghost-link {
-      color: rgba(255,255,255,0.85);
-      border-color: rgba(255,255,255,0.28);
+      color: var(--cta-ghost-text);
+      border-color: var(--cta-ghost-border);
     }
     .cta-banner__ghost-link:hover {
-      color: #fff;
-      border-color: rgba(255,255,255,0.55);
+      color: var(--cta-ghost-text-hover);
+      border-color: var(--cta-ghost-border-hover);
     }
     .business-ambient-orb--1 {
       background: radial-gradient(circle, rgba(99,102,241,0.1), transparent 70%);

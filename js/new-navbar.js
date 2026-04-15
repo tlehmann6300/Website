@@ -73,7 +73,7 @@
         // Init Theme
         const savedTheme = localStorage.getItem('theme')
             || localStorage.getItem('ibc-theme')
-            || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            || (window.matchMedia?.('(prefers-color-scheme: dark)')?.matches ? 'dark' : 'light');
         applyTheme(savedTheme);
         // Mobile Menu
         function toggleMobileMenu() {
