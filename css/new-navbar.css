@@ -336,6 +336,13 @@
         .lang-dropdown {
             position: relative;
             z-index: 1200;
+            background: transparent;
+            border: 0;
+            box-shadow: none;
+            padding: 0;
+            min-width: 0;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
         }
 
         .lang-btn {
