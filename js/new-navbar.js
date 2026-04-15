@@ -46,14 +46,25 @@
                 ticking = true;
             }
         });
+        function updateThemeToggleState(theme) {
+            const isDark = theme === 'dark';
+            const nextModeLabel = isDark ? 'Light Mode aktivieren' : 'Dark Mode aktivieren';
+            [themeToggle, mobileThemeToggle].forEach(toggle => {
+                toggle.setAttribute('aria-label', nextModeLabel);
+                toggle.setAttribute('title', nextModeLabel);
+                toggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+            });
+        }
         function applyTheme(theme) {
             if (window.IBCApp && window.IBCApp.Theme && typeof window.IBCApp.Theme.apply === 'function') {
                 window.IBCApp.Theme.apply(theme);
+                updateThemeToggleState(theme);
                 return;
             }
             document.documentElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
             localStorage.setItem('ibc-theme', theme);
+            updateThemeToggleState(theme);
         }
         // Theme Toggle mit Kreis-Animation
         function toggleTheme() {
