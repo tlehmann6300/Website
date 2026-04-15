@@ -226,7 +226,8 @@ html {
 
 #uebersicht {
     padding: clamp(4rem, 7vw, 6rem) 0;
-    background: var(--bg-secondary);    position: relative;
+    background: var(--bg-secondary);
+    position: relative;
 }
 
 #uebersicht > .container > header {
