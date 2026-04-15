@@ -1275,6 +1275,9 @@
 #instagram-section .instagram-container iframe {
   width: 100% !important;
   min-width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  display: block;
   border: none !important;
 }
 
