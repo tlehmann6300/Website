@@ -537,3 +537,7 @@ footer .text-muted,
   outline: 3px solid var(--ibc-green, #6D9744);
   outline-offset: 2px;
 }
+
+h1 {
+  color: #ffffff !important;
+}
