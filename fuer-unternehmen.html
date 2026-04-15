@@ -150,26 +150,6 @@
       .timeline-v2__item--right .timeline-v2__content { grid-column: 2; grid-row: 1; }
       .timeline-v2__dot { width: 36px; height: 36px; font-size: 0.85rem; }
     }
-    /* ── Trust strip ── */
-    .trust-strip {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 2.5rem;
-      flex-wrap: wrap;
-      padding: 2rem 0;
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .trust-strip__item {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-    }
-    .trust-strip__item i { color: var(--ibc-green); font-size: 1.1rem; }
     /* ── Service grid enhanced ── */
     .service-grid-v3 {
       display: grid;
@@ -297,6 +277,9 @@
     }
     </script>
     <link href="css/new-navbar.css" rel="stylesheet">
+    <link href="css/ibc-design-v3.css" rel="stylesheet">
+    <link href="css/ibc-buttons.css" rel="stylesheet">
+    <link href="css/fuer-unternehmen-v3.css" rel="stylesheet">
     <link href="css/page-redesign.css" rel="stylesheet">
 </head>
 <body>
@@ -456,28 +439,47 @@
         </div>
     </section>
 
-    <!-- ══ TRUST STRIP ═══════════════════════════════════════ -->
-    <div class="container py-3">
-        <div class="trust-strip fade-in-up">
-            <div class="trust-strip__item"><i class="fas fa-graduation-cap"></i><span data-i18n="trust-students">HFU-Studierende</span></div>
-            <div class="trust-strip__item"><i class="fas fa-check-circle"></i><span data-i18n="trust-projects">182+ Projekte</span></div>
-            <div class="trust-strip__item"><i class="fas fa-calendar-alt"></i><span data-i18n="trust-since">Seit 1998</span></div>
-            <div class="trust-strip__item"><i class="fas fa-bolt"></i><span data-i18n="trust-speed">Schnelle Umsetzung</span></div>
-            <div class="trust-strip__item"><i class="fas fa-coins"></i><span data-i18n="trust-cost">Faire Konditionen</span></div>
+    <!-- ══ STATS BANNER ══════════════════════════════════════ -->
+    <section class="fu-stats-banner" aria-label="Unsere Kennzahlen">
+        <div class="fu-stats-banner__inner">
+            <div class="container">
+                <div class="fu-stats-grid">
+                    <div class="fu-stat fade-in-up">
+                        <div class="fu-stat__num">182<sup>+</sup></div>
+                        <div class="fu-stat__label" data-i18n="trust-projects">Abgeschlossene Projekte</div>
+                    </div>
+                    <div class="fu-stat fade-in-up" style="transition-delay:.08s">
+                        <div class="fu-stat__num">25<sup>+</sup></div>
+                        <div class="fu-stat__label" data-i18n="trust-since">Jahre Erfahrung</div>
+                    </div>
+                    <div class="fu-stat fade-in-up" style="transition-delay:.16s">
+                        <div class="fu-stat__num">100<sup>%</sup></div>
+                        <div class="fu-stat__label" data-i18n="trust-students">HFU-Studierende</div>
+                    </div>
+                    <div class="fu-stat fade-in-up" style="transition-delay:.24s">
+                        <div class="fu-stat__icon"><i class="fas fa-bolt" aria-hidden="true"></i></div>
+                        <div class="fu-stat__label" data-i18n="trust-speed">Schnelle Umsetzung</div>
+                    </div>
+                    <div class="fu-stat fade-in-up" style="transition-delay:.32s">
+                        <div class="fu-stat__icon"><i class="fas fa-coins" aria-hidden="true"></i></div>
+                        <div class="fu-stat__label" data-i18n="trust-cost">Faire Konditionen</div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
     <!-- ══ ÜBERSICHT / BERATUNGSFELDER ═══════════════════════ -->
     <section id="uebersicht" class="page-section page-section--alt" aria-labelledby="beratungsfelder-heading">
         <div class="container">
-            <div class="section-intro fade-in-up">
+            <div class="section-intro fade-in-up" data-reveal>
                 <span class="section-chip" aria-hidden="true"><i class="fas fa-th-large"></i> Alle Bereiche</span>
                 <h2 id="beratungsfelder-heading" class="ibc-heading" data-i18n="companies-beratungsfelder-heading">
                     Unsere <span class="text-gradient">Beratungsfelder</span>
                 </h2>
                 <p class="ibc-lead" data-i18n="companies-beratungsfelder-subtitle">Von Strategie bis Digitalisierung – wir decken alle relevanten Themen ab.</p>
             </div>
-            <div class="beratungsfeld-grid">
+            <div class="beratungsfeld-grid" data-stagger>
                 <a href="#marketing" class="beratungsfeld-card-v2 fade-in-up" data-animation-delay="0ms" aria-label="Zum Bereich Marketing">
                     <div class="beratungsfeld-card-v2__icon"><i class="fas fa-bullhorn" aria-hidden="true"></i></div>
                     <h3 class="beratungsfeld-card-v2__title" data-i18n="companies-overview-marketing">Marketing</h3>
@@ -571,7 +573,7 @@
                     Alle Leistungen
                 </a>
             </div>
-            <div class="cta-trust-row mt-4">
+            <div class="cta-trust-row mt-4" data-stagger>
                 <span class="cta-trust-chip"><i class="fas fa-clock"></i> Schnelle Reaktion</span>
                 <span class="cta-trust-chip"><i class="fas fa-euro-sign"></i> Fair pricing</span>
                 <span class="cta-trust-chip"><i class="fas fa-star"></i> Top Qualität</span>
@@ -582,7 +584,7 @@
     <!-- ══ SCHULUNGEN ══════════════════════════════════════════ -->
     <section id="schulungen" class="page-section page-section--alt" aria-labelledby="schulungen-heading">
         <div class="container">
-            <div class="section-intro fade-in-up">
+            <div class="section-intro fade-in-up" data-reveal>
                 <span class="section-chip" aria-hidden="true"><i class="fas fa-chalkboard-user"></i> Beratungsfeld</span>
                 <h2 id="schulungen-heading" class="ibc-heading" data-i18n="companies-workshops-heading">
                     Schulungen & <span class="text-gradient">Workshops</span>
@@ -661,7 +663,7 @@
     <!-- ══ DIGITALISIERUNG ═════════════════════════════════════ -->
     <section id="digitalisierung" class="page-section page-section--alt" aria-labelledby="digital-heading">
         <div class="container">
-            <div class="section-intro fade-in-up">
+            <div class="section-intro fade-in-up" data-reveal>
                 <span class="section-chip" aria-hidden="true"><i class="fas fa-microchip"></i> Beratungsfeld</span>
                 <h2 id="digital-heading" class="ibc-heading" data-i18n="companies-digital-heading">
                     <span class="text-gradient">Digitalisierung</span> & IT
@@ -700,7 +702,7 @@
             <div class="service-section__ambient-orb service-section__ambient-orb--2"></div>
         </div>
         <div class="container" style="position:relative;z-index:2;">
-            <div class="section-intro fade-in-up">
+            <div class="section-intro fade-in-up" data-reveal>
                 <span class="section-chip" aria-hidden="true"><i class="fas fa-route"></i> Unser Prozess</span>
                 <h2 id="timeline-heading" class="ibc-heading" data-i18n="companies-process-heading">
                     So läuft Ihr <span class="text-gradient">Projekt ab</span>
@@ -710,6 +712,7 @@
             <div class="timeline-v2" role="list">
                 <div class="timeline-v2__item timeline-v2__item--left fade-in-up" role="listitem">
                     <div class="timeline-v2__content">
+                        <div class="timeline-v2__step-icon"><i class="fas fa-phone-alt" aria-hidden="true"></i></div>
                         <p class="timeline-v2__content-label">Schritt 1</p>
                         <h3 class="timeline-v2__content-title" data-i18n="companies-process-step1-title">Erstkontakt & Briefing</h3>
                         <p class="timeline-v2__content-text" data-i18n="companies-process-step1-desc">Sie nehmen Kontakt auf und schildern Ihr Anliegen. Wir hören aufmerksam zu und stellen gezielte Fragen, um Ihr Projekt vollständig zu verstehen.</p>
@@ -721,6 +724,7 @@
                     <div class="timeline-v2__empty"></div>
                     <div class="timeline-v2__spacer"><div class="timeline-v2__dot">2</div></div>
                     <div class="timeline-v2__content">
+                        <div class="timeline-v2__step-icon"><i class="fas fa-file-contract" aria-hidden="true"></i></div>
                         <p class="timeline-v2__content-label">Schritt 2</p>
                         <h3 class="timeline-v2__content-title" data-i18n="companies-process-step2-title">Angebotserstellung</h3>
                         <p class="timeline-v2__content-text" data-i18n="companies-process-step2-desc">Basierend auf dem Briefing erstellen wir ein individuelles Angebot mit klarem Leistungsumfang, Zeitplan und Konditionen.</p>
@@ -728,6 +732,7 @@
                 </div>
                 <div class="timeline-v2__item timeline-v2__item--left fade-in-up" data-animation-delay="200ms" role="listitem">
                     <div class="timeline-v2__content">
+                        <div class="timeline-v2__step-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
                         <p class="timeline-v2__content-label">Schritt 3</p>
                         <h3 class="timeline-v2__content-title" data-i18n="companies-process-step3-title">Teamzusammenstellung</h3>
                         <p class="timeline-v2__content-text" data-i18n="companies-process-step3-desc">Wir stellen ein passendes Team aus spezialisierten Studierenden zusammen, das perfekt auf Ihre Anforderungen zugeschnitten ist.</p>
@@ -739,6 +744,7 @@
                     <div class="timeline-v2__empty"></div>
                     <div class="timeline-v2__spacer"><div class="timeline-v2__dot">4</div></div>
                     <div class="timeline-v2__content">
+                        <div class="timeline-v2__step-icon"><i class="fas fa-tasks" aria-hidden="true"></i></div>
                         <p class="timeline-v2__content-label">Schritt 4</p>
                         <h3 class="timeline-v2__content-title" data-i18n="companies-process-step4-title">Projektdurchführung</h3>
                         <p class="timeline-v2__content-text" data-i18n="companies-process-step4-desc">Unser Team arbeitet strukturiert an Ihrem Projekt. Regelmäßige Status-Updates halten Sie stets informiert über den Fortschritt.</p>
@@ -746,6 +752,7 @@
                 </div>
                 <div class="timeline-v2__item timeline-v2__item--left fade-in-up" data-animation-delay="400ms" role="listitem">
                     <div class="timeline-v2__content">
+                        <div class="timeline-v2__step-icon"><i class="fas fa-chart-bar" aria-hidden="true"></i></div>
                         <p class="timeline-v2__content-label">Schritt 5</p>
                         <h3 class="timeline-v2__content-title" data-i18n="companies-process-step5-title">Abschlusspräsentation</h3>
                         <p class="timeline-v2__content-text" data-i18n="companies-process-step5-desc">Die Ergebnisse werden professionell präsentiert und übergeben. Auf Wunsch beantworten wir Rückfragen und zeigen Handlungsempfehlungen auf.</p>
@@ -928,5 +935,18 @@
 <script src="js/design-effects.js" defer></script>
 <script src="js/premium-animations.js" defer></script>
     <script src="js/new-navbar.js" defer></script>
+    <script>
+    /* [data-reveal] / [data-stagger] IntersectionObserver init */
+    (function(){
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var els = document.querySelectorAll('[data-reveal], [data-stagger]');
+      if (reduced) { els.forEach(function(el){ el.classList.add('revealed'); }); return; }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(!e.isIntersecting) return; e.target.classList.add('revealed'); io.unobserve(e.target); });
+      }, { rootMargin: '0px 0px -60px 0px', threshold: 0.1 });
+      els.forEach(function(el){ io.observe(el); });
+    })();
+    </script>
+    <script src="js/ibc-buttons.js" defer></script>
 </body>
 </html>

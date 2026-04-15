@@ -1,0 +1,905 @@
+/* =============================================================
+   IBC DESIGN v3 — Unified Redesign, Dark/Light Mode & Responsive
+   Patch file. Load LAST on every page, AFTER ibc-design-v2.css.
+   Covers: navbar unification, dark mode for legacy pages,
+   cookie banner polish, legal pages, responsive refinements,
+   redesign polish (shadows, hover, animations).
+   ============================================================= */
+
+/* -------------------------------------------------------------
+   0. DESIGN TOKENS (layered on top of v2)
+   ------------------------------------------------------------- */
+:root {
+  --v3-radius-sm: 10px;
+  --v3-radius:    16px;
+  --v3-radius-lg: 22px;
+  --v3-shadow-sm: 0 2px 10px rgba(32,35,74,0.06);
+  --v3-shadow:    0 10px 30px rgba(32,35,74,0.08);
+  --v3-shadow-lg: 0 20px 60px rgba(32,35,74,0.14);
+  --v3-ease:      cubic-bezier(.2,.8,.2,1);
+  --v3-green:     #6D9744;
+  --v3-green-2:   #7DB356;
+  --v3-blue:      #20234A;
+  --v3-blue-2:    #2D3166;
+  --v3-surface-1: #ffffff;
+  --v3-surface-2: #f7f8fb;
+  --v3-surface-3: #eef0f5;
+  --v3-text-1:    #1d1d1f;
+  --v3-text-2:    #4b4f55;
+  --v3-text-3:    #7a8089;
+  --v3-border:    rgba(0,0,0,0.08);
+}
+
+[data-theme="dark"] {
+  --v3-shadow-sm: 0 2px 10px rgba(0,0,0,0.4);
+  --v3-shadow:    0 10px 30px rgba(0,0,0,0.45);
+  --v3-shadow-lg: 0 20px 60px rgba(0,0,0,0.55);
+  --v3-surface-1: #10131f;
+  --v3-surface-2: #161a29;
+  --v3-surface-3: #1d2236;
+  --v3-text-1:    #f5f6fa;
+  --v3-text-2:    #c4c8d2;
+  --v3-text-3:    #8b90a0;
+  --v3-border:    rgba(255,255,255,0.08);
+}
+
+/* -------------------------------------------------------------
+   1. NAVBAR — UNIFIED across all pages (light/dark + responsive)
+   ------------------------------------------------------------- */
+#navbar.at-top, .navbar.at-top {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+[data-theme="dark"] #navbar.at-top,
+[data-theme="dark"] .navbar.at-top {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.28) 0%, transparent 100%) !important;
+}
+
+#navbar.is-scrolled, .navbar.is-scrolled,
+#navbar.scrolled,    .navbar.scrolled {
+  background: rgba(255,255,255,0.94) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  box-shadow: 0 4px 30px rgba(32,35,74,0.08) !important;
+  border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+}
+[data-theme="dark"] #navbar.is-scrolled,
+[data-theme="dark"] .navbar.is-scrolled,
+[data-theme="dark"] #navbar.scrolled,
+[data-theme="dark"] .navbar.scrolled {
+  background: rgba(18,20,36,0.92) !important;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.5) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+}
+
+/* Links / utilities on TRANSPARENT (at-top) navbar — white text */
+.navbar.at-top .nav-link,
+.navbar.at-top .lang-btn,
+.navbar.at-top #currentLang,
+.navbar.at-top .lang-btn i {
+  color: rgba(255,255,255,0.94) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.35);
+}
+.navbar.at-top .nav-link::after { background: rgba(255,255,255,0.9) !important; }
+.navbar.at-top .mobile-toggle span { background: #fff !important; }
+
+/* On scrolled navbar — themed text */
+.navbar.is-scrolled .nav-link,
+.navbar.scrolled .nav-link {
+  color: var(--v3-text-1) !important;
+  text-shadow: none !important;
+}
+[data-theme="dark"] .navbar.is-scrolled .nav-link,
+[data-theme="dark"] .navbar.scrolled .nav-link {
+  color: var(--v3-text-1) !important;
+}
+.navbar.is-scrolled .mobile-toggle span,
+.navbar.scrolled .mobile-toggle span {
+  background: var(--v3-text-1) !important;
+}
+
+/* Active nav-link underline */
+.nav-link.active::after,
+.nav-link[aria-current="page"]::after {
+  transform: scaleX(1) !important;
+}
+
+/* Mobile menu (bottom sheet) dark mode */
+[data-theme="dark"] .mobile-menu {
+  background: var(--v3-surface-1) !important;
+  color: var(--v3-text-1) !important;
+  border-top: 1px solid var(--v3-border);
+}
+[data-theme="dark"] .mobile-menu .mobile-nav-link {
+  color: var(--v3-text-1) !important;
+}
+[data-theme="dark"] .mobile-menu .mobile-nav-link:hover,
+[data-theme="dark"] .mobile-menu .mobile-nav-link.active {
+  background: rgba(109,151,68,0.12) !important;
+  color: var(--v3-green-2) !important;
+}
+[data-theme="dark"] .mobile-menu-handle { background: var(--v3-text-3) !important; }
+[data-theme="dark"] .mobile-utilities { border-top: 1px solid var(--v3-border); }
+[data-theme="dark"] .mobile-theme-text { color: var(--v3-text-2) !important; }
+.mobile-menu-overlay { backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+
+/* Lang dropdown */
+[data-theme="dark"] .lang-menu {
+  background: var(--v3-surface-2) !important;
+  border: 1px solid var(--v3-border) !important;
+  box-shadow: var(--v3-shadow-lg);
+}
+[data-theme="dark"] .lang-option { color: var(--v3-text-1) !important; }
+[data-theme="dark"] .lang-option:hover,
+[data-theme="dark"] .lang-option.active {
+  background: rgba(109,151,68,0.14) !important;
+  color: var(--v3-green-2) !important;
+}
+
+/* Navbar responsive: keep the pill-shape behaviour but override mobile-first.css bug
+   (mobile-first.css uses :not(.scrolled) but app.js sets .is-scrolled — already fixed via !important above) */
+@media (max-width: 1199px) {
+  #navbar.is-scrolled, .navbar.is-scrolled {
+    width: 94% !important;
+    max-width: 1200px;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 10px !important;
+    border-radius: 999px !important;
+  }
+}
+@media (max-width: 968px) {
+  .desktop-nav { display: none !important; }
+  .mobile-toggle { display: flex !important; }
+  .nav-container { padding: 0 1rem !important; }
+}
+
+/* Fab / overlay menu dark mode */
+[data-theme="dark"] #fab-overlay-menu {
+  background: linear-gradient(135deg, #0D1117 0%, #1a1f35 100%) !important;
+}
+[data-theme="dark"] #fab-overlay-menu a { color: var(--v3-text-1) !important; }
+[data-theme="dark"] .fab-nav-divider { background: var(--v3-border) !important; }
+
+/* -------------------------------------------------------------
+   2. PAGE HERO (shared across ueber-uns / unser-netzwerk / ...)
+   ------------------------------------------------------------- */
+.page-hero-section { position: relative; }
+[data-theme="dark"] .page-hero-section {
+  background: linear-gradient(125deg, #0D1117 0%, #152a1a 45%, #0D1117 100%) !important;
+}
+[data-theme="dark"] .page-hero-section *:not(.btn):not(.fas):not(.fab) {
+  color: rgba(245,246,250,0.96) !important;
+}
+[data-theme="dark"] .page-hero-section h1,
+[data-theme="dark"] .page-hero-section h2 {
+  color: #fff !important;
+}
+
+/* -------------------------------------------------------------
+   3. UEBER-UNS — dark mode patches
+   ------------------------------------------------------------- */
+[data-theme="dark"] .mission-section,
+[data-theme="dark"] .vision-mission-section,
+[data-theme="dark"] .values-section,
+[data-theme="dark"] .vorstand-section,
+[data-theme="dark"] .team-section,
+[data-theme="dark"] .ressort-section,
+[data-theme="dark"] .plattform-manager-section {
+  background: var(--v3-surface-1) !important;
+  color: var(--v3-text-1) !important;
+}
+[data-theme="dark"] .mission-card,
+[data-theme="dark"] .value-card,
+[data-theme="dark"] .vorstand-card,
+[data-theme="dark"] .team-card,
+[data-theme="dark"] .ressort-card,
+[data-theme="dark"] .member-card {
+  background: var(--v3-surface-2) !important;
+  color: var(--v3-text-1) !important;
+  border: 1px solid var(--v3-border) !important;
+  box-shadow: var(--v3-shadow-sm);
+  transition: transform .4s var(--v3-ease), box-shadow .4s var(--v3-ease);
+}
+[data-theme="dark"] .mission-card:hover,
+[data-theme="dark"] .value-card:hover,
+[data-theme="dark"] .vorstand-card:hover,
+[data-theme="dark"] .team-card:hover,
+[data-theme="dark"] .ressort-card:hover,
+[data-theme="dark"] .member-card:hover {
+  box-shadow: var(--v3-shadow-lg);
+  transform: translateY(-4px);
+}
+[data-theme="dark"] .value-card p,
+[data-theme="dark"] .vorstand-card p,
+[data-theme="dark"] .team-card p,
+[data-theme="dark"] .ressort-card p,
+[data-theme="dark"] .member-card p { color: var(--v3-text-2) !important; }
+
+/* White gradient strips in ueber-uns.css → dark */
+[data-theme="dark"] .team-section,
+[data-theme="dark"] .vorstand-section {
+  background: linear-gradient(135deg, var(--v3-surface-1) 0%, var(--v3-surface-2) 100%) !important;
+}
+
+/* -------------------------------------------------------------
+   4. UNSER-NETZWERK — dark mode patches
+   ------------------------------------------------------------- */
+[data-theme="dark"] .netzwerk-section,
+[data-theme="dark"] .network-section,
+[data-theme="dark"] .partner-section {
+  background: var(--v3-surface-1) !important;
+}
+[data-theme="dark"] .partner-card,
+[data-theme="dark"] .netzwerk-card,
+[data-theme="dark"] .network-card {
+  background: var(--v3-surface-2) !important;
+  border: 1px solid var(--v3-border) !important;
+  color: var(--v3-text-1) !important;
+  box-shadow: var(--v3-shadow-sm);
+}
+[data-theme="dark"] .partner-card h3,
+[data-theme="dark"] .partner-card h4,
+[data-theme="dark"] .netzwerk-card h3 { color: var(--v3-text-1) !important; }
+[data-theme="dark"] .partner-card p,
+[data-theme="dark"] .netzwerk-card p { color: var(--v3-text-2) !important; }
+[data-theme="dark"] .partner-logo,
+[data-theme="dark"] .network-logo {
+  background: var(--v3-surface-3) !important;
+  padding: 12px;
+  border-radius: var(--v3-radius-sm);
+}
+[data-theme="dark"] .partner-logo img,
+[data-theme="dark"] .network-logo img {
+  filter: brightness(0.95) contrast(1.05);
+}
+
+/* -------------------------------------------------------------
+   5. FUER-UNTERNEHMEN — dark mode patches
+   ------------------------------------------------------------- */
+[data-theme="dark"] .beratungsfeld-section,
+[data-theme="dark"] .services-section,
+[data-theme="dark"] .leistungen-section,
+[data-theme="dark"] .prozess-section,
+[data-theme="dark"] .vorteile-section,
+[data-theme="dark"] .faq-section {
+  background: var(--v3-surface-1) !important;
+}
+[data-theme="dark"] .beratungsfeld-card,
+[data-theme="dark"] .service-card,
+[data-theme="dark"] .leistung-card,
+[data-theme="dark"] .vorteil-card,
+[data-theme="dark"] .prozess-step,
+[data-theme="dark"] .faq-item,
+[data-theme="dark"] .timeline-content-v2,
+[data-theme="dark"] .timeline-v2 .timeline-item {
+  background: var(--v3-surface-2) !important;
+  color: var(--v3-text-1) !important;
+  border: 1px solid var(--v3-border) !important;
+  box-shadow: var(--v3-shadow-sm);
+}
+[data-theme="dark"] .beratungsfeld-card *,
+[data-theme="dark"] .service-card *,
+[data-theme="dark"] .leistung-card *,
+[data-theme="dark"] .vorteil-card *,
+[data-theme="dark"] .prozess-step *,
+[data-theme="dark"] .faq-item p,
+[data-theme="dark"] .faq-item span {
+  color: inherit;
+}
+[data-theme="dark"] .beratungsfeld-card p,
+[data-theme="dark"] .service-card p,
+[data-theme="dark"] .leistung-card p,
+[data-theme="dark"] .vorteil-card p { color: var(--v3-text-2) !important; }
+
+/* Timeline v2 variables override in dark */
+[data-theme="dark"] {
+  --tl-bg-card: var(--v3-surface-2);
+  --tl-border:  var(--v3-border);
+  --tl-text:    var(--v3-text-1);
+}
+
+/* Hero rgba whites stay white — fine over dark gradient hero */
+
+/* -------------------------------------------------------------
+   6. REFERENZEN — polish (CSS already has dark mode; add consistency)
+   ------------------------------------------------------------- */
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .reference-card,
+[data-theme="dark"] .filter-bar {
+  background: var(--v3-surface-2) !important;
+  border: 1px solid var(--v3-border) !important;
+}
+[data-theme="dark"] .filter-btn {
+  background: transparent !important;
+  color: var(--v3-text-2) !important;
+  border: 1px solid var(--v3-border) !important;
+}
+[data-theme="dark"] .filter-btn.active,
+[data-theme="dark"] .filter-btn:hover {
+  background: linear-gradient(135deg, var(--v3-green), var(--v3-green-2)) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+/* -------------------------------------------------------------
+   7. LEGAL PAGES — polish + responsive (impressum, cookie, datenschutz)
+   ------------------------------------------------------------- */
+.legal-page-container,
+.impressum-content,
+.datenschutz-content,
+.cookie-richtlinie-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem);
+}
+[data-theme="dark"] .legal-page-container,
+[data-theme="dark"] .impressum-content,
+[data-theme="dark"] .datenschutz-content,
+[data-theme="dark"] .cookie-richtlinie-content {
+  background: var(--v3-surface-1) !important;
+  color: var(--v3-text-1) !important;
+}
+[data-theme="dark"] .legal-page-container h1,
+[data-theme="dark"] .legal-page-container h2,
+[data-theme="dark"] .legal-page-container h3,
+[data-theme="dark"] .impressum-content h1,
+[data-theme="dark"] .impressum-content h2,
+[data-theme="dark"] .datenschutz-content h1,
+[data-theme="dark"] .datenschutz-content h2,
+[data-theme="dark"] .cookie-richtlinie-content h1,
+[data-theme="dark"] .cookie-richtlinie-content h2 {
+  color: var(--v3-text-1) !important;
+}
+[data-theme="dark"] .legal-page-container p,
+[data-theme="dark"] .legal-page-container li,
+[data-theme="dark"] .impressum-content p,
+[data-theme="dark"] .impressum-content li,
+[data-theme="dark"] .datenschutz-content p,
+[data-theme="dark"] .datenschutz-content li,
+[data-theme="dark"] .cookie-richtlinie-content p,
+[data-theme="dark"] .cookie-richtlinie-content li {
+  color: var(--v3-text-2) !important;
+}
+[data-theme="dark"] .legal-page-container a,
+[data-theme="dark"] .impressum-content a,
+[data-theme="dark"] .datenschutz-content a,
+[data-theme="dark"] .cookie-richtlinie-content a {
+  color: var(--v3-green-2) !important;
+}
+[data-theme="dark"] .legal-page-container address,
+[data-theme="dark"] .impressum-content address {
+  background: var(--v3-surface-2) !important;
+  color: var(--v3-text-1) !important;
+  border-left: 4px solid var(--v3-green);
+}
+[data-theme="dark"] .datenschutz-content table,
+[data-theme="dark"] .cookie-richtlinie-content table {
+  background: var(--v3-surface-2) !important;
+  color: var(--v3-text-1) !important;
+  border: 1px solid var(--v3-border) !important;
+}
+[data-theme="dark"] .datenschutz-content th,
+[data-theme="dark"] .cookie-richtlinie-content th {
+  background: var(--v3-surface-3) !important;
+  color: var(--v3-text-1) !important;
+}
+[data-theme="dark"] .datenschutz-content td,
+[data-theme="dark"] .cookie-richtlinie-content td {
+  border-color: var(--v3-border) !important;
+}
+
+/* Responsive fixes for legal pages */
+@media (max-width: 768px) {
+  .legal-page-container,
+  .impressum-content,
+  .datenschutz-content,
+  .cookie-richtlinie-content {
+    padding: 1.25rem 1rem;
+    font-size: 0.95rem;
+  }
+  .legal-page-container h1 { font-size: clamp(1.7rem, 6vw, 2.2rem) !important; }
+  .legal-page-container h2 { font-size: clamp(1.3rem, 4.5vw, 1.6rem) !important; }
+  .legal-page-container table,
+  .datenschutz-content table,
+  .cookie-richtlinie-content table {
+    display: block; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* -------------------------------------------------------------
+   8. COOKIE CONSENT BANNER — redesign + dark mode
+   ------------------------------------------------------------- */
+.cookie-consent {
+  border-radius: 20px !important;
+  box-shadow: var(--v3-shadow-lg) !important;
+  overflow: hidden;
+}
+.cookie-consent__content {
+  background: linear-gradient(135deg, rgba(32,35,74,0.96), rgba(45,49,102,0.96)) !important;
+  color: #fff;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+[data-theme="dark"] .cookie-consent__content {
+  background: linear-gradient(135deg, rgba(16,19,31,0.98), rgba(29,34,54,0.98)) !important;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.cookie-consent__button--accept-all {
+  background: linear-gradient(135deg, var(--v3-green), var(--v3-green-2)) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px rgba(109,151,68,0.4);
+  transition: transform .25s var(--v3-ease), box-shadow .25s var(--v3-ease);
+}
+.cookie-consent__button--accept-all:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(109,151,68,0.55);
+}
+.cookie-consent__button--save,
+.cookie-consent__button--reject-all {
+  background: rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+  border: 1px solid rgba(255,255,255,0.18) !important;
+  backdrop-filter: blur(10px);
+}
+.cookie-consent__button--save:hover,
+.cookie-consent__button--reject-all:hover {
+  background: rgba(255,255,255,0.15) !important;
+}
+.cookie-consent__category {
+  background: rgba(255,255,255,0.05);
+  border-radius: var(--v3-radius-sm);
+  padding: 0.9rem 1rem;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 0.5rem;
+  transition: background .2s var(--v3-ease);
+}
+.cookie-consent__category:hover { background: rgba(255,255,255,0.08); }
+.cookie-lang-btn { transition: all .2s var(--v3-ease); }
+.cookie-lang-btn:hover,
+.cookie-lang-btn.active {
+  background: rgba(255,255,255,0.22) !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+/* Cookie switch */
+.cookie-consent__slider {
+  background: rgba(255,255,255,0.22) !important;
+}
+input:checked + .cookie-consent__slider {
+  background: linear-gradient(135deg, var(--v3-green), var(--v3-green-2)) !important;
+}
+
+@media (max-width: 640px) {
+  .cookie-consent { left: 0 !important; right: 0 !important; bottom: 0 !important; border-radius: 20px 20px 0 0 !important; }
+  .cookie-consent__actions { grid-template-columns: 1fr !important; }
+  .cookie-consent__button { width: 100% !important; min-height: 48px; }
+}
+
+/* -------------------------------------------------------------
+   9. MODALS (kontakt "Projekt" popup etc.)
+   ------------------------------------------------------------- */
+.my-modal-scrim {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  background: rgba(10,12,20,0.55) !important;
+}
+.my-modal-box {
+  background: var(--v3-surface-1) !important;
+  color: var(--v3-text-1) !important;
+  border-radius: var(--v3-radius-lg) !important;
+  box-shadow: var(--v3-shadow-lg) !important;
+  border: 1px solid var(--v3-border);
+}
+[data-theme="dark"] .my-modal-box {
+  background: var(--v3-surface-2) !important;
+  color: var(--v3-text-1) !important;
+}
+.modal-button {
+  border-radius: 999px !important;
+  font-weight: 600 !important;
+  padding: 0.7rem 1.4rem !important;
+  transition: transform .25s var(--v3-ease), box-shadow .25s var(--v3-ease) !important;
+}
+.modal-button.ja {
+  background: linear-gradient(135deg, var(--v3-green), var(--v3-green-2)) !important;
+  color: #fff !important; border: none !important;
+  box-shadow: 0 4px 14px rgba(109,151,68,0.4);
+}
+.modal-button.nein {
+  background: transparent !important;
+  color: var(--v3-text-1) !important;
+  border: 1.5px solid var(--v3-border) !important;
+}
+.modal-button:hover { transform: translateY(-2px); }
+
+/* Bootstrap modals dark-mode (any generic .modal-content) */
+[data-theme="dark"] .modal-content {
+  background: var(--v3-surface-2) !important;
+  color: var(--v3-text-1) !important;
+  border: 1px solid var(--v3-border) !important;
+}
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-footer {
+  border-color: var(--v3-border) !important;
+}
+
+/* -------------------------------------------------------------
+   10. BUTTONS / CTAs — unified polish
+   ------------------------------------------------------------- */
+.btn-primary,
+.btn-ibc,
+.cta-button,
+.hero-cta {
+  border-radius: 999px !important;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: transform .3s var(--v3-ease), box-shadow .3s var(--v3-ease);
+}
+.btn-primary:hover,
+.btn-ibc:hover,
+.cta-button:hover,
+.hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(109,151,68,0.28);
+}
+
+/* -------------------------------------------------------------
+   11. UNIVERSAL DARK-MODE BACKGROUND PATCHES
+   Catch any section that uses white-ish hardcoded bg and
+   hasn't been themed yet.
+   ------------------------------------------------------------- */
+[data-theme="dark"] section[style*="background: #fff"],
+[data-theme="dark"] section[style*="background:#fff"],
+[data-theme="dark"] section[style*="background-color: #fff"],
+[data-theme="dark"] section[style*="background-color:#fff"],
+[data-theme="dark"] div[style*="background: #fff"]:not(.logo-wrapper):not(.theme-toggle-ball) {
+  background: var(--v3-surface-1) !important;
+  color: var(--v3-text-1) !important;
+}
+
+/* Footer dark mode polish */
+[data-theme="dark"] footer,
+[data-theme="dark"] .footer,
+[data-theme="dark"] .site-footer,
+[data-theme="dark"] .fat-footer {
+  background: linear-gradient(135deg, #0a0c14 0%, #121628 100%) !important;
+  color: var(--v3-text-2) !important;
+  border-top: 1px solid var(--v3-border);
+}
+[data-theme="dark"] footer a,
+[data-theme="dark"] .footer a { color: var(--v3-text-2) !important; }
+[data-theme="dark"] footer a:hover,
+[data-theme="dark"] .footer a:hover { color: var(--v3-green-2) !important; }
+
+/* -------------------------------------------------------------
+   12. GLOBAL RESPONSIVE / MOBILE REFINEMENTS
+   For index.html and fuer-studierende.html content
+   ------------------------------------------------------------- */
+:root { --v3-gutter: clamp(1rem, 3vw, 2rem); }
+
+img, video, iframe { max-width: 100%; height: auto; }
+
+/* Fluid typography */
+@media (max-width: 768px) {
+  h1 { font-size: clamp(1.75rem, 7vw, 2.6rem) !important; line-height: 1.15 !important; }
+  h2 { font-size: clamp(1.4rem, 5.5vw, 2rem) !important; line-height: 1.2 !important; }
+  h3 { font-size: clamp(1.2rem, 4.5vw, 1.6rem) !important; line-height: 1.25 !important; }
+  p, li { font-size: clamp(0.95rem, 3.5vw, 1.05rem) !important; line-height: 1.6 !important; }
+  .display-1, .display-2, .display-3, .display-4 {
+    font-size: clamp(1.9rem, 8vw, 3rem) !important;
+  }
+  .container, .container-fluid { padding-left: var(--v3-gutter) !important; padding-right: var(--v3-gutter) !important; }
+  section { padding-top: clamp(2rem, 8vw, 4rem) !important; padding-bottom: clamp(2rem, 8vw, 4rem) !important; }
+  .row > [class*="col-"] { margin-bottom: 1.25rem; }
+  .d-flex.flex-row { flex-wrap: wrap; }
+  .btn, button { min-height: 44px; }
+  .hero-stats,
+  .stats-grid,
+  .trust-indicators {
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+    justify-content: center !important;
+  }
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  pre, code { white-space: pre-wrap; word-break: break-word; }
+}
+
+@media (max-width: 480px) {
+  h1 { font-size: clamp(1.6rem, 8vw, 2.2rem) !important; }
+  h2 { font-size: clamp(1.25rem, 6vw, 1.7rem) !important; }
+  .container, .container-fluid { padding-left: 1rem !important; padding-right: 1rem !important; }
+  section { padding-top: 2.25rem !important; padding-bottom: 2.25rem !important; }
+  .btn, button { padding: 0.7rem 1.1rem !important; font-size: 0.95rem !important; }
+  .card, .beratungsfeld-card, .angebot-card, .value-card, .vorstand-card, .team-card, .ressort-card,
+  .partner-card, .netzwerk-card, .service-card, .leistung-card, .vorteil-card, .project-card, .reference-card {
+    padding: 1.15rem !important;
+    border-radius: var(--v3-radius) !important;
+  }
+  .hero-cta, .cta-button, .btn-primary, .btn-ibc { width: 100%; justify-content: center; }
+}
+
+@media (max-width: 380px) {
+  html { font-size: 15px; }
+}
+
+/* Prevent horizontal scroll */
+html, body { overflow-x: hidden; max-width: 100%; }
+
+/* Reveal / animation respect reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* -------------------------------------------------------------
+   13. REDESIGN POLISH — hover states, focus rings, shadows
+   ------------------------------------------------------------- */
+a, button, .btn, .card, .nav-link {
+  transition: color .2s var(--v3-ease), background .2s var(--v3-ease),
+              box-shadow .3s var(--v3-ease), transform .3s var(--v3-ease);
+}
+
+:focus-visible {
+  outline: 3px solid var(--v3-green-2) !important;
+  outline-offset: 2px !important;
+  border-radius: 6px;
+}
+
+/* Subtle reveal for cards */
+.card, .angebot-card, .beratungsfeld-card, .value-card, .vorstand-card, .team-card, .ressort-card,
+.partner-card, .netzwerk-card, .project-card, .reference-card, .service-card, .leistung-card {
+  transition: transform .4s var(--v3-ease), box-shadow .4s var(--v3-ease), border-color .3s var(--v3-ease);
+}
+.card:hover, .angebot-card:hover, .beratungsfeld-card:hover, .value-card:hover,
+.vorstand-card:hover, .team-card:hover, .ressort-card:hover, .partner-card:hover,
+.netzwerk-card:hover, .project-card:hover, .reference-card:hover,
+.service-card:hover, .leistung-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--v3-shadow-lg);
+}
+
+/* Scrollbar polish */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgba(32,35,74,0.25);
+  border-radius: 10px;
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); }
+::-webkit-scrollbar-thumb:hover { background: var(--v3-green); }
+
+/* Section separators in dark mode become subtle */
+[data-theme="dark"] hr,
+[data-theme="dark"] .section-divider { border-color: var(--v3-border) !important; }
+
+/* Badges */
+[data-theme="dark"] .badge,
+[data-theme="dark"] .tag { background: var(--v3-surface-3) !important; color: var(--v3-text-1) !important; }
+
+/* Form inputs dark mode */
+[data-theme="dark"] input[type="text"],
+[data-theme="dark"] input[type="email"],
+[data-theme="dark"] input[type="tel"],
+[data-theme="dark"] input[type="search"],
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  background: var(--v3-surface-2) !important;
+  color: var(--v3-text-1) !important;
+  border: 1px solid var(--v3-border) !important;
+}
+[data-theme="dark"] input::placeholder,
+[data-theme="dark"] textarea::placeholder { color: var(--v3-text-3) !important; }
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+  border-color: var(--v3-green-2) !important;
+  box-shadow: 0 0 0 3px rgba(125,179,86,0.25) !important;
+}
+
+/* -------------------------------------------------------------
+   14. NAVBAR RESPONSIVE FIX — overrides new-navbar.css absolute centering
+   At ≤968px new-navbar.css places .nav-utilities absolute-centered which
+   causes overlap with the logo on the left. We revert to a clean flex
+   layout: logo | nav-utilities | mobile-toggle, with logo flush-left
+   and hamburger flush-right.
+   ------------------------------------------------------------- */
+@media (max-width: 968px) {
+  /* Reset absolute centering from new-navbar.css */
+  .nav-container {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    position: relative !important;
+    padding: 0 0.5rem !important;
+  }
+
+  /* Always solid background on mobile — transparent looks broken at at-top */
+  #navbar.at-top, .navbar.at-top {
+    background: rgba(255,255,255,0.97) !important;
+    backdrop-filter: blur(16px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+    box-shadow: 0 2px 14px rgba(32,35,74,0.07) !important;
+    border-bottom: 1px solid rgba(32,35,74,0.06) !important;
+  }
+  [data-theme="dark"] #navbar.at-top,
+  [data-theme="dark"] .navbar.at-top {
+    background: rgba(10,11,22,0.97) !important;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.55) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+  }
+  /* Mobile at-top: use theme text color, not always-white */
+  #navbar.at-top .mobile-toggle span,
+  .navbar.at-top .mobile-toggle span {
+    background: #20234A !important;
+  }
+  [data-theme="dark"] #navbar.at-top .mobile-toggle span,
+  [data-theme="dark"] .navbar.at-top .mobile-toggle span {
+    background: #e8eaf6 !important;
+  }
+  .navbar.at-top .lang-btn,
+  .navbar.at-top #currentLang,
+  .navbar.at-top .lang-btn i {
+    color: #20234A !important;
+  }
+  [data-theme="dark"] .navbar.at-top .lang-btn,
+  [data-theme="dark"] .navbar.at-top #currentLang,
+  [data-theme="dark"] .navbar.at-top .lang-btn i {
+    color: #e8eaf6 !important;
+  }
+
+  /* Push nav-utilities all the way right so logo=far-left, hamburger=far-right */
+  .nav-utilities {
+    position: static !important;
+    left: auto !important;
+    transform: none !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.55rem !important;
+    flex: 0 0 auto !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+
+  .logo {
+    flex: 0 0 auto !important;
+    z-index: 1002 !important;
+    margin-left: 0.2rem !important;
+  }
+
+  .mobile-toggle {
+    flex: 0 0 auto !important;
+    display: flex !important;
+    z-index: 1002 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-utilities { gap: 0.4rem !important; }
+
+  /* Hide lang chevron on very small screens to save space */
+  .lang-btn .fa-chevron-down { display: none !important; }
+
+  /* Compact lang button */
+  .lang-btn {
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 380px) {
+  /* Minimal: show only the toggle icons, no "DE" text */
+  .lang-btn #currentLang { display: none !important; }
+  .lang-btn { padding: 0.35rem 0.5rem !important; min-width: 32px; }
+  .nav-container { padding: 0 0.65rem !important; }
+}
+
+/* On at-top state theme-toggle and lang button use white tint */
+.navbar.at-top .theme-toggle {
+  border-color: rgba(255,255,255,0.4) !important;
+}
+.navbar.at-top .lang-btn {
+  border-color: rgba(255,255,255,0.35) !important;
+  background: rgba(255,255,255,0.1) !important;
+}
+
+/* Pill-shape only at 1199px+ scroll, not on mobile (≤968px it's full-width) */
+@media (min-width: 969px) and (max-width: 1199px) {
+  #navbar.is-scrolled, .navbar.is-scrolled {
+    width: 94% !important;
+    max-width: 1200px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    top: 10px !important;
+    border-radius: 999px !important;
+    position: fixed !important;
+  }
+}
+@media (max-width: 968px) {
+  #navbar.is-scrolled, .navbar.is-scrolled,
+  #navbar.scrolled, .navbar.scrolled {
+    width: 100% !important;
+    left: 0 !important;
+    transform: none !important;
+    top: 0 !important;
+    border-radius: 0 !important;
+    position: fixed !important;
+  }
+}
+
+/* -------------------------------------------------------------
+   15. MOBILE STICKY CTA POPUP — dark/light mode support
+   ------------------------------------------------------------- */
+#mobile-sticky-cta {
+  background: #ffffff !important;
+  color: #1d1d1f !important;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+[data-theme="dark"] #mobile-sticky-cta {
+  background: #1a1f32 !important;
+  color: #f5f6fa !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow:
+    0 2px 8px rgba(0,0,0,0.5),
+    0 8px 24px rgba(0,0,0,0.55),
+    0 24px 48px rgba(0,0,0,0.45),
+    0 0 0 1px rgba(109,151,68,0.2) !important;
+}
+
+/* Keep the gradient accent bar in dark mode */
+[data-theme="dark"] #mobile-sticky-cta::before {
+  background: linear-gradient(
+    90deg,
+    var(--v3-green) 0%,
+    var(--v3-green-2) 50%,
+    var(--v3-blue) 100%
+  ) !important;
+}
+
+[data-theme="dark"] #mobile-sticky-cta .mobile-cta-label {
+  color: #f5f6fa !important;
+  font-weight: 700;
+}
+
+[data-theme="dark"] #mobile-sticky-cta .mobile-cta-tagline {
+  color: #e8eaf0 !important;
+}
+
+[data-theme="dark"] #mobile-sticky-cta .mobile-cta-sub {
+  color: #b0b5c4 !important;
+}
+
+[data-theme="dark"] #mobile-sticky-cta .mobile-cta-close {
+  background: rgba(255,255,255,0.08) !important;
+  color: rgba(255,255,255,0.7) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+}
+
+[data-theme="dark"] #mobile-sticky-cta .mobile-cta-close:hover {
+  background: rgba(255,255,255,0.16) !important;
+  color: #fff !important;
+}
+
+[data-theme="dark"] #mobile-sticky-cta .mobile-cta-btn {
+  background: linear-gradient(135deg, var(--v3-green), var(--v3-green-2)) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(109,151,68,0.45);
+}
+
+[data-theme="dark"] #mobile-sticky-cta .mobile-cta-icon {
+  color: var(--v3-green-2);
+}
+
+/* End of v3 */

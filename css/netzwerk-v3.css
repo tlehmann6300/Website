@@ -1,0 +1,613 @@
+/* ================================================================
+   netzwerk-v3.css
+   Premium redesign for unser-netzwerk.html
+   Load after ibc-design-v3.css and page-redesign.css.
+   ================================================================ */
+
+/* ── Design tokens ─────────────────────────────────────────── */
+:root {
+  --nk-green:       #6D9744;
+  --nk-green-2:     #7DB356;
+  --nk-blue:        #20234A;
+  --nk-indigo:      #6366f1;
+  --nk-ease:        cubic-bezier(.2,.8,.2,1);
+  --nk-ease-spring: cubic-bezier(.34,1.56,.64,1);
+  --nk-radius:      18px;
+  --nk-radius-sm:   12px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §1  HERO ENHANCEMENTS
+   ══════════════════════════════════════════════════════════════ */
+.page-hero-section .hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.hero-stat {
+  text-align: center;
+}
+.hero-stat__number {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  background: linear-gradient(135deg, #9dd467 30%, #e0f8c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+.hero-stat__label {
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+  margin-top: .25rem;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §2  SECTION LAYOUT HELPERS
+   ══════════════════════════════════════════════════════════════ */
+.nk-section {
+  padding: clamp(4rem, 8vw, 6rem) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Förderkreis – light/dark adaptive */
+.nk-section--foerderkreis {
+  background: var(--bg-secondary, #f7f8fb);
+}
+[data-theme="dark"] .nk-section--foerderkreis {
+  background: var(--bg-elevated, #12152a);
+}
+.nk-section--foerderkreis::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--nk-green), var(--nk-indigo));
+}
+
+/* Alumni – dark, immersive */
+.nk-section--alumni {
+  background: linear-gradient(160deg, #0f1228 0%, #1a1d3a 45%, #20234a 100%);
+  color: #fff;
+}
+.nk-section--alumni::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--nk-green), var(--nk-blue));
+}
+.nk-section--alumni::after {
+  content: '';
+  position: absolute;
+  bottom: -160px; right: -120px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(93,167,57,.16) 0%, transparent 65%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: nkBlobFloat 14s ease-in-out infinite;
+}
+
+/* Kooperationspartner */
+.nk-section--partner {
+  background: linear-gradient(160deg, var(--bg-primary, #fff) 0%, var(--bg-secondary, #f7f8fb) 100%);
+}
+[data-theme="dark"] .nk-section--partner {
+  background: linear-gradient(160deg, #0d0f1a 0%, #12152a 100%);
+}
+.nk-section--partner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--nk-indigo), var(--nk-green));
+}
+
+/* Kuratorium */
+.nk-section--kuratorium {
+  background: var(--bg-primary, #fff);
+}
+[data-theme="dark"] .nk-section--kuratorium {
+  background: var(--bg-secondary, #0d0f1a);
+}
+.nk-section--kuratorium::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--nk-blue), var(--nk-green));
+}
+
+@keyframes nkBlobFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-20px) scale(1.04); }
+}
+
+/* section-header shared */
+.nk-section .section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.nk-section .section-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--nk-green);
+  background: rgba(109,151,68,.1);
+  border: 1px solid rgba(109,151,68,.22);
+  padding: .28rem .9rem;
+  border-radius: 999px;
+  margin-bottom: .9rem;
+}
+[data-theme="dark"] .nk-section .section-chip {
+  color: var(--nk-green-2);
+  background: rgba(125,179,86,.12);
+  border-color: rgba(125,179,86,.25);
+}
+.nk-section--alumni .section-chip {
+  color: #9dd467;
+  background: rgba(157,212,103,.12);
+  border-color: rgba(157,212,103,.25);
+}
+
+/* Intro text under headings */
+.nk-section .section-intro-text {
+  color: var(--text-secondary, #4b4f55);
+  max-width: 600px;
+  margin: .75rem auto 0;
+  line-height: 1.7;
+}
+.nk-section--alumni .section-intro-text {
+  color: rgba(255,255,255,.72);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §3  FLIP CARDS (Förderkreismitglieder)
+   ══════════════════════════════════════════════════════════════ */
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  perspective: 1000px;
+  cursor: pointer;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  position: relative;
+  display: block;
+}
+.flip-card:focus { outline: none; }
+.flip-card:focus-visible {
+  outline: 2px solid var(--nk-blue);
+  outline-offset: 4px;
+  border-radius: var(--nk-radius);
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.75s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  border-radius: var(--nk-radius);
+}
+@media (hover: hover) {
+  .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+}
+.flip-card.active .flip-card-inner { transform: rotateY(180deg); }
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: var(--nk-radius);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flip-card-front {
+  background: #ffffff;
+  box-shadow:
+    0 4px 24px rgba(32,35,74,.1),
+    0 1px 4px rgba(32,35,74,.06);
+  border: 1px solid rgba(32,35,74,.06);
+  transition: box-shadow .3s;
+}
+[data-theme="dark"] .flip-card-front {
+  background: #1a1f34;
+  border-color: rgba(255,255,255,.07);
+  box-shadow: 0 4px 24px rgba(0,0,0,.4);
+}
+.flip-card:hover .flip-card-front {
+  box-shadow:
+    0 12px 40px rgba(32,35,74,.15),
+    0 2px 8px rgba(109,151,68,.1);
+}
+.flip-card-back {
+  background: linear-gradient(135deg, #20234A 0%, #151730 100%);
+  color: #ffffff;
+  transform: rotateY(180deg);
+  box-shadow: 0 8px 32px rgba(0,0,0,.35);
+}
+
+/* Icon box (logo container on front) */
+.flip-card .icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  transition: transform .4s var(--nk-ease-spring);
+}
+@media (hover: hover) {
+  .flip-card:hover .flip-card-front .icon-box { transform: scale(1.06) translateY(-4px); }
+}
+.flip-card .icon-box .card-logo {
+  max-width: 100%;
+  height: auto;
+  max-height: 110px;
+  object-fit: contain;
+  display: block;
+}
+[data-theme="dark"] .flip-card .icon-box .card-logo {
+  filter: brightness(1.1) contrast(0.95);
+}
+
+/* Back text */
+.flip-card-back p {
+  font-size: .92rem;
+  line-height: 1.65;
+  opacity: .92;
+  margin-bottom: 1.25rem;
+  color: rgba(255,255,255,.9);
+}
+
+/* Tap hint (mobile) */
+.tap-hint {
+  position: absolute;
+  bottom: 1.1rem;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  opacity: .48;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  color: #fff;
+}
+@media (min-width: 992px) { .tap-hint { display: none !important; } }
+
+/* Flip grid spacing */
+#foerderkreis-list { margin-top: 2.5rem; }
+#foerderkreis-list > li { display: flex; }
+#foerderkreis-list > li .flip-card { min-height: 260px; }
+
+/* ══════════════════════════════════════════════════════════════
+   §4  ALUMNI SECTION
+   ══════════════════════════════════════════════════════════════ */
+.alumni-stat {
+  text-align: center;
+  padding: 2.5rem;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--nk-radius);
+  margin-bottom: 1.5rem;
+}
+.alumni-stat__number {
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -.06em;
+  background: linear-gradient(135deg, #9dd467 30%, #e0f8c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.alumni-stat__label {
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-top: .5rem;
+}
+
+/* Alumni feature cards */
+.alumni-feature {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--nk-radius-sm);
+  padding: 1.5rem;
+  height: 100%;
+  transition: background .3s, transform .3s var(--nk-ease-spring);
+}
+.alumni-feature:hover {
+  background: rgba(255,255,255,.09);
+  transform: translateY(-4px);
+}
+.alumni-feature__icon {
+  width: 44px; height: 44px;
+  border-radius: var(--nk-radius-sm);
+  background: rgba(109,151,68,.18);
+  color: #9dd467;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  transition: background .3s, transform .3s;
+}
+.alumni-feature:hover .alumni-feature__icon {
+  background: rgba(109,151,68,.28);
+  transform: scale(1.1) rotate(-5deg);
+}
+.alumni-feature__title {
+  font-size: .95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: .4rem;
+}
+.alumni-feature__text {
+  font-size: .83rem;
+  color: rgba(255,255,255,.62);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §5  KOOPERATIONSPARTNER CARDS
+   ══════════════════════════════════════════════════════════════ */
+.coop-card {
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-subtle, rgba(0,0,0,.07));
+  border-radius: var(--nk-radius);
+  padding: 1.75rem 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  transition: transform .28s var(--nk-ease-spring), box-shadow .28s, border-color .25s;
+  position: relative;
+  overflow: hidden;
+}
+.coop-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--nk-green), var(--nk-indigo));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s;
+}
+.coop-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.09);
+  border-color: rgba(109,151,68,.28);
+}
+.coop-card:hover::before { transform: scaleX(1); }
+
+[data-theme="dark"] .coop-card {
+  background: var(--bg-elevated, #12152a);
+  border-color: rgba(255,255,255,.07);
+}
+[data-theme="dark"] .coop-card:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+  border-color: rgba(125,179,86,.28);
+}
+
+.coop-card__icon {
+  width: 48px; height: 48px;
+  border-radius: var(--nk-radius-sm);
+  background: rgba(109,151,68,.1);
+  color: var(--nk-green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  transition: transform .3s, background .3s;
+}
+.coop-card:hover .coop-card__icon {
+  background: rgba(109,151,68,.18);
+  transform: scale(1.1) rotate(-5deg);
+}
+[data-theme="dark"] .coop-card__icon { background: rgba(125,179,86,.12); }
+.coop-card__title {
+  font-size: 1rem; font-weight: 700;
+  color: var(--text-primary, #1d1d1f);
+  margin: 0;
+}
+.coop-card__text {
+  font-size: .86rem;
+  color: var(--text-secondary, #4b4f55);
+  line-height: 1.65; margin: 0; flex: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §6  KURATORIUM CARDS (horizontal)
+   ══════════════════════════════════════════════════════════════ */
+.kuratorium-card--horizontal {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-subtle, rgba(0,0,0,.07));
+  border-radius: var(--nk-radius);
+  padding: 2rem;
+  transition: transform .3s var(--nk-ease-spring), box-shadow .3s;
+  position: relative;
+  overflow: hidden;
+}
+.kuratorium-card--horizontal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(180deg, var(--nk-green), var(--nk-indigo));
+  opacity: 0;
+  transition: opacity .3s;
+}
+.kuratorium-card--horizontal:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.1);
+}
+.kuratorium-card--horizontal:hover::before { opacity: 1; }
+
+[data-theme="dark"] .kuratorium-card--horizontal {
+  background: var(--bg-elevated, #12152a);
+  border-color: rgba(255,255,255,.07);
+}
+[data-theme="dark"] .kuratorium-card--horizontal:hover {
+  box-shadow: 0 16px 40px rgba(0,0,0,.4);
+}
+
+.kuratorium-card-img-wrapper {
+  flex: 0 0 90px;
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--bg-secondary, #f7f8fb);
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  border: 3px solid rgba(109,151,68,.2);
+}
+.kuratorium-card-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.kuratorium-card-body { flex: 1; min-width: 0; }
+.kuratorium-card-role {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--nk-green);
+  background: rgba(109,151,68,.1);
+  border: 1px solid rgba(109,151,68,.2);
+  padding: .2rem .7rem;
+  border-radius: 999px;
+  margin-bottom: .7rem;
+}
+[data-theme="dark"] .kuratorium-card-role {
+  color: var(--nk-green-2);
+  background: rgba(125,179,86,.12);
+  border-color: rgba(125,179,86,.22);
+}
+.kuratorium-card-body h3 {
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--text-primary, #1d1d1f);
+  margin-bottom: .4rem;
+  line-height: 1.3;
+}
+.kuratorium-card-body .blockquote {
+  font-size: .9rem;
+  font-style: italic;
+  color: var(--text-secondary, #4b4f55);
+  border-left: 3px solid rgba(109,151,68,.35);
+  padding-left: .9rem;
+  margin: .5rem 0 .75rem;
+  line-height: 1.6;
+}
+[data-theme="dark"] .kuratorium-card-body .blockquote {
+  color: rgba(255,255,255,.65);
+  border-color: rgba(125,179,86,.3);
+}
+.kuratorium-card-body .lehrgebiete {
+  font-size: .83rem;
+  color: var(--text-secondary, #4b4f55);
+  line-height: 1.55;
+  margin: 0;
+}
+[data-theme="dark"] .kuratorium-card-body .lehrgebiete { color: rgba(255,255,255,.55); }
+
+/* Skeleton placeholder */
+.skeleton-card {
+  border-radius: var(--nk-radius);
+  min-height: 180px;
+  background: linear-gradient(90deg,
+    var(--bg-secondary, #eef0f5) 25%,
+    var(--bg-primary, #fff) 50%,
+    var(--bg-secondary, #eef0f5) 75%);
+  background-size: 200% 100%;
+  animation: nkSkeletonShimmer 1.8s infinite;
+}
+[data-theme="dark"] .skeleton-card {
+  background: linear-gradient(90deg, #1a1f34 25%, #22284a 50%, #1a1f34 75%);
+  background-size: 200% 100%;
+}
+@keyframes nkSkeletonShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §7  CTA BANNER
+   ══════════════════════════════════════════════════════════════ */
+.nk-cta-banner {
+  background: linear-gradient(135deg, #141829 0%, #1a2840 40%, #182a10 72%, #141829 100%);
+  background-size: 300% 300%;
+  animation: nkCtaBannerShift 18s ease infinite;
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.nk-cta-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+}
+@keyframes nkCtaBannerShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.nk-cta-banner__title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: .75rem;
+}
+.nk-cta-banner__subtitle {
+  font-size: 1rem;
+  color: rgba(255,255,255,.72);
+  max-width: 540px;
+  margin: 0 auto 2rem;
+  line-height: 1.65;
+}
+.nk-cta-banner__inner { position: relative; z-index: 2; }
+
+/* ══════════════════════════════════════════════════════════════
+   §8  RESPONSIVE
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 767.98px) {
+  .kuratorium-card--horizontal {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .kuratorium-card--horizontal::before { display: none; }
+  .kuratorium-card-img-wrapper { flex: 0 0 80px; width: 80px; height: 80px; }
+  .kuratorium-card-body .blockquote { text-align: left; }
+
+  #foerderkreis-list > li .flip-card { min-height: 220px; }
+  .flip-card-front, .flip-card-back { padding: 1.75rem 1.25rem; }
+}

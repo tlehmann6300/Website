@@ -1,0 +1,58 @@
+{
+  "_kommentar_datei": "Diese Datei enthält KRITISCHE Übersetzungen die besonders schnell geladen werden müssen",
+  "_kommentar_verwendung": "Wird für wichtige Bereiche verwendet: Navigation, Hero-Bereich (Startseite oben)",
+  "_kommentar_wichtig": "Änderungen hier wirken sich auf ALLE Seiten aus! Immer alle drei Sprachen ändern!",
+  "_kommentar_struktur": "Jeder Eintrag hat einen Schlüssel (z.B. 'nav-for-students') und drei Übersetzungen (de, en, fr)",
+  
+  "nav-for-students": {
+    "_kommentar": "Navigations-Link 'Für Studierende'",
+    "de": "Für Studierende",
+    "en": "For Students",
+    "fr": "Pour les étudiants"
+  },
+  "nav-for-companies": {
+    "_kommentar": "Navigations-Link 'Für Unternehmen'",
+    "de": "Für Unternehmen",
+    "en": "For Companies",
+    "fr": "Pour les entreprises"
+  },
+  "nav-about-us": {
+    "_kommentar": "Navigations-Link 'Über uns'",
+    "de": "Über uns",
+    "en": "About Us",
+    "fr": "À propos de nous"
+  },
+  "nav-our-network": {
+    "_kommentar": "Navigations-Link 'Unser Netzwerk'",
+    "de": "Unser Netzwerk",
+    "en": "Our Network",
+    "fr": "Notre réseau"
+  },
+  "nav-contact": {
+    "_kommentar": "Navigations-Link 'Kontakt'",
+    "de": "Kontakt",
+    "en": "Contact",
+    "fr": "Contact"
+  },
+  "hero-title": {
+    "_kommentar": "Hauptüberschrift auf der Startseite. ACHTUNG: <span> Tags NICHT entfernen! Nur den Text darin ändern",
+    "de": "Ihre <span class=\"text-gradient\">studentische</span> Unternehmensberatung",
+    "en": "Your <span class=\"text-gradient\">student</span> consulting firm",
+    "fr": "Votre cabinet de <span class=\"text-gradient\">conseil étudiant</span>"
+  },
+  "hero-subtitle": {
+    "_kommentar": "Untertitel auf der Startseite unter der Hauptüberschrift",
+    "de": "Innovation, Fortschritt und Gemeinschaft, direkt aus dem Herzen des Schwarzwalds.",
+    "en": "Innovation, progress and community, straight from the heart of the Black Forest.",
+    "fr": "Innovation, progrès et communauté, directement du cœur de la Forêt-Noire."
+  },
+  "hero-cta": {
+    "_kommentar": "Text auf dem Call-to-Action Button (Hauptbutton auf der Startseite)",
+    "de": "Projekt starten",
+    "en": "Start Project",
+    "fr": "Démarrer un projet"
+  },
+  
+  "_kommentar_html_tags": "WICHTIG: Wenn ein Text <span> oder andere HTML-Tags enthält, NICHT entfernen! Nur den Text zwischen den Tags ändern",
+  "_kommentar_konsistenz": "Achten Sie auf konsistente Übersetzungen - verwenden Sie die gleichen Begriffe in der ganzen Website"
+}

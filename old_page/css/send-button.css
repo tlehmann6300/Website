@@ -1,0 +1,189 @@
+
+:root {
+  --btn-text: #ffffff;
+  --success-bg: #16a34a;
+  --error-bg: #dc2626;
+  --focus-ring: #6366f1;
+  --ibc-green: #6D9744;
+  --ibc-green-dark: #5d8438;
+  --ease-elastic: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --transition-speed: 0.3s;
+}
+
+.send-button {
+  --height: 55px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--height);
+  min-height: var(--height);
+  max-height: var(--height);
+  min-width: 160px;
+  padding: 14px 20px;
+  background-color: var(--ibc-green, #6D9744);
+  background-image: none;
+  color: var(--btn-text, white);
+  border: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  cursor: pointer;
+  will-change: transform, box-shadow, background-color;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 16px rgba(109, 151, 68, 0.35), 0 1px 4px rgba(0,0,0,0.15);
+  box-sizing: border-box;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (hover: hover) {
+  .send-button:hover {
+    background-color: var(--ibc-green-dark, #5d8438);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(109, 151, 68, 0.45), 0 2px 8px rgba(0,0,0,0.12);
+  }
+}
+.send-button:active {
+  background-color: var(--ibc-green, #6D9744);
+  transform: translateY(1px);
+  box-shadow: none;
+}
+.send-button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.send-button:focus-visible {
+  outline: 3px solid var(--wcag-focus-primary, var(--ibc-blue, #20234A));
+  outline-offset: 3px;
+  box-shadow:
+    0 0 0 3px var(--wcag-focus-primary, #20234A),
+    0 0 0 7px var(--focus-ring),
+    0 0 20px 4px rgba(99, 102, 241, 0.3);
+}
+@media (forced-colors: active) {
+  .send-button {
+    border: 2px solid ButtonText;
+  }
+  .icon-svg {
+    stroke: ButtonText !important;
+  }
+}
+.btn-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.btn-text {
+  line-height: 1;
+}
+.icon-wrapper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+}
+.icon-svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.3s var(--ease-elastic), transform 0.4s var(--ease-elastic);
+}
+.send-button.is-sending {
+  cursor: wait;
+  background-color: var(--ibc-green, #6D9744);
+  box-shadow: 0 4px 16px rgba(109, 151, 68, 0.35);
+  transform: none;
+}
+.send-button.is-sending .icon-spinner {
+  opacity: 1;
+  transform: scale(1);
+}
+.spinner-rotate {
+  transform-origin: center;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.send-button.is-success {
+  background-image: none;
+  background-color: var(--success-bg);
+  border-color: transparent;
+}
+.send-button.is-success .icon-check {
+  opacity: 1;
+  transform: scale(1);
+}
+.icon-check path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  transition: stroke-dashoffset 0.4s ease 0.1s;
+}
+.send-button.is-success .icon-check path {
+  stroke-dashoffset: 0;
+}
+.send-button.is-error {
+  background-image: none;
+  background-color: var(--error-bg);
+}
+.send-button.is-error .icon-cross {
+  opacity: 1;
+  transform: scale(1);
+}
+.icon-cross path {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  transition: stroke-dashoffset 0.4s ease 0.1s;
+}
+.send-button.is-error .icon-cross path {
+  stroke-dashoffset: 0;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .send-button,
+  .icon-svg,
+  .icon-svg path {
+    transition: none !important;
+    animation: none !important;
+  }
+  .send-button.is-sending .icon-spinner {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .send-button.is-success .icon-check path {
+    stroke-dashoffset: 0;
+  }
+  .send-button.is-error .icon-cross path {
+    stroke-dashoffset: 0;
+  }
+}
+@media (max-width: 768px) {
+  .send-button {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+}

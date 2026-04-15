@@ -419,7 +419,7 @@
             color: white;
         }
 
-        /* Mobile Toggle */
+        /* Mobile Toggle — jetzt direktes Kind von nav-container */
         .mobile-toggle {
             display: none;
             width: 32px;
@@ -431,6 +431,7 @@
             justify-content: center;
             align-items: center;
             gap: 6px;
+            /* Kein margin-left: auto mehr nötig — flex-end durch space-between */
         }
 
         .mobile-toggle span {
@@ -623,7 +624,7 @@
 
         @media (max-width: 968px) {
             .desktop-nav {
-                display: none;
+                display: none !important;
             }
 
             .mobile-toggle {
@@ -631,45 +632,93 @@
             }
 
             .navbar {
-                height: 80px;
+                height: 70px;
             }
 
             #navbar.scrolled,
             #navbar.is-scrolled {
-                height: 80px !important;
+                height: 70px !important;
                 width: 100% !important;
                 top: 0 !important;
                 border-radius: 0 !important;
             }
 
             html {
-                scroll-padding-top: 80px;
+                scroll-padding-top: 70px;
             }
 
             .nav-container {
                 padding: 0 4% 0 4%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                position: relative;
             }
 
             .logo {
                 margin-left: 0;
+                flex: 0 0 auto;
+                z-index: 1002;
             }
 
             .logo-wrapper {
-                width: 60px;
-                height: 60px;
+                width: 58px;
+                height: 58px;
+            }
+
+            /* Theme + Sprache absolut zentriert */
+            .nav-utilities {
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                display: flex;
+                align-items: center;
+                gap: 0.65rem;
+                z-index: 1001;
+                pointer-events: auto;
+            }
+
+            /* Hamburger als letztes flex-item (ganz rechts) */
+            .mobile-toggle {
+                flex: 0 0 auto;
+                z-index: 1002;
             }
         }
 
         @media (max-width: 640px) {
             .nav-utilities {
-                gap: 1rem;
+                gap: 0.5rem;
             }
 
-            .lang-btn span {
-                display: none;
+            .lang-btn {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.82rem;
+                gap: 0.35rem;
+            }
+
+            /* Sprach-Text bleibt sichtbar (DE / EN / FR) */
+            .lang-btn span#currentLang {
+                display: inline;
             }
 
             .mobile-menu-content {
                 padding: 1rem 1.5rem 2rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .navbar {
+                height: 64px;
+            }
+            #navbar.scrolled,
+            #navbar.is-scrolled {
+                height: 64px !important;
+            }
+            .logo-wrapper {
+                width: 50px;
+                height: 50px;
+            }
+            .lang-btn .fa-chevron-down {
+                display: none;
             }
         }

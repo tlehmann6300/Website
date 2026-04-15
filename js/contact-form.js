@@ -69,20 +69,12 @@
         const contactForm = document.getElementById('contact-form');
         // Wenn das Formular nicht existiert, beende die Funktion
         if (!contactForm) return;
-        const subjectSelect = document.getElementById('subject-select');
-        const freitextGroup = document.getElementById('subject-freitext-group');
-        const freitextInput = document.getElementById('subject-freitext');
+        const subjectInput = document.getElementById('subject-freitext');
         const urlParams = new URLSearchParams(window.location.search);
         const subjectParam = urlParams.get('subject');
-        if (subjectParam && subjectSelect) {
-            const decodedSubject = decodeURIComponent(subjectParam);
-            const options = subjectSelect.options;
-            for (let i = 0; i < options.length; i++) {
-                if (options[i].value === decodedSubject) {
-                    subjectSelect.value = decodedSubject;
-                    break;
-                }
-            }
+        // Pre-fill subject from URL parameter (e.g. from CTA buttons on other pages)
+        if (subjectParam && subjectInput) {
+            subjectInput.value = decodeURIComponent(subjectParam).slice(0, 200);
         }
         const showToast = (message, type = 'info', duration = 5000, options = {}) => {
             if (options.showConfirmation) {
@@ -187,35 +179,6 @@
                 }, duration);
             }
         };
-        if (subjectSelect && freitextGroup && freitextInput) {
-            subjectSelect.addEventListener('change', function () {
-                if (this.value === 'Freitext') {
-                    freitextGroup.classList.add('visible');
-                    freitextGroup.classList.remove('d-none');
-                    freitextInput.setAttribute('required', 'required');
-                    freitextInput.setAttribute('name', 'subject');
-                    subjectSelect.removeAttribute('name');
-                    subjectSelect.removeAttribute('required');
-                    subjectSelect.classList.remove('is-invalid');
-                    const selectGroup = subjectSelect.closest('.form-group-animated');
-                    if (selectGroup) selectGroup.classList.remove('has-error');
-                    const selectLabel = selectGroup.querySelector('label');
-                    if (selectLabel) selectLabel.classList.remove('invalid-label');
-                } else {
-                    freitextGroup.classList.remove('visible');
-                    freitextGroup.classList.add('d-none');
-                    freitextInput.removeAttribute('required');
-                    freitextInput.removeAttribute('name');
-                    freitextInput.value = '';
-                    freitextInput.classList.remove('is-invalid');
-                    const freitextLabel = freitextGroup.querySelector('label');
-                    if (freitextLabel) freitextLabel.classList.remove('invalid-label');
-                    freitextGroup.classList.remove('has-error');
-                    subjectSelect.setAttribute('name', 'subject');
-                    subjectSelect.setAttribute('required', 'required');
-                }
-            });
-        }
         const clearValidationErrors = () => {
             contactForm.querySelectorAll('.is-invalid').forEach(el => {
                 el.classList.remove('is-invalid');
@@ -236,25 +199,14 @@
             const fieldsToValidate = [
                 { id: 'name', msg: 'Bitte geben Sie Ihren Namen ein.' },
                 { id: 'email', msg: 'Bitte geben Sie eine gültige E-Mail-Adresse ein.', type: 'email' },
+                { id: 'subject-freitext', msg: 'Bitte geben Sie einen Betreff ein.' },
                 { id: 'message', msg: 'Bitte geben Sie eine Nachricht ein.' }
             ];
-            const subjectSelectValue = subjectSelect.value;
-            if (subjectSelectValue === 'Freitext') {
-                fieldsToValidate.push({
-                    id: 'subject-freitext',
-                    msg: 'Bitte geben Sie Ihren Betreff ein.'
-                });
-            } else if (subjectSelectValue === '') {
-                fieldsToValidate.push({
-                    id: 'subject-select',
-                    msg: 'Bitte wählen Sie einen Betreff aus.'
-                });
-            }
             fieldsToValidate.forEach(field => {
                 const input = document.getElementById(field.id);
                 if (!input) return;
                 const label = contactForm.querySelector(`label[for="${field.id}"]`);
-                const group = input.closest('.form-group-animated');
+                const group = input.closest('.form-group-animated') || input.closest('.k-field') || input.parentElement;
                 const errorDiv = group ? group.querySelector('.invalid-feedback') : null;
                 let fieldIsValid = true;
                 if (field.type === 'email') {
@@ -432,18 +384,6 @@
                     if (window.sendButtonInstance) window.sendButtonInstance.setState('success', successMsg);
                     showToast(successMsg, 'success', 7000);
                     contactForm.reset();
-                    subjectSelect.value = "";
-                    subjectSelect.setAttribute('name', 'subject');
-                    subjectSelect.setAttribute('required', 'required');
-                    if (freitextGroup) {
-                        freitextGroup.classList.remove('visible');
-                        freitextGroup.classList.add('d-none');
-                    }
-                    if (freitextInput) {
-                        freitextInput.removeAttribute('required');
-                        freitextInput.removeAttribute('name');
-                        freitextInput.value = '';
-                    }
                     if (typeof grecaptcha !== 'undefined') {
                         grecaptcha.reset();
                     }
@@ -613,3 +553,13 @@
         initRecaptchaConsentHandling();
     });
 })();
+
+/* ── reCAPTCHA completion callbacks (global, called by widget) ──────────── */
+window.onRecaptchaComplete = function() {
+    var note = document.getElementById('k-recaptcha-note');
+    if (note) note.classList.add('hidden');
+};
+window.onRecaptchaExpired = function() {
+    var note = document.getElementById('k-recaptcha-note');
+    if (note) note.classList.remove('hidden');
+};

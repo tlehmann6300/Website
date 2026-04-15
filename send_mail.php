@@ -536,6 +536,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             empty($name) ||
             !$emailIsValid ||
             empty($subject) ||
+            strlen($subject) > 200 ||
             empty($message)
         ) {
             if (!$emailIsValid && !empty($email)) {

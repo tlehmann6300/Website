@@ -1,0 +1,77 @@
+{
+  "_kommentar_datei": "Diese Datei enthält Erfahrungsberichte (Testimonials) von ehemaligen IBC-Mitgliedern",
+  "_kommentar_verwendung": "Wird auf der Startseite als Slider (automatisch wechselnde Zitate) angezeigt",
+  "_kommentar_wichtig": "Jedes Zitat muss in allen drei Sprachen (de, en, fr) vorhanden sein!",
+
+  "config": {
+    "_kommentar": "Konfigurationseinstellungen für den Testimonials-Slider",
+    "duration": 15000,
+    "_kommentar_duration": "Anzeigedauer pro Testimonial in Millisekunden",
+    "defaultLang": "de",
+    "_kommentar_defaultLang": "Standard-Sprache, wenn keine andere erkannt wird"
+  },
+
+  "labels": {
+    "_kommentar": "Beschriftungen und Button-Texte",
+    "stories": {
+      "de": "Erfolgsgeschichten",
+      "en": "Success Stories",
+      "fr": "Histoires de réussite"
+    },
+    "heading": {
+      "de": "Was unsere <span class=\"highlight-gradient\">Mitglieder</span> sagen",
+      "en": "What Our <span class=\"highlight-gradient\">Members</span> Say",
+      "fr": "Ce que disent nos <span class=\"highlight-gradient\">membres</span>"
+    },
+    "prevSlide": {
+      "de": "Vorheriges Testimonial",
+      "en": "Previous Testimonial",
+      "fr": "Témoignage précédent"
+    },
+    "nextSlide": {
+      "de": "Nächstes Testimonial",
+      "en": "Next Testimonial",
+      "fr": "Témoignage suivant"
+    },
+    "playPause": {
+      "de": "Autoplay starten/stoppen",
+      "en": "Start/stop autoplay",
+      "fr": "Démarrer/arrêter la lecture automatique"
+    }
+  },
+
+  "slides": [
+    {
+      "_kommentar_testimonial": "TESTIMONIAL - Jens Steinel",
+      "name": "Jens Steinel",
+      "img": "assets/img/alumnis/jens_steinel.webp",
+      "role": {
+        "de": "Alumni",
+        "en": "Alumni",
+        "fr": "Alumni"
+      },
+      "text": {
+        "de": "Das IBC war für mich der ideale Einstieg in die Praxis: echte Projekte, ein starkes Alumni-Netzwerk und Erfahrungen, die mir im Beruf jeden Tag weiterhelfen.",
+        "en": "For me, the IBC was the ideal entry into practical experience: real projects, a strong alumni network, and experiences that help me every day in my professional life.",
+        "fr": "Pour moi, l’IBC a été une entrée idéale dans la pratique : de vrais projets, un solide réseau d’anciens élèves et des expériences qui m’aident chaque jour dans ma vie professionnelle."
+      }
+    },
+    {
+      "_kommentar_testimonial": "TESTIMONIAL - Jakob Krömer",
+      "name": "Jakob Krömer",
+      "img": "assets/img/alumnis/jakob_kroemer.webp",
+      "role": {
+        "de": "Alumni - Berater Cyber Security",
+        "en": "Alumni - Cyber Security Consultant",
+        "fr": "Alumni - Consultant en cybersécurité"
+      },
+      "text": {
+        "de": "Meine Zeit beim IBC war geprägt von vielfältigen Herausforderungen, die mich fachlich wie persönlich stark weitergebracht haben. Besonders geschätzt habe ich die fakultätsübergreifende Zusammenarbeit – man bekommt Einblicke in andere Fachbereiche, erweitert seinen Horizont und knüpft auf dem Weg die ein oder andere Freundschaft.",
+        "en": "My time at the IBC was shaped by diverse challenges that helped me grow significantly, both professionally and personally. I especially appreciated the cross-faculty collaboration – it provides insights into other fields, broadens your perspective, and along the way you form lasting friendships.",
+        "fr": "Mon passage à l’IBC a été marqué par de nombreux défis qui m’ont permis de progresser aussi bien sur le plan professionnel que personnel. J’ai particulièrement apprécié la collaboration interfacultaire : elle offre un aperçu d’autres domaines, élargit les horizons et permet de nouer de belles amitiés."
+      }
+    }
+  ],
+
+  "_kommentar_wichtig_drei_sprachen": "Alle Texte sind vollständig in Deutsch, Englisch und Französisch vorhanden"
+}

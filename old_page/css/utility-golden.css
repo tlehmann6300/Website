@@ -1,0 +1,983 @@
+/**
+ * utility-golden.css  –  Golden-Ratio Utility System
+ * ====================================================
+ *
+ * Applies Tailwind-style utility-first logic to the existing Bootstrap
+ * framework, using a golden-ratio spacing scale (φ = 1.618…) instead
+ * of standard 4 / 8-px grids.  The result is organic, non-uniform
+ * spacing that eliminates the rigid "block look" of default Bootstrap.
+ *
+ * DESIGN PRINCIPLE
+ * ─────────────────
+ *  Bootstrap's uniform grid (multiples of 4/8 px) makes every section
+ *  feel equally padded → "template look".  By basing all spacing on the
+ *  golden ratio, proportions between adjacent spacings are always ≈ 1.618,
+ *  which the human eye perceives as naturally beautiful and non-mechanical.
+ *
+ * THE SCALE  (Fibonacci numbers in px, ≈ φ × predecessor each step)
+ * ────────────────────────────────────────────────────────────────────
+ *   --gs-1 :   5 px  ( 0.3125rem )
+ *   --gs-2 :   8 px  ( 0.500rem  )
+ *   --gs-3 :  13 px  ( 0.8125rem )
+ *   --gs-4 :  21 px  ( 1.3125rem )
+ *   --gs-5 :  34 px  ( 2.125rem  )
+ *   --gs-6 :  55 px  ( 3.4375rem )
+ *   --gs-7 :  89 px  ( 5.5625rem )
+ *   --gs-8 : 144 px  ( 9rem      )
+ *   --gs-9 : 233 px  ( 14.5625rem)
+ *
+ * HOW TO USE (utility-first pattern)
+ * ────────────────────────────────────
+ *  Compose spacing directly in HTML without writing new CSS:
+ *
+ *  <!-- Hero section: generous vertical rhythm, tighter horizontal -->
+ *  <section class="py-gs-7 px-gs-5">…</section>
+ *
+ *  <!-- Organic asymmetric card: more bottom-space than top -->
+ *  <div class="pt-gs-5 pb-gs-6 px-gs-5">…</div>
+ *
+ *  <!-- Section with golden-ratio max-width text column -->
+ *  <p class="gs-measure">…</p>
+ *
+ *  <!-- Responsive: larger spacing on desktop -->
+ *  <section class="py-gs-5 lg:py-gs-7">…</section>
+ *
+ * ANTI-BLOCK RECIPES (mix these for organic layouts)
+ * ─────────────────────────────────────────────────────
+ *  1. Use pt-gs-6 + pb-gs-7 → top≠bottom = section feels alive, not stamped
+ *  2. Use px-gs-4 + py-gs-6 → horizontal is tighter than vertical (natural)
+ *  3. Combine gap-gs-5 on grids instead of Bootstrap's g-3/g-4
+ *  4. Use .gs-measure to cap prose width at a golden proportion of the container
+ *  5. Pair .section-gs-lg with .section-gs-sm-top for breathing asymmetry
+ */
+
+/* =============================================================
+   0. CSS CUSTOM PROPERTIES — golden-ratio scale tokens
+   ============================================================= */
+
+:root {
+    /* φ = 1.61803…  Scale derived from Fibonacci sequence */
+    --gs-1 : 0.3125rem;   /*   5 px */
+    --gs-2 : 0.500rem;    /*   8 px */
+    --gs-3 : 0.8125rem;   /*  13 px */
+    --gs-4 : 1.3125rem;   /*  21 px */
+    --gs-5 : 2.125rem;    /*  34 px */
+    --gs-6 : 3.4375rem;   /*  55 px */
+    --gs-7 : 5.5625rem;   /*  89 px */
+    --gs-8 : 9rem;        /* 144 px */
+    --gs-9 : 14.5625rem;  /* 233 px */
+
+    /* φ itself — useful for calc() in component CSS */
+    --phi: 1.6180339887;
+
+    /* Golden-ratio typography scale (base 1rem = 16 px)
+       Each step multiplies the previous by φ ≈ 1.618            */
+    --gs-text-xs  : 0.618rem;   /*  ~10 px  = 1rem / φ          */
+    --gs-text-sm  : 1rem;       /*   16 px  = base              */
+    --gs-text-md  : 1.618rem;   /*  ~26 px  = base × φ          */
+    --gs-text-lg  : 2.618rem;   /*  ~42 px  = base × φ²         */
+    --gs-text-xl  : 4.236rem;   /*  ~68 px  = base × φ³         */
+    --gs-text-2xl : 6.854rem;   /* ~110 px  = base × φ⁴         */
+
+    /* Golden proportions for max-width / aspect ratio             */
+    --gs-measure   : 65ch;      /* optimal readable line length   */
+    --gs-measure-lg: 80ch;
+    --gs-ratio-wide : calc(var(--phi) / 1);   /* 1.618 : 1        */
+    --gs-aspect-portrait: calc(1 / var(--phi)); /* 0.618 : 1       */
+
+    /* Organic section rhythm — alternating to avoid repetition   */
+    --gs-section-sm-top   : var(--gs-6);   /*  55 px top padding */
+    --gs-section-sm-bottom: var(--gs-7);   /*  89 px bottom padding (≠ top!) */
+    --gs-section-lg-top   : var(--gs-7);   /*  89 px */
+    --gs-section-lg-bottom: var(--gs-8);   /* 144 px */
+    --gs-section-xl-top   : var(--gs-8);   /* 144 px */
+    --gs-section-xl-bottom: var(--gs-9);   /* 233 px */
+
+    /* Mobile-agile section horizontal padding tokens (φ-based side breathing)
+       Reduces Bootstrap's default 1.5rem (24 px) container side padding on
+       small screens so content occupies more width, improving reading flow. */
+    --gs-section-px-mobile  : var(--gs-3);   /*  13 px – lean sides on phones  */
+    --gs-section-px-tablet  : var(--gs-4);   /*  21 px – slightly wider tablets */
+    --gs-section-px-desktop : var(--gs-5);   /*  34 px – comfortable laptops+   */
+
+    /* Hero title — fluid clamp: safe floor on mobile, massive ceiling on 4K
+       Formula:  clamp(MIN, SLOPE, MAX)
+         MIN  = 1.8rem  → ~28.8 px at base-16 — no overflow on 320 px phones
+         SLOPE= 4.5vw + 0.5rem → 768 px → 2.7 rem | 1920 px → 5.9 rem
+         MAX  = φ³ × 1.8rem = 4.236 × 1.8 ≈ 7.624rem (~122 px) — 4K impressive */
+    --gs-hero-title-size: clamp(1.8rem, 4.5vw + 0.5rem, 7.624rem);
+
+    /* ── Fluid headline sizes — φ-proportional clamp ranges ──────────────────
+       Viewport baseline: 320 px (min) → 1440 px (max), base = 16 px = 1rem
+       The vw slopes are scaled by φ so that at EVERY viewport width:
+         h1 : h2 : h3 = φ² : φ : 1  (≈ 4.236 : 2.618 : 1.618)
+       Both floor and ceiling values are themselves in golden ratio:
+         floors → 2.618rem : 1.618rem : 1.000rem  = φ² : φ : 1  ✓
+         ceilings → 4.236rem : 2.618rem : 1.618rem = φ² : φ : 1  ✓            */
+    --gs-h3-size: clamp(1rem,     0.88vw + 0.82rem, 1.618rem);  /* φ¹ × base  */
+    --gs-h2-size: clamp(1.618rem, 1.43vw + 1.33rem, 2.618rem);  /* φ² × base  */
+    --gs-h1-size: clamp(2.618rem, 2.31vw + 2.15rem, 4.236rem);  /* φ³ × base  */
+    --gs-h4-size: clamp(1rem,     0.39vw + 0.92rem, 1.272rem);  /* √φ × base  */
+    --gs-h5-size: 1rem;                                           /* body size  */
+    --gs-h6-size: 0.875rem;                                       /* small body */
+
+    /* Canonical golden padding/margin token — mid-range φ unit */
+    --gs-golden: var(--gs-5);   /* 34 px — most versatile default golden step  */
+}
+
+
+/* =============================================================
+   1. PADDING UTILITIES   p-gs-*, px-gs-*, py-gs-*, pt/pb/ps/pe
+   ============================================================= */
+
+/* All sides */
+.p-gs-1  { padding: var(--gs-1) !important; }
+.p-gs-2  { padding: var(--gs-2) !important; }
+.p-gs-3  { padding: var(--gs-3) !important; }
+.p-gs-4  { padding: var(--gs-4) !important; }
+.p-gs-5  { padding: var(--gs-5) !important; }
+.p-gs-6  { padding: var(--gs-6) !important; }
+.p-gs-7  { padding: var(--gs-7) !important; }
+.p-gs-8  { padding: var(--gs-8) !important; }
+.p-gs-9  { padding: var(--gs-9) !important; }
+
+/* Horizontal axis (inline) */
+.px-gs-1  { padding-inline: var(--gs-1) !important; }
+.px-gs-2  { padding-inline: var(--gs-2) !important; }
+.px-gs-3  { padding-inline: var(--gs-3) !important; }
+.px-gs-4  { padding-inline: var(--gs-4) !important; }
+.px-gs-5  { padding-inline: var(--gs-5) !important; }
+.px-gs-6  { padding-inline: var(--gs-6) !important; }
+.px-gs-7  { padding-inline: var(--gs-7) !important; }
+.px-gs-8  { padding-inline: var(--gs-8) !important; }
+.px-gs-9  { padding-inline: var(--gs-9) !important; }
+
+/* Vertical axis (block) */
+.py-gs-1  { padding-block: var(--gs-1) !important; }
+.py-gs-2  { padding-block: var(--gs-2) !important; }
+.py-gs-3  { padding-block: var(--gs-3) !important; }
+.py-gs-4  { padding-block: var(--gs-4) !important; }
+.py-gs-5  { padding-block: var(--gs-5) !important; }
+.py-gs-6  { padding-block: var(--gs-6) !important; }
+.py-gs-7  { padding-block: var(--gs-7) !important; }
+.py-gs-8  { padding-block: var(--gs-8) !important; }
+.py-gs-9  { padding-block: var(--gs-9) !important; }
+
+/* Top */
+.pt-gs-1  { padding-top: var(--gs-1) !important; }
+.pt-gs-2  { padding-top: var(--gs-2) !important; }
+.pt-gs-3  { padding-top: var(--gs-3) !important; }
+.pt-gs-4  { padding-top: var(--gs-4) !important; }
+.pt-gs-5  { padding-top: var(--gs-5) !important; }
+.pt-gs-6  { padding-top: var(--gs-6) !important; }
+.pt-gs-7  { padding-top: var(--gs-7) !important; }
+.pt-gs-8  { padding-top: var(--gs-8) !important; }
+.pt-gs-9  { padding-top: var(--gs-9) !important; }
+
+/* Bottom */
+.pb-gs-1  { padding-bottom: var(--gs-1) !important; }
+.pb-gs-2  { padding-bottom: var(--gs-2) !important; }
+.pb-gs-3  { padding-bottom: var(--gs-3) !important; }
+.pb-gs-4  { padding-bottom: var(--gs-4) !important; }
+.pb-gs-5  { padding-bottom: var(--gs-5) !important; }
+.pb-gs-6  { padding-bottom: var(--gs-6) !important; }
+.pb-gs-7  { padding-bottom: var(--gs-7) !important; }
+.pb-gs-8  { padding-bottom: var(--gs-8) !important; }
+.pb-gs-9  { padding-bottom: var(--gs-9) !important; }
+
+/* Start (left in LTR) */
+.ps-gs-1  { padding-inline-start: var(--gs-1) !important; }
+.ps-gs-2  { padding-inline-start: var(--gs-2) !important; }
+.ps-gs-3  { padding-inline-start: var(--gs-3) !important; }
+.ps-gs-4  { padding-inline-start: var(--gs-4) !important; }
+.ps-gs-5  { padding-inline-start: var(--gs-5) !important; }
+.ps-gs-6  { padding-inline-start: var(--gs-6) !important; }
+.ps-gs-7  { padding-inline-start: var(--gs-7) !important; }
+.ps-gs-8  { padding-inline-start: var(--gs-8) !important; }
+.ps-gs-9  { padding-inline-start: var(--gs-9) !important; }
+
+/* End (right in LTR) */
+.pe-gs-1  { padding-inline-end: var(--gs-1) !important; }
+.pe-gs-2  { padding-inline-end: var(--gs-2) !important; }
+.pe-gs-3  { padding-inline-end: var(--gs-3) !important; }
+.pe-gs-4  { padding-inline-end: var(--gs-4) !important; }
+.pe-gs-5  { padding-inline-end: var(--gs-5) !important; }
+.pe-gs-6  { padding-inline-end: var(--gs-6) !important; }
+.pe-gs-7  { padding-inline-end: var(--gs-7) !important; }
+.pe-gs-8  { padding-inline-end: var(--gs-8) !important; }
+.pe-gs-9  { padding-inline-end: var(--gs-9) !important; }
+
+
+/* =============================================================
+   2. MARGIN UTILITIES   m-gs-*, mx-gs-*, my-gs-*, mt/mb/ms/me
+   ============================================================= */
+
+/* All sides */
+.m-gs-1  { margin: var(--gs-1) !important; }
+.m-gs-2  { margin: var(--gs-2) !important; }
+.m-gs-3  { margin: var(--gs-3) !important; }
+.m-gs-4  { margin: var(--gs-4) !important; }
+.m-gs-5  { margin: var(--gs-5) !important; }
+.m-gs-6  { margin: var(--gs-6) !important; }
+.m-gs-7  { margin: var(--gs-7) !important; }
+.m-gs-8  { margin: var(--gs-8) !important; }
+.m-gs-9  { margin: var(--gs-9) !important; }
+
+/* Horizontal axis */
+.mx-gs-1  { margin-inline: var(--gs-1) !important; }
+.mx-gs-2  { margin-inline: var(--gs-2) !important; }
+.mx-gs-3  { margin-inline: var(--gs-3) !important; }
+.mx-gs-4  { margin-inline: var(--gs-4) !important; }
+.mx-gs-5  { margin-inline: var(--gs-5) !important; }
+.mx-gs-6  { margin-inline: var(--gs-6) !important; }
+.mx-gs-7  { margin-inline: var(--gs-7) !important; }
+.mx-gs-8  { margin-inline: var(--gs-8) !important; }
+.mx-gs-9  { margin-inline: var(--gs-9) !important; }
+
+/* Vertical axis */
+.my-gs-1  { margin-block: var(--gs-1) !important; }
+.my-gs-2  { margin-block: var(--gs-2) !important; }
+.my-gs-3  { margin-block: var(--gs-3) !important; }
+.my-gs-4  { margin-block: var(--gs-4) !important; }
+.my-gs-5  { margin-block: var(--gs-5) !important; }
+.my-gs-6  { margin-block: var(--gs-6) !important; }
+.my-gs-7  { margin-block: var(--gs-7) !important; }
+.my-gs-8  { margin-block: var(--gs-8) !important; }
+.my-gs-9  { margin-block: var(--gs-9) !important; }
+
+/* Top */
+.mt-gs-1  { margin-top: var(--gs-1) !important; }
+.mt-gs-2  { margin-top: var(--gs-2) !important; }
+.mt-gs-3  { margin-top: var(--gs-3) !important; }
+.mt-gs-4  { margin-top: var(--gs-4) !important; }
+.mt-gs-5  { margin-top: var(--gs-5) !important; }
+.mt-gs-6  { margin-top: var(--gs-6) !important; }
+.mt-gs-7  { margin-top: var(--gs-7) !important; }
+.mt-gs-8  { margin-top: var(--gs-8) !important; }
+.mt-gs-9  { margin-top: var(--gs-9) !important; }
+
+/* Bottom */
+.mb-gs-1  { margin-bottom: var(--gs-1) !important; }
+.mb-gs-2  { margin-bottom: var(--gs-2) !important; }
+.mb-gs-3  { margin-bottom: var(--gs-3) !important; }
+.mb-gs-4  { margin-bottom: var(--gs-4) !important; }
+.mb-gs-5  { margin-bottom: var(--gs-5) !important; }
+.mb-gs-6  { margin-bottom: var(--gs-6) !important; }
+.mb-gs-7  { margin-bottom: var(--gs-7) !important; }
+.mb-gs-8  { margin-bottom: var(--gs-8) !important; }
+.mb-gs-9  { margin-bottom: var(--gs-9) !important; }
+
+/* Start (left in LTR) */
+.ms-gs-1  { margin-inline-start: var(--gs-1) !important; }
+.ms-gs-2  { margin-inline-start: var(--gs-2) !important; }
+.ms-gs-3  { margin-inline-start: var(--gs-3) !important; }
+.ms-gs-4  { margin-inline-start: var(--gs-4) !important; }
+.ms-gs-5  { margin-inline-start: var(--gs-5) !important; }
+.ms-gs-6  { margin-inline-start: var(--gs-6) !important; }
+.ms-gs-7  { margin-inline-start: var(--gs-7) !important; }
+.ms-gs-8  { margin-inline-start: var(--gs-8) !important; }
+.ms-gs-9  { margin-inline-start: var(--gs-9) !important; }
+
+/* End (right in LTR) */
+.me-gs-1  { margin-inline-end: var(--gs-1) !important; }
+.me-gs-2  { margin-inline-end: var(--gs-2) !important; }
+.me-gs-3  { margin-inline-end: var(--gs-3) !important; }
+.me-gs-4  { margin-inline-end: var(--gs-4) !important; }
+.me-gs-5  { margin-inline-end: var(--gs-5) !important; }
+.me-gs-6  { margin-inline-end: var(--gs-6) !important; }
+.me-gs-7  { margin-inline-end: var(--gs-7) !important; }
+.me-gs-8  { margin-inline-end: var(--gs-8) !important; }
+.me-gs-9  { margin-inline-end: var(--gs-9) !important; }
+
+
+/* =============================================================
+   3. GAP UTILITIES   gap-gs-*, row-gap-gs-*, col-gap-gs-*
+   ============================================================= */
+
+.gap-gs-1  { gap: var(--gs-1) !important; }
+.gap-gs-2  { gap: var(--gs-2) !important; }
+.gap-gs-3  { gap: var(--gs-3) !important; }
+.gap-gs-4  { gap: var(--gs-4) !important; }
+.gap-gs-5  { gap: var(--gs-5) !important; }
+.gap-gs-6  { gap: var(--gs-6) !important; }
+.gap-gs-7  { gap: var(--gs-7) !important; }
+.gap-gs-8  { gap: var(--gs-8) !important; }
+.gap-gs-9  { gap: var(--gs-9) !important; }
+
+.row-gap-gs-1  { row-gap: var(--gs-1) !important; }
+.row-gap-gs-2  { row-gap: var(--gs-2) !important; }
+.row-gap-gs-3  { row-gap: var(--gs-3) !important; }
+.row-gap-gs-4  { row-gap: var(--gs-4) !important; }
+.row-gap-gs-5  { row-gap: var(--gs-5) !important; }
+.row-gap-gs-6  { row-gap: var(--gs-6) !important; }
+.row-gap-gs-7  { row-gap: var(--gs-7) !important; }
+.row-gap-gs-8  { row-gap: var(--gs-8) !important; }
+.row-gap-gs-9  { row-gap: var(--gs-9) !important; }
+
+.col-gap-gs-1  { column-gap: var(--gs-1) !important; }
+.col-gap-gs-2  { column-gap: var(--gs-2) !important; }
+.col-gap-gs-3  { column-gap: var(--gs-3) !important; }
+.col-gap-gs-4  { column-gap: var(--gs-4) !important; }
+.col-gap-gs-5  { column-gap: var(--gs-5) !important; }
+.col-gap-gs-6  { column-gap: var(--gs-6) !important; }
+.col-gap-gs-7  { column-gap: var(--gs-7) !important; }
+.col-gap-gs-8  { column-gap: var(--gs-8) !important; }
+.col-gap-gs-9  { column-gap: var(--gs-9) !important; }
+
+
+/* =============================================================
+   4. SECTION RHYTHM UTILITIES
+   ─────────────────────────────────────────────────────────────
+   Key anti-block principle: top padding ≠ bottom padding.
+   Each section breathes differently, creating visual hierarchy.
+   ============================================================= */
+
+/**
+ * .section-gs          — balanced default: 55 px top, 89 px bottom
+ * .section-gs-sm       — compact sections: 34 px top, 55 px bottom
+ * .section-gs-lg       — generous sections: 89 px top, 144 px bottom
+ * .section-gs-xl       — hero-level sections: 144 px top, 233 px bottom
+ *
+ * Asymmetric modifier pairs (add to any .section-gs-* variant):
+ * .section-gs-breathe  — adds extra bottom space (+1 step) for air
+ * .section-gs-tight    — tightens top by 1 step to reduce entry gap
+ */
+
+.section-gs {
+    padding-top    : var(--gs-section-sm-top)    !important;
+    padding-bottom : var(--gs-section-sm-bottom) !important;
+}
+
+.section-gs-sm {
+    padding-top    : var(--gs-5) !important;   /*  34 px */
+    padding-bottom : var(--gs-6) !important;   /*  55 px */
+}
+
+.section-gs-lg {
+    padding-top    : var(--gs-section-lg-top)    !important;
+    padding-bottom : var(--gs-section-lg-bottom) !important;
+}
+
+.section-gs-xl {
+    padding-top    : var(--gs-section-xl-top)    !important;
+    padding-bottom : var(--gs-section-xl-bottom) !important;
+}
+
+/* Asymmetric helpers — modify top or bottom independently */
+.section-gs-breathe {
+    padding-bottom : var(--gs-8) !important;   /* +1 step = 144 px */
+}
+
+.section-gs-tight-top {
+    padding-top : var(--gs-5) !important;      /*  step back to 34 px */
+}
+
+.section-gs-tight-bottom {
+    padding-bottom : var(--gs-5) !important;   /*  step back to 34 px */
+}
+
+
+/* =============================================================
+   5. TYPOGRAPHY SCALE   text-gs-*
+   ─────────────────────────────────────────────────────────────
+   Font sizes following the golden ratio progression.
+   Combine with Bootstrap's fw-* / lh-* utilities.
+   ============================================================= */
+
+.text-gs-xs   { font-size: var(--gs-text-xs)   !important; }  /* ~10 px */
+.text-gs-sm   { font-size: var(--gs-text-sm)   !important; }  /*  16 px */
+.text-gs-md   { font-size: var(--gs-text-md)   !important; }  /* ~26 px */
+.text-gs-lg   { font-size: var(--gs-text-lg)   !important; }  /* ~42 px */
+.text-gs-xl   { font-size: var(--gs-text-xl)   !important; }  /* ~68 px */
+.text-gs-2xl  { font-size: var(--gs-text-2xl)  !important; }  /* ~110 px */
+
+/* Fluid typography — clamp-based, scales smoothly between viewport sizes.
+   Each step uses: clamp(φ-step-n, fluid-slope, φ-step-n+1)
+   so the size is always within the golden-ratio scale.                    */
+.gs-fluid-xs  { font-size: clamp(0.618rem, 0.5vw  + 0.5rem,  1rem)     !important; }
+.gs-fluid-sm  { font-size: clamp(1rem,     1vw    + 0.75rem,  1.618rem) !important; }
+.gs-fluid-md  { font-size: clamp(1.618rem, 2vw    + 1rem,     2.618rem) !important; }
+.gs-fluid-lg  { font-size: clamp(2.618rem, 3vw    + 1rem,     4.236rem) !important; }
+.gs-fluid-xl  { font-size: clamp(4.236rem, 4vw    + 1rem,     6.854rem) !important; }
+
+/**
+ * .hero-title
+ * ──────────────────────────────────────────────────────────────────────────
+ * Apply to the primary hero heading so it:
+ *   • never overflows or wraps on a phone          (min ≤ 1.8 rem)
+ *   • scales fluidly through tablet and laptop
+ *   • appears massive and impressive on 4K screens  (max = φ³ × 1.8 rem)
+ *
+ * Viewport checkpoints (base 16 px):
+ *   320 px  →  ~28.8 px  → min 1.8 rem kicks in  ✓  no overflow
+ *   768 px  →  ~42.6 px  → 2.66 rem               ✓
+ *  1440 px  →  ~72.8 px  → 4.55 rem               ✓
+ *  1920 px  →  ~94.4 px  → 5.90 rem               ✓  impressive on FHD
+ *  3840 px  →  exceeds ceiling → capped at 7.624 rem (≈ 122 px)  ✓  4K wow
+ */
+.hero-title {
+    font-size      : var(--gs-hero-title-size, clamp(1.8rem, 4.5vw + 0.5rem, 7.624rem)) !important;
+    line-height    : 1.1   !important;
+    letter-spacing : -0.04em !important;
+}
+
+/* Letter-spacing helpers — tighten large headings for premium look */
+.tracking-gs-tight   { letter-spacing: -0.04em !important; }
+.tracking-gs-normal  { letter-spacing: -0.01em !important; }
+.tracking-gs-wide    { letter-spacing:  0.04em !important; }
+.tracking-gs-wider   { letter-spacing:  0.08em !important; }
+
+
+/* =============================================================
+   6. MEASURE (max-width for prose)
+   ─────────────────────────────────────────────────────────────
+   Optimal readable line length derived from golden proportion.
+   Prevents full-width text blocks from looking like a data dump.
+   ============================================================= */
+
+.gs-measure      { max-width: var(--gs-measure)    !important; }   /* ~65 ch */
+.gs-measure-lg   { max-width: var(--gs-measure-lg) !important; }   /* ~80 ch */
+.gs-measure-sm   { max-width: 50ch                  !important; }   /* compact */
+.gs-measure-auto { max-width: none                  !important; }
+
+
+/* =============================================================
+   7. GOLDEN-RATIO ASPECT RATIOS
+   ─────────────────────────────────────────────────────────────
+   Apply to image wrappers / hero containers.
+   ============================================================= */
+
+.gs-ratio-golden {
+    aspect-ratio: 1.618 / 1;   /* landscape golden rectangle */
+}
+
+.gs-ratio-portrait {
+    aspect-ratio: 1 / 1.618;   /* portrait golden rectangle */
+}
+
+.gs-ratio-square {
+    aspect-ratio: 1 / 1;
+}
+
+
+/* =============================================================
+   8. GOLDEN-RATIO PROPORTIONAL WIDTHS
+   ─────────────────────────────────────────────────────────────
+   Use these on two-column layouts to create a natural φ split
+   instead of Bootstrap's mechanical 50/50 or 33/66.
+   ============================================================= */
+
+/* φ : 1  split  (61.8 % : 38.2 %) */
+.gs-col-major { flex: 0 0 61.8% !important; max-width: 61.8% !important; }
+.gs-col-minor { flex: 0 0 38.2% !important; max-width: 38.2% !important; }
+
+/* Fractional widths based on golden ratio */
+.w-gs-minor { width: 38.2% !important; }    /* 1/φ of parent        */
+.w-gs-major { width: 61.8% !important; }    /* φ/(1+φ) of parent    */
+.w-gs-full  { width: 100%  !important; }
+
+/* Max-width caps */
+.max-w-gs-5 { max-width: calc(var(--gs-5) * 10) !important; }  /* 340 px */
+.max-w-gs-6 { max-width: calc(var(--gs-6) * 10) !important; }  /* 550 px */
+.max-w-gs-7 { max-width: calc(var(--gs-7) * 10) !important; }  /* 890 px */
+.max-w-gs-8 { max-width: calc(var(--gs-8) * 10) !important; }  /* 1440 px */
+
+
+/* =============================================================
+   9. ORGANIC BORDER-RADIUS UTILITIES
+   ─────────────────────────────────────────────────────────────
+   Replace Bootstrap's uniform rounded-* with golden proportions.
+   ============================================================= */
+
+.rounded-gs-1 { border-radius: var(--gs-1) !important; }   /*  5 px */
+.rounded-gs-2 { border-radius: var(--gs-2) !important; }   /*  8 px */
+.rounded-gs-3 { border-radius: var(--gs-3) !important; }   /* 13 px */
+.rounded-gs-4 { border-radius: var(--gs-4) !important; }   /* 21 px */
+.rounded-gs-5 { border-radius: var(--gs-5) !important; }   /* 34 px */
+
+/* Asymmetric radius — top corners larger than bottom (feels grounded) */
+.rounded-gs-top {
+    border-radius: var(--gs-4) var(--gs-4) var(--gs-2) var(--gs-2) !important;
+}
+
+/* Asymmetric radius — bottom larger than top (feels elevated) */
+.rounded-gs-bottom {
+    border-radius: var(--gs-2) var(--gs-2) var(--gs-4) var(--gs-4) !important;
+}
+
+/* Mixed asymmetric for a truly custom, non-template feel */
+.rounded-gs-organic {
+    border-radius: var(--gs-4) var(--gs-3) var(--gs-5) var(--gs-3) !important;
+}
+
+
+/* =============================================================
+   10. FLOW STACK — vertical rhythm utility
+   ─────────────────────────────────────────────────────────────
+   The "flow" pattern: all direct children receive top-margin
+   from the golden scale, creating automatic vertical rhythm
+   without adding class to every element.
+   ============================================================= */
+
+.gs-flow > * + * { margin-top: var(--gs-5) !important; }    /* 34 px step */
+.gs-flow-sm > * + * { margin-top: var(--gs-4) !important; } /* 21 px step */
+.gs-flow-lg > * + * { margin-top: var(--gs-6) !important; } /* 55 px step */
+
+
+/* =============================================================
+   11. ASYMMETRIC INSET PATTERNS
+   ─────────────────────────────────────────────────────────────
+   Pre-composed, opinionated padding combos that naturally
+   break the "all four sides equal" Bootstrap block look.
+   ============================================================= */
+
+/**
+ * .gs-inset-card     — compact card padding (tight x, comfortable y)
+ * .gs-inset-section  — section-level inset (vertical > horizontal)
+ * .gs-inset-hero     — hero-level breathing room
+ * .gs-inset-prose    — narrow horizontal for readability
+ */
+
+.gs-inset-card {
+    padding: var(--gs-5) var(--gs-4) !important;   /* 34 px / 21 px  */
+}
+
+.gs-inset-section {
+    padding: var(--gs-6) var(--gs-5) !important;   /* 55 px / 34 px  */
+}
+
+.gs-inset-hero {
+    padding: var(--gs-7) var(--gs-5) !important;   /* 89 px / 34 px  */
+}
+
+.gs-inset-prose {
+    padding: var(--gs-5) var(--gs-6) !important;   /* 34 px / 55 px  */
+}
+
+/* Asymmetric top/bottom with equal sides for cards that "breathe" */
+.gs-inset-breathe {
+    padding-top    : var(--gs-5) !important;   /* 34 px */
+    padding-bottom : var(--gs-6) !important;   /* 55 px */
+    padding-inline : var(--gs-5) !important;   /* 34 px */
+}
+
+
+/* =============================================================
+   12. RESPONSIVE VARIANTS  (sm: / md: / lg: breakpoints)
+   ─────────────────────────────────────────────────────────────
+   Mirrors Bootstrap's responsive-tier pattern.
+   Usage: <section class="py-gs-5 lg:py-gs-7">
+   ============================================================= */
+
+/* --- Small (≥ 576 px) ---------------------------------------- */
+@media (min-width: 576px) {
+    .sm\:p-gs-1  { padding: var(--gs-1) !important; }
+    .sm\:p-gs-2  { padding: var(--gs-2) !important; }
+    .sm\:p-gs-3  { padding: var(--gs-3) !important; }
+    .sm\:p-gs-4  { padding: var(--gs-4) !important; }
+    .sm\:p-gs-5  { padding: var(--gs-5) !important; }
+    .sm\:p-gs-6  { padding: var(--gs-6) !important; }
+    .sm\:p-gs-7  { padding: var(--gs-7) !important; }
+    .sm\:p-gs-8  { padding: var(--gs-8) !important; }
+    .sm\:p-gs-9  { padding: var(--gs-9) !important; }
+
+    .sm\:py-gs-1  { padding-block: var(--gs-1) !important; }
+    .sm\:py-gs-2  { padding-block: var(--gs-2) !important; }
+    .sm\:py-gs-3  { padding-block: var(--gs-3) !important; }
+    .sm\:py-gs-4  { padding-block: var(--gs-4) !important; }
+    .sm\:py-gs-5  { padding-block: var(--gs-5) !important; }
+    .sm\:py-gs-6  { padding-block: var(--gs-6) !important; }
+    .sm\:py-gs-7  { padding-block: var(--gs-7) !important; }
+    .sm\:py-gs-8  { padding-block: var(--gs-8) !important; }
+    .sm\:py-gs-9  { padding-block: var(--gs-9) !important; }
+
+    .sm\:px-gs-4  { padding-inline: var(--gs-4) !important; }
+    .sm\:px-gs-5  { padding-inline: var(--gs-5) !important; }
+    .sm\:px-gs-6  { padding-inline: var(--gs-6) !important; }
+
+    .sm\:mt-gs-4  { margin-top: var(--gs-4) !important; }
+    .sm\:mt-gs-5  { margin-top: var(--gs-5) !important; }
+    .sm\:mt-gs-6  { margin-top: var(--gs-6) !important; }
+    .sm\:mt-gs-7  { margin-top: var(--gs-7) !important; }
+
+    .sm\:mb-gs-4  { margin-bottom: var(--gs-4) !important; }
+    .sm\:mb-gs-5  { margin-bottom: var(--gs-5) !important; }
+    .sm\:mb-gs-6  { margin-bottom: var(--gs-6) !important; }
+    .sm\:mb-gs-7  { margin-bottom: var(--gs-7) !important; }
+
+    .sm\:gap-gs-4 { gap: var(--gs-4) !important; }
+    .sm\:gap-gs-5 { gap: var(--gs-5) !important; }
+    .sm\:gap-gs-6 { gap: var(--gs-6) !important; }
+    .sm\:gap-gs-7 { gap: var(--gs-7) !important; }
+
+    .sm\:section-gs    { padding-top: var(--gs-6) !important; padding-bottom: var(--gs-7) !important; }
+    .sm\:section-gs-lg { padding-top: var(--gs-7) !important; padding-bottom: var(--gs-8) !important; }
+}
+
+/* --- Medium (≥ 768 px) --------------------------------------- */
+@media (min-width: 768px) {
+    .md\:p-gs-1  { padding: var(--gs-1) !important; }
+    .md\:p-gs-2  { padding: var(--gs-2) !important; }
+    .md\:p-gs-3  { padding: var(--gs-3) !important; }
+    .md\:p-gs-4  { padding: var(--gs-4) !important; }
+    .md\:p-gs-5  { padding: var(--gs-5) !important; }
+    .md\:p-gs-6  { padding: var(--gs-6) !important; }
+    .md\:p-gs-7  { padding: var(--gs-7) !important; }
+    .md\:p-gs-8  { padding: var(--gs-8) !important; }
+    .md\:p-gs-9  { padding: var(--gs-9) !important; }
+
+    .md\:py-gs-1  { padding-block: var(--gs-1) !important; }
+    .md\:py-gs-2  { padding-block: var(--gs-2) !important; }
+    .md\:py-gs-3  { padding-block: var(--gs-3) !important; }
+    .md\:py-gs-4  { padding-block: var(--gs-4) !important; }
+    .md\:py-gs-5  { padding-block: var(--gs-5) !important; }
+    .md\:py-gs-6  { padding-block: var(--gs-6) !important; }
+    .md\:py-gs-7  { padding-block: var(--gs-7) !important; }
+    .md\:py-gs-8  { padding-block: var(--gs-8) !important; }
+    .md\:py-gs-9  { padding-block: var(--gs-9) !important; }
+
+    .md\:px-gs-4  { padding-inline: var(--gs-4) !important; }
+    .md\:px-gs-5  { padding-inline: var(--gs-5) !important; }
+    .md\:px-gs-6  { padding-inline: var(--gs-6) !important; }
+
+    .md\:mt-gs-4  { margin-top: var(--gs-4) !important; }
+    .md\:mt-gs-5  { margin-top: var(--gs-5) !important; }
+    .md\:mt-gs-6  { margin-top: var(--gs-6) !important; }
+    .md\:mt-gs-7  { margin-top: var(--gs-7) !important; }
+
+    .md\:mb-gs-4  { margin-bottom: var(--gs-4) !important; }
+    .md\:mb-gs-5  { margin-bottom: var(--gs-5) !important; }
+    .md\:mb-gs-6  { margin-bottom: var(--gs-6) !important; }
+    .md\:mb-gs-7  { margin-bottom: var(--gs-7) !important; }
+
+    .md\:gap-gs-4 { gap: var(--gs-4) !important; }
+    .md\:gap-gs-5 { gap: var(--gs-5) !important; }
+    .md\:gap-gs-6 { gap: var(--gs-6) !important; }
+    .md\:gap-gs-7 { gap: var(--gs-7) !important; }
+
+    .md\:section-gs    { padding-top: var(--gs-6) !important; padding-bottom: var(--gs-7) !important; }
+    .md\:section-gs-lg { padding-top: var(--gs-7) !important; padding-bottom: var(--gs-8) !important; }
+    .md\:section-gs-xl { padding-top: var(--gs-8) !important; padding-bottom: var(--gs-9) !important; }
+
+    .md\:gs-col-major  { flex: 0 0 61.8% !important; max-width: 61.8% !important; }
+    .md\:gs-col-minor  { flex: 0 0 38.2% !important; max-width: 38.2% !important; }
+}
+
+/* --- Large (≥ 992 px) ---------------------------------------- */
+@media (min-width: 992px) {
+    .lg\:p-gs-4  { padding: var(--gs-4) !important; }
+    .lg\:p-gs-5  { padding: var(--gs-5) !important; }
+    .lg\:p-gs-6  { padding: var(--gs-6) !important; }
+    .lg\:p-gs-7  { padding: var(--gs-7) !important; }
+    .lg\:p-gs-8  { padding: var(--gs-8) !important; }
+    .lg\:p-gs-9  { padding: var(--gs-9) !important; }
+
+    .lg\:py-gs-4  { padding-block: var(--gs-4) !important; }
+    .lg\:py-gs-5  { padding-block: var(--gs-5) !important; }
+    .lg\:py-gs-6  { padding-block: var(--gs-6) !important; }
+    .lg\:py-gs-7  { padding-block: var(--gs-7) !important; }
+    .lg\:py-gs-8  { padding-block: var(--gs-8) !important; }
+    .lg\:py-gs-9  { padding-block: var(--gs-9) !important; }
+
+    .lg\:px-gs-4  { padding-inline: var(--gs-4) !important; }
+    .lg\:px-gs-5  { padding-inline: var(--gs-5) !important; }
+    .lg\:px-gs-6  { padding-inline: var(--gs-6) !important; }
+    .lg\:px-gs-7  { padding-inline: var(--gs-7) !important; }
+
+    .lg\:mt-gs-4  { margin-top: var(--gs-4) !important; }
+    .lg\:mt-gs-5  { margin-top: var(--gs-5) !important; }
+    .lg\:mt-gs-6  { margin-top: var(--gs-6) !important; }
+    .lg\:mt-gs-7  { margin-top: var(--gs-7) !important; }
+    .lg\:mt-gs-8  { margin-top: var(--gs-8) !important; }
+
+    .lg\:mb-gs-4  { margin-bottom: var(--gs-4) !important; }
+    .lg\:mb-gs-5  { margin-bottom: var(--gs-5) !important; }
+    .lg\:mb-gs-6  { margin-bottom: var(--gs-6) !important; }
+    .lg\:mb-gs-7  { margin-bottom: var(--gs-7) !important; }
+    .lg\:mb-gs-8  { margin-bottom: var(--gs-8) !important; }
+
+    .lg\:gap-gs-4 { gap: var(--gs-4) !important; }
+    .lg\:gap-gs-5 { gap: var(--gs-5) !important; }
+    .lg\:gap-gs-6 { gap: var(--gs-6) !important; }
+    .lg\:gap-gs-7 { gap: var(--gs-7) !important; }
+    .lg\:gap-gs-8 { gap: var(--gs-8) !important; }
+
+    .lg\:section-gs    { padding-top: var(--gs-6) !important; padding-bottom: var(--gs-7) !important; }
+    .lg\:section-gs-lg { padding-top: var(--gs-7) !important; padding-bottom: var(--gs-8) !important; }
+    .lg\:section-gs-xl { padding-top: var(--gs-8) !important; padding-bottom: var(--gs-9) !important; }
+
+    .lg\:gs-col-major  { flex: 0 0 61.8% !important; max-width: 61.8% !important; }
+    .lg\:gs-col-minor  { flex: 0 0 38.2% !important; max-width: 38.2% !important; }
+
+    .lg\:gs-measure    { max-width: var(--gs-measure)    !important; }
+    .lg\:gs-measure-lg { max-width: var(--gs-measure-lg) !important; }
+}
+
+/* --- Extra Large (≥ 1200 px) --------------------------------- */
+@media (min-width: 1200px) {
+    .xl\:py-gs-7  { padding-block: var(--gs-7) !important; }
+    .xl\:py-gs-8  { padding-block: var(--gs-8) !important; }
+    .xl\:py-gs-9  { padding-block: var(--gs-9) !important; }
+
+    .xl\:section-gs-lg { padding-top: var(--gs-7) !important; padding-bottom: var(--gs-8) !important; }
+    .xl\:section-gs-xl { padding-top: var(--gs-8) !important; padding-bottom: var(--gs-9) !important; }
+}
+
+
+/* =============================================================
+   13. SECTION-LEVEL ENHANCEMENTS
+   ─────────────────────────────────────────────────────────────
+   Opinionated defaults applied to the main page sections
+   via semantic class names.  These supplement (not replace)
+   the Bootstrap py-5 / py-3 classes so they can be removed
+   from HTML gradually as the golden system is adopted.
+   ============================================================= */
+
+/**
+ * Apply golden section rhythm to the main content sections.
+ * Each section gets asymmetric padding (top ≠ bottom) and the
+ * container header gets a golden-ratio max-width for prose.
+ */
+
+/* Competency section — featured entry in the page flow */
+.competencies-section {
+    padding-top    : var(--gs-7) !important;   /* 89 px  */
+    padding-bottom : var(--gs-8) !important;   /* 144 px */
+}
+
+/* Stats section — compact "metrics bar", intentionally less space */
+.stats-section {
+    padding-top    : var(--gs-6) !important;   /* 55 px  */
+    padding-bottom : var(--gs-7) !important;   /* 89 px  */
+}
+
+/* Info cards — slightly more top than stats but less than competencies */
+.info-cards-section {
+    padding-top    : var(--gs-6) !important;   /* 55 px  */
+    padding-bottom : var(--gs-8) !important;   /* 144 px */
+}
+
+/* Values / physics section */
+.physics-values-section {
+    padding-top    : var(--gs-7) !important;   /* 89 px  */
+    padding-bottom : var(--gs-8) !important;   /* 144 px */
+}
+
+/* Section header prose measure — prevent full-width orphaned headings */
+.competencies-section .competencies-section-header,
+.stats-section .section-header,
+.info-cards-section .section-header,
+.physics-values-section .section-header {
+    max-width : var(--gs-measure-lg);
+    margin-inline : auto;
+}
+
+/* ---- Responsive: tighter on mobile -------------------------- */
+@media (max-width: 767px) {
+    .competencies-section {
+        padding-top    : var(--gs-6) !important;   /* 55 px  */
+        padding-bottom : var(--gs-7) !important;   /* 89 px  */
+    }
+
+    .stats-section {
+        padding-top    : var(--gs-5) !important;   /* 34 px  */
+        padding-bottom : var(--gs-6) !important;   /* 55 px  */
+    }
+
+    .info-cards-section {
+        padding-top    : var(--gs-5) !important;   /* 34 px  */
+        padding-bottom : var(--gs-7) !important;   /* 89 px  */
+    }
+
+    .physics-values-section {
+        padding-top    : var(--gs-6) !important;   /* 55 px  */
+        padding-bottom : var(--gs-7) !important;   /* 89 px  */
+    }
+}
+
+
+/* =============================================================
+   14. GOLDEN-RATIO GRID GAPS
+   ─────────────────────────────────────────────────────────────
+   Override Bootstrap's g-* gutter classes with golden spacings
+   on specific components so card arrays breathe more naturally.
+   ============================================================= */
+
+/* Competency cards grid — non-uniform row/column gap */
+.competencies-cards-grid {
+    row-gap    : var(--gs-5) !important;   /* 34 px row gap   */
+    column-gap : var(--gs-4) !important;   /* 21 px col gap   */
+}
+
+/* Stats card row — generous column spacing */
+.stats-section .row.g-4 {
+    --bs-gutter-x: var(--gs-5);   /* 34 px horizontal gutter */
+    --bs-gutter-y: var(--gs-5);   /* 34 px vertical gutter   */
+}
+
+/* Info cards row */
+.info-cards-section .row.g-4 {
+    --bs-gutter-x: var(--gs-4);   /* 21 px horizontal gutter */
+    --bs-gutter-y: var(--gs-5);   /* 34 px vertical gutter   */
+}
+
+
+/* =============================================================
+   15. MOBILE-AGILE SECTION PATTERN
+   ─────────────────────────────────────────────────────────────
+   Reduces the horizontal container padding on small screens so
+   content occupies more of the available viewport width (less
+   side gutter), while the unchanged vertical rhythm keeps the
+   visual focus on reading flow.
+
+   Usage:
+     <section class="section-mobile-agile">
+       <div class="container">…</div>
+     </section>
+
+   Tokens (defined in :root above):
+     --gs-section-px-mobile  : 13 px  (var(--gs-3))
+     --gs-section-px-tablet  : 21 px  (var(--gs-4))
+     --gs-section-px-desktop : 34 px  (var(--gs-5))
+   ============================================================= */
+
+.section-mobile-agile > .container,
+.section-mobile-agile > .container-fluid {
+    padding-inline: var(--gs-section-px-mobile);   /* 13 px – lean sides on phones */
+}
+
+@media (min-width: 576px) {
+    .section-mobile-agile > .container,
+    .section-mobile-agile > .container-fluid {
+        padding-inline: var(--gs-section-px-tablet);   /* 21 px */
+    }
+}
+
+@media (min-width: 992px) {
+    .section-mobile-agile > .container,
+    .section-mobile-agile > .container-fluid {
+        padding-inline: var(--gs-section-px-desktop);  /* 34 px */
+    }
+}
+
+@media (min-width: 1400px) {
+    .section-mobile-agile > .container,
+    .section-mobile-agile > .container-fluid {
+        padding-inline: var(--bs-gutter-x, 0.75rem);   /* restore Bootstrap's default container gutter */
+    }
+}
+
+
+/* =============================================================
+   16. UTILITY DEBUG HELPER  (development only)
+   ─────────────────────────────────────────────────────────────
+   Add class .gs-debug to <body> to visualise golden spacings.
+   Remove before production deployment.
+   ============================================================= */
+
+.gs-debug [class*="p-gs-"],
+.gs-debug [class*="py-gs-"],
+.gs-debug [class*="px-gs-"],
+.gs-debug [class*="section-gs"],
+.gs-debug [class*="gs-inset"] {
+    outline: 1px dashed rgba(109, 151, 68, 0.4);
+    position: relative;
+}
+
+.gs-debug [class*="p-gs-"]::after,
+.gs-debug [class*="section-gs"]::after {
+    content: attr(class);
+    position: absolute;
+    top: 2px;
+    left: 4px;
+    font-size: 9px;
+    font-family: monospace;
+    color: rgba(109, 151, 68, 0.7);
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 200px;
+}
+
+
+/* =============================================================
+   17. GOLDEN SPACING SHORTCUTS & HEADLINE TYPOGRAPHY
+   ─────────────────────────────────────────────────────────────
+   Semantic single-value shortcuts for the most common golden
+   spacing need, plus headline classes that keep the ratio
+   H1 : H2 : H3 = φ² : φ : 1 at every viewport width.
+
+   SPACING SHORTCUTS
+   ─────────────────
+   .p-golden  — padding using the canonical mid-range golden step
+   .m-golden  — margin  using the canonical mid-range golden step
+   (Both resolve to --gs-golden = --gs-5 = 34 px)
+
+   HEADLINE SCALE  (clamp-based, φ-proportional slopes)
+   ──────────────────────────────────────────────────────
+   At 320 px  →  floors: 2.618 : 1.618 : 1.000 rem  = φ² : φ : 1  ✓
+   At 1440 px →  ceilings: 4.236 : 2.618 : 1.618 rem = φ² : φ : 1  ✓
+   Fluid range →  vw slopes (2.31 : 1.43 : 0.88 ≈ φ² : φ : 1)       ✓
+   ============================================================= */
+
+/* ── Semantic golden spacing shortcuts ─────────────────────── */
+
+/**
+ * .p-golden / .m-golden
+ * ──────────────────────────────────────────────────────────────
+ * Single-value shorthand resolving to --gs-golden (= --gs-5 = 34 px).
+ * Use when you need "a golden amount of space" without choosing a
+ * specific scale step.  For fine-grained control, use .p-gs-* / .m-gs-*.
+ */
+.p-golden { padding: var(--gs-golden) !important; }
+.m-golden { margin:  var(--gs-golden) !important; }
+
+
+/* ── Golden headline classes ────────────────────────────────── */
+
+/**
+ * .h1-golden … .h6-golden
+ * ──────────────────────────────────────────────────────────────
+ * Apply to heading elements (or any container) for fluid type
+ * that scales with the viewport while preserving φ proportions.
+ *
+ * Mathematical guarantee:
+ *   font-size(h1-golden) / font-size(h2-golden) ≈ φ  at all sizes
+ *   font-size(h2-golden) / font-size(h3-golden) ≈ φ  at all sizes
+ *
+ * Line-height decreases as text grows larger (tighter for display
+ * size, looser for body-adjacent sizes) — a common typographic rule.
+ */
+
+.h1-golden {
+    font-size    : var(--gs-h1-size) !important;   /* clamp(2.618rem, 2.31vw + 2.15rem, 4.236rem) */
+    line-height  : 1.1  !important;
+    letter-spacing: -0.03em !important;
+}
+
+.h2-golden {
+    font-size    : var(--gs-h2-size) !important;   /* clamp(1.618rem, 1.43vw + 1.33rem, 2.618rem) */
+    line-height  : 1.2  !important;
+    letter-spacing: -0.02em !important;
+}
+
+.h3-golden {
+    font-size    : var(--gs-h3-size) !important;   /* clamp(1rem, 0.88vw + 0.82rem, 1.618rem)     */
+    line-height  : 1.3  !important;
+    letter-spacing: -0.01em !important;
+}
+
+.h4-golden {
+    font-size    : var(--gs-h4-size) !important;   /* clamp(1rem, 0.39vw + 0.92rem, 1.272rem)     */
+    line-height  : 1.4  !important;
+}
+
+.h5-golden {
+    font-size    : var(--gs-h5-size) !important;   /* 1rem — body-level heading                    */
+    line-height  : 1.5  !important;
+}
+
+.h6-golden {
+    font-size    : var(--gs-h6-size) !important;   /* 0.875rem — small heading                     */
+    line-height  : 1.5  !important;
+}

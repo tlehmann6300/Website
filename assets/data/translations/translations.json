@@ -2426,6 +2426,36 @@
     "en": "ERP Systems, Macroeconomics, Statistics, Accounting, Finance & Investment, Project Management, Operations Research.",
     "fr": "Systèmes ERP, Macroéconomie, Statistiques, Comptabilité, Finance & Investissement, Gestion de projet, Recherche opérationnelle."
   },
+  "network-curators-schanbacher-name": {
+    "de": "Prof. Peter Schanbacher",
+    "en": "Prof. Peter Schanbacher",
+    "fr": "Prof. Peter Schanbacher"
+  },
+  "network-curators-schanbacher-quote": {
+    "de": "\"Wissen entfaltet seine wahre Wirkung erst, wenn man es nicht nur theoretisch besitzt, sondern es aktiv in realen Projekten einsetzt und Verantwortung übernimmt. Genau dafür steht das Institut für Business Consulting e.V. (IBC) – die studentische Unternehmensberatung an der Hochschule Furtwangen University. Durch die Mitarbeit im IBC können Studierende ihr Wissen aus der Informatik, Ingenieurwissenschaften, Wirtschaft und Gesundheit direkt in konkreten Beratungsprojekten anwenden. Studierenden bietet das IBC ein hochspannendes Erfahrungsfeld an der Schnittstelle von Technologie & Business und die Chance, schon früh eigene Lösungen für echte Kunden zu entwickeln und zu verantworten. Unternehmen erhalten durch die studentischen Berater qualifizierte, innovative und wissenschaftlich fundierte Unterstützung zu fairen Konditionen – oft mit frischen, unkonventionellen Ansätzen fernab ausgetretener Pfade.\"",
+    "en": "\"Knowledge only truly unfolds its impact when it is not merely possessed theoretically, but actively applied in real projects and responsibility is taken. This is exactly what the Institute for Business Consulting e.V. (IBC) stands for – the student management consultancy at Furtwangen University. Through involvement in IBC, students can apply their knowledge from computer science, engineering, business and health directly in concrete consulting projects. IBC offers students a highly exciting field of experience at the interface of technology & business and the chance to develop and take responsibility for real solutions for actual clients early on. Companies receive qualified, innovative and scientifically grounded support from student consultants at fair rates – often with fresh, unconventional approaches far off the beaten path.\"",
+    "fr": "\"Le savoir ne déploie tout son impact que lorsqu'il n'est pas seulement possédé théoriquement, mais activement appliqué dans de vrais projets avec une prise de responsabilité. C'est exactement ce que représente l'Institut für Business Consulting e.V. (IBC) – le cabinet de conseil étudiant de la Hochschule Furtwangen University. En s'impliquant dans l'IBC, les étudiants peuvent appliquer leurs connaissances en informatique, ingénierie, économie et santé directement dans des projets de conseil concrets. L'IBC offre aux étudiants un champ d'expérience passionnant à l'interface de la technologie et des affaires.\""
+  },
+  "network-curators-schanbacher-subjects": {
+    "de": "Künstliche Intelligenz, Statistik, Data Science, Finance.",
+    "en": "Artificial Intelligence, Statistics, Data Science, Finance.",
+    "fr": "Intelligence artificielle, Statistiques, Data Science, Finance."
+  },
+  "network-curators-katz-name": {
+    "de": "Tarah Katz",
+    "en": "Tarah Katz",
+    "fr": "Tarah Katz"
+  },
+  "network-curators-katz-quote": {
+    "de": "\"Eine Mitgliedschaft im Institut für Business Consulting e.V. ist eine hervorragende Möglichkeit, schon während des Studiums praktische Erfahrungen im Consulting zu sammeln. Durch reale Projekte mit direktem Kontakt zu Unternehmen können Mitglieder wichtige Fähigkeiten in Beratung, Projektmanagement und Kommunikation entwickeln. Das IBC bietet den Studierenden somit die Möglichkeit, schon frühzeitig Verantwortung zu übernehmen und sich ideal für den Einstieg in die Beratungswelt vorzubereiten. Unternehmen profitieren hierbei vor allem durch neue Ideen, hohes Engagement und die Nähe zur Wissenschaft. Die ‚Talente von Morgen' bringen aktuelle Kenntnisse aus Studium und Forschung mit und können neue Perspektiven auf bestehende Herausforderungen liefern. Eine Partnerschaft, von welcher alle Beteiligten profitieren!\"",
+    "en": "\"Membership in the Institut für Business Consulting e.V. is an excellent opportunity to gain practical consulting experience while still studying. Through real projects with direct contact to companies, members can develop important skills in consulting, project management and communication. IBC thus offers students the opportunity to take on responsibility early and prepare ideally for entry into the consulting world. Companies benefit above all from new ideas, high commitment and closeness to science. The 'talents of tomorrow' bring current knowledge from studies and research and can deliver new perspectives on existing challenges. A partnership from which all parties benefit!\"",
+    "fr": "\"Une adhésion à l'Institut für Business Consulting e.V. est une excellente occasion d'acquérir une expérience pratique en conseil dès les études. Grâce à de vrais projets avec un contact direct avec les entreprises, les membres peuvent développer des compétences importantes en conseil, gestion de projet et communication. L'IBC offre ainsi aux étudiants la possibilité de prendre des responsabilités tôt et de se préparer idéalement à une entrée dans le monde du conseil. Un partenariat dont tous les participants bénéficient!\""
+  },
+  "network-curators-katz-subjects": {
+    "de": "BWL, Rechnungswesen & Controlling, Rhetorik.",
+    "en": "Business Administration, Accounting & Controlling, Rhetoric.",
+    "fr": "Gestion d'entreprise, Comptabilité & Contrôle de gestion, Rhétorique."
+  },
   "network-curators-subjects-label": {
     "de": "Lehrgebiete:",
     "en": "Teaching Areas:",

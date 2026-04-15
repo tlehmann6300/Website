@@ -69,7 +69,10 @@
     }
     </script>
     <link href="css/new-navbar.css" rel="stylesheet">
+    <link href="css/ibc-design-v3.css" rel="stylesheet">
+    <link href="css/ibc-buttons.css" rel="stylesheet">
     <link href="css/page-redesign.css" rel="stylesheet">
+    <link href="css/netzwerk-v3.css" rel="stylesheet">
 </head>
 <body>
 
@@ -211,6 +214,10 @@
                         <div class="hero-stat__label">Alumni weltweit</div>
                     </div>
                     <div class="hero-stat">
+                        <div class="hero-stat__number">4</div>
+                        <div class="hero-stat__label">Förderkreismitglieder</div>
+                    </div>
+                    <div class="hero-stat">
                         <div class="hero-stat__number">20+</div>
                         <div class="hero-stat__label">Kooperationspartner</div>
                     </div>
@@ -220,37 +227,45 @@
     </div>
 </section>
 
-<section class="page-section page-section--dark">
+<section class="nk-section nk-section--foerderkreis" id="foerderkreis" aria-labelledby="foerderkreis-heading">
     <div class="container">
         <div class="section-header fade-in-up" data-animation-delay="0ms">
-            <span class="section-chip">Förderkreis</span>
-            <h2 class="ibc-heading reveal-fx" data-i18n="network-sponsors-heading">Unsere <span class="text-gradient">Unterstützer</span></h2>
-            <p class="section-intro-text" style="margin-top: 20px; max-width: 600px;" data-i18n="network-sponsors-subtitle">Unsere Förderkreismitglieder unterstützen uns ideell und finanziell und ermöglichen dadurch hochwertige Beratungsprojekte.</p>
+            <span class="section-chip"><i class="fas fa-handshake" aria-hidden="true"></i> Förderkreis</span>
+            <h2 id="foerderkreis-heading" class="ibc-heading" data-i18n="network-sponsors-heading">
+                Unsere <span class="text-gradient">Förderkreismitglieder</span>
+            </h2>
+            <p class="section-intro-text" data-i18n="network-sponsors-subtitle">
+                Starke Partner, die unsere Vision teilen und uns auf unserem Weg unterstützen.
+            </p>
         </div>
-        <ul id="foerderkreis-list" class="row g-4 justify-content-center list-unstyled mt-5">
-            <li class="col-lg-3 col-md-6 mb-4 align-items-stretch fade-in-up" data-animation-delay="100ms"><div class="skeleton-card"></div></li>
-            <li class="col-lg-3 col-md-6 mb-4 align-items-stretch fade-in-up" data-animation-delay="200ms"><div class="skeleton-card"></div></li>
+        <ul id="foerderkreis-list" class="row g-4 justify-content-center list-unstyled">
+            <li class="col-lg-3 col-md-6 mb-4 align-items-stretch fade-in-up" data-animation-delay="100ms"><div class="skeleton-card" style="min-height:260px"></div></li>
+            <li class="col-lg-3 col-md-6 mb-4 align-items-stretch fade-in-up" data-animation-delay="200ms"><div class="skeleton-card" style="min-height:260px"></div></li>
         </ul>
     </div>
 </section>
 
-<section class="page-section page-section--alt">
-    <div class="container">
+<section class="nk-section nk-section--alumni" id="alumni" aria-labelledby="alumni-heading">
+    <div class="container" style="position:relative;z-index:2;">
         <div class="section-header fade-in-up" data-animation-delay="0ms">
-            <span class="section-chip">Alumni</span>
-            <h2 class="ibc-heading reveal-fx">Unser <span class="text-gradient">Alumni-Netzwerk</span></h2>
+            <span class="section-chip"><i class="fas fa-user-graduate" aria-hidden="true"></i> Alumni</span>
+            <h2 id="alumni-heading" class="ibc-heading" style="color:#fff;">
+                Unser <span class="text-gradient">Alumni-Netzwerk</span>
+            </h2>
+            <p class="section-intro-text" data-i18n="network-alumni-text">
+                Zu unserem Alumni-Netzwerk gehören alle ehemaligen Studierenden, die sich auch nach ihrem Studium weiterhin bei uns engagieren. Dadurch haben wir nationale und internationale Kontakte in verschiedensten Unternehmen.
+            </p>
         </div>
-        
-        <div class="row g-4 align-items-center mt-5">
-            <div class="col-lg-6">
-                <div class="alumni-stat fade-in-up" data-animation-delay="0ms">
+        <div class="row g-4 align-items-center mt-2">
+            <div class="col-lg-4 fade-in-up" data-animation-delay="0ms">
+                <div class="alumni-stat">
                     <div class="alumni-stat__number">152+</div>
                     <div class="alumni-stat__label">Alumni weltweit</div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="row g-4">
-                    <div class="col-sm-6 fade-in-up" data-animation-delay="100ms">
+            <div class="col-lg-8">
+                <div class="row g-3">
+                    <div class="col-sm-6 col-lg-6 fade-in-up" data-animation-delay="100ms">
                         <div class="alumni-feature">
                             <div class="alumni-feature__icon">
                                 <i class="fa-solid fa-map-pin" aria-hidden="true"></i>
@@ -259,7 +274,7 @@
                             <p class="alumni-feature__text">Starke Verbindungen zu führenden Unternehmen deutschlandweit.</p>
                         </div>
                     </div>
-                    <div class="col-sm-6 fade-in-up" data-animation-delay="200ms">
+                    <div class="col-sm-6 col-lg-6 fade-in-up" data-animation-delay="150ms">
                         <div class="alumni-feature">
                             <div class="alumni-feature__icon">
                                 <i class="fa-solid fa-globe" aria-hidden="true"></i>
@@ -268,13 +283,22 @@
                             <p class="alumni-feature__text">Weltweites Netzwerk mit Positionen in führenden Industrien.</p>
                         </div>
                     </div>
-                    <div class="col-sm-6 fade-in-up" data-animation-delay="300ms">
+                    <div class="col-sm-6 col-lg-6 fade-in-up" data-animation-delay="200ms">
                         <div class="alumni-feature">
                             <div class="alumni-feature__icon">
                                 <i class="fa-solid fa-shield-alt" aria-hidden="true"></i>
                             </div>
                             <h3 class="alumni-feature__title">Gesicherte Qualität</h3>
-                            <p class="alumni-feature__text">Bewährte Berufsleute, die unsere Standards vertreten.</p>
+                            <p class="alumni-feature__text">Bewährte Alumni sichern unsere Standards und Wissenstransfer.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-6 fade-in-up" data-animation-delay="250ms">
+                        <div class="alumni-feature">
+                            <div class="alumni-feature__icon">
+                                <i class="fa-solid fa-handshake" aria-hidden="true"></i>
+                            </div>
+                            <h3 class="alumni-feature__title">Mentorenschaft</h3>
+                            <p class="alumni-feature__text">Erfahrene Alumni begleiten aktive Mitglieder als Mentoren.</p>
                         </div>
                     </div>
                 </div>
@@ -283,31 +307,32 @@
     </div>
 </section>
 
-<section class="page-section page-section--dark">
+<section class="nk-section nk-section--partner" id="partner" aria-labelledby="partner-heading">
     <div class="container">
         <div class="section-header fade-in-up" data-animation-delay="0ms">
-            <span class="section-chip">Partner</span>
-            <h2 class="ibc-heading reveal-fx">Kooperations<span class="text-gradient">partner</span></h2>
+            <span class="section-chip"><i class="fas fa-link" aria-hidden="true"></i> Partner</span>
+            <h2 id="partner-heading" class="ibc-heading">Kooperations<span class="text-gradient">partner</span></h2>
+            <p id="kooperationspartner-intro" class="section-intro-text"></p>
         </div>
-        
-        <div id="kooperationspartner-container" class="mt-5 fade-in-up" data-animation-delay="0ms">
-            <p id="kooperationspartner-intro" class="section-intro-text" style="color: rgba(255,255,255,0.8);"></p>
-
-            <div id="kooperationspartner-list" class="row g-4 mt-4">
-                <div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="100ms"><div class="skeleton-card"></div></div>
-                <div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="200ms"><div class="skeleton-card"></div></div>
-            </div>
+        <div id="kooperationspartner-list" class="row g-4 mt-2">
+            <div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="100ms"><div class="skeleton-card"></div></div>
+            <div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="200ms"><div class="skeleton-card"></div></div>
         </div>
     </div>
 </section>
 
-<section class="page-section page-section--alt">
+<section class="nk-section nk-section--kuratorium" id="kuratorium" aria-labelledby="kuratorium-heading">
     <div class="container">
         <div class="section-header fade-in-up" data-animation-delay="0ms">
-            <span class="section-chip">Kuratorium</span>
-            <h2 class="ibc-heading reveal-fx" data-i18n="network-curators-heading">Unser <span class="text-gradient">Kuratorium</span></h2>
+            <span class="section-chip"><i class="fas fa-graduation-cap" aria-hidden="true"></i> Kuratorium</span>
+            <h2 id="kuratorium-heading" class="ibc-heading" data-i18n="network-curators-heading">
+                Unser <span class="text-gradient">Kuratorium</span>
+            </h2>
+            <p class="section-intro-text" data-i18n="network-curators-subtitle">
+                Erfahrene Professoren und Fachleute, die uns mit Rat und Expertise begleiten.
+            </p>
         </div>
-        <div id="kuratorium-grid" class="mt-5">
+        <div id="kuratorium-grid" class="mt-4">
             <div class="row g-4">
                 <div class="col-12 fade-in-up" data-animation-delay="0ms"><div class="skeleton-card"></div></div>
                 <div class="col-12 fade-in-up" data-animation-delay="150ms"><div class="skeleton-card"></div></div>
@@ -316,17 +341,19 @@
     </div>
 </section>
 
-<section class="cta-banner page-section--dark">
+<section class="nk-cta-banner" aria-labelledby="netzwerk-cta-heading">
     <div class="container">
-        <div class="cta-banner__content fade-in-up" data-animation-delay="0ms">
-            <h2 class="cta-banner__title">Partner <span class="text-gradient">werden?</span></h2>
-            <p class="cta-banner__subtitle">Wir freuen uns auf eine langfristige Zusammenarbeit und gegenseitige Unterstützung.</p>
-            <div class="cta-banner__buttons">
-                <a href="kontakt.html" class="ethereal-button">
-                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                    <span>Jetzt Kontakt aufnehmen</span>
-                </a>
-            </div>
+        <div class="nk-cta-banner__inner fade-in-up" data-animation-delay="0ms">
+            <h2 id="netzwerk-cta-heading" class="nk-cta-banner__title">
+                Partner <span class="text-gradient">werden?</span>
+            </h2>
+            <p class="nk-cta-banner__subtitle">
+                Wir freuen uns auf eine langfristige Zusammenarbeit und gegenseitige Unterstützung.
+            </p>
+            <a href="kontakt.html" class="ethereal-button">
+                <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                <span>Jetzt Kontakt aufnehmen</span>
+            </a>
         </div>
     </div>
 </section>
@@ -478,5 +505,6 @@
 <script src="js/design-effects.js" defer></script>
 <script src="js/premium-animations.js" defer></script>
     <script src="js/new-navbar.js" defer></script>
+    <script src="js/ibc-buttons.js" defer></script>
 </body>
 </html>

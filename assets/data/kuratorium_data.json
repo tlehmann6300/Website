@@ -6,15 +6,6 @@
 
   "members": [
     {
-      "_kommentar": "Prof. Jörg Jacobi M.A.",
-      "id": "jacobi",
-      "image": "assets/img/171212_portraet_jacobi_jj_225x300_1.webp",
-      "altText": "Portrait von Prof. Jörg Jacobi M.A.",
-      "nameI18nKey": "network-curators-jacobi-name",
-      "quoteI18nKey": "network-curators-jacobi-quote",
-      "subjectsI18nKey": "network-curators-jacobi-subjects"
-    },
-    {
       "_kommentar": "Prof. Dr. Dirk Eisenbiegler",
       "id": "eisenbiegler",
       "image": "assets/img/eisenbiegler_scaled.webp",
@@ -40,6 +31,24 @@
       "nameI18nKey": "network-curators-marx-name",
       "quoteI18nKey": "network-curators-marx-quote",
       "subjectsI18nKey": "network-curators-marx-subjects"
+    },
+    {
+      "_kommentar": "Prof. Peter Schanbacher",
+      "id": "schanbacher",
+      "image": "assets/img/schanbacher.webp",
+      "altText": "Portrait von Prof. Peter Schanbacher",
+      "nameI18nKey": "network-curators-schanbacher-name",
+      "quoteI18nKey": "network-curators-schanbacher-quote",
+      "subjectsI18nKey": "network-curators-schanbacher-subjects"
+    },
+    {
+      "_kommentar": "Dozentin Tarah Katz",
+      "id": "katz",
+      "image": "assets/img/katz.webp",
+      "altText": "Portrait von Tarah Katz",
+      "nameI18nKey": "network-curators-katz-name",
+      "quoteI18nKey": "network-curators-katz-quote",
+      "subjectsI18nKey": "network-curators-katz-subjects"
     }
   ]
 }
