@@ -27,7 +27,6 @@
             --transition-medium: 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
             --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
             --navbar-height: 95px;
-            --navbar-height-scrolled: 85px;
         }
 
         [data-theme="dark"] {
@@ -109,8 +108,14 @@
             background: transparent;
         }
 
-        .navbar.scrolled {
-            height: var(--navbar-height-scrolled);
+        #navbar.scrolled,
+        #navbar.is-scrolled {
+            height: var(--navbar-height) !important;
+            width: 100% !important;
+            top: 0 !important;
+            border-radius: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
             background: var(--bg-glass);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -118,7 +123,7 @@
             border-bottom: 1px solid var(--border);
         }
 
-        .navbar.at-top {
+        #navbar.at-top {
             background: transparent;
             box-shadow: none;
             border-bottom: none;
@@ -330,11 +335,12 @@
         /* Language Switcher */
         .lang-dropdown {
             position: relative;
+            z-index: 1200;
         }
 
         .lang-btn {
             background: var(--bg-glass);
-            border: 2px solid var(--border);
+            border: 2px solid var(--border) !important;
             color: var(--text-primary);
             padding: 0.6rem 1.2rem;
             border-radius: 12px;
@@ -346,6 +352,8 @@
             transition: all var(--transition-fast);
             font-size: 0.9rem;
             backdrop-filter: blur(10px);
+            appearance: none;
+            -webkit-appearance: none;
         }
 
         .lang-btn:hover {
@@ -370,11 +378,13 @@
             transform: translateY(-15px) scale(0.95);
             transition: all var(--transition-medium);
             box-shadow: 0 20px 50px var(--shadow-lg);
+            z-index: 1250;
         }
 
         .lang-menu.active {
             opacity: 1;
             visibility: visible;
+            pointer-events: auto;
             transform: translateY(0) scale(1);
         }
 
@@ -617,8 +627,12 @@
                 height: 80px;
             }
 
-            .navbar.scrolled {
-                height: 70px;
+            #navbar.scrolled,
+            #navbar.is-scrolled {
+                height: 80px !important;
+                width: 100% !important;
+                top: 0 !important;
+                border-radius: 0 !important;
             }
 
             html {
