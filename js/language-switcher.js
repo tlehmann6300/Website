@@ -209,8 +209,8 @@
             /* Only add click handlers if new-navbar.js hasn't already set them up.
                new-navbar.js handles #langMenu .lang-option and .mobile-lang-option clicks
                and calls ibcLanguageSwitcher.switchLanguage() from there. */
-            const navbarHandlesLang = document.getElementById('langMenu') && document.getElementById('currentLang');
-            if (!navbarHandlesLang) {
+            const hasNavbarLangElements = document.getElementById('langMenu') && document.getElementById('currentLang');
+            if (!hasNavbarLangElements) {
                 options.forEach((option) => {
                     option.addEventListener('click', (e) => {
                         e.preventDefault();

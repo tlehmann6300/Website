@@ -34,6 +34,9 @@
   flex-wrap: wrap;
 }
 /* Staggered entrance for individual stats */
+.hero-stat {
+  opacity: 0;
+}
 .page-hero__stats.is-visible .hero-stat,
 .page-hero__stats.in-view .hero-stat,
 .page-hero__stats.visible .hero-stat {
@@ -48,14 +51,6 @@
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-}
-.hero-stat {
-  opacity: 0;
-}
-.page-hero__stats.is-visible .hero-stat,
-.page-hero__stats.in-view .hero-stat,
-.page-hero__stats.visible .hero-stat {
-  opacity: 1;
 }
 .hero-stat__divider {
   width: 1px;
