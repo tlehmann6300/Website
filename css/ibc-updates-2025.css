@@ -23,8 +23,8 @@
 #hero-section h1.display-2 {
   padding-bottom: 0.5em !important;   /* mehr Platz für Unterlängen */
   overflow: visible !important;
-  overflow-wrap: break-word;
-  word-break: normal;
+  overflow-wrap: normal;
+  word-break: normal !important;
   /* Sicherstellen dass background-clip Text nicht abgeschnitten wird */
   -webkit-background-clip: text;
   background-clip: text;
@@ -42,7 +42,8 @@
   #hero-section h1.display-2 {
     font-size: clamp(1.8rem, 8vw, 3.2rem) !important;
     padding-bottom: 0.6em !important;
-    overflow-wrap: break-word;
+    overflow-wrap: normal;
+    word-break: normal !important;
   }
 }
 

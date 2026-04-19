@@ -1444,7 +1444,7 @@ body.homepage .navbar.scrolled .nav-link {
     #hero-section h1 {
         font-size: clamp(1.75rem, 7vw, 2.5rem) !important;
         line-height: 1.15 !important;
-        word-break: break-word;
+        word-break: normal;
     }
     #hero-section .fs-5 {
         font-size: clamp(0.9rem, 3.5vw, 1.1rem) !important;
