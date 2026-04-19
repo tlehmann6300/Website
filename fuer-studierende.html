@@ -90,6 +90,240 @@
     <link href="css/ibc-buttons.css" rel="stylesheet">
     <link href="css/ibc-updates-2025.css" rel="stylesheet">
     <link href="css/ibc-design-v2.css" rel="stylesheet">
+    <style>
+    /* ═══════════════════════════════════════════════
+       TIMELINE V2 — Premium animated timeline
+    ═══════════════════════════════════════════════ */
+    .timeline-v2 {
+      position: relative;
+      padding: 2rem 0;
+    }
+    /* Animated progress line */
+    .timeline-v2::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg,
+        var(--ibc-green) 0%,
+        #52c234 40%,
+        #6366f1 100%);
+      transform: translateX(-50%);
+      transform-origin: top;
+      animation: tlLineGrow 1.4s cubic-bezier(0.22,1,0.36,1) both;
+      animation-play-state: paused;
+    }
+    .timeline-v2.is-visible::before {
+      animation-play-state: running;
+    }
+    @keyframes tlLineGrow {
+      from { clip-path: inset(0 0 100% 0); }
+      to   { clip-path: inset(0 0 0% 0); }
+    }
+
+    /* Items */
+    .timeline-v2__item {
+      display: grid;
+      grid-template-columns: 1fr 60px 1fr;
+      gap: 0;
+      margin-bottom: 3.5rem;
+      align-items: start;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .timeline-v2__item--left  { transform: translateX(-50px) translateY(20px); }
+    .timeline-v2__item--right { transform: translateX(50px)  translateY(20px); }
+    .timeline-v2__item.tl-visible {
+      opacity: 1;
+      transform: none;
+    }
+    .timeline-v2__item:last-child { margin-bottom: 0; }
+
+    /* Cards */
+    .timeline-v2__content {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl, 1.25rem);
+      padding: 1.75rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 0.35s,
+                  border-color 0.25s;
+    }
+    .timeline-v2__content:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow:
+        0 20px 50px rgba(0,0,0,0.10),
+        0 4px 16px rgba(109,151,68,0.12);
+      border-color: rgba(109,151,68,0.35);
+    }
+    [data-theme="dark"] .timeline-v2__content {
+      background: var(--bg-elevated, #12152e);
+      border-color: rgba(255,255,255,0.07);
+    }
+    [data-theme="dark"] .timeline-v2__content:hover {
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 4px 16px rgba(125,179,86,0.15);
+      border-color: rgba(125,179,86,0.3);
+    }
+    /* Animated top-bar on hover */
+    .timeline-v2__content::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ibc-green), #52c234, #6366f1);
+      background-size: 200% 100%;
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+      animation: none;
+    }
+    .timeline-v2__content:hover::before {
+      transform: scaleX(1);
+      animation: tlBarShimmer 1.8s linear infinite;
+    }
+    @keyframes tlBarShimmer {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    /* Step icon inside card */
+    .timeline-v2__step-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(109,151,68,0.12), rgba(82,194,52,0.08));
+      border: 1px solid rgba(109,151,68,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      color: var(--ibc-green);
+      margin-bottom: 0.85rem;
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+                  background 0.3s, box-shadow 0.3s;
+    }
+    .timeline-v2__content:hover .timeline-v2__step-icon {
+      transform: scale(1.12) rotate(-8deg);
+      background: linear-gradient(135deg, rgba(109,151,68,0.2), rgba(82,194,52,0.14));
+      box-shadow: 0 4px 12px rgba(109,151,68,0.2);
+    }
+    [data-theme="dark"] .timeline-v2__step-icon {
+      background: rgba(125,179,86,0.14);
+      border-color: rgba(125,179,86,0.25);
+    }
+
+    /* Grid columns */
+    .timeline-v2__item--left .timeline-v2__content  { grid-column: 1; }
+    .timeline-v2__item--left .timeline-v2__spacer   { grid-column: 2; }
+    .timeline-v2__item--left .timeline-v2__empty    { grid-column: 3; }
+    .timeline-v2__item--right .timeline-v2__empty   { grid-column: 1; }
+    .timeline-v2__item--right .timeline-v2__spacer  { grid-column: 2; }
+    .timeline-v2__item--right .timeline-v2__content { grid-column: 3; }
+
+    /* Connector spacer + dot */
+    .timeline-v2__spacer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 1.75rem;
+    }
+    .timeline-v2__dot {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: var(--bg-primary);
+      border: 3px solid var(--ibc-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--ibc-green);
+      z-index: 2;
+      position: relative;
+      box-shadow: 0 0 0 6px var(--bg-primary);
+      transition: background 0.3s, color 0.3s, transform 0.3s cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 0.3s;
+    }
+    /* Pulsing ring on active/visible dot */
+    .timeline-v2__item.tl-visible .timeline-v2__dot::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid rgba(109,151,68,0.35);
+      animation: tlDotPulse 2.5s ease-out infinite;
+    }
+    @keyframes tlDotPulse {
+      0%   { transform: scale(1);   opacity: 0.7; }
+      70%  { transform: scale(1.5); opacity: 0; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+    .timeline-v2__item:hover .timeline-v2__dot {
+      background: var(--ibc-green);
+      color: #fff;
+      transform: scale(1.15);
+      box-shadow: 0 0 0 6px var(--bg-primary), 0 4px 20px rgba(109,151,68,0.4);
+    }
+
+    /* Text inside cards */
+    .timeline-v2__content-label {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ibc-green);
+      background: rgba(109,151,68,0.10);
+      border: 1px solid rgba(109,151,68,0.22);
+      border-radius: 999px;
+      padding: 0.2rem 0.75rem;
+      margin-bottom: 0.65rem;
+    }
+    [data-theme="dark"] .timeline-v2__content-label {
+      background: rgba(125,179,86,0.13);
+      border-color: rgba(125,179,86,0.28);
+    }
+    .timeline-v2__content-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+      line-height: 1.3;
+    }
+    .timeline-v2__content-text {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin: 0;
+    }
+    /* Complete dot */
+    .timeline-v2__dot--complete {
+      border-color: var(--ibc-green);
+      background: var(--ibc-green);
+      color: #fff;
+    }
+
+    /* Mobile layout */
+    @media (max-width: 767.98px) {
+      .timeline-v2::before { left: 22px; }
+      .timeline-v2__item {
+        grid-template-columns: 44px 1fr;
+        grid-template-rows: auto;
+        transform: translateX(0) translateY(25px) !important;
+      }
+      .timeline-v2__item--left .timeline-v2__empty,
+      .timeline-v2__item--right .timeline-v2__empty { display: none; }
+      .timeline-v2__item--left .timeline-v2__spacer,
+      .timeline-v2__item--right .timeline-v2__spacer { grid-column: 1; grid-row: 1; }
+      .timeline-v2__item--left .timeline-v2__content,
+      .timeline-v2__item--right .timeline-v2__content { grid-column: 2; grid-row: 1; }
+      .timeline-v2__dot { width: 38px; height: 38px; font-size: 0.85rem; }
+      .timeline-v2__spacer { padding-top: 1.5rem; }
+    }
+    </style>
 </head>
 <body>
 
@@ -513,39 +747,45 @@
                 </h2>
                 <p class="ibc-lead" data-i18n="students-apply-subtitle">Der Einstieg ist unkompliziert – wir freuen uns auf deine Bewerbung!</p>
             </div>
-            <div class="apply-steps">
-                <div class="apply-step fade-in-up" data-animation-delay="0ms">
-                    <div class="apply-step__num">1</div>
-                    <div class="apply-step__body">
-                        <p class="apply-step__label" data-i18n="apply-step-1-label">Erste Schritte</p>
-                        <h3 class="apply-step__title" data-i18n="apply-step-1-title">Bewerbung einreichen</h3>
-                        <p class="apply-step__text" data-i18n="apply-step-1-desc">Schick uns eine kurze Bewerbung per E-Mail oder über das Kontaktformular. Erzähl uns von dir und deiner Motivation.</p>
+            <div class="timeline-v2" role="list">
+                <div class="timeline-v2__item timeline-v2__item--left" data-animation-delay="0ms" role="listitem">
+                    <div class="timeline-v2__content">
+                        <div class="timeline-v2__step-icon"><i class="fas fa-paper-plane" aria-hidden="true"></i></div>
+                        <p class="timeline-v2__content-label" data-i18n="apply-step-1-label">Erste Schritte</p>
+                        <h3 class="timeline-v2__content-title" data-i18n="apply-step-1-title">Bewerbung einreichen</h3>
+                        <p class="timeline-v2__content-text" data-i18n="apply-step-1-desc">Schick uns eine kurze Bewerbung per E-Mail oder über das Kontaktformular. Erzähl uns von dir und deiner Motivation.</p>
+                    </div>
+                    <div class="timeline-v2__spacer"><div class="timeline-v2__dot">1</div></div>
+                    <div class="timeline-v2__empty"></div>
+                </div>
+                <div class="timeline-v2__item timeline-v2__item--right" data-animation-delay="100ms" role="listitem">
+                    <div class="timeline-v2__empty"></div>
+                    <div class="timeline-v2__spacer"><div class="timeline-v2__dot">2</div></div>
+                    <div class="timeline-v2__content">
+                        <div class="timeline-v2__step-icon"><i class="fas fa-calendar-alt" aria-hidden="true"></i></div>
+                        <p class="timeline-v2__content-label" data-i18n="apply-step-2-label">Kennenlernen</p>
+                        <h3 class="timeline-v2__content-title" data-i18n="apply-step-2-title">Informationsabend besuchen</h3>
+                        <p class="timeline-v2__content-text" data-i18n="apply-step-2-desc">Komm zu einem unserer Informationsabende und lerne das Team persönlich kennen. Alle offenen Fragen werden beantwortet.</p>
                     </div>
                 </div>
-                <div class="apply-step fade-in-up" data-animation-delay="100ms">
-                    <div class="apply-step__num">2</div>
-                    <div class="apply-step__body">
-                        <p class="apply-step__label" data-i18n="apply-step-2-label">Kennenlernen</p>
-                        <h3 class="apply-step__title" data-i18n="apply-step-2-title">Informationsabend besuchen</h3>
-                        <p class="apply-step__text" data-i18n="apply-step-2-desc">Komm zu einem unserer Informationsabende und lerne das Team persönlich kennen. Alle offenen Fragen werden beantwortet.</p>
+                <div class="timeline-v2__item timeline-v2__item--left" data-animation-delay="200ms" role="listitem">
+                    <div class="timeline-v2__content">
+                        <div class="timeline-v2__step-icon"><i class="fas fa-comments" aria-hidden="true"></i></div>
+                        <p class="timeline-v2__content-label" data-i18n="apply-step-3-label">Vorstellung</p>
+                        <h3 class="timeline-v2__content-title" data-i18n="apply-step-3-title">Gespräch & Kennenlernen</h3>
+                        <p class="timeline-v2__content-text" data-i18n="apply-step-3-desc">In einem lockeren Gespräch lernen wir uns besser kennen. Kein Bewerbungsstress – wir wollen einfach herausfinden, ob es passt.</p>
                     </div>
+                    <div class="timeline-v2__spacer"><div class="timeline-v2__dot">3</div></div>
+                    <div class="timeline-v2__empty"></div>
                 </div>
-                <div class="apply-step fade-in-up" data-animation-delay="200ms">
-                    <div class="apply-step__num">3</div>
-                    <div class="apply-step__body">
-                        <p class="apply-step__label" data-i18n="apply-step-3-label">Vorstellung</p>
-                        <h3 class="apply-step__title" data-i18n="apply-step-3-title">Gespräch & Kennenlernen</h3>
-                        <p class="apply-step__text" data-i18n="apply-step-3-desc">In einem lockeren Gespräch lernen wir uns besser kennen. Kein Bewerbungsstress – wir wollen einfach herausfinden, ob es passt.</p>
-                    </div>
-                </div>
-                <div class="apply-step fade-in-up" data-animation-delay="300ms">
-                    <div class="apply-step__num" style="border-color:var(--ibc-green);background:var(--ibc-green);color:#fff;">
-                        <i class="fas fa-check" aria-hidden="true"></i>
-                    </div>
-                    <div class="apply-step__body">
-                        <p class="apply-step__label" data-i18n="apply-step-4-label">Willkommen!</p>
-                        <h3 class="apply-step__title" data-i18n="apply-step-4-title">Mitglied werden</h3>
-                        <p class="apply-step__text" data-i18n="apply-step-4-desc">Nach erfolgreicher gegenseitiger Entscheidung bist du Teil des IBC! Du wirst in die laufenden Projekte und das Team integriert.</p>
+                <div class="timeline-v2__item timeline-v2__item--right" data-animation-delay="300ms" role="listitem">
+                    <div class="timeline-v2__empty"></div>
+                    <div class="timeline-v2__spacer"><div class="timeline-v2__dot timeline-v2__dot--complete"><i class="fas fa-check" aria-hidden="true"></i></div></div>
+                    <div class="timeline-v2__content">
+                        <div class="timeline-v2__step-icon"><i class="fas fa-handshake" aria-hidden="true"></i></div>
+                        <p class="timeline-v2__content-label" data-i18n="apply-step-4-label">Willkommen!</p>
+                        <h3 class="timeline-v2__content-title" data-i18n="apply-step-4-title">Mitglied werden</h3>
+                        <p class="timeline-v2__content-text" data-i18n="apply-step-4-desc">Nach erfolgreicher gegenseitiger Entscheidung bist du Teil des IBC! Du wirst in die laufenden Projekte und das Team integriert.</p>
                     </div>
                 </div>
             </div>
@@ -1132,7 +1372,48 @@
 <script src="js/keyboard-nav.js" defer></script>
 <script src="js/index-page.js" defer></script>
 <script src="js/event-loader.js" defer></script>
-<script src="js/timeline-animation.js" defer></script>
+<script>
+/* ── Timeline V2 scroll-triggered animation ── */
+(function () {
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timeline = document.querySelector('.timeline-v2');
+  if (!timeline) return;
+
+  if (reduced) {
+    timeline.classList.add('is-visible');
+    timeline.querySelectorAll('.timeline-v2__item').forEach(function (el) {
+      el.classList.add('tl-visible');
+    });
+    return;
+  }
+
+  /* Animate the vertical progress line when section enters viewport */
+  var lineObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+        lineObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  lineObserver.observe(timeline);
+
+  /* Animate each item with staggered delay */
+  var items = timeline.querySelectorAll('.timeline-v2__item');
+  var itemObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      var el = e.target;
+      var delay = parseInt(el.getAttribute('data-animation-delay') || '0', 10);
+      setTimeout(function () {
+        el.classList.add('tl-visible');
+      }, delay);
+      itemObserver.unobserve(el);
+    });
+  }, { rootMargin: '0px 0px -80px 0px', threshold: 0.15 });
+  items.forEach(function (item) { itemObserver.observe(item); });
+})();
+</script>
 <script src="js/testimonials-slider.js" defer></script>
 <script src="js/gluehweinstand-year.js" defer></script>
 <script src="js/design-effects.js" defer></script>
