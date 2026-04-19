@@ -23,8 +23,12 @@
     <link rel="stylesheet" href="css/enhancements.css">
     <link rel="stylesheet" href="css/pages.css">
     <link rel="stylesheet" href="css/premium-redesign.css">
+    <link rel="stylesheet" href="css/mobile-first.css">
+    <link rel="stylesheet" href="css/mobile-animations.css">
     <link rel="stylesheet" href="css/404.css">
+    <link rel="stylesheet" href="css/ibc-improvements.css">
     <link href="css/new-navbar.css" rel="stylesheet">
+    <link href="css/ibc-design-v3.css" rel="stylesheet">
     <link rel="stylesheet" href="css/ibc-buttons.css">
     <link rel="stylesheet" href="css/ibc-updates-2025.css">
     <link rel="stylesheet" href="css/ibc-design-v2.css">
@@ -46,19 +50,18 @@
             <!-- Desktop Navigation -->
             <div class="desktop-nav">
                 <ul class="nav-links">
-                    <li class="nav-item"><a href="index.html" class="nav-link" data-page="index.html">Startseite</a>
+                    <li class="nav-item"><a href="index.html" class="nav-link" data-page="index.html" data-i18n="nav-home">Startseite</a>
                     </li>
                     <li class="nav-item"><a href="fuer-studierende.html" class="nav-link"
-                            data-page="fuer-studierende.html">Für Studierende</a></li>
+                            data-page="fuer-studierende.html" data-i18n="nav-for-students">Für Studierende</a></li>
                     <li class="nav-item"><a href="fuer-unternehmen.html" class="nav-link"
-                            data-page="fuer-unternehmen.html">Für Unternehmen</a></li>
-                    <li class="nav-item"><a href="ueber-uns.html" class="nav-link" data-page="ueber-uns.html">Über
-                            uns</a></li>
+                            data-page="fuer-unternehmen.html" data-i18n="nav-for-companies">Für Unternehmen</a></li>
+                    <li class="nav-item"><a href="ueber-uns.html" class="nav-link" data-page="ueber-uns.html" data-i18n="nav-about-us">Über uns</a></li>
                     <li class="nav-item"><a href="unser-netzwerk.html" class="nav-link"
-                            data-page="unser-netzwerk.html">Netzwerk</a></li>
+                            data-page="unser-netzwerk.html" data-i18n="nav-link-network">Netzwerk</a></li>
                     <li class="nav-item"><a href="referenzen.html" class="nav-link"
-                            data-page="referenzen.html">Referenzen</a></li>
-                    <li class="nav-item"><a href="kontakt.html" class="nav-link" data-page="kontakt.html">Kontakt</a>
+                            data-page="referenzen.html" data-i18n="nav-references">Referenzen</a></li>
+                    <li class="nav-item"><a href="kontakt.html" class="nav-link" data-page="kontakt.html" data-i18n="nav-contact">Kontakt</a>
                     </li>
                 </ul>
             </div>
@@ -97,29 +100,29 @@
         <div class="mobile-menu-content">
             <ul class="mobile-nav-links">
                 <li class="mobile-nav-item"><a href="index.html" class="mobile-nav-link" data-page="index.html"><i
-                            class="fas fa-home"></i> Startseite</a></li>
+                            class="fas fa-home"></i> <span data-i18n="nav-home">Startseite</span></a></li>
                 <li class="mobile-nav-item"><a href="fuer-studierende.html" class="mobile-nav-link"
-                        data-page="fuer-studierende.html"><i class="fas fa-user-graduate"></i> Für Studierende</a></li>
+                        data-page="fuer-studierende.html"><i class="fas fa-user-graduate"></i> <span data-i18n="nav-for-students">Für Studierende</span></a></li>
                 <li class="mobile-nav-item"><a href="fuer-unternehmen.html" class="mobile-nav-link"
-                        data-page="fuer-unternehmen.html"><i class="fas fa-building"></i> Für Unternehmen</a></li>
+                        data-page="fuer-unternehmen.html"><i class="fas fa-building"></i> <span data-i18n="nav-for-companies">Für Unternehmen</span></a></li>
                 <li class="mobile-nav-item"><a href="ueber-uns.html" class="mobile-nav-link"
-                        data-page="ueber-uns.html"><i class="fas fa-info-circle"></i> Über uns</a></li>
+                        data-page="ueber-uns.html"><i class="fas fa-info-circle"></i> <span data-i18n="nav-about-us">Über uns</span></a></li>
                 <li class="mobile-nav-item"><a href="unser-netzwerk.html" class="mobile-nav-link"
-                        data-page="unser-netzwerk.html"><i class="fas fa-network-wired"></i> Netzwerk</a></li>
+                        data-page="unser-netzwerk.html"><i class="fas fa-network-wired"></i> <span data-i18n="nav-link-network">Netzwerk</span></a></li>
                 <li class="mobile-nav-item"><a href="referenzen.html" class="mobile-nav-link"
-                        data-page="referenzen.html"><i class="fas fa-star"></i> Referenzen</a></li>
+                        data-page="referenzen.html"><i class="fas fa-star"></i> <span data-i18n="nav-references">Referenzen</span></a></li>
                 <li class="mobile-nav-item"><a href="kontakt.html" class="mobile-nav-link" data-page="kontakt.html"><i
-                            class="fas fa-envelope"></i> Kontakt</a></li>
+                            class="fas fa-envelope"></i> <span data-i18n="nav-contact">Kontakt</span></a></li>
             </ul>
             <div class="mobile-utilities">
-                <span class="mobile-theme-text">Erscheinungsbild</span>
+                <span class="mobile-theme-text" data-i18n="nav-mobile-appearance">Erscheinungsbild</span>
                 <div class="theme-toggle" id="mobileThemeToggle" style="width: 50px; height: 26px;">
                     <div class="theme-toggle-ball" style="width: 18px; height: 18px; top: 2px; left: 2px;"></div>
                     <i class="theme-icon-pos theme-sun fas fa-sun" style="right: 5px; font-size: 0.65rem;"></i>
                     <i class="theme-icon-pos theme-moon fas fa-moon" style="left: 5px; font-size: 0.65rem;"></i>
                 </div>
                 <div class="mobile-lang-switcher">
-                    <span class="mobile-theme-text">Sprache</span>
+                    <span class="mobile-theme-text" data-i18n="nav-mobile-language">Sprache</span>
                     <div class="mobile-lang-options">
                         <button class="lang-option mobile-lang-option" data-lang="de">🇩🇪 DE</button>
                         <button class="lang-option mobile-lang-option" data-lang="en">🇬🇧 EN</button>
