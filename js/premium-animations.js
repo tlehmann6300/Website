@@ -95,7 +95,8 @@
 
         const duration = 1600;
         const start = performance.now();
-        const startVal = 0;
+        const fromAttr = el.getAttribute('data-count-from');
+        const startVal = fromAttr !== null ? parseFloat(fromAttr) : 0;
 
         function update(now) {
           const elapsed = now - start;
