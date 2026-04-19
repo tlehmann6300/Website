@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     };
     window.addEventListener('scroll', handleNavState);
+    handleNavState();
     if (!prefersReducedMotion) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

@@ -14,6 +14,7 @@
                 }
             };
             window.addEventListener('scroll', handleNavState);
+            handleNavState();
         }
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
