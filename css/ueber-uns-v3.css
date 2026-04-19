@@ -33,6 +33,30 @@
   margin-top: 2rem;
   flex-wrap: wrap;
 }
+/* Staggered entrance for individual stats */
+.page-hero__stats.is-visible .hero-stat,
+.page-hero__stats.in-view .hero-stat,
+.page-hero__stats.visible .hero-stat {
+  animation: heroStatFadeIn 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes heroStatFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.hero-stat {
+  opacity: 0;
+}
+.page-hero__stats.is-visible .hero-stat,
+.page-hero__stats.in-view .hero-stat,
+.page-hero__stats.visible .hero-stat {
+  opacity: 1;
+}
 .hero-stat__divider {
   width: 1px;
   height: 48px;
@@ -56,7 +80,7 @@
   margin-top: 0.2rem;
 }
 .page-hero__buttons {
-  margin-top: 3rem;
+  margin-top: 4.5rem;
 }
 
 /* ─────────────────────────────────────────
@@ -511,7 +535,7 @@
 .team-card--v2 .team-card-img-wrapper {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4/3;
+  aspect-ratio: 1/1;
   background: linear-gradient(135deg, #e8ecf5 0%, #d0d6e8 100%);
 }
 [data-theme="dark"] .team-card--v2 .team-card-img-wrapper {
@@ -721,7 +745,7 @@
 ───────────────────────────────────────── */
 @media (max-width: 576px) {
   .uu-mix-pill { font-size: 0.8rem; padding: 0.45rem 1rem; }
-  .team-card--v2 .team-card-img-wrapper { aspect-ratio: 3/2; }
+  .team-card--v2 .team-card-img-wrapper { aspect-ratio: 4/5; }
   .uu-cta-banner__btns { flex-direction: column; align-items: stretch; }
   .uu-cta-ghost-btn { justify-content: center; }
 }
