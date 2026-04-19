@@ -72,7 +72,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- Utilities -->
+            <!-- Utilities (Theme + Sprache) — auf Mobile absolut zentriert -->
             <div class="nav-utilities">
                 <div class="theme-toggle" id="themeToggle" title="Theme wechseln">
                     <div class="theme-toggle-ball"></div>
@@ -127,6 +127,14 @@
                     <div class="theme-toggle-ball" style="width: 18px; height: 18px; top: 2px; left: 2px;"></div>
                     <i class="theme-icon-pos theme-sun fas fa-sun" style="right: 5px; font-size: 0.65rem;"></i>
                     <i class="theme-icon-pos theme-moon fas fa-moon" style="left: 5px; font-size: 0.65rem;"></i>
+                </div>
+                <div class="mobile-lang-switcher">
+                    <span class="mobile-theme-text">Sprache</span>
+                    <div class="mobile-lang-options">
+                        <button class="lang-option mobile-lang-option" data-lang="de">🇩🇪 DE</button>
+                        <button class="lang-option mobile-lang-option" data-lang="en">🇬🇧 EN</button>
+                        <button class="lang-option mobile-lang-option" data-lang="fr">🇫🇷 FR</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -597,6 +605,7 @@
             <a href="?lang=fr" class="fab-lang-btn" aria-label="Français">
                 <img src="assets/img/flags/fr.svg" alt="" aria-hidden="true"><span>FR</span>
             </a>
+        </div>
         <div class="fab-dark-mode-row">
             <button class="dark-mode-toggle fab-dark-mode-btn" type="button"
                     aria-label="Dark Mode aktivieren" aria-pressed="false">
