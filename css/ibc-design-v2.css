@@ -110,6 +110,26 @@
   background: #ffffff !important;
 }
 
+/* ── A2. Homepage body class override (specificity 0,4,1 beats mobile-first.css) ── */
+/* mobile-first.css: body.homepage .navbar:not(.scrolled) .nav-link → color:#111 !important  */
+/* That rule has 0,4,1 specificity — higher than .navbar.at-top .nav-link (0,3,0).           */
+/* Fix: match the specificity here, loaded after → cascade wins.                             */
+body.homepage .navbar.at-top .nav-link,
+body.homepage #navbar.at-top .nav-link {
+  color: rgba(255,255,255,0.92) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4) !important;
+}
+body.homepage .navbar.at-top .nav-link:hover,
+body.homepage #navbar.at-top .nav-link:hover {
+  color: #ffffff !important;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5) !important;
+}
+[data-theme="dark"] body.homepage .navbar.at-top .nav-link,
+body.homepage [data-theme="dark"] .navbar.at-top .nav-link {
+  color: rgba(255,255,255,0.92) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4) !important;
+}
+
 /* ── B. Instagram highlights section dark mode ──────────────── */
 [data-theme="dark"] .instagram-section-v2,
 [data-theme="dark"] #instagram-section.instagram-section-v2,

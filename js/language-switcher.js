@@ -187,6 +187,9 @@
                 }
             });
         }
+        getCurrentLanguage() {
+            return this.currentLang || 'de';
+        }
         getTranslation(key) {
             if (this.translations && this.translations[key] && this.translations[key][this.currentLang]) {
                 return this.translations[key][this.currentLang];
@@ -270,6 +273,17 @@
                 url.searchParams.delete('lang');
             }
             window.history.replaceState({}, '', url.toString());
+            // If translations haven't loaded yet, wait for them then apply
+            if (!this.translations || Object.keys(this.translations).length === 0) {
+                this.loadTranslations().then(data => {
+                    this.translations = data;
+                    this.applyTranslations();
+                    this.updateAllLinks();
+                    this.updateHtmlLang();
+                    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: newLang } }));
+                });
+                return;
+            }
             this.applyTranslations();
             this.updateAllLinks();
             this.updateHtmlLang();
@@ -285,17 +299,21 @@
         updateAllLinks() {
             const links = document.querySelectorAll('a[href]');
             links.forEach(link => {
-                const href = link.getAttribute('href');
-                if (href &&
-                    !href.startsWith('http') &&
-                    !href.startsWith('#') &&
-                    !href.startsWith('mailto:') &&
-                    !href.startsWith('tel:') &&
-                    href.endsWith('.html')) {
-                    if (this.currentLang === 'en' || this.currentLang === 'fr') {
-                        const separator = href.includes('?') ? '&' : '?';
-                        link.setAttribute('href', href + separator + 'lang=' + this.currentLang);
-                    }
+                // Always work from the clean base path (strip any existing ?lang=)
+                const raw = link.getAttribute('href');
+                if (!raw ||
+                    raw.startsWith('http') ||
+                    raw.startsWith('#') ||
+                    raw.startsWith('mailto:') ||
+                    raw.startsWith('tel:')) return;
+                // Only .html internal links
+                const basePath = raw.split('?')[0];
+                if (!basePath.endsWith('.html')) return;
+                if (this.currentLang === 'en' || this.currentLang === 'fr') {
+                    link.setAttribute('href', basePath + '?lang=' + this.currentLang);
+                } else {
+                    // German = default: remove lang param
+                    link.setAttribute('href', basePath);
                 }
             });
         }

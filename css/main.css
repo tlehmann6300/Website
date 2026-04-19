@@ -1008,6 +1008,19 @@ p:last-child { margin-bottom: 0; }
   50%  { background-position:   0% 0; }
   100% { background-position: 100% 0; }
 }
+/* Spans/highlights inside the gradient h1 must re-apply their own
+   background-clip so the gradient shines through correctly.
+   Without this, child <span> elements inherit text-fill: transparent
+   but lose the parent gradient → words become invisible. */
+#hero-section h1.display-2 span,
+#hero-section h1.display-2 .highlight,
+#hero-section h1.display-2 .text-gradient {
+  background: inherit;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+}
 @media (prefers-reduced-motion: reduce) {
   #hero-section h1.display-2 {
     animation: none;

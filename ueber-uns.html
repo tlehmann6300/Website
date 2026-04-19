@@ -71,7 +71,10 @@
     <link href="css/new-navbar.css" rel="stylesheet">
     <link href="css/ibc-design-v3.css" rel="stylesheet">
     <link href="css/ibc-buttons.css" rel="stylesheet">
+    <link href="css/ibc-updates-2025.css" rel="stylesheet">
+    <link href="css/ibc-design-v2.css" rel="stylesheet">
     <link href="css/page-redesign.css" rel="stylesheet">
+    <link href="css/ueber-uns-v3.css" rel="stylesheet">
 </head>
 <body>
 
@@ -106,7 +109,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- Utilities -->
+            <!-- Utilities (Theme + Sprache) — auf Mobile absolut zentriert -->
             <div class="nav-utilities">
                 <div class="theme-toggle" id="themeToggle" title="Theme wechseln">
                     <div class="theme-toggle-ball"></div>
@@ -125,11 +128,12 @@
                         <div class="lang-option" data-lang="en">🇬🇧 English</div>
                     </div>
                 </div>
-                <div class="mobile-toggle" id="mobileToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+            </div>
+            <!-- Hamburger — ganz rechts auf Mobile -->
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
@@ -190,6 +194,10 @@
 </div>
 
 <main id="main-content" tabindex="-1">
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
 <section class="page-hero-section">
     <div class="page-hero-inner">
         <div class="page-hero__mesh-orb page-hero__mesh-orb--1"></div>
@@ -207,7 +215,23 @@
                 <p class="page-hero__subtitle fade-in-up" data-animation-delay="200ms">
                     Das Institut für Business Consulting ist seit 1998 eine studentische Unternehmensberatung an der Hochschule Furtwangen. Wir verbinden akademisches Wissen mit praktischer Erfahrung.
                 </p>
-                <div class="page-hero__buttons fade-in-up" data-animation-delay="300ms">
+                <div class="page-hero__stats fade-in-up" data-animation-delay="300ms">
+                    <div class="hero-stat">
+                        <div class="hero-stat__number">1998</div>
+                        <div class="hero-stat__label">Gegründet</div>
+                    </div>
+                    <div class="hero-stat__divider" aria-hidden="true"></div>
+                    <div class="hero-stat">
+                        <div class="hero-stat__number">30+</div>
+                        <div class="hero-stat__label">Aktive Mitglieder</div>
+                    </div>
+                    <div class="hero-stat__divider" aria-hidden="true"></div>
+                    <div class="hero-stat">
+                        <div class="hero-stat__number">182+</div>
+                        <div class="hero-stat__label">Projekte</div>
+                    </div>
+                </div>
+                <div class="page-hero__buttons fade-in-up" data-animation-delay="400ms">
                     <a href="fuer-studierende.html" class="ethereal-button">
                         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                         <span>Für Studierende</span>
@@ -222,146 +246,122 @@
     </div>
 </section>
 
-<section class="page-section page-section--dark">
+<!-- ════════════════════════════════════════
+     MISSION
+════════════════════════════════════════ -->
+<section class="uu-section uu-section--mission" id="mission" aria-label="Unsere Mission">
     <div class="container">
-        <div class="row g-4 align-items-center">
-            <div class="col-lg-6">
-                <div class="fade-in-up" data-animation-delay="0ms">
-                    <h2 class="ibc-heading reveal-fx">Unsere Mission</h2>
-                    <p class="section-intro-text">Das IBC verfolgt eine duale Mission: Wir ermöglichen Studierenden wertvolle praktische Erfahrungen in echten Projekten und bieten Unternehmen erschwingliche, innovative Beratungslösungen.</p>
-                </div>
+        <div class="uu-mission-grid">
+            <div class="uu-mission-text fade-in-up" data-animation-delay="0ms">
+                <span class="section-chip">Unsere Identität</span>
+                <h2 class="ibc-heading reveal-fx" data-i18n="about-mission-heading">Unsere <span class="text-gradient">Mission</span></h2>
+                <p class="section-intro-text">Das IBC verfolgt eine duale Mission: Wir ermöglichen Studierenden wertvolle praktische Erfahrungen in echten Projekten und bieten Unternehmen erschwingliche, innovative Beratungslösungen.</p>
             </div>
-            <div class="col-lg-6">
-                <div class="row g-3">
-                    <div class="col-sm-6 fade-in-up" data-animation-delay="100ms">
-                        <div class="mission-pillar">
-                            <div class="mission-pillar__icon">
-                                <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
-                            </div>
-                            <h3 class="mission-pillar__title">Für Studierende</h3>
-                            <p class="mission-pillar__text">Echte Projektarbeit, persönliches Wachstum und berufliche Netzwerke aufbauen.</p>
-                        </div>
+            <div class="uu-mission-pillars">
+                <article class="uu-pillar fade-in-up" data-animation-delay="100ms">
+                    <div class="uu-pillar__icon" aria-hidden="true">
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div class="col-sm-6 fade-in-up" data-animation-delay="200ms">
-                        <div class="mission-pillar">
-                            <div class="mission-pillar__icon">
-                                <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
-                            </div>
-                            <h3 class="mission-pillar__title">Für Unternehmen</h3>
-                            <p class="mission-pillar__text">Kosteneffektive Beratung mit frischen Perspektiven und akademischer Tiefe.</p>
-                        </div>
+                    <h3 class="uu-pillar__title">Für Studierende</h3>
+                    <p class="uu-pillar__text">Wir geben Studierenden die Möglichkeit, <strong>wertvolle und projektorientierte Praxiserfahrungen</strong> zu sammeln.</p>
+                </article>
+                <div class="uu-pillar-connector" aria-hidden="true"><i class="fas fa-plus"></i></div>
+                <article class="uu-pillar fade-in-up" data-animation-delay="200ms">
+                    <div class="uu-pillar__icon" aria-hidden="true">
+                        <i class="fas fa-briefcase"></i>
                     </div>
-                </div>
+                    <h3 class="uu-pillar__title">Für Unternehmen</h3>
+                    <p class="uu-pillar__text">Wir bieten <strong>individuelle, kosteneffiziente Problemlösungen</strong> auf dem aktuellen Stand der Wissenschaft.</p>
+                </article>
             </div>
         </div>
-        
-        <div style="margin-top: 60px; padding-top: 60px; border-top: 1px solid rgba(255,255,255,0.1);">
-            <div class="row g-4 text-center">
-                <div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="0ms">
-                    <div class="stat-card stat-card--light">
-                        <div class="stat-card__number">1998</div>
-                        <div class="stat-card__label">Gegründet</div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="100ms">
-                    <div class="stat-card stat-card--light">
-                        <div class="stat-card__number">30+</div>
-                        <div class="stat-card__label">Aktive Mitglieder</div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-lg-4 fade-in-up" data-animation-delay="200ms">
-                    <div class="stat-card stat-card--light">
-                        <div class="stat-card__number">100+</div>
-                        <div class="stat-card__label">Abgeschlossene Projekte</div>
-                    </div>
-                </div>
-            </div>
+
+        <!-- Vision box -->
+        <div class="uu-vision-box fade-in-up" data-animation-delay="300ms">
+            <div class="uu-vision-box__icon" aria-hidden="true"><i class="fas fa-rocket"></i></div>
+            <p class="uu-vision-box__text">Unsere Vision: Wir sind als <span class="text-gradient">stärkster Karriereförderer</span> an der Hochschule Furtwangen etabliert und werden als solcher wahrgenommen.</p>
         </div>
     </div>
 </section>
 
-<section class="page-section page-section--alt">
+<!-- ════════════════════════════════════════
+     MITGLIEDER — INTERDISZIPLINÄRER MIX
+════════════════════════════════════════ -->
+<section class="uu-section uu-section--members" id="mitglieder" aria-label="Unsere Mitglieder">
     <div class="container">
         <div class="section-header fade-in-up" data-animation-delay="0ms">
-            <span class="section-chip">Unsere Werte</span>
-            <h2 class="ibc-heading reveal-fx">Was uns <span class="text-gradient">antreibt</span></h2>
+            <span class="section-chip">Interdisziplinär</span>
+            <h2 class="ibc-heading reveal-fx" data-i18n="about-members-heading">Unsere <span class="text-gradient">Mitglieder</span></h2>
+            <p class="section-intro-text">
+                Wir sind kein reiner Consulting-Verein – wir sind ein interdisziplinärer Mix. Bei uns treffen klassische Beratungsstudiengänge auf Gesundheitswissenschaften, Technik, Digitale Medien und vieles mehr.
+            </p>
         </div>
-        
-        <div class="row g-4 mt-5">
-            <div class="col-md-6 col-lg-3 fade-in-up" data-animation-delay="0ms">
-                <div class="angebot-card-v2">
-                    <div class="angebot-card-v2__icon">
-                        <i class="fa-solid fa-star" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="angebot-card-v2__title">Qualität</h3>
-                    <p class="angebot-card-v2__text">Höchste Standards bei der Umsetzung jedes Projekts, mit Fokus auf nachhaltige Ergebnisse.</p>
+
+        <!-- Diversity highlight band -->
+        <div class="uu-mix-band fade-in-up" data-animation-delay="150ms" aria-label="Unsere Studienrichtungen">
+            <div class="uu-mix-pill"><i class="fas fa-chart-line" aria-hidden="true"></i> Wirtschaft &amp; Consulting</div>
+            <div class="uu-mix-pill uu-mix-pill--accent"><i class="fas fa-heartbeat" aria-hidden="true"></i> Gesundheitswissenschaften</div>
+            <div class="uu-mix-pill"><i class="fas fa-laptop-code" aria-hidden="true"></i> Informatik &amp; IT</div>
+            <div class="uu-mix-pill uu-mix-pill--accent"><i class="fas fa-drafting-compass" aria-hidden="true"></i> Wirtschaftsingenieurwesen</div>
+            <div class="uu-mix-pill"><i class="fas fa-camera-retro" aria-hidden="true"></i> Digitale Medien</div>
+            <div class="uu-mix-pill uu-mix-pill--accent"><i class="fas fa-flask" aria-hidden="true"></i> &amp; viele weitere</div>
+        </div>
+
+        <!-- Three value cards -->
+        <div class="row g-4 mt-4">
+            <div class="col-lg-4 fade-in-up" data-animation-delay="0ms">
+                <div class="uu-mix-card">
+                    <div class="uu-mix-card__icon"><i class="fas fa-people-group" aria-hidden="true"></i></div>
+                    <h3 class="uu-mix-card__title">Vielfalt als Stärke</h3>
+                    <p class="uu-mix-card__text">Unterschiedliche Fachperspektiven führen zu kreativeren Lösungen und einem breiteren Blickwinkel auf jede Herausforderung.</p>
                 </div>
             </div>
-            
-            <div class="col-md-6 col-lg-3 fade-in-up" data-animation-delay="100ms">
-                <div class="angebot-card-v2">
-                    <div class="angebot-card-v2__icon">
-                        <i class="fa-solid fa-users" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="angebot-card-v2__title">Teamgeist</h3>
-                    <p class="angebot-card-v2__text">Kollegialität, Unterstützung und gemeinsames Lernen sind der Kern unserer Kultur.</p>
+            <div class="col-lg-4 fade-in-up" data-animation-delay="100ms">
+                <div class="uu-mix-card">
+                    <div class="uu-mix-card__icon uu-mix-card__icon--accent"><i class="fas fa-link" aria-hidden="true"></i></div>
+                    <h3 class="uu-mix-card__title">Klassisch trifft Modern</h3>
+                    <p class="uu-mix-card__text">Consulting-Kompetenz vereint mit Gesundheitswissen, Technikverständnis und digitalem Know-how – für ganzheitliche Beratung.</p>
                 </div>
             </div>
-            
-            <div class="col-md-6 col-lg-3 fade-in-up" data-animation-delay="200ms">
-                <div class="angebot-card-v2">
-                    <div class="angebot-card-v2__icon">
-                        <i class="fa-solid fa-lightbulb" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="angebot-card-v2__title">Innovation</h3>
-                    <p class="angebot-card-v2__text">Kreative Lösungen und neue Ansätze für die Herausforderungen unserer Auftraggeber.</p>
-                </div>
-            </div>
-            
-            <div class="col-md-6 col-lg-3 fade-in-up" data-animation-delay="300ms">
-                <div class="angebot-card-v2">
-                    <div class="angebot-card-v2__icon">
-                        <i class="fa-solid fa-handshake" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="angebot-card-v2__title">Vertrauen</h3>
-                    <p class="angebot-card-v2__text">Zuverlässigkeit, Transparenz und langfristige Partnerschaften mit unseren Kunden.</p>
+            <div class="col-lg-4 fade-in-up" data-animation-delay="200ms">
+                <div class="uu-mix-card">
+                    <div class="uu-mix-card__icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+                    <h3 class="uu-mix-card__title">Hochschule Furtwangen</h3>
+                    <p class="uu-mix-card__text">Alle unsere Mitglieder studieren an der HFU – verbunden durch denselben Anspruch: echte Projekte, echter Impact.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="page-section page-section--dark">
+<!-- ════════════════════════════════════════
+     VORSTAND
+════════════════════════════════════════ -->
+<section class="uu-section uu-section--dark" id="team" aria-label="Unser Vorstand">
     <div class="container">
         <div class="section-header fade-in-up" data-animation-delay="0ms">
             <span class="section-chip">Unser Vorstand</span>
-            <h2 class="ibc-heading reveal-fx">Das Team hinter dem <span class="text-gradient">IBC</span></h2>
+            <h2 class="ibc-heading reveal-fx" data-i18n="about-team-heading">Das Team hinter dem <span class="text-gradient">IBC</span></h2>
         </div>
-        
-        <div id="team-container" class="row g-4 mt-5">
-            <div class="col-sm-6 col-lg-3">
-                <div class="skeleton-card"></div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="skeleton-card"></div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="skeleton-card"></div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="skeleton-card"></div>
-            </div>
+        <div id="team-container" class="row g-4 mt-5" aria-live="polite">
+            <div class="col-sm-6 col-lg-3"><div class="skeleton-card"></div></div>
+            <div class="col-sm-6 col-lg-3"><div class="skeleton-card"></div></div>
+            <div class="col-sm-6 col-lg-3"><div class="skeleton-card"></div></div>
+            <div class="col-sm-6 col-lg-3"><div class="skeleton-card"></div></div>
         </div>
     </div>
 </section>
 
-<section class="page-section page-section--alt">
+<!-- ════════════════════════════════════════
+     RESSORTS
+════════════════════════════════════════ -->
+<section class="uu-section uu-section--alt" id="ressorts" aria-label="Unsere Ressortleitungen">
     <div class="container">
         <div class="section-header fade-in-up" data-animation-delay="0ms">
-            <span class="section-chip">Unsere Ressorts</span>
-            <h2 class="ibc-heading reveal-fx">Spezialisierte <span class="text-gradient">Kompetenzen</span></h2>
+            <span class="section-chip">Ressortleitungen</span>
+            <h2 class="ibc-heading reveal-fx" data-i18n="about-ressorts-heading">Spezialisierte <span class="text-gradient">Kompetenzen</span></h2>
         </div>
-        <div id="ressort-container" class="row g-4 mt-5">
+        <div id="ressort-container" class="row g-4 mt-5" aria-live="polite">
             <div class="col-lg-4 col-md-6"><div class="skeleton-card"></div></div>
             <div class="col-lg-4 col-md-6"><div class="skeleton-card"></div></div>
             <div class="col-lg-4 col-md-6"><div class="skeleton-card"></div></div>
@@ -369,33 +369,105 @@
     </div>
 </section>
 
-<section class="page-section page-section--dark">
+<!-- ════════════════════════════════════════
+     PLATTFORM
+════════════════════════════════════════ -->
+<section class="uu-section uu-section--dark" id="plattform" aria-label="Unsere Plattform-Manager">
     <div class="container">
         <div class="section-header fade-in-up" data-animation-delay="0ms">
             <span class="section-chip">Plattform</span>
-            <h2 class="ibc-heading reveal-fx">Unsere <span class="text-gradient">Plattform-Manager</span></h2>
+            <h2 class="ibc-heading reveal-fx" data-i18n="about-platform-heading">Unsere <span class="text-gradient">Plattform-Manager</span></h2>
         </div>
-        <div id="plattform-container" class="row g-4 mt-5">
+        <div id="plattform-container" class="row g-4 mt-5 justify-content-center" aria-live="polite">
             <div class="col-lg-4 col-md-6"><div class="skeleton-card"></div></div>
             <div class="col-lg-4 col-md-6"><div class="skeleton-card"></div></div>
         </div>
     </div>
 </section>
 
-<section class="cta-banner page-section--dark">
+<!-- ════════════════════════════════════════
+     WERTE FLIP CARDS
+════════════════════════════════════════ -->
+<section class="uu-section uu-section--values" id="werte" aria-label="Unsere Werte">
     <div class="container">
-        <div class="cta-banner__content fade-in-up" data-animation-delay="0ms">
-            <h2 class="cta-banner__title">Werde Teil des <span class="text-gradient">IBC</span></h2>
-            <p class="cta-banner__subtitle">Gestalte deine Karriere mit echten Projekten und einem starken Netzwerk.</p>
-            <div class="cta-banner__buttons">
-                <a href="fuer-studierende.html" class="ethereal-button">
-                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    <span>Jetzt bewerben</span>
-                </a>
-                <a href="kontakt.html" class="hero-btn-ghost">
-                    <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-                    <span>Mehr erfahren</span>
-                </a>
+        <div class="section-header fade-in-up" data-animation-delay="0ms">
+            <span class="section-chip">Unsere Werte</span>
+            <h2 class="ibc-heading reveal-fx" data-i18n="about-values-heading">Was uns <span class="text-gradient">antreibt</span></h2>
+            <p class="section-intro-text">Die drei Säulen unserer Vereinskultur.</p>
+        </div>
+        <div class="row g-4 mt-5 justify-content-center">
+            <div class="col-lg-4 col-md-6 fade-in-up" data-animation-delay="0ms">
+                <button class="flip-card h-100" aria-pressed="false">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="icon-box"><i class="fas fa-users" aria-hidden="true"></i></div>
+                            <h3>Teamgeist</h3>
+                            <div class="tap-hint" aria-hidden="true"><i class="fas fa-hand-pointer"></i> Tippen</div>
+                        </div>
+                        <div class="flip-card-back" aria-hidden="true">
+                            <p>Wir glauben, dass wir gemeinsam stärker sind. Jeder Beitrag ist wertvoll und trägt zum Erfolg bei.</p>
+                            <div class="tap-hint" aria-hidden="true"><i class="fas fa-undo"></i> Zurück</div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <div class="col-lg-4 col-md-6 fade-in-up" data-animation-delay="100ms">
+                <button class="flip-card h-100" aria-pressed="false">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="icon-box"><i class="fas fa-rocket" aria-hidden="true"></i></div>
+                            <h3>Leistung</h3>
+                            <div class="tap-hint" aria-hidden="true"><i class="fas fa-hand-pointer"></i> Tippen</div>
+                        </div>
+                        <div class="flip-card-back" aria-hidden="true">
+                            <p>Leistung ist der Kern unserer Arbeit. Wir setzen hohe Standards, um innovative Lösungen zu entwickeln.</p>
+                            <div class="tap-hint" aria-hidden="true"><i class="fas fa-undo"></i> Zurück</div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+            <div class="col-lg-4 col-md-6 fade-in-up" data-animation-delay="200ms">
+                <button class="flip-card h-100" aria-pressed="false">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="icon-box"><i class="fas fa-seedling" aria-hidden="true"></i></div>
+                            <h3>Entfaltung</h3>
+                            <div class="tap-hint" aria-hidden="true"><i class="fas fa-hand-pointer"></i> Tippen</div>
+                        </div>
+                        <div class="flip-card-back" aria-hidden="true">
+                            <p>Wir fördern die individuelle Entwicklung jedes Teammitglieds durch Freiraum für Kreativität.</p>
+                            <div class="tap-hint" aria-hidden="true"><i class="fas fa-undo"></i> Zurück</div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ════════════════════════════════════════
+     CTA BANNER
+════════════════════════════════════════ -->
+<section class="uu-cta-banner" aria-label="Jetzt bewerben">
+    <div class="uu-cta-banner__inner">
+        <!-- decorative orbs -->
+        <div class="uu-cta-orb uu-cta-orb--1" aria-hidden="true"></div>
+        <div class="uu-cta-orb uu-cta-orb--2" aria-hidden="true"></div>
+        <div class="container" style="position:relative;z-index:2;">
+            <div class="uu-cta-banner__content fade-in-up">
+                <span class="uu-cta-banner__eyebrow" aria-hidden="true"><i class="fas fa-star"></i> Jetzt dabei sein</span>
+                <h2 class="uu-cta-banner__title">Werde Teil des <span class="uu-cta-gradient">IBC</span></h2>
+                <p class="uu-cta-banner__sub">Gestalte deine Karriere mit echten Projekten, einem starken Netzwerk und einer Community, die vorwärts denkt.</p>
+                <div class="uu-cta-banner__btns">
+                    <a href="fuer-studierende.html" class="ethereal-button btn-shimmer">
+                        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        <span>Jetzt bewerben</span>
+                    </a>
+                    <a href="kontakt.html" class="uu-cta-ghost-btn">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                        <span>Kontakt aufnehmen</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

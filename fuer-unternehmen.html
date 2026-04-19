@@ -40,58 +40,139 @@
     <link rel="stylesheet" href="css/ibc-improvements.css">
     <link rel="icon" href="assets/img/cropped_maskottchen_32x32.webp" type="image/webp" sizes="32x32" />
     <style>
-    /* ── Timeline ── */
-    .timeline-v2 { position: relative; padding: 2rem 0; }
+    /* ═══════════════════════════════════════════════
+       TIMELINE V2 — Premium animated timeline
+    ═══════════════════════════════════════════════ */
+    .timeline-v2 {
+      position: relative;
+      padding: 2rem 0;
+    }
+    /* Animated progress line */
     .timeline-v2::before {
       content: '';
       position: absolute;
       left: 50%;
       top: 0; bottom: 0;
       width: 2px;
-      background: linear-gradient(180deg, var(--ibc-green) 0%, #6366f1 100%);
+      background: linear-gradient(180deg,
+        var(--ibc-green) 0%,
+        #52c234 40%,
+        #6366f1 100%);
       transform: translateX(-50%);
+      transform-origin: top;
+      animation: tlLineGrow 1.4s cubic-bezier(0.22,1,0.36,1) both;
+      animation-play-state: paused;
     }
+    .timeline-v2.is-visible::before {
+      animation-play-state: running;
+    }
+    @keyframes tlLineGrow {
+      from { clip-path: inset(0 0 100% 0); }
+      to   { clip-path: inset(0 0 0% 0); }
+    }
+
+    /* Items */
     .timeline-v2__item {
       display: grid;
       grid-template-columns: 1fr 60px 1fr;
       gap: 0;
       margin-bottom: 3.5rem;
       align-items: start;
+      /* entrance animation – overridden per side via JS class */
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1),
+                  transform 0.55s cubic-bezier(0.22,1,0.36,1);
+    }
+    .timeline-v2__item--left  { transform: translateX(-50px) translateY(20px); }
+    .timeline-v2__item--right { transform: translateX(50px)  translateY(20px); }
+    .timeline-v2__item.tl-visible {
+      opacity: 1;
+      transform: none;
     }
     .timeline-v2__item:last-child { margin-bottom: 0; }
+
+    /* Cards */
     .timeline-v2__content {
       background: var(--bg-secondary);
       border: 1px solid var(--border-subtle);
       border-radius: var(--radius-xl, 1.25rem);
       padding: 1.75rem 2rem;
       position: relative;
-      transition: transform 0.3s var(--ease-spring), box-shadow 0.3s;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 0.35s,
+                  border-color 0.25s;
     }
     .timeline-v2__content:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(109,151,68,0.08);
+      transform: translateY(-6px) scale(1.01);
+      box-shadow:
+        0 20px 50px rgba(0,0,0,0.10),
+        0 4px 16px rgba(109,151,68,0.12);
+      border-color: rgba(109,151,68,0.35);
     }
     [data-theme="dark"] .timeline-v2__content {
       background: var(--bg-elevated, #12152e);
       border-color: rgba(255,255,255,0.07);
     }
+    [data-theme="dark"] .timeline-v2__content:hover {
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 4px 16px rgba(125,179,86,0.15);
+      border-color: rgba(125,179,86,0.3);
+    }
+    /* Animated top-bar on hover */
     .timeline-v2__content::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 3px;
-      background: linear-gradient(90deg, var(--ibc-green), #6366f1);
+      background: linear-gradient(90deg, var(--ibc-green), #52c234, #6366f1);
+      background-size: 200% 100%;
       border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-      opacity: 0;
-      transition: opacity 0.3s;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+      animation: none;
     }
-    .timeline-v2__content:hover::before { opacity: 1; }
-    .timeline-v2__item--left .timeline-v2__content { grid-column: 1; }
-    .timeline-v2__item--left .timeline-v2__spacer { grid-column: 2; }
-    .timeline-v2__item--left .timeline-v2__empty { grid-column: 3; }
-    .timeline-v2__item--right .timeline-v2__empty { grid-column: 1; }
-    .timeline-v2__item--right .timeline-v2__spacer { grid-column: 2; }
+    .timeline-v2__content:hover::before {
+      transform: scaleX(1);
+      animation: tlBarShimmer 1.8s linear infinite;
+    }
+    @keyframes tlBarShimmer {
+      0%   { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    /* Step icon inside card */
+    .timeline-v2__step-icon {
+      width: 40px; height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(109,151,68,0.12), rgba(82,194,52,0.08));
+      border: 1px solid rgba(109,151,68,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      color: var(--ibc-green);
+      margin-bottom: 0.85rem;
+      transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+                  background 0.3s, box-shadow 0.3s;
+    }
+    .timeline-v2__content:hover .timeline-v2__step-icon {
+      transform: scale(1.12) rotate(-8deg);
+      background: linear-gradient(135deg, rgba(109,151,68,0.2), rgba(82,194,52,0.14));
+      box-shadow: 0 4px 12px rgba(109,151,68,0.2);
+    }
+    [data-theme="dark"] .timeline-v2__step-icon {
+      background: rgba(125,179,86,0.14);
+      border-color: rgba(125,179,86,0.25);
+    }
+
+    /* Grid columns */
+    .timeline-v2__item--left .timeline-v2__content  { grid-column: 1; }
+    .timeline-v2__item--left .timeline-v2__spacer   { grid-column: 2; }
+    .timeline-v2__item--left .timeline-v2__empty    { grid-column: 3; }
+    .timeline-v2__item--right .timeline-v2__empty   { grid-column: 1; }
+    .timeline-v2__item--right .timeline-v2__spacer  { grid-column: 2; }
     .timeline-v2__item--right .timeline-v2__content { grid-column: 3; }
+
+    /* Connector spacer + dot */
     .timeline-v2__spacer {
       display: flex;
       align-items: flex-start;
@@ -99,7 +180,7 @@
       padding-top: 1.75rem;
     }
     .timeline-v2__dot {
-      width: 44px; height: 44px;
+      width: 46px; height: 46px;
       border-radius: 50%;
       background: var(--bg-primary);
       border: 3px solid var(--ibc-green);
@@ -112,12 +193,31 @@
       z-index: 2;
       position: relative;
       box-shadow: 0 0 0 6px var(--bg-primary);
-      transition: background 0.3s, color 0.3s;
+      transition: background 0.3s, color 0.3s, transform 0.3s cubic-bezier(0.22,1,0.36,1),
+                  box-shadow 0.3s;
+    }
+    /* Pulsing ring on active/visible dot */
+    .timeline-v2__item.tl-visible .timeline-v2__dot::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid rgba(109,151,68,0.35);
+      animation: tlDotPulse 2.5s ease-out infinite;
+    }
+    @keyframes tlDotPulse {
+      0%   { transform: scale(1);   opacity: 0.7; }
+      70%  { transform: scale(1.5); opacity: 0; }
+      100% { transform: scale(1.5); opacity: 0; }
     }
     .timeline-v2__item:hover .timeline-v2__dot {
       background: var(--ibc-green);
       color: #fff;
+      transform: scale(1.15);
+      box-shadow: 0 0 0 6px var(--bg-primary), 0 4px 20px rgba(109,151,68,0.4);
     }
+
+    /* Text inside cards */
     .timeline-v2__content-label {
       font-size: 0.72rem;
       font-weight: 700;
@@ -139,16 +239,29 @@
       line-height: 1.7;
       margin: 0;
     }
+    /* Complete dot */
+    .timeline-v2__dot--complete {
+      border-color: var(--ibc-green);
+      background: var(--ibc-green);
+      color: #fff;
+    }
+
+    /* Mobile layout */
     @media (max-width: 767.98px) {
       .timeline-v2::before { left: 22px; }
-      .timeline-v2__item { grid-template-columns: 44px 1fr; grid-template-rows: auto; }
+      .timeline-v2__item {
+        grid-template-columns: 44px 1fr;
+        grid-template-rows: auto;
+        transform: translateX(0) translateY(25px) !important;
+      }
       .timeline-v2__item--left .timeline-v2__empty,
       .timeline-v2__item--right .timeline-v2__empty { display: none; }
       .timeline-v2__item--left .timeline-v2__spacer,
       .timeline-v2__item--right .timeline-v2__spacer { grid-column: 1; grid-row: 1; }
       .timeline-v2__item--left .timeline-v2__content,
       .timeline-v2__item--right .timeline-v2__content { grid-column: 2; grid-row: 1; }
-      .timeline-v2__dot { width: 36px; height: 36px; font-size: 0.85rem; }
+      .timeline-v2__dot { width: 38px; height: 38px; font-size: 0.85rem; }
+      .timeline-v2__spacer { padding-top: 1.5rem; }
     }
     /* ── Service grid enhanced ── */
     .service-grid-v3 {
@@ -279,6 +392,8 @@
     <link href="css/new-navbar.css" rel="stylesheet">
     <link href="css/ibc-design-v3.css" rel="stylesheet">
     <link href="css/ibc-buttons.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/ibc-updates-2025.css">
+    <link rel="stylesheet" href="css/ibc-design-v2.css">
     <link href="css/fuer-unternehmen-v3.css" rel="stylesheet">
     <link href="css/page-redesign.css" rel="stylesheet">
 </head>
@@ -334,11 +449,12 @@
                         <div class="lang-option" data-lang="en">🇬🇧 English</div>
                     </div>
                 </div>
-                <div class="mobile-toggle" id="mobileToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+            </div>
+            <!-- Hamburger — ganz rechts auf Mobile -->
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
@@ -598,7 +714,7 @@
                     <p class="service-card-v3__text" data-i18n="companies-workshops-presentation-desc">Überzeugende Präsentationen erstellen und souverän vor Publikum präsentieren.</p>
                 </div>
                 <div class="service-card-v3 fade-in-up" data-animation-delay="100ms">
-                    <div class="service-card-v3__icon"><i class="fas fa-microsoft" aria-hidden="true"></i></div>
+                    <div class="service-card-v3__icon"><i class="fab fa-microsoft" aria-hidden="true"></i></div>
                     <h3 class="service-card-v3__title" data-i18n="companies-workshops-office365-title">Office 365</h3>
                     <p class="service-card-v3__text" data-i18n="companies-workshops-office365-desc">Effiziente Nutzung der Microsoft 365 Suite – von Excel bis Teams.</p>
                 </div>
@@ -710,7 +826,7 @@
                 <p class="ibc-lead" data-i18n="companies-process-desc">Von der ersten Anfrage bis zum finalen Ergebnis – transparent und strukturiert.</p>
             </div>
             <div class="timeline-v2" role="list">
-                <div class="timeline-v2__item timeline-v2__item--left fade-in-up" role="listitem">
+                <div class="timeline-v2__item timeline-v2__item--left" data-animation-delay="0ms" role="listitem">
                     <div class="timeline-v2__content">
                         <div class="timeline-v2__step-icon"><i class="fas fa-phone-alt" aria-hidden="true"></i></div>
                         <p class="timeline-v2__content-label">Schritt 1</p>
@@ -720,7 +836,7 @@
                     <div class="timeline-v2__spacer"><div class="timeline-v2__dot">1</div></div>
                     <div class="timeline-v2__empty"></div>
                 </div>
-                <div class="timeline-v2__item timeline-v2__item--right fade-in-up" data-animation-delay="100ms" role="listitem">
+                <div class="timeline-v2__item timeline-v2__item--right" data-animation-delay="100ms" role="listitem">
                     <div class="timeline-v2__empty"></div>
                     <div class="timeline-v2__spacer"><div class="timeline-v2__dot">2</div></div>
                     <div class="timeline-v2__content">
@@ -730,7 +846,7 @@
                         <p class="timeline-v2__content-text" data-i18n="companies-process-step2-desc">Basierend auf dem Briefing erstellen wir ein individuelles Angebot mit klarem Leistungsumfang, Zeitplan und Konditionen.</p>
                     </div>
                 </div>
-                <div class="timeline-v2__item timeline-v2__item--left fade-in-up" data-animation-delay="200ms" role="listitem">
+                <div class="timeline-v2__item timeline-v2__item--left" data-animation-delay="200ms" role="listitem">
                     <div class="timeline-v2__content">
                         <div class="timeline-v2__step-icon"><i class="fas fa-users" aria-hidden="true"></i></div>
                         <p class="timeline-v2__content-label">Schritt 3</p>
@@ -740,7 +856,7 @@
                     <div class="timeline-v2__spacer"><div class="timeline-v2__dot">3</div></div>
                     <div class="timeline-v2__empty"></div>
                 </div>
-                <div class="timeline-v2__item timeline-v2__item--right fade-in-up" data-animation-delay="300ms" role="listitem">
+                <div class="timeline-v2__item timeline-v2__item--right" data-animation-delay="300ms" role="listitem">
                     <div class="timeline-v2__empty"></div>
                     <div class="timeline-v2__spacer"><div class="timeline-v2__dot">4</div></div>
                     <div class="timeline-v2__content">
@@ -750,7 +866,7 @@
                         <p class="timeline-v2__content-text" data-i18n="companies-process-step4-desc">Unser Team arbeitet strukturiert an Ihrem Projekt. Regelmäßige Status-Updates halten Sie stets informiert über den Fortschritt.</p>
                     </div>
                 </div>
-                <div class="timeline-v2__item timeline-v2__item--left fade-in-up" data-animation-delay="400ms" role="listitem">
+                <div class="timeline-v2__item timeline-v2__item--left" data-animation-delay="400ms" role="listitem">
                     <div class="timeline-v2__content">
                         <div class="timeline-v2__step-icon"><i class="fas fa-chart-bar" aria-hidden="true"></i></div>
                         <p class="timeline-v2__content-label">Schritt 5</p>
@@ -948,5 +1064,47 @@
     })();
     </script>
     <script src="js/ibc-buttons.js" defer></script>
+    <script>
+    /* ── Timeline scroll-triggered animation ── */
+    (function () {
+      var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var timeline = document.querySelector('.timeline-v2');
+      if (!timeline) return;
+
+      if (reduced) {
+        timeline.classList.add('is-visible');
+        timeline.querySelectorAll('.timeline-v2__item').forEach(function (el) {
+          el.classList.add('tl-visible');
+        });
+        return;
+      }
+
+      /* Animate the vertical progress line when section enters viewport */
+      var lineObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-visible');
+            lineObserver.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      lineObserver.observe(timeline);
+
+      /* Animate each item with staggered delay */
+      var items = timeline.querySelectorAll('.timeline-v2__item');
+      var itemObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (!e.isIntersecting) return;
+          var el = e.target;
+          var delay = parseInt(el.getAttribute('data-animation-delay') || '0', 10);
+          setTimeout(function () {
+            el.classList.add('tl-visible');
+          }, delay);
+          itemObserver.unobserve(el);
+        });
+      }, { rootMargin: '0px 0px -80px 0px', threshold: 0.15 });
+      items.forEach(function (item) { itemObserver.observe(item); });
+    })();
+    </script>
 </body>
 </html>

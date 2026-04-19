@@ -97,9 +97,9 @@
     "fr": "Démarrer un projet"
   },
   "hero-title": {
-    "de": "Ihre <span class=\"highlight\">studentische</span> Unternehmensberatung",
-    "en": "Your <span class=\"highlight\">student-run</span> consulting firm",
-    "fr": "Votre cabinet de conseil <span class=\"highlight\">étudiant</span>"
+    "de": "Ihre studentische Unternehmensberatung",
+    "en": "Your student-run consulting firm",
+    "fr": "Votre cabinet de conseil étudiant"
   },
   "hero-subtitle": {
     "de": "Innovation, Fortschritt und Gemeinschaft, direkt aus dem Herzen des Schwarzwalds.",
@@ -727,14 +727,14 @@
     "fr": "En savoir plus"
   },
   "about-mission-heading": {
-    "de": "Unsere Mission",
-    "en": "Our Mission",
-    "fr": "Notre mission"
+    "de": "Unsere <span class=\"text-gradient\">Mission</span>",
+    "en": "Our <span class=\"text-gradient\">Mission</span>",
+    "fr": "Notre <span class=\"text-gradient\">mission</span>"
   },
   "about-values-heading": {
-    "de": "Unsere Werte",
-    "en": "Our Values",
-    "fr": "Nos valeurs"
+    "de": "Was uns <span class=\"text-gradient\">antreibt</span>",
+    "en": "What <span class=\"text-gradient\">drives us</span>",
+    "fr": "Ce qui nous <span class=\"text-gradient\">motive</span>"
   },
   "about-values-subtitle": {
     "de": "Was uns antreibt und was uns auszeichnet – die drei Säulen unserer Vereinskultur.",
@@ -747,9 +747,9 @@
     "fr": "Nos <span class=\"highlight-gradient\">valeurs</span>"
   },
   "about-team-heading": {
-    "de": "Unser Team",
-    "en": "Our Team",
-    "fr": "Notre équipe"
+    "de": "Das Team hinter dem <span class=\"text-gradient\">IBC</span>",
+    "en": "The Team behind <span class=\"text-gradient\">IBC</span>",
+    "fr": "L'équipe derrière <span class=\"text-gradient\">IBC</span>"
   },
   "about-history-heading": {
     "de": "Unsere Geschichte",
@@ -797,9 +797,9 @@
     "fr": "Cercle de soutien"
   },
   "network-alumni-heading": {
-    "de": "Unsere Alumni",
-    "en": "Our Alumni",
-    "fr": "Nos anciens membres (Alumni)"
+    "de": "Unser <span class=\"text-gradient\">Alumni-Netzwerk</span>",
+    "en": "Our <span class=\"text-gradient\">Alumni Network</span>",
+    "fr": "Notre <span class=\"text-gradient\">réseau alumni</span>"
   },
   "network-board-heading": {
     "de": "Kuratorium",
@@ -1362,14 +1362,14 @@
     "fr": "Adresse e-mail copiée"
   },
   "about-members-heading": {
-    "de": "Unsere Mitglieder",
-    "en": "Our Members",
-    "fr": "Nos membres"
+    "de": "Unsere <span class=\"text-gradient\">Mitglieder</span>",
+    "en": "Our <span class=\"text-gradient\">Members</span>",
+    "fr": "Nos <span class=\"text-gradient\">membres</span>"
   },
   "about-members-subtitle": {
-    "de": "Ein interdisziplinäres Team aus den verschiedensten Fachbereichen.",
-    "en": "An interdisciplinary team from various fields of study.",
-    "fr": "Une équipe interdisciplinaire issue de divers domaines d'études."
+    "de": "Wir sind kein reiner Consulting-Verein – wir sind ein interdisziplinärer Mix. Bei uns treffen klassische Beratungsstudiengänge auf Gesundheitswissenschaften, Technik, Digitale Medien und vieles mehr.",
+    "en": "We are not a pure consulting club – we are an interdisciplinary mix. Classic consulting programmes meet health sciences, technology, digital media and much more.",
+    "fr": "Nous ne sommes pas un club de conseil pure – nous sommes un mélange interdisciplinaire. Les cursus de conseil classiques rencontrent les sciences de la santé, la technologie, les médias numériques et bien plus encore."
   },
   "about-members-media-title": {
     "de": "Digitale Medien",
@@ -1442,9 +1442,9 @@
     "fr": "Notre vision : Nous sommes établis et reconnus comme le principal promoteur de carrière à l'Université de Furtwangen."
   },
   "about-ressorts-heading": {
-    "de": "Unsere Ressortleitungen",
-    "en": "Our Department Heads",
-    "fr": "Nos responsables de pôle"
+    "de": "Spezialisierte <span class=\"text-gradient\">Kompetenzen</span>",
+    "en": "Specialised <span class=\"text-gradient\">Competences</span>",
+    "fr": "Compétences <span class=\"text-gradient\">spécialisées</span>"
   },
   "about-ressorts-it": {
     "de": "Ressortleitung IT",
@@ -1472,9 +1472,9 @@
     "fr": "Responsable Acquisition"
   },
   "about-platform-heading": {
-    "de": "Unsere Plattform-Manager",
-    "en": "Our Platform Managers",
-    "fr": "Nos gestionnaires de plateforme"
+    "de": "Unsere <span class=\"text-gradient\">Plattform-Manager</span>",
+    "en": "Our <span class=\"text-gradient\">Platform Managers</span>",
+    "fr": "Nos <span class=\"text-gradient\">gestionnaires de plateforme</span>"
   },
   "about-platform-sharepoint": {
     "de": "SharePoint-Manager",
@@ -2227,9 +2227,9 @@
     "fr": "Vers le formulaire de contact"
   },
   "network-sponsors-heading": {
-    "de": "Unsere Förderkreismitglieder",
-    "en": "Our Supporters Circle Members",
-    "fr": "Membres de notre cercle de soutien"
+    "de": "Unsere <span class=\"text-gradient\">Förderkreismitglieder</span>",
+    "en": "Our <span class=\"text-gradient\">Circle of Supporters</span>",
+    "fr": "Nos <span class=\"text-gradient\">membres du cercle de soutien</span>"
   },
   "network-sponsors-subtitle": {
     "de": "Starke Partner, die unsere Vision teilen und uns auf unserem Weg unterstützen.",
@@ -2427,19 +2427,19 @@
     "fr": "Systèmes ERP, Macroéconomie, Statistiques, Comptabilité, Finance & Investissement, Gestion de projet, Recherche opérationnelle."
   },
   "network-curators-schanbacher-name": {
-    "de": "Prof. Peter Schanbacher",
-    "en": "Prof. Peter Schanbacher",
-    "fr": "Prof. Peter Schanbacher"
+    "de": "Prof. Schanbacher",
+    "en": "Prof. Schanbacher",
+    "fr": "Prof. Schanbacher"
   },
   "network-curators-schanbacher-quote": {
-    "de": "\"Wissen entfaltet seine wahre Wirkung erst, wenn man es nicht nur theoretisch besitzt, sondern es aktiv in realen Projekten einsetzt und Verantwortung übernimmt. Genau dafür steht das Institut für Business Consulting e.V. (IBC) – die studentische Unternehmensberatung an der Hochschule Furtwangen University. Durch die Mitarbeit im IBC können Studierende ihr Wissen aus der Informatik, Ingenieurwissenschaften, Wirtschaft und Gesundheit direkt in konkreten Beratungsprojekten anwenden. Studierenden bietet das IBC ein hochspannendes Erfahrungsfeld an der Schnittstelle von Technologie & Business und die Chance, schon früh eigene Lösungen für echte Kunden zu entwickeln und zu verantworten. Unternehmen erhalten durch die studentischen Berater qualifizierte, innovative und wissenschaftlich fundierte Unterstützung zu fairen Konditionen – oft mit frischen, unkonventionellen Ansätzen fernab ausgetretener Pfade.\"",
-    "en": "\"Knowledge only truly unfolds its impact when it is not merely possessed theoretically, but actively applied in real projects and responsibility is taken. This is exactly what the Institute for Business Consulting e.V. (IBC) stands for – the student management consultancy at Furtwangen University. Through involvement in IBC, students can apply their knowledge from computer science, engineering, business and health directly in concrete consulting projects. IBC offers students a highly exciting field of experience at the interface of technology & business and the chance to develop and take responsibility for real solutions for actual clients early on. Companies receive qualified, innovative and scientifically grounded support from student consultants at fair rates – often with fresh, unconventional approaches far off the beaten path.\"",
-    "fr": "\"Le savoir ne déploie tout son impact que lorsqu'il n'est pas seulement possédé théoriquement, mais activement appliqué dans de vrais projets avec une prise de responsabilité. C'est exactement ce que représente l'Institut für Business Consulting e.V. (IBC) – le cabinet de conseil étudiant de la Hochschule Furtwangen University. En s'impliquant dans l'IBC, les étudiants peuvent appliquer leurs connaissances en informatique, ingénierie, économie et santé directement dans des projets de conseil concrets. L'IBC offre aux étudiants un champ d'expérience passionnant à l'interface de la technologie et des affaires.\""
+    "de": "\"Wissen entfaltet seine wahre Wirkung erst, wenn man es nicht nur theoretisch besitzt, sondern es aktiv in realen Projekten einsetzt und Verantwortung übernimmt. Genau dafür steht das Institut für Business Consulting e.V. (IBC) – die studentische Unternehmensberatung an der Hochschule Furtwangen University. Durch die Mitarbeit im IBC können Studierende ihr Wissen aus der Informatik, Ingenieurwissenschaften, Wirtschaft und Gesundheit direkt in konkreten Beratungsprojekten anwenden.  Sei es bei der Entwicklung intelligenter Analysetools, der Prozessoptimierung oder der Strategieberatung von KMUs. Studierenden bietet das IBC ein hochspannendes Erfahrungsfeld an der Schnittstelle von Technologie & Business und die Chance, schon früh eigene Lösungen für echte Kunden zu entwickeln und zu verantworten. Unternehmen erhalten durch die studentischen Berater qualifizierte, innovative und wissenschaftlich fundierte Unterstützung zu fairen Konditionen – oft mit frischen, unkonventionellen Ansätzen fernab ausgetretener Pfade.\"",
+    "en": "\"Knowledge only unfolds its true impact when you not only possess it theoretically, but actively apply it in real projects and take on responsibility. That is exactly what the Institut für Business Consulting e.V. (IBC) stands for – the student consulting firm at Furtwangen University. By working with IBC, students can apply their knowledge from computer science, engineering, business, and health directly in concrete consulting projects. Whether developing intelligent analysis tools, optimizing processes, or providing strategic advice to SMEs. IBC offers students a highly engaging field of experience at the intersection of technology & business, and the chance to develop and take ownership of real solutions for genuine clients early on. Companies receive qualified, innovative, and scientifically grounded support from the student consultants at fair rates – often with fresh, unconventional approaches off the beaten path.\"",
+    "fr": "\"Le savoir ne déploie sa véritable efficacité que lorsqu'on ne le possède pas seulement de manière théorique, mais qu'on l'applique activement dans des projets réels et que l'on assume des responsabilités. C'est exactement ce que représente l'Institut für Business Consulting e.V. (IBC) – le cabinet de conseil étudiant de l'Université de Furtwangen. En travaillant au sein de l'IBC, les étudiants peuvent appliquer directement leurs connaissances en informatique, sciences de l'ingénieur, économie et santé dans des projets de conseil concrets. Que ce soit lors du développement d'outils d'analyse intelligents, de l'optimisation des processus ou du conseil stratégique aux PME. L'IBC offre aux étudiants un champ d'expérience passionnant à l'intersection de la technologie & des affaires et la chance de développer et d'assumer tôt leurs propres solutions pour de vrais clients. Les entreprises bénéficient, grâce aux consultants étudiants, d'un soutien qualifié, innovant et scientifiquement fondé à des conditions équitables – souvent avec des approches fraîches et non conventionnelles loin des sentiers battus.\""
   },
   "network-curators-schanbacher-subjects": {
     "de": "Künstliche Intelligenz, Statistik, Data Science, Finance.",
     "en": "Artificial Intelligence, Statistics, Data Science, Finance.",
-    "fr": "Intelligence artificielle, Statistiques, Data Science, Finance."
+    "fr": "Intelligence artificielle, Statistiques, Science des données, Finance."
   },
   "network-curators-katz-name": {
     "de": "Tarah Katz",
@@ -4681,21 +4681,6 @@
     "en": "An animated construction crane symbolizes the ongoing maintenance work on the website",
     "fr": "Une grue de construction animée symbolise les travaux de maintenance en cours sur le site web"
   },
-  "network-curators-schanbacher-name": {
-    "de": "Prof. Schanbacher",
-    "en": "Prof. Schanbacher",
-    "fr": "Prof. Schanbacher"
-  },
-  "network-curators-schanbacher-quote": {
-    "de": "\"Wissen entfaltet seine wahre Wirkung erst, wenn man es nicht nur theoretisch besitzt, sondern es aktiv in realen Projekten einsetzt und Verantwortung übernimmt. Genau dafür steht das Institut für Business Consulting e.V. (IBC) – die studentische Unternehmensberatung an der Hochschule Furtwangen University. Durch die Mitarbeit im IBC können Studierende ihr Wissen aus der Informatik, Ingenieurwissenschaften, Wirtschaft und Gesundheit direkt in konkreten Beratungsprojekten anwenden.  Sei es bei der Entwicklung intelligenter Analysetools, der Prozessoptimierung oder der Strategieberatung von KMUs. Studierenden bietet das IBC ein hochspannendes Erfahrungsfeld an der Schnittstelle von Technologie & Business und die Chance, schon früh eigene Lösungen für echte Kunden zu entwickeln und zu verantworten. Unternehmen erhalten durch die studentischen Berater qualifizierte, innovative und wissenschaftlich fundierte Unterstützung zu fairen Konditionen – oft mit frischen, unkonventionellen Ansätzen fernab ausgetretener Pfade.\"",
-    "en": "\"Knowledge only unfolds its true impact when you not only possess it theoretically, but actively apply it in real projects and take on responsibility. That is exactly what the Institut für Business Consulting e.V. (IBC) stands for – the student consulting firm at Furtwangen University. By working with IBC, students can apply their knowledge from computer science, engineering, business, and health directly in concrete consulting projects. Whether developing intelligent analysis tools, optimizing processes, or providing strategic advice to SMEs. IBC offers students a highly engaging field of experience at the intersection of technology & business, and the chance to develop and take ownership of real solutions for genuine clients early on. Companies receive qualified, innovative, and scientifically grounded support from the student consultants at fair rates – often with fresh, unconventional approaches off the beaten path.\"",
-    "fr": "\"Le savoir ne déploie sa véritable efficacité que lorsqu'on ne le possède pas seulement de manière théorique, mais qu'on l'applique activement dans des projets réels et que l'on assume des responsabilités. C'est exactement ce que représente l'Institut für Business Consulting e.V. (IBC) – le cabinet de conseil étudiant de l'Université de Furtwangen. En travaillant au sein de l'IBC, les étudiants peuvent appliquer directement leurs connaissances en informatique, sciences de l'ingénieur, économie et santé dans des projets de conseil concrets. Que ce soit lors du développement d'outils d'analyse intelligents, de l'optimisation des processus ou du conseil stratégique aux PME. L'IBC offre aux étudiants un champ d'expérience passionnant à l'intersection de la technologie & des affaires et la chance de développer et d'assumer tôt leurs propres solutions pour de vrais clients. Les entreprises bénéficient, grâce aux consultants étudiants, d'un soutien qualifié, innovant et scientifiquement fondé à des conditions équitables – souvent avec des approches fraîches et non conventionnelles loin des sentiers battus.\""
-  },
-  "network-curators-schanbacher-subjects": {
-    "de": "Künstliche Intelligenz, Statistik, Data Science, Finance.",
-    "en": "Artificial Intelligence, Statistics, Data Science, Finance.",
-    "fr": "Intelligence artificielle, Statistiques, Science des données, Finance."
-  },
   "apply-step-1-label": {
     "de": "Erste Schritte",
     "en": "First Steps",
@@ -5075,5 +5060,220 @@
     "de": "Scrollen",
     "en": "Scroll",
     "fr": "Défiler"
+  },
+  "companies-hero-heading": {
+    "de": "Beratung auf <span class=\"text-gradient\">Augenhöhe</span>",
+    "en": "Consulting at <span class=\"text-gradient\">Eye Level</span>",
+    "fr": "Conseil à <span class=\"text-gradient\">hauteur de vue</span>"
+  },
+  "companies-final-cta-heading": {
+    "de": "Ihr Projekt wartet. <span class=\"text-gradient\">Wir auch.</span>",
+    "en": "Your project is waiting. <span class=\"text-gradient\">So are we.</span>",
+    "fr": "Votre projet attend. <span class=\"text-gradient\">Nous aussi.</span>"
+  },
+  "companies-final-cta-text": {
+    "de": "Nehmen Sie jetzt Kontakt auf – kostenlos und unverbindlich. Wir melden uns innerhalb von 48 Stunden.",
+    "en": "Get in touch now – free of charge and non-binding. We will respond within 48 hours.",
+    "fr": "Contactez-nous maintenant – gratuitement et sans engagement. Nous répondons dans les 48 heures."
+  },
+  "companies-final-cta-btn": {
+    "de": "Jetzt Projekt anfragen",
+    "en": "Request Project Now",
+    "fr": "Demander un projet maintenant"
+  },
+  "nav-home": {
+    "de": "Startseite",
+    "en": "Home",
+    "fr": "Accueil"
+  },
+  "hero-trust-consultants": {
+    "de": "Berater:innen",
+    "en": "Consultants",
+    "fr": "Consultants"
+  },
+  "hero-trust-projects": {
+    "de": "Projekte",
+    "en": "Projects",
+    "fr": "Projets"
+  },
+  "hero-trust-years": {
+    "de": "Jahre Erfahrung",
+    "en": "Years of Experience",
+    "fr": "Ans d'expérience"
+  },
+  "trust-cost": {
+    "de": "Faire Konditionen",
+    "en": "Fair Conditions",
+    "fr": "Conditions équitables"
+  },
+  "trust-projects": {
+    "de": "Abgeschlossene Projekte",
+    "en": "Completed Projects",
+    "fr": "Projets réalisés"
+  },
+  "trust-since": {
+    "de": "Jahre Erfahrung",
+    "en": "Years of Experience",
+    "fr": "Ans d'expérience"
+  },
+  "trust-speed": {
+    "de": "Schnelle Umsetzung",
+    "en": "Fast Delivery",
+    "fr": "Mise en œuvre rapide"
+  },
+  "trust-students": {
+    "de": "HFU-Studierende",
+    "en": "HFU Students",
+    "fr": "Étudiants HFU"
+  },
+  "carousel-hint": {
+    "de": "Wischen zum Erkunden",
+    "en": "Swipe to explore",
+    "fr": "Glisser pour explorer"
+  },
+  "companies-business-desc": {
+    "de": "Wir analysieren Ihre Geschäftsprozesse, identifizieren Verbesserungspotenziale und entwickeln tragfähige Strategien für nachhaltiges Wachstum.",
+    "en": "We analyse your business processes, identify areas for improvement and develop viable strategies for sustainable growth.",
+    "fr": "Nous analysons vos processus métier, identifions les potentiels d'amélioration et développons des stratégies viables pour une croissance durable."
+  },
+  "companies-cta-btn": {
+    "de": "Beratung anfragen",
+    "en": "Request Consulting",
+    "fr": "Demander un conseil"
+  },
+  "companies-cta-btn-2": {
+    "de": "Alle Leistungen",
+    "en": "All Services",
+    "fr": "Tous les services"
+  },
+  "companies-cta-inquire": {
+    "de": "Jetzt anfragen",
+    "en": "Inquire Now",
+    "fr": "Demander maintenant"
+  },
+  "companies-digital-app-desc": {
+    "de": "Native und Cross-Platform Apps für iOS und Android mit Fokus auf Usability.",
+    "en": "Native and cross-platform apps for iOS and Android with a focus on usability.",
+    "fr": "Applications natives et cross-platform pour iOS et Android avec un accent sur l'ergonomie."
+  },
+  "companies-digital-app-title": {
+    "de": "App-Entwicklung",
+    "en": "App Development",
+    "fr": "Développement d'applications"
+  },
+  "companies-digital-automation-desc": {
+    "de": "Prozessautomatisierung mit RPA, KI und modernen Integrationsplattformen.",
+    "en": "Process automation with RPA, AI and modern integration platforms.",
+    "fr": "Automatisation des processus avec RPA, IA et plateformes d'intégration modernes."
+  },
+  "companies-digital-automation-title": {
+    "de": "Automatisierung",
+    "en": "Automation",
+    "fr": "Automatisation"
+  },
+  "companies-digital-cloud-desc": {
+    "de": "Migration, Implementierung und Optimierung von Cloud-Infrastrukturen.",
+    "en": "Migration, implementation and optimisation of cloud infrastructures.",
+    "fr": "Migration, implémentation et optimisation des infrastructures cloud."
+  },
+  "companies-digital-cloud-title": {
+    "de": "Cloud-Lösungen",
+    "en": "Cloud Solutions",
+    "fr": "Solutions cloud"
+  },
+  "companies-digital-desc": {
+    "de": "Wir begleiten Sie auf dem Weg in die digitale Zukunft – von der Strategie bis zur Umsetzung.",
+    "en": "We guide you on your path to a digital future – from strategy to implementation.",
+    "fr": "Nous vous accompagnons sur la voie de l'avenir numérique – de la stratégie à la mise en œuvre."
+  },
+  "companies-digital-web-desc": {
+    "de": "Moderne, responsive Webseiten mit aktuellem Tech-Stack und optimaler UX.",
+    "en": "Modern, responsive websites with a current tech stack and optimal UX.",
+    "fr": "Sites web modernes et responsives avec une stack technique actuelle et une UX optimale."
+  },
+  "companies-digital-web-title": {
+    "de": "Web-Entwicklung",
+    "en": "Web Development",
+    "fr": "Développement web"
+  },
+  "companies-hero-cta-primary": {
+    "de": "Projekt anfragen",
+    "en": "Request Project",
+    "fr": "Demander un projet"
+  },
+  "companies-hero-cta-secondary": {
+    "de": "Leistungen entdecken",
+    "en": "Discover Services",
+    "fr": "Découvrir les services"
+  },
+  "companies-marketing-desc": {
+    "de": "Wir unterstützen Sie bei der Entwicklung wirkungsvoller Marketingstrategien, die Ihre Zielgruppe erreichen und Ihre Marke stärken.",
+    "en": "We support you in developing effective marketing strategies that reach your target audience and strengthen your brand.",
+    "fr": "Nous vous aidons à développer des stratégies marketing efficaces qui atteignent votre public cible et renforcent votre marque."
+  },
+  "companies-process-desc": {
+    "de": "Von der ersten Anfrage bis zum finalen Ergebnis – transparent und strukturiert.",
+    "en": "From the first enquiry to the final result – transparent and structured.",
+    "fr": "De la première demande au résultat final – transparent et structuré."
+  },
+  "companies-process-step1-desc": {
+    "de": "Sie nehmen Kontakt auf und schildern Ihr Anliegen. Wir hören aufmerksam zu und stellen gezielte Fragen, um Ihr Projekt vollständig zu verstehen.",
+    "en": "You get in touch and describe your needs. We listen carefully and ask targeted questions to fully understand your project.",
+    "fr": "Vous prenez contact et décrivez votre demande. Nous écoutons attentivement et posons des questions ciblées pour bien comprendre votre projet."
+  },
+  "companies-process-step1-title": {
+    "de": "Erstkontakt & Briefing",
+    "en": "Initial Contact & Briefing",
+    "fr": "Premier contact & briefing"
+  },
+  "companies-process-step2-desc": {
+    "de": "Basierend auf dem Briefing erstellen wir ein individuelles Angebot mit klarem Leistungsumfang, Zeitplan und Konditionen.",
+    "en": "Based on the briefing, we create an individual proposal with a clear scope of services, timeline and terms.",
+    "fr": "Sur la base du briefing, nous établissons une offre individuelle avec un périmètre de prestations clair, un calendrier et des conditions."
+  },
+  "companies-process-step2-title": {
+    "de": "Angebotserstellung",
+    "en": "Proposal Creation",
+    "fr": "Création de l'offre"
+  },
+  "companies-process-step3-desc": {
+    "de": "Wir stellen ein passendes Team aus spezialisierten Studierenden zusammen, das perfekt auf Ihre Anforderungen zugeschnitten ist.",
+    "en": "We assemble a suitable team of specialised students perfectly tailored to your requirements.",
+    "fr": "Nous constituons une équipe appropriée d'étudiants spécialisés, parfaitement adaptée à vos besoins."
+  },
+  "companies-process-step3-title": {
+    "de": "Teamzusammenstellung",
+    "en": "Team Assembly",
+    "fr": "Constitution de l'équipe"
+  },
+  "companies-process-step4-desc": {
+    "de": "Unser Team arbeitet strukturiert an Ihrem Projekt. Regelmäßige Status-Updates halten Sie stets informiert über den Fortschritt.",
+    "en": "Our team works in a structured way on your project. Regular status updates keep you informed about progress at all times.",
+    "fr": "Notre équipe travaille de manière structurée sur votre projet. Des mises à jour régulières vous tiennent informé de l'avancement."
+  },
+  "companies-process-step4-title": {
+    "de": "Projektdurchführung",
+    "en": "Project Execution",
+    "fr": "Réalisation du projet"
+  },
+  "companies-process-step5-desc": {
+    "de": "Die Ergebnisse werden professionell präsentiert und übergeben. Auf Wunsch beantworten wir Rückfragen und zeigen Handlungsempfehlungen auf.",
+    "en": "The results are presented and handed over professionally. On request, we answer follow-up questions and provide recommendations for action.",
+    "fr": "Les résultats sont présentés et remis de manière professionnelle. Sur demande, nous répondons aux questions et formulons des recommandations d'action."
+  },
+  "companies-process-step5-title": {
+    "de": "Abschlusspräsentation",
+    "en": "Final Presentation",
+    "fr": "Présentation finale"
+  },
+  "companies-workshops-desc": {
+    "de": "Kompetenzaufbau für Ihr Team durch praxisnahe Trainings auf dem neuesten Stand der Wissenschaft.",
+    "en": "Building competence for your team through practice-oriented training at the cutting edge of research.",
+    "fr": "Renforcement des compétences de votre équipe grâce à des formations pratiques à la pointe de la recherche."
+  },
+  "network-partner-heading": {
+    "de": "Kooperations<span class=\"text-gradient\">partner</span>",
+    "en": "Cooperation <span class=\"text-gradient\">Partners</span>",
+    "fr": "Partenaires de <span class=\"text-gradient\">coopération</span>"
   }
 }

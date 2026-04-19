@@ -71,6 +71,8 @@
     <link href="css/new-navbar.css" rel="stylesheet">
     <link href="css/ibc-design-v3.css" rel="stylesheet">
     <link href="css/ibc-buttons.css" rel="stylesheet">
+    <link href="css/ibc-updates-2025.css" rel="stylesheet">
+    <link href="css/ibc-design-v2.css" rel="stylesheet">
     <link href="css/page-redesign.css" rel="stylesheet">
     <link href="css/netzwerk-v3.css" rel="stylesheet">
 </head>
@@ -107,7 +109,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- Utilities -->
+            <!-- Utilities (Theme + Sprache) — auf Mobile absolut zentriert -->
             <div class="nav-utilities">
                 <div class="theme-toggle" id="themeToggle" title="Theme wechseln">
                     <div class="theme-toggle-ball"></div>
@@ -126,11 +128,12 @@
                         <div class="lang-option" data-lang="en">🇬🇧 English</div>
                     </div>
                 </div>
-                <div class="mobile-toggle" id="mobileToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+            </div>
+            <!-- Hamburger — ganz rechts auf Mobile -->
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
@@ -249,7 +252,7 @@
     <div class="container" style="position:relative;z-index:2;">
         <div class="section-header fade-in-up" data-animation-delay="0ms">
             <span class="section-chip"><i class="fas fa-user-graduate" aria-hidden="true"></i> Alumni</span>
-            <h2 id="alumni-heading" class="ibc-heading" style="color:#fff;">
+            <h2 id="alumni-heading" class="ibc-heading" style="color:#fff;" data-i18n="network-alumni-heading">
                 Unser <span class="text-gradient">Alumni-Netzwerk</span>
             </h2>
             <p class="section-intro-text" data-i18n="network-alumni-text">
@@ -311,7 +314,7 @@
     <div class="container">
         <div class="section-header fade-in-up" data-animation-delay="0ms">
             <span class="section-chip"><i class="fas fa-link" aria-hidden="true"></i> Partner</span>
-            <h2 id="partner-heading" class="ibc-heading">Kooperations<span class="text-gradient">partner</span></h2>
+            <h2 id="partner-heading" class="ibc-heading" data-i18n="network-partner-heading">Kooperations<span class="text-gradient">partner</span></h2>
             <p id="kooperationspartner-intro" class="section-intro-text"></p>
         </div>
         <div id="kooperationspartner-list" class="row g-4 mt-2">
@@ -350,7 +353,7 @@
             <p class="nk-cta-banner__subtitle">
                 Wir freuen uns auf eine langfristige Zusammenarbeit und gegenseitige Unterstützung.
             </p>
-            <a href="kontakt.html" class="ethereal-button">
+            <a href="kontakt.html" class="ethereal-button btn-shimmer">
                 <i class="fa-solid fa-envelope" aria-hidden="true"></i>
                 <span>Jetzt Kontakt aufnehmen</span>
             </a>

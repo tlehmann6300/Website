@@ -79,27 +79,42 @@
 
         container.innerHTML = members.map(function (member, index) {
             const delay = (index + 1) * 100;
-            const safeAlt = escapeHtml(member.altText || '');
-            const safeImg = escapeHtml(member.image || '');
+            const safeAlt  = escapeHtml(member.altText  || '');
+            const safeImg  = escapeHtml(member.image    || '');
+            const safeName = escapeHtml(member.id       || '');
 
             return (
                 '<li class="col-lg-3 col-md-6 mb-4 align-items-stretch fade-in-up"' +
                 '    data-animation-delay="' + delay + 'ms">' +
-                '  <button class="flip-card h-100" aria-pressed="false">' +
+                '  <button class="flip-card foerderkreis-flip h-100" aria-pressed="false"' +
+                '          aria-label="' + safeAlt + ' – mehr erfahren">' +
                 '    <div class="flip-card-inner">' +
-                '      <div class="flip-card-front">' +
-                '        <div class="icon-box">' +
+
+                /* ── FRONT ── */
+                '      <div class="flip-card-front foerderkreis-front">' +
+                '        <div class="foerderkreis-logo-wrap">' +
                 '          <img loading="lazy" src="' + safeImg + '"' +
-                '               alt="' + safeAlt + '" class="card-logo">' +
+                '               alt="' + safeAlt + '" class="foerderkreis-logo">' +
                 '        </div>' +
+                '        <span class="foerderkreis-hint" aria-hidden="true">' +
+                '          <i class="fas fa-info-circle"></i> Details' +
+                '        </span>' +
                 '      </div>' +
-                '      <div class="flip-card-back" aria-hidden="true">' +
-                '        <p data-i18n="' + escapeHtml(member.descI18nKey) + '"></p>' +
+
+                /* ── BACK ── */
+                '      <div class="flip-card-back foerderkreis-back" aria-hidden="true">' +
+                '        <div class="foerderkreis-back__logo-mini">' +
+                '          <img loading="lazy" src="' + safeImg + '"' +
+                '               alt="" class="foerderkreis-logo-mini">' +
+                '        </div>' +
+                '        <p class="foerderkreis-back__text"' +
+                '           data-i18n="' + escapeHtml(member.descI18nKey) + '"></p>' +
                 '        <div class="tap-hint" aria-hidden="true">' +
                 '          <i class="fas fa-undo"></i>' +
                 '          <span data-i18n="flip-back">Zurück</span>' +
                 '        </div>' +
                 '      </div>' +
+
                 '    </div>' +
                 '  </button>' +
                 '</li>'
@@ -117,27 +132,27 @@
         if (!container || !Array.isArray(members) || members.length === 0) return;
 
         const cards = members.map(function (member, index) {
-            const delay = index * 150;
+            const delay = index * 120;
             const safeAlt = escapeHtml(member.altText || '');
             const safeImg = escapeHtml(member.image || '');
 
             return (
-                '<div class="col-12 fade-in-up" data-animation-delay="' + delay + 'ms">' +
-                '  <article class="kuratorium-card kuratorium-card--horizontal">' +
-                '    <div class="kuratorium-card-img-wrapper">' +
+                '<div class="col-md-6 col-lg-4 fade-in-up" data-animation-delay="' + delay + 'ms">' +
+                '  <article class="kurat-card">' +
+                '    <div class="kurat-card__img-wrap">' +
                 '      <img loading="lazy" src="' + safeImg + '"' +
-                '           alt="' + safeAlt + '" class="kuratorium-card-img">' +
-                '    </div>' +
-                '    <div class="kuratorium-card-body">' +
-                '      <span class="kuratorium-card-role">' +
+                '           alt="' + safeAlt + '" class="kurat-card__img">' +
+                '      <span class="kurat-card__role-badge">' +
                 '        <i class="fas fa-graduation-cap" aria-hidden="true"></i>' +
                 '        <span data-i18n="network-curators-role-label">Kuratorium</span>' +
                 '      </span>' +
-                '      <h3 data-i18n="' + escapeHtml(member.nameI18nKey) + '"></h3>' +
-                '      <blockquote class="blockquote"' +
+                '    </div>' +
+                '    <div class="kurat-card__body">' +
+                '      <h3 class="kurat-card__name" data-i18n="' + escapeHtml(member.nameI18nKey) + '"></h3>' +
+                '      <blockquote class="kurat-card__quote"' +
                 '          data-i18n="' + escapeHtml(member.quoteI18nKey) + '"></blockquote>' +
-                '      <p class="lehrgebiete">' +
-                '        <strong data-i18n="network-curators-subjects-label">Lehrgebiete:</strong>' +
+                '      <p class="kurat-card__subjects">' +
+                '        <i class="fas fa-book-open" aria-hidden="true"></i>' +
                 '        <span data-i18n="' + escapeHtml(member.subjectsI18nKey) + '"></span>' +
                 '      </p>' +
                 '    </div>' +
@@ -146,7 +161,7 @@
             );
         }).join('');
 
-        container.innerHTML = '<div class="row g-5">' + cards + '</div>';
+        container.innerHTML = '<div class="row g-4">' + cards + '</div>';
     }
 
     function renderKooperationspartner(partnersData) {

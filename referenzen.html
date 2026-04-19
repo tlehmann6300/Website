@@ -71,7 +71,10 @@
     <link href="css/new-navbar.css" rel="stylesheet">
     <link href="css/ibc-design-v3.css" rel="stylesheet">
     <link href="css/ibc-buttons.css" rel="stylesheet">
+    <link href="css/ibc-updates-2025.css" rel="stylesheet">
+    <link href="css/ibc-design-v2.css" rel="stylesheet">
     <link href="css/page-redesign.css" rel="stylesheet">
+    <link href="css/referenzen-v3.css" rel="stylesheet">
 </head>
 <body>
 
@@ -106,7 +109,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- Utilities -->
+            <!-- Utilities (Theme + Sprache) — auf Mobile absolut zentriert -->
             <div class="nav-utilities">
                 <div class="theme-toggle" id="themeToggle" title="Theme wechseln">
                     <div class="theme-toggle-ball"></div>
@@ -125,11 +128,12 @@
                         <div class="lang-option" data-lang="en">🇬🇧 English</div>
                     </div>
                 </div>
-                <div class="mobile-toggle" id="mobileToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+            </div>
+            <!-- Hamburger — ganz rechts auf Mobile -->
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
@@ -190,80 +194,156 @@
 </div>
 
 <main id="main-content" tabindex="-1">
-<section class="page-hero-section">
-    <div class="page-hero-inner">
-        <div class="page-hero__mesh-orb page-hero__mesh-orb--1"></div>
-        <div class="page-hero__mesh-orb page-hero__mesh-orb--2"></div>
-        <div class="page-hero__mesh-orb page-hero__mesh-orb--3"></div>
-        <div class="container">
-            <div class="page-hero__content">
-                <span class="page-hero__eyebrow fade-in-up" data-animation-delay="0ms">
-                    <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
-                    <span>Unsere Arbeit</span>
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="ref-hero" aria-label="Referenzen Header">
+    <div class="ref-hero__bg" aria-hidden="true">
+        <div class="ref-hero__orb ref-hero__orb--1"></div>
+        <div class="ref-hero__orb ref-hero__orb--2"></div>
+        <div class="ref-hero__orb ref-hero__orb--3"></div>
+        <div class="ref-hero__grid"></div>
+    </div>
+    <div class="container">
+        <div class="ref-hero__inner">
+            <div class="ref-hero__text">
+                <span class="ref-hero__eyebrow fade-in-up">
+                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                    Erfolgsgeschichten seit 1998
                 </span>
-                <h1 class="page-hero__title fade-in-up" data-animation-delay="100ms">
-                    <span class="text-gradient">Referenzen</span>
+                <h1 class="ref-hero__title fade-in-up" style="transition-delay:.1s">
+                    Unsere <span class="ref-hero__gradient">Referenzen</span>
                 </h1>
-                <p class="page-hero__subtitle fade-in-up" data-animation-delay="200ms">
-                    Seit 1998 haben wir über 180 erfolgreiche Projekte für Unternehmen verschiedenster Branchen und Größen umgesetzt.
+                <p class="ref-hero__sub fade-in-up" style="transition-delay:.2s">
+                    Über 180 erfolgreich abgeschlossene Projekte für Unternehmen aller Branchen und Größen — umgesetzt von Studierenden der HFU.
                 </p>
-                <div class="page-hero__stat fade-in-up" data-animation-delay="300ms">
-                    <div class="hero-stat">
-                        <div class="hero-stat__number">182+</div>
-                        <div class="hero-stat__label">Abgeschlossene Projekte</div>
-                    </div>
+                <div class="ref-hero__actions fade-in-up" style="transition-delay:.3s">
+                    <a href="#projekte" class="ethereal-button btn-shimmer">
+                        <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
+                        Projekte entdecken
+                    </a>
+                    <a href="kontakt.html" class="ref-hero__ghost-btn">
+                        <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                        Projekt anfragen
+                    </a>
+                </div>
+            </div>
+            <div class="ref-hero__stats fade-in-up" style="transition-delay:.4s" aria-label="Kennzahlen">
+                <div class="ref-hero__stat">
+                    <span class="ref-hero__stat-num">182+</span>
+                    <span class="ref-hero__stat-label">Abgeschlossene Projekte</span>
+                </div>
+                <div class="ref-hero__stat-div" aria-hidden="true"></div>
+                <div class="ref-hero__stat">
+                    <span class="ref-hero__stat-num">25+</span>
+                    <span class="ref-hero__stat-label">Jahre Erfahrung</span>
+                </div>
+                <div class="ref-hero__stat-div" aria-hidden="true"></div>
+                <div class="ref-hero__stat">
+                    <span class="ref-hero__stat-num">8</span>
+                    <span class="ref-hero__stat-label">Beratungsfelder</span>
                 </div>
             </div>
         </div>
     </div>
+    <a href="#projekte" class="ref-hero__scroll" aria-label="Zu den Projekten scrollen">
+        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </a>
 </section>
 
-<section class="page-section page-section--alt">
+<!-- ════════════════════════════════════════
+     FILTER + PROJEKTE
+════════════════════════════════════════ -->
+<section class="ref-section" id="projekte" aria-labelledby="ref-projects-heading">
     <div class="container">
-        <div class="section-header fade-in-up" data-animation-delay="0ms">
-            <span class="section-chip">Portfolio</span>
-            <h2 class="ibc-heading reveal-fx">Unsere <span class="text-gradient">Projekte</span></h2>
+
+        <!-- Section header -->
+        <div class="ref-section__header fade-in-up">
+            <span class="section-chip"><i class="fas fa-folder-open" aria-hidden="true"></i> Portfolio</span>
+            <h2 id="ref-projects-heading" class="ibc-heading">
+                Alle <span class="text-gradient">Projekte</span>
+            </h2>
+            <p class="section-intro-text">
+                Entdecken Sie, wie wir Unternehmen mit frischen Ideen und Hochschul-Know-how voranbringen.
+            </p>
         </div>
-        
-        <div class="references-filter fade-in-up" data-animation-delay="100ms" style="margin-top: 40px;">
-            <div class="filter-label">Filtern nach:</div>
-            <div id="filter-chips" class="filter-chips">
-                <button class="filter-chip filter-chip--active" data-filter="all">Alle Projekte</button>
+
+        <!-- Filter bar — horizontal scroll on mobile -->
+        <div class="ref-filter fade-in-up" role="region" aria-label="Projekte filtern">
+            <div class="ref-filter__scroll-wrap">
+                <div id="category-filter-container" class="ref-filter__chips">
+                    <button class="ref-chip ref-chip--active" data-filter="all">
+                        <i class="fas fa-th-large" aria-hidden="true"></i>
+                        Alle Projekte
+                    </button>
+                </div>
             </div>
-        </div>
-        
-        <div id="references-container" class="row g-4 mt-5">
-            <div class="col-sm-6 col-lg-4">
-                <div class="skeleton-reference-card"></div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="skeleton-reference-card"></div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="skeleton-reference-card"></div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="skeleton-reference-card"></div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="skeleton-reference-card"></div>
-            </div>
-            <div class="col-sm-6 col-lg-4">
-                <div class="skeleton-reference-card"></div>
+            <!-- hidden year filter kept for JS compatibility -->
+            <div id="year-filter-group" style="display:none">
+                <div id="year-filter-container"></div>
             </div>
         </div>
+
+        <!-- Result counter -->
+        <p class="ref-result-count" id="ref-result-count" aria-live="polite" aria-atomic="true"></p>
+
+        <!-- Cards grid -->
+        <div id="references-container" class="ref-grid" aria-live="polite" aria-atomic="false">
+            <div class="ref-skeleton"></div>
+            <div class="ref-skeleton"></div>
+            <div class="ref-skeleton"></div>
+            <div class="ref-skeleton"></div>
+            <div class="ref-skeleton"></div>
+            <div class="ref-skeleton"></div>
+        </div>
+
+        <!-- Empty state -->
+        <div class="ref-empty" id="ref-empty" hidden aria-live="polite">
+            <i class="fas fa-search" aria-hidden="true"></i>
+            <p>Keine Projekte in dieser Kategorie gefunden.</p>
+            <button class="ref-chip ref-chip--active" onclick="document.querySelector('[data-filter=all]').click()">
+                Alle anzeigen
+            </button>
+        </div>
+
+        <noscript>
+            <div class="ref-noscript">
+                <strong>JavaScript ist deaktiviert.</strong><br>
+                Bitte aktivieren Sie JavaScript, um unsere Referenzen zu sehen, oder
+                <a href="kontakt.html">kontaktieren Sie uns direkt</a>.
+            </div>
+        </noscript>
     </div>
 </section>
 
-<section class="cta-banner page-section--dark">
+<!-- ════════════════════════════════════════
+     CTA BANNER
+════════════════════════════════════════ -->
+<section class="ref-cta" aria-labelledby="ref-cta-heading">
+    <div class="ref-cta__bg" aria-hidden="true">
+        <div class="ref-cta__orb ref-cta__orb--1"></div>
+        <div class="ref-cta__orb ref-cta__orb--2"></div>
+    </div>
     <div class="container">
-        <div class="cta-banner__content fade-in-up" data-animation-delay="0ms">
-            <h2 class="cta-banner__title">Ihr Projekt könnte hier <span class="text-gradient">stehen</span></h2>
-            <p class="cta-banner__subtitle">Wir freuen uns auf die Zusammenarbeit mit Ihnen und zeigen Ihnen, wie das IBC Ihr Unternehmen voranbringt.</p>
-            <div class="cta-banner__buttons">
-                <a href="kontakt.html" class="ethereal-button">
-                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-                    <span>Jetzt Projekt starten</span>
+        <div class="ref-cta__inner fade-in-up">
+            <span class="ref-cta__eyebrow" aria-hidden="true">
+                <i class="fas fa-rocket"></i> Ihr nächstes Projekt
+            </span>
+            <h2 id="ref-cta-heading" class="ref-cta__title">
+                Ihr Projekt könnte hier <span class="ref-hero__gradient">stehen</span>
+            </h2>
+            <p class="ref-cta__sub">
+                Wir freuen uns auf die Zusammenarbeit und zeigen Ihnen, wie das IBC Ihr Unternehmen mit frischen Ideen voranbringt.
+            </p>
+            <div class="ref-cta__btns">
+                <a href="kontakt.html" class="ethereal-button btn-shimmer">
+                    <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                    Jetzt Projekt starten
+                </a>
+                <a href="fuer-unternehmen.html" class="ref-cta__ghost">
+                    <i class="fa-solid fa-building" aria-hidden="true"></i>
+                    Für Unternehmen
                 </a>
             </div>
         </div>

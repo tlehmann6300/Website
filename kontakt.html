@@ -80,6 +80,8 @@
     <link href="css/new-navbar.css" rel="stylesheet">
     <link href="css/ibc-design-v3.css" rel="stylesheet">
     <link href="css/ibc-buttons.css" rel="stylesheet">
+    <link href="css/ibc-updates-2025.css" rel="stylesheet">
+    <link href="css/ibc-design-v2.css" rel="stylesheet">
     <link href="css/kontakt-v3.css" rel="stylesheet">
     <link href="css/page-redesign.css" rel="stylesheet">
 </head>
@@ -116,7 +118,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- Utilities -->
+            <!-- Utilities (Theme + Sprache) — auf Mobile absolut zentriert -->
             <div class="nav-utilities">
                 <div class="theme-toggle" id="themeToggle" title="Theme wechseln">
                     <div class="theme-toggle-ball"></div>
@@ -135,11 +137,12 @@
                         <div class="lang-option" data-lang="en">🇬🇧 English</div>
                     </div>
                 </div>
-                <div class="mobile-toggle" id="mobileToggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+            </div>
+            <!-- Hamburger — ganz rechts auf Mobile -->
+            <div class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </nav>
@@ -202,473 +205,494 @@
     
     <main id="main-content" tabindex="-1">
 
-        <!-- ═══════════════════════════════════════════════════════
-             HERO
-        ═══════════════════════════════════════════════════════ -->
-        <section class="kontakt-hero" id="kontakt-hero" aria-label="Kontakt Header">
-            <div class="k-hero-orb k-hero-orb--1" aria-hidden="true"></div>
-            <div class="k-hero-orb k-hero-orb--2" aria-hidden="true"></div>
-            <div class="k-hero-orb k-hero-orb--3" aria-hidden="true"></div>
-            <div class="k-hero-orb k-hero-orb--4" aria-hidden="true"></div>
-
-            <div class="kontakt-hero__inner">
-                <div class="kontakt-hero__eyebrow" aria-hidden="true">
-                    <i class="fas fa-envelope"></i>
-                    <span>Kontakt</span>
-                </div>
-
-                <h1 class="kontakt-hero__title" data-i18n="contact-hero-title">
-                    Sprechen Sie <span class="k-gradient">uns an</span>
-                </h1>
-
-                <p class="kontakt-hero__sub" data-i18n="contact-hero-subtitle">
-                    Wir freuen uns auf Ihre Nachricht und melden uns schnell zurück.
-                </p>
-
-                <div class="kontakt-hero__badges" aria-hidden="true">
-                    <span class="kontakt-hero__badge">
-                        <i class="fas fa-clock"></i> Antwort in 24h
-                    </span>
-                    <span class="kontakt-hero__badge">
-                        <i class="fas fa-shield-alt"></i> Sicher &amp; verschlüsselt
-                    </span>
-                    <span class="kontakt-hero__badge">
-                        <i class="fas fa-heart"></i> Kostenlose Beratung
-                    </span>
-                </div>
+<!-- ════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section class="kn-hero" id="kontakt-hero" aria-label="Kontakt Header">
+    <div class="kn-hero__bg" aria-hidden="true">
+        <div class="kn-hero__grid"></div>
+        <div class="kn-hero__orb kn-hero__orb--1"></div>
+        <div class="kn-hero__orb kn-hero__orb--2"></div>
+        <div class="kn-hero__orb kn-hero__orb--3"></div>
+    </div>
+    <div class="container">
+        <div class="kn-hero__inner">
+            <span class="kn-hero__eyebrow fade-in-up">
+                <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                Kontakt aufnehmen
+            </span>
+            <h1 class="kn-hero__title fade-in-up" style="transition-delay:.1s" data-i18n="contact-hero-title">
+                Sprechen Sie <span class="kn-hero__gradient">uns an</span>
+            </h1>
+            <p class="kn-hero__sub fade-in-up" style="transition-delay:.2s" data-i18n="contact-hero-subtitle">
+                Wir freuen uns auf Ihre Nachricht und melden uns schnell zurück — kostenlos, unverbindlich und mit echtem Mehrwert.
+            </p>
+            <div class="kn-hero__actions fade-in-up" style="transition-delay:.3s">
+                <a href="#kontakt-main" class="ethereal-button btn-shimmer">
+                    <i class="fas fa-arrow-down" aria-hidden="true"></i>
+                    Jetzt schreiben
+                </a>
+                <a href="fuer-unternehmen.html" class="kn-hero__ghost-btn">
+                    <i class="fas fa-building" aria-hidden="true"></i>
+                    Für Unternehmen
+                </a>
             </div>
-
-            <a href="#kontakt-main" class="kontakt-hero__scroll" aria-label="Zum Formular scrollen">
-                <span>Scroll</span>
-                <div class="kontakt-hero__scroll-line"></div>
-            </a>
-        </section>
-
-        <!-- ═══════════════════════════════════════════════════════
-             STATS STRIP
-        ═══════════════════════════════════════════════════════ -->
-        <div class="k-stats-strip" aria-hidden="true">
-            <div class="k-stats-inner k-stagger">
-                <div class="k-stat">
-                    <span class="k-stat__num">25+</span>
-                    <span class="k-stat__label">Jahre Erfahrung</span>
-                </div>
-                <div class="k-stat">
-                    <span class="k-stat__num">300+</span>
-                    <span class="k-stat__label">Projekte</span>
-                </div>
-                <div class="k-stat">
-                    <span class="k-stat__num">24h</span>
-                    <span class="k-stat__label">Antwortzeit</span>
-                </div>
-                <div class="k-stat">
-                    <span class="k-stat__num">100%</span>
-                    <span class="k-stat__label">Kostenlos</span>
-                </div>
+            <div class="kn-hero__badges fade-in-up" style="transition-delay:.4s" aria-label="Vorteile">
+                <span class="kn-hero__badge"><i class="fas fa-clock" aria-hidden="true"></i> Antwort in 24h</span>
+                <span class="kn-hero__badge"><i class="fas fa-shield-alt" aria-hidden="true"></i> Sicher &amp; verschlüsselt</span>
+                <span class="kn-hero__badge"><i class="fas fa-heart" aria-hidden="true"></i> Kostenlos &amp; unverbindlich</span>
             </div>
         </div>
+    </div>
+    <a href="#kontakt-main" class="kn-hero__scroll" aria-label="Zum Formular scrollen">
+        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+    </a>
+</section>
 
-        <!-- ═══════════════════════════════════════════════════════
-             MAIN GRID  ·  Form LEFT · Info RIGHT
-        ═══════════════════════════════════════════════════════ -->
-        <section class="kontakt-main" id="kontakt-main">
-            <div class="container">
-                <div class="kontakt-grid">
+<!-- ════════════════════════════════════════════
+     STATS BAND
+════════════════════════════════════════════ -->
+<div class="kn-stats" aria-label="Kennzahlen">
+    <div class="container">
+        <div class="kn-stats__inner k-stagger">
+            <div class="kn-stat">
+                <span class="kn-stat__num">25+</span>
+                <span class="kn-stat__label">Jahre Erfahrung</span>
+            </div>
+            <div class="kn-stat__div" aria-hidden="true"></div>
+            <div class="kn-stat">
+                <span class="kn-stat__num">300+</span>
+                <span class="kn-stat__label">Projekte</span>
+            </div>
+            <div class="kn-stat__div" aria-hidden="true"></div>
+            <div class="kn-stat">
+                <span class="kn-stat__num">24h</span>
+                <span class="kn-stat__label">Antwortzeit</span>
+            </div>
+            <div class="kn-stat__div" aria-hidden="true"></div>
+            <div class="kn-stat">
+                <span class="kn-stat__num">100%</span>
+                <span class="kn-stat__label">Kostenlos</span>
+            </div>
+        </div>
+    </div>
+</div>
 
-                    <!-- ══ LEFT: Form Card ══════════════════════════ -->
-                    <div class="k-form-card k-reveal k-reveal-left">
+<!-- ════════════════════════════════════════════
+     MAIN — Form + Info side by side
+════════════════════════════════════════════ -->
+<section class="kn-main" id="kontakt-main" aria-labelledby="kn-form-heading">
+    <div class="container">
 
-                        <div class="k-form-card__header">
-                            <div class="k-form-card__eyebrow" aria-hidden="true">Kontaktformular</div>
-                            <h2 class="k-form-card__heading" data-i18n="contact-form-heading">Schreiben Sie uns</h2>
-                            <p class="k-form-card__sub">Nutzen Sie das Formular für Projektanfragen, Kooperationen oder allgemeine Anliegen.</p>
+        <!-- Section header -->
+        <div class="kn-main__header fade-in-up">
+            <span class="section-chip"><i class="fas fa-envelope" aria-hidden="true"></i> Schreiben Sie uns</span>
+            <h2 id="kn-form-heading" class="ibc-heading">
+                Ihr direkter <span class="text-gradient">Draht zu uns</span>
+            </h2>
+            <p class="section-intro-text">
+                Nutzen Sie das Formular für Projektanfragen, Kooperationen oder allgemeine Anliegen.
+            </p>
+        </div>
+
+        <div class="kn-grid">
+
+            <!-- ═══ LEFT: Form card ═══ -->
+            <article class="kn-form-card k-reveal k-reveal-left" aria-label="Kontaktformular">
+
+                <!-- Decorative top-bar -->
+                <div class="kn-form-card__bar" aria-hidden="true"></div>
+
+                <div class="kn-form-card__body">
+
+                    <form id="contact-form" novalidate>
+                        <div id="form-status-message" class="form-status-message" role="alert" aria-live="polite"></div>
+
+                        <!-- Name + Email row -->
+                        <div class="k-form-row">
+                            <div class="k-field">
+                                <input type="text" class="k-field__input" id="name" name="name"
+                                       placeholder=" " required autocomplete="name"
+                                       aria-describedby="name-error">
+                                <label class="k-field__label" for="name">
+                                    <span data-i18n="contact-form-name">Name</span>
+                                    <span class="k-field__required" aria-hidden="true">*</span>
+                                </label>
+                                <i class="fas fa-check k-field__valid-icon" aria-hidden="true"></i>
+                                <div class="k-field__error invalid-feedback" id="name-error" role="alert" data-i18n="contact-form-name-error">Bitte geben Sie Ihren Namen ein.</div>
+                            </div>
+                            <div class="k-field">
+                                <input type="email" class="k-field__input" id="email" name="email"
+                                       placeholder=" " required autocomplete="email"
+                                       aria-describedby="email-error">
+                                <label class="k-field__label" for="email">
+                                    <span data-i18n="contact-form-email">E-Mail</span>
+                                    <span class="k-field__required" aria-hidden="true">*</span>
+                                </label>
+                                <i class="fas fa-check k-field__valid-icon" aria-hidden="true"></i>
+                                <div class="k-field__error invalid-feedback" id="email-error" role="alert" data-i18n="contact-form-email-error">Bitte geben Sie eine gültige E-Mail-Adresse ein.</div>
+                            </div>
                         </div>
 
-                        <form id="contact-form" novalidate>
-                            <div id="form-status-message" class="form-status-message" role="alert" aria-live="polite"></div>
+                        <!-- Subject -->
+                        <div class="k-field">
+                            <input type="text" class="k-field__input" id="subject-freitext" name="subject"
+                                   placeholder=" " required maxlength="200" autocomplete="off"
+                                   aria-describedby="subject-error">
+                            <label class="k-field__label" for="subject-freitext">
+                                <span data-i18n="contact-form-subject">Betreff</span>
+                                <span class="k-field__required" aria-hidden="true">*</span>
+                            </label>
+                            <span class="k-field__counter" id="subject-counter" aria-hidden="true">0/200</span>
+                            <i class="fas fa-check k-field__valid-icon" aria-hidden="true"></i>
+                            <div class="k-field__error invalid-feedback" id="subject-error" role="alert" data-i18n="contact-form-subject-error">Bitte geben Sie einen Betreff ein.</div>
+                        </div>
 
-                            <!-- Name + Email row -->
-                            <div class="k-form-row">
-                                <div class="k-field">
-                                    <input type="text" class="k-field__input" id="name" name="name"
-                                           placeholder=" " required autocomplete="name"
-                                           aria-describedby="name-error">
-                                    <label class="k-field__label" for="name">
-                                        <span data-i18n="contact-form-name">Name</span>
-                                        <span class="k-field__required" aria-hidden="true">*</span>
-                                    </label>
-                                    <i class="fas fa-check k-field__valid-icon" aria-hidden="true"></i>
-                                    <div class="k-field__error invalid-feedback" id="name-error" role="alert" data-i18n="contact-form-name-error">Bitte geben Sie Ihren Namen ein.</div>
+                        <!-- Message -->
+                        <div class="k-field k-field--textarea">
+                            <textarea class="k-field__textarea" id="message" name="message" rows="5"
+                                      placeholder=" " required
+                                      aria-describedby="message-error"></textarea>
+                            <label class="k-field__label" for="message">
+                                <span data-i18n="contact-form-message">Nachricht</span>
+                                <span class="k-field__required" aria-hidden="true">*</span>
+                            </label>
+                            <i class="fas fa-check k-field__valid-icon" aria-hidden="true"></i>
+                            <div class="k-field__error invalid-feedback" id="message-error" role="alert" data-i18n="contact-form-message-error">Bitte geben Sie eine Nachricht ein.</div>
+                        </div>
+
+                        <p class="k-required-note"><span>*</span> <span data-i18n="contact-form-required">Erforderliches Feld</span></p>
+
+                        <!-- Privacy checkbox -->
+                        <div class="k-check">
+                            <input type="checkbox" class="k-check__input" id="privacy-checkbox" name="privacy_accepted" required>
+                            <label class="k-check__label" for="privacy-checkbox">
+                                <span data-i18n="form-privacy-label">Ich akzeptiere die allgemeinen</span>
+                                <a href="datenschutzerklaerung.html" data-i18n="form-privacy-link"> Datenschutzbestimmungen</a><span class="k-field__required" aria-hidden="true">*</span>
+                                <div class="k-check__error invalid-feedback" role="alert" data-i18n="form-privacy-error">Bitte akzeptieren Sie die Datenschutzbestimmungen.</div>
+                            </label>
+                        </div>
+
+                        <!-- HubSpot consent -->
+                        <div class="k-check hubspot-consent-section">
+                            <input type="checkbox" class="k-check__input" id="hubspot-consent-checkbox" name="hubspot_consent" aria-describedby="hubspot-consent-info">
+                            <label class="k-check__label" for="hubspot-consent-checkbox">
+                                <span data-i18n="form-hubspot-consent-label">Ich stimme zu, dass meine Daten zur Bearbeitung über HubSpot verarbeitet werden (Server in der EU). <strong>(Optional)</strong></span>
+                                <div class="k-hubspot-note" id="hubspot-consent-info">
+                                    <span data-i18n="form-hubspot-consent-info">✓ Mit Zustimmung: Bessere Nachverfolgung über unser CRM-System.<br>✗ Ohne Zustimmung: Ihre Anfrage wird nur per E-Mail versendet.</span>
                                 </div>
-                                <div class="k-field">
-                                    <input type="email" class="k-field__input" id="email" name="email"
-                                           placeholder=" " required autocomplete="email"
-                                           aria-describedby="email-error">
-                                    <label class="k-field__label" for="email">
-                                        <span data-i18n="contact-form-email">E-Mail</span>
-                                        <span class="k-field__required" aria-hidden="true">*</span>
-                                    </label>
-                                    <i class="fas fa-check k-field__valid-icon" aria-hidden="true"></i>
-                                    <div class="k-field__error invalid-feedback" id="email-error" role="alert" data-i18n="contact-form-email-error">Bitte geben Sie eine gültige E-Mail-Adresse ein.</div>
-                                </div>
+                            </label>
+                        </div>
+
+                        <!-- reCAPTCHA note -->
+                        <div class="k-recaptcha-note" id="k-recaptcha-note" role="note">
+                            <span class="k-recaptcha-note__icon" aria-hidden="true"><i class="fas fa-shield-alt"></i></span>
+                            <div>
+                                <strong>Spamschutz erforderlich</strong>
+                                Um Spam zu vermeiden, verwendet dieses Formular Google reCAPTCHA. Durch das Absenden stimmen Sie der Nutzung zu.
                             </div>
+                        </div>
 
-                            <!-- Subject – free text -->
-                            <div class="k-field">
-                                <input type="text" class="k-field__input" id="subject-freitext" name="subject"
-                                       placeholder=" " required maxlength="200" autocomplete="off"
-                                       aria-describedby="subject-error">
-                                <label class="k-field__label" for="subject-freitext">
-                                    <span data-i18n="contact-form-subject">Betreff</span>
-                                    <span class="k-field__required" aria-hidden="true">*</span>
-                                </label>
-                                <span class="k-field__counter" id="subject-counter" aria-hidden="true">0/200</span>
-                                <i class="fas fa-check k-field__valid-icon" aria-hidden="true"></i>
-                                <div class="k-field__error invalid-feedback" id="subject-error" role="alert" data-i18n="contact-form-subject-error">Bitte geben Sie einen Betreff ein.</div>
-                            </div>
+                        <!-- reCAPTCHA consent notice -->
+                        <div id="recaptcha-consent-notice" role="alert">
+                            <i class="fas fa-cookie-bite me-1" aria-hidden="true"></i>
+                            <span data-i18n="form-recaptcha-consent-notice">Bitte aktivieren Sie den Spamschutz in den Cookie-Einstellungen.</span>
+                            <button type="button" id="open-consent-settings-btn" class="btn btn-link btn-sm p-0 ms-1">
+                                <span data-i18n="form-open-consent-settings">Cookie-Einstellungen öffnen</span>
+                            </button>
+                        </div>
 
-                            <!-- Message -->
-                            <div class="k-field k-field--textarea">
-                                <textarea class="k-field__textarea" id="message" name="message" rows="5"
-                                          placeholder=" " required
-                                          aria-describedby="message-error"></textarea>
-                                <label class="k-field__label" for="message">
-                                    <span data-i18n="contact-form-message">Nachricht</span>
-                                    <span class="k-field__required" aria-hidden="true">*</span>
-                                </label>
-                                <i class="fas fa-check k-field__valid-icon" aria-hidden="true"></i>
-                                <div class="k-field__error invalid-feedback" id="message-error" role="alert" data-i18n="contact-form-message-error">Bitte geben Sie eine Nachricht ein.</div>
-                            </div>
+                        <!-- reCAPTCHA widget -->
+                        <div class="recaptcha-wrapper text-center mb-3">
+                            <div class="g-recaptcha"
+                                 data-sitekey="6LfzQyUsAAAAALhJXnwV810IjeSKTW4WxPyA7xly"
+                                 data-callback="onRecaptchaComplete"
+                                 data-expired-callback="onRecaptchaExpired"></div>
+                        </div>
 
-                            <p class="k-required-note"><span>*</span> <span data-i18n="contact-form-required">Erforderliches Feld</span></p>
-
-                            <!-- Privacy checkbox -->
-                            <div class="k-check">
-                                <input type="checkbox" class="k-check__input" id="privacy-checkbox" name="privacy_accepted" required>
-                                <label class="k-check__label" for="privacy-checkbox">
-                                    <span data-i18n="form-privacy-label">Ich akzeptiere die allgemeinen</span>
-                                    <a href="datenschutzerklaerung.html" data-i18n="form-privacy-link"> Datenschutzbestimmungen</a><span class="k-field__required" aria-hidden="true">*</span>
-                                    <div class="k-check__error invalid-feedback" role="alert" data-i18n="form-privacy-error">Bitte akzeptieren Sie die Datenschutzbestimmungen.</div>
-                                </label>
-                            </div>
-
-                            <!-- HubSpot consent -->
-                            <div class="k-check hubspot-consent-section">
-                                <input type="checkbox" class="k-check__input" id="hubspot-consent-checkbox" name="hubspot_consent" aria-describedby="hubspot-consent-info">
-                                <label class="k-check__label" for="hubspot-consent-checkbox">
-                                    <span data-i18n="form-hubspot-consent-label">Ich stimme zu, dass meine Daten zur Bearbeitung über HubSpot verarbeitet werden (Server in der EU). <strong>(Optional)</strong></span>
-                                    <div class="k-hubspot-note" id="hubspot-consent-info">
-                                        <span data-i18n="form-hubspot-consent-info">✓ Mit Zustimmung: Bessere Nachverfolgung über unser CRM-System.<br>✗ Ohne Zustimmung: Ihre Anfrage wird nur per E-Mail versendet.</span>
-                                    </div>
-                                </label>
-                            </div>
-
-                            <!-- reCAPTCHA info note — shown until captcha is completed -->
-                            <div class="k-recaptcha-note" id="k-recaptcha-note" role="note">
-                                <span class="k-recaptcha-note__icon" aria-hidden="true"><i class="fas fa-shield-alt"></i></span>
-                                <div>
-                                    <strong>Spamschutz erforderlich</strong>
-                                    Um Spam zu vermeiden, verwendet dieses Formular Google reCAPTCHA. Durch das Absenden des Formulars stimmen Sie der Nutzung von reCAPTCHA zu.
-                                </div>
-                            </div>
-
-                            <!-- reCAPTCHA consent notice (shown only when security cookies are blocked) -->
-                            <div id="recaptcha-consent-notice" role="alert">
-                                <i class="fas fa-cookie-bite me-1" aria-hidden="true"></i>
-                                <span data-i18n="form-recaptcha-consent-notice">Bitte aktivieren Sie den Spamschutz in den Cookie-Einstellungen.</span>
-                                <button type="button" id="open-consent-settings-btn" class="btn btn-link btn-sm p-0 ms-1">
-                                    <span data-i18n="form-open-consent-settings">Cookie-Einstellungen öffnen</span>
-                                </button>
-                            </div>
-
-                            <!-- reCAPTCHA -->
-                            <div class="recaptcha-wrapper text-center mb-3">
-                                <div class="g-recaptcha"
-                                     data-sitekey="6LfzQyUsAAAAALhJXnwV810IjeSKTW4WxPyA7xly"
-                                     data-callback="onRecaptchaComplete"
-                                     data-expired-callback="onRecaptchaExpired"></div>
-                            </div>
-
-                            <!-- Actions -->
-                            <div class="k-form-actions">
-                                <button id="contact-send-btn" class="send-button" type="submit">
-                                    <span class="btn-content">
-                                        <span class="btn-text" data-i18n="form.button.send">Senden</span>
-                                        <span class="icon-wrapper" aria-hidden="true">
-                                            <svg class="icon-svg icon-spinner" viewBox="0 0 24 24">
-                                                <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
-                                                <path class="spinner-rotate" d="M12 2a10 10 0 0 1 10 10"></path>
-                                            </svg>
-                                            <svg class="icon-svg icon-check" viewBox="0 0 24 24">
-                                                <path d="M20 6L9 17l-5-5"></path>
-                                            </svg>
-                                            <svg class="icon-svg icon-cross" viewBox="0 0 24 24">
-                                                <path d="M18 6L6 18M6 6l12 12"></path>
-                                            </svg>
-                                        </span>
+                        <!-- Actions -->
+                        <div class="k-form-actions">
+                            <button id="contact-send-btn" class="send-button" type="submit">
+                                <span class="btn-content">
+                                    <span class="btn-text" data-i18n="form.button.send">Senden</span>
+                                    <span class="icon-wrapper" aria-hidden="true">
+                                        <svg class="icon-svg icon-spinner" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                                            <path class="spinner-rotate" d="M12 2a10 10 0 0 1 10 10"></path>
+                                        </svg>
+                                        <svg class="icon-svg icon-check" viewBox="0 0 24 24">
+                                            <path d="M20 6L9 17l-5-5"></path>
+                                        </svg>
+                                        <svg class="icon-svg icon-cross" viewBox="0 0 24 24">
+                                            <path d="M18 6L6 18M6 6l12 12"></path>
+                                        </svg>
                                     </span>
-                                </button>
-                                <div id="statusMessage" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
-                                <button type="button" class="btn-reset-form" id="open-modal-btn-desktop" aria-label="Formular zurücksetzen">
-                                    <i class="fas fa-redo-alt icon" aria-hidden="true"></i>
-                                    <span data-i18n="contact-form-reset">Zurücksetzen</span>
-                                </button>
+                                </span>
+                            </button>
+                            <div id="statusMessage" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+                            <button type="button" class="btn-reset-form" id="open-modal-btn-desktop" aria-label="Formular zurücksetzen">
+                                <i class="fas fa-redo-alt icon" aria-hidden="true"></i>
+                                <span data-i18n="contact-form-reset">Zurücksetzen</span>
+                            </button>
+                        </div>
+
+                        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response-input">
+                    </form>
+
+                </div><!-- /.kn-form-card__body -->
+            </article><!-- /.kn-form-card -->
+
+            <!-- ═══ RIGHT: Info panel ═══ -->
+            <aside class="kn-info-panel k-reveal k-reveal-right" aria-label="Kontaktinformationen">
+
+                <!-- Dark glass info card -->
+                <div class="kn-info-card">
+                    <div class="kn-info-card__bg" aria-hidden="true">
+                        <div class="kn-info-card__orb kn-info-card__orb--1"></div>
+                        <div class="kn-info-card__orb kn-info-card__orb--2"></div>
+                    </div>
+
+                    <div class="kn-info-card__inner">
+                        <div class="kn-info-card__eyebrow" aria-hidden="true">
+                            <i class="fas fa-location-dot"></i> Kontaktdaten
+                        </div>
+                        <h2 class="kn-info-card__title" data-i18n="contact-info-heading">
+                            So erreichen<br>Sie uns
+                        </h2>
+                        <p class="kn-info-card__sub">
+                            Fragen, Projektideen oder Kooperationswünsche — wir sind für Sie da.
+                        </p>
+
+                        <!-- Info items -->
+                        <div class="kn-info-items k-stagger">
+
+                            <div class="kn-info-item">
+                                <div class="kn-info-item__icon" aria-hidden="true">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="kn-info-item__body">
+                                    <span class="kn-info-item__label" data-i18n="contact-info-address-label">Adresse</span>
+                                    <div class="kn-info-item__value" data-i18n="contact-info-address-text">
+                                        Robert-Gerwig-Platz 1, Geb. I<br>78120 Furtwangen i.Schw.
+                                    </div>
+                                    <button class="k-copy-btn kn-copy-btn" data-copy-text="Robert-Gerwig-Platz 1, Gebäude I, 78120 Furtwangen im Schwarzwald" aria-label="Adresse kopieren">
+                                        <i class="fas fa-copy icon-copy" aria-hidden="true"></i>
+                                        <i class="fas fa-check icon-check" aria-hidden="true"></i>
+                                        <span>Kopieren</span>
+                                    </button>
+                                </div>
                             </div>
 
-                            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response-input">
-                        </form>
-
-                    </div><!-- /.k-form-card -->
-
-                    <!-- ══ RIGHT: Info Panel ════════════════════════ -->
-                    <div class="k-info-panel k-reveal k-reveal-right">
-
-                        <!-- Dark glass card -->
-                        <div class="k-info-dark-card">
-                            <div class="k-info-dark-card__inner">
-
-                                <div class="k-info-dark-card__label" aria-hidden="true">Kontaktdaten</div>
-                                <h2 class="k-info-dark-card__title" data-i18n="contact-info-heading">
-                                    So erreichen<br>Sie uns
-                                </h2>
-                                <p class="k-info-dark-card__sub">
-                                    Haben Sie Fragen oder möchten ein Projekt besprechen?<br>Wir sind für Sie da.
-                                </p>
-
-                                <!-- Info items -->
-                                <div class="k-info-items k-stagger">
-
-                                    <!-- Address -->
-                                    <div class="k-info-item">
-                                        <div class="k-info-item__icon" aria-hidden="true">
-                                            <i class="fas fa-map-marker-alt"></i>
-                                        </div>
-                                        <div class="k-info-item__content">
-                                            <span class="k-info-item__label" data-i18n="contact-info-address-label">Adresse</span>
-                                            <div class="k-info-item__value" data-i18n="contact-info-address-text">
-                                                Robert-Gerwig-Platz 1, Geb. I<br>78120 Furtwangen i.Schw.
-                                            </div>
-                                            <button class="k-copy-btn" data-copy-text="Robert-Gerwig-Platz 1, Gebäude I, 78120 Furtwangen im Schwarzwald" aria-label="Adresse kopieren">
-                                                <i class="fas fa-copy icon-copy" aria-hidden="true"></i>
-                                                <i class="fas fa-check icon-check" aria-hidden="true"></i>
-                                                Kopieren
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <!-- Email -->
-                                    <div class="k-info-item">
-                                        <div class="k-info-item__icon" aria-hidden="true">
-                                            <i class="fas fa-envelope"></i>
-                                        </div>
-                                        <div class="k-info-item__content">
-                                            <span class="k-info-item__label" data-i18n="contact-info-email-label">E-Mail</span>
-                                            <div class="k-info-item__value">
-                                                <a href="mailto:vorstand@business-consulting.de" id="emailAddress">vorstand@<br>business-consulting.de</a>
-                                            </div>
-                                            <button class="k-copy-btn" data-copy-text="vorstand@business-consulting.de" aria-label="E-Mail kopieren">
-                                                <i class="fas fa-copy icon-copy" aria-hidden="true"></i>
-                                                <i class="fas fa-check icon-check" aria-hidden="true"></i>
-                                                Kopieren
-                                            </button>
-                                        </div>
-                                    </div>
-
-                                    <!-- Social Media -->
-                                    <div class="k-info-item">
-                                        <div class="k-info-item__icon" aria-hidden="true">
-                                            <i class="fas fa-share-alt"></i>
-                                        </div>
-                                        <div class="k-info-item__content">
-                                            <span class="k-info-item__label" data-i18n="contact-info-social-label">Folgen Sie uns</span>
-                                            <div class="k-social-row">
-                                                <a href="https://www.facebook.com/IBC.Furtwangen/" data-link-id="link-facebook" class="k-social-btn k-social-btn--fb" target="_blank" rel="noopener noreferrer" aria-label="IBC auf Facebook (öffnet in neuem Tab)">
-                                                    <span class="k-social-btn__icon"><i class="fab fa-facebook-f" aria-hidden="true"></i></span>
-                                                    <span class="k-social-btn__text">
-                                                        <span class="k-social-btn__label">Besuchen Sie uns auf</span>
-                                                        <span class="k-social-btn__name">Facebook</span>
-                                                    </span>
-                                                    <i class="fas fa-arrow-right k-social-btn__arrow" aria-hidden="true"></i>
-                                                </a>
-                                                <a href="https://www.instagram.com/ibc_e.v/" data-link-id="link-instagram" class="k-social-btn k-social-btn--ig" target="_blank" rel="noopener noreferrer" aria-label="IBC auf Instagram (öffnet in neuem Tab)">
-                                                    <span class="k-social-btn__icon"><i class="fab fa-instagram" aria-hidden="true"></i></span>
-                                                    <span class="k-social-btn__text">
-                                                        <span class="k-social-btn__label">Folgen Sie uns auf</span>
-                                                        <span class="k-social-btn__name">Instagram</span>
-                                                    </span>
-                                                    <i class="fas fa-arrow-right k-social-btn__arrow" aria-hidden="true"></i>
-                                                </a>
-                                                <a href="https://www.linkedin.com/company/institut-f%C3%BCr-business-consulting-e-v/" data-link-id="link-linkedin" class="k-social-btn k-social-btn--li" target="_blank" rel="noopener noreferrer" aria-label="IBC auf LinkedIn (öffnet in neuem Tab)">
-                                                    <span class="k-social-btn__icon"><i class="fab fa-linkedin-in" aria-hidden="true"></i></span>
-                                                    <span class="k-social-btn__text">
-                                                        <span class="k-social-btn__label">Vernetzen Sie sich auf</span>
-                                                        <span class="k-social-btn__name">LinkedIn</span>
-                                                    </span>
-                                                    <i class="fas fa-arrow-right k-social-btn__arrow" aria-hidden="true"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div><!-- /.k-info-items -->
-
-                                <div class="k-info-divider"></div>
-
-                                <!-- Availability -->
-                                <div class="k-availability">
-                                    <span class="k-availability__dot" aria-hidden="true"></span>
-                                    <span>Wir antworten in der Regel innerhalb von <strong>24 Stunden</strong>.</span>
+                            <div class="kn-info-item">
+                                <div class="kn-info-item__icon" aria-hidden="true">
+                                    <i class="fas fa-envelope"></i>
                                 </div>
-
-                            </div><!-- /.k-info-dark-card__inner -->
-                        </div><!-- /.k-info-dark-card -->
-
-                    </div><!-- /.k-info-panel -->
-
-                </div><!-- /.kontakt-grid -->
-            </div><!-- /.container -->
-        </section><!-- /.kontakt-main -->
-
-        <!-- ═══════════════════════════════════════════════════════
-             MAP
-        ═══════════════════════════════════════════════════════ -->
-        <section class="k-map-section">
-            <div class="k-map-banner">
-                <div class="k-map-banner__inner">
-                    <div class="container">
-                        <div class="k-map-grid">
-
-                            <!-- Left: address + directions -->
-                            <div class="k-map-left k-reveal">
-                                <div class="k-map-eyebrow" aria-hidden="true">Standort</div>
-                                <h2 class="k-map-title">Finden Sie uns</h2>
-
-                                <div class="k-map-address">
-                                    <div class="k-map-address-row">
-                                        <i class="fas fa-university" aria-hidden="true"></i>
-                                        <span>Hochschule Furtwangen University</span>
+                                <div class="kn-info-item__body">
+                                    <span class="kn-info-item__label" data-i18n="contact-info-email-label">E-Mail</span>
+                                    <div class="kn-info-item__value">
+                                        <a href="mailto:vorstand@business-consulting.de" id="emailAddress" class="kn-email-link">vorstand@business-consulting.de</a>
                                     </div>
-                                    <div class="k-map-address-row">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                        <span>Robert-Gerwig-Platz 1, Gebäude I<br>78120 Furtwangen im Schwarzwald</span>
-                                    </div>
-                                    <div class="k-map-address-row">
-                                        <i class="fas fa-door-open" aria-hidden="true"></i>
-                                        <span>Büro I 1.23 · 1. Obergeschoss</span>
-                                    </div>
-                                    <div class="k-map-address-row">
-                                        <i class="fas fa-car" aria-hidden="true"></i>
-                                        <span>Parkplatz am Campus verfügbar</span>
-                                    </div>
+                                    <button class="k-copy-btn kn-copy-btn" data-copy-text="vorstand@business-consulting.de" aria-label="E-Mail kopieren">
+                                        <i class="fas fa-copy icon-copy" aria-hidden="true"></i>
+                                        <i class="fas fa-check icon-check" aria-hidden="true"></i>
+                                        <span>Kopieren</span>
+                                    </button>
                                 </div>
+                            </div>
 
-                                <a href="https://maps.google.com/?q=Robert-Gerwig-Platz+1,+78120+Furtwangen"
-                                   class="k-map-directions-btn"
+                        </div><!-- /.kn-info-items -->
+
+                        <!-- Divider -->
+                        <div class="kn-info-divider" aria-hidden="true"></div>
+
+                        <!-- Social -->
+                        <div class="kn-social-section">
+                            <span class="kn-social__label" data-i18n="contact-info-social-label">Folgen Sie uns</span>
+                            <div class="kn-social-row">
+                                <a href="https://www.facebook.com/IBC.Furtwangen/" data-link-id="link-facebook"
+                                   class="kn-social-btn kn-social-btn--fb"
                                    target="_blank" rel="noopener noreferrer"
-                                   aria-label="Route in Google Maps öffnen">
-                                    <i class="fas fa-route" aria-hidden="true"></i>
-                                    Route planen
-                                    <i class="fas fa-external-link-alt" style="font-size:.75em;opacity:.7;" aria-hidden="true"></i>
+                                   aria-label="IBC auf Facebook (öffnet in neuem Tab)">
+                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                                    <span>Facebook</span>
+                                </a>
+                                <a href="https://www.instagram.com/ibc_e.v/" data-link-id="link-instagram"
+                                   class="kn-social-btn kn-social-btn--ig"
+                                   target="_blank" rel="noopener noreferrer"
+                                   aria-label="IBC auf Instagram (öffnet in neuem Tab)">
+                                    <i class="fab fa-instagram" aria-hidden="true"></i>
+                                    <span>Instagram</span>
+                                </a>
+                                <a href="https://www.linkedin.com/company/institut-f%C3%BCr-business-consulting-e-v/" data-link-id="link-linkedin"
+                                   class="kn-social-btn kn-social-btn--li"
+                                   target="_blank" rel="noopener noreferrer"
+                                   aria-label="IBC auf LinkedIn (öffnet in neuem Tab)">
+                                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+                                    <span>LinkedIn</span>
                                 </a>
                             </div>
+                        </div>
 
-                            <!-- Right: map with consent overlay -->
-                            <div class="k-map-right k-reveal">
-                                <div class="map-placeholder" id="map-placeholder">
-                                    <div class="map-placeholder-background"></div>
-                                    <div class="map-consent-content">
-                                        <i class="fas fa-map-marked-alt map-consent-icon" aria-hidden="true"></i>
-                                        <h3 class="map-consent-heading" data-i18n="map-load-heading">Karte laden</h3>
-                                        <p class="small mb-3">
-                                            <span data-i18n="map-consent-text-start">Mit dem Laden der Karte akzeptieren Sie die</span>
-                                            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-i18n="map-privacy-link-text">Datenschutzerklärung von Google</a>.
-                                            <span data-i18n="map-consent-text-end">Es werden Daten an Google übermittelt.</span>
-                                        </p>
-                                        <button id="load-map-btn" class="btn btn-ibc" data-i18n="map-load-button">
-                                            Karte einmalig laden
-                                        </button>
-                                    </div>
-                                </div>
-                                <div id="map-container"></div>
-                            </div>
+                        <!-- Divider -->
+                        <div class="kn-info-divider" aria-hidden="true"></div>
 
-                        </div><!-- /.k-map-grid -->
-                    </div><!-- /.container -->
-                </div><!-- /.k-map-banner__inner -->
-            </div><!-- /.k-map-banner -->
-        </section>
-        <script src="js/google-maps-2click.js"></script>
+                        <!-- Availability indicator -->
+                        <div class="kn-availability">
+                            <span class="kn-availability__dot" aria-hidden="true"></span>
+                            <span>Wir antworten in der Regel innerhalb von <strong>24 Stunden</strong>.</span>
+                        </div>
 
-        <!-- Scroll-reveal for k-reveal / k-stagger elements -->
-        <script>
-        (function(){
-            if (!window.IntersectionObserver) {
-                document.querySelectorAll('.k-reveal,.k-stagger').forEach(function(e){
-                    e.classList.add('revealed');
-                });
-                return;
-            }
-            // Individual reveals
-            var revEls = document.querySelectorAll('.k-reveal');
-            var revIO = new IntersectionObserver(function(entries){
-                entries.forEach(function(e){
-                    if (!e.isIntersecting) return;
-                    e.target.classList.add('revealed');
-                    revIO.unobserve(e.target);
-                });
-            }, { rootMargin: '0px 0px -60px 0px', threshold: 0.07 });
-            revEls.forEach(function(el){ revIO.observe(el); });
+                    </div><!-- /.kn-info-card__inner -->
+                </div><!-- /.kn-info-card -->
 
-            // Stagger groups
-            var stagEls = document.querySelectorAll('.k-stagger');
-            var stagIO = new IntersectionObserver(function(entries){
-                entries.forEach(function(e){
-                    if (!e.isIntersecting) return;
-                    e.target.classList.add('revealed');
-                    stagIO.unobserve(e.target);
-                });
-            }, { rootMargin: '0px 0px -40px 0px', threshold: 0.06 });
-            stagEls.forEach(function(el){ stagIO.observe(el); });
-        })();
+            </aside><!-- /.kn-info-panel -->
 
-        // Character counter for subject field
-        (function(){
-            var inp = document.getElementById('subject-freitext');
-            var counter = document.getElementById('subject-counter');
-            if (!inp || !counter) return;
-            inp.addEventListener('input', function(){
-                var len = this.value.length;
-                counter.textContent = len + '/200';
-                counter.classList.toggle('warn', len >= 180);
+        </div><!-- /.kn-grid -->
+    </div><!-- /.container -->
+</section><!-- /.kn-main -->
+
+<!-- ════════════════════════════════════════════
+     MAP SECTION
+════════════════════════════════════════════ -->
+<section class="kn-map-section" aria-labelledby="kn-map-heading">
+    <div class="container">
+
+        <div class="kn-map-header fade-in-up">
+            <span class="section-chip"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Standort</span>
+            <h2 id="kn-map-heading" class="ibc-heading">
+                Finden Sie <span class="text-gradient">uns</span>
+            </h2>
+        </div>
+
+        <div class="kn-map-grid k-reveal">
+
+            <!-- Left: address details -->
+            <div class="kn-map-info">
+                <div class="kn-map-address">
+                    <div class="kn-map-address-row">
+                        <div class="kn-map-address-row__icon" aria-hidden="true">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <span>Hochschule Furtwangen University</span>
+                    </div>
+                    <div class="kn-map-address-row">
+                        <div class="kn-map-address-row__icon" aria-hidden="true">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <span>Robert-Gerwig-Platz 1, Gebäude I<br>78120 Furtwangen im Schwarzwald</span>
+                    </div>
+                    <div class="kn-map-address-row">
+                        <div class="kn-map-address-row__icon" aria-hidden="true">
+                            <i class="fas fa-door-open"></i>
+                        </div>
+                        <span>Büro I 1.23 · 1. Obergeschoss</span>
+                    </div>
+                    <div class="kn-map-address-row">
+                        <div class="kn-map-address-row__icon" aria-hidden="true">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <span>Parkplatz am Campus verfügbar</span>
+                    </div>
+                </div>
+                <a href="https://maps.google.com/?q=Robert-Gerwig-Platz+1,+78120+Furtwangen"
+                   class="kn-map-directions-btn ethereal-button btn-shimmer"
+                   target="_blank" rel="noopener noreferrer"
+                   aria-label="Route in Google Maps öffnen">
+                    <i class="fas fa-route" aria-hidden="true"></i>
+                    Route planen
+                </a>
+            </div>
+
+            <!-- Right: map embed with consent overlay -->
+            <div class="kn-map-embed">
+                <div class="map-placeholder" id="map-placeholder">
+                    <div class="map-placeholder-background"></div>
+                    <div class="map-consent-content">
+                        <div class="kn-map-consent-icon" aria-hidden="true">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3 class="map-consent-heading" data-i18n="map-load-heading">Karte laden</h3>
+                        <p class="kn-map-consent-text">
+                            <span data-i18n="map-consent-text-start">Mit dem Laden der Karte akzeptieren Sie die</span>
+                            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-i18n="map-privacy-link-text">Datenschutzerklärung von Google</a>.
+                            <span data-i18n="map-consent-text-end">Es werden Daten an Google übermittelt.</span>
+                        </p>
+                        <button id="load-map-btn" class="kn-map-load-btn" data-i18n="map-load-button">
+                            <i class="fas fa-map" aria-hidden="true"></i>
+                            Karte einmalig laden
+                        </button>
+                    </div>
+                </div>
+                <div id="map-container"></div>
+            </div>
+
+        </div><!-- /.kn-map-grid -->
+    </div><!-- /.container -->
+</section>
+
+<script src="js/google-maps-2click.js"></script>
+
+<!-- Scroll-reveal + interactivity -->
+<script>
+(function(){
+    if (!window.IntersectionObserver) {
+        document.querySelectorAll('.k-reveal,.k-stagger,.fade-in-up').forEach(function(e){
+            e.classList.add('revealed','is-visible');
+        });
+        return;
+    }
+    var revIO = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+            if (!e.isIntersecting) return;
+            e.target.classList.add('revealed');
+            revIO.unobserve(e.target);
+        });
+    }, { rootMargin: '0px 0px -60px 0px', threshold: 0.07 });
+    document.querySelectorAll('.k-reveal,.k-stagger').forEach(function(el){ revIO.observe(el); });
+
+    var fadeIO = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+            if (!e.isIntersecting) return;
+            e.target.classList.add('is-visible');
+            fadeIO.unobserve(e.target);
+        });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-in-up').forEach(function(el){ fadeIO.observe(el); });
+})();
+
+// Character counter for subject field
+(function(){
+    var inp = document.getElementById('subject-freitext');
+    var counter = document.getElementById('subject-counter');
+    if (!inp || !counter) return;
+    inp.addEventListener('input', function(){
+        var len = this.value.length;
+        counter.textContent = len + '/200';
+        counter.classList.toggle('warn', len >= 180);
+    });
+})();
+
+// Copy buttons
+(function(){
+    document.querySelectorAll('.k-copy-btn').forEach(function(btn){
+        btn.addEventListener('click', function(){
+            var text = btn.getAttribute('data-copy-text');
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(function(){
+                btn.classList.add('copied');
+                setTimeout(function(){ btn.classList.remove('copied'); }, 2000);
+            }).catch(function(){
+                var ta = document.createElement('textarea');
+                ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+                document.body.appendChild(ta); ta.select();
+                document.execCommand('copy'); document.body.removeChild(ta);
+                btn.classList.add('copied');
+                setTimeout(function(){ btn.classList.remove('copied'); }, 2000);
             });
-        })();
-
-        // Copy buttons
-        (function(){
-            document.querySelectorAll('.k-copy-btn').forEach(function(btn){
-                btn.addEventListener('click', function(){
-                    var text = btn.getAttribute('data-copy-text');
-                    if (!text) return;
-                    navigator.clipboard.writeText(text).then(function(){
-                        btn.classList.add('copied');
-                        setTimeout(function(){ btn.classList.remove('copied'); }, 2000);
-                    }).catch(function(){
-                        // fallback
-                        var ta = document.createElement('textarea');
-                        ta.value = text;
-                        ta.style.position = 'fixed';
-                        ta.style.opacity = '0';
-                        document.body.appendChild(ta);
-                        ta.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(ta);
-                        btn.classList.add('copied');
-                        setTimeout(function(){ btn.classList.remove('copied'); }, 2000);
-                    });
-                });
-            });
-        })();
-        </script>
+        });
+    });
+})();
+</script>
 
     </main>
     <div class="my-modal-scrim" id="modal-scrim"></div>

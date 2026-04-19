@@ -596,7 +596,7 @@
 .nk-cta-banner__inner { position: relative; z-index: 2; }
 
 /* ══════════════════════════════════════════════════════════════
-   §8  RESPONSIVE
+   §8  RESPONSIVE (legacy horizontal kuratorium – kept for compat)
    ══════════════════════════════════════════════════════════════ */
 @media (max-width: 767.98px) {
   .kuratorium-card--horizontal {
@@ -610,4 +610,395 @@
 
   #foerderkreis-list > li .flip-card { min-height: 220px; }
   .flip-card-front, .flip-card-back { padding: 1.75rem 1.25rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §9  PREMIUM FÖRDERKREIS FLIP CARDS
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Flip-Card Größe ── */
+.foerderkreis-flip { min-height: 340px !important; }
+#foerderkreis-list > li .foerderkreis-flip { min-height: 340px; }
+
+/* ── VORDERSEITE ──────────────────────────────────────────── */
+.foerderkreis-front {
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  /* Licht: weiß, glasartig */
+  background: #ffffff !important;
+  border: 1px solid rgba(32,35,74,.07) !important;
+  box-shadow:
+    0 2px 12px rgba(32,35,74,.06),
+    0 0 0 0 rgba(109,151,68,0) !important;
+  transition:
+    box-shadow .4s ease,
+    border-color .4s ease !important;
+}
+/* Dunkel-Modus: Tiefes Navy mit Glasoptik */
+[data-theme="dark"] .foerderkreis-front {
+  background: linear-gradient(145deg,#0f1228 0%,#1a1d3a 100%) !important;
+  border-color: rgba(255,255,255,.08) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,.45) !important;
+}
+
+/* Glow on hover/active */
+.foerderkreis-flip:hover .foerderkreis-front,
+.foerderkreis-flip.active .foerderkreis-front {
+  border-color: rgba(109,151,68,.4) !important;
+  box-shadow:
+    0 12px 40px rgba(32,35,74,.12),
+    0 0 0 3px rgba(109,151,68,.12) !important;
+}
+[data-theme="dark"] .foerderkreis-flip:hover .foerderkreis-front,
+[data-theme="dark"] .foerderkreis-flip.active .foerderkreis-front {
+  border-color: rgba(125,179,86,.45) !important;
+  box-shadow:
+    0 12px 48px rgba(0,0,0,.5),
+    0 0 0 3px rgba(125,179,86,.18) !important;
+}
+
+/* Glänzender Balken oben — animiert herein */
+.foerderkreis-front::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    var(--nk-green,#6d9744) 0%,
+    #52c234 40%,
+    #a8e063 60%,
+    var(--nk-indigo,#4f52b8) 100%);
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.22,1,.36,1);
+  border-radius: 99px 99px 0 0;
+}
+.foerderkreis-flip:hover .foerderkreis-front::before,
+.foerderkreis-flip.active .foerderkreis-front::before {
+  transform: scaleX(1);
+}
+
+/* Dekorativer Orb rechts oben (Dunkel) */
+.foerderkreis-front::after {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(109,151,68,.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity .4s;
+  pointer-events: none;
+}
+[data-theme="dark"] .foerderkreis-front::after { opacity: 1; }
+
+/* Logo-Wrapper */
+.foerderkreis-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem 2rem 1.25rem;
+  flex: 1;
+  transition: transform .45s cubic-bezier(.22,1,.36,1);
+}
+.foerderkreis-flip:hover .foerderkreis-logo-wrap,
+.foerderkreis-flip.active .foerderkreis-logo-wrap {
+  transform: scale(1.07) translateY(-5px);
+}
+
+/* Logo-Bild */
+.foerderkreis-logo {
+  max-width: 100%;
+  max-height: 130px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: filter .35s;
+}
+[data-theme="dark"] .foerderkreis-logo {
+  filter: brightness(1.15) contrast(.92) drop-shadow(0 0 8px rgba(109,151,68,.2));
+}
+
+/* Details-Chip unten */
+.foerderkreis-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--nk-green,#6d9744);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .3s, transform .3s;
+  padding-bottom: .75rem;
+}
+.foerderkreis-flip:hover .foerderkreis-hint,
+.foerderkreis-flip.active .foerderkreis-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-theme="dark"] .foerderkreis-hint { color: #9dd467; }
+
+/* ── RÜCKSEITE ────────────────────────────────────────────── */
+@keyframes nkBackShimmer {
+  0%,100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+.foerderkreis-back {
+  /* Reiches Dunkel-Gradient — identisch in beiden Themes */
+  background:
+    linear-gradient(145deg,
+      #0d1025 0%,
+      #181c3a 35%,
+      #1e2440 65%,
+      #0f1820 100%) !important;
+  border: 1px solid rgba(125,179,86,.2) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 16px 48px rgba(0,0,0,.55) !important;
+  gap: 1.1rem;
+  padding: 2rem 1.75rem !important;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grüner Glow-Orb auf Rückseite */
+.foerderkreis-back::before {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: 50%;
+  transform: translateX(-50%);
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, rgba(109,151,68,.18) 0%, transparent 65%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+/* Schimmernder Border-Top */
+.foerderkreis-back::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(125,179,86,.6) 30%,
+    rgba(255,255,255,.3) 50%,
+    rgba(125,179,86,.6) 70%,
+    transparent 100%);
+  background-size: 200% 100%;
+  animation: nkBackShimmer 3.5s ease-in-out infinite;
+}
+
+/* Mini-Logo-Kreis */
+.foerderkreis-back__logo-mini {
+  width: 68px; height: 68px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: .65rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+}
+.foerderkreis-logo-mini {
+  max-width: 100%; max-height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: .88;
+}
+
+/* Beschreibungstext */
+.foerderkreis-back__text {
+  font-size: .875rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,.85);
+  text-align: center;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Tap-Hint auf Rückseite */
+.foerderkreis-back .tap-hint {
+  color: rgba(255,255,255,.45);
+  font-size: .65rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Reduzierte Bewegung */
+@media (prefers-reduced-motion: reduce) {
+  .foerderkreis-back::after { animation: none; }
+  .foerderkreis-flip:hover .foerderkreis-logo-wrap,
+  .foerderkreis-flip.active .foerderkreis-logo-wrap { transform: none; }
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+  .foerderkreis-flip { min-height: 260px !important; }
+  .foerderkreis-logo-wrap { padding: 1.25rem; }
+  .foerderkreis-logo { max-height: 100px; }
+  .foerderkreis-back { padding: 1.5rem 1.25rem !important; }
+  .foerderkreis-back__logo-mini { width: 52px; height: 52px; }
+  .foerderkreis-back__text { font-size: .82rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §10  PREMIUM KURATORIUM CARDS  (.kurat-card)
+   ══════════════════════════════════════════════════════════════ */
+.kurat-card {
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-subtle, rgba(0,0,0,.07));
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.35s, border-color 0.25s;
+  box-shadow: 0 2px 16px rgba(32,35,74,0.07);
+}
+.kurat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 56px rgba(32,35,74,0.14), 0 4px 16px rgba(109,151,68,0.1);
+  border-color: rgba(109,151,68,0.35);
+}
+[data-theme="dark"] .kurat-card {
+  background: var(--bg-elevated, #12152a);
+  border-color: rgba(255,255,255,0.07);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+}
+[data-theme="dark"] .kurat-card:hover {
+  box-shadow: 0 24px 56px rgba(0,0,0,0.45), 0 4px 16px rgba(109,151,68,0.14);
+  border-color: rgba(109,151,68,0.3);
+}
+
+/* Portrait image area */
+.kurat-card__img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background: linear-gradient(135deg, #e8ecf5 0%, #d0d8e8 100%);
+  flex-shrink: 0;
+}
+[data-theme="dark"] .kurat-card__img-wrap {
+  background: linear-gradient(135deg, #12152e 0%, #1a1d38 100%);
+}
+.kurat-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.55s cubic-bezier(0.19,1,0.22,1);
+  display: block;
+}
+.kurat-card:hover .kurat-card__img {
+  transform: scale(1.06);
+}
+/* Gradient overlay on portrait */
+.kurat-card__img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(32,35,74,0.7) 0%,
+    rgba(32,35,74,0.1) 40%,
+    transparent 65%
+  );
+  pointer-events: none;
+  transition: opacity 0.35s;
+  opacity: 0.55;
+}
+.kurat-card:hover .kurat-card__img-wrap::after { opacity: 0.8; }
+
+/* Role badge overlaid on image */
+.kurat-card__role-badge {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(109,151,68,0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  z-index: 2;
+  transition: background 0.25s;
+}
+.kurat-card:hover .kurat-card__role-badge {
+  background: rgba(109,151,68,1);
+}
+
+/* Card body */
+.kurat-card__body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  flex: 1;
+}
+.kurat-card__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary, #1d1d1f);
+  margin: 0;
+  line-height: 1.3;
+}
+[data-theme="dark"] .kurat-card__name { color: #e8ecf3; }
+
+.kurat-card__quote {
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--text-secondary, #4b4f55);
+  border-left: 3px solid rgba(109,151,68,0.4);
+  padding-left: 0.85rem;
+  margin: 0;
+  line-height: 1.65;
+}
+[data-theme="dark"] .kurat-card__quote {
+  color: rgba(255,255,255,0.65);
+  border-color: rgba(125,179,86,0.35);
+}
+
+.kurat-card__subjects {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary, #6b7280);
+  line-height: 1.5;
+  margin: 0;
+  margin-top: auto;
+}
+.kurat-card__subjects i {
+  color: var(--nk-green);
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+[data-theme="dark"] .kurat-card__subjects { color: rgba(255,255,255,0.5); }
+
+/* Responsive: narrower portrait on mobile */
+@media (max-width: 575.98px) {
+  .kurat-card__img-wrap { aspect-ratio: 4 / 3; }
+  .foerderkreis-flip { min-height: 280px !important; }
+  .foerderkreis-logo { max-height: 100px; }
 }

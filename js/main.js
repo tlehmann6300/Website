@@ -1004,9 +1004,10 @@ const initButtonAnimations = () => {
       let wordIndex = 0;
       const processNode = (node) => {
         if (node.nodeType === Node.TEXT_NODE) {
-          const parts = node.textContent.split(' ');
-          parts.forEach((part) => {
-            if (part.trim() === '') return;
+          const raw = node.textContent;
+          const parts = raw.split(' ');
+          const nonEmpty = parts.filter(p => p.trim() !== '');
+          nonEmpty.forEach((part, idx) => {
             const wordWrap = document.createElement('span');
             wordWrap.className = 'word-wrapper';
             const wordInner = document.createElement('span');
@@ -1015,12 +1016,20 @@ const initButtonAnimations = () => {
             wordInner.style.setProperty('--delay', `${wordIndex * 0.08}s`);
             wordWrap.appendChild(wordInner);
             heading.appendChild(wordWrap);
+            // Add space between words within this text node
+            if (idx < nonEmpty.length - 1) {
+              heading.appendChild(document.createTextNode(' '));
+            }
             wordIndex++;
           });
+          // If this text node ended with a space, preserve it (separates from next sibling)
+          if (nonEmpty.length > 0 && raw.endsWith(' ')) {
+            heading.appendChild(document.createTextNode(' '));
+          }
         } else if (node.nodeType === Node.ELEMENT_NODE) {
           const parts = node.textContent.split(' ');
-          parts.forEach((part) => {
-            if (part.trim() === '') return;
+          const nonEmpty = parts.filter(p => p.trim() !== '');
+          nonEmpty.forEach((part, idx) => {
             const wordWrap = document.createElement('span');
             wordWrap.className = 'word-wrapper';
             const wordInner = document.createElement('span');
@@ -1035,6 +1044,10 @@ const initButtonAnimations = () => {
             wordInner.style.setProperty('--delay', `${wordIndex * 0.08}s`);
             wordWrap.appendChild(wordInner);
             heading.appendChild(wordWrap);
+            // Add space between words within this element's text
+            if (idx < nonEmpty.length - 1) {
+              heading.appendChild(document.createTextNode(' '));
+            }
             wordIndex++;
           });
         }
