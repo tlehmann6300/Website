@@ -71,6 +71,15 @@
                 const newLang = option.dataset.lang;
                 if (!newLang) return;
 
+                /* Desktop-Dropdown und Anzeige synchronisieren */
+                langMenu.querySelectorAll('.lang-option').forEach(opt => opt.classList.remove('active'));
+                langMenu.querySelectorAll(`.lang-option[data-lang="${newLang}"]`).forEach(opt => opt.classList.add('active'));
+                currentLangEl.textContent = newLang.toUpperCase();
+
+                /* Mobile aktive Klasse aktualisieren */
+                document.querySelectorAll('.mobile-lang-option').forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+
                 /* Mobiles Menü schließen */
                 if (mobileMenu) mobileMenu.classList.remove('active');
                 if (mobileOverlay) mobileOverlay.classList.remove('active');
@@ -105,6 +114,9 @@
 
         currentLangEl.textContent = savedLang.toUpperCase();
         document.querySelectorAll('.lang-option').forEach(opt => {
+            opt.classList.toggle('active', opt.dataset.lang === savedLang);
+        });
+        document.querySelectorAll('.mobile-lang-option').forEach(opt => {
             opt.classList.toggle('active', opt.dataset.lang === savedLang);
         });
 

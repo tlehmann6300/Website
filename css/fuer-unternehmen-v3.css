@@ -246,6 +246,16 @@
   cursor: default;
   transition: background .25s;
 }
+/* Entrance animation for stats */
+.fu-stat.fade-in-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1), background .25s;
+}
+.fu-stat.fade-in-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 .fu-stat + .fu-stat::before {
   content: '';
   position: absolute;
@@ -632,6 +642,11 @@
   overflow: hidden !important;
   text-align: center;
 }
+.cta-banner .ibc-lead {
+  max-width: 600px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
 .cta-banner::before {
   content: '';
   position: absolute;
@@ -852,7 +867,8 @@
   border: 1px solid rgba(109,151,68,.22) !important;
   padding: .28rem .75rem !important;
   border-radius: 999px !important;
-  margin-bottom: .7rem !important;
+  margin-top: .4rem !important;
+  margin-bottom: .9rem !important;
   line-height: 1 !important;
 }
 [data-theme="dark"] .timeline-v2__content-label {

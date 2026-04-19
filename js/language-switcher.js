@@ -206,15 +206,21 @@
                 this.updateButtonContent(toggleBtn);
             }
             this.updateActiveLanguageOption(options);
-            options.forEach((option) => {
-                option.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetLang = option.getAttribute('data-lang');
-                    if (targetLang && targetLang !== this.currentLang) {
-                        this.switchLanguage(targetLang);
-                    }
+            /* Only add click handlers if new-navbar.js hasn't already set them up.
+               new-navbar.js handles #langMenu .lang-option and .mobile-lang-option clicks
+               and calls ibcLanguageSwitcher.switchLanguage() from there. */
+            const hasNavbarLangElements = document.getElementById('langMenu') && document.getElementById('currentLang');
+            if (!hasNavbarLangElements) {
+                options.forEach((option) => {
+                    option.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const targetLang = option.getAttribute('data-lang');
+                        if (targetLang && targetLang !== this.currentLang) {
+                            this.switchLanguage(targetLang);
+                        }
+                    });
                 });
-            });
+            }
         }
         updateActiveLanguageOption(options) {
             options.forEach((option) => {
