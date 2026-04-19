@@ -55,6 +55,9 @@
   letter-spacing: 0.06em;
   margin-top: 0.2rem;
 }
+.page-hero__buttons {
+  margin-top: 3rem;
+}
 
 /* ─────────────────────────────────────────
    BASE SECTION STYLES

@@ -173,7 +173,7 @@
 }
 .team-card-img-wrapper {
     width: 100%;
-    aspect-ratio: 1 / 1.1;
+    aspect-ratio: 1 / 1.35;
     overflow: hidden;
     position: relative;
 }
@@ -2189,7 +2189,7 @@
     .team-card { flex-direction: column; }
     .team-card-img-wrapper {
         width: 100%;
-        aspect-ratio: 1 / 1.1;
+        aspect-ratio: 1 / 1.35;
         border-radius: 20px 20px 0 0;
     }
     .team-card::after { border-radius: 0 0 20px 20px; }
@@ -2511,7 +2511,7 @@
         width: 100%;
         min-width: unset;
         height: auto;
-        aspect-ratio: 1 / 1.1;
+        aspect-ratio: 1 / 1.35;
         border-radius: 20px 20px 0 0;
     }
     .team-card-img-wrapper img {
