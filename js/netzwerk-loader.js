@@ -78,9 +78,9 @@
         if (!container || !Array.isArray(members) || members.length === 0) return;
 
         container.innerHTML = members.map(function (member, index) {
-            var delay = (index + 1) * 100;
-            var safeAlt  = escapeHtml(member.altText  || '');
-            var safeImg  = escapeHtml(member.image    || '');
+            const delay = (index + 1) * 100;
+            const safeAlt  = escapeHtml(member.altText  || '');
+            const safeImg  = escapeHtml(member.image    || '');
 
             return (
                 '<li class="col-lg-6 col-md-6 fade-in-up"' +
