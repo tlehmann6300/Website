@@ -78,6 +78,8 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
   gap: 3.5rem;
 }
 
@@ -126,8 +128,8 @@
   font-size: clamp(1rem, 1.8vw, 1.15rem);
   color: rgba(255,255,255,.68);
   max-width: 580px;
+  margin: 0 auto 2.25rem;
   line-height: 1.75;
-  margin-bottom: 2.25rem;
 }
 
 .ref-hero__actions {
@@ -135,6 +137,7 @@
   gap: 1rem;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
 }
 .ref-hero__ghost-btn {
   display: inline-flex;
@@ -160,10 +163,11 @@
 .ref-hero__stats {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: clamp(1rem, 3vw, 2.5rem);
   flex-wrap: wrap;
 }
-.ref-hero__stat { text-align: left; }
+.ref-hero__stat { text-align: center; }
 .ref-hero__stat-num {
   display: block;
   font-size: clamp(2rem, 4vw, 2.8rem);
@@ -684,7 +688,7 @@
 @media (max-width: 767px) {
   .ref-hero { min-height: 95svh; padding-top: 7rem; }
   .ref-hero__stat-div { height: 34px; }
-  .ref-hero__actions { flex-direction: column; align-items: flex-start; }
+  .ref-hero__actions { flex-direction: column; align-items: center; }
   .ref-hero__actions .ethereal-button,
   .ref-hero__actions .ref-hero__ghost-btn { width: 100%; justify-content: center; }
   .ref-hero__scroll { bottom: 1.25rem; }
