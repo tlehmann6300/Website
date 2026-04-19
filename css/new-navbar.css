@@ -102,7 +102,7 @@
             left: 0;
             right: 0;
             height: var(--navbar-height);
-            z-index: 1000;
+            z-index: 100001;
             transform: translateY(0) !important;
             transition: all var(--transition-medium);
             background: transparent;
