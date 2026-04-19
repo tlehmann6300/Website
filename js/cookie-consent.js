@@ -203,7 +203,7 @@
       banner.setAttribute('aria-labelledby', 'cookie-consent-heading');
       banner.setAttribute('aria-modal', 'true');
       banner.innerHTML = `
-        <div class="cookie-consent__content">
+        <div class="cookie-consent__scrollable">
           <div class="cookie-consent__header-row">
             <h2 id="cookie-consent-heading" data-cookie-i18n="heading"><i class="fas fa-shield-alt" aria-hidden="true" style="margin-right:0.5rem;opacity:0.8;"></i>${t.heading}</h2>
             <div class="cookie-consent__lang-switcher">
@@ -231,22 +231,22 @@
               </div>
             `).join('')}
           </div>
-          <div class="cookie-consent__actions">
-            <button class="cookie-consent__button cookie-consent__button--accept-all" data-cookie-i18n="acceptAll">
-              ${t.acceptAll}
-            </button>
-            <button class="cookie-consent__button cookie-consent__button--save" data-cookie-i18n="saveSettings">
-              ${t.saveSettings}
-            </button>
-            <button class="cookie-consent__button cookie-consent__button--reject-all" data-cookie-i18n="rejectAll">
-              ${t.rejectAll}
-            </button>
-          </div>
-          <div class="cookie-consent__footer">
-            <a href="${this.buildLocalizedUrl('cookie-richtlinie-eu.html', lang)}" data-cookie-i18n="cookiePolicy">${t.cookiePolicy}</a> |
-            <a href="${this.buildLocalizedUrl('datenschutzerklaerung.html', lang)}" data-cookie-i18n="privacyPolicy">${t.privacyPolicy}</a> |
-            <a href="${this.buildLocalizedUrl('impressum.html', lang)}" data-cookie-i18n="imprint">${t.imprint}</a>
-          </div>
+        </div>
+        <div class="cookie-consent__actions">
+          <button class="cookie-consent__button cookie-consent__button--accept-all" data-cookie-i18n="acceptAll">
+            ${t.acceptAll}
+          </button>
+          <button class="cookie-consent__button cookie-consent__button--save" data-cookie-i18n="saveSettings">
+            ${t.saveSettings}
+          </button>
+          <button class="cookie-consent__button cookie-consent__button--reject-all" data-cookie-i18n="rejectAll">
+            ${t.rejectAll}
+          </button>
+        </div>
+        <div class="cookie-consent__footer">
+          <a href="${this.buildLocalizedUrl('cookie-richtlinie-eu.html', lang)}" data-cookie-i18n="cookiePolicy">${t.cookiePolicy}</a> |
+          <a href="${this.buildLocalizedUrl('datenschutzerklaerung.html', lang)}" data-cookie-i18n="privacyPolicy">${t.privacyPolicy}</a> |
+          <a href="${this.buildLocalizedUrl('impressum.html', lang)}" data-cookie-i18n="imprint">${t.imprint}</a>
         </div>
       `;
       document.body.appendChild(banner);
