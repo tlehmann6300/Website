@@ -51,6 +51,21 @@
     "en": "Contact",
     "fr": "Contact"
   },
+  "nav-link-network": {
+    "de": "Netzwerk",
+    "en": "Network",
+    "fr": "Réseau"
+  },
+  "nav-mobile-appearance": {
+    "de": "Erscheinungsbild",
+    "en": "Appearance",
+    "fr": "Apparence"
+  },
+  "nav-mobile-language": {
+    "de": "Sprache",
+    "en": "Language",
+    "fr": "Langue"
+  },
   "nav-intern-heading": {
     "de": "Intern",
     "en": "Intern",
