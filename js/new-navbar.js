@@ -64,6 +64,35 @@
             });
         });
 
+        /* Mobile Sprach-Optionen */
+        document.querySelectorAll('.mobile-lang-option').forEach(option => {
+            option.addEventListener('click', e => {
+                e.stopPropagation();
+                const newLang = option.dataset.lang;
+                if (!newLang) return;
+
+                /* Mobiles Menü schließen */
+                if (mobileMenu) mobileMenu.classList.remove('active');
+                if (mobileOverlay) mobileOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+
+                /* Sprachumschalter aufrufen */
+                if (window.ibcLanguageSwitcher &&
+                    typeof window.ibcLanguageSwitcher.switchLanguage === 'function') {
+                    window.ibcLanguageSwitcher.switchLanguage(newLang);
+                } else {
+                    localStorage.setItem('language', newLang);
+                    const url = new URL(window.location.href);
+                    if (newLang === 'de') {
+                        url.searchParams.delete('lang');
+                    } else {
+                        url.searchParams.set('lang', newLang);
+                    }
+                    window.location.href = url.toString();
+                }
+            });
+        });
+
         /* Initial-Anzeige synchronisieren */
         const validLanguages = new Set(['de', 'en', 'fr']);
         const urlLang        = new URLSearchParams(window.location.search).get('lang');
@@ -75,7 +104,7 @@
                             || 'de';
 
         currentLangEl.textContent = savedLang.toUpperCase();
-        langMenu.querySelectorAll('.lang-option').forEach(opt => {
+        document.querySelectorAll('.lang-option').forEach(opt => {
             opt.classList.toggle('active', opt.dataset.lang === savedLang);
         });
 

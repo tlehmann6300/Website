@@ -21,8 +21,10 @@
    2. HERO HEADING – "g" nicht abschneiden
    ────────────────────────────────────────────── */
 #hero-section h1.display-2 {
-  padding-bottom: 0.45em !important;   /* mehr Platz für Unterlängen */
+  padding-bottom: 0.5em !important;   /* mehr Platz für Unterlängen */
   overflow: visible !important;
+  overflow-wrap: break-word;
+  word-break: normal;
   /* Sicherstellen dass background-clip Text nicht abgeschnitten wird */
   -webkit-background-clip: text;
   background-clip: text;
@@ -39,8 +41,7 @@
 @media (max-width: 600px) {
   #hero-section h1.display-2 {
     font-size: clamp(1.8rem, 8vw, 3.2rem) !important;
-    padding-bottom: 0.5em !important;
-    word-break: keep-all;
+    padding-bottom: 0.6em !important;
     overflow-wrap: break-word;
   }
 }

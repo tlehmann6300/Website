@@ -24,6 +24,8 @@
 /* Genereller word-spacing für alle ibc-headings */
 .ibc-heading {
   word-spacing: 0.08em;
+  overflow-wrap: break-word;
+  hyphens: none;
 }
 
 /* Großes Anzeigeheading (Hero-H1) – noch etwas mehr Abstand */
@@ -40,6 +42,15 @@ h1.ibc-heading {
 .ibc-heading .text-gradient {
   display: inline;
   word-spacing: inherit;
+}
+
+/* Word-wrapper Grundstil: inline-block damit Abstände korrekt gerendert werden */
+.ibc-heading .word-wrapper {
+  display: inline-block;
+  vertical-align: top;
+}
+.ibc-heading .word {
+  display: inline-block;
 }
 
 /* ============================================================
