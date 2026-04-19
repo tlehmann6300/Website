@@ -219,12 +219,22 @@
 
     /* Text inside cards */
     .timeline-v2__content-label {
-      font-size: 0.72rem;
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--ibc-green);
-      margin-bottom: 0.5rem;
+      background: rgba(109,151,68,0.10);
+      border: 1px solid rgba(109,151,68,0.22);
+      border-radius: 999px;
+      padding: 0.2rem 0.75rem;
+      margin-bottom: 0.65rem;
+    }
+    [data-theme="dark"] .timeline-v2__content-label {
+      background: rgba(125,179,86,0.13);
+      border-color: rgba(125,179,86,0.28);
     }
     .timeline-v2__content-title {
       font-size: 1.15rem;
@@ -568,15 +578,15 @@
             <div class="container">
                 <div class="fu-stats-grid">
                     <div class="fu-stat fade-in-up">
-                        <div class="fu-stat__num">182<sup>+</sup></div>
+                        <div class="fu-stat__num" data-count="182" data-suffix="+"><span class="fu-stat__count">182</span><sup>+</sup></div>
                         <div class="fu-stat__label" data-i18n="trust-projects">Abgeschlossene Projekte</div>
                     </div>
                     <div class="fu-stat fade-in-up" style="transition-delay:.08s">
-                        <div class="fu-stat__num">25<sup>+</sup></div>
+                        <div class="fu-stat__num" data-count="25" data-suffix="+"><span class="fu-stat__count">25</span><sup>+</sup></div>
                         <div class="fu-stat__label" data-i18n="trust-since">Jahre Erfahrung</div>
                     </div>
                     <div class="fu-stat fade-in-up" style="transition-delay:.16s">
-                        <div class="fu-stat__num">100<sup>%</sup></div>
+                        <div class="fu-stat__num" data-count="100" data-suffix="%"><span class="fu-stat__count">100</span><sup>%</sup></div>
                         <div class="fu-stat__label" data-i18n="trust-students">HFU-Studierende</div>
                     </div>
                     <div class="fu-stat fade-in-up" style="transition-delay:.24s">
@@ -683,10 +693,12 @@
     <!-- ══ CTA BANNER ══════════════════════════════════════════ -->
     <section class="cta-banner fade-in-up" aria-labelledby="cta-1-heading">
         <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-xl-8 text-center">
             <h2 id="cta-1-heading" class="ibc-heading mb-3" data-i18n="companies-cta-heading">
                 Bereit für den <span class="text-gradient">nächsten Schritt?</span>
             </h2>
-            <p class="ibc-lead mb-4" data-i18n="companies-cta-text">Kontaktieren Sie uns und erfahren Sie, wie wir Ihr Unternehmen voranbringen können.</p>
+            <p class="ibc-lead mb-4 mx-auto" data-i18n="companies-cta-text">Kontaktieren Sie uns und erfahren Sie, wie wir Ihr Unternehmen voranbringen können.</p>
             <div class="d-flex gap-3 justify-content-center flex-wrap">
                 <a href="kontakt.html" class="ethereal-button" data-i18n="companies-cta-btn">
                     <i class="fas fa-paper-plane" aria-hidden="true"></i>
@@ -700,6 +712,8 @@
                 <span class="cta-trust-chip"><i class="fas fa-clock"></i> Schnelle Reaktion</span>
                 <span class="cta-trust-chip"><i class="fas fa-euro-sign"></i> Fair pricing</span>
                 <span class="cta-trust-chip"><i class="fas fa-star"></i> Top Qualität</span>
+            </div>
+                </div>
             </div>
         </div>
     </section>
