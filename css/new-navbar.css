@@ -102,7 +102,9 @@
             left: 0;
             right: 0;
             height: var(--navbar-height);
-            z-index: 1000;
+            /* z-index must exceed the cookie-consent banner (99999) so that the
+               language dropdown menu remains clickable when the banner is open */
+            z-index: 100001;
             transform: translateY(0) !important;
             transition: all var(--transition-medium);
             background: transparent;
