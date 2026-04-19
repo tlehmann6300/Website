@@ -642,9 +642,9 @@
     "fr": "Nos services"
   },
   "companies-process-heading": {
-    "de": "Unser Projektablauf",
-    "en": "Our Project Process",
-    "fr": "Déroulement du projet"
+    "de": "Unser <span class=\"text-gradient\">Projektablauf</span>",
+    "en": "Our <span class=\"text-gradient\">Project Process</span>",
+    "fr": "Déroulement du <span class=\"text-gradient\">projet</span>"
   },
   "companies-benefits-heading": {
     "de": "Ihre Vorteile",
@@ -1182,9 +1182,9 @@
     "fr": "Découvrez nos derniers projets et événements"
   },
   "instagram-highlights-title": {
-    "de": "Unsere Instagram Highlights",
-    "en": "Our Instagram Highlights",
-    "fr": "Nos moments forts sur Instagram"
+    "de": "Unsere <span class=\"text-gradient\">Instagram Highlights</span>",
+    "en": "Our <span class=\"text-gradient\">Instagram Highlights</span>",
+    "fr": "Nos <span class=\"text-gradient\">moments forts sur Instagram</span>"
   },
   "instagram-follow-button": {
     "de": "Folge uns auf Instagram",
@@ -1517,9 +1517,9 @@
     "fr": "Nous favorisons le développement individuel de chaque membre de l'équipe en offrant un espace de créativité et de travail autonome. Grâce à des défis variés, non seulement l'expertise s'accroît, mais aussi la confiance en ses propres capacités."
   },
   "students-offer-heading": {
-    "de": "Unser Angebot",
-    "en": "What We Offer",
-    "fr": "Notre offre"
+    "de": "Unser <span class=\"text-gradient\">Angebot</span>",
+    "en": "What We <span class=\"text-gradient\">Offer</span>",
+    "fr": "Notre <span class=\"text-gradient\">offre</span>"
   },
   "students-offer-subtitle": {
     "de": "Mehr als nur Theorie – bei uns sammelst du wertvolle Erfahrungen.",
@@ -1627,9 +1627,9 @@
     "fr": "As-tu l'esprit d'équipe et es-tu prêt à travailler avec des camarades et des anciens élèves pour développer ton réseau ?"
   },
   "students-info-heading": {
-    "de": "Melde dich zum Infoabend an!",
-    "en": "Register for Our Info Session!",
-    "fr": "Inscris-toi à la soirée d'information !"
+    "de": "Komm zum <span class=\"text-gradient\">Infoabend</span>!",
+    "en": "Come to Our <span class=\"text-gradient\">Info Session</span>!",
+    "fr": "Viens à la <span class=\"text-gradient\">soirée d'information</span> !"
   },
   "students-info-text-part1": {
     "de": "Bei unseren Informationsveranstaltungen hast du die Möglichkeit, uns persönlich kennenzulernen. Unser nächster",
@@ -1932,9 +1932,9 @@
     "fr": "Nos concepts renforcent votre présence et créent la confiance grâce à des messages clairs et authentiques."
   },
   "companies-cta-heading": {
-    "de": "Bereit für den nächsten Schritt?",
-    "en": "Ready for the Next Step?",
-    "fr": "Prêt pour la prochaine étape ?"
+    "de": "Bereit für den <span class=\"text-gradient\">nächsten Schritt?</span>",
+    "en": "Ready for the <span class=\"text-gradient\">Next Step?</span>",
+    "fr": "Prêt pour la <span class=\"text-gradient\">prochaine étape ?</span>"
   },
   "companies-cta-text": {
     "de": "Die Hochschule Furtwangen bietet eine breite Auswahl an vielfältigen Studiengängen. Dank unserer Mitglieder, die ihr Studium in diesen Bereichen absolvieren, stellen wir Ihnen dieses aktuelle Hochschulwissen zur Verfügung!",
@@ -1962,9 +1962,9 @@
     "fr": "Membres qualifiés"
   },
   "companies-workshops-heading": {
-    "de": "Schulungen / Workshops",
-    "en": "Training / Workshops",
-    "fr": "Formations / Ateliers"
+    "de": "Schulungen &amp; <span class=\"text-gradient\">Workshops</span>",
+    "en": "Training &amp; <span class=\"text-gradient\">Workshops</span>",
+    "fr": "Formations &amp; <span class=\"text-gradient\">Ateliers</span>"
   },
   "companies-workshops-subtitle": {
     "de": "Wissenstransfer, der Ihr Team nachhaltig stärkt.",
@@ -2087,9 +2087,9 @@
     "fr": "Nous mesurons votre performance par rapport aux leaders du secteur et vous aidons à établir de nouvelles normes."
   },
   "companies-digital-heading": {
-    "de": "Digitalisierung",
-    "en": "Digitalization",
-    "fr": "Numérisation"
+    "de": "<span class=\"text-gradient\">Digitalisierung</span> &amp; IT",
+    "en": "<span class=\"text-gradient\">Digitalization</span> &amp; IT",
+    "fr": "<span class=\"text-gradient\">Numérisation</span> &amp; IT"
   },
   "companies-digital-subtitle": {
     "de": "Wir begleiten Sie auf dem Weg in die digitale Zukunft.",
@@ -4782,9 +4782,9 @@
     "fr": "Super équipe"
   },
   "students-faq-heading": {
-    "de": "Häufige Fragen",
-    "en": "Frequently Asked Questions",
-    "fr": "Questions fréquentes"
+    "de": "Häufige <span class=\"text-gradient\">Fragen</span>",
+    "en": "Frequently Asked <span class=\"text-gradient\">Questions</span>",
+    "fr": "Questions <span class=\"text-gradient\">fréquentes</span>"
   },
   "students-faq-subtitle": {
     "de": "Du hast noch Fragen? Wir haben die Antworten.",
