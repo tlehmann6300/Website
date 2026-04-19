@@ -2,17 +2,17 @@
 document.addEventListener('DOMContentLoaded', function () {
     'use strict';
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isSubpage = document.querySelector('.page-hero-section') !== null;
     const nav = document.querySelector('.navbar');
     const handleNavState = () => {
-        if (nav && (isSubpage || window.scrollY > 50)) {
+        if (nav && window.scrollY > 50) {
+            nav.classList.remove('at-top');
             nav.classList.add('scrolled');
         } else if (nav) {
+            nav.classList.add('at-top');
             nav.classList.remove('scrolled');
         }
     };
     window.addEventListener('scroll', handleNavState);
-    handleNavState();
     if (!prefersReducedMotion) {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {

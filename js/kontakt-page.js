@@ -3,17 +3,17 @@
     'use strict';
     const initNavigationAndScrollAnimations = () => {
         const nav = document.querySelector('.navbar');
-        const isSubpage = document.querySelector('.page-hero-section') !== null;
         if (nav) {
             const handleNavState = () => {
-                if (isSubpage || window.scrollY > 50) {
+                if (window.scrollY > 50) {
+                    nav.classList.remove('at-top');
                     nav.classList.add('scrolled');
                 } else {
+                    nav.classList.add('at-top');
                     nav.classList.remove('scrolled');
                 }
             };
             window.addEventListener('scroll', handleNavState);
-            handleNavState();
         }
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
