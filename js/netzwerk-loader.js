@@ -81,42 +81,22 @@
             const delay = (index + 1) * 100;
             const safeAlt  = escapeHtml(member.altText  || '');
             const safeImg  = escapeHtml(member.image    || '');
-            const safeName = escapeHtml(member.id       || '');
 
             return (
-                '<li class="col-lg-3 col-md-6 mb-4 align-items-stretch fade-in-up"' +
+                '<li class="col-lg-6 col-md-6 fade-in-up"' +
                 '    data-animation-delay="' + delay + 'ms">' +
-                '  <button class="flip-card foerderkreis-flip h-100" aria-pressed="false"' +
-                '          aria-label="' + safeAlt + ' – mehr erfahren">' +
-                '    <div class="flip-card-inner">' +
-
-                /* ── FRONT ── */
-                '      <div class="flip-card-front foerderkreis-front">' +
-                '        <div class="foerderkreis-logo-wrap">' +
-                '          <img loading="lazy" src="' + safeImg + '"' +
-                '               alt="' + safeAlt + '" class="foerderkreis-logo">' +
-                '        </div>' +
-                '        <span class="foerderkreis-hint" aria-hidden="true">' +
-                '          <i class="fas fa-info-circle"></i> Details' +
-                '        </span>' +
-                '      </div>' +
-
-                /* ── BACK ── */
-                '      <div class="flip-card-back foerderkreis-back" aria-hidden="true">' +
-                '        <div class="foerderkreis-back__logo-mini">' +
-                '          <img loading="lazy" src="' + safeImg + '"' +
-                '               alt="" class="foerderkreis-logo-mini">' +
-                '        </div>' +
-                '        <p class="foerderkreis-back__text"' +
-                '           data-i18n="' + escapeHtml(member.descI18nKey) + '"></p>' +
-                '        <div class="tap-hint" aria-hidden="true">' +
-                '          <i class="fas fa-undo"></i>' +
-                '          <span data-i18n="flip-back">Zurück</span>' +
-                '        </div>' +
-                '      </div>' +
-
+                '  <div class="fk-card">' +
+                '    <div class="fk-card__logo-area">' +
+                '      <img loading="lazy" src="' + safeImg + '"' +
+                '           alt="' + safeAlt + '" class="fk-card__logo">' +
                 '    </div>' +
-                '  </button>' +
+                '    <div class="fk-card__body">' +
+                '      <h3 class="fk-card__name"' +
+                '          data-i18n="' + escapeHtml(member.nameI18nKey) + '"></h3>' +
+                '      <p class="fk-card__desc"' +
+                '         data-i18n="' + escapeHtml(member.descI18nKey) + '"></p>' +
+                '    </div>' +
+                '  </div>' +
                 '</li>'
             );
         }).join('');

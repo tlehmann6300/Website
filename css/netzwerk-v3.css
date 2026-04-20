@@ -173,6 +173,148 @@
 }
 
 /* ══════════════════════════════════════════════════════════════
+   §2b  FÖRDERKREIS SHOWCASE CARDS (replaces flip-cards)
+   ══════════════════════════════════════════════════════════════ */
+.fk-card {
+  display: flex;
+  align-items: stretch;
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-subtle, rgba(0,0,0,.07));
+  border-radius: var(--nk-radius);
+  overflow: hidden;
+  height: 100%;
+  transition:
+    transform .35s var(--nk-ease-spring),
+    box-shadow .35s,
+    border-color .25s;
+  position: relative;
+  box-shadow: 0 2px 16px rgba(32,35,74,.06);
+}
+.fk-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(180deg, var(--nk-green), var(--nk-indigo));
+  opacity: 0;
+  transition: opacity .3s;
+}
+.fk-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(32,35,74,.12), 0 4px 12px rgba(109,151,68,.08);
+  border-color: rgba(109,151,68,.3);
+}
+.fk-card:hover::before { opacity: 1; }
+
+[data-theme="dark"] .fk-card {
+  background: var(--bg-elevated, #12152a);
+  border-color: rgba(255,255,255,.07);
+  box-shadow: 0 2px 16px rgba(0,0,0,.3);
+}
+[data-theme="dark"] .fk-card:hover {
+  box-shadow: 0 20px 48px rgba(0,0,0,.5), 0 4px 12px rgba(109,151,68,.1);
+  border-color: rgba(125,179,86,.3);
+}
+
+/* Logo area */
+.fk-card__logo-area {
+  flex: 0 0 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(109,151,68,.04);
+  border-right: 1px solid rgba(0,0,0,.05);
+  transition: background .3s;
+}
+[data-theme="dark"] .fk-card__logo-area {
+  background: rgba(255,255,255,.03);
+  border-right-color: rgba(255,255,255,.06);
+}
+.fk-card:hover .fk-card__logo-area {
+  background: rgba(109,151,68,.08);
+}
+.fk-card__logo {
+  max-width: 120px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform .4s var(--nk-ease-spring);
+}
+.fk-card:hover .fk-card__logo {
+  transform: scale(1.08);
+}
+[data-theme="dark"] .fk-card__logo {
+  filter: brightness(1.1) contrast(.95);
+}
+
+/* Body area */
+.fk-card__body {
+  flex: 1;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .5rem;
+  min-width: 0;
+}
+.fk-card__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary, #1d1d1f);
+  margin: 0;
+  line-height: 1.3;
+}
+[data-theme="dark"] .fk-card__name {
+  color: #e8ecf3;
+}
+.fk-card__desc {
+  font-size: .875rem;
+  color: var(--text-secondary, #4b4f55);
+  line-height: 1.7;
+  margin: 0;
+}
+[data-theme="dark"] .fk-card__desc {
+  color: rgba(255,255,255,.6);
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 575.98px) {
+  .fk-card {
+    flex-direction: column;
+  }
+  .fk-card__logo-area {
+    flex: 0 0 auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    padding: 1.5rem;
+  }
+  [data-theme="dark"] .fk-card__logo-area {
+    border-bottom-color: rgba(255,255,255,.06);
+  }
+  .fk-card__body {
+    padding: 1.25rem;
+  }
+  .fk-card::before {
+    width: 100%; height: 3px;
+    top: 0; left: 0;
+    background: linear-gradient(90deg, var(--nk-green), var(--nk-indigo));
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §2c  KURATORIUM HEADING FIX – consistent section title style
+   ══════════════════════════════════════════════════════════════ */
+.nk-section-title {
+  font-size: clamp(2rem, 4.5vw + 0.5rem, 3.4rem);
+  font-weight: 900;
+  letter-spacing: -.035em;
+  line-height: 1.1;
+}
+
+/* ══════════════════════════════════════════════════════════════
    §3  FLIP CARDS (Förderkreismitglieder)
    ══════════════════════════════════════════════════════════════ */
 .flip-card {
