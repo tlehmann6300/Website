@@ -141,4 +141,87 @@
     });
   });
 
+  // ── Counter-Animation (hochzählen) ────────────────────────────
+  function easeOutQuart(t) {
+    return 1 - Math.pow(1 - t, 4);
+  }
+
+  function runCounter(updateFn, from, to, duration) {
+    var startTime = null;
+    var range = to - from;
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var elapsed = timestamp - startTime;
+      var progress = Math.min(elapsed / duration, 1);
+      var current = Math.round(from + range * easeOutQuart(progress));
+      updateFn(current);
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  function initCounters() {
+    var counters = [];
+
+    // .counter-animated – text enthält z.B. "25+", "300+", "24h", "100%", "1998"
+    document.querySelectorAll('.counter-animated').forEach(function (el) {
+      if (el.dataset.ibcCounterInit) return;
+      el.dataset.ibcCounterInit = '1';
+      var text = el.textContent.trim();
+      var match = text.match(/^(\d+)(.*)$/);
+      if (!match) return;
+      var to = parseInt(match[1], 10);
+      var suffix = match[2] || '';
+      var from = el.dataset.countFrom ? parseInt(el.dataset.countFrom, 10) : 0;
+      counters.push({
+        el: el,
+        from: from,
+        to: to,
+        update: function (val) { el.textContent = val + suffix; }
+      });
+    });
+
+    // .fu-stat__num[data-count] – fuer-unternehmen.html nutzt separaten <span class="fu-stat__count">
+    document.querySelectorAll('.fu-stat__num[data-count]').forEach(function (el) {
+      if (el.dataset.ibcCounterInit) return;
+      el.dataset.ibcCounterInit = '1';
+      var to = parseInt(el.dataset.count, 10);
+      if (isNaN(to)) return;
+      var countEl = el.querySelector('.fu-stat__count');
+      if (!countEl) return;
+      counters.push({
+        el: el,
+        from: 0,
+        to: to,
+        update: function (val) { countEl.textContent = val; }
+      });
+    });
+
+    if (counters.length === 0 || typeof IntersectionObserver === 'undefined') return;
+
+    var counterMap = new Map();
+    counters.forEach(function (c) { counterMap.set(c.el, c); });
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var c = counterMap.get(entry.target);
+        if (!c || c.started) return;
+        c.started = true;
+        observer.unobserve(entry.target);
+        runCounter(c.update, c.from, c.to, 1600);
+      });
+    }, { threshold: 0.3 });
+
+    counters.forEach(function (c) { observer.observe(c.el); });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCounters);
+  } else {
+    initCounters();
+  }
+
 })();
