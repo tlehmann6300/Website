@@ -63,9 +63,12 @@
             if (lang === 'fr') return 'fr';  // Französisch
             if (lang === 'de') return 'de';  // Explizit Deutsch
             
-            // Kein URL-Parameter: Gespeicherte Sprachpräferenz aus localStorage prüfen
+            // Kein URL-Parameter: Gespeicherte Sprachpräferenz aus localStorage prüfen.
+            // 'language' is the primary key written by this module (switchLanguage).
+            // 'preferred-language' is a legacy/secondary key used by title-i18n.js.
+            // Both are written together in switchLanguage() to keep them in sync.
             try {
-                const stored = localStorage.getItem('language');
+                const stored = localStorage.getItem('language') || localStorage.getItem('preferred-language');
                 if (stored === 'en' || stored === 'fr' || stored === 'de') return stored;
             } catch (e) { /* localStorage nicht verfügbar (z.B. privater Modus) – weiter mit Cookie-Fallback */ }
             
@@ -270,8 +273,13 @@
             this.currentLang = newLang;
             const options = document.querySelectorAll('.lang-item, .language-option, .lang-option');
             this.updateActiveLanguageOption(options);
-            localStorage.setItem('language', newLang);
-            document.cookie = `language=${newLang}; path=/; max-age=31536000; SameSite=Strict`;
+            try {
+                localStorage.setItem('language', newLang);
+                localStorage.setItem('preferred-language', newLang);
+            } catch (e) { /* localStorage nicht verfügbar */ }
+            try {
+                document.cookie = `language=${newLang}; path=/; max-age=31536000; SameSite=Strict`;
+            } catch (e) { /* Cookies nicht verfügbar */ }
             const url = new URL(window.location.href);
             if (newLang === 'en' || newLang === 'fr') {
                 url.searchParams.set('lang', newLang);

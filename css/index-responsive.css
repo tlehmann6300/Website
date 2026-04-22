@@ -1,0 +1,331 @@
+/* =============================================================
+   index-responsive.css
+   Comprehensive responsive layout for index.html.
+   Loaded last — overrides earlier files where needed.
+   ============================================================= */
+
+/* ── 1. Global safety rules ─────────────────────────────────── */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img,
+video,
+iframe,
+embed {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── 2. Navbar ──────────────────────────────────────────────── */
+/* Already handled by new-navbar.css; only patch missing edge cases */
+@media (max-width: 380px) {
+  .nav-utilities {
+    gap: 0.3rem;
+  }
+  .lang-btn {
+    padding: 0.35rem 0.55rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* ── 3. Hero Section ────────────────────────────────────────── */
+#hero-section {
+  min-height: 100svh;
+  padding-top: calc(var(--nav-height, 80px) + 2rem);
+  padding-bottom: 2rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Tablet portrait */
+@media (max-width: 991.98px) {
+  #hero-section .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  #hero-section h1.display-2 {
+    font-size: clamp(2rem, 7vw, 3.2rem);
+  }
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+  #hero-section {
+    min-height: 100svh;
+    padding-top: calc(var(--nav-height, 70px) + 1rem);
+    text-align: center;
+  }
+  #hero-section h1.display-2 {
+    font-size: clamp(1.8rem, 9vw, 2.8rem);
+    line-height: 1.15;
+  }
+  #hero-section .hero-subtitle-text,
+  #hero-section .fs-5 {
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem) !important;
+    max-width: 100%;
+  }
+  .hero-eyebrow-badge {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.65rem;
+    width: 100%;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-cta-primary,
+  .hero-cta-ghost {
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem 1.5rem;
+  }
+  /* Trust strip: scroll horizontally, don't overflow page */
+  .hero-trust-strip {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+    padding: 0.65rem 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .hero-trust-strip::-webkit-scrollbar {
+    display: none;
+  }
+  .hero-trust-item {
+    flex-shrink: 0;
+    padding: 0 0.6rem;
+  }
+  .hero-trust-sep {
+    flex-shrink: 0;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 479.98px) {
+  #hero-section h1.display-2 {
+    font-size: clamp(1.6rem, 11vw, 2.2rem);
+  }
+  .hero-eyebrow-badge {
+    font-size: 0.65rem;
+    padding: 0.3rem 0.75rem;
+  }
+  .hero-trust-num {
+    font-size: 1.1rem;
+  }
+  .hero-trust-label {
+    font-size: 0.62rem;
+  }
+}
+
+/* Landscape mobile */
+@media (max-height: 550px) and (orientation: landscape) {
+  #hero-section {
+    min-height: 100svh;
+    padding-top: calc(var(--nav-height, 64px) + 0.5rem);
+    align-items: flex-start;
+  }
+  #hero-section h1.display-2 {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+  .hero-actions {
+    flex-direction: row;
+    width: auto;
+  }
+  .hero-cta-primary,
+  .hero-cta-ghost {
+    width: auto;
+    flex: 1;
+  }
+}
+
+/* ── 4. Competencies Section ────────────────────────────────── */
+@media (max-width: 991.98px) {
+  .competencies-section {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .competencies-cards-grid:not(.swipe-carousel) {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .competencies-section .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  /* Carousel handled by JS (.swipe-carousel); non-JS fallback: 1 col */
+  .competencies-cards-grid:not(.swipe-carousel) {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 479.98px) {
+  .competency-card {
+    min-width: min(88vw, 280px);
+  }
+}
+
+/* ── 5. Stats Section ───────────────────────────────────────── */
+@media (max-width: 767.98px) {
+  .stats-section .col-xl-3.col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .stat-number {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+  }
+}
+
+@media (max-width: 479.98px) {
+  .stats-section .col-xl-3.col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+  .stat-card {
+    padding: 1.25rem 0.85rem;
+  }
+  .stat-number {
+    font-size: 2rem;
+  }
+}
+
+/* ── 6. Info Cards Section ──────────────────────────────────── */
+@media (max-width: 767.98px) {
+  .info-cards-section .col-lg-4,
+  .info-cards-section .col-md-6,
+  .info-cards-section .col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .info-glass-card-link,
+  .info-glass-card {
+    width: 100%;
+  }
+  .info-glass-card {
+    padding: 1.75rem 1.5rem 1.5rem;
+  }
+}
+
+/* ── 7. Values / Physics Section ────────────────────────────── */
+@media (max-width: 767.98px) {
+  .physics-values-section .col-lg-4,
+  .physics-values-section .col-md-6,
+  .physics-values-section .col-md-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .physics-card-wrap {
+    width: 100%;
+  }
+  .physics-card {
+    padding: 1.75rem 1.5rem;
+  }
+}
+
+/* ── 8. Wave Dividers ───────────────────────────────────────── */
+@media (max-width: 767.98px) {
+  .section-wave-divider svg {
+    height: 40px;
+  }
+}
+
+/* ── 9. Footer CTA ──────────────────────────────────────────── */
+@media (max-width: 991.98px) {
+  .fat-footer__cta-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+  .fat-footer__cta {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .fat-footer__cta {
+    padding: 2rem 1.25rem;
+  }
+  .fat-footer__cta-heading {
+    font-size: clamp(1.2rem, 5vw, 1.5rem);
+  }
+  .ethereal-button.fat-footer__cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── 10. Footer Body Grid ───────────────────────────────────── */
+@media (max-width: 1199.98px) {
+  .fat-footer__body {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .fat-footer__body {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 1.25rem;
+  }
+  .fat-footer__brand {
+    grid-column: span 1;
+    text-align: center;
+  }
+  .fat-footer__tagline {
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .fat-footer__social {
+    align-items: center;
+  }
+}
+
+/* ── 11. Copyright Area ─────────────────────────────────────── */
+@media (max-width: 767.98px) {
+  .copyright-area .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+  }
+}
+
+/* ── 12. Section Spacing ────────────────────────────────────── */
+@media (max-width: 767.98px) {
+  .section-gs     { --gs: 3.5rem; }
+  .section-gs-lg  { --gs-lg: 4.5rem; }
+  .ibc-heading    { font-size: clamp(1.6rem, 8vw, 2.4rem) !important; }
+  .ibc-lead       { font-size: 0.95rem !important; }
+}
+
+@media (max-width: 479.98px) {
+  .section-gs     { --gs: 2.5rem; }
+  .section-gs-lg  { --gs-lg: 3rem; }
+}
+
+/* ── 13. Touch-device hover fixes ───────────────────────────── */
+@media (hover: none) and (pointer: coarse) {
+  .info-glass-card-link:hover .info-glass-card,
+  .physics-card-wrap:hover .physics-card,
+  .competency-card:hover,
+  .stat-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
