@@ -1903,7 +1903,7 @@ p:last-child { margin-bottom: 0; }
   gap: 0.6rem;
   padding: 0.9rem 2rem;
   background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
-  color: #052e16 !important;
+  color: #fff !important;
   border-radius: 9999px;
   font-weight: 700;
   font-size: 0.9rem;
@@ -1924,7 +1924,7 @@ p:last-child { margin-bottom: 0; }
   animation: none;
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 12px 40px rgba(74,222,128,0.6), 0 0 60px rgba(74,222,128,0.25);
-  color: #052e16 !important;
+  color: #fff !important;
   filter: brightness(1.08);
 }
 @media (prefers-reduced-motion: reduce) {
