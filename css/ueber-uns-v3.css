@@ -29,6 +29,7 @@
 .page-hero__stats {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 2rem;
   margin-top: 2rem;
   flex-wrap: wrap;
@@ -746,4 +747,172 @@
 }
 @media (max-width: 768px) {
   .uu-cta-orb--1, .uu-cta-orb--2 { width: 200px; height: 200px; }
+}
+
+/* ─────────────────────────────────────────
+   LIGHT MODE — HERO TEXT OVERRIDES
+   The hero background is always the dark
+   animated gradient from ibc-design-v2.css,
+   so all hero text must be forced white in
+   both light and dark mode.
+───────────────────────────────────────── */
+.page-hero-section .page-hero__title {
+  color: #fff;
+}
+.page-hero-section .page-hero__subtitle {
+  color: rgba(255, 255, 255, 0.85);
+}
+.page-hero-section .hero-btn-ghost {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.page-hero-section .hero-btn-ghost:hover,
+.page-hero-section .hero-btn-ghost:focus-visible {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVENESS — ADDITIONAL BREAKPOINTS
+───────────────────────────────────────── */
+
+/* Tablet: reduce section padding */
+@media (max-width: 991px) {
+  .uu-section {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+  .uu-cta-banner__inner {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+}
+
+/* Mobile: hero stats layout */
+@media (max-width: 575px) {
+  .page-hero__stats {
+    gap: 1rem;
+  }
+  .hero-stat__divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .page-hero-section .page-hero-inner {
+    padding-top: calc(var(--nav-height, 60px) + 2rem);
+    padding-bottom: 3rem;
+  }
+}
+
+/* Mobile: mission grid single-column already set at 768px;
+   additional padding fix for small screens */
+@media (max-width: 575px) {
+  .uu-mission-grid {
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .uu-pillar {
+    padding: 1.25rem;
+  }
+  .uu-vision-box {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+  }
+}
+
+/* Mobile: mix band + mix cards */
+@media (max-width: 575px) {
+  .uu-mix-band {
+    margin-top: 1.5rem;
+  }
+  .uu-mix-card {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+/* Mobile: section headers */
+@media (max-width: 575px) {
+  .section-header {
+    margin-bottom: 2rem;
+  }
+  .uu-section--dark .section-chip,
+  .uu-section--alt .section-chip,
+  .uu-section--members .section-chip,
+  .uu-section--values .section-chip {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.85rem;
+  }
+}
+
+/* Extra small: CTA banner */
+@media (max-width: 479px) {
+  .uu-cta-banner__title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+  .uu-cta-banner__sub {
+    font-size: 0.95rem;
+  }
+}
+
+/* Flip cards: ensure min-height adapts on small screens */
+@media (max-width: 479px) {
+  .flip-card,
+  .flip-card-inner {
+    min-height: 200px;
+  }
+}
+
+/* Prevent horizontal overflow on all section containers */
+.uu-section {
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────
+   LIGHT MODE — SECTION BACKGROUNDS
+   Ensure light-mode sections use proper
+   CSS-variable backgrounds rather than
+   hardcoded dark colours where applicable.
+───────────────────────────────────────── */
+
+/* Members section: use token so dark mode override still works */
+.uu-section--members {
+  background: var(--uu-card-bg);
+}
+
+/* Values section: use alt-bg token */
+.uu-section--values {
+  background: var(--uu-alt-bg);
+}
+
+/* Light mode: flip card front needs proper shadow */
+:root:not([data-theme="dark"]) .flip-card-front,
+[data-theme="light"] .flip-card-front {
+  box-shadow: 0 4px 16px rgba(32, 35, 74, 0.10), 0 2px 4px rgba(32, 35, 74, 0.06);
+}
+
+/* Light mode: mix cards readable secondary text */
+:root:not([data-theme="dark"]) .uu-mix-card__text,
+[data-theme="light"] .uu-mix-card__text {
+  color: #6b7280;
+}
+
+/* Light mode: ibc-heading in light sections stays dark blue */
+:root:not([data-theme="dark"]) .uu-section--members .ibc-heading,
+:root:not([data-theme="dark"]) .uu-section--alt .ibc-heading,
+:root:not([data-theme="dark"]) .uu-section--values .ibc-heading,
+[data-theme="light"] .uu-section--members .ibc-heading,
+[data-theme="light"] .uu-section--alt .ibc-heading,
+[data-theme="light"] .uu-section--values .ibc-heading {
+  color: var(--uu-blue);
+}
+
+/* Light mode: section-intro-text in light sections */
+:root:not([data-theme="dark"]) .uu-section--members .section-intro-text,
+:root:not([data-theme="dark"]) .uu-section--alt .section-intro-text,
+:root:not([data-theme="dark"]) .uu-section--values .section-intro-text,
+[data-theme="light"] .uu-section--members .section-intro-text,
+[data-theme="light"] .uu-section--alt .section-intro-text,
+[data-theme="light"] .uu-section--values .section-intro-text {
+  color: var(--ibc-text-secondary, #4d5061);
 }
