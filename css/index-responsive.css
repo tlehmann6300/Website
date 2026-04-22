@@ -134,7 +134,7 @@ embed {
 /* Landscape mobile */
 @media (max-height: 550px) and (orientation: landscape) {
   #hero-section {
-    min-height: 100svw;
+    min-height: 100svh;
     padding-top: calc(var(--nav-height, 64px) + 0.5rem);
     align-items: flex-start;
   }
