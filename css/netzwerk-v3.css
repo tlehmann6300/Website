@@ -1144,3 +1144,138 @@
   .foerderkreis-flip { min-height: 280px !important; }
   .foerderkreis-logo { max-height: 100px; }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   §11  LIGHT MODE FIXES
+   The hero (.page-hero-section) always renders with a dark
+   animated gradient (set via ibc-design-v2.css with !important),
+   so all hero text must be white in both themes.
+   The alumni section is also always dark.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Hero: force white text regardless of theme ── */
+.page-hero-section .page-hero__title,
+[data-theme="light"] .page-hero-section .page-hero__title,
+:root:not([data-theme="dark"]) .page-hero-section .page-hero__title {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+.page-hero-section .page-hero__subtitle,
+[data-theme="light"] .page-hero-section .page-hero__subtitle,
+:root:not([data-theme="dark"]) .page-hero-section .page-hero__subtitle {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+/* Hero eyebrow badge – white on dark gradient bg */
+.page-hero-section .page-hero__eyebrow {
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Alumni section: heading is always on dark bg ── */
+.nk-section--alumni .ibc-heading {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+.nk-section--alumni .ibc-heading .text-gradient {
+  background: linear-gradient(135deg, #9dd467 0%, #c8f58a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Section headings in light sections (foerderkreis, partner,
+   kuratorium) – ensure readable colors ── */
+:root:not([data-theme="dark"]) .nk-section--foerderkreis .ibc-heading,
+[data-theme="light"] .nk-section--foerderkreis .ibc-heading,
+:root:not([data-theme="dark"]) .nk-section--partner .ibc-heading,
+[data-theme="light"] .nk-section--partner .ibc-heading,
+:root:not([data-theme="dark"]) .nk-section--kuratorium .ibc-heading,
+[data-theme="light"] .nk-section--kuratorium .ibc-heading {
+  color: var(--nk-blue, #20234A);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §12  RESPONSIVE IMPROVEMENTS
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── CTA banner: full-width button on small screens ── */
+@media (max-width: 575.98px) {
+  .nk-cta-banner .ethereal-button {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+  .nk-cta-banner__subtitle {
+    font-size: 0.92rem;
+    padding: 0 0.5rem;
+  }
+}
+
+/* ── Hero stats: tighter gap on very small screens ── */
+@media (max-width: 400px) {
+  .page-hero-section .hero-stats {
+    gap: 1.25rem;
+  }
+  .hero-stat__number {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+  .hero-stat__label {
+    font-size: 0.68rem;
+  }
+}
+
+/* ── Alumni stat card: full width on xs ── */
+@media (max-width: 575.98px) {
+  .alumni-stat {
+    padding: 1.75rem 1.25rem;
+  }
+  .alumni-stat__number {
+    font-size: clamp(3rem, 12vw, 4.5rem);
+  }
+}
+
+/* ── Section: reduce horizontal overflow on tiny screens ── */
+@media (max-width: 359.98px) {
+  .nk-section {
+    padding: clamp(2.5rem, 6vw, 4rem) 0;
+  }
+  .nk-cta-banner {
+    padding: 2.5rem 0;
+  }
+  .foerderkreis-flip { min-height: 240px !important; }
+}
+
+/* ── Ensure no horizontal scroll from large absolute orbs ── */
+.page-hero-section,
+.nk-section--alumni {
+  overflow: hidden;
+}
+
+/* ── Flip card grid: ensure proper stacking on xs ── */
+@media (max-width: 575.98px) {
+  #foerderkreis-list > li {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* ── Kuratorium card: stack vertically on xs ── */
+@media (max-width: 575.98px) {
+  .kuratorium-card--horizontal {
+    gap: 1.25rem;
+  }
+  .kuratorium-card-img-wrapper {
+    width: 72px;
+    height: 72px;
+    flex: 0 0 72px;
+  }
+}
