@@ -3672,3 +3672,56 @@
   .tsv3-name { font-size: 0.95rem; }
   .tsv3-quote-text { font-size: 0.9rem; }
 }
+
+/* ============================================================
+   40. CTA BANNER – Light mode complete override
+   ============================================================ */
+
+/* Light background replaces the always-dark stats-bg */
+:root:not([data-theme="dark"]) .cta-banner,
+[data-theme="light"] .cta-banner {
+  background: linear-gradient(135deg, #f0f7ea 0%, #eef3ff 50%, #f5f9f0 100%) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Softer ambient overlay on light background */
+:root:not([data-theme="dark"]) .cta-banner::before,
+[data-theme="light"] .cta-banner::before {
+  background:
+    radial-gradient(ellipse 70% 60% at 20% 50%, rgba(109,151,68,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 50%, rgba(99,102,241,0.06) 0%, transparent 60%) !important;
+}
+
+/* Dark heading text */
+:root:not([data-theme="dark"]) .cta-banner .ibc-heading,
+[data-theme="light"] .cta-banner .ibc-heading {
+  color: var(--ibc-blue) !important;
+  -webkit-text-fill-color: initial !important;
+}
+
+/* Lead text */
+:root:not([data-theme="dark"]) .cta-banner .ibc-lead,
+[data-theme="light"] .cta-banner .ibc-lead {
+  color: var(--text-secondary) !important;
+}
+
+/* Checklist items */
+:root:not([data-theme="dark"]) .cta-banner__checklist,
+[data-theme="light"] .cta-banner__checklist {
+  color: var(--text-secondary) !important;
+}
+
+/* Ghost button – use brand green in light mode */
+:root:not([data-theme="dark"]) .cta-banner__ghost,
+[data-theme="light"] .cta-banner__ghost {
+  color: var(--ibc-green) !important;
+  border-color: var(--ibc-green) !important;
+  background: transparent !important;
+}
+:root:not([data-theme="dark"]) .cta-banner__ghost:hover,
+[data-theme="light"] .cta-banner__ghost:hover {
+  color: #fff !important;
+  background: var(--ibc-green) !important;
+  border-color: var(--ibc-green) !important;
+  box-shadow: 0 6px 20px rgba(109,151,68,0.3) !important;
+}

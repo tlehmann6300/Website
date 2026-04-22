@@ -1135,3 +1135,106 @@
 .ethereal-button:active { transform: translateY(-1px) !important; }
 
 /* End of fuer-unternehmen-v3.css */
+
+/* ================================================================
+   §15  LIGHT MODE – complete theme overrides
+   ================================================================ */
+
+/* ── Hero: use a slightly lighter dark gradient in light mode ── */
+:root:not([data-theme="dark"]) .page-hero-section,
+[data-theme="light"] .page-hero-section {
+  background: linear-gradient(135deg, #131629 0%, #1b1f3a 40%, #20234a 70%, #131629 100%) !important;
+}
+
+/* ── Stats banner: light background with dark text ── */
+:root:not([data-theme="dark"]) .fu-stats-banner,
+[data-theme="light"] .fu-stats-banner {
+  background: linear-gradient(135deg, #f5f7f2 0%, #eef5e8 40%, #f0f4ff 80%, #f5f7f2 100%) !important;
+  animation: none !important;
+}
+:root:not([data-theme="dark"]) .fu-stats-banner::before,
+[data-theme="light"] .fu-stats-banner::before {
+  background-image:
+    linear-gradient(rgba(0,0,0,.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,.035) 1px, transparent 1px) !important;
+}
+:root:not([data-theme="dark"]) .fu-stat__num,
+[data-theme="light"] .fu-stat__num {
+  background: linear-gradient(135deg, #5a8a2e 30%, #3d7023 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+:root:not([data-theme="dark"]) .fu-stat__icon,
+[data-theme="light"] .fu-stat__icon {
+  color: var(--fu-green, #6d9744) !important;
+}
+:root:not([data-theme="dark"]) .fu-stat__label,
+[data-theme="light"] .fu-stat__label {
+  color: var(--text-secondary, #515154) !important;
+}
+:root:not([data-theme="dark"]) .fu-stat + .fu-stat::before,
+[data-theme="light"] .fu-stat + .fu-stat::before {
+  background: rgba(0,0,0,.10) !important;
+}
+:root:not([data-theme="dark"]) .fu-stat:hover,
+[data-theme="light"] .fu-stat:hover {
+  background: rgba(109,151,68,.06) !important;
+}
+
+/* ── CTA banners: light gradient background ── */
+:root:not([data-theme="dark"]) .cta-banner,
+[data-theme="light"] .cta-banner {
+  background: linear-gradient(135deg, #f0f7ea 0%, #eef3ff 50%, #f5f9f0 100%) !important;
+  color: var(--text-primary) !important;
+}
+:root:not([data-theme="dark"]) .cta-banner:last-of-type,
+[data-theme="light"] .cta-banner:last-of-type {
+  background: linear-gradient(135deg, #eef3ff 0%, #f0f7ea 50%, #edf2ff 100%) !important;
+}
+:root:not([data-theme="dark"]) .cta-banner::before,
+[data-theme="light"] .cta-banner::before {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(109,151,68,.09) 0%, transparent 55%),
+    radial-gradient(ellipse at 80% 30%, rgba(99,102,241,.06) 0%, transparent 50%) !important;
+}
+:root:not([data-theme="dark"]) .cta-banner .ibc-heading,
+[data-theme="light"] .cta-banner .ibc-heading {
+  color: var(--ibc-blue, #20234a) !important;
+  -webkit-text-fill-color: initial !important;
+}
+:root:not([data-theme="dark"]) .cta-banner .ibc-lead,
+[data-theme="light"] .cta-banner .ibc-lead {
+  color: var(--text-secondary, #515154) !important;
+}
+
+/* Trust chips */
+:root:not([data-theme="dark"]) .cta-trust-chip,
+[data-theme="light"] .cta-trust-chip {
+  background: rgba(109,151,68,.09) !important;
+  border-color: rgba(109,151,68,.22) !important;
+  color: var(--text-primary) !important;
+}
+:root:not([data-theme="dark"]) .cta-trust-chip:hover,
+[data-theme="light"] .cta-trust-chip:hover {
+  background: rgba(109,151,68,.16) !important;
+}
+:root:not([data-theme="dark"]) .cta-trust-chip i,
+[data-theme="light"] .cta-trust-chip i {
+  color: var(--fu-green, #6d9744) !important;
+}
+
+/* Ghost link inside CTA banner */
+:root:not([data-theme="dark"]) .hero-btn-ghost.cta-banner__ghost-link,
+[data-theme="light"] .hero-btn-ghost.cta-banner__ghost-link {
+  color: var(--ibc-green, #6d9744) !important;
+  border-color: var(--ibc-green, #6d9744) !important;
+  background: transparent !important;
+}
+:root:not([data-theme="dark"]) .hero-btn-ghost.cta-banner__ghost-link:hover,
+[data-theme="light"] .hero-btn-ghost.cta-banner__ghost-link:hover {
+  color: #fff !important;
+  background: var(--ibc-green, #6d9744) !important;
+  border-color: var(--ibc-green, #6d9744) !important;
+  box-shadow: 0 6px 20px rgba(109,151,68,.3) !important;
+}
