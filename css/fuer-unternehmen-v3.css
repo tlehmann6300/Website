@@ -192,6 +192,34 @@
 }
 .page-hero-section .ethereal-button:hover { transform: translateY(-3px) !important; }
 
+/* ── Hero always dark → keep all text/buttons white in every mode ────── */
+.page-hero-section .ibc-heading {
+  color: #fff !important;
+}
+.page-hero-section .ibc-lead {
+  color: rgba(255,255,255,.82) !important;
+}
+.page-hero-section .page-hero__eyebrow {
+  background: rgba(255,255,255,.14) !important;
+  border-color: rgba(255,255,255,.22) !important;
+  color: rgba(255,255,255,.9) !important;
+}
+.page-hero-section .hero-btn-ghost {
+  color: rgba(255,255,255,.8) !important;
+  border-color: rgba(255,255,255,.28) !important;
+}
+.page-hero-section .hero-btn-ghost:hover {
+  color: #fff !important;
+  border-color: rgba(255,255,255,.6) !important;
+  background: rgba(255,255,255,.08) !important;
+}
+.page-hero-section .page-hero__scroll-hint {
+  color: rgba(255,255,255,.5) !important;
+}
+.page-hero-section .page-hero__scroll-hint:hover {
+  color: rgba(255,255,255,.8) !important;
+}
+
 /* ================================================================
    §2  STATS BANNER (replaces trust-strip)
    ================================================================ */
