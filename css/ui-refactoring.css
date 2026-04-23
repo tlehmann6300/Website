@@ -704,6 +704,7 @@ section {
     .fat-footer__nav-list {
         list-style: none;
         padding-left: 0;
+        align-items: center;
     }
 
     /* Nav links and connect links are flex containers – centre their text too */

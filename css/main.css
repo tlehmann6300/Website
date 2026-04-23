@@ -250,7 +250,7 @@ a {
 }
 a:hover { color: var(--ibc-green); }
 
-a:not(.btn):not(.nav-link):not(.social-button-list a):not(.fat-footer__logo-link):not(.fat-footer__connect-link):not(.fat-footer__nav-list a):not(.info-glass-card-link):not(.competency-btn-clean) {
+a:not(.btn):not(.nav-link):not(.mobile-nav-link):not(.social-button-list a):not(.fat-footer__logo-link):not(.fat-footer__connect-link):not(.fat-footer__nav-list a):not(.info-glass-card-link):not(.competency-btn-clean) {
   text-decoration: underline;
 }
 
