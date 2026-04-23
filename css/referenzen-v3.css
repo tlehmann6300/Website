@@ -835,3 +835,172 @@
   color: var(--ibc-green);
   background: rgba(109,151,68,.07);
 }
+
+/* ═══════════════════════════════════════════════
+   §9  ADDITIONAL LIGHT MODE FIXES
+═══════════════════════════════════════════════ */
+
+/* ── Section background via CSS variable ── */
+:root:not([data-theme="dark"]) .ref-section {
+  background: var(--bg-secondary, #f5f5f7);
+}
+
+/* ── Cards: use CSS variable borders in light mode ── */
+:root:not([data-theme="dark"]) .ref-card {
+  background: var(--bg-primary, #ffffff);
+  border-color: var(--border-subtle, rgba(0,0,0,.07));
+}
+
+/* ── Card image placeholder on light ── */
+:root:not([data-theme="dark"]) .ref-card-image {
+  background: linear-gradient(135deg, #eef1f6, #dfe4ef);
+}
+
+/* ── Filter chips on light ── */
+:root:not([data-theme="dark"]) .ref-chip {
+  background: var(--bg-primary, #ffffff);
+  border-color: var(--border-medium, rgba(0,0,0,.12));
+  color: var(--ibc-blue, #20234A);
+}
+:root:not([data-theme="dark"]) .ref-chip:hover {
+  background: rgba(109,151,68,.06);
+  border-color: var(--ibc-green, #6D9744);
+  color: var(--ibc-green, #6D9744);
+}
+
+/* ── Result count ── */
+:root:not([data-theme="dark"]) .ref-result-count {
+  color: var(--text-muted, #86868b);
+}
+
+/* ── Empty state ── */
+:root:not([data-theme="dark"]) .ref-empty {
+  color: var(--text-muted, #86868b);
+}
+
+/* ── Noscript notice ── */
+:root:not([data-theme="dark"]) .ref-noscript {
+  background: var(--bg-secondary, #f5f5f7);
+  color: var(--text-secondary, #515154);
+}
+
+/* ── Skeleton shimmer on light ── */
+:root:not([data-theme="dark"]) .ref-skeleton {
+  background: linear-gradient(90deg, #eaecf2 25%, #f5f6fa 50%, #eaecf2 75%);
+  background-size: 200% 100%;
+  animation: rfSkel 1.6s ease-in-out infinite;
+}
+
+/* ── Timeline year marker on light ── */
+:root:not([data-theme="dark"]) .timeline-year-marker h2 {
+  background: linear-gradient(135deg, var(--ibc-blue, #20234A), var(--ibc-green, #6D9744));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Scrollbar on light ── */
+:root:not([data-theme="dark"]) .ref-filter__scroll-wrap {
+  scrollbar-color: rgba(32,35,74,.15) transparent;
+}
+
+/* ═══════════════════════════════════════════════
+   §10  ADDITIONAL RESPONSIVE IMPROVEMENTS
+═══════════════════════════════════════════════ */
+
+/* ── Between 360px and 767px: hide stat dividers to prevent cramping ── */
+@media (max-width: 767px) and (min-width: 360px) {
+  .ref-hero__stat-div { display: none; }
+  .ref-hero__stats {
+    gap: 1.75rem;
+    justify-content: center;
+  }
+}
+
+/* ── Tablet landscape / medium (576px – 991px): tighten hero ── */
+@media (min-width: 576px) and (max-width: 991px) {
+  .ref-hero {
+    padding: clamp(7rem, 12vw, 10rem) 0 clamp(4rem, 7vw, 6rem);
+  }
+  .ref-hero__inner {
+    gap: 2.5rem;
+  }
+  .ref-hero__title {
+    font-size: clamp(2.2rem, 6vw, 3.5rem);
+  }
+}
+
+/* ── Cards at 576px–767px: 2 columns still ok, improve gaps ── */
+@media (min-width: 576px) and (max-width: 767px) {
+  .ref-grid,
+  #references-container,
+  .timeline-projects {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+
+/* ── Section header padding on small screens ── */
+@media (max-width: 575px) {
+  .ref-section__header {
+    padding: 0 1rem;
+  }
+  .ref-section {
+    padding: clamp(3.5rem, 8vw, 5rem) 0;
+  }
+}
+
+/* ── Filter scroll wrap: edge padding on all mobiles ── */
+@media (max-width: 767px) {
+  .ref-filter__scroll-wrap {
+    padding: 0 0.25rem;
+  }
+  .ref-filter {
+    margin-bottom: 2rem;
+  }
+}
+
+/* ── Touch target enlargement for chips on mobile ── */
+@media (max-width: 767px) {
+  .ref-chip {
+    padding: 0.6rem 1.1rem;
+    min-height: 2.75rem;
+  }
+}
+
+/* ── CTA inner: responsive padding ── */
+@media (max-width: 575px) {
+  .ref-cta__inner {
+    padding: 0 1rem;
+  }
+  .ref-cta__title {
+    font-size: clamp(1.6rem, 5vw, 2.4rem);
+  }
+}
+
+/* ── Container base padding on very small screens ── */
+@media (max-width: 359px) {
+  .ref-hero .container,
+  .ref-section .container,
+  .ref-cta .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* ── Reduced-motion: disable all decorative animations ── */
+@media (prefers-reduced-motion: reduce) {
+  .ref-hero__orb,
+  .ref-cta__orb {
+    animation: none !important;
+  }
+  .ref-hero__scroll {
+    animation: none !important;
+  }
+  .ref-hero__gradient {
+    animation: none !important;
+  }
+  .ref-card::before {
+    transition: none !important;
+  }
+}
