@@ -1,0 +1,977 @@
+/* ============================================================
+   page-redesign.css — v1.0
+   Unified dark/light mode compatibility & design enhancements
+   for: fuer-unternehmen, ueber-uns, unser-netzwerk,
+        referenzen, kontakt
+   ============================================================ */
+
+/* ============================================================
+   §1  GLOBAL ENHANCEMENTS — shared across all pages
+   ============================================================ */
+
+/* Smooth body background transition */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color var(--t-theme, 0.4s), color var(--t-theme, 0.4s);
+}
+
+/* ── Improved section transitions for theme switching ─── */
+section,
+.page-section,
+.page-section--alt,
+.page-section--dark {
+    transition: background-color var(--t-theme, 0.4s), color var(--t-theme, 0.4s);
+}
+
+/* ── Universal card dark mode improvements ─── */
+[data-theme="dark"] .vision-box,
+[data-theme="dark"] .member-card,
+[data-theme="dark"] .mission-pillar,
+[data-theme="dark"] .stat-card--light,
+[data-theme="dark"] .partner-card,
+[data-theme="dark"] .kuratorium-mitglied,
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .filters-wrapper,
+[data-theme="dark"] .timeline-content,
+[data-theme="dark"] .event-slider-item,
+[data-theme="dark"] .my-modal-box,
+[data-theme="dark"] .contact-info,
+[data-theme="dark"] .faq-answer {
+    transition: background-color var(--t-theme, 0.4s),
+                border-color var(--t-theme, 0.4s),
+                box-shadow var(--t-theme, 0.4s),
+                color var(--t-theme, 0.4s);
+}
+
+
+/* ============================================================
+   §2  FÜR UNTERNEHMEN — dark mode fixes
+   ============================================================ */
+
+/* Section backgrounds using CSS variables */
+[data-theme="dark"] #uebersicht {
+    background: var(--bg-primary);
+}
+
+/* Beratungsfeld overview cards background fix */
+#uebersicht {
+    background: var(--bg-secondary);
+}
+
+/* Lead/subtitle text using variables */
+#marketing .ibc-lead,
+#marketing .lead,
+#schulungen .ibc-lead,
+#schulungen .lead,
+#business .ibc-lead,
+#business .lead,
+#digitalisierung .ibc-lead,
+#digitalisierung .lead {
+    color: var(--text-secondary);
+}
+
+/* Angebot card text colors */
+.angebot-card h3 {
+    color: var(--text-primary);
+}
+.angebot-card p {
+    color: var(--text-secondary);
+}
+
+/* ── Section heading decoration ─── */
+.section-heading-line {
+    display: block;
+    width: 48px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ibc-green), #6366f1);
+    border-radius: 2px;
+    margin: 1rem auto 0;
+}
+
+
+/* ============================================================
+   §3  ÜBER UNS — dark mode fixes & design
+   ============================================================ */
+
+/* Vision box — use CSS variables */
+.vision-box {
+    background: var(--bg-secondary);
+    border-color: var(--border-subtle);
+}
+[data-theme="dark"] .vision-box {
+    background: var(--bg-tertiary);
+    border-color: rgba(255, 255, 255, 0.08);
+    border-left-color: var(--ibc-green-light, #7db356);
+    border-right-color: var(--ibc-accent, #4F8EF7);
+}
+[data-theme="dark"] .vision-box .h4 {
+    color: var(--text-secondary);
+}
+
+/* Member card — fix hardcoded gradient backgrounds */
+[data-theme="dark"] .member-card {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .member-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    border-color: rgba(125, 179, 86, 0.3);
+}
+[data-theme="dark"] .member-card::before {
+    background: linear-gradient(90deg, transparent, rgba(125, 179, 86, 0.08), transparent);
+}
+[data-theme="dark"] .member-card h3 {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .member-card p,
+[data-theme="dark"] .member-card .member-role {
+    color: var(--text-secondary);
+}
+[data-theme="dark"] .member-card i {
+    background: linear-gradient(135deg, var(--ibc-green-light), var(--ibc-accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+/* Mission pillar cards */
+[data-theme="dark"] .mission-pillar {
+    background: var(--bg-tertiary);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .mission-pillar__title {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .mission-pillar__text {
+    color: var(--text-secondary);
+}
+[data-theme="dark"] .mission-pillar__icon {
+    background: rgba(125, 179, 86, 0.12);
+    border-color: rgba(125, 179, 86, 0.22);
+}
+
+/* Section intro text */
+[data-theme="dark"] .section-intro-text {
+    color: var(--text-secondary);
+}
+
+/* Page sections backgrounds */
+#mission {
+    background: var(--bg-secondary);
+}
+[data-theme="dark"] #mission {
+    background: var(--bg-primary);
+}
+
+/* Über uns section backgrounds — fix hardcoded whites */
+#team,
+#plattform,
+#values {
+    background: var(--bg-primary);
+}
+[data-theme="dark"] #team,
+[data-theme="dark"] #plattform,
+[data-theme="dark"] #values {
+    background: var(--bg-primary);
+}
+
+/* Section header text */
+[data-theme="dark"] .section-header h2,
+[data-theme="dark"] .ibc-heading {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .section-header p,
+[data-theme="dark"] .section-header .lead {
+    color: var(--text-secondary);
+}
+
+/* Stat card — light variant inside dark section */
+[data-theme="dark"] .stat-card--light {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+[data-theme="dark"] .stat-card--light .stat-card__number {
+    color: var(--ibc-green-light, #7db356);
+}
+[data-theme="dark"] .stat-card--light .stat-card__label {
+    color: var(--text-secondary);
+}
+
+/* LinkedIn button in member cards */
+[data-theme="dark"] .social-btn-linkedin,
+[data-theme="dark"] .linkedin-btn {
+    background-color: #0077b5;
+    color: #ffffff;
+}
+
+/* Page section alternating backgrounds */
+.page-section--alt {
+    background: var(--bg-secondary);
+}
+[data-theme="dark"] .page-section--alt {
+    background: var(--bg-secondary);
+}
+
+/* CTA Banner dark mode */
+[data-theme="dark"] .cta-banner {
+    background: linear-gradient(135deg, #070A14 0%, #0D1020 100%);
+}
+[data-theme="dark"] .cta-banner h2,
+[data-theme="dark"] .cta-banner p {
+    color: var(--text-primary);
+}
+
+
+/* ============================================================
+   §4  UNSER NETZWERK — dark mode fixes
+   ============================================================ */
+
+/* Fix hardcoded white backgrounds */
+.foerderkreis-section,
+.kooperationspartner-section,
+.kuratorium-section {
+    transition: background-color var(--t-theme, 0.4s);
+}
+
+/* Partner card backgrounds */
+.partner-card {
+    background: var(--bg-primary);
+    border-color: var(--border-subtle);
+    transition: background-color var(--t-theme, 0.4s),
+                border-color 0.3s,
+                box-shadow 0.3s,
+                transform 0.3s;
+}
+
+/* Logo container refinements */
+.logo-container {
+    transition: background-color var(--t-theme, 0.4s),
+                border-color 0.3s;
+}
+
+/* Kuratorium member card */
+.kuratorium-mitglied {
+    transition: background-color var(--t-theme, 0.4s),
+                border-color 0.3s,
+                box-shadow 0.3s,
+                transform 0.3s;
+}
+
+/* Network section heading colors — fix hardcoded fills */
+[data-theme="dark"] .foerderkreis-section .text-gradient.green-accent,
+[data-theme="dark"] .kooperationspartner-section .text-gradient.green-accent {
+    color: var(--ibc-green-light) !important;
+    -webkit-text-fill-color: var(--ibc-green-light) !important;
+}
+
+/* Fix hardcoded accent colors */
+[data-theme="dark"] .blockquote-icon,
+[data-theme="dark"] .quote-icon {
+    color: var(--ibc-green-light);
+}
+
+/* Network section dividers in dark mode */
+[data-theme="dark"] .network-section-divider svg path {
+    fill: var(--bg-primary);
+}
+
+
+/* ============================================================
+   §5  REFERENZEN — dark mode fixes & enhancements
+   ============================================================ */
+
+/* References section background */
+.references-section {
+    background: var(--bg-primary);
+    transition: background-color var(--t-theme, 0.4s);
+}
+
+/* Filters wrapper — fix hardcoded #ffffff */
+.filters-wrapper {
+    background: var(--bg-primary);
+    border-color: var(--border-subtle);
+    box-shadow: var(--shadow-sm);
+    transition: background-color var(--t-theme, 0.4s),
+                border-color 0.3s,
+                box-shadow 0.3s;
+}
+[data-theme="dark"] .filters-wrapper {
+    background: var(--bg-secondary);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Filter group title */
+.filter-group-title {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .filter-group-title {
+    color: var(--text-primary);
+}
+
+/* Filter group divider */
+[data-theme="dark"] .filter-group + .filter-group {
+    border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Filter buttons */
+.filter-btn {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border-color: var(--border-subtle);
+    transition: all 0.2s ease;
+}
+[data-theme="dark"] .filter-btn {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .filter-btn:hover {
+    background: rgba(125, 179, 86, 0.12);
+    color: var(--ibc-green-light);
+    border-color: rgba(125, 179, 86, 0.3);
+}
+[data-theme="dark"] .filter-btn.active {
+    background: var(--ibc-green);
+    color: #fff;
+    border-color: var(--ibc-green);
+}
+
+/* Project cards — fix hardcoded colors */
+.project-card {
+    background: var(--bg-primary);
+    border-color: var(--border-subtle);
+    transition: background-color var(--t-theme, 0.4s),
+                border-color 0.3s,
+                box-shadow 0.4s,
+                transform 0.4s;
+}
+[data-theme="dark"] .project-card {
+    background: var(--bg-secondary);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+[data-theme="dark"] .project-card h3 {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .project-card p {
+    color: var(--text-secondary);
+}
+[data-theme="dark"] .project-card:hover {
+    border-color: rgba(125, 179, 86, 0.25);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* Project card image overlay */
+[data-theme="dark"] .project-card-image {
+    background: var(--bg-tertiary);
+}
+
+/* Project badges */
+[data-theme="dark"] .project-year-badge {
+    background: rgba(125, 179, 86, 0.12);
+    color: var(--ibc-green-light);
+}
+[data-theme="dark"] .project-category {
+    color: var(--text-muted);
+}
+
+/* CTA card in references */
+[data-theme="dark"] .cta-card {
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] .cta-card h3 {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .cta-card p {
+    color: var(--text-secondary);
+}
+
+/* CTA button */
+[data-theme="dark"] .cta-button {
+    background: var(--ibc-green);
+    color: #fff;
+}
+[data-theme="dark"] .cta-button:hover {
+    background: var(--ibc-green-light);
+}
+
+/* Filter container mobile */
+[data-theme="dark"] .filter-container {
+    background: var(--bg-secondary);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+
+/* ============================================================
+   §6  KONTAKT — dark mode fixes & design
+   ============================================================ */
+
+/* ── Dark mode tokens for kontakt ─── */
+[data-theme="dark"] {
+    --input-bg: rgba(30, 38, 64, 0.65);
+    --glass-form-bg: rgba(22, 27, 46, 0.75);
+    --glass-form-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        0 24px 64px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    --glass-form-shadow-hover:
+        0 8px 24px rgba(0, 0, 0, 0.25),
+        0 40px 80px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* Section background — fix hardcoded gradient */
+[data-theme="dark"] section:has(#contact-form) {
+    background: linear-gradient(135deg, #0D1117 0%, #111520 55%, #0D1117 100%);
+}
+
+/* Contact form section background */
+[data-theme="dark"] .kontakt-content,
+[data-theme="dark"] .contact-section {
+    background: var(--bg-primary);
+}
+
+/* Form controls — fix hardcoded #333 color */
+[data-theme="dark"] .form-control {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15), inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+[data-theme="dark"] .form-control::placeholder {
+    color: var(--text-muted);
+}
+[data-theme="dark"] .form-control:focus {
+    border-color: rgba(125, 179, 86, 0.5);
+    box-shadow: 0 0 0 3px rgba(125, 179, 86, 0.15),
+                0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Floating labels */
+[data-theme="dark"] .form-floating label,
+[data-theme="dark"] .form-label {
+    color: var(--text-secondary);
+}
+
+/* Form select */
+[data-theme="dark"] .form-select,
+[data-theme="dark"] select.form-control {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Textarea */
+[data-theme="dark"] textarea.form-control {
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+}
+
+/* Form glass container */
+[data-theme="dark"] .form-glass,
+[data-theme="dark"] .glass-form-wrap,
+[data-theme="dark"] .col-lg-6:has(#contact-form) form {
+    background: var(--glass-form-bg);
+    backdrop-filter: var(--glass-form-blur);
+    -webkit-backdrop-filter: var(--glass-form-blur);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Contact info sidebar */
+[data-theme="dark"] .contact-info {
+    background: var(--bg-secondary);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .contact-info h2,
+[data-theme="dark"] .contact-info h3 {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .contact-info p,
+[data-theme="dark"] .contact-info a {
+    color: var(--text-secondary);
+}
+[data-theme="dark"] .contact-info a:hover {
+    color: var(--ibc-green-light);
+}
+
+/* Contact detail items */
+[data-theme="dark"] .contact-detail-item {
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .contact-detail-item i {
+    color: var(--ibc-green-light);
+}
+
+/* Timeline in kontakt — fix hardcoded background-color: white */
+[data-theme="dark"] .timeline-content {
+    background-color: var(--bg-secondary);
+    border-left-color: var(--ibc-green-light);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+[data-theme="dark"] .timeline-content h3 {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .timeline-content p {
+    color: var(--text-secondary);
+}
+[data-theme="dark"] .timeline-item:hover .timeline-content {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+/* Timeline line */
+[data-theme="dark"] .timeline-line {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Timeline phase badge */
+[data-theme="dark"] .timeline-phase {
+    background-color: var(--ibc-green);
+}
+
+/* Infoabend section */
+[data-theme="dark"] .infoabend-section {
+    background: var(--bg-secondary);
+}
+[data-theme="dark"] .infoabend-section h2 {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .infoabend-section p,
+[data-theme="dark"] .infoabend-section .lead {
+    color: var(--text-secondary);
+}
+
+/* Event slider items */
+[data-theme="dark"] .event-slider-item {
+    background-color: var(--bg-secondary);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+[data-theme="dark"] .event-slider-content h2 {
+    color: var(--ibc-green-light);
+}
+[data-theme="dark"] .event-slider-content p {
+    color: var(--text-secondary);
+}
+
+/* Carousel indicators */
+[data-theme="dark"] #eventCarousel .carousel-indicators button {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+[data-theme="dark"] #eventCarousel .carousel-indicators button.active {
+    background-color: var(--ibc-green-light);
+}
+[data-theme="dark"] #eventCarousel .carousel-control-prev,
+[data-theme="dark"] #eventCarousel .carousel-control-next {
+    color: var(--text-secondary);
+}
+[data-theme="dark"] #eventCarousel .carousel-control-prev:hover,
+[data-theme="dark"] #eventCarousel .carousel-control-next:hover {
+    color: var(--ibc-green-light);
+}
+
+/* Modal — fix hardcoded #fff, #212121, #d32f2f */
+[data-theme="dark"] .my-modal-box {
+    background-color: var(--bg-secondary);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+[data-theme="dark"] .my-modal-box h3 {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .my-modal-box p {
+    color: var(--text-secondary);
+}
+[data-theme="dark"] .my-modal-box .big-icon {
+    color: #ef4444;
+}
+[data-theme="dark"] .my-modal-scrim {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Modal buttons */
+[data-theme="dark"] .my-modal-box .btn-close-modal {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+[data-theme="dark"] .my-modal-box .btn-close-modal:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Social icons in contact — fix hardcoded colors */
+[data-theme="dark"] .social-icons-contact a {
+    background: var(--bg-tertiary);
+    color: var(--text-secondary);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .social-icons-contact a:hover {
+    color: #fff;
+}
+
+/* Social 3D blocks — fix hardcoded #fff background */
+[data-theme="dark"] .social-3d .social-item a {
+    box-shadow: 8px -8px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Map section */
+[data-theme="dark"] .map-section {
+    background: var(--bg-primary);
+}
+[data-theme="dark"] .map-section iframe {
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Error messages — keep red visible in dark mode */
+[data-theme="dark"] .form-error,
+[data-theme="dark"] .invalid-feedback {
+    color: #f87171;
+}
+
+/* Character counter */
+[data-theme="dark"] .char-counter {
+    color: var(--text-muted);
+}
+
+/* Strength indicators */
+[data-theme="dark"] .strength-indicator .strength-bar {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+/* FAQ section */
+[data-theme="dark"] .faq-question {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .faq-answer {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+
+/* ============================================================
+   §7  DESIGN POLISH — enhanced visuals for all pages
+   ============================================================ */
+
+/* ── Section dividers — smoother wave colors ─── */
+[data-theme="dark"] .section-wave-divider svg path,
+[data-theme="dark"] .section-wave-divider svg {
+    fill: var(--bg-primary);
+}
+
+/* ── Enhanced card hover glow ─── */
+.angebot-card:hover,
+.beratungsfeld-card:hover,
+.member-card:hover,
+.partner-card:hover,
+.project-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="dark"] .angebot-card:hover,
+[data-theme="dark"] .beratungsfeld-card:hover,
+[data-theme="dark"] .member-card:hover,
+[data-theme="dark"] .partner-card:hover,
+[data-theme="dark"] .project-card:hover {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45),
+                0 0 0 1px rgba(125, 179, 86, 0.15);
+}
+
+/* ── Section heading text gradient in dark mode ─── */
+[data-theme="dark"] h2,
+[data-theme="dark"] .section-heading {
+    color: var(--text-primary);
+}
+
+/* ── Improved link colors in dark mode ─── */
+[data-theme="dark"] a:not(.btn):not(.nav-link):not(.mobile-nav-link):not(.logo):not(.ethereal-button):not(.hero-btn-ghost):not(.social-3d a) {
+    color: var(--ibc-green-light);
+}
+[data-theme="dark"] a:not(.btn):not(.nav-link):not(.mobile-nav-link):not(.logo):not(.ethereal-button):not(.hero-btn-ghost):not(.social-3d a):hover {
+    color: var(--ibc-green);
+}
+
+/* ── Breadcrumb and secondary nav ─── */
+[data-theme="dark"] .breadcrumb {
+    color: var(--text-muted);
+}
+[data-theme="dark"] .breadcrumb a {
+    color: var(--text-secondary);
+}
+
+/* ── Table/list improvements ─── */
+[data-theme="dark"] table {
+    color: var(--text-primary);
+}
+[data-theme="dark"] table th {
+    color: var(--text-primary);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+[data-theme="dark"] table td {
+    color: var(--text-secondary);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+/* ── Horizontal rules ─── */
+[data-theme="dark"] hr {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ── Blockquote styling ─── */
+[data-theme="dark"] blockquote,
+[data-theme="dark"] .blockquote {
+    color: var(--text-secondary);
+    border-left-color: var(--ibc-green-light);
+}
+
+
+/* ============================================================
+   §8  PAGE HERO — refined for dark mode
+   ============================================================ */
+
+/* Hero mesh orbs — slightly more visible in dark */
+[data-theme="dark"] .page-hero__mesh-orb--1 {
+    background: radial-gradient(circle, rgba(125, 179, 86, 0.2) 0%, transparent 70%);
+}
+[data-theme="dark"] .page-hero__mesh-orb--2 {
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+}
+[data-theme="dark"] .page-hero__mesh-orb--3 {
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.12) 0%, transparent 70%);
+}
+
+
+/* ============================================================
+   §9  PREMIUM CARD ANIMATIONS — enhanced for both modes
+   ============================================================ */
+
+/* Subtle border glow on focus-visible */
+.angebot-card:focus-visible,
+.beratungsfeld-card:focus-visible,
+.member-card:focus-visible,
+.partner-card:focus-visible,
+.project-card:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(109, 151, 68, 0.3),
+                var(--shadow-md);
+}
+
+[data-theme="dark"] .angebot-card:focus-visible,
+[data-theme="dark"] .beratungsfeld-card:focus-visible,
+[data-theme="dark"] .member-card:focus-visible,
+[data-theme="dark"] .partner-card:focus-visible,
+[data-theme="dark"] .project-card:focus-visible {
+    box-shadow: 0 0 0 3px rgba(125, 179, 86, 0.25),
+                0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+
+/* ============================================================
+   §10  RESPONSIVE REFINEMENTS
+   ============================================================ */
+
+@media (max-width: 768px) {
+    /* Smaller card shadows on mobile for performance */
+    [data-theme="dark"] .angebot-card,
+    [data-theme="dark"] .beratungsfeld-card,
+    [data-theme="dark"] .member-card,
+    [data-theme="dark"] .partner-card,
+    [data-theme="dark"] .project-card {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    }
+}
+
+/* ============================================================
+   §11  REDUCED MOTION — respect user preference
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    body,
+    section,
+    .page-section,
+    .page-section--alt,
+    .page-section--dark,
+    .vision-box,
+    .member-card,
+    .mission-pillar,
+    .partner-card,
+    .project-card,
+    .filters-wrapper,
+    .timeline-content,
+    .contact-info {
+        transition: none !important;
+    }
+}
+
+/* ============================================================
+   §12  KONTAKT PAGE — improved form styling
+   ============================================================ */
+
+/* Glass form card in dark mode */
+[data-theme="dark"] .glass-form-card,
+[data-theme="dark"] .kontakt-form-card {
+    background: rgba(22, 27, 46, 0.8);
+    border-color: rgba(255, 255, 255, 0.06);
+    box-shadow: var(--glass-form-shadow);
+}
+
+/* Form headings */
+[data-theme="dark"] .kontakt-content h1,
+[data-theme="dark"] .kontakt-content h2,
+[data-theme="dark"] .contact-section h1,
+[data-theme="dark"] .contact-section h2 {
+    color: var(--text-primary);
+}
+
+/* Submit button — keep green gradient, ensure visibility */
+[data-theme="dark"] .send-button,
+[data-theme="dark"] .kontakt-submit-btn,
+[data-theme="dark"] .btn-primary {
+    color: #fff;
+}
+
+/* Privacy checkbox text */
+[data-theme="dark"] .form-check-label,
+[data-theme="dark"] .privacy-label {
+    color: var(--text-secondary);
+}
+[data-theme="dark"] .form-check-label a {
+    color: var(--ibc-green-light);
+}
+
+/* Success/error message boxes */
+[data-theme="dark"] .form-success-message {
+    background: rgba(34, 197, 94, 0.12);
+    border-color: rgba(34, 197, 94, 0.3);
+    color: #4ade80;
+}
+[data-theme="dark"] .form-error-message {
+    background: rgba(239, 68, 68, 0.12);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #f87171;
+}
+
+
+/* ============================================================
+   §13  UEBER UNS — additional page section fixes
+   ============================================================ */
+
+/* Fix the page-section--dark dark mode — should remain dark */
+[data-theme="dark"] .page-section--dark {
+    background: linear-gradient(180deg, #0D1117 0%, #0B0E1C 100%);
+}
+
+/* Values section cards */
+[data-theme="dark"] .value-card {
+    background: var(--bg-secondary);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .value-card h3 {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .value-card p {
+    color: var(--text-secondary);
+}
+[data-theme="dark"] .value-card i,
+[data-theme="dark"] .value-card .value-icon {
+    color: var(--ibc-green-light);
+}
+
+/* History timeline in ueber-uns */
+[data-theme="dark"] .history-card,
+[data-theme="dark"] .milestone-card {
+    background: var(--bg-secondary);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .history-card h3,
+[data-theme="dark"] .milestone-card h3 {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .history-card p,
+[data-theme="dark"] .milestone-card p {
+    color: var(--text-secondary);
+}
+
+
+/* ============================================================
+   §14  UNSER NETZWERK — additional fixes
+   ============================================================ */
+
+/* Fix section backgrounds */
+[data-theme="dark"] .foerderkreis-section::after,
+[data-theme="dark"] .kooperationspartner-section::after,
+[data-theme="dark"] .kuratorium-section::after {
+    opacity: 0.4;
+}
+
+/* Read more button */
+[data-theme="dark"] .read-more-btn {
+    color: var(--ibc-green-light);
+    border-color: rgba(125, 179, 86, 0.3);
+}
+[data-theme="dark"] .read-more-btn:hover {
+    background: rgba(125, 179, 86, 0.12);
+    color: var(--ibc-green-light);
+}
+
+/* Alumni cards */
+[data-theme="dark"] .alumni-card {
+    background: var(--bg-secondary);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .alumni-card h3 {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .alumni-card p {
+    color: var(--text-secondary);
+}
+
+/* Network stat numbers */
+[data-theme="dark"] .network-stat .stat-number {
+    color: var(--ibc-green-light);
+}
+[data-theme="dark"] .network-stat .stat-label {
+    color: var(--text-secondary);
+}
+
+
+/* ============================================================
+   §15  REFERENZEN — counter/stats design
+   ============================================================ */
+
+/* References intro section */
+[data-theme="dark"] .references-intro {
+    background: var(--bg-primary);
+}
+[data-theme="dark"] .references-intro h2 {
+    color: var(--text-primary);
+}
+[data-theme="dark"] .references-intro p {
+    color: var(--text-secondary);
+}
+
+/* Stat counters */
+[data-theme="dark"] .ref-counter-card {
+    background: var(--bg-secondary);
+    border-color: rgba(255, 255, 255, 0.06);
+}
+[data-theme="dark"] .ref-counter-card .counter-number {
+    color: var(--ibc-green-light);
+}
+[data-theme="dark"] .ref-counter-card .counter-label {
+    color: var(--text-secondary);
+}
+
+
+/* ============================================================
+   §16  SCROLLBAR — dark mode
+   ============================================================ */
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--bg-tertiary);
+    border-color: var(--bg-primary);
+}
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: rgba(125, 179, 86, 0.4);
+}

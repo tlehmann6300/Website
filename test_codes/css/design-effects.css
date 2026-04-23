@@ -1,0 +1,192 @@
+/**
+ * design-effects.css
+ *
+ * Innovative design elements:
+ *  1. Wave / Slope section dividers
+ *  2. Magnetic button effect (visual CSS layer – JS drives the transform)
+ *  3. Icon pulse animations (on-load)
+ *  4. Image parallax (JS drives translateY, CSS wires up the property)
+ */
+
+/* ─── 1. WAVE / SLOPE SECTION DIVIDERS ─────────────────────────────────── */
+
+/*
+ * Standalone `.section-wave-divider` elements are placed BETWEEN two <section>
+ * elements in the HTML (not inside them).  This sidesteps any `overflow:hidden`
+ * on the adjacent sections.  The SVG fills transition from the colour of the
+ * preceding section into the colour of the following section.
+ *
+ * The element uses negative top/bottom margins to overlap the adjacent sections
+ * by a couple of pixels, preventing hairline gaps on sub-pixel screens.
+ */
+.section-wave-divider {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    pointer-events: none;
+    /* Pull up into the preceding section and down into the next by 2 px */
+    margin-top: -2px;
+    margin-bottom: -2px;
+    position: relative;
+    z-index: 10; /* sit above both adjacent sections */
+}
+
+.section-wave-divider svg {
+    display: block;
+    width: 100%;
+    height: clamp(40px, 6vw, 90px);
+}
+
+/* ─── 2. MAGNETIC BUTTON EFFECT ─────────────────────────────────────────── */
+
+/*
+ * The magnetic effect is driven by JavaScript (design-effects.js).
+ * CSS provides the smooth easing for the transform, and resets it when the
+ * cursor leaves.
+ */
+.magnetic-element {
+    will-change: transform;
+    transition:
+        transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* When JS is tracking, do NOT override the inline transform */
+.magnetic-element.is-magnetic-active {
+    transition:
+        transform 0.12s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow 0.12s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ─── 3. ICON PULSE ANIMATIONS ──────────────────────────────────────────── */
+
+/*
+ * Applied to icon containers (.physics-icon-box, .info-icon-box, etc.).
+ * The .icon-pulse class is added by design-effects.js when the element
+ * enters the viewport for the first time.
+ */
+@keyframes icon-pulse-in {
+    0%   { transform: scale(0.7) rotate(-8deg); opacity: 0; }
+    60%  { transform: scale(1.15) rotate(4deg); opacity: 1; }
+    80%  { transform: scale(0.95) rotate(-2deg); }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes icon-soft-pulse {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.06); }
+}
+
+/*
+ * Entry pop: fires once when the icon comes into view.
+ * JS adds `icon-animate-entry` to trigger this.
+ */
+.icon-animate-entry {
+    animation: icon-pulse-in 0.65s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+/*
+ * Continuous idle pulse: very subtle, keeps icons "alive".
+ * JS adds `icon-animate-idle` after the entry animation completes.
+ */
+.icon-animate-idle {
+    animation: icon-soft-pulse 3s ease-in-out infinite;
+}
+
+/* Ensure Font Awesome icons inside boxes inherit the animation */
+.physics-icon-box.icon-animate-entry,
+.info-icon-box.icon-animate-entry,
+.physics-icon-box.icon-animate-idle,
+.info-icon-box.icon-animate-idle {
+    display: flex; /* already set, but defensive */
+}
+
+/* ─── INLINE SVG ICON ANIMATIONS ─────────────────────────────────────────── */
+
+/*
+ * After icon-loader.js converts `img.svg-icon` to `svg.svg-icon`,
+ * design-effects.js adds `svg-icon-animated`.  These rules create a
+ * subtle fade-in + ongoing gentle pulse.
+ */
+@keyframes svg-icon-fade-in {
+    from { opacity: 0; transform: scale(0.8); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes svg-icon-breathe {
+    0%, 100% { transform: scale(1); }
+    50%       { transform: scale(1.05); }
+}
+
+svg.svg-icon.svg-icon-animated {
+    animation:
+        svg-icon-fade-in 0.5s cubic-bezier(0.25, 1, 0.5, 1) both,
+        svg-icon-breathe 4s ease-in-out 0.6s infinite;
+}
+
+/* Don't animate decorative footer / header SVGs */
+.fat-footer__connect-icon.svg-icon-animated {
+    animation: none;
+}
+
+/* ─── 4. IMAGE PARALLAX ─────────────────────────────────────────────────── */
+
+/*
+ * JS sets `--parallax-offset` (a px value) on each image wrapper.
+ * The image itself overflows the clipping wrapper so the parallax shift
+ * is invisible outside the card boundaries.
+ */
+.parallax-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.parallax-img {
+    will-change: transform;
+    transition: transform 0.1s linear; /* keeps movement smooth between rAF ticks */
+    transform: translateY(var(--parallax-offset, 0px));
+}
+
+/*
+ * Competency / value card images already have overflow:hidden wrappers.
+ * We add extra height so the image has room to travel.
+ * (JS adds `.parallax-container` to the wrapper and `.parallax-img` to the <img>.)
+ */
+.parallax-container .competency-card__image,
+.parallax-container .value-card__image {
+    height: 115%; /* 15% extra travel room */
+    object-position: center center;
+    top: -7.5%; /* centre the oversized image */
+    position: relative;
+}
+
+/* ─── REDUCED MOTION OVERRIDES ──────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+    .magnetic-element,
+    .magnetic-element.is-magnetic-active {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .icon-animate-entry,
+    .icon-animate-idle {
+        animation: none !important;
+    }
+
+    svg.svg-icon.svg-icon-animated {
+        animation: none !important;
+    }
+
+    .parallax-img {
+        transform: none !important;
+        transition: none !important;
+        height: 100% !important;
+        top: 0 !important;
+    }
+
+    .section-wave-divider {
+        display: none; /* hard-edge fallback for motion-sensitive users */
+    }
+}

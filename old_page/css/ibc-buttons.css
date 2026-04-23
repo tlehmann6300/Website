@@ -1,0 +1,479 @@
+/* ================================================================
+   ibc-buttons.css  —  Global Shimmer Button System
+   IBC Furtwangen · Adapted from button_redesign.html
+   Apply LAST on every page.
+   ================================================================ */
+
+/* ── IBC Button Color Tokens ─────────────────────────────── */
+:root {
+  --btn-primary:       #5a8035;
+  --btn-primary-mid:   #6D9744;
+  --btn-primary-light: #7DB356;
+  --btn-primary-glow:  rgba(109,151,68,0.45);
+  --btn-ghost-border:  rgba(109,151,68,0.45);
+  --btn-ghost-text:    #6D9744;
+  --btn-radius:        16px;
+  --btn-height:        52px;
+  --btn-font-size:     0.97rem;
+  --btn-ease:          cubic-bezier(.2,.8,.2,1);
+}
+[data-theme="dark"] {
+  --btn-ghost-border:  rgba(125,179,86,0.55);
+  --btn-ghost-text:    #7DB356;
+}
+
+/* ================================================================
+   BASE SHIMMER — applied to all primary CTA variants
+   ================================================================ */
+.btn-shimmer,
+.ethereal-button,
+.hero-cta-primary,
+.fat-footer__cta-btn,
+.mobile-cta-btn,
+.students-pretty-btn,
+.esv3-cta,
+button.btn-submit,
+.send-button,
+a.cta-button,
+.btn.btn-primary,
+.btn-ibc {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.55rem !important;
+  height: var(--btn-height) !important;
+  padding: 0 1.9rem !important;
+  font-size: var(--btn-font-size) !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--btn-radius) !important;
+  cursor: pointer !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent !important;
+  touch-action: manipulation !important;
+
+  /* Animated shimmer gradient — IBC green palette */
+  background: linear-gradient(
+    90deg,
+    var(--btn-primary)       0%,
+    var(--btn-primary-mid)   25%,
+    var(--btn-primary-light) 50%,
+    var(--btn-primary-mid)   75%,
+    var(--btn-primary)       100%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: ibcShimmer 2.8s linear infinite !important;
+
+  /* Shadow */
+  box-shadow: 0 4px 22px rgba(0,0,0,0.18),
+              0 0 0 1px rgba(255,255,255,0.10) inset !important;
+
+  transition: transform 0.15s var(--btn-ease),
+              box-shadow 0.25s var(--btn-ease) !important;
+}
+
+/* ── Shine sweep overlay ────────────────────────────────── */
+.btn-shimmer::before,
+.ethereal-button::before,
+.hero-cta-primary::before,
+.fat-footer__cta-btn::before,
+.mobile-cta-btn::before,
+.students-pretty-btn::before,
+.esv3-cta::before,
+button.btn-submit::before,
+.send-button::before,
+a.cta-button::before,
+.btn.btn-primary::before,
+.btn-ibc::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important; left: -100% !important;
+  width: 50% !important; height: 100% !important;
+  background: linear-gradient(
+    90deg, transparent, rgba(255,255,255,0.48), transparent
+  ) !important;
+  transform: skewX(-20deg) !important;
+  animation: ibcShine 2.8s ease-in-out infinite !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+/* ── Ripple overlay ─────────────────────────────────────── */
+.btn-shimmer::after,
+.ethereal-button::after,
+.hero-cta-primary::after,
+.fat-footer__cta-btn::after,
+.mobile-cta-btn::after,
+.students-pretty-btn::after,
+.esv3-cta::after,
+button.btn-submit::after,
+.send-button::after,
+a.cta-button::after,
+.btn.btn-primary::after,
+.btn-ibc::after {
+  content: '' !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: radial-gradient(
+    circle at var(--ripple-x, 50%) var(--ripple-y, 50%),
+    rgba(255,255,255,0.38) 0%,
+    transparent 62%
+  ) !important;
+  opacity: 0 !important;
+  transition: opacity 0.35s !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ── Hover / Active ─────────────────────────────────────── */
+.btn-shimmer:hover,
+.ethereal-button:hover,
+.hero-cta-primary:hover,
+.fat-footer__cta-btn:hover,
+.mobile-cta-btn:hover,
+.students-pretty-btn:hover,
+.esv3-cta:hover,
+button.btn-submit:hover,
+.send-button:hover,
+a.cta-button:hover,
+.btn.btn-primary:hover,
+.btn-ibc:hover {
+  transform: translateY(-3px) scale(1.015) !important;
+  box-shadow: 0 10px 32px var(--btn-primary-glow),
+              0 0 0 1px rgba(255,255,255,0.14) inset !important;
+  color: #fff !important;
+}
+
+.btn-shimmer:active,
+.ethereal-button:active,
+.hero-cta-primary:active,
+.fat-footer__cta-btn:active,
+.mobile-cta-btn:active,
+.students-pretty-btn:active,
+.esv3-cta:active,
+button.btn-submit:active,
+.send-button:active,
+a.cta-button:active,
+.btn.btn-primary:active,
+.btn-ibc:active {
+  transform: scale(0.96) !important;
+  box-shadow: 0 2px 12px var(--btn-primary-glow) !important;
+  animation-play-state: paused !important;
+}
+
+.btn-shimmer:active::after,
+.ethereal-button:active::after,
+.hero-cta-primary:active::after,
+.fat-footer__cta-btn:active::after,
+.mobile-cta-btn:active::after,
+.students-pretty-btn:active::after,
+.esv3-cta:active::after,
+button.btn-submit:active::after,
+.send-button:active::after,
+a.cta-button:active::after,
+.btn.btn-primary:active::after,
+.btn-ibc:active::after {
+  opacity: 1 !important;
+}
+
+/* ── Content sits above shimmer layers ──────────────────── */
+.btn-shimmer > *,
+.ethereal-button > *,
+.hero-cta-primary > *,
+.fat-footer__cta-btn > *,
+.mobile-cta-btn > *,
+.students-pretty-btn > *,
+.esv3-cta > *,
+button.btn-submit > *,
+.send-button > *,
+a.cta-button > *,
+.btn.btn-primary > *,
+.btn-ibc > * {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* ── Focus ring (accessibility) ─────────────────────────── */
+.btn-shimmer:focus-visible,
+.ethereal-button:focus-visible,
+.hero-cta-primary:focus-visible,
+.fat-footer__cta-btn:focus-visible,
+.mobile-cta-btn:focus-visible,
+.btn.btn-primary:focus-visible,
+.btn-ibc:focus-visible {
+  outline: 3px solid var(--btn-primary-light) !important;
+  outline-offset: 3px !important;
+}
+
+/* ── Keyframes ──────────────────────────────────────────── */
+@keyframes ibcShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+@keyframes ibcShine {
+  0%       { left: -100%; }
+  50%, 100% { left: 200%; }
+}
+
+/* ================================================================
+   GHOST / SECONDARY BUTTONS  — outline style, no shimmer
+   ================================================================ */
+.hero-btn-ghost,
+.hero-cta-ghost,
+.cta-banner__ghost-link,
+.btn.btn-outline-primary,
+.btn.btn-outline-secondary,
+.btn-secondary,
+.modal-button.nein {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  height: var(--btn-height) !important;
+  padding: 0 1.8rem !important;
+  font-size: var(--btn-font-size) !important;
+  font-weight: 600 !important;
+  color: var(--btn-ghost-text) !important;
+  background: transparent !important;
+  border: 1.8px solid var(--btn-ghost-border) !important;
+  border-radius: var(--btn-radius) !important;
+  cursor: pointer !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+  -webkit-tap-highlight-color: transparent !important;
+  touch-action: manipulation !important;
+  overflow: hidden !important;
+  isolation: isolate;
+  transition: background 0.25s var(--btn-ease),
+              border-color 0.25s,
+              color 0.25s,
+              transform 0.18s var(--btn-ease),
+              box-shadow 0.25s !important;
+  animation: none !important;
+}
+.hero-btn-ghost::before,
+.hero-cta-ghost::before,
+.cta-banner__ghost-link::before,
+.btn.btn-outline-primary::before,
+.btn-secondary::before { display: none !important; }
+
+.hero-btn-ghost:hover,
+.hero-cta-ghost:hover,
+.cta-banner__ghost-link:hover,
+.btn.btn-outline-primary:hover,
+.btn-secondary:hover,
+.modal-button.nein:hover {
+  background: rgba(109,151,68,0.10) !important;
+  border-color: var(--btn-primary-mid) !important;
+  color: var(--btn-primary-mid) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(109,151,68,0.15) !important;
+}
+.hero-btn-ghost:active,
+.hero-cta-ghost:active,
+.cta-banner__ghost-link:active,
+.btn.btn-outline-primary:active,
+.btn-secondary:active {
+  transform: scale(0.97) !important;
+}
+
+/* Ghost on dark/coloured CTA banners stays white */
+.cta-banner .hero-btn-ghost,
+.cta-banner .cta-banner__ghost-link,
+.page-hero-section .hero-btn-ghost,
+.page-hero-section .hero-cta-ghost {
+  color: rgba(255,255,255,0.88) !important;
+  border-color: rgba(255,255,255,0.35) !important;
+}
+.cta-banner .hero-btn-ghost:hover,
+.cta-banner .cta-banner__ghost-link:hover,
+.page-hero-section .hero-btn-ghost:hover,
+.page-hero-section .hero-cta-ghost:hover {
+  background: rgba(255,255,255,0.12) !important;
+  border-color: rgba(255,255,255,0.65) !important;
+  color: #fff !important;
+}
+
+/* ================================================================
+   DANGER / MODAL CONFIRM BUTTON
+   ================================================================ */
+.modal-button.ja {
+  position: relative !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.5rem !important;
+  height: var(--btn-height) !important;
+  padding: 0 1.8rem !important;
+  font-size: var(--btn-font-size) !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: var(--btn-radius) !important;
+  cursor: pointer !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  background: linear-gradient(
+    90deg,
+    var(--btn-primary) 0%,
+    var(--btn-primary-mid) 25%,
+    var(--btn-primary-light) 50%,
+    var(--btn-primary-mid) 75%,
+    var(--btn-primary) 100%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: ibcShimmer 2.8s linear infinite !important;
+  box-shadow: 0 4px 18px rgba(109,151,68,0.38) !important;
+  transition: transform 0.15s, box-shadow 0.25s !important;
+}
+.modal-button.ja:hover { transform: translateY(-3px) !important; box-shadow: 0 10px 28px rgba(109,151,68,0.5) !important; }
+.modal-button.ja:active { transform: scale(0.96) !important; animation-play-state: paused !important; }
+
+/* ================================================================
+   COOKIE CONSENT BUTTONS
+   ================================================================ */
+.cookie-consent__button--accept-all {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  background: linear-gradient(
+    90deg,
+    var(--btn-primary) 0%,
+    var(--btn-primary-mid) 25%,
+    var(--btn-primary-light) 50%,
+    var(--btn-primary-mid) 75%,
+    var(--btn-primary) 100%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: ibcShimmer 2.8s linear infinite !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  border-radius: var(--btn-radius) !important;
+  height: 48px !important;
+  transition: transform 0.15s, box-shadow 0.25s !important;
+}
+.cookie-consent__button--accept-all::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important; left: -100% !important;
+  width: 50% !important; height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent) !important;
+  transform: skewX(-20deg) !important;
+  animation: ibcShine 2.8s ease-in-out infinite !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+}
+.cookie-consent__button--accept-all > * { position: relative; z-index: 2; }
+.cookie-consent__button--accept-all:hover { transform: translateY(-2px) !important; box-shadow: 0 8px 22px rgba(109,151,68,0.5) !important; }
+.cookie-consent__button--accept-all:active { transform: scale(0.96) !important; animation-play-state: paused !important; }
+
+/* Cookie save / reject — ghost style */
+.cookie-consent__button--save,
+.cookie-consent__button--reject-all {
+  border-radius: var(--btn-radius) !important;
+  height: 48px !important;
+  font-weight: 600 !important;
+  border: 1.5px solid rgba(255,255,255,0.28) !important;
+  background: rgba(255,255,255,0.08) !important;
+  color: #fff !important;
+  transition: background 0.25s, border-color 0.25s, transform 0.18s !important;
+  animation: none !important;
+}
+.cookie-consent__button--save:hover,
+.cookie-consent__button--reject-all:hover {
+  background: rgba(255,255,255,0.16) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* ================================================================
+   MOBILE CTA STICKY POPUP BUTTON
+   ================================================================ */
+#mobile-sticky-cta .mobile-cta-btn {
+  border-radius: var(--btn-radius) !important;
+  height: 46px !important;
+  font-weight: 700 !important;
+}
+
+/* ================================================================
+   ICON SIZE INSIDE BUTTONS
+   ================================================================ */
+.btn-shimmer i,
+.ethereal-button i,
+.hero-cta-primary i,
+.fat-footer__cta-btn i,
+.mobile-cta-btn i,
+.btn.btn-primary i,
+.btn-ibc i {
+  font-size: 0.95em !important;
+  z-index: 2 !important;
+  position: relative !important;
+  transition: transform 0.2s var(--btn-ease) !important;
+}
+.btn-shimmer:hover i,
+.ethereal-button:hover i,
+.hero-cta-primary:hover i,
+.fat-footer__cta-btn:hover i,
+.mobile-cta-btn:hover i { transform: scale(1.15) !important; }
+.btn-shimmer:active i,
+.ethereal-button:active i { transform: scale(0.9) !important; }
+
+/* ================================================================
+   REDUCED MOTION — static fallback
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .btn-shimmer,
+  .ethereal-button,
+  .hero-cta-primary,
+  .fat-footer__cta-btn,
+  .mobile-cta-btn,
+  .students-pretty-btn,
+  .esv3-cta,
+  button.btn-submit,
+  .send-button,
+  a.cta-button,
+  .btn.btn-primary,
+  .btn-ibc,
+  .modal-button.ja,
+  .cookie-consent__button--accept-all {
+    animation: none !important;
+    background: var(--btn-primary-mid) !important;
+    background-size: auto !important;
+  }
+  .btn-shimmer::before,
+  .ethereal-button::before,
+  .hero-cta-primary::before,
+  .fat-footer__cta-btn::before,
+  .mobile-cta-btn::before,
+  .btn.btn-primary::before,
+  .btn-ibc::before,
+  .cookie-consent__button--accept-all::before {
+    animation: none !important;
+    display: none !important;
+  }
+}
+
+/* ================================================================
+   RESPONSIVE
+   ================================================================ */
+@media (max-width: 576px) {
+  :root { --btn-height: 50px; --btn-font-size: 0.93rem; }
+}
+@media (max-width: 380px) {
+  .btn-shimmer,
+  .ethereal-button,
+  .hero-cta-primary,
+  .mobile-cta-btn,
+  .btn.btn-primary {
+    width: 100% !important;
+    max-width: 320px !important;
+  }
+}
+
+/* End of ibc-buttons.css */

@@ -1,0 +1,1281 @@
+/* ================================================================
+   netzwerk-v3.css
+   Premium redesign for unser-netzwerk.html
+   Load after ibc-design-v3.css and page-redesign.css.
+   ================================================================ */
+
+/* ── Design tokens ─────────────────────────────────────────── */
+:root {
+  --nk-green:       #6D9744;
+  --nk-green-2:     #7DB356;
+  --nk-blue:        #20234A;
+  --nk-indigo:      #6366f1;
+  --nk-ease:        cubic-bezier(.2,.8,.2,1);
+  --nk-ease-spring: cubic-bezier(.34,1.56,.64,1);
+  --nk-radius:      18px;
+  --nk-radius-sm:   12px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §1  HERO ENHANCEMENTS
+   ══════════════════════════════════════════════════════════════ */
+.page-hero-section .hero-stats {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.hero-stat {
+  text-align: center;
+}
+.hero-stat__number {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -.04em;
+  background: linear-gradient(135deg, #9dd467 30%, #e0f8c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.1;
+}
+.hero-stat__label {
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.6);
+  margin-top: .25rem;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §2  SECTION LAYOUT HELPERS
+   ══════════════════════════════════════════════════════════════ */
+.nk-section {
+  padding: clamp(4rem, 8vw, 6rem) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Förderkreis – light/dark adaptive */
+.nk-section--foerderkreis {
+  background: var(--bg-secondary, #f7f8fb);
+}
+[data-theme="dark"] .nk-section--foerderkreis {
+  background: var(--bg-elevated, #12152a);
+}
+.nk-section--foerderkreis::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--nk-green), var(--nk-indigo));
+}
+
+/* Alumni – dark, immersive */
+.nk-section--alumni {
+  background: linear-gradient(160deg, #0f1228 0%, #1a1d3a 45%, #20234a 100%);
+  color: #fff;
+}
+.nk-section--alumni::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--nk-green), var(--nk-blue));
+}
+.nk-section--alumni::after {
+  content: '';
+  position: absolute;
+  bottom: -160px; right: -120px;
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(93,167,57,.16) 0%, transparent 65%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: nkBlobFloat 14s ease-in-out infinite;
+}
+
+/* Kooperationspartner */
+.nk-section--partner {
+  background: linear-gradient(160deg, var(--bg-primary, #fff) 0%, var(--bg-secondary, #f7f8fb) 100%);
+}
+[data-theme="dark"] .nk-section--partner {
+  background: linear-gradient(160deg, #0d0f1a 0%, #12152a 100%);
+}
+.nk-section--partner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--nk-indigo), var(--nk-green));
+}
+
+/* Kuratorium */
+.nk-section--kuratorium {
+  background: var(--bg-primary, #fff);
+}
+[data-theme="dark"] .nk-section--kuratorium {
+  background: var(--bg-secondary, #0d0f1a);
+}
+.nk-section--kuratorium::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--nk-blue), var(--nk-green));
+}
+
+@keyframes nkBlobFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-20px) scale(1.04); }
+}
+
+/* section-header shared */
+.nk-section .section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.nk-section .section-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--nk-green);
+  background: rgba(109,151,68,.1);
+  border: 1px solid rgba(109,151,68,.22);
+  padding: .28rem .9rem;
+  border-radius: 999px;
+  margin-bottom: .9rem;
+}
+[data-theme="dark"] .nk-section .section-chip {
+  color: var(--nk-green-2);
+  background: rgba(125,179,86,.12);
+  border-color: rgba(125,179,86,.25);
+}
+.nk-section--alumni .section-chip {
+  color: #9dd467;
+  background: rgba(157,212,103,.12);
+  border-color: rgba(157,212,103,.25);
+}
+
+/* Intro text under headings */
+.nk-section .section-intro-text {
+  color: var(--text-secondary, #4b4f55);
+  max-width: 600px;
+  margin: .75rem auto 0;
+  line-height: 1.7;
+}
+.nk-section--alumni .section-intro-text {
+  color: rgba(255,255,255,.72);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §2b  FÖRDERKREIS SHOWCASE CARDS (replaces flip-cards)
+   ══════════════════════════════════════════════════════════════ */
+.fk-card {
+  display: flex;
+  align-items: stretch;
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-subtle, rgba(0,0,0,.07));
+  border-radius: var(--nk-radius);
+  overflow: hidden;
+  height: 100%;
+  transition:
+    transform .35s var(--nk-ease-spring),
+    box-shadow .35s,
+    border-color .25s;
+  position: relative;
+  box-shadow: 0 2px 16px rgba(32,35,74,.06);
+}
+.fk-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(180deg, var(--nk-green), var(--nk-indigo));
+  opacity: 0;
+  transition: opacity .3s;
+}
+.fk-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 48px rgba(32,35,74,.12), 0 4px 12px rgba(109,151,68,.08);
+  border-color: rgba(109,151,68,.3);
+}
+.fk-card:hover::before { opacity: 1; }
+
+[data-theme="dark"] .fk-card {
+  background: var(--bg-elevated, #12152a);
+  border-color: rgba(255,255,255,.07);
+  box-shadow: 0 2px 16px rgba(0,0,0,.3);
+}
+[data-theme="dark"] .fk-card:hover {
+  box-shadow: 0 20px 48px rgba(0,0,0,.5), 0 4px 12px rgba(109,151,68,.1);
+  border-color: rgba(125,179,86,.3);
+}
+
+/* Logo area */
+.fk-card__logo-area {
+  flex: 0 0 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(109,151,68,.04);
+  border-right: 1px solid rgba(0,0,0,.05);
+  transition: background .3s;
+}
+[data-theme="dark"] .fk-card__logo-area {
+  background: rgba(255,255,255,.03);
+  border-right-color: rgba(255,255,255,.06);
+}
+.fk-card:hover .fk-card__logo-area {
+  background: rgba(109,151,68,.08);
+}
+.fk-card__logo {
+  max-width: 120px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: transform .4s var(--nk-ease-spring);
+}
+.fk-card:hover .fk-card__logo {
+  transform: scale(1.08);
+}
+[data-theme="dark"] .fk-card__logo {
+  filter: brightness(1.1) contrast(.95);
+}
+
+/* Body area */
+.fk-card__body {
+  flex: 1;
+  padding: 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .5rem;
+  min-width: 0;
+}
+.fk-card__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary, #1d1d1f);
+  margin: 0;
+  line-height: 1.3;
+}
+[data-theme="dark"] .fk-card__name {
+  color: #e8ecf3;
+}
+.fk-card__desc {
+  font-size: .875rem;
+  color: var(--text-secondary, #4b4f55);
+  line-height: 1.7;
+  margin: 0;
+}
+[data-theme="dark"] .fk-card__desc {
+  color: rgba(255,255,255,.6);
+}
+
+/* Responsive: stack on mobile */
+@media (max-width: 575.98px) {
+  .fk-card {
+    flex-direction: column;
+  }
+  .fk-card__logo-area {
+    flex: 0 0 auto;
+    border-right: none;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    padding: 1.5rem;
+  }
+  [data-theme="dark"] .fk-card__logo-area {
+    border-bottom-color: rgba(255,255,255,.06);
+  }
+  .fk-card__body {
+    padding: 1.25rem;
+  }
+  .fk-card::before {
+    width: 100%; height: 3px;
+    top: 0; left: 0;
+    background: linear-gradient(90deg, var(--nk-green), var(--nk-indigo));
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §2c  KURATORIUM HEADING FIX – consistent section title style
+   ══════════════════════════════════════════════════════════════ */
+.nk-section-title {
+  font-size: clamp(2rem, 4.5vw + 0.5rem, 3.4rem);
+  font-weight: 900;
+  letter-spacing: -.035em;
+  line-height: 1.1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §3  FLIP CARDS (Förderkreismitglieder)
+   ══════════════════════════════════════════════════════════════ */
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  perspective: 1000px;
+  cursor: pointer;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  position: relative;
+  display: block;
+}
+.flip-card:focus { outline: none; }
+.flip-card:focus-visible {
+  outline: 2px solid var(--nk-blue);
+  outline-offset: 4px;
+  border-radius: var(--nk-radius);
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.75s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  border-radius: var(--nk-radius);
+}
+@media (hover: hover) {
+  .flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+}
+.flip-card.active .flip-card-inner { transform: rotateY(180deg); }
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: var(--nk-radius);
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flip-card-front {
+  background: #ffffff;
+  box-shadow:
+    0 4px 24px rgba(32,35,74,.1),
+    0 1px 4px rgba(32,35,74,.06);
+  border: 1px solid rgba(32,35,74,.06);
+  transition: box-shadow .3s;
+}
+[data-theme="dark"] .flip-card-front {
+  background: #1a1f34;
+  border-color: rgba(255,255,255,.07);
+  box-shadow: 0 4px 24px rgba(0,0,0,.4);
+}
+.flip-card:hover .flip-card-front {
+  box-shadow:
+    0 12px 40px rgba(32,35,74,.15),
+    0 2px 8px rgba(109,151,68,.1);
+}
+.flip-card-back {
+  background: linear-gradient(135deg, #20234A 0%, #151730 100%);
+  color: #ffffff;
+  transform: rotateY(180deg);
+  box-shadow: 0 8px 32px rgba(0,0,0,.35);
+}
+
+/* Icon box (logo container on front) */
+.flip-card .icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  transition: transform .4s var(--nk-ease-spring);
+}
+@media (hover: hover) {
+  .flip-card:hover .flip-card-front .icon-box { transform: scale(1.06) translateY(-4px); }
+}
+.flip-card .icon-box .card-logo {
+  max-width: 100%;
+  height: auto;
+  max-height: 110px;
+  object-fit: contain;
+  display: block;
+}
+[data-theme="dark"] .flip-card .icon-box .card-logo {
+  filter: brightness(1.1) contrast(0.95);
+}
+
+/* Back text */
+.flip-card-back p {
+  font-size: .92rem;
+  line-height: 1.65;
+  opacity: .92;
+  margin-bottom: 1.25rem;
+  color: rgba(255,255,255,.9);
+}
+
+/* Tap hint (mobile) */
+.tap-hint {
+  position: absolute;
+  bottom: 1.1rem;
+  font-size: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  opacity: .48;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  color: #fff;
+}
+@media (min-width: 992px) { .tap-hint { display: none !important; } }
+
+/* Flip grid spacing */
+#foerderkreis-list { margin-top: 2.5rem; }
+#foerderkreis-list > li { display: flex; }
+#foerderkreis-list > li .flip-card { min-height: 260px; }
+
+/* ══════════════════════════════════════════════════════════════
+   §4  ALUMNI SECTION
+   ══════════════════════════════════════════════════════════════ */
+.alumni-stat {
+  text-align: center;
+  padding: 2.5rem;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--nk-radius);
+  margin-bottom: 1.5rem;
+}
+.alumni-stat__number {
+  font-size: clamp(3.5rem, 7vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -.06em;
+  background: linear-gradient(135deg, #9dd467 30%, #e0f8c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+.alumni-stat__label {
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.55);
+  margin-top: .5rem;
+}
+
+/* Alumni feature cards */
+.alumni-feature {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--nk-radius-sm);
+  padding: 1.5rem;
+  height: 100%;
+  transition: background .3s, transform .3s var(--nk-ease-spring);
+}
+.alumni-feature:hover {
+  background: rgba(255,255,255,.09);
+  transform: translateY(-4px);
+}
+.alumni-feature__icon {
+  width: 44px; height: 44px;
+  border-radius: var(--nk-radius-sm);
+  background: rgba(109,151,68,.18);
+  color: #9dd467;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  transition: background .3s, transform .3s;
+}
+.alumni-feature:hover .alumni-feature__icon {
+  background: rgba(109,151,68,.28);
+  transform: scale(1.1) rotate(-5deg);
+}
+.alumni-feature__title {
+  font-size: .95rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: .4rem;
+}
+.alumni-feature__text {
+  font-size: .83rem;
+  color: rgba(255,255,255,.62);
+  line-height: 1.65;
+  margin: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §5  KOOPERATIONSPARTNER CARDS
+   ══════════════════════════════════════════════════════════════ */
+.coop-card {
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-subtle, rgba(0,0,0,.07));
+  border-radius: var(--nk-radius);
+  padding: 1.75rem 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  transition: transform .28s var(--nk-ease-spring), box-shadow .28s, border-color .25s;
+  position: relative;
+  overflow: hidden;
+}
+.coop-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--nk-green), var(--nk-indigo));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s;
+}
+.coop-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.09);
+  border-color: rgba(109,151,68,.28);
+}
+.coop-card:hover::before { transform: scaleX(1); }
+
+[data-theme="dark"] .coop-card {
+  background: var(--bg-elevated, #12152a);
+  border-color: rgba(255,255,255,.07);
+}
+[data-theme="dark"] .coop-card:hover {
+  box-shadow: 0 20px 40px rgba(0,0,0,.4);
+  border-color: rgba(125,179,86,.28);
+}
+
+.coop-card__icon {
+  width: 48px; height: 48px;
+  border-radius: var(--nk-radius-sm);
+  background: rgba(109,151,68,.1);
+  color: var(--nk-green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  transition: transform .3s, background .3s;
+}
+.coop-card:hover .coop-card__icon {
+  background: rgba(109,151,68,.18);
+  transform: scale(1.1) rotate(-5deg);
+}
+[data-theme="dark"] .coop-card__icon { background: rgba(125,179,86,.12); }
+.coop-card__title {
+  font-size: 1rem; font-weight: 700;
+  color: var(--text-primary, #1d1d1f);
+  margin: 0;
+}
+.coop-card__text {
+  font-size: .86rem;
+  color: var(--text-secondary, #4b4f55);
+  line-height: 1.65; margin: 0; flex: 1;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §6  KURATORIUM CARDS (horizontal)
+   ══════════════════════════════════════════════════════════════ */
+.kuratorium-card--horizontal {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-subtle, rgba(0,0,0,.07));
+  border-radius: var(--nk-radius);
+  padding: 2rem;
+  transition: transform .3s var(--nk-ease-spring), box-shadow .3s;
+  position: relative;
+  overflow: hidden;
+}
+.kuratorium-card--horizontal::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: linear-gradient(180deg, var(--nk-green), var(--nk-indigo));
+  opacity: 0;
+  transition: opacity .3s;
+}
+.kuratorium-card--horizontal:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.1);
+}
+.kuratorium-card--horizontal:hover::before { opacity: 1; }
+
+[data-theme="dark"] .kuratorium-card--horizontal {
+  background: var(--bg-elevated, #12152a);
+  border-color: rgba(255,255,255,.07);
+}
+[data-theme="dark"] .kuratorium-card--horizontal:hover {
+  box-shadow: 0 16px 40px rgba(0,0,0,.4);
+}
+
+.kuratorium-card-img-wrapper {
+  flex: 0 0 90px;
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--bg-secondary, #f7f8fb);
+  box-shadow: 0 4px 12px rgba(0,0,0,.1);
+  border: 3px solid rgba(109,151,68,.2);
+}
+.kuratorium-card-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.kuratorium-card-body { flex: 1; min-width: 0; }
+.kuratorium-card-role {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--nk-green);
+  background: rgba(109,151,68,.1);
+  border: 1px solid rgba(109,151,68,.2);
+  padding: .2rem .7rem;
+  border-radius: 999px;
+  margin-bottom: .7rem;
+}
+[data-theme="dark"] .kuratorium-card-role {
+  color: var(--nk-green-2);
+  background: rgba(125,179,86,.12);
+  border-color: rgba(125,179,86,.22);
+}
+.kuratorium-card-body h3 {
+  font-size: 1.1rem; font-weight: 700;
+  color: var(--text-primary, #1d1d1f);
+  margin-bottom: .4rem;
+  line-height: 1.3;
+}
+.kuratorium-card-body .blockquote {
+  font-size: .9rem;
+  font-style: italic;
+  color: var(--text-secondary, #4b4f55);
+  border-left: 3px solid rgba(109,151,68,.35);
+  padding-left: .9rem;
+  margin: .5rem 0 .75rem;
+  line-height: 1.6;
+}
+[data-theme="dark"] .kuratorium-card-body .blockquote {
+  color: rgba(255,255,255,.65);
+  border-color: rgba(125,179,86,.3);
+}
+.kuratorium-card-body .lehrgebiete {
+  font-size: .83rem;
+  color: var(--text-secondary, #4b4f55);
+  line-height: 1.55;
+  margin: 0;
+}
+[data-theme="dark"] .kuratorium-card-body .lehrgebiete { color: rgba(255,255,255,.55); }
+
+/* Skeleton placeholder */
+.skeleton-card {
+  border-radius: var(--nk-radius);
+  min-height: 180px;
+  background: linear-gradient(90deg,
+    var(--bg-secondary, #eef0f5) 25%,
+    var(--bg-primary, #fff) 50%,
+    var(--bg-secondary, #eef0f5) 75%);
+  background-size: 200% 100%;
+  animation: nkSkeletonShimmer 1.8s infinite;
+}
+[data-theme="dark"] .skeleton-card {
+  background: linear-gradient(90deg, #1a1f34 25%, #22284a 50%, #1a1f34 75%);
+  background-size: 200% 100%;
+}
+@keyframes nkSkeletonShimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §7  CTA BANNER
+   ══════════════════════════════════════════════════════════════ */
+.nk-cta-banner {
+  background: linear-gradient(135deg, #141829 0%, #1a2840 40%, #182a10 72%, #141829 100%);
+  background-size: 300% 300%;
+  animation: nkCtaBannerShift 18s ease infinite;
+  padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.nk-cta-banner::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+  background-size: 44px 44px;
+  pointer-events: none;
+}
+@keyframes nkCtaBannerShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.nk-cta-banner__title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: .75rem;
+}
+.nk-cta-banner__subtitle {
+  font-size: 1rem;
+  color: rgba(255,255,255,.72);
+  max-width: 540px;
+  margin: 0 auto 2rem;
+  line-height: 1.65;
+}
+.nk-cta-banner__inner { position: relative; z-index: 2; }
+
+/* ══════════════════════════════════════════════════════════════
+   §8  RESPONSIVE (legacy horizontal kuratorium – kept for compat)
+   ══════════════════════════════════════════════════════════════ */
+@media (max-width: 767.98px) {
+  .kuratorium-card--horizontal {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .kuratorium-card--horizontal::before { display: none; }
+  .kuratorium-card-img-wrapper { flex: 0 0 80px; width: 80px; height: 80px; }
+  .kuratorium-card-body .blockquote { text-align: left; }
+
+  #foerderkreis-list > li .flip-card { min-height: 220px; }
+  .flip-card-front, .flip-card-back { padding: 1.75rem 1.25rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §9  PREMIUM FÖRDERKREIS FLIP CARDS
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Flip-Card Größe ── */
+.foerderkreis-flip { min-height: 340px !important; }
+#foerderkreis-list > li .foerderkreis-flip { min-height: 340px; }
+
+/* ── VORDERSEITE ──────────────────────────────────────────── */
+.foerderkreis-front {
+  gap: 0;
+  position: relative;
+  overflow: hidden;
+  /* Licht: weiß, glasartig */
+  background: #ffffff !important;
+  border: 1px solid rgba(32,35,74,.07) !important;
+  box-shadow:
+    0 2px 12px rgba(32,35,74,.06),
+    0 0 0 0 rgba(109,151,68,0) !important;
+  transition:
+    box-shadow .4s ease,
+    border-color .4s ease !important;
+}
+/* Dunkel-Modus: Tiefes Navy mit Glasoptik */
+[data-theme="dark"] .foerderkreis-front {
+  background: linear-gradient(145deg,#0f1228 0%,#1a1d3a 100%) !important;
+  border-color: rgba(255,255,255,.08) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,.45) !important;
+}
+
+/* Glow on hover/active */
+.foerderkreis-flip:hover .foerderkreis-front,
+.foerderkreis-flip.active .foerderkreis-front {
+  border-color: rgba(109,151,68,.4) !important;
+  box-shadow:
+    0 12px 40px rgba(32,35,74,.12),
+    0 0 0 3px rgba(109,151,68,.12) !important;
+}
+[data-theme="dark"] .foerderkreis-flip:hover .foerderkreis-front,
+[data-theme="dark"] .foerderkreis-flip.active .foerderkreis-front {
+  border-color: rgba(125,179,86,.45) !important;
+  box-shadow:
+    0 12px 48px rgba(0,0,0,.5),
+    0 0 0 3px rgba(125,179,86,.18) !important;
+}
+
+/* Glänzender Balken oben — animiert herein */
+.foerderkreis-front::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg,
+    var(--nk-green,#6d9744) 0%,
+    #52c234 40%,
+    #a8e063 60%,
+    var(--nk-indigo,#4f52b8) 100%);
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .45s cubic-bezier(.22,1,.36,1);
+  border-radius: 99px 99px 0 0;
+}
+.foerderkreis-flip:hover .foerderkreis-front::before,
+.foerderkreis-flip.active .foerderkreis-front::before {
+  transform: scaleX(1);
+}
+
+/* Dekorativer Orb rechts oben (Dunkel) */
+.foerderkreis-front::after {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(109,151,68,.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity .4s;
+  pointer-events: none;
+}
+[data-theme="dark"] .foerderkreis-front::after { opacity: 1; }
+
+/* Logo-Wrapper */
+.foerderkreis-logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 2rem 2rem 1.25rem;
+  flex: 1;
+  transition: transform .45s cubic-bezier(.22,1,.36,1);
+}
+.foerderkreis-flip:hover .foerderkreis-logo-wrap,
+.foerderkreis-flip.active .foerderkreis-logo-wrap {
+  transform: scale(1.07) translateY(-5px);
+}
+
+/* Logo-Bild */
+.foerderkreis-logo {
+  max-width: 100%;
+  max-height: 130px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  transition: filter .35s;
+}
+[data-theme="dark"] .foerderkreis-logo {
+  filter: brightness(1.15) contrast(.92) drop-shadow(0 0 8px rgba(109,151,68,.2));
+}
+
+/* Details-Chip unten */
+.foerderkreis-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--nk-green,#6d9744);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .3s, transform .3s;
+  padding-bottom: .75rem;
+}
+.foerderkreis-flip:hover .foerderkreis-hint,
+.foerderkreis-flip.active .foerderkreis-hint {
+  opacity: 1;
+  transform: translateY(0);
+}
+[data-theme="dark"] .foerderkreis-hint { color: #9dd467; }
+
+/* ── RÜCKSEITE ────────────────────────────────────────────── */
+@keyframes nkBackShimmer {
+  0%,100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+.foerderkreis-back {
+  /* Reiches Dunkel-Gradient — identisch in beiden Themes */
+  background:
+    linear-gradient(145deg,
+      #0d1025 0%,
+      #181c3a 35%,
+      #1e2440 65%,
+      #0f1820 100%) !important;
+  border: 1px solid rgba(125,179,86,.2) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 16px 48px rgba(0,0,0,.55) !important;
+  gap: 1.1rem;
+  padding: 2rem 1.75rem !important;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Grüner Glow-Orb auf Rückseite */
+.foerderkreis-back::before {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: 50%;
+  transform: translateX(-50%);
+  width: 220px; height: 220px;
+  background: radial-gradient(circle, rgba(109,151,68,.18) 0%, transparent 65%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+/* Schimmernder Border-Top */
+.foerderkreis-back::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(125,179,86,.6) 30%,
+    rgba(255,255,255,.3) 50%,
+    rgba(125,179,86,.6) 70%,
+    transparent 100%);
+  background-size: 200% 100%;
+  animation: nkBackShimmer 3.5s ease-in-out infinite;
+}
+
+/* Mini-Logo-Kreis */
+.foerderkreis-back__logo-mini {
+  width: 68px; height: 68px;
+  border-radius: 16px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.14);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  padding: .65rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,.25);
+}
+.foerderkreis-logo-mini {
+  max-width: 100%; max-height: 100%;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: .88;
+}
+
+/* Beschreibungstext */
+.foerderkreis-back__text {
+  font-size: .875rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,.85);
+  text-align: center;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Tap-Hint auf Rückseite */
+.foerderkreis-back .tap-hint {
+  color: rgba(255,255,255,.45);
+  font-size: .65rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Reduzierte Bewegung */
+@media (prefers-reduced-motion: reduce) {
+  .foerderkreis-back::after { animation: none; }
+  .foerderkreis-flip:hover .foerderkreis-logo-wrap,
+  .foerderkreis-flip.active .foerderkreis-logo-wrap { transform: none; }
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+  .foerderkreis-flip { min-height: 260px !important; }
+  .foerderkreis-logo-wrap { padding: 1.25rem; }
+  .foerderkreis-logo { max-height: 100px; }
+  .foerderkreis-back { padding: 1.5rem 1.25rem !important; }
+  .foerderkreis-back__logo-mini { width: 52px; height: 52px; }
+  .foerderkreis-back__text { font-size: .82rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §10  PREMIUM KURATORIUM CARDS  (.kurat-card)
+   ══════════════════════════════════════════════════════════════ */
+.kurat-card {
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border-subtle, rgba(0,0,0,.07));
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.35s, border-color 0.25s;
+  box-shadow: 0 2px 16px rgba(32,35,74,0.07);
+}
+.kurat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 56px rgba(32,35,74,0.14), 0 4px 16px rgba(109,151,68,0.1);
+  border-color: rgba(109,151,68,0.35);
+}
+[data-theme="dark"] .kurat-card {
+  background: var(--bg-elevated, #12152a);
+  border-color: rgba(255,255,255,0.07);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+}
+[data-theme="dark"] .kurat-card:hover {
+  box-shadow: 0 24px 56px rgba(0,0,0,0.45), 0 4px 16px rgba(109,151,68,0.14);
+  border-color: rgba(109,151,68,0.3);
+}
+
+/* Portrait image area */
+.kurat-card__img-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+  background: linear-gradient(135deg, #e8ecf5 0%, #d0d8e8 100%);
+  flex-shrink: 0;
+}
+[data-theme="dark"] .kurat-card__img-wrap {
+  background: linear-gradient(135deg, #12152e 0%, #1a1d38 100%);
+}
+.kurat-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.55s cubic-bezier(0.19,1,0.22,1);
+  display: block;
+}
+.kurat-card:hover .kurat-card__img {
+  transform: scale(1.06);
+}
+/* Gradient overlay on portrait */
+.kurat-card__img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(32,35,74,0.7) 0%,
+    rgba(32,35,74,0.1) 40%,
+    transparent 65%
+  );
+  pointer-events: none;
+  transition: opacity 0.35s;
+  opacity: 0.55;
+}
+.kurat-card:hover .kurat-card__img-wrap::after { opacity: 0.8; }
+
+/* Role badge overlaid on image */
+.kurat-card__role-badge {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(109,151,68,0.88);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  z-index: 2;
+  transition: background 0.25s;
+}
+.kurat-card:hover .kurat-card__role-badge {
+  background: rgba(109,151,68,1);
+}
+
+/* Card body */
+.kurat-card__body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  flex: 1;
+}
+.kurat-card__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary, #1d1d1f);
+  margin: 0;
+  line-height: 1.3;
+}
+[data-theme="dark"] .kurat-card__name { color: #e8ecf3; }
+
+.kurat-card__quote {
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--text-secondary, #4b4f55);
+  border-left: 3px solid rgba(109,151,68,0.4);
+  padding-left: 0.85rem;
+  margin: 0;
+  line-height: 1.65;
+}
+[data-theme="dark"] .kurat-card__quote {
+  color: rgba(255,255,255,0.65);
+  border-color: rgba(125,179,86,0.35);
+}
+
+.kurat-card__subjects {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary, #6b7280);
+  line-height: 1.5;
+  margin: 0;
+  margin-top: auto;
+}
+.kurat-card__subjects i {
+  color: var(--nk-green);
+  font-size: 0.75rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+[data-theme="dark"] .kurat-card__subjects { color: rgba(255,255,255,0.5); }
+
+/* Responsive: narrower portrait on mobile */
+@media (max-width: 575.98px) {
+  .kurat-card__img-wrap { aspect-ratio: 4 / 3; }
+  .foerderkreis-flip { min-height: 280px !important; }
+  .foerderkreis-logo { max-height: 100px; }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §11  LIGHT MODE FIXES
+   The hero (.page-hero-section) always renders with a dark
+   animated gradient (set via ibc-design-v2.css with !important),
+   so all hero text must be white in both themes.
+   The alumni section is also always dark.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Hero: force white text regardless of theme ── */
+.page-hero-section .page-hero__title,
+[data-theme="light"] .page-hero-section .page-hero__title,
+:root:not([data-theme="dark"]) .page-hero-section .page-hero__title {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+
+.page-hero-section .page-hero__subtitle,
+[data-theme="light"] .page-hero-section .page-hero__subtitle,
+:root:not([data-theme="dark"]) .page-hero-section .page-hero__subtitle {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+/* Hero eyebrow badge – white on dark gradient bg */
+.page-hero-section .page-hero__eyebrow {
+  color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Alumni section: heading is always on dark bg ── */
+.nk-section--alumni .ibc-heading {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+}
+.nk-section--alumni .ibc-heading .text-gradient {
+  background: linear-gradient(135deg, #9dd467 0%, #c8f58a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Section headings in light sections (foerderkreis, partner,
+   kuratorium) – ensure readable colors ── */
+:root:not([data-theme="dark"]) .nk-section--foerderkreis .ibc-heading,
+[data-theme="light"] .nk-section--foerderkreis .ibc-heading,
+:root:not([data-theme="dark"]) .nk-section--partner .ibc-heading,
+[data-theme="light"] .nk-section--partner .ibc-heading,
+:root:not([data-theme="dark"]) .nk-section--kuratorium .ibc-heading,
+[data-theme="light"] .nk-section--kuratorium .ibc-heading {
+  color: var(--nk-blue, #20234A);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   §12  RESPONSIVE IMPROVEMENTS
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── CTA banner: full-width button on small screens ── */
+@media (max-width: 575.98px) {
+  .nk-cta-banner .ethereal-button {
+    width: 100%;
+    max-width: 320px;
+    justify-content: center;
+  }
+  .nk-cta-banner__subtitle {
+    font-size: 0.92rem;
+    padding: 0 0.5rem;
+  }
+}
+
+/* ── Hero stats: tighter gap on very small screens ── */
+@media (max-width: 400px) {
+  .page-hero-section .hero-stats {
+    gap: 1.25rem;
+  }
+  .hero-stat__number {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+  .hero-stat__label {
+    font-size: 0.68rem;
+  }
+}
+
+/* ── Alumni stat card: full width on xs ── */
+@media (max-width: 575.98px) {
+  .alumni-stat {
+    padding: 1.75rem 1.25rem;
+  }
+  .alumni-stat__number {
+    font-size: clamp(3rem, 12vw, 4.5rem);
+  }
+}
+
+/* ── Section: reduce horizontal overflow on tiny screens ── */
+@media (max-width: 359.98px) {
+  .nk-section {
+    padding: clamp(2.5rem, 6vw, 4rem) 0;
+  }
+  .nk-cta-banner {
+    padding: 2.5rem 0;
+  }
+  .foerderkreis-flip { min-height: 240px !important; }
+}
+
+/* ── Ensure no horizontal scroll from large absolute orbs ── */
+.page-hero-section,
+.nk-section--alumni {
+  overflow: hidden;
+}
+
+/* ── Flip card grid: ensure proper stacking on xs ── */
+@media (max-width: 575.98px) {
+  #foerderkreis-list > li {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* ── Kuratorium card: stack vertically on xs ── */
+@media (max-width: 575.98px) {
+  .kuratorium-card--horizontal {
+    gap: 1.25rem;
+  }
+  .kuratorium-card-img-wrapper {
+    width: 72px;
+    height: 72px;
+    flex: 0 0 72px;
+  }
+}

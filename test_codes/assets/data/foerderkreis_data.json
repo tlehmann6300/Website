@@ -1,0 +1,41 @@
+{
+  "_kommentar_datei": "Enthält alle Einträge für die Sektion 'Unsere Förderkreismitglieder' auf der Seite unser-netzwerk.html",
+  "_kommentar_verwendung": "Wird von js/netzwerk-loader.js geladen. Neue Mitglieder hier einfügen – kein HTML-Code muss geändert werden.",
+  "_kommentar_bilder": "Alle Bildpfade sind relativ zum Website-Root (z.B. assets/img/...). Die Bilder müssen bereits im angegebenen Ordner vorhanden sein.",
+  "_kommentar_texte": "Die 'i18nKey'-Felder verweisen auf Übersetzungsschlüssel in assets/data/translations/translations.json. Neue Einträge müssen dort ebenfalls ergänzt werden.",
+
+  "members": [
+    {
+      "_kommentar": "MLP Finanzberatung SE",
+      "id": "mlp",
+      "image": "assets/img/mlp_300x300_1.webp",
+      "altText": "Zum Unternehmensprofil von MLP Consulting",
+      "nameI18nKey": "network-sponsors-mlp-title",
+      "descI18nKey": "network-sponsors-mlp-desc"
+    },
+    {
+      "_kommentar": "Accenture",
+      "id": "accenture",
+      "image": "assets/img/accenture_logo_png.webp",
+      "altText": "Zum Unternehmensprofil von Accenture",
+      "nameI18nKey": "network-sponsors-accenture-title",
+      "descI18nKey": "network-sponsors-accenture-desc"
+    },
+    {
+      "_kommentar": "Atos Consulting",
+      "id": "atos",
+      "image": "assets/img/atos_consulting_300x300_1.webp",
+      "altText": "Zum Unternehmensprofil von Atos Consulting",
+      "nameI18nKey": "network-sponsors-atos-title",
+      "descI18nKey": "network-sponsors-atos-desc"
+    },
+    {
+      "_kommentar": "purple line warrior",
+      "id": "plw",
+      "image": "assets/img/plw.webp",
+      "altText": "Zum Unternehmensprofil von purple line warrior",
+      "nameI18nKey": "network-sponsors-plw-title",
+      "descI18nKey": "network-sponsors-plw-desc"
+    }
+  ]
+}

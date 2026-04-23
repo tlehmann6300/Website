@@ -1,0 +1,1063 @@
+/* ============================================================
+   IBC Furtwangen — enhancements.css
+   Post-load enhancement layer · Loaded AFTER main.css
+   © Institut für Business Consulting e.V.
+
+   TABLE OF CONTENTS
+   ─────────────────
+    1.  Enhanced Loading Screen
+    2.  Navbar Responsive Fixes
+    3.  Navbar Dark/Light Mode Colors
+    4.  Cookie Banner Enhancements
+    5.  Page Hero & General Improvements
+    6.  Responsive Fixes
+    7.  Reduced Motion
+   ============================================================ */
+
+
+/* ============================================================
+   1. ENHANCED LOADING SCREEN
+   ============================================================ */
+
+/* --- 1a. Gradient morphing background ------------------------------------ */
+#page-loader {
+  background: linear-gradient(
+    135deg,
+    #151730 0%,
+    #1a1f3d 25%,
+    #151730 50%,
+    #0f1a2e 75%,
+    #151730 100%
+  );
+  background-size: 400% 400%;
+  animation:
+    loader-bg-morph 8s ease-in-out infinite,
+    enh-loader-exit 0.8s cubic-bezier(0.4, 0, 0.2, 1) 2s forwards;
+  overflow: hidden;
+}
+
+/* Subtle floating particles behind the logo */
+#page-loader::before,
+#page-loader::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  opacity: 0.15;
+}
+
+#page-loader::before {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(109, 151, 68, 0.5) 0%, transparent 70%);
+  top: 15%;
+  right: 10%;
+  animation: enh-particle-float-a 6s ease-in-out infinite;
+}
+
+#page-loader::after {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.4) 0%, transparent 70%);
+  bottom: 20%;
+  left: 15%;
+  animation: enh-particle-float-b 8s ease-in-out infinite;
+}
+
+@keyframes enh-particle-float-a {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+  50% { transform: translate(-30px, 20px) scale(1.2); opacity: 0.25; }
+}
+
+@keyframes enh-particle-float-b {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+  50% { transform: translate(20px, -25px) scale(1.15); opacity: 0.2; }
+}
+
+@keyframes loader-bg-morph {
+  0%   { background-position: 0% 50%; }
+  25%  { background-position: 100% 25%; }
+  50%  { background-position: 50% 100%; }
+  75%  { background-position: 0% 75%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* --- 1b. Smooth exit: scale-up + blur reveal ----------------------------- */
+@keyframes enh-loader-exit {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+    pointer-events: auto;
+  }
+  60% {
+    opacity: 0.5;
+    transform: scale(1.03);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.06);
+    filter: blur(12px);
+    pointer-events: none;
+    visibility: hidden;
+  }
+}
+
+/* --- 1c. Ripple rings behind logo ---------------------------------------- */
+.loader-logo-wrap {
+  position: relative;
+}
+
+.loader-logo-wrap::before,
+.loader-logo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.loader-logo-wrap::before {
+  border: 1px solid rgba(125, 179, 86, 0.2);
+  animation: enh-ripple-ring 2.5s ease-in-out infinite;
+}
+
+.loader-logo-wrap::after {
+  inset: -30px;
+  background: radial-gradient(
+    circle,
+    rgba(125, 179, 86, 0.12) 0%,
+    transparent 70%
+  );
+  animation: enh-ripple 2.5s ease-in-out infinite 0.3s;
+}
+
+@keyframes enh-ripple {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.15;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.6;
+  }
+}
+
+@keyframes enh-ripple-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.4;
+    border-color: rgba(125, 179, 86, 0.3);
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0;
+    border-color: rgba(125, 179, 86, 0);
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.4;
+    border-color: rgba(125, 179, 86, 0.3);
+  }
+}
+
+/* Logo entrance animation */
+.loader-logo-wrap img {
+  animation: enh-logo-entrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes enh-logo-entrance {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(10px);
+    filter: blur(8px) brightness(0) invert(1);
+  }
+  100% {
+    opacity: 0.92;
+    transform: scale(1) translateY(0);
+    filter: brightness(0) invert(1);
+  }
+}
+
+/* --- 1d. Glowing progress bar -------------------------------------------- */
+.loader-bar-track {
+  position: relative;
+  overflow: visible;
+}
+
+.loader-bar-track::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 999px;
+  background: rgba(109, 151, 68, 0.08);
+  animation: enh-track-glow 2s ease-in-out infinite;
+}
+
+@keyframes enh-track-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.loader-bar-fill {
+  box-shadow:
+    0 0 8px rgba(109, 151, 68, 0.6),
+    0 0 20px rgba(109, 151, 68, 0.3);
+  animation:
+    loader-fill 1.4s ease forwards,
+    enh-bar-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes enh-bar-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 6px rgba(109, 151, 68, 0.5),
+      0 0 14px rgba(109, 151, 68, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 12px rgba(125, 179, 86, 0.8),
+      0 0 30px rgba(125, 179, 86, 0.4);
+  }
+}
+
+/* --- 1e. Animated loading dots ------------------------------------------- */
+.loader-dots {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.loader-dot {
+  animation: enh-dot-bounce 1.4s ease-in-out infinite;
+}
+
+.loader-dot:nth-child(1) { animation-delay: 0s; }
+.loader-dot:nth-child(2) { animation-delay: 0.15s; }
+.loader-dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes enh-dot-bounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+    background: rgba(255, 255, 255, 0.5);
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+    background: rgba(125, 179, 86, 0.9);
+    box-shadow: 0 0 8px rgba(125, 179, 86, 0.5);
+  }
+}
+
+/* --- 1f. "Wird geladen..." text below dots ------------------------------- */
+.loader-dots::after {
+  content: 'Wird geladen…';
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--font, 'Inter', sans-serif);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  margin-top: 1rem;
+  opacity: 0;
+  animation: enh-loading-text-in 0.6s ease 0.5s forwards;
+}
+
+@keyframes enh-loading-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Light-mode loader keeps dark background */
+:root:not([data-theme="dark"]) #page-loader,
+[data-theme="light"] #page-loader {
+  background: linear-gradient(
+    135deg,
+    #151730 0%,
+    #1a1f3d 25%,
+    #151730 50%,
+    #0f1a2e 75%,
+    #151730 100%
+  );
+  background-size: 400% 400%;
+}
+
+
+/* ============================================================
+   2. NAVBAR RESPONSIVE FIXES
+   ============================================================ */
+
+/* --- 2a. Slide-down animation for mobile collapse ------------------------ */
+@media (max-width: 1199.98px) {
+  .navbar-collapse {
+    z-index: 999;
+    transform-origin: top center;
+  }
+
+  .navbar-collapse.collapsing {
+    transition:
+      height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.35s ease;
+    opacity: 0;
+  }
+
+  .navbar-collapse.show {
+    animation: enh-nav-slide-down 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* Larger tap targets for nav items on mobile */
+  .navbar-nav .nav-link {
+    padding: 0.85rem 1.15rem;
+    font-size: 1rem;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--radius-sm, 8px);
+    transition:
+      color 0.2s ease,
+      background 0.2s ease;
+  }
+
+  .navbar-nav .nav-link:active {
+    background: rgba(109, 151, 68, 0.15);
+  }
+
+  /* Dark mode toggle & language switcher positioning in mobile menu */
+  .navbar-collapse .dark-mode-toggle {
+    margin: 0.5rem 0;
+  }
+
+  .navbar-collapse .dropdown,
+  .navbar-collapse .lang-switcher {
+    width: 100%;
+    margin: 0.25rem 0;
+  }
+
+  .navbar-collapse .dropdown .dropdown-toggle {
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1rem;
+  }
+}
+
+@keyframes enh-nav-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- 2b. Navbar z-index hierarchy ---------------------------------------- */
+.navbar {
+  z-index: 1050;
+}
+
+.navbar-collapse {
+  z-index: 1049;
+}
+
+/* --- 2c. Hamburger animation refinements --------------------------------- */
+.toggler-bar {
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s ease;
+}
+
+.navbar-toggler[aria-expanded="true"] .toggler-bar:nth-child(1) {
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.2s ease;
+}
+
+.navbar-toggler[aria-expanded="true"] .toggler-bar:nth-child(2) {
+  transition: opacity 0.15s ease;
+}
+
+.navbar-toggler[aria-expanded="true"] .toggler-bar:nth-child(3) {
+  transition:
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.2s ease;
+}
+
+
+/* ============================================================
+   3. NAVBAR DARK/LIGHT MODE COLORS
+   ============================================================ */
+
+/* --- 3a. Light mode nav links -------------------------------------------- */
+/* Using higher specificity to override .nav-link { color: var(--nav-text) !important } */
+html:not([data-theme="dark"]) .navbar .nav-link {
+  color: var(--ibc-blue, #20234A) !important;
+}
+
+html:not([data-theme="dark"]) .navbar .nav-link:hover,
+html:not([data-theme="dark"]) .navbar .nav-link:focus-visible {
+  color: var(--ibc-green, #6D9744) !important;
+}
+
+/* --- 3b. Dark mode nav links --------------------------------------------- */
+/* Must use !important to match existing .nav-link specificity pattern */
+html[data-theme="dark"] .navbar .nav-link {
+  color: #e2e4ef !important;
+}
+
+html[data-theme="dark"] .navbar .nav-link:hover,
+html[data-theme="dark"] .navbar .nav-link:focus-visible {
+  color: var(--ibc-green-light, #7db356) !important;
+  background: rgba(125, 179, 86, 0.1);
+}
+
+/* --- 3c. Toggler bars (hamburger) dark/light ----------------------------- */
+:root:not([data-theme="dark"]) .toggler-bar {
+  background-color: var(--ibc-blue, #20234A);
+}
+
+[data-theme="dark"] .toggler-bar {
+  background-color: #e2e4ef;
+}
+
+/* --- 3d. Navbar background when scrolled --------------------------------- */
+[data-theme="dark"] .navbar.is-scrolled,
+[data-theme="dark"] .navbar.scrolled {
+  background: rgba(13, 17, 23, 0.97) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* --- 3e. Dropdown / language menus in dark mode --------------------------- */
+[data-theme="dark"] .navbar .dropdown-menu,
+[data-theme="dark"] .navbar .lang-dropdown {
+  background: var(--bg-tertiary, #1E2640);
+  border-color: var(--border-medium, rgba(255, 255, 255, 0.1));
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme="dark"] .navbar .dropdown-item {
+  color: var(--text-primary, #f0f0f0);
+}
+
+[data-theme="dark"] .navbar .dropdown-item:hover,
+[data-theme="dark"] .navbar .dropdown-item:focus {
+  background: rgba(125, 179, 86, 0.12);
+  color: var(--ibc-green-light, #7db356);
+}
+
+/* Light mode dropdown consistency */
+:root:not([data-theme="dark"]) .navbar .dropdown-menu,
+:root:not([data-theme="dark"]) .navbar .lang-dropdown {
+  background: var(--bg-elevated, #ffffff);
+  border-color: var(--border-subtle, rgba(0, 0, 0, 0.07));
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.09);
+}
+
+/* --- 3f. Dark mode mobile collapse background ---------------------------- */
+@media (max-width: 1199.98px) {
+  [data-theme="dark"] .navbar-collapse {
+    background: var(--bg-secondary, #161B2E);
+    border-color: var(--border-subtle, rgba(255, 255, 255, 0.06));
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+}
+
+
+/* ============================================================
+   4. COOKIE BANNER ENHANCEMENTS
+   ============================================================ */
+
+/* --- 4a. Slide-up entrance + glassmorphism for #consent-banner ----------- */
+#consent-banner {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.4s ease;
+}
+
+#consent-banner:not(.d-none) {
+  animation: enh-cookie-slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes enh-cookie-slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* --- 4b. Cookie consent dialog (.cookie-consent) glassmorphism ------------ */
+.cookie-consent {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+.cookie-consent.show,
+.cookie-consent.visible {
+  animation: enh-cookie-dialog-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes enh-cookie-dialog-in {
+  from {
+    transform: translateY(120%) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+/* --- 4c. Cookie button hover effects ------------------------------------- */
+#consent-banner .ethereal-button,
+.cookie-consent .ethereal-button,
+#consent-banner [class*="btn"],
+.cookie-consent [class*="btn"] {
+  transition:
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+#consent-banner .ethereal-button:hover,
+.cookie-consent .ethereal-button:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow:
+    0 6px 20px rgba(109, 151, 68, 0.35),
+    0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+#consent-banner .ethereal-button:active,
+.cookie-consent .ethereal-button:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* --- 4d. Dark mode cookie readability ------------------------------------ */
+[data-theme="dark"] #consent-banner {
+  background-color: rgba(22, 27, 46, 0.92) !important;
+  border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .cookie-consent {
+  background: rgba(22, 27, 46, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+:root:not([data-theme="dark"]) #consent-banner {
+  background-color: rgba(29, 45, 53, 0.94) !important;
+}
+
+/* --- 4e. Mobile full-width cookie banner --------------------------------- */
+@media (max-width: 767.98px) {
+  #consent-banner {
+    padding: 1rem 1rem !important;
+  }
+
+  #consent-banner .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  #consent-banner .ethereal-button,
+  #consent-banner [class*="btn"] {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Cookie consent dialog: full-width at bottom on mobile */
+  .cookie-consent {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-width: 100%;
+    width: 100%;
+    border-radius: 20px 20px 0 0;
+    margin: 0;
+  }
+
+  .cookie-consent__actions {
+    gap: 0.5rem;
+  }
+
+  .cookie-consent__button {
+    min-height: 48px;
+    font-size: 0.9rem;
+  }
+
+  .cookie-consent__categories {
+    max-height: 35vh;
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .cookie-consent__categories::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+
+/* ============================================================
+   5. PAGE HERO & GENERAL IMPROVEMENTS
+   ============================================================ */
+
+/* --- 5a. Page hero dark/light mode support ------------------------------- */
+[data-theme="dark"] .page-hero-section {
+  background: linear-gradient(
+    125deg,
+    #0D1117,
+    #1a2a1a,
+    #0D1117
+  );
+  background-size: 400% 400%;
+  animation: animatedGradient 18s ease infinite;
+}
+
+[data-theme="dark"] .page-hero-section::before {
+  background: radial-gradient(
+    ellipse at 30% 50%,
+    rgba(109, 151, 68, 0.15) 0%,
+    transparent 60%
+  );
+}
+
+[data-theme="dark"] .page-hero-section h1,
+[data-theme="dark"] .page-hero-section .ibc-heading {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+}
+
+[data-theme="dark"] .page-hero-section p.lead,
+[data-theme="dark"] .page-hero-section .ibc-lead {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* --- 5b. Scroll reveal refinements --------------------------------------- */
+.reveal-fx {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-fx.is-visible {
+  transition-duration: 0.7s;
+}
+
+/* Stagger children with cascade delay */
+.reveal-fx.is-visible:nth-child(2) { transition-delay: 0.08s; }
+.reveal-fx.is-visible:nth-child(3) { transition-delay: 0.16s; }
+.reveal-fx.is-visible:nth-child(4) { transition-delay: 0.24s; }
+.reveal-fx.is-visible:nth-child(5) { transition-delay: 0.32s; }
+.reveal-fx.is-visible:nth-child(6) { transition-delay: 0.40s; }
+
+/* --- 5c. Card hover effects --------------------------------------------- */
+.info-glass-card,
+.competency-card,
+.physics-card,
+.service-card,
+.value-card {
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s ease;
+}
+
+.info-glass-card:hover,
+.service-card:hover,
+.value-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg, 0 20px 60px rgba(0, 0, 0, 0.11));
+}
+
+/* Dark mode card hover glow */
+[data-theme="dark"] .info-glass-card:hover,
+[data-theme="dark"] .competency-card:hover,
+[data-theme="dark"] .service-card:hover,
+[data-theme="dark"] .value-card:hover {
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(125, 179, 86, 0.1);
+}
+
+/* --- 5d. Section transitions / dividers ---------------------------------- */
+.section-wave-divider {
+  transition: fill var(--t-theme, 0.4s) ease;
+}
+
+[data-theme="dark"] .section-wave-divider path {
+  transition: fill var(--t-theme, 0.4s) ease;
+}
+
+/* --- 5e. Instagram section: phone frames & horizontal scroll ------------- */
+.instagram-section-v2 {
+  position: relative;
+  overflow: hidden;
+}
+
+.instagram-container-v2 {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.instagram-container-v2::-webkit-scrollbar {
+  display: none;
+}
+
+.instagram-frame-wrap {
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s ease;
+}
+
+.instagram-frame-wrap:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+/* Dark mode Instagram frames */
+[data-theme="dark"] .instagram-frame-wrap {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+[data-theme="dark"] .instagram-frame-wrap:hover {
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(125, 179, 86, 0.15);
+}
+
+
+/* ============================================================
+   6. RESPONSIVE FIXES
+   ============================================================ */
+
+/* --- 6a. Prevent content from overflowing horizontally ------------------- */
+/* Applied narrowly to known problem areas rather than html/body globally */
+.navbar,
+.page-hero-section,
+section,
+.footer-section {
+  overflow-x: clip;
+}
+
+img,
+video,
+iframe,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* --- 6b. Mobile grid collapse (≤767px) ----------------------------------- */
+@media (max-width: 767.98px) {
+  .row > [class*="col-lg-"],
+  .row > [class*="col-xl-"] {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  /* Better spacing on mobile */
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Hero text sizing on mobile */
+  .page-hero-section h1,
+  .page-hero-section .ibc-heading {
+    font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
+  }
+
+  .page-hero-section p.lead,
+  .page-hero-section .ibc-lead {
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem) !important;
+  }
+
+  /* Hero button layout on mobile */
+  .page-hero-section .hero-actions,
+  .page-hero-section .btn-group,
+  .page-hero-section [class*="d-flex"] {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .page-hero-section .ethereal-button,
+  .page-hero-section .hero-cta-primary,
+  .page-hero-section .hero-cta-ghost {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+}
+
+/* --- 6c. Small mobile (≤480px) ------------------------------------------- */
+@media (max-width: 480px) {
+  .page-hero-section {
+    padding: clamp(4rem, 8vw, 5rem) 0 clamp(3rem, 6vw, 4rem) 0;
+  }
+
+  .page-hero-section h1,
+  .page-hero-section .ibc-heading {
+    font-size: clamp(1.5rem, 7vw, 2rem) !important;
+  }
+
+  /* Ensure cards don't overflow */
+  .info-glass-card,
+  .competency-card,
+  .service-card,
+  .value-card {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* --- 6d. Tablet breakpoint fixes ----------------------------------------- */
+@media (min-width: 768px) and (max-width: 1199.98px) {
+  /* Two-column grid for cards on tablet */
+  .info-cards-section .row > [class*="col-"],
+  .physics-values-section .row > [class*="col-"] {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+/* --- 6e. Overflow-safe Instagram on mobile ------------------------------- */
+@media (max-width: 767.98px) {
+  .instagram-container-v2,
+  .instagram-container,
+  .instagram-feed-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+  }
+
+  .instagram-frame-wrap,
+  .instagram-frame-mockup,
+  .insta-container {
+    scroll-snap-align: center;
+    flex-shrink: 0;
+  }
+
+  /* Disable hover transforms on touch */
+  .instagram-frame-wrap:hover,
+  .instagram-frame-mockup:hover {
+    transform: none;
+  }
+}
+
+
+/* ============================================================
+   7. INSTAGRAM 2-CLICK DSGVO CONSENT OVERLAY
+   ============================================================ */
+
+/* Consent overlay covering the iframe area */
+.ig-consent-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: linear-gradient(145deg, #1a1c2e 0%, #0D1117 50%, #1a2a1a 100%);
+  border-radius: inherit;
+  cursor: pointer;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.ig-consent-overlay:hover {
+  background: linear-gradient(145deg, #22253e 0%, #151730 50%, #1e3220 100%);
+}
+
+.ig-consent-overlay__icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  animation: ig-icon-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes ig-icon-pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(225, 48, 108, 0.4); }
+  50% { transform: scale(1.08); box-shadow: 0 0 0 12px rgba(225, 48, 108, 0); }
+}
+
+.ig-consent-overlay__text {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 220px;
+}
+
+.ig-consent-overlay__text a {
+  color: var(--ibc-green-light, #7db356);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.ig-consent-overlay__text a:hover {
+  color: #fff;
+}
+
+.ig-consent-overlay__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--ibc-green, #6D9744), var(--ibc-green-light, #7db356));
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.ig-consent-overlay__btn:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow: 0 6px 24px rgba(109, 151, 68, 0.4);
+}
+
+.ig-consent-overlay__btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+/* When consent is given and iframe loads, hide overlay */
+.ig-consent-overlay.ig-consent-given {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+/* Show the iframe when consent overlay is dismissed */
+.instagram-frame-wrap iframe[data-instagram-embed].ig-loaded {
+  display: block !important;
+}
+
+/* Responsive adjustments for consent overlay */
+@media (max-width: 480px) {
+  .ig-consent-overlay__icon {
+    width: 48px;
+    height: 48px;
+    font-size: 1.4rem;
+  }
+
+  .ig-consent-overlay__text {
+    font-size: 0.7rem;
+    max-width: 180px;
+  }
+
+  .ig-consent-overlay__btn {
+    font-size: 0.8rem;
+    padding: 0.5rem 1.1rem;
+  }
+}
+
+
+/* ============================================================
+   8. REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all custom animations */
+  #page-loader {
+    animation: enh-loader-exit 0.3s ease 2s forwards;
+  }
+
+  #page-loader,
+  :root:not([data-theme="dark"]) #page-loader,
+  [data-theme="light"] #page-loader {
+    background: #151730;
+    background-size: auto;
+  }
+
+  #page-loader::before,
+  #page-loader::after {
+    animation: none;
+    display: none;
+  }
+
+  .loader-logo-wrap::before,
+  .loader-logo-wrap::after,
+  .loader-bar-fill,
+  .loader-dots::after {
+    animation: none;
+  }
+
+  .loader-logo-wrap img {
+    animation: none;
+    opacity: 0.92;
+    filter: brightness(0) invert(1);
+  }
+
+  .loader-bar-track::before {
+    animation: none;
+  }
+
+  .loader-dot {
+    animation: none;
+  }
+
+  .loader-bar-fill {
+    box-shadow: none;
+  }
+
+  .navbar-collapse.show {
+    animation: none;
+  }
+
+  #consent-banner:not(.d-none) {
+    animation: none;
+  }
+
+  .cookie-consent.show,
+  .cookie-consent.visible {
+    animation: none;
+  }
+
+  .reveal-fx {
+    transition-duration: 0.01s;
+  }
+
+  .info-glass-card,
+  .competency-card,
+  .physics-card,
+  .service-card,
+  .value-card,
+  .instagram-frame-wrap {
+    transition: none;
+  }
+}

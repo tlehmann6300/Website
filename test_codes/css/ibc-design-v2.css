@@ -1,0 +1,857 @@
+/**
+ * IBC Design v2 — Dark / Light Mode + Comprehensive Redesign
+ * Loaded after: main.css, ibc-updates-2025.css
+ *
+ * Sections:
+ *  0.  CRITICAL FIXES (navbar, instagram)
+ *  1.  Global design-token extensions
+ *  2.  Dark-mode overrides for fuer-studierende.css legacy components
+ *  3.  Component design improvements (both themes)
+ *  4.  Mobile / responsive improvements
+ *  5.  Page-level overrides (index + fuer-studierende)
+ */
+
+/* ============================================================
+   0.  CRITICAL FIXES
+   ============================================================
+
+   Problem A – Navbar always white
+   ──────────────────────────────────────────────────────────
+   mobile-first.css uses `.navbar:not(.scrolled) { background: white !important }`
+   BUT app.js adds/removes class "is-scrolled" (never "scrolled"), so
+   :not(.scrolled) ALWAYS matches → navbar is always white.
+   Fix: override with matching specificity + !important, loaded last.
+
+   Problem B – Instagram section not dark
+   ──────────────────────────────────────────────────────────
+   Section HTML class is "instagram-section-v2".
+   Previous dark-mode rule targeted ".instagram-section" (missing -v2).
+   Fix: target ".instagram-section-v2" directly.
+   ============================================================ */
+
+/* ── A. Navbar at rest: transparent (hero shows through) ───── */
+#navbar.at-top,
+.navbar.at-top {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+
+/* Dark mode at-top: subtle gradient so links stay readable */
+[data-theme="dark"] #navbar.at-top,
+[data-theme="dark"] .navbar.at-top {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.32) 0%, transparent 100%) !important;
+}
+
+/* ── A. Navbar scrolled: glassmorphism effect ───────────────── */
+#navbar.is-scrolled,
+.navbar.is-scrolled {
+  background: rgba(255,255,255,0.94) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  box-shadow: 0 4px 30px rgba(32,35,74,0.08) !important;
+  border-bottom: 1px solid rgba(0,0,0,0.07) !important;
+}
+[data-theme="dark"] #navbar.is-scrolled,
+[data-theme="dark"] .navbar.is-scrolled {
+  background: rgba(21,23,48,0.95) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.35) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+}
+
+/* ── A. Ensure nav links are readable on transparent at-top ── */
+/* Light mode hero is dark gradient → white text fine */
+/* fuer-studierende hero is animated blue/green → white text fine */
+.navbar.at-top .nav-link,
+#navbar.at-top .nav-link {
+  color: rgba(255,255,255,0.92) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4) !important;
+}
+.navbar.at-top .nav-link:hover,
+#navbar.at-top .nav-link:hover {
+  color: #ffffff !important;
+}
+/* Logo text/icon also white on transparent navbar */
+.navbar.at-top .logo,
+#navbar.at-top .logo {
+  filter: brightness(1.15);
+}
+
+/* Scrolled nav-links: back to normal (dark on glass) */
+.navbar.is-scrolled .nav-link,
+#navbar.is-scrolled .nav-link {
+  color: var(--ibc-blue, #20234A) !important;
+  text-shadow: none !important;
+}
+[data-theme="dark"] .navbar.is-scrolled .nav-link,
+[data-theme="dark"] #navbar.is-scrolled .nav-link {
+  color: rgba(232,236,243,0.92) !important;
+  text-shadow: none !important;
+}
+
+/* Theme-toggle and lang-btn: also white on transparent navbar */
+.navbar.at-top .theme-toggle {
+  border-color: rgba(255,255,255,0.4) !important;
+  background: rgba(255,255,255,0.12) !important;
+}
+.navbar.at-top .theme-toggle-ball {
+  background: #ffffff !important;
+}
+.navbar.at-top .lang-btn {
+  color: rgba(255,255,255,0.92) !important;
+  border-color: rgba(255,255,255,0.35) !important;
+  background: rgba(255,255,255,0.10) !important;
+}
+.navbar.at-top .mobile-toggle span {
+  background: #ffffff !important;
+}
+
+/* ── A2. Homepage body class override (specificity 0,4,1 beats mobile-first.css) ── */
+/* mobile-first.css: body.homepage .navbar:not(.scrolled) .nav-link → color:#111 !important  */
+/* That rule has 0,4,1 specificity — higher than .navbar.at-top .nav-link (0,3,0).           */
+/* Fix: match the specificity here, loaded after → cascade wins.                             */
+body.homepage .navbar.at-top .nav-link,
+body.homepage #navbar.at-top .nav-link {
+  color: rgba(255,255,255,0.92) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4) !important;
+}
+body.homepage .navbar.at-top .nav-link:hover,
+body.homepage #navbar.at-top .nav-link:hover {
+  color: #ffffff !important;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.5) !important;
+}
+[data-theme="dark"] body.homepage .navbar.at-top .nav-link,
+body.homepage [data-theme="dark"] .navbar.at-top .nav-link {
+  color: rgba(255,255,255,0.92) !important;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.4) !important;
+}
+
+/* ── B. Instagram highlights section dark mode ──────────────── */
+[data-theme="dark"] .instagram-section-v2,
+[data-theme="dark"] #instagram-section.instagram-section-v2,
+[data-theme="dark"] section.instagram-section-v2 {
+  background: var(--v2-surface-1, #10131f) !important;
+}
+
+/* ============================================================
+   1.  GLOBAL DESIGN TOKEN EXTENSIONS
+   ============================================================ */
+
+:root {
+  --v2-radius-card:    1.25rem;
+  --v2-radius-pill:    9999px;
+  --v2-radius-md:      0.75rem;
+
+  --v2-transition:     0.3s cubic-bezier(0.19, 1, 0.22, 1);
+  --v2-transition-fast:0.18s ease;
+
+  /* Surface colours (light) */
+  --v2-surface-1:      #ffffff;
+  --v2-surface-2:      #f8f9fa;
+  --v2-surface-3:      #f0f2f5;
+
+  /* Text (light) */
+  --v2-text-1:         #1a1d2e;
+  --v2-text-2:         #4d5061;
+  --v2-text-3:         #8891a5;
+
+  /* Borders (light) */
+  --v2-border:         rgba(0,0,0,0.08);
+  --v2-border-hover:   rgba(109,151,68,0.35);
+
+  /* Glows */
+  --v2-glow-green:     0 0 40px rgba(109,151,68,0.18);
+  --v2-glow-blue:      0 0 40px rgba(32,35,74,0.14);
+}
+
+[data-theme="dark"] {
+  /* Surface colours (dark) */
+  --v2-surface-1:      #10131f;
+  --v2-surface-2:      #14172a;
+  --v2-surface-3:      #1c2038;
+
+  /* Text (dark) */
+  --v2-text-1:         #e8ecf3;
+  --v2-text-2:         #9aa3b5;
+  --v2-text-3:         #5a6275;
+
+  /* Borders (dark) */
+  --v2-border:         rgba(255,255,255,0.07);
+  --v2-border-hover:   rgba(125,179,86,0.35);
+
+  /* Glows */
+  --v2-glow-green:     0 0 60px rgba(125,179,86,0.20);
+  --v2-glow-blue:      0 0 60px rgba(99,102,241,0.15);
+}
+
+
+/* ============================================================
+   2.  DARK-MODE OVERRIDES — fuer-studierende.css LEGACY
+   ============================================================ */
+
+/* ── Angebot Cards (old .angebot-card) ─────────────────────── */
+[data-theme="dark"] .angebot-card {
+  background-color: var(--v2-surface-2) !important;
+  border-color: var(--v2-border) !important;
+  border-top-color: var(--v2-border) !important;
+}
+[data-theme="dark"] .angebot-card:hover {
+  background-color: var(--v2-surface-3) !important;
+  border-top-color: rgba(125,179,86,0.6) !important;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.45) !important;
+}
+[data-theme="dark"] .angebot-card h3 {
+  color: var(--v2-text-1) !important;
+}
+[data-theme="dark"] .angebot-card p {
+  color: var(--v2-text-2) !important;
+}
+
+/* ── CTA Section ───────────────────────────────────────────── */
+[data-theme="dark"] .cta-section {
+  background: var(--v2-surface-2) !important;
+}
+[data-theme="dark"] .cta-section h2 {
+  color: var(--v2-text-1) !important;
+}
+[data-theme="dark"] .cta-section p {
+  color: var(--v2-text-2) !important;
+}
+
+/* ── Infoabend Section ─────────────────────────────────────── */
+[data-theme="dark"] .infoabend-section {
+  background: linear-gradient(135deg,
+    rgba(109,151,68,0.06) 0%,
+    rgba(32,35,74,0.10) 50%,
+    rgba(109,151,68,0.06) 100%) !important;
+}
+[data-theme="dark"] .infoabend-section h2 {
+  color: var(--v2-text-1) !important;
+}
+[data-theme="dark"] .infoabend-section p,
+[data-theme="dark"] .infoabend-section .lead {
+  color: var(--v2-text-2) !important;
+}
+
+/* ── Timeline Content ──────────────────────────────────────── */
+[data-theme="dark"] .timeline-content {
+  background-color: var(--v2-surface-2) !important;
+  border-color: var(--v2-border) !important;
+}
+[data-theme="dark"] .timeline-content::before {
+  background: var(--v2-surface-2) !important;
+  border-color: var(--v2-border) !important;
+}
+[data-theme="dark"] .timeline-content h3 {
+  color: var(--v2-text-1) !important;
+}
+[data-theme="dark"] .timeline-content p {
+  color: var(--v2-text-2) !important;
+}
+[data-theme="dark"] .timeline-content:hover {
+  background-color: var(--v2-surface-3) !important;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.5) !important;
+}
+[data-theme="dark"] .timeline-phase {
+  background: rgba(125,179,86,0.12) !important;
+  color: var(--ibc-green) !important;
+}
+
+/* ── Event Slider Items (old) ──────────────────────────────── */
+[data-theme="dark"] .event-slider-item {
+  background-color: var(--v2-surface-2) !important;
+  border-color: var(--v2-border) !important;
+}
+[data-theme="dark"] .event-slider-content {
+  background-color: var(--v2-surface-2) !important;
+}
+[data-theme="dark"] .event-slider-content h2 {
+  color: var(--ibc-green) !important;
+}
+[data-theme="dark"] .event-slider-content p {
+  color: var(--v2-text-2) !important;
+}
+
+/* ── Testimonial Cards (old Bootstrap carousel) ────────────── */
+[data-theme="dark"] #testimonialCarousel .testimonial-card {
+  background: linear-gradient(135deg, var(--v2-surface-2) 0%, var(--v2-surface-3) 100%) !important;
+  border-color: var(--v2-border) !important;
+  color: var(--v2-text-1) !important;
+}
+[data-theme="dark"] #testimonialCarousel .testimonial-card blockquote,
+[data-theme="dark"] #testimonialCarousel .testimonial-card .testimonial-quote {
+  color: var(--v2-text-2) !important;
+}
+[data-theme="dark"] #testimonialCarousel .testimonial-card .testimonial-author,
+[data-theme="dark"] #testimonialCarousel .testimonial-card .author-name,
+[data-theme="dark"] #testimonialCarousel .testimonial-card cite {
+  color: var(--v2-text-1) !important;
+}
+[data-theme="dark"] #testimonialCarousel .testimonial-card .author-role,
+[data-theme="dark"] #testimonialCarousel .testimonial-card .author-position {
+  color: var(--v2-text-2) !important;
+}
+
+/* ── Instagram Section ─────────────────────────────────────── */
+[data-theme="dark"] .instagram-section {
+  background: linear-gradient(135deg, var(--v2-surface-2) 0%, var(--v2-surface-1) 100%) !important;
+}
+[data-theme="dark"] #instagram-section {
+  background: linear-gradient(135deg,
+    rgba(109,151,68,0.05) 0%,
+    rgba(32,35,74,0.08) 50%,
+    rgba(109,151,68,0.05) 100%) !important;
+}
+[data-theme="dark"] #instagram-section h2 {
+  color: var(--v2-text-1) !important;
+}
+[data-theme="dark"] #instagram-section .lead {
+  color: var(--v2-text-2) !important;
+}
+
+/* ── Insta containers ──────────────────────────────────────── */
+[data-theme="dark"] .insta-container {
+  background-color: var(--v2-surface-2) !important;
+  border-color: var(--v2-border) !important;
+}
+[data-theme="dark"] .insta-mockup-link {
+  background: linear-gradient(135deg, var(--v2-surface-2) 0%, var(--v2-surface-3) 100%) !important;
+}
+
+/* ── Instagram Modal ───────────────────────────────────────── */
+[data-theme="dark"] .instagram-modal .modal-content {
+  background-color: var(--v2-surface-2) !important;
+  border: 1px solid var(--v2-border) !important;
+}
+[data-theme="dark"] .instagram-modal .modal-body,
+[data-theme="dark"] .instagram-modal .modal-header {
+  background-color: var(--v2-surface-2) !important;
+}
+[data-theme="dark"] .iframe-loader-wrapper {
+  background: var(--v2-surface-2) !important;
+}
+[data-theme="dark"] .iframe-loader-wrapper::before {
+  color: var(--v2-text-3) !important;
+}
+
+/* ── Legal page ────────────────────────────────────────────── */
+[data-theme="dark"] .legal-page-container h1,
+[data-theme="dark"] .legal-page-container h2,
+[data-theme="dark"] .legal-page-container h3,
+[data-theme="dark"] .legal-page-container strong {
+  color: var(--v2-text-1) !important;
+}
+[data-theme="dark"] .legal-page-container p,
+[data-theme="dark"] .legal-page-container ul,
+[data-theme="dark"] .legal-page-container ol,
+[data-theme="dark"] .legal-page-container li {
+  color: var(--v2-text-2) !important;
+}
+[data-theme="dark"] .legal-page-container h2 {
+  border-top-color: var(--v2-border) !important;
+}
+[data-theme="dark"] .legal-highlight {
+  background: rgba(125,179,86,0.08) !important;
+}
+[data-theme="dark"] .legal-page-container table td {
+  border-bottom-color: var(--v2-border) !important;
+}
+[data-theme="dark"] .legal-page-container table tr:hover {
+  background: rgba(125,179,86,0.06) !important;
+}
+
+
+/* ============================================================
+   3.  COMPONENT DESIGN IMPROVEMENTS (BOTH THEMES)
+   ============================================================ */
+
+/* ── Page Hero (old .page-hero-section in fuer-studierende.css) */
+/* Keep the animated gradient but make it subtler in light mode  */
+.page-hero-section {
+  background: linear-gradient(135deg, var(--ibc-blue) 0%, #2d3b8a 40%, var(--ibc-green) 100%) !important;
+  background-size: 300% 300% !important;
+  animation: ibcHeroGrad 14s ease infinite !important;
+}
+@keyframes ibcHeroGrad {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── Angebot Card improvements ─────────────────────────────── */
+.angebot-card {
+  transition: transform var(--v2-transition), box-shadow var(--v2-transition),
+              border-color var(--v2-transition) !important;
+}
+.angebot-card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 24px 56px rgba(0,0,0,0.13), 0 4px 16px rgba(109,151,68,0.10) !important;
+}
+
+/* ── Section backgrounds — subtle alternation ──────────────── */
+/* Give #events section a light-mode tint */
+#events {
+  background: linear-gradient(180deg, var(--v2-surface-1) 0%, var(--v2-surface-2) 100%);
+}
+[data-theme="dark"] #events {
+  background: linear-gradient(180deg, var(--v2-surface-1) 0%, var(--v2-surface-2) 100%);
+}
+
+/* ── Testimonials section ──────────────────────────────────── */
+#testimonials {
+  background: var(--v2-surface-2);
+  position: relative;
+}
+[data-theme="dark"] #testimonials {
+  background: var(--v2-surface-1);
+}
+#testimonials::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 50%, rgba(109,151,68,0.07) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 80% 50%, rgba(32,35,74,0.06) 0%, transparent 65%);
+  pointer-events: none;
+}
+[data-theme="dark"] #testimonials::before {
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 50%, rgba(109,151,68,0.10) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 40% at 80% 50%, rgba(99,102,241,0.08) 0%, transparent 65%);
+}
+
+/* ── Timeline section ──────────────────────────────────────── */
+#bewerbung,
+#timeline-section {
+  background: var(--v2-surface-1);
+  position: relative;
+}
+[data-theme="dark"] #bewerbung,
+[data-theme="dark"] #timeline-section {
+  background: var(--v2-surface-1);
+}
+
+/* ── CTA section redesign ──────────────────────────────────── */
+.cta-section {
+  background: var(--v2-surface-2) !important;
+  border-top: 1px solid var(--v2-border);
+  border-bottom: 1px solid var(--v2-border);
+}
+[data-theme="dark"] .cta-section {
+  background: var(--v2-surface-2) !important;
+  border-color: var(--v2-border) !important;
+}
+
+/* ── Infoabend section redesign ────────────────────────────── */
+.infoabend-section {
+  background: linear-gradient(135deg,
+    rgba(109,151,68,0.07) 0%,
+    rgba(255,255,255,0.98) 30%,
+    rgba(237,245,232,0.9) 60%,
+    rgba(255,255,255,0.99) 100%) !important;
+}
+[data-theme="dark"] .infoabend-section {
+  background: linear-gradient(135deg,
+    rgba(109,151,68,0.08) 0%,
+    rgba(32,35,74,0.12) 50%,
+    rgba(109,151,68,0.08) 100%) !important;
+}
+
+/* ── Instagram section ─────────────────────────────────────── */
+.instagram-section {
+  background: linear-gradient(135deg, var(--v2-surface-2) 0%, var(--v2-surface-1) 100%) !important;
+}
+
+/* ── Carousel controls universal ──────────────────────────────*/
+#eventCarousel .carousel-control-prev,
+#eventCarousel .carousel-control-next,
+#testimonialCarousel .carousel-control-prev,
+#testimonialCarousel .carousel-control-next {
+  transition: background var(--v2-transition), box-shadow var(--v2-transition),
+              transform var(--v2-transition) !important;
+}
+
+/* ── Headings — gradient accent for section titles ─────────── */
+/* Applied only when the class is used explicitly on section h2 */
+.section-gradient-title {
+  background: linear-gradient(135deg, var(--ibc-green) 0%, #6366f1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding-bottom: 0.2em;
+  display: inline-block;
+}
+
+/* ── Dark mode section text defaults ───────────────────────── */
+[data-theme="dark"] section h2:not([class*="gradient"]),
+[data-theme="dark"] section h3:not([class*="gradient"]) {
+  color: var(--v2-text-1);
+}
+[data-theme="dark"] section p,
+[data-theme="dark"] section .lead {
+  color: var(--v2-text-2);
+}
+
+/* ── Scrollbar (dark mode) ─────────────────────────────────── */
+[data-theme="dark"] {
+  scrollbar-color: rgba(125,179,86,0.4) rgba(20,23,42,0.6);
+}
+[data-theme="dark"]::-webkit-scrollbar { width: 6px; }
+[data-theme="dark"]::-webkit-scrollbar-track { background: rgba(20,23,42,0.6); }
+[data-theme="dark"]::-webkit-scrollbar-thumb {
+  background: rgba(125,179,86,0.4);
+  border-radius: 3px;
+}
+
+/* ── General selection colour ──────────────────────────────── */
+::selection { background: rgba(109,151,68,0.25); }
+[data-theme="dark"] ::selection { background: rgba(125,179,86,0.30); }
+
+/* ── Card hover depth (design refinement) ──────────────────── */
+[data-theme="dark"] .angebot-card-v2:hover,
+[data-theme="dark"] .beratungsfeld-card-v2:hover {
+  box-shadow: 0 24px 56px rgba(0,0,0,0.5),
+              0 4px 16px rgba(125,179,86,0.14) !important;
+}
+
+/* ── Focus ring — brand colours ────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--ibc-green) !important;
+  outline-offset: 3px !important;
+}
+[data-theme="dark"] :focus-visible {
+  outline-color: rgba(125,179,86,0.85) !important;
+}
+
+/* ── Fat footer dark mode ──────────────────────────────────── */
+[data-theme="dark"] .fat-footer {
+  background: #080b14 !important;
+  border-top: 1px solid var(--v2-border) !important;
+}
+[data-theme="dark"] .fat-footer .fat-footer__divider {
+  background: var(--v2-border) !important;
+}
+[data-theme="dark"] .fat-footer__link {
+  color: var(--v2-text-2) !important;
+}
+[data-theme="dark"] .fat-footer__link:hover {
+  color: var(--ibc-green) !important;
+}
+
+/* ── Dark mode: index hero overlay ────────────────────────────*/
+[data-theme="dark"] #hero-section::after {
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 10, 20, 0.50) 0%,
+    rgba(8, 10, 20, 0.25) 60%,
+    rgba(8, 10, 20, 0.65) 100%
+  ) !important;
+}
+
+/* ── Dark mode: index stats / counter section ─────────────── */
+[data-theme="dark"] .stats-section,
+[data-theme="dark"] #stats-section {
+  background: #080b14 !important;
+}
+
+/* ── Dark mode: competency / team cards ───────────────────────*/
+[data-theme="dark"] .team-card,
+[data-theme="dark"] .competency-card {
+  background: var(--v2-surface-2) !important;
+  border-color: var(--v2-border) !important;
+}
+[data-theme="dark"] .team-card:hover,
+[data-theme="dark"] .competency-card:hover {
+  background: var(--v2-surface-3) !important;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45) !important;
+}
+
+/* ── Modal global dark mode ────────────────────────────────── */
+[data-theme="dark"] .modal-content {
+  background-color: var(--v2-surface-2) !important;
+  border: 1px solid var(--v2-border) !important;
+  color: var(--v2-text-1) !important;
+}
+[data-theme="dark"] .modal-header {
+  border-bottom-color: var(--v2-border) !important;
+}
+[data-theme="dark"] .modal-footer {
+  border-top-color: var(--v2-border) !important;
+}
+[data-theme="dark"] .modal-title {
+  color: var(--v2-text-1) !important;
+}
+
+/* ── Bootstrap carousel indicators dark mode ──────────────── */
+[data-theme="dark"] .carousel-indicators button {
+  background-color: rgba(255,255,255,0.3) !important;
+}
+[data-theme="dark"] .carousel-indicators button.active {
+  background-color: var(--ibc-green) !important;
+}
+
+/* ── Bootstrap .badge dark mode ───────────────────────────── */
+[data-theme="dark"] .badge.bg-light {
+  background: var(--v2-surface-3) !important;
+  color: var(--v2-text-1) !important;
+}
+
+/* ── Dropdown dark mode ────────────────────────────────────── */
+[data-theme="dark"] .dropdown-menu {
+  background: var(--v2-surface-2) !important;
+  border-color: var(--v2-border) !important;
+}
+[data-theme="dark"] .dropdown-item {
+  color: var(--v2-text-1) !important;
+}
+[data-theme="dark"] .dropdown-item:hover,
+[data-theme="dark"] .dropdown-item:focus {
+  background: var(--v2-surface-3) !important;
+  color: var(--ibc-green) !important;
+}
+[data-theme="dark"] .dropdown-divider {
+  border-color: var(--v2-border) !important;
+}
+
+
+/* ============================================================
+   4.  MOBILE / RESPONSIVE IMPROVEMENTS
+   ============================================================ */
+
+/* ── Base: prevent overflow on all screens ─────────────────── */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100%;
+}
+
+/* ── Page Hero — fuer-studierende responsive ──────────────── */
+@media (max-width: 768px) {
+  .page-hero-section {
+    padding: calc(var(--nav-height, 72px) + 3rem) 0 4rem !important;
+  }
+  .page-hero-section h1 {
+    font-size: clamp(2.2rem, 8vw, 3.2rem) !important;
+    letter-spacing: -0.03em !important;
+  }
+  .page-hero-section .lead {
+    font-size: clamp(1rem, 4vw, 1.2rem) !important;
+  }
+}
+@media (max-width: 480px) {
+  .page-hero-section {
+    padding: calc(var(--nav-height, 72px) + 2rem) 0 3rem !important;
+  }
+  .page-hero-section h1 {
+    font-size: clamp(1.9rem, 9vw, 2.6rem) !important;
+  }
+}
+
+/* ── Angebot Cards responsive ──────────────────────────────── */
+@media (max-width: 768px) {
+  .angebot-card {
+    padding: 2rem 1.5rem !important;
+  }
+  .angebot-card i,
+  .angebot-card .service-icon {
+    font-size: 2.5rem !important;
+  }
+  .angebot-card h3 {
+    font-size: 1.2rem !important;
+  }
+}
+@media (max-width: 480px) {
+  .angebot-card {
+    padding: 1.5rem 1.25rem !important;
+  }
+}
+
+/* ── Timeline responsive ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .timeline-content {
+    padding: 1.6rem 1.5rem !important;
+  }
+  .timeline-content h3 {
+    font-size: 1.25rem !important;
+  }
+  .timeline-content p {
+    font-size: 0.93rem !important;
+  }
+}
+@media (max-width: 480px) {
+  .timeline-content {
+    padding: 1.25rem 1rem !important;
+  }
+  .timeline-content h3 {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* ── Event slider responsive ───────────────────────────────── */
+@media (max-width: 600px) {
+  .event-slider-content {
+    padding: 1.5rem 1.2rem !important;
+  }
+  .event-slider-content h2 {
+    font-size: 1.3rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  .event-slider-content p {
+    font-size: 0.9rem !important;
+  }
+}
+
+/* ── CTA / Infoabend section responsive ────────────────────── */
+@media (max-width: 768px) {
+  .cta-section,
+  .infoabend-section {
+    padding: clamp(3.5rem, 8vw, 5rem) 0 !important;
+  }
+  .cta-section h2,
+  .infoabend-section h2 {
+    font-size: clamp(1.8rem, 6vw, 2.4rem) !important;
+  }
+  .cta-section p,
+  .infoabend-section p,
+  .infoabend-section .lead {
+    font-size: 1rem !important;
+  }
+}
+
+/* ── Instagram section responsive ─────────────────────────── */
+@media (max-width: 768px) {
+  #instagram-section {
+    padding: 3rem 0 !important;
+  }
+  #instagram-section h2 {
+    font-size: clamp(1.8rem, 6vw, 2.4rem) !important;
+  }
+  .instagram-feed-container {
+    gap: 24px !important;
+    padding: 16px !important;
+  }
+  .insta-container {
+    width: 100% !important;
+    max-width: 340px !important;
+    height: 580px !important;
+  }
+}
+@media (max-width: 420px) {
+  .insta-container {
+    height: 520px !important;
+  }
+}
+
+/* ── Alumni counter section responsive ─────────────────────── */
+@media (max-width: 768px) {
+  .alumni-counter {
+    flex-direction: column !important;
+    gap: 1.5rem !important;
+  }
+  .alumni-counter .number {
+    font-size: clamp(3rem, 10vw, 4rem) !important;
+  }
+}
+
+/* ── Section headings responsive ───────────────────────────── */
+@media (max-width: 768px) {
+  section h2 {
+    font-size: clamp(1.8rem, 6vw, 2.4rem);
+  }
+  section h3 {
+    font-size: clamp(1.3rem, 4vw, 1.8rem);
+  }
+}
+
+/* ── Index: Hero heading overflow fix ──────────────────────── */
+@media (max-width: 640px) {
+  #hero-section h1.display-2 {
+    font-size: clamp(2.2rem, 9vw, 3.5rem) !important;
+    letter-spacing: -0.03em !important;
+  }
+  #hero-section .hero-lead {
+    font-size: clamp(1rem, 4vw, 1.2rem) !important;
+  }
+}
+@media (max-width: 380px) {
+  #hero-section h1.display-2 {
+    font-size: clamp(1.9rem, 10vw, 3rem) !important;
+  }
+}
+
+/* ── Buttons: prevent text wrapping on small screens ────────── */
+@media (max-width: 480px) {
+  .hero-cta-primary,
+  .ethereal-button,
+  .students-pretty-btn {
+    padding-left: 1.4rem !important;
+    padding-right: 1.4rem !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* ── Generic responsive text helpers ──────────────────────── */
+@media (max-width: 576px) {
+  .lead {
+    font-size: 1.05rem !important;
+  }
+  .section-intro {
+    margin-bottom: 2.5rem !important;
+  }
+}
+
+
+/* ============================================================
+   5.  PAGE-LEVEL OVERRIDES
+   ============================================================ */
+
+/* ── fuer-studierende.html — hero badge / eyebrow ─────────── */
+[data-theme="dark"] .hero-badge,
+[data-theme="dark"] .page-hero__eyebrow {
+  background: rgba(125,179,86,0.12) !important;
+  border-color: rgba(125,179,86,0.28) !important;
+}
+
+/* ── fuer-studierende.html — section separator glow ─────────  */
+[data-theme="dark"] .section-separator,
+[data-theme="dark"] hr.ibc-divider {
+  border-color: var(--v2-border) !important;
+  opacity: 0.5 !important;
+}
+
+/* ── index.html — features / competencies section ───────────── */
+[data-theme="dark"] #features,
+[data-theme="dark"] #kompetenzen {
+  background: var(--v2-surface-2) !important;
+}
+[data-theme="dark"] #features .feature-card,
+[data-theme="dark"] #kompetenzen .feature-card {
+  background: var(--v2-surface-3) !important;
+  border-color: var(--v2-border) !important;
+}
+
+/* ── index.html — about / info sections ────────────────────── */
+[data-theme="dark"] #about,
+[data-theme="dark"] #ueber-ibc {
+  background: var(--v2-surface-1) !important;
+}
+
+/* ── Improved active nav link indicator ─────────────────────  */
+.nav-link.active {
+  color: var(--ibc-green) !important;
+}
+[data-theme="dark"] .nav-link.active {
+  color: var(--ibc-green) !important;
+}
+
+/* ── Smooth anchor offset (sticky nav compensation) ────────── */
+[id] {
+  scroll-margin-top: calc(var(--nav-height, 72px) + 1rem);
+}
+
+/* ============================================================
+   END OF ibc-design-v2.css
+   ============================================================ */

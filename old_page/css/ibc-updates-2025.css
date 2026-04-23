@@ -1,0 +1,937 @@
+/* ============================================================
+   IBC Updates 2025
+   - Navbar: Logo links | Sprache + Theme Mitte | Hamburger rechts
+   - Video-Pause-Button: gleiche Höhe wie Maus-Scroll-Indikator
+   - Hero-Heading: "g"-Clipping Fix
+   - Shimmer Buttons (IBC-Farben)
+   - Events-Slider: Fixe Höhe
+   - Testimonials-Slider: Fixe Höhe
+   - Vollständig Responsive
+   ============================================================ */
+
+/* ──────────────────────────────────────────────
+   1. VIDEO PAUSE BUTTON – gleiche Höhe wie Maus
+   ────────────────────────────────────────────── */
+.hero-video-toggle {
+  bottom: 2.5rem !important;  /* gleiche Höhe wie .hero-scroll-indicator */
+  right: 2rem;
+}
+
+/* ──────────────────────────────────────────────
+   2. HERO HEADING – "g" nicht abschneiden
+   ────────────────────────────────────────────── */
+#hero-section h1.display-2 {
+  padding-bottom: 0.5em !important;   /* mehr Platz für Unterlängen */
+  overflow: visible !important;
+  overflow-wrap: normal;
+  word-break: normal !important;
+  /* Sicherstellen dass background-clip Text nicht abgeschnitten wird */
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* Hero-Container nicht abschneiden */
+#hero-section .hero-content-col,
+#hero-section .row,
+#hero-section .container {
+  overflow: visible !important;
+}
+
+/* Mobile: Text vollständig anzeigen, kein overflow-clip */
+@media (max-width: 600px) {
+  #hero-section h1.display-2 {
+    font-size: clamp(1.8rem, 8vw, 3.2rem) !important;
+    padding-bottom: 0.6em !important;
+    overflow-wrap: normal;
+    word-break: normal !important;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   3. NAVBAR RESPONSIVE
+   Logo: links | Sprache + Theme: Mitte | Hamburger: rechts
+   ────────────────────────────────────────────── */
+
+/* Mobile: mobile-toggle jetzt außerhalb nav-utilities, als direktes Kind */
+@media (max-width: 968px) {
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  /* Logo bleibt links (erster flex-item) */
+  .logo {
+    flex: 0 0 auto;
+    z-index: 1002;
+  }
+
+  /* Desktop Nav ausblenden */
+  .desktop-nav {
+    display: none !important;
+  }
+
+  /* Nav-Utilities (Theme + Sprache) absolut zentriert */
+  .nav-utilities {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    z-index: 1001;
+    /* Hamburger wird jetzt separat platziert */
+  }
+
+  /* mobile-toggle (Hamburger) als letztes flex-item ganz rechts */
+  .mobile-toggle {
+    flex: 0 0 auto;
+    display: flex !important;
+    z-index: 1002;
+    margin-left: auto;
+  }
+
+  /* Lang-btn Text auf kleinen Displays */
+  .lang-btn {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.82rem;
+  }
+
+  /* Theme Toggle kompakter */
+  .theme-toggle {
+    width: 46px;
+    height: 25px;
+  }
+  .theme-toggle-ball {
+    width: 18px;
+    height: 18px;
+  }
+  [data-theme="dark"] .theme-toggle-ball {
+    transform: translateX(21px);
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-utilities {
+    gap: 0.5rem;
+  }
+  .lang-btn span#currentLang {
+    display: inline; /* Sprachcode immer zeigen */
+  }
+  .lang-btn {
+    padding: 0.4rem 0.65rem;
+    gap: 0.3rem;
+    font-size: 0.78rem;
+  }
+  .lang-btn .fas.fa-globe {
+    font-size: 0.85rem;
+  }
+  .lang-btn .fas.fa-chevron-down {
+    display: none; /* Chevron auf sehr kleinen Screens verstecken */
+  }
+}
+
+/* ──────────────────────────────────────────────
+   4. SHIMMER BUTTONS – IBC Farben
+   ────────────────────────────────────────────── */
+
+/* CSS-Animationen für Shimmer */
+@keyframes ibc-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes ibc-shine {
+  0%      { left: -100%; }
+  50%, 100% { left: 220%; }
+}
+
+@keyframes ibc-btn-ripple {
+  0%   { transform: scale(0); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ── Primärer Shimmer Button (hero-cta-primary) ── */
+.hero-cta-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.88rem 2.2rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #fff !important;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  text-decoration: none !important;
+  white-space: nowrap;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  background: linear-gradient(
+    90deg,
+    #355B2C 0%,
+    #6D9744 22%,
+    #7db356 50%,
+    #6D9744 78%,
+    #355B2C 100%
+  );
+  background-size: 200% 100%;
+  animation: ibc-shimmer 2.8s linear infinite;
+
+  box-shadow:
+    0 4px 20px rgba(109, 151, 68, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+  transition:
+    transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.18s ease;
+}
+
+/* Shine-Sweep über den Button */
+.hero-cta-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.45),
+    transparent
+  );
+  transform: skewX(-20deg);
+  animation: ibc-shine 2.8s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Ripple-Container */
+.hero-cta-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--ripple-x, 50%) var(--ripple-y, 50%),
+    rgba(255, 255, 255, 0.35) 0%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-cta-primary:hover {
+  color: #fff !important;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+    0 10px 36px rgba(109, 151, 68, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  text-decoration: none !important;
+}
+
+.hero-cta-primary:active {
+  transform: scale(0.96);
+  box-shadow: 0 2px 12px rgba(109, 151, 68, 0.4);
+  animation-play-state: paused;
+}
+
+.hero-cta-primary:active::after {
+  opacity: 1;
+}
+
+.hero-cta-primary i {
+  font-size: 0.82rem;
+  transition: transform 0.2s ease;
+  z-index: 2;
+  position: relative;
+}
+.hero-cta-primary span {
+  position: relative;
+  z-index: 2;
+}
+.hero-cta-primary:hover i {
+  transform: translateX(4px);
+}
+
+/* Click-Feedback Animation */
+.hero-cta-primary.btn-clicking {
+  animation: ibc-shimmer 2.8s linear infinite, btn-click-pulse 0.3s ease;
+}
+
+@keyframes btn-click-pulse {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(0.94); }
+  100% { transform: scale(1); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta-primary {
+    animation: none;
+    background: #6D9744;
+  }
+  .hero-cta-primary::before { animation: none; display: none; }
+}
+
+/* ── Ethereal / Pretty Buttons ── */
+.ethereal-button,
+.students-pretty-btn,
+.esv3-cta {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.85rem 2rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: #fff !important;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  overflow: hidden;
+  isolation: isolate;
+  text-decoration: none !important;
+  white-space: nowrap;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+
+  background: linear-gradient(
+    90deg,
+    #355B2C 0%,
+    #6D9744 22%,
+    #7db356 50%,
+    #6D9744 78%,
+    #355B2C 100%
+  );
+  background-size: 200% 100%;
+  animation: ibc-shimmer 2.8s linear infinite;
+
+  box-shadow:
+    0 4px 20px rgba(109, 151, 68, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  transition:
+    transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.18s ease;
+}
+
+.ethereal-button::before,
+.students-pretty-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-20deg);
+  animation: ibc-shine 2.8s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ethereal-button::after,
+.students-pretty-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--ripple-x, 50%) var(--ripple-y, 50%),
+    rgba(255, 255, 255, 0.3) 0%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ethereal-button span,
+.students-pretty-btn span,
+.ethereal-button i,
+.students-pretty-btn i {
+  position: relative;
+  z-index: 2;
+}
+
+.ethereal-button:hover,
+.students-pretty-btn:hover,
+.fat-footer__cta-btn:hover {
+  color: #fff !important;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 10px 36px rgba(109, 151, 68, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  text-decoration: none !important;
+  animation-play-state: running;
+  filter: none;
+}
+
+.ethereal-button:active,
+.students-pretty-btn:active {
+  transform: scale(0.96);
+  animation-play-state: paused;
+}
+
+.ethereal-button:active::after,
+.students-pretty-btn:active::after {
+  opacity: 1;
+}
+
+/* Override the old pulsing animation */
+@keyframes cta-glow-pulse { /* noop – shimmer ersetzt diese */ }
+
+@media (prefers-reduced-motion: reduce) {
+  .ethereal-button,
+  .students-pretty-btn {
+    animation: none;
+    background: #6D9744;
+  }
+  .ethereal-button::before,
+  .students-pretty-btn::before { animation: none; display: none; }
+}
+
+/* ── Footer CTA Button ── */
+.fat-footer__cta-btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  animation: ibc-shimmer 2.8s linear infinite;
+  background: linear-gradient(
+    90deg,
+    #355B2C 0%,
+    #6D9744 22%,
+    #7db356 50%,
+    #6D9744 78%,
+    #355B2C 100%
+  ) !important;
+  background-size: 200% 100% !important;
+  color: #fff !important;
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(109,151,68,0.4) !important;
+}
+
+.fat-footer__cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-20deg);
+  animation: ibc-shine 2.8s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.fat-footer__cta-btn span,
+.fat-footer__cta-btn i {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Competency Buttons ── */
+.competency-btn-clean {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #fff !important;
+  border-radius: 10px;
+  text-decoration: none !important;
+  touch-action: manipulation;
+
+  background: linear-gradient(
+    90deg,
+    #355B2C 0%,
+    #6D9744 22%,
+    #7db356 50%,
+    #6D9744 78%,
+    #355B2C 100%
+  );
+  background-size: 200% 100%;
+  animation: ibc-shimmer 2.8s linear infinite;
+  box-shadow: 0 3px 14px rgba(109,151,68,0.35);
+  transition: transform 0.18s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.18s ease;
+}
+
+.competency-btn-clean::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  transform: skewX(-20deg);
+  animation: ibc-shine 2.8s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.competency-btn-clean span,
+.competency-btn-clean i {
+  position: relative;
+  z-index: 2;
+}
+
+.competency-btn-clean:hover {
+  color: #fff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(109,151,68,0.5);
+  text-decoration: none !important;
+}
+
+.competency-btn-clean:active {
+  transform: scale(0.96);
+  animation-play-state: paused;
+}
+
+/* ── Mobile CTA Button ── */
+.mobile-cta-btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: linear-gradient(
+    90deg,
+    #355B2C 0%,
+    #6D9744 22%,
+    #7db356 50%,
+    #6D9744 78%,
+    #355B2C 100%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: ibc-shimmer 2.8s linear infinite;
+  color: #fff !important;
+  border-radius: 12px;
+}
+
+.mobile-cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 45%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: skewX(-20deg);
+  animation: ibc-shine 2.8s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* ── Ghost CTA (Startseite sekundärer Button) ── */
+.hero-cta-ghost {
+  /* Leichter grüner Schimmer-Rand statt komplett glass */
+  border-color: rgba(109, 151, 68, 0.45) !important;
+  transition:
+    background 0.22s ease,
+    border-color 0.22s ease,
+    transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.22s ease !important;
+}
+
+.hero-cta-ghost:hover {
+  background: rgba(109, 151, 68, 0.15) !important;
+  border-color: rgba(125, 179, 86, 0.7) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 24px rgba(109,151,68,0.25) !important;
+  transform: translateY(-3px) !important;
+}
+
+/* ── Click-Delay Feedback (JS fügt .btn-clicking hinzu) ── */
+.btn-clicking {
+  transform: scale(0.95) !important;
+  filter: brightness(0.9) !important;
+  animation-play-state: paused !important;
+}
+
+/* ──────────────────────────────────────────────
+   5. EVENTS SLIDER – Fixe Höhe auf allen Breakpoints
+   ────────────────────────────────────────────── */
+
+/* Wrapper sicherstellen */
+.esv3-card,
+#eventCarousel {
+  overflow: hidden;
+}
+
+/* Desktop: bereits 460px in fuer-studierende-v2.css – OK */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .esv3-slide {
+    grid-template-columns: 1fr !important;
+    height: 540px !important;
+    min-height: 540px !important;
+    display: grid;
+    grid-template-rows: 240px 1fr;
+  }
+
+  .esv3-img-pane {
+    height: 240px !important;
+    min-height: 240px !important;
+    max-height: 240px !important;
+    overflow: hidden;
+  }
+
+  .esv3-content-pane {
+    height: 300px !important;
+    min-height: 300px !important;
+    max-height: 300px !important;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .esv3-content-inner {
+    padding: 1.5rem 1.75rem !important;
+    gap: 0.75rem !important;
+    overflow: hidden;
+    height: 100%;
+    justify-content: flex-start !important;
+  }
+
+  .esv3-desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .esv3-slide {
+    height: 500px !important;
+    min-height: 500px !important;
+    grid-template-rows: 200px 1fr;
+  }
+
+  .esv3-img-pane {
+    height: 200px !important;
+    min-height: 200px !important;
+    max-height: 200px !important;
+  }
+
+  .esv3-content-pane {
+    height: 300px !important;
+    min-height: 300px !important;
+    max-height: 300px !important;
+  }
+
+  .esv3-content-inner {
+    padding: 1.2rem 1.4rem !important;
+  }
+
+  .esv3-desc {
+    -webkit-line-clamp: 3;
+  }
+}
+
+/* Carousel-Item muss volle Höhe der Karte einnehmen */
+#eventCarousel .carousel-item {
+  height: 100%;
+}
+#eventCarousel .carousel-inner {
+  height: auto;
+}
+
+/* ──────────────────────────────────────────────
+   6. TESTIMONIALS SLIDER – Fixe Höhe
+   ────────────────────────────────────────────── */
+
+/* Desktop: fixe Höhe */
+.tsv3-card {
+  min-height: unset !important;
+  height: 360px !important;
+  overflow: hidden !important;
+}
+
+/* Quote-Spalte Overflow verhindern */
+.tsv3-quote-col {
+  overflow: hidden !important;
+}
+
+/* Quote-Text auf max. 5 Zeilen beschränken */
+.tsv3-quote-text {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 5 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+/* Controls-Reihe nicht nach unten schieben */
+.tsv3-controls {
+  margin-top: 0.75rem !important;
+  flex-shrink: 0;
+}
+
+/* Tablet: gestapelt → mehr Höhe nötig */
+@media (max-width: 860px) {
+  .tsv3-card {
+    height: 480px !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .tsv3-profile-col {
+    padding: 1.25rem 1.5rem !important;
+  }
+
+  .tsv3-quote-text {
+    -webkit-line-clamp: 4 !important;
+  }
+
+  .tsv3-controls {
+    padding-top: 0.75rem !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .tsv3-card {
+    height: 500px !important;
+  }
+
+  .tsv3-quote-text {
+    font-size: 0.9rem !important;
+    -webkit-line-clamp: 5 !important;
+  }
+}
+
+/* Testimonials Carousel: Carousel-Items füllen volle Karten-Höhe */
+#ibcTestimonialsCarousel .carousel-item {
+  height: 100%;
+}
+
+/* Old testimonial-card (Bootstrap) fixe Höhe */
+.testimonial-card {
+  height: 320px !important;
+  min-height: unset !important;
+  overflow: hidden !important;
+}
+
+@media (max-width: 767px) {
+  .testimonial-card {
+    height: 420px !important;
+  }
+  #testimonialCarousel .testimonial-card {
+    height: 420px !important;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   7. ALLGEMEINE RESPONSIVE VERBESSERUNGEN
+   ────────────────────────────────────────────── */
+
+/* Hero Section – kein horizontaler Overflow */
+#hero-section {
+  overflow: hidden;
+}
+
+/* Hero Actions Buttons – Responsive */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 520px) {
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .hero-cta-primary,
+  .hero-cta-ghost {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    padding: 0.88rem 1.5rem;
+  }
+}
+
+/* Buttons generell auf mobilen */
+@media (max-width: 480px) {
+  .ethereal-button,
+  .students-pretty-btn {
+    width: 100%;
+    justify-content: center;
+    max-width: 320px;
+  }
+
+  /* Ausnahme: kleine Buttons innerhalb von Karten */
+  .competency-btn-clean,
+  .esv3-cta {
+    width: auto;
+    max-width: none;
+  }
+}
+
+/* Alle Texte: kein unkontrollierter Überlauf */
+* {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Aber Buttons nicht umbrechen */
+.hero-cta-primary,
+.hero-cta-ghost,
+.ethereal-button,
+.students-pretty-btn,
+.competency-btn-clean,
+.esv3-cta {
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+}
+
+/* Section-Headings Responsive */
+.ibc-heading {
+  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+}
+
+@media (max-width: 600px) {
+  .ibc-heading {
+    font-size: clamp(1.4rem, 5.5vw, 2rem);
+  }
+}
+
+/* esv3 Tab Labels auf sehr kleinen Screens */
+@media (max-width: 360px) {
+  .esv3-tab-label {
+    display: none;
+  }
+  .esv3-arrow {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* FAB / Floating Action Button – nur auf mobile sichtbar */
+@media (min-width: 969px) {
+  #nav-fab,
+  #fab-overlay-menu {
+    display: none !important;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   8. SPEZIFITÄTS-OVERRIDE für main.css Regeln
+   ────────────────────────────────────────────── */
+
+/* main.css hat :root:not([data-theme="dark"]) .hero-cta-primary mit !important
+   → gleiche Spezifität (0,2,0) aber spätere Ladung gewinnt */
+:root:not([data-theme="dark"]) .hero-cta-primary,
+[data-theme="light"] .hero-cta-primary {
+  background: linear-gradient(
+    90deg,
+    #355B2C 0%,
+    #6D9744 22%,
+    #7db356 50%,
+    #6D9744 78%,
+    #355B2C 100%
+  ) !important;
+  background-size: 200% 100% !important;
+  animation: ibc-shimmer 2.8s linear infinite !important;
+  color: #fff !important;
+  border-radius: 14px !important;
+  overflow: hidden !important;
+  box-shadow: 0 4px 20px rgba(109, 151, 68, 0.45) !important;
+}
+
+:root:not([data-theme="dark"]) .hero-cta-primary:hover,
+[data-theme="light"] .hero-cta-primary:hover {
+  transform: translateY(-3px) scale(1.03) !important;
+  box-shadow: 0 10px 36px rgba(109, 151, 68, 0.55) !important;
+}
+
+/* ──────────────────────────────────────────────
+   DARK MODE KOMPATIBILITÄT (neue Shimmer)
+   ────────────────────────────────────────────── */
+[data-theme="dark"] .hero-cta-primary,
+[data-theme="dark"] .ethereal-button,
+[data-theme="dark"] .students-pretty-btn,
+[data-theme="dark"] .fat-footer__cta-btn {
+  box-shadow:
+    0 4px 20px rgba(109, 151, 68, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+
+[data-theme="dark"] .hero-cta-ghost {
+  border-color: rgba(125, 179, 86, 0.4) !important;
+}
+
+[data-theme="dark"] .hero-cta-ghost:hover {
+  background: rgba(125, 179, 86, 0.12) !important;
+  border-color: rgba(125, 179, 86, 0.7) !important;
+}
+
+/* ──────────────────────────────────────────────
+   9. RESPONSIVE TYPOGRAFIE – Seiten allgemein
+   ────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  /* Seiten-Abschnitt Abstände */
+  .page-section,
+  .section-gs,
+  .section-gs-lg {
+    padding-top: clamp(3rem, 8vw, 5rem) !important;
+    padding-bottom: clamp(3rem, 8vw, 5rem) !important;
+  }
+
+  /* Cards nicht zu eng */
+  .info-glass-card {
+    padding: 1.75rem 1.5rem !important;
+  }
+
+  /* Stat-Karten */
+  .stat-card {
+    padding: 1.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Container padding */
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Footer */
+  .fat-footer__body {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .fat-footer__cta-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .fat-footer__cta-btn {
+    width: 100%;
+    justify-content: center;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}

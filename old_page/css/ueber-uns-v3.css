@@ -1,0 +1,918 @@
+/**
+ * ueber-uns-v3.css
+ * Premium redesign for Über uns page
+ * Sections: Mission · Mitglieder · Vorstand · Ressorts · Plattform · Werte · CTA
+ */
+
+/* ─────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────── */
+:root {
+  --uu-blue:      #20234A;
+  --uu-accent:    #6D9744;
+  --uu-dark-bg:   #0f1122;
+  --uu-alt-bg:    #f5f7fa;
+  --uu-card-bg:   #ffffff;
+  --uu-border:    rgba(32,35,74,0.08);
+  --uu-shadow:    0 8px 32px rgba(32,35,74,0.10);
+}
+[data-theme="dark"] {
+  --uu-alt-bg:    #13162b;
+  --uu-card-bg:   #1a1d38;
+  --uu-border:    rgba(255,255,255,0.06);
+  --uu-shadow:    0 8px 32px rgba(0,0,0,0.35);
+}
+
+/* ─────────────────────────────────────────
+   HERO STATS ROW
+───────────────────────────────────────── */
+.page-hero__stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+/* Staggered entrance for individual stats */
+.hero-stat {
+  opacity: 0;
+}
+.page-hero__stats.is-visible .hero-stat,
+.page-hero__stats.in-view .hero-stat,
+.page-hero__stats.visible .hero-stat {
+  animation: heroStatFadeIn 0.7s cubic-bezier(0.22,1,0.36,1) forwards;
+}
+@keyframes heroStatFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.hero-stat__divider {
+  width: 1px;
+  height: 48px;
+  background: rgba(255,255,255,0.25);
+}
+.hero-stat__number {
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+  background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.75) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-stat__label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.65);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.2rem;
+}
+.page-hero__buttons {
+  margin-top: 4.5rem;
+}
+
+/* ─────────────────────────────────────────
+   BASE SECTION STYLES
+───────────────────────────────────────── */
+.uu-section {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  position: relative;
+}
+.uu-section--dark {
+  background: var(--uu-dark-bg);
+  color: #e8ecf3;
+}
+[data-theme="dark"] .uu-section--dark {
+  background: #080b18;
+}
+.uu-section--alt {
+  background: var(--uu-alt-bg);
+}
+.uu-section--dark .section-chip {
+  background: rgba(255,255,255,0.08);
+  color: var(--uu-accent);
+  border-color: rgba(109,151,68,0.25);
+}
+.uu-section--dark .ibc-heading {
+  color: #fff;
+}
+.uu-section--dark .section-intro-text {
+  color: rgba(232,236,243,0.75);
+}
+
+/* ─────────────────────────────────────────
+   MISSION SECTION
+───────────────────────────────────────── */
+.uu-section--mission {
+  background: linear-gradient(135deg, var(--uu-blue) 0%, #1a2060 60%, #0d1033 100%);
+  color: #e8ecf3;
+}
+.uu-section--mission .section-chip {
+  background: rgba(255,255,255,0.08);
+  color: var(--uu-accent);
+  border-color: rgba(109,151,68,0.3);
+}
+.uu-section--mission .ibc-heading { color: #fff; }
+.uu-section--mission .section-intro-text { color: rgba(232,236,243,0.8); }
+
+.uu-mission-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+  margin-bottom: 3.5rem;
+}
+@media (max-width: 768px) {
+  .uu-mission-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+.uu-mission-pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: stretch;
+}
+.uu-pillar {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  transition: background 0.3s;
+}
+.uu-pillar:hover { background: rgba(255,255,255,0.09); }
+.uu-pillar__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--uu-accent), #8bc34a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+.uu-pillar__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+.uu-pillar__text {
+  font-size: 0.9rem;
+  color: rgba(232,236,243,0.75);
+  margin: 0;
+  line-height: 1.6;
+}
+.uu-pillar-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  color: var(--uu-accent);
+  font-size: 1.1rem;
+  opacity: 0.6;
+}
+
+/* Vision box */
+.uu-vision-box {
+  background: rgba(109,151,68,0.12);
+  border: 1px solid rgba(109,151,68,0.25);
+  border-left: 4px solid var(--uu-accent);
+  border-radius: 16px;
+  padding: 2rem 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.uu-vision-box__icon {
+  font-size: 1.8rem;
+  color: var(--uu-accent);
+  flex-shrink: 0;
+}
+.uu-vision-box__text {
+  font-size: 1.05rem;
+  color: rgba(232,236,243,0.9);
+  line-height: 1.7;
+  margin: 0;
+}
+@media (max-width: 576px) {
+  .uu-vision-box { flex-direction: column; gap: 1rem; padding: 1.5rem; }
+}
+
+/* ─────────────────────────────────────────
+   MITGLIEDER SECTION
+───────────────────────────────────────── */
+.uu-section--members {
+  background: var(--uu-card-bg);
+}
+[data-theme="dark"] .uu-section--members {
+  background: #10132a;
+}
+
+/* ─────────────────────────────────────────
+   FLIP CARDS (shared by Mitglieder + Werte)
+───────────────────────────────────────── */
+.flip-card {
+  background: transparent;
+  border: none;
+  padding: 0;
+  min-height: 260px;
+  cursor: pointer;
+  perspective: 1000px;
+  display: block;
+  width: 100%;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner,
+.flip-card[aria-pressed="true"] .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-radius: 20px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+.flip-card-front {
+  background: var(--uu-card-bg);
+  border: 1px solid var(--uu-border);
+  box-shadow: var(--uu-shadow);
+  color: var(--uu-blue);
+}
+[data-theme="dark"] .flip-card-front {
+  background: #1a1d38;
+  color: #e8ecf3;
+  border-color: rgba(255,255,255,0.13);
+}
+.flip-card-front h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0.9rem 0 0.5rem;
+  color: var(--uu-blue);
+}
+[data-theme="dark"] .flip-card-front h3 { color: #fff; }
+
+.flip-card-back {
+  background: linear-gradient(145deg, var(--uu-blue), #1a2060);
+  color: #fff;
+  transform: rotateY(180deg);
+}
+.flip-card-back p {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.88);
+  margin: 0 0 0.75rem;
+}
+
+/* icon-box inside flip cards */
+.flip-card .icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--uu-accent), #8bc34a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+
+/* tap-hint */
+.flip-card .tap-hint {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* ─────────────────────────────────────────
+   WERTE SECTION
+───────────────────────────────────────── */
+.uu-section--values {
+  background: var(--uu-alt-bg);
+}
+[data-theme="dark"] .uu-section--values {
+  background: #13162b;
+}
+
+/* ─────────────────────────────────────────
+   CTA BANNER
+───────────────────────────────────────── */
+.uu-cta-banner {
+  position: relative;
+  overflow: hidden;
+}
+.uu-cta-banner__inner {
+  background: linear-gradient(135deg, #20234A 0%, #1a2060 50%, #0d1033 100%);
+  padding: clamp(4rem, 8vw, 6rem) 0;
+  position: relative;
+}
+.uu-cta-banner__inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 20% 50%, rgba(109,151,68,0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 70% at 80% 50%, rgba(32,35,74,0.4) 0%, transparent 70%);
+  animation: uuCtaShift 8s ease-in-out infinite alternate;
+}
+@keyframes uuCtaShift {
+  0%   { opacity: 0.8; }
+  100% { opacity: 1.2; }
+}
+.uu-cta-banner__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+}
+.uu-cta-banner__title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+.uu-cta-banner__sub {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.75);
+  max-width: 540px;
+  margin: 0 auto 2.5rem;
+}
+.uu-cta-banner__btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ─────────────────────────────────────────
+   MOBILE
+───────────────────────────────────────── */
+@media (max-width: 576px) {
+  .page-hero__stats {
+    gap: 1.25rem;
+  }
+  .hero-stat__divider { height: 36px; }
+  .hero-stat__number { font-size: 1.5rem; }
+  .flip-card, .flip-card-inner { min-height: 220px; }
+  .uu-pillar { padding: 1.25rem 1.5rem; }
+}
+
+/* ─────────────────────────────────────────
+   MITGLIEDER — INTERDISZIPLINÄRER MIX
+───────────────────────────────────────── */
+
+/* Scrolling pill band */
+.uu-mix-band {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+.uu-mix-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.2rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  background: rgba(32,35,74,0.06);
+  border: 1px solid rgba(32,35,74,0.12);
+  color: var(--uu-blue);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.uu-mix-pill i { color: var(--uu-accent); font-size: 0.9rem; }
+.uu-mix-pill:hover { transform: translateY(-3px); box-shadow: 0 6px 18px rgba(32,35,74,0.1); }
+.uu-mix-pill--accent {
+  background: rgba(109,151,68,0.10);
+  border-color: rgba(109,151,68,0.25);
+  color: #3a5e18;
+}
+.uu-mix-pill--accent i { color: var(--uu-accent); }
+[data-theme="dark"] .uu-mix-pill {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.12);
+  color: #c8d0e8;
+}
+[data-theme="dark"] .uu-mix-pill--accent {
+  background: rgba(109,151,68,0.15);
+  border-color: rgba(109,151,68,0.3);
+  color: #a3c96a;
+}
+
+/* Value cards in mix section */
+.uu-mix-card {
+  background: var(--uu-card-bg);
+  border: 1px solid var(--uu-border);
+  border-radius: 20px;
+  padding: 2rem 1.75rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.uu-mix-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--uu-accent), #8bc34a);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+}
+.uu-mix-card:hover { transform: translateY(-6px); box-shadow: var(--uu-shadow); border-color: rgba(109,151,68,0.3); }
+.uu-mix-card:hover::before { transform: scaleX(1); }
+[data-theme="dark"] .uu-mix-card { background: #1a1d38; border-color: rgba(255,255,255,0.07); }
+[data-theme="dark"] .uu-mix-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+
+.uu-mix-card__icon {
+  width: 52px; height: 52px;
+  border-radius: 16px;
+  background: rgba(109,151,68,0.1);
+  border: 1px solid rgba(109,151,68,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.35rem;
+  color: var(--uu-accent);
+  transition: transform 0.3s, background 0.3s;
+}
+.uu-mix-card:hover .uu-mix-card__icon { transform: scale(1.1) rotate(-5deg); background: rgba(109,151,68,0.18); }
+.uu-mix-card__icon--accent {
+  background: rgba(32,35,74,0.08);
+  border-color: rgba(32,35,74,0.15);
+  color: var(--uu-blue);
+}
+[data-theme="dark"] .uu-mix-card__icon { background: rgba(109,151,68,0.15); border-color: rgba(109,151,68,0.25); }
+[data-theme="dark"] .uu-mix-card__icon--accent { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); color: #a5b4fc; }
+
+.uu-mix-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--uu-blue);
+  margin: 0;
+}
+[data-theme="dark"] .uu-mix-card__title { color: #fff; }
+
+.uu-mix-card__text {
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.65;
+  margin: 0;
+}
+[data-theme="dark"] .uu-mix-card__text { color: rgba(200,208,232,0.75); }
+
+/* ─────────────────────────────────────────
+   PREMIUM TEAM CARDS  (team-card--v2)
+───────────────────────────────────────── */
+.team-card--v2 {
+  background: var(--uu-card-bg);
+  border: 1px solid var(--uu-border);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(32,35,74,0.06);
+  transition: transform 0.38s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.38s, border-color 0.3s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.team-card--v2:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 56px rgba(32,35,74,0.16), 0 6px 20px rgba(109,151,68,0.1);
+  border-color: rgba(109,151,68,0.35);
+}
+[data-theme="dark"] .team-card--v2 {
+  background: #1a1d38;
+  border-color: rgba(255,255,255,0.07);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+[data-theme="dark"] .team-card--v2:hover {
+  box-shadow: 0 24px 56px rgba(0,0,0,0.45), 0 6px 20px rgba(109,151,68,0.15);
+  border-color: rgba(109,151,68,0.35);
+}
+
+/* Image area */
+.team-card--v2 .team-card-img-wrapper {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  background: linear-gradient(135deg, #e8ecf5 0%, #d0d6e8 100%);
+}
+[data-theme="dark"] .team-card--v2 .team-card-img-wrapper {
+  background: linear-gradient(135deg, #12152e 0%, #1a1d38 100%);
+}
+.team-card--v2 .team-card-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.55s cubic-bezier(0.19,1,0.22,1);
+}
+.team-card--v2:hover .team-card-img-wrapper img {
+  transform: scale(1.07);
+}
+/* Gradient overlay on image */
+.team-card--v2 .team-card-img-wrapper::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(32,35,74,0.65) 0%,
+    rgba(32,35,74,0.15) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.35s;
+}
+.team-card--v2:hover .team-card-img-wrapper::after { opacity: 1; }
+
+/* Position badge overlaid on image */
+.team-card-position-badge {
+  position: absolute;
+  bottom: 0.9rem;
+  left: 0.9rem;
+  right: 0.9rem;
+  background: rgba(32,35,74,0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: rgba(255,255,255,0.92);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.38rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid rgba(109,151,68,0.35);
+  z-index: 2;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: background 0.3s;
+}
+.team-card--v2:hover .team-card-position-badge {
+  background: rgba(109,151,68,0.88);
+  border-color: rgba(255,255,255,0.25);
+}
+
+/* Card body */
+.team-card--v2 .team-card-body {
+  padding: 1.4rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1;
+}
+.team-card--v2 .team-card-body h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--uu-blue);
+  margin: 0;
+  line-height: 1.3;
+  transition: color 0.25s;
+}
+.team-card--v2:hover .team-card-body h3 { color: var(--uu-accent); }
+[data-theme="dark"] .team-card--v2 .team-card-body h3 { color: #e8ecf3; }
+[data-theme="dark"] .team-card--v2:hover .team-card-body h3 { color: #a3c96a; }
+
+/* Social icons */
+.team-card--v2 .team-card-social {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: auto;
+}
+.team-social-btn {
+  width: 38px; height: 38px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.95rem;
+  border: 1px solid var(--uu-border);
+  color: var(--uu-blue);
+  background: rgba(32,35,74,0.05);
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.22,1,0.36,1),
+              background 0.25s, color 0.25s, border-color 0.25s, box-shadow 0.25s;
+}
+.team-social-btn:hover {
+  transform: translateY(-3px) scale(1.1);
+  box-shadow: 0 6px 16px rgba(32,35,74,0.18);
+}
+.team-social-btn--email:hover {
+  background: var(--uu-accent);
+  border-color: var(--uu-accent);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(109,151,68,0.35);
+}
+.team-social-btn--linkedin:hover {
+  background: #0077b5;
+  border-color: #0077b5;
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(0,119,181,0.35);
+}
+[data-theme="dark"] .team-social-btn {
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.12);
+  color: #c8d0e8;
+}
+[data-theme="dark"] .team-social-btn:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+}
+
+/* ─────────────────────────────────────────
+   CTA BANNER — PREMIUM + DARK MODE
+───────────────────────────────────────── */
+.uu-cta-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(80px);
+}
+.uu-cta-orb--1 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(109,151,68,0.22) 0%, transparent 70%);
+  top: -100px; left: -80px;
+  animation: uuOrbDrift1 10s ease-in-out infinite alternate;
+}
+.uu-cta-orb--2 {
+  width: 350px; height: 350px;
+  background: radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%);
+  bottom: -80px; right: -60px;
+  animation: uuOrbDrift2 12s ease-in-out infinite alternate;
+}
+@keyframes uuOrbDrift1 { from { transform: translate(0,0); } to { transform: translate(40px,30px); } }
+@keyframes uuOrbDrift2 { from { transform: translate(0,0); } to { transform: translate(-30px,-20px); } }
+
+/* Eyebrow chip */
+.uu-cta-banner__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 1rem;
+}
+
+/* Gradient text inside CTA that always renders white-to-green */
+.uu-cta-gradient {
+  background: linear-gradient(135deg, #8bc34a, #52c234);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+[data-theme="dark"] .uu-cta-gradient {
+  background: linear-gradient(135deg, #a3c96a, #6dd64a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Ghost button in CTA */
+.uu-cta-ghost-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.88);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.25s, color 0.25s, background 0.25s, transform 0.25s;
+}
+.uu-cta-ghost-btn:hover {
+  border-color: rgba(255,255,255,0.75);
+  color: #fff;
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-2px);
+}
+[data-theme="dark"] .uu-cta-ghost-btn {
+  border-color: rgba(255,255,255,0.28);
+  color: rgba(255,255,255,0.8);
+}
+[data-theme="dark"] .uu-cta-ghost-btn:hover {
+  border-color: rgba(255,255,255,0.65);
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+}
+
+/* ─────────────────────────────────────────
+   MOBILE
+───────────────────────────────────────── */
+@media (max-width: 576px) {
+  .uu-mix-pill { font-size: 0.8rem; padding: 0.45rem 1rem; }
+  .team-card--v2 .team-card-img-wrapper { aspect-ratio: 4/5; }
+  .uu-cta-banner__btns { flex-direction: column; align-items: stretch; }
+  .uu-cta-ghost-btn { justify-content: center; }
+}
+@media (max-width: 768px) {
+  .uu-cta-orb--1, .uu-cta-orb--2 { width: 200px; height: 200px; }
+}
+
+/* ─────────────────────────────────────────
+   LIGHT MODE — HERO TEXT OVERRIDES
+   The hero background is always the dark
+   animated gradient from ibc-design-v2.css,
+   so all hero text must be forced white in
+   both light and dark mode.
+───────────────────────────────────────── */
+.page-hero-section .page-hero__title {
+  color: #fff;
+}
+.page-hero-section .page-hero__subtitle {
+  color: rgba(255, 255, 255, 0.85);
+}
+.page-hero-section .hero-btn-ghost {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.page-hero-section .hero-btn-ghost:hover,
+.page-hero-section .hero-btn-ghost:focus-visible {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* ─────────────────────────────────────────
+   RESPONSIVENESS — ADDITIONAL BREAKPOINTS
+───────────────────────────────────────── */
+
+/* Tablet: reduce section padding */
+@media (max-width: 991px) {
+  .uu-section {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+  .uu-cta-banner__inner {
+    padding: clamp(3rem, 6vw, 5rem) 0;
+  }
+}
+
+/* Mobile: hero stats layout */
+@media (max-width: 575px) {
+  .page-hero__stats {
+    gap: 1rem;
+  }
+  .hero-stat__divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .page-hero-section .page-hero-inner {
+    padding-top: calc(var(--nav-height, 60px) + 2rem);
+    padding-bottom: 3rem;
+  }
+}
+
+/* Mobile: mission grid single-column already set at 768px;
+   additional padding fix for small screens */
+@media (max-width: 575px) {
+  .uu-mission-grid {
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .uu-pillar {
+    padding: 1.25rem;
+  }
+  .uu-vision-box {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    text-align: center;
+  }
+}
+
+/* Mobile: mix band + mix cards */
+@media (max-width: 575px) {
+  .uu-mix-band {
+    margin-top: 1.5rem;
+  }
+  .uu-mix-card {
+    padding: 1.5rem 1.25rem;
+  }
+}
+
+/* Mobile: section headers */
+@media (max-width: 575px) {
+  .section-header {
+    margin-bottom: 2rem;
+  }
+  .uu-section--dark .section-chip,
+  .uu-section--alt .section-chip,
+  .uu-section--members .section-chip,
+  .uu-section--values .section-chip {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.85rem;
+  }
+}
+
+/* Extra small: CTA banner */
+@media (max-width: 479px) {
+  .uu-cta-banner__title {
+    font-size: clamp(1.5rem, 7vw, 2rem);
+  }
+  .uu-cta-banner__sub {
+    font-size: 0.95rem;
+  }
+}
+
+/* Flip cards: ensure min-height adapts on small screens */
+@media (max-width: 479px) {
+  .flip-card,
+  .flip-card-inner {
+    min-height: 200px;
+  }
+}
+
+/* Prevent horizontal overflow on all section containers */
+.uu-section {
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────
+   LIGHT MODE — SECTION BACKGROUNDS
+   Ensure light-mode sections use proper
+   CSS-variable backgrounds rather than
+   hardcoded dark colours where applicable.
+───────────────────────────────────────── */
+
+/* Members section: use token so dark mode override still works */
+.uu-section--members {
+  background: var(--uu-card-bg);
+}
+
+/* Values section: use alt-bg token */
+.uu-section--values {
+  background: var(--uu-alt-bg);
+}
+
+/* Light mode: flip card front needs proper shadow */
+:root:not([data-theme="dark"]) .flip-card-front,
+[data-theme="light"] .flip-card-front {
+  box-shadow: 0 4px 16px rgba(32, 35, 74, 0.10), 0 2px 4px rgba(32, 35, 74, 0.06);
+}
+
+/* Light mode: mix cards readable secondary text */
+:root:not([data-theme="dark"]) .uu-mix-card__text,
+[data-theme="light"] .uu-mix-card__text {
+  color: #6b7280;
+}
+
+/* Light mode: ibc-heading in light sections stays dark blue */
+:root:not([data-theme="dark"]) .uu-section--members .ibc-heading,
+:root:not([data-theme="dark"]) .uu-section--alt .ibc-heading,
+:root:not([data-theme="dark"]) .uu-section--values .ibc-heading,
+[data-theme="light"] .uu-section--members .ibc-heading,
+[data-theme="light"] .uu-section--alt .ibc-heading,
+[data-theme="light"] .uu-section--values .ibc-heading {
+  color: var(--uu-blue);
+}
+
+/* Light mode: section-intro-text in light sections */
+:root:not([data-theme="dark"]) .uu-section--members .section-intro-text,
+:root:not([data-theme="dark"]) .uu-section--alt .section-intro-text,
+:root:not([data-theme="dark"]) .uu-section--values .section-intro-text,
+[data-theme="light"] .uu-section--members .section-intro-text,
+[data-theme="light"] .uu-section--alt .section-intro-text,
+[data-theme="light"] .uu-section--values .section-intro-text {
+  color: var(--ibc-text-secondary, #4d5061);
+}
