@@ -294,6 +294,29 @@ embed {
   .fat-footer__social {
     align-items: center;
   }
+
+  /* ── Footer navigation & connect: center on mobile ── */
+  .fat-footer__sitemap,
+  .fat-footer__connect {
+    text-align: center;
+  }
+  .fat-footer__nav-list {
+    align-items: center;
+  }
+  .fat-footer__connect-address {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .fat-footer__connect-item {
+    justify-content: center;
+  }
+
+  /* ── CTA button: force white text on hover ── */
+  .fat-footer__cta-btn:hover,
+  .fat-footer__cta-btn.ethereal-button:hover {
+    color: #fff !important;
+  }
 }
 
 /* ── 11. Copyright Area ─────────────────────────────────────── */
