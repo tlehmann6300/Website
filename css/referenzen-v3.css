@@ -259,11 +259,13 @@
   padding: 0.25rem 0;
 }
 
-/* On mobile the chips left-align and scroll */
+/* On mobile the chips wrap instead of scrolling */
 @media (max-width: 767px) {
   .ref-filter__chips {
-    justify-content: flex-start;
-    padding: 0.25rem 0.25rem 0.25rem 0;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    padding: 0.25rem 0;
   }
 }
 
@@ -950,10 +952,11 @@
   }
 }
 
-/* ── Filter scroll wrap: edge padding on all mobiles ── */
+/* ── Filter wrap: edge padding on all mobiles ── */
 @media (max-width: 767px) {
   .ref-filter__scroll-wrap {
     padding: 0 0.25rem;
+    overflow-x: visible;
   }
   .ref-filter {
     margin-bottom: 2rem;
