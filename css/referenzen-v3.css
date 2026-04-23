@@ -261,9 +261,6 @@
 
 /* On mobile the chips wrap instead of scrolling */
 @media (max-width: 767px) {
-  .ref-filter__scroll-wrap {
-    overflow-x: visible;
-  }
   .ref-filter__chips {
     flex-wrap: wrap;
     width: 100%;
