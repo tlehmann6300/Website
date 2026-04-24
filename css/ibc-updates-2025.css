@@ -935,3 +935,164 @@
     margin: 0 auto;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   PATCH 2025-04 — NAVBAR, FOOTER & BUTTON FIXES
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ──────────────────────────────────────────────────────────────────
+   1.  RESPONSIVE NAVBAR  (≤ 968 px)
+   Restore absolute centering of lang + theme utilities. Overrides the
+   ibc-design-v3.css rule that uses margin-left:auto (pushes them right).
+   Logo stays far-left (flex: 0 0 auto), hamburger stays far-right
+   (flex: 0 0 auto), utilities are perfectly centred via abs positioning.
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 968px) {
+  .nav-utilities {
+    position: absolute !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    flex: none !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   2.  FOOTER — CENTRE ALL COLUMNS ON SMARTPHONES (≤ 767 px)
+   Applies to Navigation, Rechtliches, Let's Connect AND Internes so
+   all four footer sections are consistently centred on small screens.
+   ────────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  /* Section headings */
+  .fat-footer__heading,
+  .fat-footer__heading--secondary,
+  .fat-footer__connect-title {
+    text-align: center !important;
+  }
+
+  /* Column containers */
+  .fat-footer__sitemap,
+  .fat-footer__connect {
+    text-align: center !important;
+  }
+
+  /* Nav / legal / internal lists: flex-column centred */
+  .fat-footer__nav-list {
+    align-items: center !important;
+  }
+
+  /* Hide decorative dash prefix so items don't look off-centre */
+  .fat-footer__nav-list a::before {
+    display: none !important;
+  }
+
+  /* Let's Connect contact items */
+  .fat-footer__connect-item {
+    justify-content: center !important;
+    text-align: center !important;
+  }
+  .fat-footer__connect-text,
+  .fat-footer__connect-label {
+    text-align: center !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   3.  "ZUM KONTAKTFORMULAR" BUTTON — ALWAYS WHITE TEXT
+   Prevents main.css `a:hover { color: var(--ibc-green) }` from
+   bleeding into the footer CTA button on hover.
+   ────────────────────────────────────────────────────────────────── */
+.fat-footer__cta-btn,
+.fat-footer__cta-btn *,
+.fat-footer__cta-btn:hover,
+.fat-footer__cta-btn:hover *,
+.fat-footer__cta-btn:focus,
+.fat-footer__cta-btn:focus *,
+.fat-footer__cta-btn:active,
+.fat-footer__cta-btn:active * {
+  color: #fff !important;
+  text-decoration: none !important;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   4.  ANIMATION SMOOTHNESS
+   GPU-compositor hints for the most frequently animated elements so
+   transitions run off the main thread (no layout/paint jank).
+   ────────────────────────────────────────────────────────────────── */
+
+/* Mobile bottom-sheet menu */
+.mobile-menu {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Semi-transparent overlay behind mobile menu */
+.mobile-menu-overlay {
+  will-change: opacity;
+}
+
+/* Language dropdown */
+.lang-menu {
+  will-change: opacity, transform;
+}
+
+/* Theme toggle ball */
+.theme-toggle-ball {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Scroll-reveal elements: will-change is already set in main.css; clean up
+   after the element has revealed to free GPU memory */
+.reveal-fx.is-visible {
+  will-change: auto;
+}
+
+/* Mobile nav items: only hint GPU compositing while the menu is actually
+   opening or closing, not permanently */
+.mobile-menu.active .mobile-nav-item {
+  will-change: opacity, transform;
+}
+
+/* Replace `transition: all` on the overlay with specific properties
+   to avoid animating layout-triggering props on every scroll event */
+@media (max-width: 968px) {
+  .mobile-menu-overlay {
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s !important;
+  }
+  .mobile-menu-overlay.active {
+    transition: opacity 0.3s ease !important;
+  }
+  .mobile-nav-item {
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   5.  ACTIVE PAGE INDICATOR — CONSISTENT ACROSS ALL PAGES
+   Desktop: keep the green-gradient pill (already in new-navbar.css).
+   Mobile (bottom-sheet): make the active link clearly green so it
+   matches the visual weight of the desktop indicator.
+   ────────────────────────────────────────────────────────────────── */
+
+/* Mobile active nav link — green text + stronger left-bar */
+.mobile-nav-link.active {
+  color: #6D9744 !important;
+  font-weight: 700 !important;
+}
+.mobile-nav-link.active::before {
+  opacity: 0.18 !important;
+}
+
+/* Ensure the desktop pill is always visible even on transparent navbar */
+.navbar.at-top .nav-link.active,
+.navbar.at-top .nav-link.active:hover {
+  color: #fff !important;
+  text-shadow: none !important;
+}
+.navbar.at-top .nav-link.active::before {
+  opacity: 1 !important;
+  background: linear-gradient(135deg, #6D9744, #3481b9) !important;
+}
