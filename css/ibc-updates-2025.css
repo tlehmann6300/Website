@@ -1086,13 +1086,23 @@
   opacity: 0.18 !important;
 }
 
-/* Ensure the desktop pill is always visible even on transparent navbar */
+/* Ensure the desktop pill is always visible in both at-top and scrolled states.
+   The at-top selector handles transparent navbar; the scrolled/.is-scrolled
+   selectors override ibc-design-v2.css .nav-link.active { color: var(--ibc-green) }
+   (specificity 0,2,0) with a higher-specificity (0,3,0) rule so white text
+   always wins regardless of load order. */
 .navbar.at-top .nav-link.active,
-.navbar.at-top .nav-link.active:hover {
+.navbar.at-top .nav-link.active:hover,
+.navbar.scrolled .nav-link.active,
+.navbar.scrolled .nav-link.active:hover,
+.navbar.is-scrolled .nav-link.active,
+.navbar.is-scrolled .nav-link.active:hover {
   color: #fff !important;
   text-shadow: none !important;
 }
-.navbar.at-top .nav-link.active::before {
+.navbar.at-top .nav-link.active::before,
+.navbar.scrolled .nav-link.active::before,
+.navbar.is-scrolled .nav-link.active::before {
   opacity: 1 !important;
   background: linear-gradient(135deg, #6D9744, #3481b9) !important;
 }

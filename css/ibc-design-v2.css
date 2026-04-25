@@ -839,12 +839,12 @@ html, body {
   background: var(--v2-surface-1) !important;
 }
 
-/* ── Improved active nav link indicator ─────────────────────  */
+/* ── Active nav link indicator: white text on green gradient pill ── */
 .nav-link.active {
-  color: var(--ibc-green) !important;
+  color: #fff !important;
 }
 [data-theme="dark"] .nav-link.active {
-  color: var(--ibc-green) !important;
+  color: #fff !important;
 }
 
 /* ── Smooth anchor offset (sticky nav compensation) ────────── */
