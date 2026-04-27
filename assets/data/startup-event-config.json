@@ -1,28 +1,31 @@
 {
-  "_kommentar_datei": "Diese Datei steuert die Anzeige des nächsten Events/Informationsabends auf der Website",
-  "_kommentar_verwendung": "Die Datei wird von event-loader.js geladen und verarbeitet",
-  
+  "_kommentar_datei": "Steuert Anzeige des Infoabend-Events UND des globalen Anmelde-Buttons in der Navbar.",
+  "_kommentar_verwendung": "Wird von js/event-loader.js (Section auf 'Für Studierende') und js/infoabend-button.js (globaler Button) gelesen.",
+
   "isActive": true,
-  "_kommentar_isActive": "Steuert ob das Event angezeigt wird: true = Event wird angezeigt, false = Event wird versteckt",
-  
+  "_kommentar_isActive": "Steuert die Infoabend-Section auf der Seite 'Für Studierende'. true = sichtbar, false = versteckt.",
+
+  "showSignupButton": true,
+  "_kommentar_showSignupButton": "Steuert den globalen 'Anmeldung zum Infoabend'-Button in der Navbar auf allen Seiten. true = Button sichtbar, false = versteckt.",
+
+  "signupLink": "https://forms.office.com/e/0hyfcKWkwL",
+  "_kommentar_signupLink": "Link auf den der Navbar-Button verweist. Muss mit https:// beginnen.",
+
+  "signupLabel_de": "Anmeldung zum Infoabend",
+  "signupLabel_en": "Register for Info Evening",
+  "signupLabel_fr": "Inscription à la soirée d'information",
+  "_kommentar_signupLabel": "Beschriftung des Buttons in DE/EN/FR.",
+
   "date_de": "15. Oktober um 19:00 Uhr",
-  "_kommentar_date_de": "Datum und Uhrzeit des Events auf Deutsch - wird Besuchern mit deutscher Sprache angezeigt",
-  
   "date_en": "October 15 at 7:00 PM",
-  "_kommentar_date_en": "Datum und Uhrzeit des Events auf Englisch - wird Besuchern mit englischer Sprache angezeigt",
-  
   "date_fr": "15 octobre à 19h00",
-  "_kommentar_date_fr": "Datum und Uhrzeit des Events auf Französisch - wird Besuchern mit französischer Sprache angezeigt",
-  
+  "_kommentar_date": "Datum und Uhrzeit des Events in DE/EN/FR.",
+
   "location_de": "Raum C.014",
-  "_kommentar_location_de": "Ort/Raum des Events auf Deutsch",
-  
   "location_en": "Room C.014",
-  "_kommentar_location_en": "Ort/Raum des Events auf Englisch",
-  
   "location_fr": "Salle C.014",
-  "_kommentar_location_fr": "Ort/Raum des Events auf Französisch",
-  
+  "_kommentar_location": "Ort/Raum des Events in DE/EN/FR.",
+
   "registrationLink": "https://forms.office.com/e/0hyfcKWkwL",
-  "_kommentar_registrationLink": "Link zum Anmeldeformular - muss mit https:// beginnen"
+  "_kommentar_registrationLink": "Link zum Anmeldeformular der Infoabend-Section. Muss mit https:// beginnen."
 }

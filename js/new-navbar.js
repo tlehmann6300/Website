@@ -129,17 +129,25 @@
         });
     }
 
+    /* Aktive Seite markieren — lauffähig auf jeder Seite, unabhängig
+       von der Existenz aller Mobile/Theme-Elemente. */
+    (function markActivePage() {
+        const path = window.location.pathname || '';
+        const last = path.split('/').pop();
+        const currentPage = (last && last.length) ? last : 'index.html';
+        document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
+            const target = link.getAttribute('data-page');
+            if (!target) return;
+            if (target === currentPage) link.classList.add('active');
+            else link.classList.remove('active');
+        });
+    })();
+
     /* ══════════════════════════════════════════════════════════
        §2  NAVBAR / SCROLL / THEME / MOBILE — benötigt alle Elemente
     ══════════════════════════════════════════════════════════ */
     if (!navbar || !scrollProgress || !mobileToggle || !mobileMenu ||
         !mobileOverlay || !mobileHandle || !themeToggle || !mobileThemeToggle) return;
-
-    /* Aktive Seite markieren */
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
-        if (link.getAttribute('data-page') === currentPage) link.classList.add('active');
-    });
 
     /* Scroll-Fortschrittsanzeige */
     let ticking = false;
