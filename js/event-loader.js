@@ -20,7 +20,7 @@
         }
         async loadEventConfig() {
             try {
-                const response = await fetch('assets/data/startup-event-config.json');
+                const response = await fetch('assets/data/startup-event-config.json', { cache: 'no-cache' });
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -82,7 +82,31 @@
         updateEventLink() {
             const linkElement = document.getElementById('dynamic-event-link');
             if (!linkElement) return;
-            linkElement.setAttribute('href', this.eventConfig.registrationLink);
+
+            const cfg = this.eventConfig || {};
+            const candidate = (typeof cfg.signupLink === 'string' && cfg.signupLink.length)
+                ? cfg.signupLink
+                : cfg.registrationLink;
+
+            const isValidHttps = typeof candidate === 'string'
+                && /^https:\/\/[^\s<>"']+$/i.test(candidate);
+
+            // Two flags: explicit per-button toggle (showSignupButton) AND link sanity
+            const showButton = cfg.showSignupButton === true && isValidHttps;
+
+            if (showButton) {
+                linkElement.setAttribute('href', candidate);
+                linkElement.removeAttribute('hidden');
+                linkElement.setAttribute('aria-hidden', 'false');
+                // Localized aria-label: "Zur Anmeldung — opens in new tab"
+                const label = (linkElement.querySelector('.infoabend-cta__label') || {}).textContent || 'Zur Anmeldung';
+                linkElement.setAttribute('aria-label', label);
+            } else {
+                linkElement.setAttribute('hidden', '');
+                linkElement.setAttribute('aria-hidden', 'true');
+                linkElement.setAttribute('href', '#');
+                linkElement.removeAttribute('aria-label');
+            }
         }
         hideEventSection() {
             const section = document.getElementById('infoabend-section');
