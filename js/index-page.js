@@ -427,7 +427,14 @@
         });
         statsObs.unobserve(entry.target);
       });
-    }, { threshold: 0.2 });
+    }, {
+      // Fire as soon as ~8% of the section is visible OR just before it
+      // enters the viewport. This avoids "0" showing on mobile where the
+      // section is tall and the user reaches the lower cards before
+      // 20% of the whole section is on screen.
+      threshold: 0.08,
+      rootMargin: '0px 0px -10% 0px'
+    });
 
     const statsSection = document.getElementById('stats-section');
     if (statsSection) statsObs.observe(statsSection);

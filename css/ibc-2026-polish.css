@@ -423,34 +423,45 @@ body.page-maintenance .navbar.at-top .nav-link.active::after {
 .lang-btn i { color: var(--ink-1) !important; }
 .lang-btn .fa-globe { color: var(--ibc-green) !important; }
 .lang-btn:hover, .lang-btn:hover span { color: var(--ibc-green) !important; }
-/* When navbar is at-top over a hero image, use a solid dark pill so the
-   button is always readable regardless of image brightness */
+/* When navbar is at-top over a hero image, use a quietly tinted pill.
+   Subtle border (no thick white glow), gentle backdrop-blur. */
 .navbar.at-top .lang-btn,
 .navbar.at-top .lang-btn:link,
 .navbar.at-top .lang-btn:visited {
-  background: rgba(15, 19, 34, 0.78) !important;
-  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  background: rgba(15, 19, 34, 0.55) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
   color: #ffffff !important;
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  backdrop-filter: blur(18px) saturate(180%);
+  box-shadow: none !important;
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
 }
 .navbar.at-top .lang-btn span,
 .navbar.at-top .lang-btn i { color: #ffffff !important; }
 .navbar.at-top .lang-btn .fa-globe { color: #B8D996 !important; }
 .navbar.at-top .lang-btn:hover {
-  background: rgba(15, 19, 34, 0.92) !important;
-  border-color: rgba(255, 255, 255, 0.45) !important;
+  background: rgba(15, 19, 34, 0.78) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
 }
 
-/* Theme toggle on at-top navbar — same readable treatment */
+/* Theme toggle on at-top navbar — same readable, quiet treatment */
 .navbar.at-top .theme-toggle {
-  background: rgba(15, 19, 34, 0.78);
-  border-color: rgba(255, 255, 255, 0.28);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
-  backdrop-filter: blur(18px) saturate(180%);
+  background: rgba(15, 19, 34, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
 }
 .navbar.at-top .theme-toggle .theme-toggle-ball {
   background: #ffffff;
+}
+
+/* Kill the global focus-ring on these buttons after a tap on touch
+   devices — focus-visible is what we want for keyboard, not stuck focus
+   from a finger tap. */
+.lang-btn:focus:not(:focus-visible),
+.theme-toggle:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
 }
 .lang-menu {
   background: var(--surface-elev);
@@ -1306,6 +1317,100 @@ input, textarea, select {
 /* Hi-DPI / retina — ensure transitions don't look chunky on small text */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   body { -webkit-font-smoothing: antialiased; }
+}
+
+/* ==========================================================================
+   12c. Hero scroll indicator (mouse icon) — refined, minimal
+   ========================================================================== */
+.hero-scroll-indicator {
+  border: 1.5px solid rgba(255, 255, 255, 0.32) !important;
+  width: 24px !important;
+  height: 38px !important;
+  border-radius: 12px !important;
+  opacity: 0.7;
+  transition: opacity var(--t-base) var(--ease-out), border-color var(--t-base) var(--ease-out);
+}
+.hero-scroll-indicator:hover { opacity: 1; border-color: rgba(255, 255, 255, 0.55) !important; }
+.hero-scroll-indicator span {
+  width: 3px !important;
+  height: 6px !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+}
+@media (max-width: 768px) {
+  .hero-scroll-indicator {
+    width: 22px !important;
+    height: 34px !important;
+    bottom: 1.25rem !important;
+    opacity: 0.55;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-indicator { animation: none !important; }
+}
+
+/* ==========================================================================
+   12d. Touch device guards — kill stuck hover state on buttons after tap
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) {
+  .ethereal-button:hover,
+  .btn:hover,
+  .btn-primary:hover,
+  .btn-outline:hover,
+  .btn-secondary:hover,
+  .ibc-btn:hover,
+  .infoabend-cta:hover,
+  .fat-footer__cta-btn:hover,
+  .lang-btn:hover,
+  .theme-toggle:hover,
+  .nav-link:hover {
+    transform: none !important;
+    /* Allow the active state visual to still flash, but no sticky filter/glow */
+    filter: none !important;
+  }
+  /* Buttons reset to base background after :active (touch tap) */
+  .fat-footer__cta-btn:hover {
+    background: #ffffff !important;
+    color: var(--ibc-blue) !important;
+  }
+  .fat-footer__cta-btn:hover span,
+  .fat-footer__cta-btn:hover i { color: var(--ibc-blue) !important; }
+}
+
+/* ==========================================================================
+   12e. Bootstrap popovers (info-btn on stats) — keep within viewport
+   ========================================================================== */
+.popover {
+  z-index: var(--z-toast);
+  max-width: min(320px, 88vw);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line-soft);
+  background: var(--surface-elev);
+  color: var(--ink-1);
+  box-shadow: var(--shadow-3);
+}
+.popover .popover-header,
+.popover .popover-body { color: var(--ink-1); background: transparent; }
+.popover .popover-header {
+  font-weight: 700;
+  border-bottom: 1px solid var(--line-soft);
+}
+.popover .popover-arrow::before,
+.popover .popover-arrow::after { display: none !important; }
+[data-theme="dark"] .popover {
+  background: var(--surface-2);
+  border-color: var(--line-soft);
+  color: var(--ink-1);
+}
+
+/* On small screens, force popover to a sensible position so it doesn't
+   overlap neighbouring stat cards */
+@media (max-width: 768px) {
+  .popover {
+    max-width: 92vw !important;
+  }
+  /* Click-outside dismiss is handled by JS — make sure the info-btn itself
+     doesn't keep the popover open by default */
+  .info-btn[aria-expanded="false"] + .popover { display: none !important; }
 }
 
 /* ==========================================================================
