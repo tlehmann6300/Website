@@ -154,6 +154,23 @@
   --shadow-md: var(--shadow-3);
   --shadow-lg: var(--shadow-4);
   --shadow-xl: var(--shadow-4);
+
+  /* Override the indigo/violet brand secondary that's used heavily across
+     main.css (info-btn, stat-card, gradient-primary, gradient-hero, etc.).
+     Re-aliasing those to the brand green family makes everything inherit
+     the correct color without per-element overrides. */
+  --ibc-indigo: var(--ibc-green);
+  --ibc-violet: var(--ibc-green-soft);
+  --gradient-primary: linear-gradient(135deg, #6D9744 0%, #7FB851 50%, #B8D996 100%);
+  --gradient-hero: linear-gradient(135deg, #20234A 0%, #355B2C 60%, #6D9744 100%);
+  --gradient-green: linear-gradient(135deg, #6D9744 0%, #7FB851 100%);
+}
+[data-theme="dark"] {
+  --ibc-indigo: var(--ibc-green-soft);
+  --ibc-violet: var(--ibc-green-light);
+  --gradient-primary: linear-gradient(135deg, #B8D996 0%, #7FB851 50%, #6D9744 100%);
+  --gradient-hero: linear-gradient(135deg, #0B0E18 0%, #14172E 50%, #355B2C 100%);
+  --gradient-green: linear-gradient(135deg, #B8D996 0%, #7FB851 100%);
 }
 
 /* ==========================================================================
@@ -1488,14 +1505,18 @@ input, textarea, select {
    12db. Brand-color overrides — stats counters were violet, fix to green
    ========================================================================== */
 
-/* Stats numbers — replace violet gradient with brand green (solid).
-   Solid color is more robust than gradient + background-clip:text, which
-   was being overridden by the @supports block in main.css. */
-.stat-number .counter-animated,
-.stats-section .counter-animated,
-[class*="stat__num"] .counter-animated,
-[class*="stat-number"] .counter-animated,
-.stat-card .counter-animated {
+/* Stats numbers — solid brand green. Match the very specific selectors
+   from main.css (line 5748) so we beat them on cascade tie-breaks. */
+:root:not([data-theme="dark"]) .stat-number,
+:root:not([data-theme="dark"]) .stat-number .counter-animated,
+[data-theme="light"] .stat-number,
+[data-theme="light"] .stat-number .counter-animated,
+html .stat-number,
+html .stat-number .counter-animated,
+html .stats-section .counter-animated,
+html [class*="stat__num"] .counter-animated,
+html [class*="stat-number"] .counter-animated,
+html .stat-card .counter-animated {
   color: #6D9744 !important;
   background: none !important;
   background-image: none !important;
@@ -1503,13 +1524,14 @@ input, textarea, select {
   background-clip: border-box !important;
   -webkit-text-fill-color: #6D9744 !important;
 }
+:root[data-theme="dark"] .stat-number,
+:root[data-theme="dark"] .stat-number .counter-animated,
+[data-theme="dark"] .stat-number,
 [data-theme="dark"] .stat-number .counter-animated,
 [data-theme="dark"] .stats-section .counter-animated,
 [data-theme="dark"] [class*="stat-number"] .counter-animated,
 [data-theme="dark"] .stat-card .counter-animated {
   color: #B8D996 !important;
-  background: none !important;
-  background-image: none !important;
   -webkit-text-fill-color: #B8D996 !important;
 }
 
@@ -1524,22 +1546,104 @@ input, textarea, select {
   box-shadow: 0 0 0 1px rgba(127, 184, 81, 0.30), 0 16px 36px rgba(0, 0, 0, 0.45) !important;
 }
 
-/* The page-wide --gradient-primary leaks violet into other places
-   (eyebrows, badges, dividers). Force brand-green for these contexts too. */
-.text-gradient,
-.gradient-text,
-.heading-gradient {
-  background: linear-gradient(135deg, #6D9744 0%, #7FB851 100%) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  color: transparent !important;
+/* Info button (stats popover trigger) — was indigo, now brand green */
+.info-btn,
+.stat-card .info-btn {
+  background: rgba(109, 151, 68, 0.12) !important;
+  border: 1.5px solid rgba(109, 151, 68, 0.30) !important;
+  color: var(--ibc-green-dark) !important;
 }
-[data-theme="dark"] .text-gradient,
-[data-theme="dark"] .gradient-text,
-[data-theme="dark"] .heading-gradient {
-  background: linear-gradient(135deg, #B8D996 0%, #7FB851 100%) !important;
-  -webkit-text-fill-color: transparent !important;
+.info-btn:hover,
+.stat-card .info-btn:hover {
+  background: rgba(109, 151, 68, 0.24) !important;
+  border-color: rgba(109, 151, 68, 0.55) !important;
+  color: var(--ibc-green-dark) !important;
+}
+.info-btn:focus-visible {
+  outline: 2px solid var(--ibc-green) !important;
+  outline-offset: 2px;
+}
+[data-theme="dark"] .info-btn,
+[data-theme="dark"] .stat-card .info-btn {
+  background: rgba(127, 184, 81, 0.18) !important;
+  border-color: rgba(127, 184, 81, 0.40) !important;
+  color: var(--ibc-green-light) !important;
+}
+[data-theme="dark"] .info-btn:hover {
+  background: rgba(127, 184, 81, 0.30) !important;
+  border-color: rgba(127, 184, 81, 0.65) !important;
+  color: var(--ibc-green-light) !important;
+}
+
+/* Stat card backgrounds: drop the indigo radial gradient leak */
+.stats-section,
+[data-theme="dark"] .stats-section {
+  background-image: none !important;
+}
+.stat-card {
+  background: var(--surface-elev) !important;
+  border: 1px solid var(--line-soft) !important;
+}
+[data-theme="dark"] .stat-card {
+  background: var(--surface-2) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Info-icon-box + physics-icon-box: kill the indigo dark-mode override */
+[data-theme="dark"] .info-icon-box,
+[data-theme="dark"] .physics-icon-box {
+  background: linear-gradient(135deg, rgba(127, 184, 81, 0.18) 0%, rgba(127, 184, 81, 0.06) 100%) !important;
+  border: 1px solid rgba(127, 184, 81, 0.28) !important;
+  color: var(--ibc-green-light) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+[data-theme="dark"] .info-glass-card-link:hover .info-icon-box,
+[data-theme="dark"] .physics-card-wrap:hover .physics-icon-box {
+  background: linear-gradient(135deg, rgba(127, 184, 81, 0.30) 0%, rgba(127, 184, 81, 0.10) 100%) !important;
+  border-color: rgba(127, 184, 81, 0.45) !important;
+}
+
+/* Section eyebrow / chip / badge — brand green tint */
+.section-chip,
+.ibc-eyebrow,
+.eyebrow,
+.section-eyebrow,
+.pre-heading {
+  background: rgba(109, 151, 68, 0.10) !important;
+  color: var(--ibc-green-dark) !important;
+  border-color: rgba(109, 151, 68, 0.25) !important;
+}
+[data-theme="dark"] .section-chip,
+[data-theme="dark"] .ibc-eyebrow,
+[data-theme="dark"] .eyebrow,
+[data-theme="dark"] .section-eyebrow,
+[data-theme="dark"] .pre-heading {
+  background: rgba(127, 184, 81, 0.14) !important;
+  color: var(--ibc-green-light) !important;
+  border-color: rgba(127, 184, 81, 0.30) !important;
+}
+
+/* main.css already paints .text-gradient as solid var(--ibc-green) /
+   var(--ibc-green-light) (no gradient, but reliable). We just need to
+   make sure it's NOT showing as a green block (which happens when
+   another rule injects background-image without matching background-clip).
+   Strategy: kill any background-image leak, restore solid color so the
+   text is clearly visible in both themes. */
+html .text-gradient,
+html .gradient-text,
+html .heading-gradient {
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  color: var(--ibc-green-dark) !important;
+  -webkit-text-fill-color: var(--ibc-green-dark) !important;
+}
+html[data-theme="dark"] .text-gradient,
+html[data-theme="dark"] .gradient-text,
+html[data-theme="dark"] .heading-gradient {
+  color: var(--ibc-green-light) !important;
+  -webkit-text-fill-color: var(--ibc-green-light) !important;
 }
 
 /* Decorative under-heading divider (was violet on most sub-pages) */
@@ -1661,16 +1765,19 @@ body.page-legal :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-h
   background: none !important;
   background-image: none !important;
 }
-/* Restore gradient on inner .text-gradient / .gradient-text spans */
+/* Restore brand-green color on inner .text-gradient / .gradient-text spans
+   inside dark hero sections. Use solid color (matches main.css pattern) so
+   it's reliable across browsers — no fragile background-clip:text. */
 body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h1 .text-gradient,
 body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h1 .gradient-text,
 body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h2 .text-gradient,
 body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h2 .gradient-text {
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
-  background: linear-gradient(135deg, #B8D996 0%, #7FB851 100%) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  color: #B8D996 !important;
+  -webkit-text-fill-color: #B8D996 !important;
 }
 body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) p,
 body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-sub,
