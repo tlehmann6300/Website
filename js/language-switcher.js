@@ -92,26 +92,32 @@
          * @returns {Promise<Object>} Promise, das die Übersetzungsdaten enthält
          */
         async loadTranslations() {
-            try {
-                // Sende HTTP-Request für Übersetzungs-JSON
-                const response = await fetch('assets/data/translations/translations.json');
-                
-                // Prüfe, ob der Request erfolgreich war (HTTP 200)
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+            // Erstelle eine Liste mit Pfad-Kandidaten, um robuster zu sein
+            // (relativer Pfad funktioniert nicht in allen Server-Konfigurationen)
+            const base = (document.querySelector('base')?.getAttribute('href') || '/').replace(/\/?$/, '/');
+            const candidates = [
+                'assets/data/translations/translations.json',
+                './assets/data/translations/translations.json',
+                base + 'assets/data/translations/translations.json',
+                '/assets/data/translations/translations.json'
+            ];
+
+            for (const url of candidates) {
+                try {
+                    const response = await fetch(url, { cache: 'no-cache' });
+                    if (!response.ok) continue;
+                    const data = await response.json();
+                    if (data && typeof data === 'object' && Object.keys(data).length > 0) {
+                        return data;
+                    }
+                } catch (error) {
+                    // weiter zum nächsten Kandidaten
+                    console.warn('Translations: konnte ' + url + ' nicht laden:', error.message);
                 }
-                
-                // Parse die JSON-Daten
-                const data = await response.json();
-                return data;
-            } catch (error) {
-                // Logge Fehler in Konsole für Debugging
-                console.error('Failed to load translations:', error);
-                // Zeige Benutzer-freundliche Fehlermeldung an
-                this.showErrorMessage();
-                // Gebe leeres Objekt zurück, um weitere Fehler zu vermeiden
-                return {};
             }
+            console.error('Failed to load translations from all candidate paths');
+            this.showErrorMessage();
+            return {};
         }
         
         /**
@@ -291,6 +297,12 @@
             if (!this.translations || Object.keys(this.translations).length === 0) {
                 this.loadTranslations().then(data => {
                     this.translations = data;
+                    if (!data || Object.keys(data).length === 0) {
+                        // Letzter Fallback: einfach mit ?lang=Param neu laden,
+                        // damit die Seite vom Server aus übersetzt werden kann.
+                        window.location.href = url.toString();
+                        return;
+                    }
                     this.applyTranslations();
                     this.updateAllLinks();
                     this.updateHtmlLang();

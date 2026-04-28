@@ -521,6 +521,50 @@
   margin-bottom: .8rem;
 }
 
+/* Generic hidden helper – wird vom Consent-Handling und vom reCAPTCHA-Callback
+   benutzt, um Notiz oder Widget zu zeigen/verbergen. */
+.k-recaptcha-note.hidden,
+.recaptcha-wrapper.hidden {
+  display: none !important;
+}
+
+/* Wrapper des reCAPTCHA-Widgets – zentriert, ausreichend Platz */
+.recaptcha-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: .5rem 0 1rem;
+  min-height: 78px; /* reCAPTCHA Höhe – verhindert Layout-Sprung */
+}
+
+/* Button "Spamschutz aktivieren" innerhalb der Consent-Notice */
+#open-consent-settings-btn {
+  display: inline-flex; align-items: center; gap: .35rem;
+  background: var(--kn-green); color: #fff;
+  border: none; border-radius: 100px;
+  padding: .35rem .9rem; font-size: .78rem; font-weight: 600;
+  cursor: pointer;
+  margin-left: auto;
+  transition: background .2s, transform .2s;
+}
+#open-consent-settings-btn:hover {
+  background: var(--kn-green-2);
+  transform: translateY(-1px);
+}
+
+/* Ausgegrautes Formular wenn keine Consent gegeben wurde */
+.form-disabled-no-consent {
+  opacity: .55;
+  pointer-events: none;
+  filter: grayscale(.4);
+  transition: opacity .25s, filter .25s;
+}
+.form-disabled-no-consent #recaptcha-consent-notice,
+.form-disabled-no-consent #open-consent-settings-btn {
+  pointer-events: auto;
+  opacity: 1;
+  filter: none;
+}
+
 /* Actions row */
 .k-form-actions {
   display: flex; align-items: center; gap: 1rem;
@@ -528,57 +572,222 @@
   margin-top: 1.2rem;
 }
 
-/* Send button */
+/* ──────────────────────────────────────────────────────────────
+   Send button – "cool" enhanced animation
+   ────────────────────────────────────────────────────────────── */
 .send-button {
   display: inline-flex; align-items: center; justify-content: center;
   gap: .5rem;
-  background: linear-gradient(135deg, var(--kn-green), var(--kn-green-2));
+  /* Animated 200% gradient that shifts on hover */
+  background: linear-gradient(135deg,
+              var(--kn-green) 0%,
+              var(--kn-green-2) 50%,
+              #4ade80 100%);
+  background-size: 200% 200%;
+  background-position: 0% 0%;
   color: #fff;
   border: none;
   border-radius: 100px;
-  padding: .85rem 2.2rem;
+  padding: .95rem 2.4rem;
   font-size: .95rem; font-weight: 700;
+  letter-spacing: .02em;
   cursor: pointer;
-  transition: transform .2s var(--kn-spring), box-shadow .25s, opacity .2s;
-  box-shadow: 0 4px 20px rgba(109,151,68,.35);
-  position: relative; overflow: hidden;
+  transition:
+      transform .35s var(--kn-spring),
+      box-shadow .35s ease,
+      background-position .6s ease,
+      opacity .2s;
+  box-shadow:
+      0 4px 20px rgba(109,151,68,.35),
+      0 0 0 0 rgba(74, 222, 128, .55);
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  will-change: transform, box-shadow, background-position;
 }
+
+/* Soft inner gloss */
 .send-button::before {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,.15), transparent);
-  opacity: 0; transition: opacity .25s;
+  background: linear-gradient(135deg, rgba(255,255,255,.22), transparent 55%);
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+  z-index: 1;
 }
-.send-button:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(109,151,68,.45); }
-.send-button:hover::before { opacity: 1; }
-.send-button:active { transform: translateY(0); }
-.send-button:disabled { opacity: .65; cursor: not-allowed; transform: none; }
 
-.btn-content { display: flex; align-items: center; gap: .5rem; }
+/* Travelling shimmer that sweeps across on hover */
+.send-button::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -120%;
+  width: 60%; height: 100%;
+  background: linear-gradient(
+      120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0)  20%,
+      rgba(255, 255, 255, .55) 50%,
+      rgba(255, 255, 255, 0)  80%,
+      transparent 100%);
+  transform: skewX(-22deg);
+  pointer-events: none;
+  z-index: 2;
+  transition: left .9s cubic-bezier(.2,.8,.2,1);
+}
+
+.send-button:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow:
+      0 14px 38px rgba(109,151,68,.55),
+      0 0 0 6px rgba(74, 222, 128, .12);
+  background-position: 100% 100%;
+}
+.send-button:hover::before { opacity: 1; }
+.send-button:hover::after  { left: 130%; }
+
+.send-button:active {
+  transform: translateY(-1px) scale(.985);
+  transition-duration: .12s;
+}
+
+.send-button:focus-visible {
+  outline: none;
+  box-shadow:
+      0 8px 28px rgba(109,151,68,.45),
+      0 0 0 4px rgba(74, 222, 128, .35);
+}
+
+.send-button:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 12px rgba(109,151,68,.2);
+}
+.send-button:disabled::after { display: none; }
+
+/* Pulse halo while waiting / loading */
+.send-button.loading {
+  animation: knSendPulse 1.6s ease-in-out infinite;
+}
+@keyframes knSendPulse {
+  0%, 100% {
+    box-shadow:
+        0 4px 20px rgba(109,151,68,.35),
+        0 0 0 0 rgba(74, 222, 128, .55);
+  }
+  50% {
+    box-shadow:
+        0 4px 20px rgba(109,151,68,.35),
+        0 0 0 14px rgba(74, 222, 128, 0);
+  }
+}
+
+/* Success / error short bursts */
+.send-button.success {
+  background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+  animation: knSendPop .55s var(--kn-spring);
+}
+.send-button.error {
+  background: linear-gradient(135deg, #ef4444, #b91c1c) !important;
+  animation: knSendShake .5s ease;
+}
+@keyframes knSendPop {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.08); }
+  70%  { transform: scale(.97); }
+  100% { transform: scale(1); }
+}
+@keyframes knSendShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(3px); }
+}
+
+.btn-content { display: flex; align-items: center; gap: .55rem; position: relative; z-index: 3; }
 .btn-text { font-weight: 700; }
 
 /* SVG icons inside send button */
-.icon-wrapper { display: flex; align-items: center; }
+.icon-wrapper { display: flex; align-items: center; position: relative; z-index: 3; }
 .icon-svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 .icon-spinner { display: none; }
 .icon-check   { display: none; }
 .icon-cross   { display: none; }
 .send-button.loading   .icon-spinner { display: block; animation: knSpin .8s linear infinite; }
-.send-button.success   .icon-check   { display: block; }
-.send-button.error     .icon-cross   { display: block; }
+.send-button.success   .icon-check   { display: block; animation: knIconPop .4s var(--kn-spring); }
+.send-button.error     .icon-cross   { display: block; animation: knIconPop .4s var(--kn-spring); }
 .spinner-rotate { transform-origin: center; animation: knSpin .8s linear infinite; }
 @keyframes knSpin { to { transform: rotate(360deg); } }
+@keyframes knIconPop { 0% { transform: scale(0); } 60% { transform: scale(1.25); } 100% { transform: scale(1); } }
 
-/* Reset button */
+/* ──────────────────────────────────────────────────────────────
+   Reset button – ported & modernised from old_page (red accent,
+   icon rotation, scale lift)
+   ────────────────────────────────────────────────────────────── */
 .btn-reset-form {
-  display: inline-flex; align-items: center; gap: .45rem;
-  background: none; border: 1.5px solid var(--kn-border-2);
-  border-radius: 100px; padding: .75rem 1.4rem;
-  font-size: .88rem; color: var(--kn-text-2);
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: .55rem;
+  flex: 0 1 auto;
+  min-height: 48px;
+  background: var(--kn-bg-1, #fff);
+  border: 1.5px solid var(--kn-border-2);
+  border-radius: 100px;
+  padding: .75rem 1.6rem;
+  font-size: .9rem;
+  font-weight: 600;
+  color: var(--kn-text-2);
   cursor: pointer;
-  transition: border-color .22s, color .22s, background .22s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
+  transition: all .35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform, background, border-color, color, box-shadow;
 }
-.btn-reset-form:hover { border-color: var(--kn-green); color: var(--kn-green); background: rgba(109,151,68,.06); }
+.btn-reset-form .icon {
+  font-size: 1.05rem;
+  margin: 0;
+  transition: transform .5s cubic-bezier(.6,-0.28,.74,.05);
+  color: inherit;
+  display: inline-block;
+}
+.btn-reset-form span[data-i18n] {
+  display: inline-block;
+  font-weight: 600;
+}
+.btn-reset-form:hover {
+  background: #fff5f5;
+  border-color: #ef4444;
+  color: #dc2626;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 24px rgba(220, 38, 38, .22);
+}
+.btn-reset-form:hover .icon {
+  transform: rotate(-180deg);
+}
+.btn-reset-form:active {
+  transform: translateY(-1px) scale(1);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, .15);
+  transition-duration: .12s;
+}
+.btn-reset-form:focus-visible {
+  outline: none;
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, .25);
+}
+
+/* Dark mode adjustments for reset button */
+[data-theme="dark"] .btn-reset-form {
+  background: rgba(255, 255, 255, .04);
+  border-color: rgba(255, 255, 255, .15);
+  color: rgba(255, 255, 255, .75);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .25);
+}
+[data-theme="dark"] .btn-reset-form:hover {
+  background: rgba(239, 68, 68, .12);
+  border-color: #ef4444;
+  color: #fca5a5;
+  box-shadow: 0 10px 24px rgba(220, 38, 38, .35);
+}
 
 /* ──────────────────────────────────────────────────────────────
    §6  INFO CARD (right panel)

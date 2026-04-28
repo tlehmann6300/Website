@@ -411,10 +411,14 @@
 
                         <!-- reCAPTCHA widget -->
                         <div class="recaptcha-wrapper text-center mb-3">
-                            <div class="g-recaptcha"
+                            <div id="g-recaptcha-widget"
+                                 class="g-recaptcha"
                                  data-sitekey="6LfzQyUsAAAAALhJXnwV810IjeSKTW4WxPyA7xly"
                                  data-callback="onRecaptchaComplete"
-                                 data-expired-callback="onRecaptchaExpired"></div>
+                                 data-expired-callback="onRecaptchaExpired"
+                                 data-error-callback="onRecaptchaError"
+                                 data-size="normal"
+                                 data-theme="light"></div>
                         </div>
 
                         <!-- Actions -->
@@ -588,7 +592,8 @@
                         </div>
                         <span>Robert-Gerwig-Platz 1, Gebäude I<br>78120 Furtwangen im Schwarzwald</span>
                     </div>
-                    <div class="kn-map-address-row">
+                    <!-- Büro-Adresse vorerst ausgeblendet (auf Wunsch) -->
+                    <div class="kn-map-address-row" style="display:none;" hidden aria-hidden="true">
                         <div class="kn-map-address-row__icon" aria-hidden="true">
                             <i class="fas fa-door-open"></i>
                         </div>
