@@ -553,7 +553,7 @@ p:last-child { margin-bottom: 0; }
   background-color: #151730;
   /* CSS animation auto-exits the loader.
      animation-fill-mode: forwards keeps it invisible after it ends. */
-  animation: loader-exit 0.4s ease-out 0.8s forwards;
+  animation: loader-exit 0.6s ease-out 2s forwards;
   /* Prevent the overlay from blocking clicks once invisible */
   pointer-events: auto;
 }
@@ -602,8 +602,8 @@ p:last-child { margin-bottom: 0; }
   height: 100%;
   background: linear-gradient(90deg, #6D9744, #7db356);
   border-radius: 999px;
-  /* Bar fills schneller — matches the 0.8 s loader-exit delay above */
-  animation: loader-fill 0.7s ease forwards;
+  /* Bar fills in 1.4 s — matches the 2 s loader-exit delay above */
+  animation: loader-fill 1.4s ease forwards;
 }
 
 /* ── Reduced-motion: skip animations, dismiss instantly ── */

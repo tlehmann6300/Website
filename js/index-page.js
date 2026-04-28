@@ -33,11 +33,11 @@
 
     /* Elemente in Anzeigereihenfolge mit ihren Einblend-Delays */
     const items = [
-      { sel: '.hero-eyebrow-badge',  delay:  20, fromY: 20 },
-      { sel: 'h1.display-2',         delay:  70, fromY: 28 },
-      { sel: '.hero-subtitle-text',  delay: 120, fromY: 22 },
-      { sel: '.hero-actions',        delay: 170, fromY: 18 },
-      { sel: '.hero-trust-strip',    delay: 220, fromY: 16 },
+      { sel: '.hero-eyebrow-badge',  delay:  80, fromY: 20 },
+      { sel: 'h1.display-2',         delay: 280, fromY: 28 },
+      { sel: '.hero-subtitle-text',  delay: 460, fromY: 22 },
+      { sel: '.hero-actions',        delay: 620, fromY: 18 },
+      { sel: '.hero-trust-strip',    delay: 800, fromY: 16 },
     ];
 
     if (PRM) {
@@ -65,12 +65,13 @@
       el.style.opacity = '0';
       el.style.transform = `translateY(${fromY}px)`;
       el.style.filter = 'blur(8px)';
-      el.style.transition = 'opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s cubic-bezier(0.16, 1, 0.3, 1)';
+      el.style.transition = 'opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.85s cubic-bezier(0.16, 1, 0.3, 1)';
     });
 
     /* Gestaffeltes Einblenden synchronisiert mit Loader-Exit
-     * Loader-CSS-Animation reduziert; Animationen starten nun schneller. */
-    const BASE_OFFSET = 250; /* ms – schnellerer Start nach Page Load */
+     * Loader-CSS-Animation: delay 2 s + duration 0.6 s → Seite bei ~2.6 s sichtbar.
+     * Wir starten kurz davor damit die Animation für den Nutzer sichtbar ist. */
+    const BASE_OFFSET = 2100; /* ms – kurz vor dem Loader-Fade-out */
     items.forEach(({ sel, delay }) => {
       const el = col.querySelector(sel);
       if (!el) return;
@@ -100,7 +101,7 @@
       const target = parseInt(el.getAttribute('data-count'), 10);
       const suffix = el.getAttribute('data-suffix') || '';
       if (isNaN(target)) return;
-      const duration = 350;
+      const duration = 1200;
       const start = performance.now();
       function tick(now) {
         const elapsed = now - start;
@@ -343,8 +344,8 @@
    * 5. STATS-COUNTER MIT GLOW-ABSCHLUSS
    * ══════════════════════════════════════════════════════════════ */
   function initStatsSection() {
-    const DURATION_MS   = 500;
-    const STAGGER_MS    = 40;
+    const DURATION_MS   = 1800;
+    const STAGGER_MS    = 200;
 
     /* Bootstrap Popovers initialisieren */
     const isMobile = window.innerWidth < 768;
@@ -426,7 +427,14 @@
         });
         statsObs.unobserve(entry.target);
       });
-    }, { threshold: 0.2 });
+    }, {
+      // Fire as soon as ~8% of the section is visible OR just before it
+      // enters the viewport. This avoids "0" showing on mobile where the
+      // section is tall and the user reaches the lower cards before
+      // 20% of the whole section is on screen.
+      threshold: 0.08,
+      rootMargin: '0px 0px -10% 0px'
+    });
 
     const statsSection = document.getElementById('stats-section');
     if (statsSection) statsObs.observe(statsSection);

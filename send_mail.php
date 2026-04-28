@@ -1,5 +1,11 @@
 <?php
 /**
+ * Runtime security headers (CSP, HSTS, X-Frame, Referrer-Policy, etc.).
+ * Idempotent — safe to include alongside .htaccess in production.
+ */
+@require_once __DIR__ . '/private/security_headers.php';
+
+/**
  * E-Mail-Versand-Skript für das Kontaktformular
  * 
  * Dieses PHP-Skript verarbeitet Kontaktformular-Anfragen und versendet E-Mails.
@@ -568,45 +574,65 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $mail->addAddress($empfaengerEmail);
                 $mail->addReplyTo($email, $name);
                 $mailSubject = "Neue Kontaktanfrage: $subject";
-                $mailBodyHTML = "
-<div style='font-family: Arial, sans-serif; max-width: 600px; margin: auto; border: 1px solid #e0e0e0; border-radius: 8px; overflow: hidden;'>
-    <div style='background-color: #20234A; color: white; padding: 20px; text-align: center;'>
-        <h2 style='margin: 0;'>Neue Kontaktanfrage</h2>
-    </div>
-    <div style='padding: 25px; color: #333;'>
-        <table style='width: 100%; border-collapse: collapse;'>
-            <tr style='background-color: #f9f9f9;'><td style='padding: 10px; font-weight: bold;'>Name:</td><td style='padding: 10px;'>" . htmlspecialchars($name) . "</td></tr>
-            <tr><td style='padding: 10px; font-weight: bold;'>E-Mail:</td><td style='padding: 10px;'><a href='mailto:" . htmlspecialchars($email) . "'>" . htmlspecialchars($email) . "</a></td></tr>
-            <tr style='background-color: #f9f9f9;'><td style='padding: 10px; font-weight: bold;'>Betreff:</td><td style='padding: 10px;'>" . htmlspecialchars($subject) . "</td></tr>";
+                // Modern, accessible, mobile-safe HTML email template.
+                // - 600px max-width, table-based layout for client compatibility (Outlook, etc.)
+                // - Brand-colored hero, semantic <h1>/<table>/<th>/<td>, language attribute
+                // - All user input escaped with htmlspecialchars + ENT_QUOTES + UTF-8
+                $esc = function ($v) { return htmlspecialchars((string)$v, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8'); };
+                $rowsHtml = '';
+                $rowsHtml .= "<tr><th align=\"left\" scope=\"row\" style=\"padding:12px 16px;background:#f5f7fb;color:#3a3f55;font-weight:600;border-bottom:1px solid #e8ebf0;\">Name</th><td style=\"padding:12px 16px;color:#0f1322;border-bottom:1px solid #e8ebf0;\">" . $esc($name) . "</td></tr>";
+                $rowsHtml .= "<tr><th align=\"left\" scope=\"row\" style=\"padding:12px 16px;background:#f5f7fb;color:#3a3f55;font-weight:600;border-bottom:1px solid #e8ebf0;\">E-Mail</th><td style=\"padding:12px 16px;color:#0f1322;border-bottom:1px solid #e8ebf0;\"><a href=\"mailto:" . $esc($email) . "\" style=\"color:#6D9744;text-decoration:underline;\">" . $esc($email) . "</a></td></tr>";
+                $rowsHtml .= "<tr><th align=\"left\" scope=\"row\" style=\"padding:12px 16px;background:#f5f7fb;color:#3a3f55;font-weight:600;border-bottom:1px solid #e8ebf0;\">Betreff</th><td style=\"padding:12px 16px;color:#0f1322;border-bottom:1px solid #e8ebf0;\">" . $esc($subject) . "</td></tr>";
                 if (!empty($kuerzel)) {
-                    $mailBodyHTML .= "
-            <tr><td style='padding: 10px; font-weight: bold;'>Kürzel:</td><td style='padding: 10px;'>" . htmlspecialchars($kuerzel) . "</td></tr>";
+                    $rowsHtml .= "<tr><th align=\"left\" scope=\"row\" style=\"padding:12px 16px;background:#f5f7fb;color:#3a3f55;font-weight:600;border-bottom:1px solid #e8ebf0;\">Kürzel</th><td style=\"padding:12px 16px;color:#0f1322;border-bottom:1px solid #e8ebf0;\">" . $esc($kuerzel) . "</td></tr>";
                 }
                 if (!empty($rating) && is_numeric($rating)) {
-                    $fullStars = floor($rating);
+                    $fullStars   = floor($rating);
                     $hasHalfStar = ($rating - $fullStars) >= 0.5;
-                    $emptyStars = 5 - $fullStars - ($hasHalfStar ? 1 : 0);
-                    $ratingStars = str_repeat('⭐', $fullStars);
-                    if ($hasHalfStar) {
-                        $ratingStars .= '½⭐';
-                    }
-                    $ratingStars .= str_repeat('☆', $emptyStars);
-                    $ratingDisplay = $ratingStars;
-                    $mailBodyHTML .= "
-            <tr style='background-color: #f9f9f9;'><td style='padding: 10px; font-weight: bold;'>Bewertung:</td><td style='padding: 10px;'>" . $ratingDisplay . " (" . number_format($rating, 1) . "/5)</td></tr>";
+                    $emptyStars  = 5 - $fullStars - ($hasHalfStar ? 1 : 0);
+                    $ratingStars = str_repeat('★', (int)$fullStars) . ($hasHalfStar ? '½★' : '') . str_repeat('☆', (int)$emptyStars);
+                    $rowsHtml   .= "<tr><th align=\"left\" scope=\"row\" style=\"padding:12px 16px;background:#f5f7fb;color:#3a3f55;font-weight:600;border-bottom:1px solid #e8ebf0;\">Bewertung</th><td style=\"padding:12px 16px;color:#0f1322;border-bottom:1px solid #e8ebf0;font-size:18px;letter-spacing:2px;\"><span aria-label=\"" . $esc(number_format($rating, 1)) . " von 5 Sternen\">" . $ratingStars . "</span> <span style=\"color:#6b7184;font-size:13px;letter-spacing:0;\">(" . number_format($rating, 1) . "/5)</span></td></tr>";
                 }
-                $mailBodyHTML .= "
+                $messageEscaped = nl2br($esc($message));
+                $mailBodyHTML = '<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light only">
+<title>Neue Kontaktanfrage</title>
+</head>
+<body style="margin:0;padding:0;background:#eef0f5;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Inter,Arial,sans-serif;color:#0f1322;-webkit-font-smoothing:antialiased;">
+<div role="article" aria-roledescription="email" aria-label="Neue Kontaktanfrage über das IBC-Kontaktformular" lang="de">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#eef0f5;padding:24px 12px;">
+  <tr><td align="center">
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 12px 32px rgba(15,19,34,0.10);">
+      <tr><td style="background:linear-gradient(135deg,#20234A 0%,#355B2C 60%,#6D9744 100%);padding:28px 24px;text-align:center;color:#ffffff;">
+        <p style="margin:0 0 6px 0;font-size:11px;letter-spacing:0.18em;text-transform:uppercase;opacity:0.85;color:#B8D996;">IBC Kontaktformular</p>
+        <h1 style="margin:0;font-size:24px;font-weight:800;letter-spacing:-0.02em;color:#ffffff;">Neue Kontaktanfrage</h1>
+      </td></tr>
+      <tr><td style="padding:24px 20px 8px;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;border-radius:10px;overflow:hidden;border:1px solid #e8ebf0;">
+          ' . $rowsHtml . '
         </table>
-        <div style='margin-top: 20px; padding: 15px; background: #f5f5f5; border-radius: 5px;'>
-            <strong style='display: block; margin-bottom: 10px;'>Nachricht:</strong>
-            " . nl2br(htmlspecialchars($message)) . "
-        </div>
-    </div>
-    <div style='background: #eeeeee; padding: 10px; text-align: center; font-size: 12px; color: #666;'>
-        Gesendet über das IBC Kontaktformular<br>
-        <a href='https://business-consulting.de/referenzen.html' style='color: #6D9744; text-decoration: none;'>Unsere Referenzen ansehen</a>
-    </div>
-</div>";
+      </td></tr>
+      <tr><td style="padding:8px 20px 24px;">
+        <p style="margin:18px 0 8px 0;color:#3a3f55;font-weight:700;font-size:14px;">Nachricht</p>
+        <div style="padding:16px 18px;background:#f5f7fb;border-left:4px solid #6D9744;border-radius:8px;color:#0f1322;font-size:15px;line-height:1.6;white-space:pre-wrap;">' . $messageEscaped . '</div>
+      </td></tr>
+      <tr><td style="background:#f5f7fb;padding:14px 20px;text-align:center;color:#6b7184;font-size:12px;border-top:1px solid #e8ebf0;">
+        Gesendet über das <strong style="color:#0f1322;">IBC Kontaktformular</strong> &middot;
+        <a href="https://business-consulting.de/referenzen.html" style="color:#6D9744;text-decoration:underline;">Unsere Referenzen</a>
+      </td></tr>
+    </table>
+    <p style="margin:12px 0 0 0;color:#86868b;font-size:11px;">© Institut für Business Consulting e.V.</p>
+  </td></tr>
+</table>
+</div>
+</body>
+</html>';
                 $mailBodyText   = "Du hast eine neue Nachricht über das Kontaktformular erhalten:\n\n";
                 $mailBodyText .= "Name: $name\n";
                 $mailBodyText .= "E-Mail: $email\n";

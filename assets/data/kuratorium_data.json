@@ -33,10 +33,10 @@
       "subjectsI18nKey": "network-curators-marx-subjects"
     },
     {
-      "_kommentar": "Prof. Dr. Peter Schanbacher",
+      "_kommentar": "Prof. Peter Schanbacher",
       "id": "schanbacher",
       "image": "assets/img/schanbacher.webp",
-      "altText": "Portrait von Prof. Dr. Peter Schanbacher",
+      "altText": "Portrait von Prof. Peter Schanbacher",
       "nameI18nKey": "network-curators-schanbacher-name",
       "quoteI18nKey": "network-curators-schanbacher-quote",
       "subjectsI18nKey": "network-curators-schanbacher-subjects"
@@ -45,7 +45,7 @@
       "_kommentar": "Dozentin Tarah Katz",
       "id": "katz",
       "image": "assets/img/katz.webp",
-      "altText": "Portrait von Dozentin Tarah Katz",
+      "altText": "Portrait von Tarah Katz",
       "nameI18nKey": "network-curators-katz-name",
       "quoteI18nKey": "network-curators-katz-quote",
       "subjectsI18nKey": "network-curators-katz-subjects"

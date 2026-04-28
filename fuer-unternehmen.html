@@ -406,8 +406,11 @@
     <link rel="stylesheet" href="css/ibc-design-v2.css">
     <link href="css/fuer-unternehmen-v3.css" rel="stylesheet">
     <link href="css/page-redesign.css" rel="stylesheet">
+
+    <!-- Final polish layer (loaded last) -->
+    <link rel="stylesheet" href="css/ibc-2026-polish.css">
 </head>
-<body>
+<body class="page-companies">
 
 <div class="scroll-progress" id="scrollProgress"></div>
     <!-- Theme Transition Kreis -->
@@ -972,11 +975,11 @@
             <h3 class="fat-footer__connect-title">Let's Connect</h3>
             <address class="fat-footer__connect-address">
                 <div class="fat-footer__connect-item">
-                    <span class="fat-footer__connect-icon-wrap"><img src="assets/icons/Markierung.svg" class="fat-footer__connect-icon svg-icon" alt="" aria-hidden="true"></span>
+                    <span class="fat-footer__connect-icon-wrap"><img loading="lazy" decoding="async" src="assets/icons/Markierung.svg" class="fat-footer__connect-icon svg-icon" alt="" aria-hidden="true"></span>
                     <div class="fat-footer__connect-text"><span class="fat-footer__connect-label" data-i18n="footer-location-heading">Finden Sie uns</span><a href="https://maps.google.com/?q=Robert-Gerwig-Platz+1,+78120+Furtwangen" target="_blank" rel="noopener noreferrer" class="fat-footer__connect-link" data-i18n="footer-location-text">Robert-Gerwig-Platz 1, 78120 Furtwangen</a></div>
                 </div>
                 <div class="fat-footer__connect-item email-cta">
-                    <span class="fat-footer__connect-icon-wrap"><img src="assets/icons/envelope-closed.svg" class="fat-footer__connect-icon svg-icon" alt="" aria-hidden="true"></span>
+                    <span class="fat-footer__connect-icon-wrap"><img loading="lazy" decoding="async" src="assets/icons/envelope-closed.svg" class="fat-footer__connect-icon svg-icon" alt="" aria-hidden="true"></span>
                     <div class="fat-footer__connect-text"><span class="fat-footer__connect-label" data-i18n="footer-email-heading">Mailen Sie uns</span><a href="#" class="copy-email-link fat-footer__connect-link">vorstand@business-consulting.de</a></div>
                 </div>
             </address>
@@ -1040,13 +1043,13 @@
     </ul>
     <div class="fab-lang-row">
         <a href="?lang=de" class="fab-lang-btn" aria-label="Deutsch">
-            <img src="assets/img/flags/de.svg" alt="" aria-hidden="true"><span>DE</span>
+            <img loading="lazy" decoding="async" src="assets/img/flags/de.svg" alt="" aria-hidden="true"><span>DE</span>
         </a>
         <a href="?lang=en" class="fab-lang-btn" aria-label="English">
-            <img src="assets/img/flags/gb.svg" alt="" aria-hidden="true"><span>EN</span>
+            <img loading="lazy" decoding="async" src="assets/img/flags/gb.svg" alt="" aria-hidden="true"><span>EN</span>
         </a>
         <a href="?lang=fr" class="fab-lang-btn" aria-label="Français">
-            <img src="assets/img/flags/fr.svg" alt="" aria-hidden="true"><span>FR</span>
+            <img loading="lazy" decoding="async" src="assets/img/flags/fr.svg" alt="" aria-hidden="true"><span>FR</span>
         </a>
     </div>
     <div class="fab-dark-mode-row">
@@ -1128,5 +1131,6 @@
       items.forEach(function (item) { itemObserver.observe(item); });
     })();
     </script>
-</body>
+
+<script src="js/a11y-enhancer.js" defer></script>
 </html>

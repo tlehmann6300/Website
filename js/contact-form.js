@@ -555,84 +555,11 @@
 })();
 
 /* ── reCAPTCHA completion callbacks (global, called by widget) ──────────── */
-window.onRecaptchaComplete = function (token) {
+window.onRecaptchaComplete = function() {
     var note = document.getElementById('k-recaptcha-note');
     if (note) note.classList.add('hidden');
-    var hidden = document.getElementById('g-recaptcha-response-input');
-    if (hidden && token) hidden.value = token;
 };
-window.onRecaptchaExpired = function () {
+window.onRecaptchaExpired = function() {
     var note = document.getElementById('k-recaptcha-note');
     if (note) note.classList.remove('hidden');
-    var hidden = document.getElementById('g-recaptcha-response-input');
-    if (hidden) hidden.value = '';
 };
-window.onRecaptchaError = function () {
-    var note = document.getElementById('k-recaptcha-note');
-    if (note) note.classList.remove('hidden');
-    if (typeof console !== 'undefined' && console.warn) {
-        console.warn('[reCAPTCHA] Fehler beim Laden des Spamschutzes.');
-    }
-};
-
-/* ── reCAPTCHA Re-Render bei spätem Consent ───────────────────────────────
- * Wenn der Nutzer den Cookie-Banner erst NACH dem Laden der Seite akzeptiert,
- * wird das api.js-Skript dynamisch nachgeladen. In manchen Browsern findet
- * der automatische Scan auf .g-recaptcha-Divs danach nicht mehr statt.
- * Hier rendern wir das Widget bei Bedarf explizit neu.
- */
-(function () {
-    'use strict';
-
-    var renderAttempts = 0;
-    var renderedWidgetId = null;
-
-    function tryRenderWidget() {
-        var widgetEl = document.getElementById('g-recaptcha-widget');
-        if (!widgetEl) return;
-
-        // Bereits gerendert?
-        if (widgetEl.querySelector('iframe')) return;
-
-        if (typeof grecaptcha === 'undefined' || typeof grecaptcha.render !== 'function') {
-            // grecaptcha noch nicht verfügbar – später erneut versuchen
-            if (renderAttempts++ < 30) {
-                setTimeout(tryRenderWidget, 400);
-            }
-            return;
-        }
-
-        try {
-            renderedWidgetId = grecaptcha.render(widgetEl, {
-                sitekey: widgetEl.getAttribute('data-sitekey'),
-                callback: window.onRecaptchaComplete,
-                'expired-callback': window.onRecaptchaExpired,
-                'error-callback': window.onRecaptchaError,
-                theme: widgetEl.getAttribute('data-theme') || 'light',
-                size: widgetEl.getAttribute('data-size') || 'normal'
-            });
-            window.__ibcRecaptchaWidgetId = renderedWidgetId;
-        } catch (e) {
-            // Falls der Auto-Render bereits ausgeführt wurde, ist render() bereits done
-            if (typeof console !== 'undefined' && console.debug) {
-                console.debug('[reCAPTCHA] Widget bereits gerendert oder nicht verfügbar:', e && e.message);
-            }
-        }
-    }
-
-    document.addEventListener('consentGiven', function (event) {
-        var settings = event && event.detail;
-        if (!settings || !settings.security) return;
-        // kurz warten, bis api.js geladen wurde, dann versuchen zu rendern
-        setTimeout(tryRenderWidget, 600);
-    });
-
-    // Erstversuch nach kurzer Verzögerung – falls Consent bereits gespeichert war.
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function () {
-            setTimeout(tryRenderWidget, 800);
-        });
-    } else {
-        setTimeout(tryRenderWidget, 800);
-    }
-})();

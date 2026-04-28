@@ -1,0 +1,2014 @@
+/* ==========================================================================
+   IBC Furtwangen — ibc-2026-polish.css
+   Final consolidated design polish (loaded last, overrides everything).
+   Goals: Professional aesthetic, perfect responsiveness, full Light/Dark
+   parity, refined mobile animations, accessibility, language-switcher safety.
+   ========================================================================== */
+
+/* ==========================================================================
+   1. CONSOLIDATED DESIGN TOKENS
+   Refined palette + spacing + radii + shadows + motion. Values resolve
+   automatically across light & dark themes via [data-theme="dark"] override.
+   ========================================================================== */
+:root {
+  /* Brand */
+  --ibc-green: #6D9744;
+  --ibc-green-soft: #7FB851;
+  --ibc-green-dark: #355B2C;
+  --ibc-green-light: #B8D996;
+  --ibc-blue: #20234A;
+  --ibc-blue-dark: #14172E;
+  --ibc-blue-mid: #4d5061;
+  --ibc-blue-soft: #6E7193;
+  --ibc-accent: #4F8EF7;
+  --ibc-orange: #ef9e27;
+  --ibc-coral: #ff6b6b;
+
+  /* Surfaces — Light */
+  --surface-0: #ffffff;
+  --surface-1: #fafbfc;
+  --surface-2: #f3f5f8;
+  --surface-3: #e8ebf0;
+  --surface-elev: #ffffff;
+  --surface-overlay: rgba(255, 255, 255, 0.92);
+
+  /* Text — Light */
+  --ink-1: #0f1322;
+  --ink-2: #3a3f55;
+  --ink-3: #6b7184;
+  --ink-on-brand: #ffffff;
+
+  /* Borders — Light */
+  --line-subtle: rgba(15, 19, 34, 0.06);
+  --line-soft:   rgba(15, 19, 34, 0.10);
+  --line-strong: rgba(15, 19, 34, 0.16);
+
+  /* Shadows — Light (cool, professional) */
+  --shadow-1: 0 1px 2px rgba(15, 19, 34, 0.04), 0 1px 3px rgba(15, 19, 34, 0.06);
+  --shadow-2: 0 4px 12px rgba(15, 19, 34, 0.06), 0 2px 4px rgba(15, 19, 34, 0.04);
+  --shadow-3: 0 12px 32px rgba(15, 19, 34, 0.10), 0 4px 12px rgba(15, 19, 34, 0.06);
+  --shadow-4: 0 24px 56px rgba(15, 19, 34, 0.14), 0 8px 24px rgba(15, 19, 34, 0.08);
+  --shadow-glow: 0 0 0 4px rgba(109, 151, 68, 0.15);
+  --shadow-focus: 0 0 0 3px rgba(79, 142, 247, 0.35);
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-blur: saturate(180%) blur(18px);
+
+  /* Brand gradients */
+  --grad-brand: linear-gradient(135deg, #6D9744 0%, #4F8EF7 100%);
+  --grad-hero: linear-gradient(135deg, #20234A 0%, #355B2C 60%, #6D9744 100%);
+  --grad-warm: linear-gradient(135deg, #ef9e27 0%, #ff6b6b 100%);
+  --grad-cool: linear-gradient(135deg, #4F8EF7 0%, #6366f1 100%);
+
+  /* Radii */
+  --r-xs: 6px;
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* Spacing scale */
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.25rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-10: 2.5rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+  --sp-20: 5rem;
+  --sp-24: 6rem;
+
+  /* Motion */
+  --t-fast:   180ms;
+  --t-base:   260ms;
+  --t-slow:   420ms;
+  --t-slower: 720ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.36, 0.64, 1);
+
+  /* Z-index layers */
+  --z-base: 1;
+  --z-raised: 10;
+  --z-sticky: 80;
+  --z-nav: 100;
+  --z-overlay: 900;
+  --z-modal: 1000;
+  --z-toast: 1100;
+
+  /* Container widths */
+  --container-narrow: 760px;
+  --container-default: 1180px;
+  --container-wide: 1380px;
+}
+
+/* Dark mode overrides — refined for contrast & calm */
+[data-theme="dark"] {
+  --surface-0: #0B0E18;
+  --surface-1: #11152A;
+  --surface-2: #181D38;
+  --surface-3: #232A4A;
+  --surface-elev: #181D38;
+  --surface-overlay: rgba(11, 14, 24, 0.88);
+
+  --ink-1: #f1f3f9;
+  --ink-2: #c2c8de;
+  --ink-3: #8a91a8;
+  --ink-on-brand: #ffffff;
+
+  --line-subtle: rgba(255, 255, 255, 0.06);
+  --line-soft:   rgba(255, 255, 255, 0.10);
+  --line-strong: rgba(255, 255, 255, 0.18);
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.45), 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-3: 0 12px 32px rgba(0, 0, 0, 0.55), 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-4: 0 24px 56px rgba(0, 0, 0, 0.65), 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 0 4px rgba(127, 184, 81, 0.25);
+
+  --glass-bg: rgba(17, 21, 42, 0.78);
+  --glass-border: rgba(255, 255, 255, 0.08);
+
+  --grad-hero: linear-gradient(135deg, #0B0E18 0%, #14172E 50%, #355B2C 100%);
+}
+
+/* Map polish tokens into legacy variables so existing CSS uses them too */
+:root {
+  --bg-primary: var(--surface-0);
+  --bg-secondary: var(--surface-1);
+  --bg-tertiary: var(--surface-2);
+  --bg-elevated: var(--surface-elev);
+  --text-primary: var(--ink-1);
+  --text-secondary: var(--ink-2);
+  --text-muted: var(--ink-3);
+  --border-subtle: var(--line-subtle);
+  --border-medium: var(--line-soft);
+  --shadow-xs: var(--shadow-1);
+  --shadow-sm: var(--shadow-2);
+  --shadow-md: var(--shadow-3);
+  --shadow-lg: var(--shadow-4);
+  --shadow-xl: var(--shadow-4);
+
+  /* Override the indigo/violet brand secondary that's used heavily across
+     main.css (info-btn, stat-card, gradient-primary, gradient-hero, etc.).
+     Re-aliasing those to the brand green family makes everything inherit
+     the correct color without per-element overrides. */
+  --ibc-indigo: var(--ibc-green);
+  --ibc-violet: var(--ibc-green-soft);
+  --gradient-primary: linear-gradient(135deg, #6D9744 0%, #7FB851 50%, #B8D996 100%);
+  --gradient-hero: linear-gradient(135deg, #20234A 0%, #355B2C 60%, #6D9744 100%);
+  --gradient-green: linear-gradient(135deg, #6D9744 0%, #7FB851 100%);
+}
+[data-theme="dark"] {
+  --ibc-indigo: var(--ibc-green-soft);
+  --ibc-violet: var(--ibc-green-light);
+  --gradient-primary: linear-gradient(135deg, #B8D996 0%, #7FB851 50%, #6D9744 100%);
+  --gradient-hero: linear-gradient(135deg, #0B0E18 0%, #14172E 50%, #355B2C 100%);
+  --gradient-green: linear-gradient(135deg, #B8D996 0%, #7FB851 100%);
+}
+
+/* ==========================================================================
+   2. GLOBAL BASE: smooth theme switching + smarter scrollbar
+   ========================================================================== */
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+}
+[data-theme="dark"] html,
+html[data-theme="dark"] { color-scheme: dark; }
+
+body {
+  background-color: var(--surface-0) !important;
+  color: var(--ink-1) !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  font-optical-sizing: auto;
+  transition:
+    background-color var(--t-base) var(--ease-out),
+    color var(--t-base) var(--ease-out);
+  min-height: 100vh;
+  overflow-x: clip;
+}
+
+/* Smoother text rendering */
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+  color: var(--ink-1);
+}
+
+/* Selection color */
+::selection { background: rgba(109, 151, 68, 0.32); color: var(--ink-1); }
+[data-theme="dark"] ::selection { background: rgba(127, 184, 81, 0.45); color: #fff; }
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: var(--r-pill);
+  border: 3px solid var(--surface-0);
+  background-clip: padding-box;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--ibc-green); background-clip: padding-box; }
+* { scrollbar-color: var(--line-strong) transparent; scrollbar-width: thin; }
+
+/* Focus ring (accessibility) */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: var(--r-sm);
+}
+
+/* Image rendering */
+img { max-width: 100%; height: auto; }
+
+/* ==========================================================================
+   3. NAVBAR — clean, glass, perfectly aligned across breakpoints
+   ========================================================================== */
+.navbar {
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out),
+    backdrop-filter var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out);
+  z-index: var(--z-nav);
+}
+/* Fix: .nav-container is a flex-child of .navbar — give it full width
+   so it doesn't shrink to content width on mobile when desktop-nav is hidden */
+.navbar .nav-container,
+.nav-container {
+  width: 100% !important;
+  max-width: 1400px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  flex: 1 1 100% !important;
+}
+.navbar.at-top {
+  background: transparent;
+  border-bottom-color: transparent;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+.navbar.scrolled,
+.navbar:not(.at-top) {
+  background: var(--glass-bg);
+  border-bottom-color: var(--line-soft);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-2);
+}
+
+/* Nav links — refined hover & active states */
+.navbar .nav-link {
+  position: relative;
+  color: var(--ink-1);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition: color var(--t-fast) var(--ease-out);
+  padding: 0.625rem 0.875rem;
+}
+/* All hero sections (homepage forest image, sub-page dark gradients) are
+   dark — force light nav text at-top so it stays readable */
+body.homepage .navbar.at-top .nav-link,
+body.page-students .navbar.at-top .nav-link,
+body.page-companies .navbar.at-top .nav-link,
+body.page-about .navbar.at-top .nav-link,
+body.page-network .navbar.at-top .nav-link,
+body.page-references .navbar.at-top .nav-link,
+body.page-contact .navbar.at-top .nav-link,
+body.page-legal .navbar.at-top .nav-link,
+body.page-error .navbar.at-top .nav-link,
+body.page-maintenance .navbar.at-top .nav-link {
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+body.homepage .navbar.at-top .nav-link:hover,
+body.page-students .navbar.at-top .nav-link:hover,
+body.page-companies .navbar.at-top .nav-link:hover,
+body.page-about .navbar.at-top .nav-link:hover,
+body.page-network .navbar.at-top .nav-link:hover,
+body.page-references .navbar.at-top .nav-link:hover,
+body.page-contact .navbar.at-top .nav-link:hover,
+body.page-legal .navbar.at-top .nav-link:hover,
+body.page-error .navbar.at-top .nav-link:hover,
+body.page-maintenance .navbar.at-top .nav-link:hover {
+  color: var(--ibc-green-light) !important;
+}
+body.homepage .navbar.at-top .nav-link.active,
+body.page-students .navbar.at-top .nav-link.active,
+body.page-companies .navbar.at-top .nav-link.active,
+body.page-about .navbar.at-top .nav-link.active,
+body.page-network .navbar.at-top .nav-link.active,
+body.page-references .navbar.at-top .nav-link.active,
+body.page-contact .navbar.at-top .nav-link.active,
+body.page-legal .navbar.at-top .nav-link.active,
+body.page-error .navbar.at-top .nav-link.active,
+body.page-maintenance .navbar.at-top .nav-link.active {
+  color: var(--ibc-green-light) !important;
+  background: linear-gradient(135deg, rgba(127, 184, 81, 0.22) 0%, rgba(127, 184, 81, 0.10) 100%) !important;
+  border-radius: var(--r-pill);
+}
+body.homepage .navbar.at-top .nav-link.active::after,
+body.page-students .navbar.at-top .nav-link.active::after,
+body.page-companies .navbar.at-top .nav-link.active::after,
+body.page-about .navbar.at-top .nav-link.active::after,
+body.page-network .navbar.at-top .nav-link.active::after,
+body.page-references .navbar.at-top .nav-link.active::after,
+body.page-contact .navbar.at-top .nav-link.active::after,
+body.page-legal .navbar.at-top .nav-link.active::after,
+body.page-error .navbar.at-top .nav-link.active::after,
+body.page-maintenance .navbar.at-top .nav-link.active::after {
+  background: var(--ibc-green-light) !important;
+  width: 1.4rem !important;
+}
+[data-theme="dark"] .navbar.at-top .nav-link {
+  color: var(--ink-1);
+}
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.25rem;
+  width: 0;
+  height: 2px;
+  background: var(--ibc-green);
+  border-radius: var(--r-pill);
+  transform: translateX(-50%);
+  transition: width var(--t-base) var(--ease-spring);
+}
+.navbar .nav-link:hover { color: var(--ibc-green); }
+.navbar .nav-link:hover::after { width: 1.4rem; }
+
+/* Active page — same look across every page (subtle pill + underline) */
+.navbar .nav-link.active,
+.navbar .nav-link.active:link,
+.navbar .nav-link.active:visited {
+  color: var(--ibc-green) !important;
+  background: linear-gradient(135deg, rgba(109, 151, 68, 0.15) 0%, rgba(127, 184, 81, 0.10) 100%);
+  border-radius: var(--r-pill);
+}
+.navbar .nav-link.active::after {
+  width: 1.4rem;
+  background: var(--ibc-green);
+}
+[data-theme="dark"] .navbar .nav-link.active {
+  color: var(--ibc-green-light) !important;
+  background: linear-gradient(135deg, rgba(127, 184, 81, 0.18) 0%, rgba(127, 184, 81, 0.08) 100%);
+}
+[data-theme="dark"] .navbar .nav-link.active::after {
+  background: var(--ibc-green-light);
+}
+
+/* Mobile menu active link — same accent treatment */
+.mobile-nav-link.active,
+.mobile-nav-link.active:link,
+.mobile-nav-link.active:visited {
+  color: var(--ibc-green) !important;
+  background: linear-gradient(135deg, rgba(109, 151, 68, 0.16) 0%, rgba(79, 142, 247, 0.08) 100%) !important;
+}
+[data-theme="dark"] .mobile-nav-link.active {
+  color: var(--ibc-green-light) !important;
+}
+
+/* Theme toggle — refined */
+.theme-toggle {
+  width: 56px;
+  height: 30px;
+  border-radius: var(--r-pill);
+  background: var(--surface-2);
+  border: 1px solid var(--line-soft);
+  position: relative;
+  cursor: pointer;
+  transition: background var(--t-base) var(--ease-out), border-color var(--t-base) var(--ease-out);
+}
+.theme-toggle:hover { border-color: var(--line-strong); }
+.theme-toggle .theme-toggle-ball {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--surface-0);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-50%);
+  transition: left var(--t-base) var(--ease-spring), background var(--t-base) var(--ease-out);
+}
+[data-theme="dark"] .theme-toggle .theme-toggle-ball { left: calc(100% - 25px); background: var(--ibc-green-soft); }
+.theme-toggle .theme-icon-pos {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.7rem;
+  pointer-events: none;
+  transition: opacity var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.theme-toggle .theme-sun  { left: 7px;   color: var(--ibc-orange); opacity: 1; }
+.theme-toggle .theme-moon { right: 7px;  color: var(--ink-3); opacity: 0.55; }
+[data-theme="dark"] .theme-toggle .theme-sun  { opacity: 0.4; }
+[data-theme="dark"] .theme-toggle .theme-moon { opacity: 1; color: #d8c98a; }
+
+/* Language dropdown — refined */
+.lang-btn {
+  background: var(--surface-2);
+  color: var(--ink-1) !important;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-pill);
+  padding: 0.4rem 0.85rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease-out), border-color var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.lang-btn:hover { background: var(--surface-3); border-color: var(--line-strong); color: var(--ibc-green) !important; }
+.lang-btn,
+.lang-btn span,
+.lang-btn i { color: var(--ink-1) !important; }
+.lang-btn .fa-globe { color: var(--ibc-green) !important; }
+.lang-btn:hover, .lang-btn:hover span { color: var(--ibc-green) !important; }
+/* When navbar is at-top over a hero image, use a quietly tinted pill.
+   Subtle border (no thick white glow), gentle backdrop-blur. */
+.navbar.at-top .lang-btn,
+.navbar.at-top .lang-btn:link,
+.navbar.at-top .lang-btn:visited {
+  background: rgba(15, 19, 34, 0.55) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+}
+.navbar.at-top .lang-btn span,
+.navbar.at-top .lang-btn i { color: #ffffff !important; }
+.navbar.at-top .lang-btn .fa-globe { color: #B8D996 !important; }
+.navbar.at-top .lang-btn:hover {
+  background: rgba(15, 19, 34, 0.78) !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+}
+
+/* Theme toggle on at-top navbar — same readable, quiet treatment */
+.navbar.at-top .theme-toggle {
+  background: rgba(15, 19, 34, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+}
+.navbar.at-top .theme-toggle .theme-toggle-ball {
+  background: #ffffff;
+}
+
+/* Kill the global focus-ring on these buttons after a tap on touch
+   devices — focus-visible is what we want for keyboard, not stuck focus
+   from a finger tap. */
+.lang-btn:focus:not(:focus-visible),
+.theme-toggle:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.lang-menu {
+  background: var(--surface-elev);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-3);
+  overflow: hidden;
+  padding: 0.35rem;
+}
+.lang-menu .lang-option {
+  padding: 0.55rem 0.85rem;
+  border-radius: var(--r-sm);
+  color: var(--ink-1);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
+}
+.lang-menu .lang-option:hover { background: var(--surface-2); color: var(--ibc-green); }
+.lang-menu .lang-option.active {
+  background: linear-gradient(135deg, rgba(109, 151, 68, 0.15), rgba(79, 142, 247, 0.10));
+  color: var(--ibc-green);
+}
+
+/* Mobile menu trigger / FAB — refined dot menu */
+.fab-toggle, .mobile-menu-toggle, .menu-toggle {
+  border-color: var(--line-soft) !important;
+}
+
+/* ==========================================================================
+   3b. INFOABEND SECTION CTA (only inside #infoabend-section on
+   fuer-studierende.html — controlled by startup-event-config.json)
+   ========================================================================== */
+.infoabend-cta,
+a.infoabend-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.75rem 1rem 1.25rem;
+  margin-top: 0.5rem;
+  border-radius: var(--r-pill);
+  background: linear-gradient(135deg, var(--ibc-green) 0%, var(--ibc-green-dark) 100%);
+  color: var(--ink-on-brand) !important;
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  box-shadow:
+    0 12px 28px rgba(109, 151, 68, 0.32),
+    0 2px 8px rgba(109, 151, 68, 0.20),
+    0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  transition:
+    transform 280ms cubic-bezier(0.34, 1.36, 0.64, 1),
+    box-shadow 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 220ms ease-out;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.infoabend-cta[hidden] { display: none !important; }
+.infoabend-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, 0.25) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+.infoabend-cta:hover::before { transform: translateX(100%); }
+.infoabend-cta__icon,
+.infoabend-cta__label,
+.infoabend-cta__arrow {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+}
+.infoabend-cta__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  justify-content: center;
+  font-size: 0.95rem;
+  transition: background 220ms var(--ease-out);
+}
+.infoabend-cta__arrow {
+  font-size: 0.85em;
+  transition: transform 220ms cubic-bezier(0.34, 1.36, 0.64, 1);
+}
+.infoabend-cta:hover,
+.infoabend-cta:focus-visible {
+  color: var(--ink-on-brand) !important;
+  transform: translateY(-2px);
+  box-shadow:
+    0 18px 40px rgba(109, 151, 68, 0.42),
+    0 4px 12px rgba(109, 151, 68, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.22) inset;
+  filter: brightness(1.04);
+  text-decoration: none;
+}
+.infoabend-cta:hover .infoabend-cta__arrow,
+.infoabend-cta:focus-visible .infoabend-cta__arrow {
+  transform: translateX(4px);
+}
+.infoabend-cta:hover .infoabend-cta__icon {
+  background: rgba(255, 255, 255, 0.28);
+}
+.infoabend-cta:active { transform: translateY(0); }
+
+/* Mobile sizing — keep readable at 320px+ */
+@media (max-width: 540px) {
+  .infoabend-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 0.95rem 1.25rem;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 380px) {
+  .infoabend-cta {
+    gap: 0.6rem;
+    padding: 0.85rem 1rem;
+    font-size: 0.95rem;
+  }
+  .infoabend-cta__icon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Honor reduced-motion — kill the shimmer sweep */
+@media (prefers-reduced-motion: reduce) {
+  .infoabend-cta,
+  .infoabend-cta__arrow { transition: none !important; }
+  .infoabend-cta::before { display: none !important; }
+}
+/* Screen-reader-only utility */
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Skip-to-main-content link — first focusable element on every page.
+   Hidden off-screen, slides in when keyboard-focused. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 50%;
+  transform: translate(-50%, -200%);
+  background: var(--ibc-blue-dark);
+  color: #ffffff !important;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--r-pill);
+  font-weight: 600;
+  text-decoration: none;
+  z-index: var(--z-toast);
+  box-shadow: var(--shadow-3);
+  transition: transform 180ms var(--ease-out);
+}
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translate(-50%, 0);
+  outline: 3px solid var(--ibc-green-light);
+  outline-offset: 2px;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-infoabend-fab::before { animation: none; opacity: 0; }
+}
+
+/* ==========================================================================
+   4. BUTTONS — unified, accessible, polished
+   ========================================================================== */
+.btn,
+.ethereal-button,
+.ibc-btn,
+.btn-primary {
+  font-family: inherit;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  border-radius: var(--r-pill);
+  transition:
+    transform var(--t-fast) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out),
+    background var(--t-base) var(--ease-out),
+    color var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out);
+  will-change: transform;
+}
+
+/* Primary CTA — brand green */
+.ethereal-button:not(.btn-outline),
+.btn-primary,
+.ibc-btn--primary {
+  background: linear-gradient(135deg, var(--ibc-green) 0%, var(--ibc-green-dark) 100%);
+  color: var(--ink-on-brand) !important;
+  border: none;
+  box-shadow: 0 8px 24px rgba(109, 151, 68, 0.30), 0 2px 6px rgba(109, 151, 68, 0.20);
+}
+.ethereal-button:not(.btn-outline):hover,
+.btn-primary:hover,
+.ibc-btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(109, 151, 68, 0.40), 0 4px 12px rgba(109, 151, 68, 0.28);
+  color: var(--ink-on-brand) !important;
+}
+.ethereal-button:not(.btn-outline):active,
+.btn-primary:active,
+.ibc-btn--primary:active {
+  transform: translateY(0);
+}
+
+/* Outline variant */
+.btn-outline,
+.ibc-btn--outline {
+  background: transparent;
+  color: var(--ink-1);
+  border: 1.5px solid var(--line-strong);
+}
+.btn-outline:hover,
+.ibc-btn--outline:hover {
+  background: var(--surface-2);
+  border-color: var(--ibc-green);
+  color: var(--ibc-green);
+  transform: translateY(-1px);
+}
+
+/* Ghost / secondary */
+.btn-secondary,
+.ibc-btn--ghost {
+  background: var(--surface-2);
+  color: var(--ink-1);
+  border: 1px solid transparent;
+}
+.btn-secondary:hover,
+.ibc-btn--ghost:hover {
+  background: var(--surface-3);
+  color: var(--ibc-green);
+}
+
+/* ==========================================================================
+   5. CARDS — generic upgrade
+   ========================================================================== */
+.card,
+.ibc-card,
+.glass-card,
+.feature-card,
+.value-card,
+.info-card,
+.service-card,
+.team-card,
+.partner-card,
+.network-card,
+.event-card,
+.testimonial-card,
+.references-card,
+.reference-card {
+  background: var(--surface-elev) !important;
+  border: 1px solid var(--line-soft) !important;
+  border-radius: var(--r-lg) !important;
+  box-shadow: var(--shadow-2);
+  color: var(--ink-1);
+  transition:
+    transform var(--t-base) var(--ease-out),
+    box-shadow var(--t-base) var(--ease-out),
+    border-color var(--t-base) var(--ease-out);
+}
+.card:hover,
+.ibc-card:hover,
+.feature-card:hover,
+.value-card:hover,
+.info-card:hover,
+.service-card:hover,
+.team-card:hover,
+.partner-card:hover,
+.network-card:hover,
+.event-card:hover,
+.testimonial-card:hover,
+.references-card:hover,
+.reference-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-3);
+  border-color: var(--line-strong) !important;
+}
+
+/* Glass cards in dark mode */
+[data-theme="dark"] .glass-card {
+  background: var(--glass-bg) !important;
+  border-color: var(--glass-border) !important;
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+/* Card text legibility (ensures dark mode reads well) */
+.card *, .ibc-card *, .feature-card *, .value-card *, .info-card *, .service-card *,
+.team-card *, .partner-card *, .network-card *, .event-card *, .testimonial-card *,
+.references-card *, .reference-card * {
+  color: inherit;
+}
+.card .card-title, .ibc-card-title, .feature-card-title, .value-card-title,
+.service-card-title, .team-card h3, .team-card h4 { color: var(--ink-1); }
+.card .card-text, .card p, .ibc-card p, .feature-card p, .value-card p,
+.service-card p, .team-card p { color: var(--ink-2); }
+
+/* ==========================================================================
+   6. FORMS — calm and consistent
+   ========================================================================== */
+.form-control,
+.form-select,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="search"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+  background: var(--surface-1);
+  color: var(--ink-1);
+  border: 1.5px solid var(--line-soft);
+  border-radius: var(--r-md);
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.875rem 1.05rem;
+  transition: border-color var(--t-fast) var(--ease-out), box-shadow var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out);
+}
+.form-control:hover,
+input:hover, textarea:hover, select:hover {
+  border-color: var(--line-strong);
+}
+.form-control:focus,
+input:focus, textarea:focus, select:focus {
+  background: var(--surface-0);
+  border-color: var(--ibc-green);
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(109, 151, 68, 0.15);
+}
+[data-theme="dark"] .form-control:focus,
+[data-theme="dark"] input:focus,
+[data-theme="dark"] textarea:focus,
+[data-theme="dark"] select:focus {
+  background: var(--surface-2);
+  box-shadow: 0 0 0 4px rgba(127, 184, 81, 0.20);
+}
+::placeholder { color: var(--ink-3); opacity: 1; }
+label, .form-label {
+  color: var(--ink-2);
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: -0.005em;
+}
+
+/* Custom checkbox & radio polish */
+input[type="checkbox"], input[type="radio"] {
+  accent-color: var(--ibc-green);
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+/* ==========================================================================
+   7. SECTION SPACING / TYPOGRAPHY rhythm
+   ========================================================================== */
+section {
+  position: relative;
+}
+section.has-bg, .section-light, .section-soft {
+  background: var(--surface-1);
+}
+section.section-emphasis, .section-dark {
+  background: var(--surface-2);
+}
+
+/* Headings — gradient text helpers (dark/light aware) */
+.text-gradient,
+.gradient-text,
+.heading-gradient {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* Eyebrows */
+.eyebrow, .section-eyebrow, .ibc-eyebrow, .pre-heading {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ibc-green);
+}
+
+/* ==========================================================================
+   8. STATS / DARK SECTIONS — always look great
+   ========================================================================== */
+.stats-section,
+.section-stats,
+.dark-section {
+  background: var(--ibc-blue-dark);
+  color: #fff;
+}
+.stats-section *,
+.section-stats *,
+.dark-section * { color: #fff; }
+.stats-section .stat-number,
+.section-stats .stat-number,
+.dark-section .stat-number {
+  background: linear-gradient(135deg, #B8D996 0%, #7FB851 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ==========================================================================
+   9. FOOTER — modern fat footer in both themes
+   ========================================================================== */
+.footer-section,
+.fat-footer {
+  background: linear-gradient(180deg, var(--surface-1) 0%, var(--surface-2) 100%);
+  color: var(--ink-1);
+  border-top: 1px solid var(--line-soft);
+}
+[data-theme="dark"] .footer-section,
+[data-theme="dark"] .fat-footer {
+  background: linear-gradient(180deg, var(--surface-1) 0%, #07091A 100%);
+}
+.fat-footer__cta {
+  background: var(--grad-hero);
+  color: #fff;
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-4);
+}
+.fat-footer__cta * { color: #fff; }
+.fat-footer__cta-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  opacity: 0.85;
+  color: #B8D996;
+}
+.fat-footer__cta-heading {
+  font-size: clamp(1.6rem, 2.8vw, 2.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.fat-footer__cta-btn,
+.fat-footer__cta-btn:link,
+.fat-footer__cta-btn:visited {
+  background: #ffffff !important;
+  background-image: none !important;
+  color: var(--ibc-blue) !important;
+  font-weight: 700;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+  padding: 0.875rem 1.75rem !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.fat-footer__cta-btn span,
+.fat-footer__cta-btn i {
+  color: var(--ibc-blue) !important;
+}
+.fat-footer__cta-btn:hover,
+.fat-footer__cta-btn:focus {
+  background: var(--ibc-green-light) !important;
+  color: var(--ibc-blue-dark) !important;
+  border-color: var(--ibc-green-light) !important;
+  transform: translateY(-2px);
+}
+.fat-footer__cta-btn:hover span,
+.fat-footer__cta-btn:hover i { color: var(--ibc-blue-dark) !important; }
+
+.footer-link, .fat-footer a:not(.fat-footer__cta-btn):not(.btn) {
+  color: var(--ink-2);
+  text-decoration: none;
+  transition: color var(--t-fast) var(--ease-out);
+}
+.footer-link:hover, .fat-footer a:not(.fat-footer__cta-btn):not(.btn):hover {
+  color: var(--ibc-green);
+}
+
+.footer-heading, .fat-footer h3, .fat-footer h4, .fat-footer h5 {
+  color: var(--ink-1);
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+
+.footer-bottom, .fat-footer__bottom {
+  border-top: 1px solid var(--line-subtle);
+  color: var(--ink-3);
+}
+
+/* "Let's Connect" address row — icon, label + value sit consistently */
+.fat-footer__connect-item {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 0.85rem !important;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+.fat-footer__connect-icon-wrap {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(127, 184, 81, 0.10);
+  border: 1px solid rgba(127, 184, 81, 0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.fat-footer__connect-icon-wrap .fat-footer__connect-icon {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) saturate(100%) invert(58%) sepia(38%) saturate(615%) hue-rotate(56deg) brightness(91%) contrast(86%);
+  /* The filter approximates --ibc-green so the SVG icon picks up brand color */
+}
+[data-theme="dark"] .fat-footer__connect-icon-wrap {
+  background: rgba(127, 184, 81, 0.14);
+  border-color: rgba(127, 184, 81, 0.25);
+}
+.fat-footer__connect-text {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+.fat-footer__connect-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.fat-footer__connect-link {
+  color: var(--ink-1) !important;
+  text-decoration: none;
+  font-weight: 500;
+  word-break: break-word;
+}
+.fat-footer__connect-link:hover { color: var(--ibc-green) !important; }
+[data-theme="dark"] .fat-footer__connect-link:hover { color: var(--ibc-green-light) !important; }
+
+/* Mobile: keep label + value left-aligned together with the icon. Cleaner
+   than the icon left + text centered look the screenshot showed. */
+@media (max-width: 768px) {
+  .fat-footer__connect,
+  .fat-footer__connect-title,
+  .fat-footer__heading,
+  .fat-footer h3, .fat-footer h4 {
+    text-align: center !important;
+  }
+  .fat-footer__connect-address {
+    max-width: 360px;
+    margin: 1rem auto 1.5rem;
+  }
+  .fat-footer__connect-item {
+    text-align: left;
+  }
+}
+
+.footer-social a, .fat-footer .social-icon, .social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--surface-elev);
+  border: 1px solid var(--line-soft);
+  color: var(--ink-2);
+  transition: transform var(--t-fast) var(--ease-out), background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out), border-color var(--t-fast) var(--ease-out);
+}
+.footer-social a:hover, .fat-footer .social-icon:hover, .social-link:hover {
+  background: var(--ibc-green);
+  color: #fff;
+  border-color: var(--ibc-green);
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   10. HERO POLISH (homepage, sub-pages)
+   ========================================================================== */
+.hero,
+.hero-section,
+.page-hero,
+.page-header {
+  position: relative;
+  overflow: hidden;
+}
+.hero-section .hero-headline,
+.page-hero h1,
+.page-header h1,
+.hero h1 {
+  font-size: clamp(2.1rem, 5.5vw, 4.2rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  font-weight: 800;
+}
+.hero-section .hero-sub,
+.page-hero p,
+.page-header p,
+.hero p.subtitle, .hero .lead {
+  color: var(--ink-2);
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.55;
+  max-width: 60ch;
+}
+
+/* Subtle ambient orbs in hero (light + dark) */
+.hero-orb,
+.hero::before,
+.hero-section::before {
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   11. RESPONSIVE / MOBILE — perfect across breakpoints
+   ========================================================================== */
+
+/* Container helpers */
+.container, .container-fluid {
+  padding-left: clamp(1rem, 4vw, 2rem);
+  padding-right: clamp(1rem, 4vw, 2rem);
+}
+
+/* Tablet & below — comfortable spacing */
+@media (max-width: 1024px) {
+  section, .section { padding-top: clamp(3rem, 7vw, 5rem); padding-bottom: clamp(3rem, 7vw, 5rem); }
+  .nav-container, .navbar .nav-container { padding-left: 1rem; padding-right: 1rem; }
+  .desktop-nav { display: none !important; }
+  .nav-utilities { gap: 0.5rem; }
+}
+
+/* Stats banners across pages — never let numbers wrap vertically */
+.hero-stats, .stat-grid, .stats-grid, .fu-stats-grid, .ref-hero__stats,
+[class*="stat-number"], [class*="stat__number"] {
+  white-space: nowrap;
+}
+
+/* fu-stats-banner specific: tablet/mobile responsive grid.
+   Existing CSS uses repeat(6, 1fr) + nth-child grid-column placements at 768px,
+   which we must reset. */
+@media (max-width: 1024px) {
+  .fu-stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.25rem 1rem !important;
+    column-gap: 1rem !important;
+    row-gap: 1.25rem !important;
+  }
+  .fu-stats-grid > .fu-stat,
+  .fu-stats-grid > .fu-stat:nth-child(n) {
+    grid-column: auto !important;
+  }
+  .fu-stats-grid > .fu-stats-divider,
+  .fu-stats-grid > [class*="divider"]:not([class*="stat"]) {
+    display: none !important;
+  }
+}
+@media (max-width: 540px) {
+  .fu-stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+  .fu-stats-grid > .fu-stat,
+  .fu-stats-grid > .fu-stat:nth-child(n) {
+    grid-column: 1 !important;
+    text-align: center !important;
+  }
+}
+
+/* Phones — compact, readable, finger-friendly */
+@media (max-width: 768px) {
+  :root {
+    --nav-height: 72px;
+  }
+  body {
+    font-size: 16px;
+  }
+  /* Allow long compound words (esp. German) to wrap on small screens.
+     High specificity to beat #hero-section h1.display-2 in main.css. */
+  h1, h2, h3, h4, .h1, .h2, .h3, .display-heading, .section-title,
+  .hero-headline, .hero-title, .ibc-heading,
+  #hero-section h1, #hero-section h1.display-2,
+  body.homepage h1, body.homepage h1.display-2 {
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important;
+    -webkit-hyphens: auto !important;
+    hyphens: auto !important;
+  }
+  h1, .h1, .display-heading, .hero-headline, .hero-title,
+  #hero-section h1.display-2, body.homepage h1.display-2 {
+    font-size: clamp(1.5rem, 7.5vw, 2.1rem) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.025em !important;
+  }
+  h2, .h2, .section-title { font-size: clamp(1.4rem, 6vw, 1.85rem) !important; line-height: 1.18; }
+  h3, .h3 { font-size: clamp(1.15rem, 4.8vw, 1.45rem) !important; }
+
+  section, .section { padding-top: 3rem; padding-bottom: 3rem; }
+  .container { padding-left: 1rem; padding-right: 1rem; }
+
+  /* Nav: bigger tap target for utilities */
+  .lang-btn { padding: 0.4rem 0.75rem; font-size: 0.825rem; }
+  .theme-toggle { width: 50px; height: 28px; }
+  .theme-toggle .theme-toggle-ball { width: 20px; height: 20px; }
+  [data-theme="dark"] .theme-toggle .theme-toggle-ball { left: calc(100% - 23px); }
+
+  /* Card grids → single column */
+  .card-grid, .grid-cards, .features-grid, .row-cards {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* CTA full width */
+  .ethereal-button, .btn-primary, .btn-outline, .ibc-btn,
+  .fat-footer__cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero .ethereal-button, .hero-section .ethereal-button,
+  .hero .btn, .hero-section .btn {
+    width: auto;
+    min-width: 200px;
+  }
+
+  /* Footer columns stack */
+  .fat-footer__columns, .footer-columns, .footer-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+  .fat-footer__cta { padding: 1.75rem 1.25rem; text-align: center; }
+  .fat-footer__cta-heading { font-size: 1.5rem; }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .container { padding-left: 0.875rem; padding-right: 0.875rem; }
+  h1, .h1 { font-size: 1.65rem !important; }
+  h2, .h2 { font-size: 1.35rem !important; }
+  .lang-btn span { display: none; }
+  .lang-btn { padding: 0.4rem 0.55rem; }
+}
+
+/* ==========================================================================
+   12. MOBILE ANIMATIONS — refined, with reduced-motion support
+   ========================================================================== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translate3d(0, 20px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.reveal, .fade-in, [data-animate="fade-up"] {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition: opacity var(--t-slow) var(--ease-out), transform var(--t-slow) var(--ease-out);
+  will-change: opacity, transform;
+}
+.reveal.is-visible,
+.fade-in.is-visible,
+.fade-in.visible,
+[data-animate="fade-up"].is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Slider/carousel page-indicators in dark mode */
+.carousel-indicators [data-bs-target] {
+  background-color: var(--ink-3);
+}
+.carousel-indicators .active { background-color: var(--ibc-green); }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal, .fade-in, [data-animate] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   12b. SMOOTH MOTION POLISH — global cadence + per-breakpoint adjustments
+   ========================================================================== */
+
+/* Global: nudge most transitions onto a unified, smoother cubic-bezier */
+.btn,
+.ethereal-button,
+.ibc-btn,
+.btn-primary,
+.btn-outline,
+.nav-link,
+.lang-btn,
+.theme-toggle,
+.theme-toggle .theme-toggle-ball,
+.card,
+.ibc-card,
+.feature-card,
+.value-card,
+.info-card,
+.service-card,
+.team-card,
+.partner-card,
+.network-card,
+.event-card,
+.testimonial-card,
+.references-card,
+.reference-card,
+.form-control,
+input, textarea, select {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+/* Hover lifts use a springier curve for tactile feel */
+.card:hover,
+.ibc-card:hover,
+.feature-card:hover,
+.value-card:hover,
+.info-card:hover,
+.service-card:hover,
+.team-card:hover,
+.partner-card:hover,
+.network-card:hover,
+.event-card:hover,
+.testimonial-card:hover,
+.references-card:hover,
+.reference-card:hover {
+  transition-timing-function: cubic-bezier(0.34, 1.36, 0.64, 1) !important;
+}
+
+/* Card grids: stagger fade-in via animation-delay so they don't all
+   pop in at once. Limited to first 12 cards per parent. */
+.card-grid > *:nth-child(1),  .row > *:nth-child(1)  { animation-delay: 0ms; }
+.card-grid > *:nth-child(2),  .row > *:nth-child(2)  { animation-delay: 60ms; }
+.card-grid > *:nth-child(3),  .row > *:nth-child(3)  { animation-delay: 120ms; }
+.card-grid > *:nth-child(4),  .row > *:nth-child(4)  { animation-delay: 180ms; }
+.card-grid > *:nth-child(5),  .row > *:nth-child(5)  { animation-delay: 240ms; }
+.card-grid > *:nth-child(6),  .row > *:nth-child(6)  { animation-delay: 300ms; }
+.card-grid > *:nth-child(7),  .row > *:nth-child(7)  { animation-delay: 360ms; }
+.card-grid > *:nth-child(8),  .row > *:nth-child(8)  { animation-delay: 420ms; }
+
+/* Smaller screens: keep animations short and snappy (no long sweeps) */
+@media (max-width: 768px) {
+  .reveal, .fade-in, [data-animate] {
+    transition-duration: 320ms !important;
+  }
+  .reveal.is-visible, .fade-in.is-visible, [data-animate].is-visible,
+  .fade-in.visible {
+    transition-duration: 320ms !important;
+  }
+  /* Disable parallax / floating decoration on small screens to save battery */
+  [data-parallax],
+  .floaty,
+  .hero-blur-orb {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Very small (phones in portrait) — reduce hover transforms */
+@media (hover: none) and (pointer: coarse) {
+  .card:hover,
+  .ibc-card:hover,
+  .feature-card:hover,
+  .value-card:hover,
+  .info-card:hover,
+  .service-card:hover,
+  .team-card:hover,
+  .partner-card:hover,
+  .network-card:hover,
+  .event-card:hover,
+  .testimonial-card:hover,
+  .references-card:hover,
+  .reference-card:hover {
+    transform: none !important;
+  }
+}
+
+/* Slow connections / data saver — drop fancy effects */
+@media (prefers-reduced-data: reduce) {
+  .infoabend-cta::before { display: none !important; }
+  .navbar { backdrop-filter: none !important; -webkit-backdrop-filter: none !important; }
+}
+
+/* Hi-DPI / retina — ensure transitions don't look chunky on small text */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  body { -webkit-font-smoothing: antialiased; }
+}
+
+/* ==========================================================================
+   12c. Hero scroll indicator (mouse icon) — refined, minimal
+   ========================================================================== */
+.hero-scroll-indicator {
+  border: 1.5px solid rgba(255, 255, 255, 0.32) !important;
+  width: 24px !important;
+  height: 38px !important;
+  border-radius: 12px !important;
+  opacity: 0.7;
+  transition: opacity var(--t-base) var(--ease-out), border-color var(--t-base) var(--ease-out);
+}
+.hero-scroll-indicator:hover { opacity: 1; border-color: rgba(255, 255, 255, 0.55) !important; }
+.hero-scroll-indicator span {
+  width: 3px !important;
+  height: 6px !important;
+  background: rgba(255, 255, 255, 0.7) !important;
+}
+@media (max-width: 768px) {
+  .hero-scroll-indicator {
+    width: 22px !important;
+    height: 34px !important;
+    bottom: 1.25rem !important;
+    opacity: 0.55;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-indicator { animation: none !important; }
+}
+
+/* ==========================================================================
+   12d. Touch device guards — kill stuck hover state on buttons after tap
+   ========================================================================== */
+@media (hover: none) and (pointer: coarse) {
+  .ethereal-button:hover,
+  .btn:hover,
+  .btn-primary:hover,
+  .btn-outline:hover,
+  .btn-secondary:hover,
+  .ibc-btn:hover,
+  .infoabend-cta:hover,
+  .fat-footer__cta-btn:hover,
+  .lang-btn:hover,
+  .theme-toggle:hover,
+  .nav-link:hover {
+    transform: none !important;
+    /* Allow the active state visual to still flash, but no sticky filter/glow */
+    filter: none !important;
+  }
+  /* Buttons reset to base background after :active (touch tap) */
+  .fat-footer__cta-btn:hover {
+    background: #ffffff !important;
+    color: var(--ibc-blue) !important;
+  }
+  .fat-footer__cta-btn:hover span,
+  .fat-footer__cta-btn:hover i { color: var(--ibc-blue) !important; }
+}
+
+/* ==========================================================================
+   12da. Mobile sticky "Projekt starten?" CTA — keep it dezent
+   ========================================================================== */
+
+#mobile-sticky-cta {
+  max-width: 280px;
+  border-radius: var(--r-lg) !important;
+  box-shadow: 0 18px 40px rgba(15, 19, 34, 0.20), 0 4px 12px rgba(15, 19, 34, 0.10) !important;
+}
+#mobile-sticky-cta .mobile-cta-inner {
+  padding: 0.95rem 1rem !important;
+}
+#mobile-sticky-cta .mobile-cta-tagline {
+  font-size: 0.95rem;
+  margin: 0.4rem 0 0.25rem;
+}
+#mobile-sticky-cta .mobile-cta-sub {
+  font-size: 0.825rem;
+  margin: 0 0 0.7rem;
+  line-height: 1.4;
+}
+#mobile-sticky-cta .mobile-cta-btn {
+  font-size: 0.92rem;
+  padding: 0.65rem 0.9rem;
+}
+
+/* On small phones (<=420px) keep it really compact and tucked into the
+   bottom-left corner instead of stretching across the screen. */
+@media (max-width: 420px) {
+  #mobile-sticky-cta {
+    left: 0.6rem !important;
+    right: auto !important;
+    bottom: 0.6rem !important;
+    max-width: calc(100vw - 1.2rem);
+  }
+}
+
+/* ==========================================================================
+   12db. Brand-color overrides — stats counters were violet, fix to green
+   ========================================================================== */
+
+/* Stats numbers — solid brand green. Match the very specific selectors
+   from main.css (line 5748) so we beat them on cascade tie-breaks. */
+:root:not([data-theme="dark"]) .stat-number,
+:root:not([data-theme="dark"]) .stat-number .counter-animated,
+[data-theme="light"] .stat-number,
+[data-theme="light"] .stat-number .counter-animated,
+html .stat-number,
+html .stat-number .counter-animated,
+html .stats-section .counter-animated,
+html [class*="stat__num"] .counter-animated,
+html [class*="stat-number"] .counter-animated,
+html .stat-card .counter-animated {
+  color: #6D9744 !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  -webkit-text-fill-color: #6D9744 !important;
+}
+:root[data-theme="dark"] .stat-number,
+:root[data-theme="dark"] .stat-number .counter-animated,
+[data-theme="dark"] .stat-number,
+[data-theme="dark"] .stat-number .counter-animated,
+[data-theme="dark"] .stats-section .counter-animated,
+[data-theme="dark"] [class*="stat-number"] .counter-animated,
+[data-theme="dark"] .stat-card .counter-animated {
+  color: #B8D996 !important;
+  -webkit-text-fill-color: #B8D996 !important;
+}
+
+/* Stats card focus / glow border (when card receives focus) — brand green */
+.stat-card:focus-within,
+.stat-card:hover {
+  border-color: rgba(127, 184, 81, 0.40) !important;
+  box-shadow: 0 0 0 1px rgba(127, 184, 81, 0.18), 0 16px 36px rgba(15, 19, 34, 0.08) !important;
+}
+[data-theme="dark"] .stat-card:focus-within,
+[data-theme="dark"] .stat-card:hover {
+  box-shadow: 0 0 0 1px rgba(127, 184, 81, 0.30), 0 16px 36px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* Info button (stats popover trigger) — was indigo, now brand green */
+.info-btn,
+.stat-card .info-btn {
+  background: rgba(109, 151, 68, 0.12) !important;
+  border: 1.5px solid rgba(109, 151, 68, 0.30) !important;
+  color: var(--ibc-green-dark) !important;
+}
+.info-btn:hover,
+.stat-card .info-btn:hover {
+  background: rgba(109, 151, 68, 0.24) !important;
+  border-color: rgba(109, 151, 68, 0.55) !important;
+  color: var(--ibc-green-dark) !important;
+}
+.info-btn:focus-visible {
+  outline: 2px solid var(--ibc-green) !important;
+  outline-offset: 2px;
+}
+[data-theme="dark"] .info-btn,
+[data-theme="dark"] .stat-card .info-btn {
+  background: rgba(127, 184, 81, 0.18) !important;
+  border-color: rgba(127, 184, 81, 0.40) !important;
+  color: var(--ibc-green-light) !important;
+}
+[data-theme="dark"] .info-btn:hover {
+  background: rgba(127, 184, 81, 0.30) !important;
+  border-color: rgba(127, 184, 81, 0.65) !important;
+  color: var(--ibc-green-light) !important;
+}
+
+/* Stat card backgrounds: drop the indigo radial gradient leak */
+.stats-section,
+[data-theme="dark"] .stats-section {
+  background-image: none !important;
+}
+.stat-card {
+  background: var(--surface-elev) !important;
+  border: 1px solid var(--line-soft) !important;
+}
+[data-theme="dark"] .stat-card {
+  background: var(--surface-2) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Info-icon-box + physics-icon-box: kill the indigo dark-mode override */
+[data-theme="dark"] .info-icon-box,
+[data-theme="dark"] .physics-icon-box {
+  background: linear-gradient(135deg, rgba(127, 184, 81, 0.18) 0%, rgba(127, 184, 81, 0.06) 100%) !important;
+  border: 1px solid rgba(127, 184, 81, 0.28) !important;
+  color: var(--ibc-green-light) !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+[data-theme="dark"] .info-glass-card-link:hover .info-icon-box,
+[data-theme="dark"] .physics-card-wrap:hover .physics-icon-box {
+  background: linear-gradient(135deg, rgba(127, 184, 81, 0.30) 0%, rgba(127, 184, 81, 0.10) 100%) !important;
+  border-color: rgba(127, 184, 81, 0.45) !important;
+}
+
+/* Section eyebrow / chip / badge — brand green tint */
+.section-chip,
+.ibc-eyebrow,
+.eyebrow,
+.section-eyebrow,
+.pre-heading {
+  background: rgba(109, 151, 68, 0.10) !important;
+  color: var(--ibc-green-dark) !important;
+  border-color: rgba(109, 151, 68, 0.25) !important;
+}
+[data-theme="dark"] .section-chip,
+[data-theme="dark"] .ibc-eyebrow,
+[data-theme="dark"] .eyebrow,
+[data-theme="dark"] .section-eyebrow,
+[data-theme="dark"] .pre-heading {
+  background: rgba(127, 184, 81, 0.14) !important;
+  color: var(--ibc-green-light) !important;
+  border-color: rgba(127, 184, 81, 0.30) !important;
+}
+
+/* main.css already paints .text-gradient as solid var(--ibc-green) /
+   var(--ibc-green-light) (no gradient, but reliable). We just need to
+   make sure it's NOT showing as a green block (which happens when
+   another rule injects background-image without matching background-clip).
+   Strategy: kill any background-image leak, restore solid color so the
+   text is clearly visible in both themes. */
+html .text-gradient,
+html .gradient-text,
+html .heading-gradient {
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  color: var(--ibc-green-dark) !important;
+  -webkit-text-fill-color: var(--ibc-green-dark) !important;
+}
+html[data-theme="dark"] .text-gradient,
+html[data-theme="dark"] .gradient-text,
+html[data-theme="dark"] .heading-gradient {
+  color: var(--ibc-green-light) !important;
+  -webkit-text-fill-color: var(--ibc-green-light) !important;
+}
+
+/* Decorative under-heading divider (was violet on most sub-pages) */
+.section-header .divider,
+.section-divider,
+.heading-divider,
+[class*="title-line"],
+[class*="-divider"]:not(.fu-stats-divider) {
+  background: linear-gradient(90deg, var(--ibc-green) 0%, var(--ibc-green-soft) 100%) !important;
+}
+
+/* ==========================================================================
+   12e. Bootstrap popovers (info-btn on stats) — keep within viewport
+   ========================================================================== */
+.popover {
+  z-index: var(--z-toast);
+  max-width: min(320px, 88vw);
+  border-radius: var(--r-md);
+  border: 1px solid var(--line-soft);
+  background: var(--surface-elev);
+  color: var(--ink-1);
+  box-shadow: var(--shadow-3);
+}
+.popover .popover-header,
+.popover .popover-body { color: var(--ink-1); background: transparent; }
+.popover .popover-header {
+  font-weight: 700;
+  border-bottom: 1px solid var(--line-soft);
+}
+.popover .popover-arrow::before,
+.popover .popover-arrow::after { display: none !important; }
+[data-theme="dark"] .popover {
+  background: var(--surface-2);
+  border-color: var(--line-soft);
+  color: var(--ink-1);
+}
+
+/* On small screens, force popover to a sensible position so it doesn't
+   overlap neighbouring stat cards */
+@media (max-width: 768px) {
+  .popover {
+    max-width: 92vw !important;
+  }
+  /* Click-outside dismiss is handled by JS — make sure the info-btn itself
+     doesn't keep the popover open by default */
+  .info-btn[aria-expanded="false"] + .popover { display: none !important; }
+}
+
+/* ==========================================================================
+   13. PAGE-SPECIFIC POLISH
+   ========================================================================== */
+
+/* For visual consistency, force a dark brand-blue gradient hero on every
+   sub-page in BOTH themes — this matches the homepage's dark hero feel and
+   makes hero typography legible regardless of theme. */
+body.page-students :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero),
+body.page-companies :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero),
+body.page-about :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero),
+body.page-network :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero),
+body.page-references :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero),
+body.page-contact :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero),
+body.page-legal :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) {
+  background:
+    radial-gradient(900px 480px at 80% -10%, rgba(109, 151, 68, 0.20) 0%, transparent 60%),
+    radial-gradient(900px 600px at 0% 100%, rgba(79, 142, 247, 0.12) 0%, transparent 60%),
+    linear-gradient(135deg, #14172E 0%, #20234A 50%, #2A2D5A 100%) !important;
+  color: #ffffff !important;
+}
+[data-theme="dark"] body.page-students :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero),
+[data-theme="dark"] body.page-companies :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero),
+[data-theme="dark"] body.page-about :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero),
+[data-theme="dark"] body.page-network :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero),
+[data-theme="dark"] body.page-references :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero),
+[data-theme="dark"] body.page-contact :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero),
+[data-theme="dark"] body.page-legal :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) {
+  background:
+    radial-gradient(900px 480px at 80% -10%, rgba(127, 184, 81, 0.22) 0%, transparent 60%),
+    radial-gradient(900px 600px at 0% 100%, rgba(79, 142, 247, 0.14) 0%, transparent 60%),
+    linear-gradient(135deg, #0B0E18 0%, #14172E 50%, #20234A 100%) !important;
+}
+
+/* Ensure hero containers are positioned & high-enough above any decorative bg */
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) {
+  position: relative;
+  isolation: isolate;
+}
+
+/* All sub-pages have dark gradient heros — ensure hero text stays light
+   in BOTH light and dark theme so it remains legible on the dark hero bg.
+   Selectors cover .hero-section, .page-hero-section, .page-hero, .hero. */
+body.page-students :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h1,
+body.page-students :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h2,
+body.page-students :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-title,
+body.page-students :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .ibc-heading,
+body.page-companies :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h1,
+body.page-companies :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h2,
+body.page-companies :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-title,
+body.page-companies :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .ibc-heading,
+body.page-about :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h1,
+body.page-about :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h2,
+body.page-about :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-title,
+body.page-about :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .ibc-heading,
+body.page-network :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h1,
+body.page-network :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h2,
+body.page-network :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-title,
+body.page-network :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .ibc-heading,
+body.page-references :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h1,
+body.page-references :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h2,
+body.page-references :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-title,
+body.page-references :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .ibc-heading,
+body.page-contact :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h1,
+body.page-contact :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h2,
+body.page-contact :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-title,
+body.page-contact :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .ibc-heading,
+body.page-legal :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h1,
+body.page-legal :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h2 {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+  background-image: none !important;
+}
+/* Restore brand-green color on inner .text-gradient / .gradient-text spans
+   inside dark hero sections. Use solid color (matches main.css pattern) so
+   it's reliable across browsers — no fragile background-clip:text. */
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h1 .text-gradient,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h1 .gradient-text,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h2 .text-gradient,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) h2 .gradient-text {
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  color: #B8D996 !important;
+  -webkit-text-fill-color: #B8D996 !important;
+}
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) p,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-sub,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .lead,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-subtitle {
+  color: rgba(255, 255, 255, 0.88) !important;
+}
+
+/* Hero stats — readable on dark hero in both themes */
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-stat,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-stat * {
+  color: #ffffff !important;
+}
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-stat__number,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-stat .stat-number,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) [class*="stat__number"],
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) [class*="stat-number"] {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+  background-image: none !important;
+}
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-stat__label,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-stat .stat-label,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) [class*="stat__label"],
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) [class*="stat-label"] {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+
+/* Eyebrow badges in hero stay readable */
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-eyebrow,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-eyebrow-badge,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .eyebrow,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .ibc-eyebrow {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+}
+
+/* Outline / ghost CTA buttons in hero — readable on dark bg */
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .btn-outline,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .ibc-btn--outline,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-btn-ghost,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-cta-ghost {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .btn-outline:hover,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .ibc-btn--outline:hover,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-btn-ghost:hover,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-cta-ghost:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: #ffffff !important;
+}
+
+/* Generic text inside hero (small badges, divider lines, etc.) */
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-sp-item,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-sp-sep,
+body[class*="page-"] :is(.hero-section, .page-hero-section, .page-hero, .hero, .ref-hero, .kn-hero) .hero-social-proof {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+/* Page-specific hero element classes — referenzen */
+body.page-references .ref-hero__eyebrow,
+body.page-references .ref-hero__eyebrow * {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.10) !important;
+  border: 1px solid rgba(255, 255, 255, 0.20) !important;
+}
+body.page-references .ref-hero__stat-num,
+body.page-references .ref-hero__stat-num * {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+  background-image: none !important;
+}
+body.page-references .ref-hero__stat-label {
+  color: rgba(255, 255, 255, 0.72) !important;
+}
+body.page-references .ref-hero__stat-div {
+  background: rgba(255, 255, 255, 0.18) !important;
+}
+body.page-references .ref-hero__ghost-btn,
+body.page-references .ref-hero__ghost-btn * {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+body.page-references .ref-hero__ghost-btn:hover {
+  background: rgba(255, 255, 255, 0.14) !important;
+  border-color: #ffffff !important;
+}
+body.page-references .ref-hero__scroll {
+  color: rgba(255, 255, 255, 0.55) !important;
+  border-color: rgba(255, 255, 255, 0.30) !important;
+}
+
+/* Page-specific hero element classes — kontakt */
+body.page-contact .kn-hero *:not(.ethereal-button):not(.btn-primary):not(button[type="submit"]) {
+  /* keep brand buttons styled, only force readable text on the rest */
+}
+body.page-contact .kn-hero .kn-hero__eyebrow,
+body.page-contact .kn-hero .kn-hero__title,
+body.page-contact .kn-hero .kn-hero__subtitle,
+body.page-contact .kn-hero h1, body.page-contact .kn-hero h2 {
+  color: #ffffff !important;
+}
+body.page-contact .kn-hero .kn-hero__chip,
+body.page-contact .kn-hero .kn-hero__chip-text,
+body.page-contact .kn-hero [class*="chip"] {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.20) !important;
+}
+body.page-contact .kn-hero .ghost-btn,
+body.page-contact .kn-hero .btn-outline,
+body.page-contact .kn-hero .kn-hero__btn--ghost {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.45) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+}
+
+
+/* --- Homepage hero --- */
+body.homepage .hero-section {
+  background: radial-gradient(1200px 600px at 80% -20%, rgba(109, 151, 68, 0.14) 0%, transparent 50%),
+              radial-gradient(1000px 500px at 0% 30%, rgba(79, 142, 247, 0.12) 0%, transparent 60%),
+              var(--surface-0);
+}
+[data-theme="dark"] body.homepage .hero-section {
+  background: radial-gradient(1200px 600px at 80% -20%, rgba(127, 184, 81, 0.14) 0%, transparent 50%),
+              radial-gradient(1000px 500px at 0% 30%, rgba(79, 142, 247, 0.10) 0%, transparent 60%),
+              var(--surface-0);
+}
+
+/* --- fuer-studierende: keep iframe smartphones, polish surrounding chrome --- */
+.smartphone-frame, .iphone-frame, .device-frame {
+  filter: drop-shadow(0 30px 80px rgba(15, 19, 34, 0.2));
+}
+[data-theme="dark"] .smartphone-frame,
+[data-theme="dark"] .iphone-frame,
+[data-theme="dark"] .device-frame {
+  filter: drop-shadow(0 30px 80px rgba(0, 0, 0, 0.6));
+}
+
+/* --- Kontakt page form refinement --- */
+body.kontakt-page .contact-form-wrapper,
+body.kontakt-page form,
+.kontakt-form-section {
+  background: var(--surface-elev);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-xl);
+  box-shadow: var(--shadow-3);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+/* --- Legal pages (impressum, datenschutz, cookies) --- */
+body.legal-page main,
+.legal-content,
+.policy-content {
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 2rem);
+  background: var(--surface-elev);
+  color: var(--ink-1);
+  border-radius: var(--r-xl);
+}
+.legal-content h1, .legal-content h2, .legal-content h3,
+.policy-content h1, .policy-content h2, .policy-content h3 { color: var(--ink-1); }
+.legal-content a, .policy-content a {
+  color: var(--ibc-green);
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+}
+
+/* --- Error pages (403/404/500) --- */
+body.error-page,
+.error-page-body {
+  background: var(--surface-0);
+  color: var(--ink-1);
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+/* ==========================================================================
+   14. UTILITY OVERRIDES — Bootstrap parity in dark mode
+   ========================================================================== */
+.bg-white { background-color: var(--surface-0) !important; }
+.bg-light { background-color: var(--surface-1) !important; }
+.bg-body  { background-color: var(--surface-0) !important; }
+.text-dark, .text-body { color: var(--ink-1) !important; }
+.text-muted { color: var(--ink-3) !important; }
+.text-secondary { color: var(--ink-2) !important; }
+.border, .border-top, .border-bottom, .border-start, .border-end {
+  border-color: var(--line-soft) !important;
+}
+
+/* Bootstrap card sometimes uses --bs-card-bg */
+.card { --bs-card-bg: var(--surface-elev); --bs-card-color: var(--ink-1); --bs-card-border-color: var(--line-soft); }
+
+/* Tables (legal pages, references) */
+.table {
+  --bs-table-color: var(--ink-1);
+  --bs-table-bg: transparent;
+  --bs-table-border-color: var(--line-soft);
+  --bs-table-hover-bg: var(--surface-2);
+}
+
+/* ==========================================================================
+   15. COOKIE CONSENT BANNER (cookieconsent-style)
+   ========================================================================== */
+.cc-window, .cookie-banner, #cookie-consent {
+  background: var(--surface-elev) !important;
+  color: var(--ink-1) !important;
+  border: 1px solid var(--line-soft) !important;
+  box-shadow: var(--shadow-4) !important;
+  border-radius: var(--r-lg) !important;
+}
+.cc-btn, .cookie-banner button {
+  border-radius: var(--r-pill) !important;
+}
+
+/* ==========================================================================
+   16. PRINT
+   ========================================================================== */
+@media print {
+  .navbar, .footer-section, .fat-footer, .cookie-banner, .scroll-progress, .theme-transition {
+    display: none !important;
+  }
+  body { background: #fff !important; color: #000 !important; }
+}
