@@ -315,8 +315,9 @@ body.page-contact .navbar.at-top .nav-link.active,
 body.page-legal .navbar.at-top .nav-link.active,
 body.page-error .navbar.at-top .nav-link.active,
 body.page-maintenance .navbar.at-top .nav-link.active {
-  color: var(--ibc-green-light) !important;
-  background: linear-gradient(135deg, rgba(127, 184, 81, 0.22) 0%, rgba(127, 184, 81, 0.10) 100%) !important;
+  color: #fff !important;
+  text-shadow: none !important;
+  background: transparent !important;
   border-radius: var(--r-pill);
 }
 body.homepage .navbar.at-top .nav-link.active::after,
@@ -329,7 +330,7 @@ body.page-contact .navbar.at-top .nav-link.active::after,
 body.page-legal .navbar.at-top .nav-link.active::after,
 body.page-error .navbar.at-top .nav-link.active::after,
 body.page-maintenance .navbar.at-top .nav-link.active::after {
-  background: var(--ibc-green-light) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
   width: 1.4rem !important;
 }
 [data-theme="dark"] .navbar.at-top .nav-link {
@@ -350,21 +351,18 @@ body.page-maintenance .navbar.at-top .nav-link.active::after {
 .navbar .nav-link:hover { color: var(--ibc-green); }
 .navbar .nav-link:hover::after { width: 1.4rem; }
 
-/* Active page — same look across every page (subtle pill + underline) */
+/* Active page — same look across every page (solid gradient pill from ::before + underline).
+   Color is intentionally transparent here; ibc-updates-2025.css provides the white text
+   and solid gradient pill background (opacity: 1 on ::before) with higher specificity.
+   We only set border-radius and the ::after underline indicator. */
 .navbar .nav-link.active,
 .navbar .nav-link.active:link,
 .navbar .nav-link.active:visited {
-  color: var(--ibc-green) !important;
-  background: linear-gradient(135deg, rgba(109, 151, 68, 0.15) 0%, rgba(127, 184, 81, 0.10) 100%);
   border-radius: var(--r-pill);
 }
 .navbar .nav-link.active::after {
   width: 1.4rem;
   background: var(--ibc-green);
-}
-[data-theme="dark"] .navbar .nav-link.active {
-  color: var(--ibc-green-light) !important;
-  background: linear-gradient(135deg, rgba(127, 184, 81, 0.18) 0%, rgba(127, 184, 81, 0.08) 100%);
 }
 [data-theme="dark"] .navbar .nav-link.active::after {
   background: var(--ibc-green-light);
@@ -485,7 +483,7 @@ body.page-maintenance .navbar.at-top .nav-link.active::after {
   border: 1px solid var(--line-soft);
   border-radius: var(--r-md);
   box-shadow: var(--shadow-3);
-  overflow: hidden;
+  overflow: visible;
   padding: 0.35rem;
 }
 .lang-menu .lang-option {
@@ -496,7 +494,7 @@ body.page-maintenance .navbar.at-top .nav-link.active::after {
   cursor: pointer;
   transition: background var(--t-fast) var(--ease-out), color var(--t-fast) var(--ease-out);
 }
-.lang-menu .lang-option:hover { background: var(--surface-2); color: var(--ibc-green); }
+.lang-menu .lang-option:hover { background: var(--surface-2); color: var(--ibc-green); transform: none; }
 .lang-menu .lang-option.active {
   background: linear-gradient(135deg, rgba(109, 151, 68, 0.15), rgba(79, 142, 247, 0.10));
   color: var(--ibc-green);
@@ -1128,8 +1126,12 @@ section.section-emphasis, .section-dark {
 @media (max-width: 1024px) {
   section, .section { padding-top: clamp(3rem, 7vw, 5rem); padding-bottom: clamp(3rem, 7vw, 5rem); }
   .nav-container, .navbar .nav-container { padding-left: 1rem; padding-right: 1rem; }
-  .desktop-nav { display: none !important; }
   .nav-utilities { gap: 0.5rem; }
+}
+
+/* Hide desktop nav and switch to mobile layout at the same breakpoint as new-navbar.css */
+@media (max-width: 968px) {
+  .desktop-nav { display: none !important; }
 }
 
 /* Stats banners across pages — never let numbers wrap vertically */
