@@ -1,0 +1,611 @@
+/* ============================================================
+   SITE-WIDE FIX BUNDLE (loaded last)
+   Targeted patches for navbar, themes, footer, page colors.
+   ============================================================ */
+
+/* ── 1. NAVBAR ────────────────────────────────────────────────
+   Light-mode: force clean white background — beats the 78%
+   opacity rgba from ibc-2026-polish.css and ibc-design-v3.css.
+   site-fixes.css is loaded last so equal-specificity !important
+   wins the cascade.
+*/
+html[data-theme="light"] #navbar,
+html[data-theme="light"] #navbar.at-top,
+html[data-theme="light"] #navbar.scrolled,
+html[data-theme="light"] #navbar.is-scrolled,
+html[data-theme="light"] .navbar,
+html[data-theme="light"] .navbar.scrolled,
+html[data-theme="light"] .navbar.is-scrolled {
+    background: rgba(255, 255, 255, 0.97) !important;
+    backdrop-filter: blur(18px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+    box-shadow: 0 2px 18px rgba(32, 35, 74, 0.08) !important;
+    border-bottom: 1px solid rgba(32, 35, 74, 0.10) !important;
+}
+
+/* Dark mode: keep the navy glass look */
+html[data-theme="dark"] #navbar.scrolled,
+html[data-theme="dark"] #navbar.is-scrolled,
+html[data-theme="dark"] .navbar.scrolled,
+html[data-theme="dark"] .navbar.is-scrolled {
+    background: rgba(18, 20, 36, 0.95) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+/* Nav-link color: body + #navbar gives specificity 1-3-2, beats all
+   page-class rules (body.homepage #navbar.at-top = 1-3-1, etc.) */
+html[data-theme="light"] body #navbar .nav-link:not(.active),
+html[data-theme="light"] body #navbar.at-top .nav-link:not(.active),
+html[data-theme="light"] body #navbar.scrolled .nav-link:not(.active),
+html[data-theme="light"] body #navbar.is-scrolled .nav-link:not(.active) {
+    color: #20234A !important;
+}
+html[data-theme="light"] body #navbar .nav-link:not(.active):hover {
+    color: var(--green, #6D9744) !important;
+}
+html[data-theme="light"] body #navbar .lang-btn,
+html[data-theme="light"] body #navbar #currentLang,
+html[data-theme="light"] body #navbar .lang-btn i {
+    color: #20234A !important;
+}
+html[data-theme="light"] .lang-btn {
+    background: #fff !important;
+    color: #20234A !important;
+    border-color: rgba(32, 35, 74, 0.15) !important;
+}
+html[data-theme="light"] .lang-menu {
+    background: #fff !important;
+    border-color: rgba(32, 35, 74, 0.12) !important;
+}
+html[data-theme="light"] .lang-option {
+    color: #20234A !important;
+}
+html[data-theme="light"] .lang-option:hover {
+    background: rgba(109, 151, 68, 0.08) !important;
+}
+html[data-theme="light"] .mobile-toggle span {
+    background: #20234A !important;
+}
+
+/* Active link uniform appearance across pages */
+.nav-link.active,
+.mobile-nav-link.active {
+    color: #fff !important;
+    background: linear-gradient(135deg, var(--green, #6D9744), var(--accent, #3481b9)) !important;
+    box-shadow: 0 4px 15px rgba(109, 151, 68, 0.35);
+}
+
+/* Mobile X (close) button must stay above the open mobile menu */
+.mobile-toggle.active {
+    z-index: 100002 !important;
+    position: relative;
+}
+.mobile-toggle.active span {
+    background: var(--text-primary, #fff) !important;
+}
+html[data-theme="light"] .mobile-toggle.active span {
+    background: #20234A !important;
+}
+
+/* Mobile sticky CTA "Projekt starten?" must sit BEHIND the navbar
+   and behind the mobile menu when active. */
+#mobile-sticky-cta { z-index: 90 !important; }
+body:has(.mobile-menu.active) #mobile-sticky-cta,
+body:has(#mobileMenu.active) #mobile-sticky-cta {
+    z-index: 1 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+/* Apply button — hidden by default via JS; enforce even against !important flex rules */
+a.ethereal-button[hidden],
+a.students-pretty-btn[hidden],
+[data-apply-button][hidden] {
+    display: none !important;
+    visibility: hidden !important;
+}
+
+/* ── 2. THEME TOGGLE — fast opacity fade instead of slow circle ── */
+/* Replace the 600ms circle expand/collapse with a quick full-screen crossfade */
+.theme-transition {
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+    opacity: 0 !important;
+    transition: opacity 0.2s ease !important;
+    will-change: opacity;
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+}
+.theme-transition.active {
+    opacity: 1 !important;
+}
+.theme-toggle { transition: border-color .2s ease, transform .2s ease; }
+
+/* ── 2b. ACTIVE NAV LINK GRADIENT PILL ────────────────────────
+   premium-redesign.css hides ::before via display:none (spec 0-3-1).
+   This restores it with spec 1-2-2 so the gradient pill is always visible. */
+html #navbar .nav-link.active::before,
+html #navbar .nav-link[aria-current="page"]::before {
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    transform: none !important;
+    background: linear-gradient(135deg, #6D9744, #3481b9) !important;
+    opacity: 1 !important;
+    z-index: -1 !important;
+    border-radius: inherit !important;
+    content: '' !important;
+}
+
+/* ── 3. CUSTOM CURSOR — visible on all sizes & both themes ──── */
+.ibc-cursor-glow {
+    position: fixed;
+    top: -120px; left: -120px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9997;
+    will-change: transform;
+    transition: opacity .35s ease;
+    opacity: 0;
+    mix-blend-mode: screen;
+    background: radial-gradient(circle, rgba(109,151,68,0.18) 0%, rgba(52,129,185,0.08) 50%, transparent 75%);
+}
+html[data-theme="light"] .ibc-cursor-glow {
+    mix-blend-mode: multiply;
+    background: radial-gradient(circle, rgba(109,151,68,0.16) 0%, rgba(52,129,185,0.10) 45%, transparent 75%);
+}
+@media (max-width: 768px) {
+    .ibc-cursor-glow { width: 160px; height: 160px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .ibc-cursor-glow { display: none; }
+}
+
+/* ── 4. FOOTER RESPONSIVE ───────────────────────────────────── */
+.fat-footer__cta-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: center;
+    justify-content: space-between;
+}
+.fat-footer__body {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 2rem;
+}
+@media (max-width: 992px) {
+    .fat-footer__body { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+    .fat-footer__body { grid-template-columns: 1fr; gap: 1.5rem; }
+    .fat-footer__cta-inner { flex-direction: column; text-align: center; }
+    .fat-footer__cta-inner .ethereal-button { width: 100%; justify-content: center; }
+}
+
+/* Footer text color in light mode */
+html[data-theme="light"] .fat-footer .fat-footer__connect-link,
+html[data-theme="light"] .fat-footer .fat-footer__nav-list a,
+html[data-theme="light"] .fat-footer .fat-footer__connect-label,
+html[data-theme="light"] .fat-footer .fat-footer__heading,
+html[data-theme="light"] .fat-footer .fat-footer__connect-title,
+html[data-theme="light"] .fat-footer .fat-footer__tagline,
+html[data-theme="light"] .fat-footer .fat-footer__social-label,
+html[data-theme="light"] .copyright-text p {
+    color: #f4f6fb !important;
+}
+
+/* CTA banner above footer — heading "Bereit, Ihr Projekt zu starten?" white in light mode */
+html[data-theme="light"] .fat-footer__cta,
+html[data-theme="light"] .fat-footer__cta-heading,
+html[data-theme="light"] .fat-footer__cta-eyebrow,
+html[data-theme="light"] .fat-footer__cta-sub {
+    color: #ffffff !important;
+}
+
+/* ── 5. PAGE-SPECIFIC LIGHT MODE TEXT COLORS ────────────────── */
+
+/* fuer-studierende — final CTA: "Über das IBC", checklist items must be black on white card */
+html[data-theme="light"] .cta-banner__checklist span,
+html[data-theme="light"] .cta-banner__ghost {
+    color: #1a1d2e !important;
+}
+html[data-theme="light"] .cta-banner__ghost {
+    border-color: rgba(32,35,74,0.25) !important;
+}
+
+/* Many headings should be lighter in light mode */
+html[data-theme="light"] .ibc-heading,
+html[data-theme="light"] h1.page-hero__title,
+html[data-theme="light"] .page-hero__title {
+    color: #2a2e52;
+}
+
+/* fuer-unternehmen — Google Maps consent text */
+.gmaps-consent,
+.kn-map-consent,
+#map-placeholder,
+#map-placeholder p,
+#map-placeholder a {
+    color: #ffffff !important;
+}
+#map-placeholder a { text-decoration: underline; }
+
+/* "Wir auch." lighter in light mode (final CTA gradient text) */
+html[data-theme="light"] .text-gradient {
+    background: linear-gradient(135deg, #8bbf5a, #4fa3df);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* kontakt.html — map section: stretch full width */
+.kn-map-section .kn-map-wrapper,
+.kn-map-section #map-placeholder,
+.kn-map-section .kn-map {
+    width: 100%;
+    min-height: 480px;
+}
+.kn-map-section { width: 100%; }
+
+/* kontakt.html — info panel (Kontaktinformationen) text white */
+.kn-info-panel,
+.kn-info-card,
+.kn-info-card *,
+.kn-info-panel * {
+    color: #ffffff !important;
+}
+.kn-info-card a,
+.kn-info-panel a {
+    color: #f0f6ff !important;
+}
+.kn-info-card .kn-copy-btn,
+.kn-info-card button {
+    color: #ffffff !important;
+}
+
+/* ueber-uns — flip card front text white (dark mode only; light mode inherits dark text) */
+html[data-theme="dark"] .flip-card-front,
+html[data-theme="dark"] .flip-card-front * {
+    color: #ffffff !important;
+}
+
+/* Role/position badge on team cards — white text regardless of theme */
+.team-card-position-badge {
+    color: #ffffff !important;
+}
+html[data-theme="light"] .team-card__role,
+html[data-theme="light"] .board-role,
+html[data-theme="light"] .uu-team-card__role,
+html[data-theme="light"] [data-role-label],
+html[data-theme="light"] .role-label {
+    color: #ffffff !important;
+}
+
+/* ueber-uns CTA banner subtitle white */
+html[data-theme="light"] .uu-cta-banner,
+html[data-theme="light"] .uu-cta-banner * {
+    color: #ffffff !important;
+}
+
+/* Remove the white bar between "JETZT DABEI SEIN" and footer on ueber-uns */
+body.page-about main:has(.uu-cta-banner:last-of-type) + footer .fat-footer__cta,
+body[class*="ueber"] .uu-cta-banner ~ * .fat-footer__cta {
+    display: none !important;
+}
+.uu-cta-banner { margin-bottom: 0 !important; padding-bottom: 4rem; }
+.uu-cta-banner + footer { margin-top: 0 !important; }
+.uu-cta-banner ~ .footer-divider-continuous { display: none; }
+/* Also remove any stray white separators between the page CTA and footer */
+main:has(.uu-cta-banner) ~ footer .footer-divider-continuous {
+    background: transparent !important;
+    height: 0 !important;
+}
+
+/* unser-netzwerk — alumni description / partner CTA text white */
+.nk-section--alumni .nk-section__lead,
+.nk-section--alumni p,
+.nk-section--alumni li,
+.nk-cta-banner,
+.nk-cta-banner * {
+    color: #ffffff !important;
+}
+
+/* ── 5b. WAVE DIVIDERS — hide completely ─────────────────────
+   The decorative SVG wave elements between sections are
+   distracting and create an unwanted green tint above the
+   "Unsere Kompetenzen" heading. Hide all of them.            */
+.section-wave-divider {
+    display: none !important;
+}
+
+/* ── 5b-1. FORM STATUS MESSAGE — class alias fix ─────────────
+   contact-form.js adds class 'success' or 'error' (no prefix)
+   but main.css defines .form-status-message.is-success / .is-error.
+   Bridge the gap here.                                         */
+.form-status-message.success,
+.form-status-message.is-success {
+    display: flex !important;
+    background: rgba(16, 185, 129, 0.12);
+    color: #059669;
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    gap: 0.5rem;
+}
+.form-status-message.error,
+.form-status-message.is-error {
+    display: flex !important;
+    background: rgba(239, 68, 68, 0.10);
+    color: #dc2626;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    gap: 0.5rem;
+}
+[data-theme="dark"] .form-status-message.success,
+[data-theme="dark"] .form-status-message.is-success { color: #34d399 !important; }
+[data-theme="dark"] .form-status-message.error,
+[data-theme="dark"] .form-status-message.is-error   { color: #f87171 !important; }
+
+/* ── 5b-2. SEND BUTTON — state class alias fix ───────────────
+   send-button.js adds .is-sending / .is-success / .is-error
+   but kontakt-v3.css only defines .loading / .success / .error.
+   Map the JS classes to the CSS animation rules.              */
+.send-button.is-sending .icon-spinner {
+    display: block !important;
+    animation: knSpin .8s linear infinite;
+}
+.send-button.is-sending .spinner-rotate {
+    animation: knSpin .8s linear infinite;
+}
+.send-button.is-success .icon-check  { display: block !important; }
+.send-button.is-error   .icon-cross  { display: block !important; }
+
+/* ── 5c. INFO BUTTON — visible in light mode ─────────────────
+   In dark mode the .info-btn is styled with purple/indigo tones
+   (rgba(99,102,241,…)) which are invisible on a white stat card.
+   Force a visible brand color in light mode.                  */
+:root:not([data-theme="dark"]) .info-btn,
+html[data-theme="light"] .info-btn {
+    background: rgba(109, 151, 68, 0.12) !important;
+    border-color: rgba(109, 151, 68, 0.4) !important;
+    color: #4a7a28 !important;
+}
+:root:not([data-theme="dark"]) .info-btn:hover,
+html[data-theme="light"] .info-btn:hover {
+    background: rgba(109, 151, 68, 0.22) !important;
+    border-color: rgba(109, 151, 68, 0.65) !important;
+    color: #3a6020 !important;
+}
+
+/* ── 5d. FORM STATUS MESSAGE — slide-in animation ────────────── */
+.form-status-message {
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    display: none;
+    align-items: center;
+    animation: statusSlideIn 0.35s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes statusSlideIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── 5e. TOAST NOTIFICATIONS — complete styling ──────────────
+   contact-form.js creates .toast-notification.toast-{type}
+   but no CSS existed for these classes.                      */
+#toast-container {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 99990;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-width: 360px;
+    width: calc(100vw - 2rem);
+    pointer-events: none;
+}
+.toast-notification {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    background: var(--surface-elev, #ffffff);
+    border: 1px solid rgba(32,35,74,0.12);
+    border-left: 4px solid #6D9744;
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+    pointer-events: auto;
+    animation: toastIn 0.4s cubic-bezier(0.16,1,0.3,1) both;
+    position: relative;
+}
+.toast-notification.fade-out {
+    animation: toastOut 0.3s ease forwards;
+}
+@keyframes toastIn {
+    from { opacity: 0; transform: translateX(40px) scale(0.96); }
+    to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+@keyframes toastOut {
+    from { opacity: 1; transform: translateX(0) scale(1); }
+    to   { opacity: 0; transform: translateX(40px) scale(0.96); }
+}
+.toast-success { border-left-color: #059669; }
+.toast-error   { border-left-color: #dc2626; }
+.toast-warning { border-left-color: #d97706; }
+.toast-info    { border-left-color: #3481b9; }
+
+.toast-icon { flex-shrink: 0; font-size: 1.2rem; margin-top: 1px; }
+.toast-success .toast-icon { color: #059669; }
+.toast-error   .toast-icon { color: #dc2626; }
+.toast-warning .toast-icon { color: #d97706; }
+.toast-info    .toast-icon { color: #3481b9; }
+
+.toast-content { flex: 1; min-width: 0; }
+.toast-title {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: #20234A;
+    margin-bottom: 0.2rem;
+}
+.toast-message {
+    font-size: 0.84rem;
+    color: rgba(32,35,74,0.75);
+    line-height: 1.45;
+    margin: 0;
+}
+.toast-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+    color: rgba(32,35,74,0.4);
+    padding: 0;
+    transition: color 0.2s;
+}
+.toast-close:hover { color: rgba(32,35,74,0.8); }
+
+/* Dark mode toasts */
+[data-theme="dark"] .toast-notification {
+    background: rgba(22,27,46,0.97);
+    border-color: rgba(255,255,255,0.1);
+}
+[data-theme="dark"] .toast-title  { color: #f0f4ff; }
+[data-theme="dark"] .toast-message { color: rgba(240,244,255,0.7); }
+[data-theme="dark"] .toast-close  { color: rgba(240,244,255,0.4); }
+[data-theme="dark"] .toast-close:hover { color: rgba(240,244,255,0.85); }
+
+@media (max-width: 480px) {
+    #toast-container { bottom: 1rem; right: 0.75rem; left: 0.75rem; width: auto; }
+}
+
+/* ── 6. RESPONSIVE TYPOGRAPHY POLISH ────────────────────────── */
+@media (max-width: 480px) {
+    .ibc-heading { font-size: clamp(1.6rem, 6vw, 2.2rem); }
+    .ibc-lead { font-size: 0.98rem; }
+}
+
+/* ── 7. LANGUAGE DROPDOWN — VISIBILITY FIX ───────────────────
+   new-navbar.css has .lang-menu { visibility: hidden } and
+   .lang-menu.active { visibility: visible }, but due to CSS
+   nesting specificity the active rule doesn't always win.
+   Force it here with !important (site-fixes.css loads last). */
+#langMenu.active,
+.lang-menu.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    transform: translateY(0) scale(1) !important;
+}
+
+/* Allow the lang-dropdown to visually overflow the navbar
+   (enhancements.css sets overflow-x: clip on .navbar, which can
+   clip the absolutely-positioned dropdown panel). */
+#navbar .lang-dropdown,
+.navbar .lang-dropdown {
+    overflow: visible !important;
+    position: relative;
+    z-index: 1300;
+}
+
+/* ── 8. COOKIE BANNER — LIGHT MODE ───────────────────────────
+   main.css always uses dark navy (rgba(32,35,74,0.95)).
+   In light mode the banner should be white-card style. */
+html[data-theme="light"] .cookie-consent {
+    background: rgba(255, 255, 255, 0.97) !important;
+    border-color: rgba(32, 35, 74, 0.12) !important;
+    box-shadow: 0 8px 40px rgba(32, 35, 74, 0.18) !important;
+    color: #20234A !important;
+}
+html[data-theme="light"] .cookie-consent h2,
+html[data-theme="light"] .cookie-consent h3 {
+    color: #20234A !important;
+    -webkit-text-fill-color: #20234A !important;
+}
+html[data-theme="light"] .cookie-consent p,
+html[data-theme="light"] .cookie-consent .cookie-consent__content > p,
+html[data-theme="light"] .cookie-consent .cookie-consent__category-info p,
+html[data-theme="light"] .cookie-consent .cookie-consent__footer,
+html[data-theme="light"] .cookie-consent .cookie-consent__footer a {
+    color: rgba(32, 35, 74, 0.75) !important;
+    -webkit-text-fill-color: rgba(32, 35, 74, 0.75) !important;
+}
+html[data-theme="light"] .cookie-consent .cookie-consent__footer a {
+    color: var(--green, #6D9744) !important;
+    -webkit-text-fill-color: var(--green, #6D9744) !important;
+}
+html[data-theme="light"] .cookie-consent .cookie-consent__category-info h3,
+html[data-theme="light"] .cookie-consent .cookie-consent__category-info * {
+    color: #20234A !important;
+    -webkit-text-fill-color: #20234A !important;
+}
+html[data-theme="light"] .cookie-consent__scrollable::-webkit-scrollbar-thumb {
+    background: rgba(32, 35, 74, 0.2);
+}
+/* Language buttons in cookie banner — light mode */
+html[data-theme="light"] .cookie-consent .cookie-lang-btn {
+    color: #20234A !important;
+    border-color: rgba(32, 35, 74, 0.2) !important;
+    background: rgba(32, 35, 74, 0.05) !important;
+}
+html[data-theme="light"] .cookie-consent .cookie-lang-btn.active {
+    background: rgba(109, 151, 68, 0.15) !important;
+    color: var(--green, #6D9744) !important;
+    border-color: var(--green, #6D9744) !important;
+}
+/* force-white-text class is added by JS — in light mode we unset it */
+html[data-theme="light"] .cookie-consent.force-white-text,
+html[data-theme="light"] .cookie-consent.force-white-text * {
+    color: inherit !important;
+}
+/* Actions bar (bottom of banner) — dark navy in base CSS */
+html[data-theme="light"] .cookie-consent__actions {
+    background: rgba(248, 249, 252, 0.97) !important;
+    border-top: 1px solid rgba(32, 35, 74, 0.10) !important;
+}
+/* "Nur notwendige Cookies" button */
+html[data-theme="light"] .cookie-consent__button--reject-all {
+    background: rgba(32, 35, 74, 0.06) !important;
+    color: #20234A !important;
+    border-color: rgba(32, 35, 74, 0.18) !important;
+}
+html[data-theme="light"] .cookie-consent__button--reject-all:hover {
+    background: rgba(32, 35, 74, 0.12) !important;
+    color: #20234A !important;
+}
+/* "Einstellungen speichern" button */
+html[data-theme="light"] .cookie-consent__button--save {
+    background: linear-gradient(135deg, #20234A 0%, #151730 100%) !important;
+    color: #fff !important;
+}
+/* Footer links */
+html[data-theme="light"] .cookie-consent__footer {
+    border-top-color: rgba(32, 35, 74, 0.12) !important;
+}
+/* Toggle slider focus ring in light mode */
+html[data-theme="light"] .cookie-consent__switch input:focus-visible + .cookie-consent__slider {
+    outline-color: #20234A !important;
+}

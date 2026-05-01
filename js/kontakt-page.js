@@ -251,11 +251,15 @@
             body.style.width = '100%';
             body.classList.add('modal-open');
             document.documentElement.classList.add('modal-is-open');
-            setTimeout(() => closeYesBtn.focus(), 100);
+            /* Show the modal overlay and box (CSS requires .active class) */
+            if (scrim) scrim.classList.add('active');
+            if (modalBox) modalBox.classList.add('active');
+            setTimeout(() => closeYesBtn && closeYesBtn.focus(), 100);
         }
         function closeModal() {
-            scrim.style.transition = 'none';
-            modalBox.style.transition = 'none';
+            /* Hide modal elements */
+            if (scrim) scrim.classList.remove('active');
+            if (modalBox) modalBox.classList.remove('active');
             document.documentElement.classList.remove('modal-is-open');
             document.documentElement.style.scrollBehavior = 'auto';
             body.classList.remove('modal-open');
@@ -265,8 +269,6 @@
             window.scrollTo(0, scrollPos);
             setTimeout(() => {
                 document.documentElement.style.scrollBehavior = '';
-                scrim.style.transition = '';
-                modalBox.style.transition = '';
             }, 50);
             if (previouslyFocusedElement) {
                 previouslyFocusedElement.focus({ preventScroll: true });

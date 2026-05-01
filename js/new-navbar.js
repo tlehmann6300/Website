@@ -31,37 +31,39 @@
             }
         });
 
-        /* Sprache wählen */
-        langMenu.querySelectorAll('.lang-option').forEach(option => {
-            option.addEventListener('click', e => {
-                e.stopPropagation();
-                const newLang = option.dataset.lang;
-                if (!newLang) return;
+        /* Sprache wählen — Event-Delegation statt forEach-Snapshot.
+           Delegiert auf langMenu, sodass dynamisch gerenderte Optionen
+           (z. B. nach language-switcher.js Re-Render) ebenfalls reagieren. */
+        langMenu.addEventListener('click', function(e) {
+            const option = e.target.closest('.lang-option');
+            if (!option) return;
+            e.stopPropagation();
+            const newLang = option.dataset.lang;
+            if (!newLang) return;
 
-                /* Aktiven Chip aktualisieren */
-                langMenu.querySelectorAll('.lang-option').forEach(opt => opt.classList.remove('active'));
-                option.classList.add('active');
-                currentLangEl.textContent = newLang.toUpperCase();
+            /* Aktiven Chip aktualisieren */
+            langMenu.querySelectorAll('.lang-option').forEach(opt => opt.classList.remove('active'));
+            option.classList.add('active');
+            currentLangEl.textContent = newLang.toUpperCase();
 
-                /* Dropdown schließen */
-                langMenu.classList.remove('active');
+            /* Dropdown schließen */
+            langMenu.classList.remove('active');
 
-                /* Sprachumschalter aufrufen (language-switcher.js) */
-                if (window.ibcLanguageSwitcher &&
-                    typeof window.ibcLanguageSwitcher.switchLanguage === 'function') {
-                    window.ibcLanguageSwitcher.switchLanguage(newLang);
+            /* Sprachumschalter aufrufen (language-switcher.js) */
+            if (window.ibcLanguageSwitcher &&
+                typeof window.ibcLanguageSwitcher.switchLanguage === 'function') {
+                window.ibcLanguageSwitcher.switchLanguage(newLang);
+            } else {
+                /* Fallback: localStorage + Reload */
+                localStorage.setItem('language', newLang);
+                const url = new URL(window.location.href);
+                if (newLang === 'de') {
+                    url.searchParams.delete('lang');
                 } else {
-                    /* Fallback: localStorage + Reload */
-                    localStorage.setItem('language', newLang);
-                    const url = new URL(window.location.href);
-                    if (newLang === 'de') {
-                        url.searchParams.delete('lang');
-                    } else {
-                        url.searchParams.set('lang', newLang);
-                    }
-                    window.location.href = url.toString();
+                    url.searchParams.set('lang', newLang);
                 }
-            });
+                window.location.href = url.toString();
+            }
         });
 
         /* Mobile Sprach-Optionen */
