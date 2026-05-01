@@ -377,22 +377,7 @@ main:has(.uu-cta-banner) ~ footer .footer-divider-continuous {
 .send-button.is-success .icon-check  { display: block !important; }
 .send-button.is-error   .icon-cross  { display: block !important; }
 
-/* ── 5c. INFO BUTTON — visible in light mode ─────────────────
-   In dark mode the .info-btn is styled with purple/indigo tones
-   (rgba(99,102,241,…)) which are invisible on a white stat card.
-   Force a visible brand color in light mode.                  */
-:root:not([data-theme="dark"]) .info-btn,
-html[data-theme="light"] .info-btn {
-    background: rgba(109, 151, 68, 0.12) !important;
-    border-color: rgba(109, 151, 68, 0.4) !important;
-    color: #4a7a28 !important;
-}
-:root:not([data-theme="dark"]) .info-btn:hover,
-html[data-theme="light"] .info-btn:hover {
-    background: rgba(109, 151, 68, 0.22) !important;
-    border-color: rgba(109, 151, 68, 0.65) !important;
-    color: #3a6020 !important;
-}
+/* ── 5c. INFO BUTTON — visible in light mode (see §11 for stronger override) */
 
 /* ── 5d. FORM STATUS MESSAGE — slide-in animation ────────────── */
 .form-status-message {
@@ -608,4 +593,143 @@ html[data-theme="light"] .cookie-consent__footer {
 /* Toggle slider focus ring in light mode */
 html[data-theme="light"] .cookie-consent__switch input:focus-visible + .cookie-consent__slider {
     outline-color: #20234A !important;
+}
+
+/* ── 9. THEME TOGGLE — LIGHT MODE ICON POSITIONS ─────────────
+   ibc-2026-polish.css moves .theme-sun to left:7px and .theme-moon
+   to right:7px (opposite of new-navbar.css intent). In light mode
+   this puts the sun directly on top of the ball (both left-aligned)
+   → looks like a single orange blob. Fix: sun goes RIGHT, moon LEFT. */
+html[data-theme="light"] .theme-toggle .theme-sun {
+    left: auto !important;
+    right: 7px !important;
+}
+html[data-theme="light"] .theme-toggle .theme-moon {
+    right: auto !important;
+    left: 7px !important;
+}
+/* Ball colour in light mode: give it a subtle shadow so it pops
+   against the light gray toggle track */
+html[data-theme="light"] .theme-toggle .theme-toggle-ball {
+    background: #ffffff !important;
+    box-shadow: 0 1px 5px rgba(32, 35, 74, 0.22) !important;
+}
+
+/* ── 10. AT-TOP NAVBAR — LIGHT MODE BUTTON OVERRIDES ─────────
+   ibc-2026-polish.css applies dark-glass styling to .lang-btn and
+   .theme-toggle when .navbar.at-top, regardless of theme. In light
+   mode the navbar already has a white background (§1 above), so
+   the buttons should match — not look like dark blobs. */
+html[data-theme="light"] .navbar.at-top .lang-btn,
+html[data-theme="light"] #navbar.at-top #langBtn,
+html[data-theme="light"] #navbar.at-top .lang-btn {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border: 1px solid rgba(32, 35, 74, 0.14) !important;
+    color: #20234A !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+html[data-theme="light"] .navbar.at-top .lang-btn span,
+html[data-theme="light"] .navbar.at-top .lang-btn i,
+html[data-theme="light"] #navbar.at-top .lang-btn span,
+html[data-theme="light"] #navbar.at-top .lang-btn i {
+    color: #20234A !important;
+}
+html[data-theme="light"] .navbar.at-top .lang-btn .fa-globe,
+html[data-theme="light"] #navbar.at-top .lang-btn .fa-globe {
+    color: #6D9744 !important;
+}
+html[data-theme="light"] .navbar.at-top .theme-toggle,
+html[data-theme="light"] #navbar.at-top .theme-toggle {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border: 1px solid rgba(32, 35, 74, 0.14) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+html[data-theme="light"] .navbar.at-top .theme-toggle .theme-toggle-ball {
+    background: #ffffff !important;
+    box-shadow: 0 1px 4px rgba(32, 35, 74, 0.2) !important;
+}
+
+/* ── 11. INFO BUTTON — STRONGER VISIBILITY IN LIGHT MODE ─────
+   Increase contrast: larger border + slightly deeper green tint. */
+:root:not([data-theme="dark"]) .info-btn,
+html[data-theme="light"] .info-btn {
+    background: rgba(109, 151, 68, 0.15) !important;
+    border: 1.5px solid rgba(109, 151, 68, 0.55) !important;
+    color: #4a7a28 !important;
+    opacity: 1 !important;
+}
+:root:not([data-theme="dark"]) .info-btn:hover,
+html[data-theme="light"] .info-btn:hover {
+    background: rgba(109, 151, 68, 0.28) !important;
+    border-color: rgba(109, 151, 68, 0.80) !important;
+}
+
+/* ── 12. FOOTER — LIGHT MODE & RESPONSIVE ────────────────────
+   main.css hardcodes background: #080c18 on .footer-section.fat-footer
+   regardless of theme. Override to a warm dark-navy that still reads
+   as intentional (premium dark footer) but pairs well with the light
+   page. Also fix the missing "Let's Connect" tablet-column span. */
+
+/* Footer stays intentionally dark even in light mode (common pattern),
+   but use a slightly warmer, less oppressive shade. */
+html[data-theme="light"] .footer-section.fat-footer {
+    background: linear-gradient(180deg, #1a1e3a 0%, #0d102a 100%) !important;
+}
+
+/* Tablet responsive fix: ensure brand column spans both columns
+   at the 1fr 1fr layout so it doesn't get squished */
+@media (max-width: 1199.98px) and (min-width: 768px) {
+    .fat-footer__body {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 2rem !important;
+    }
+    .fat-footer__brand {
+        grid-column: 1 / -1 !important;
+    }
+}
+
+/* Small mobile: ensure footer elements have proper touch targets */
+@media (max-width: 480px) {
+    .fat-footer__body {
+        padding: 2rem 1rem !important;
+    }
+    .fat-footer__cta-inner {
+        flex-direction: column !important;
+        gap: 1.25rem !important;
+    }
+    .fat-footer__cta-btn {
+        width: 100% !important;
+        justify-content: center !important;
+    }
+    .social-button-list {
+        flex-wrap: wrap !important;
+    }
+}
+
+/* ── 13. MOBILE THEME TOGGLE & LANG BUTTON ───────────────────
+   On narrow screens (≤968px) the full desktop nav is hidden and
+   the mobile menu takes over. The theme toggle and lang button
+   need proper sizing for touch targets in both themes. */
+@media (max-width: 968px) {
+    /* Mobile theme toggle in light mode */
+    html[data-theme="light"] #mobileThemeToggle {
+        background: rgba(255, 255, 255, 0.92) !important;
+        border-color: rgba(32, 35, 74, 0.14) !important;
+    }
+    html[data-theme="light"] #mobileThemeToggle .theme-toggle-ball {
+        background: #ffffff !important;
+        box-shadow: 0 1px 4px rgba(32, 35, 74, 0.2) !important;
+    }
+    html[data-theme="light"] #mobileThemeToggle .theme-sun {
+        left: auto !important;
+        right: 5px !important;
+    }
+    html[data-theme="light"] #mobileThemeToggle .theme-moon {
+        right: auto !important;
+        left: 5px !important;
+    }
 }
