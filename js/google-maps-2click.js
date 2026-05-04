@@ -10,14 +10,17 @@ document.addEventListener('DOMContentLoaded', function() {
             placeholder.style.display = 'none';
             const iframe = document.createElement('iframe');
             iframe.setAttribute('src', mapSrc);
-            iframe.setAttribute('width', '100%');
-            iframe.setAttribute('height', '450');
-            iframe.setAttribute('style', 'border:0;');
+            iframe.setAttribute('style', 'border:0;width:100%;height:100%;min-height:450px;display:block;');
             iframe.setAttribute('allowfullscreen', '');
             iframe.setAttribute('loading', 'lazy');
             iframe.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
             iframe.setAttribute('title', 'Standort des IBC e.V. auf Google Maps');
             container.appendChild(iframe);
+            /* Make container itself fill available height */
+            if (container.parentElement) {
+                container.style.height = '100%';
+                container.style.minHeight = '450px';
+            }
         });
     }
 });

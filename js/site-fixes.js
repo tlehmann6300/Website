@@ -160,18 +160,27 @@
                 var newLang = option.getAttribute('data-lang');
                 if (newLang && (newLang === 'de' || newLang === 'en' || newLang === 'fr')) {
                     e.stopPropagation();
+                    e.preventDefault();
                     if (menu) menu.classList.remove('active');
-                    /* Prefer the live switcher; fall back to URL-reload */
-                    if (window.ibcLanguageSwitcher &&
-                        typeof window.ibcLanguageSwitcher.switchLanguage === 'function') {
-                        window.ibcLanguageSwitcher.switchLanguage(newLang);
-                    } else {
-                        try { localStorage.setItem('language', newLang); } catch (e2) {}
-                        var url = new URL(window.location.href);
-                        if (newLang === 'de') url.searchParams.delete('lang');
-                        else url.searchParams.set('lang', newLang);
-                        window.location.href = url.toString();
+                    try { localStorage.setItem('language', newLang); } catch (e2) {}
+                    try { localStorage.setItem('preferred-language', newLang); } catch (e2) {}
+                    /* Use the live switcher only if translations are already
+                       loaded AND we're in the same language family. Otherwise
+                       force a full reload — guarantees correctness even when
+                       called immediately after page open (cold cache). */
+                    var sw = window.ibcLanguageSwitcher;
+                    var hasTranslations = sw && sw.translations &&
+                        Object.keys(sw.translations).length > 50;
+                    if (hasTranslations && typeof sw.switchLanguage === 'function' &&
+                        sw.currentLang !== newLang) {
+                        try { sw.switchLanguage(newLang); return; }
+                        catch (err) { /* fall through to reload */ }
                     }
+                    /* Bullet-proof fallback: full reload with ?lang= param */
+                    var url = new URL(window.location.href);
+                    if (newLang === 'de') url.searchParams.delete('lang');
+                    else url.searchParams.set('lang', newLang);
+                    window.location.href = url.toString();
                 }
                 return;
             }

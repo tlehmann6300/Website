@@ -1082,3 +1082,46 @@ html[data-theme="light"] .cookie-consent__button--reject-all:hover {
         padding: 1.5rem !important;
     }
 }
+
+/* ── J. ÜBER-UNS CTA BANNER — REMOVE WHITE GAP TO FOOTER ──────
+   .uu-cta-banner is transparent; only its __inner has the dark
+   blue gradient. Body (light gradient) shows through any tiny
+   gap between the inner and the footer creating a white stripe. */
+.uu-cta-banner {
+    background: linear-gradient(135deg, #20234A 0%, #1a2060 50%, #0d1033 100%) !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+.uu-cta-banner + .footer-section,
+.uu-cta-banner ~ .footer-section {
+    margin-top: 0 !important;
+    border-top: none !important;
+}
+[data-theme="light"] .uu-cta-banner,
+[data-theme="dark"] .uu-cta-banner {
+    background: linear-gradient(135deg, #20234A 0%, #1a2060 50%, #0d1033 100%) !important;
+}
+
+/* ── K. KONTAKT MAP — USE FULL HEIGHT ─────────────────────────
+   The iframe is created with height="450" attribute but the
+   .kn-map-embed container is taller. Force iframe to fill it. */
+.kn-map-embed,
+#map-container {
+    min-height: 450px;
+}
+.kn-map-embed iframe,
+#map-container iframe {
+    width: 100% !important;
+    height: 100% !important;
+    min-height: 450px !important;
+    border: 0 !important;
+    border-radius: inherit;
+    display: block;
+}
+@media (min-width: 900px) {
+    .kn-map-embed,
+    #map-container {
+        min-height: 100% !important;
+        height: 100% !important;
+    }
+}
