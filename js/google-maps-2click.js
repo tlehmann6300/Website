@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loadBtn = document.getElementById('load-map-btn');
     const placeholder = document.getElementById('map-placeholder');
     const container = document.getElementById('map-container');
-    const mapSrc = "https://googleusercontent.com/maps.google.com/15";
+    const mapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10668.213373069295!2d8.197488378228444!3d48.05130778349748!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4108f8d06b694f9d%3A0xa040bf1f949b5d69!2sInstitut%20f%C3%BCr%20Business%20Consulting!5e0!3m2!1sde!2sde!4v1777846127127!5m2!1sde!2sde";
     if (loadBtn) {
         loadBtn.addEventListener('click', function() {
             placeholder.style.display = 'none';

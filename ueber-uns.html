@@ -4,10 +4,17 @@
     <script>(function(){var t=localStorage.getItem('theme')||localStorage.getItem('ibc-theme');var d=(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':t;if(d==='dark'||d==='light')document.documentElement.setAttribute('data-theme',d);})();</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Über uns | IBC e.V.</title>
+    <title>Über uns | IBC Furtwangen – Studentische Unternehmensberatung</title>
     <meta name="description" content="Lernen Sie das IBC-Team kennen: Engagierte Studierende mit Leidenschaft für innovative Beratung. Unsere Werte, Mission und Geschichte seit 1998.">
     <meta name="keywords" content="studentische Unternehmensberatung, Team, Vorstand, Mission, Werte, Furtwangen">
     <meta property="og:type" content="website">
+    <meta name="theme-color" content="#20234A" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#6D9744" media="(prefers-color-scheme: light)">
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:site_name" content="IBC Furtwangen — Institut für Business Consulting e.V.">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="canonical" href="https://business-consulting.de/ueber-uns.html">
+    <meta name="robots" content="index, follow">
     <meta property="og:url" content="https://business-consulting.de/ueber-uns.html">
     <meta property="og:title" content="Über IBC Furtwangen | Studentisches Beratungsteam">
     <meta property="og:description" content="Lernen Sie das IBC-Team kennen: Engagierte Studierende mit Leidenschaft für innovative Beratung. Unsere Werte, Mission und Geschichte seit 1998.">
@@ -78,6 +85,7 @@
 
     <!-- Final polish layer (loaded last) -->
     <link rel="stylesheet" href="css/ibc-2026-polish.css">
+    <link rel="stylesheet" href="css/site-fixes.css">
 </head>
 <body class="page-about">
 
@@ -469,7 +477,7 @@
                 <h2 class="uu-cta-banner__title">Werde Teil des <span class="uu-cta-gradient">IBC</span></h2>
                 <p class="uu-cta-banner__sub">Gestalte deine Karriere mit echten Projekten, einem starken Netzwerk und einer Community, die vorwärts denkt.</p>
                 <div class="uu-cta-banner__btns">
-                    <a href="fuer-studierende.html" class="ethereal-button btn-shimmer">
+                    <a href="fuer-studierende.html" class="ethereal-button btn-shimmer" data-apply-button hidden aria-hidden="true" style="display:none;">
                         <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                         <span>Jetzt bewerben</span>
                     </a>
@@ -638,4 +646,5 @@
     <script src="js/ibc-buttons.js" defer></script>
 
 <script src="js/a11y-enhancer.js" defer></script>
+    <script src="js/site-fixes.js" defer></script>
 </html>

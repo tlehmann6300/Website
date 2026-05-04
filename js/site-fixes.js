@@ -14,6 +14,7 @@
     function initFixCounters() {
         var selectors = [
             '.hero-stat__number', '.fu-stat__num', '.kn-stat-number',
+            '.kn-stat__num', '.counter-animated',
             '.stat-card__number', '.uu-hero-stat__num',
             '.page-hero__stat-num', '.nk-stat-number', '.ueber-stat__number',
             '[data-counter]', '.counter-up'
@@ -80,10 +81,16 @@
             .then(function (r) { return r.ok ? r.json() : null; })
             .then(function (cfg) {
                 if (!cfg || cfg.showApplyButton !== true) return;
+                var link = (cfg.applyLink && /^https?:\/\//.test(cfg.applyLink)) ? cfg.applyLink : null;
                 buttons.forEach(function (btn) {
                     btn.removeAttribute('hidden');
                     btn.removeAttribute('aria-hidden');
                     btn.style.display = '';
+                    if (link && btn.tagName === 'A') {
+                        btn.setAttribute('href', link);
+                        btn.setAttribute('target', '_blank');
+                        btn.setAttribute('rel', 'noopener noreferrer');
+                    }
                 });
             })
             .catch(function () { /* keep hidden */ });
@@ -133,11 +140,53 @@
         }, 800);
     }
 
+    /* ── 5. LANG-BTN CLICK FALLBACK ────────────────────────────
+       Document-level capture-phase delegation guarantees the
+       language dropdown opens AND a language can be selected,
+       even before language-switcher.js has loaded translations
+       or during the page-loader animation. */
+    function initLangFallback() {
+        document.addEventListener('click', function (e) {
+            var menu = document.getElementById('langMenu');
+            if (!e.target.closest) return;
+            var btn = e.target.closest('#langBtn, .lang-btn');
+            if (btn && menu) {
+                e.stopPropagation();
+                menu.classList.toggle('active');
+                return;
+            }
+            var option = e.target.closest('#langMenu .lang-option, .mobile-lang-option');
+            if (option) {
+                var newLang = option.getAttribute('data-lang');
+                if (newLang && (newLang === 'de' || newLang === 'en' || newLang === 'fr')) {
+                    e.stopPropagation();
+                    if (menu) menu.classList.remove('active');
+                    /* Prefer the live switcher; fall back to URL-reload */
+                    if (window.ibcLanguageSwitcher &&
+                        typeof window.ibcLanguageSwitcher.switchLanguage === 'function') {
+                        window.ibcLanguageSwitcher.switchLanguage(newLang);
+                    } else {
+                        try { localStorage.setItem('language', newLang); } catch (e2) {}
+                        var url = new URL(window.location.href);
+                        if (newLang === 'de') url.searchParams.delete('lang');
+                        else url.searchParams.set('lang', newLang);
+                        window.location.href = url.toString();
+                    }
+                }
+                return;
+            }
+            if (menu && menu.classList.contains('active') && !e.target.closest('#langMenu')) {
+                menu.classList.remove('active');
+            }
+        }, true);
+    }
+
     function start() {
         initFixCounters();
         initApplyButtonToggle();
         initCursorGlow();
         initInstagramReprocess();
+        initLangFallback();
     }
 
     if (document.readyState === 'loading') {
