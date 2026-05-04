@@ -84,6 +84,7 @@
   --nav-text-active:   var(--ibc-green);
 
   /* Stats Section (always dark) */
+  
   --stats-bg:          var(--ibc-blue);
 
   /* Typography */
@@ -2762,7 +2763,7 @@ p:last-child { margin-bottom: 0; }
 
 /* Landscape mobile */
 @media (max-height: 500px) and (orientation: landscape) {
-  #hero-section { min-height: 100vw; }
+  #hero-section { min-height: 100svh; }
 }
 
 /* Large screens */
@@ -4832,7 +4833,7 @@ p:last-child { margin-bottom: 0; }
 /* ── LANDSCAPE MOBILE ────────────────────────────────────────── */
 @media (max-height: 550px) and (orientation: landscape) {
   #hero-section {
-    min-height: 100svw;
+    min-height: 100svh;
     padding-top: calc(var(--nav-height) + 0.5rem);
     align-items: center;
   }
@@ -5522,7 +5523,7 @@ p:last-child { margin-bottom: 0; }
     #ffffff 30%,
     #f5f7fa 70%,
     #f0f2f7 100%);
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 
 /* Nav in light mode: crisper scrolled state */
@@ -5647,7 +5648,7 @@ p:last-child { margin-bottom: 0; }
     radial-gradient(ellipse 80% 50% at 20% 0%, rgba(109,151,68,0.07) 0%, transparent 55%),
     radial-gradient(ellipse 60% 40% at 80% 10%, rgba(79,142,247,0.06) 0%, transparent 50%),
     linear-gradient(180deg, #f5f7fa 0%, #ffffff 40%, #f5f8f3 70%, #f0f2f7 100%);
-  background-attachment: fixed;
+  background-attachment: scroll;
 }
 
 /* Navbar — frosted glass effect with brand accent */

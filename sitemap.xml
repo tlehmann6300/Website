@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://business-consulting.de/</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://business-consulting.de/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://business-consulting.de/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://business-consulting.de/?lang=fr"/>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://business-consulting.de/fuer-unternehmen.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://business-consulting.de/fuer-unternehmen.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://business-consulting.de/fuer-unternehmen.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://business-consulting.de/fuer-unternehmen.html?lang=fr"/>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://business-consulting.de/fuer-studierende.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://business-consulting.de/fuer-studierende.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://business-consulting.de/fuer-studierende.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://business-consulting.de/fuer-studierende.html?lang=fr"/>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://business-consulting.de/ueber-uns.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://business-consulting.de/ueber-uns.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://business-consulting.de/ueber-uns.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://business-consulting.de/ueber-uns.html?lang=fr"/>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://business-consulting.de/referenzen.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://business-consulting.de/referenzen.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://business-consulting.de/referenzen.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://business-consulting.de/referenzen.html?lang=fr"/>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://business-consulting.de/unser-netzwerk.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://business-consulting.de/unser-netzwerk.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://business-consulting.de/unser-netzwerk.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://business-consulting.de/unser-netzwerk.html?lang=fr"/>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://business-consulting.de/kontakt.html</loc>
+    <xhtml:link rel="alternate" hreflang="de" href="https://business-consulting.de/kontakt.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://business-consulting.de/kontakt.html?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://business-consulting.de/kontakt.html?lang=fr"/>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>

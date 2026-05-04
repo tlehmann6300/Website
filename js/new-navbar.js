@@ -168,6 +168,9 @@
     window.addEventListener('scroll', () => {
         if (!ticking) { window.requestAnimationFrame(updateScroll); ticking = true; }
     });
+    /* Initial sync — handles refreshes mid-page where the browser
+       restores scroll position before any scroll event fires. */
+    updateScroll();
 
     /* Theme-Toggle */
     function updateThemeToggleState(theme) {

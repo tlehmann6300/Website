@@ -42,19 +42,26 @@ ErrorDocument 500 /500.html
     Header always set Cross-Origin-Opener-Policy "same-origin"
     Header always set Cross-Origin-Resource-Policy "same-origin"
 
+    # Block legacy cross-domain Flash/PDF policies
+    Header always set X-Permitted-Cross-Domain-Policies "none"
+
+    # Origin-Agent-Cluster — better isolation between origins
+    Header always set Origin-Agent-Cluster "?1"
+
     # Content Security Policy — locks down what can load.
     # Includes the few external services this site actually uses:
     #   - Google Analytics (gtag), Google reCAPTCHA, Google Tag Manager
     #   - Microsoft Forms (Infoabend signup link target)
     #   - Instagram embeds (used on fuer-studierende.html iframes)
     Header always set Content-Security-Policy "default-src 'self'; \
-        script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.gstatic.com; \
+        script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.gstatic.com https://www.instagram.com https://platform.instagram.com; \
+        script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.google.com https://www.gstatic.com https://www.instagram.com https://platform.instagram.com; \
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; \
         img-src 'self' data: blob: https: ; \
         font-src 'self' data: https://fonts.gstatic.com; \
-        connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com; \
-        frame-src 'self' https://www.google.com https://www.instagram.com https://www.youtube.com https://forms.office.com; \
-        media-src 'self' blob:; \
+        connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://region1.google-analytics.com https://www.instagram.com https://graph.instagram.com; \
+        frame-src 'self' https://www.google.com https://www.instagram.com https://platform.instagram.com https://www.youtube.com https://forms.office.com; \
+        media-src 'self' blob: https://scontent.cdninstagram.com https://*.cdninstagram.com; \
         object-src 'none'; \
         base-uri 'self'; \
         form-action 'self'; \

@@ -733,3 +733,352 @@ html[data-theme="light"] .footer-section.fat-footer {
         left: 5px !important;
     }
 }
+
+/* ============================================================
+   2026-05 FIX BUNDLE  (additional patches)
+   ============================================================ */
+
+/* ── A. NAVBAR LANG/THEME CLICKABILITY AT TOP ─────────────────
+   Force the navbar itself to win every stacking battle, even
+   when it is transparent (.at-top). Some hero overlays /
+   ambient-blob layers create stacking contexts above the nav
+   if the nav has no opaque background. */
+#navbar,
+.navbar,
+#navbar.at-top,
+.navbar.at-top,
+#navbar.scrolled,
+.navbar.scrolled {
+    z-index: 100002 !important;
+    pointer-events: auto !important;
+    isolation: isolate;
+}
+#navbar .nav-container,
+.navbar .nav-container {
+    pointer-events: auto !important;
+}
+#navbar .nav-utilities,
+.navbar .nav-utilities {
+    position: relative;
+    z-index: 1500;
+    pointer-events: auto !important;
+}
+#navbar .lang-dropdown,
+.navbar .lang-dropdown {
+    position: relative;
+    z-index: 1600 !important;
+    pointer-events: auto !important;
+}
+#navbar .lang-btn,
+.navbar .lang-btn,
+#navbar .theme-toggle,
+.navbar .theme-toggle {
+    position: relative;
+    z-index: 1601 !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+}
+#navbar .lang-menu,
+.navbar .lang-menu {
+    z-index: 1700 !important;
+}
+/* Defensive: nothing inside the navbar may opt out of pointer
+   events through inheritance */
+#navbar *,
+.navbar * {
+    pointer-events: auto;
+}
+/* …but keep the explicitly-pointer-events:none ones (icons,
+   theme-icon-pos) intact */
+#navbar .theme-icon-pos,
+.navbar .theme-icon-pos {
+    pointer-events: none;
+}
+
+/* ── B. KOMPETENZEN — VIDEO-BG ENTFERNEN + LAYOUT-FIX ─────────
+   Hide the video overlay, and stop closed cards from being
+   vertically stretched to match an open neighbour in CSS-grid.
+   `align-items: start` makes each card take its natural height. */
+.competency-card--featured .competency-card__video-bg,
+.competency-card .competency-card__video-bg {
+    display: none !important;
+}
+.competencies-cards-grid:not(.swipe-carousel) {
+    align-items: start !important;
+}
+.competencies-cards-grid:not(.swipe-carousel) .competency-card {
+    align-self: start !important;
+    height: auto !important;
+    min-height: 0 !important;
+}
+/* Trigger button: keep pointer events alive in carousel mode
+   too (some pointer-handlers on the grid swallow taps). */
+.competency-card__trigger,
+.competency-card__image-wrapper {
+    pointer-events: auto !important;
+    touch-action: manipulation;
+}
+/* Featured card image wrapper: keep its z-index above the
+   removed video-bg layer */
+.competency-card--featured .competency-card__image-wrapper {
+    z-index: 1;
+}
+/* In carousel mode, ensure trigger clicks still register even
+   though the grid intercepts pointer events for drag. */
+.swipe-carousel .competency-card,
+.swipe-carousel .competency-card__trigger,
+.swipe-carousel .competency-card__image-wrapper,
+.swipe-carousel .competency-card__content {
+    pointer-events: auto !important;
+}
+
+/* ── C. RESET-CONFIRM MODAL — SMALLER & POLISHED ──────────────
+   Reduces footprint, tightens type, modernizes spacing.
+   Explicit height:auto + min-height:0 prevents earlier rules
+   from forcing a tall box. max-height: max-content stops the
+   box-shadow halo from inflating perceived height. */
+.my-modal-box {
+    padding: 1.4rem 1.4rem 1.2rem !important;
+    min-width: 0 !important;
+    max-width: 360px !important;
+    width: calc(100% - 2rem) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: 90vh !important;
+    border-radius: 18px !important;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.my-modal-box .big-icon {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.5rem !important;
+    background: linear-gradient(135deg, rgba(109,151,68,0.15), rgba(79,142,247,0.10));
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: inline-flex; align-items: center; justify-content: center;
+}
+.my-modal-box h3 {
+    font-size: 1rem !important;
+    margin-bottom: 0.35rem !important;
+}
+.my-modal-box p {
+    font-size: 0.85rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 1rem !important;
+}
+.my-modal-box .button-group {
+    gap: 0.5rem !important;
+    flex-wrap: wrap;
+}
+.my-modal-box .modal-button {
+    padding: 0.55rem 1.05rem !important;
+    font-size: 0.82rem !important;
+    flex: 1 1 auto;
+    min-width: 110px;
+    justify-content: center;
+}
+@media (max-width: 380px) {
+    .my-modal-box .button-group { flex-direction: column; }
+    .my-modal-box .modal-button { width: 100%; }
+}
+
+/* ── D. MOBILE THEME TOGGLE — UNIFORM DIMENSIONS ──────────────
+   The inline-styled #mobileThemeToggle in mobile menu had a
+   slightly different ball size than CSS expected. Normalize. */
+.mobile-utilities #mobileThemeToggle {
+    width: 50px !important;
+    height: 26px !important;
+    flex-shrink: 0;
+}
+.mobile-utilities #mobileThemeToggle .theme-toggle-ball {
+    width: 18px !important;
+    height: 18px !important;
+    top: 50% !important;
+    left: 3px !important;
+    transform: translateY(-50%) !important;
+}
+[data-theme="dark"] .mobile-utilities #mobileThemeToggle .theme-toggle-ball {
+    left: calc(100% - 21px) !important;
+}
+.mobile-utilities #mobileThemeToggle .theme-icon-pos {
+    font-size: 0.62rem !important;
+}
+.mobile-utilities #mobileThemeToggle .theme-sun {
+    left: auto !important;
+    right: 5px !important;
+}
+.mobile-utilities #mobileThemeToggle .theme-moon {
+    left: 5px !important;
+    right: auto !important;
+}
+/* Mobile utilities row: keep the Erscheinungsbild label + slider on one line */
+.mobile-utilities {
+    display: flex !important;
+    align-items: center !important;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem !important;
+}
+.mobile-utilities .mobile-theme-text {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+/* ── E. FOOTER — CENTER LOGO & SOCIAL ON TABLET/MOBILE ────────
+   Below the 2-column breakpoint the brand block looks lonely.
+   Center the logo, tagline, and "Folgen Sie uns" group. */
+@media (max-width: 1199.98px) {
+    .fat-footer__brand {
+        text-align: center;
+    }
+    .fat-footer__logo-link {
+        display: inline-block;
+        margin: 0 auto;
+    }
+    .fat-footer__tagline {
+        max-width: 46ch;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    .fat-footer__social {
+        align-items: center !important;
+        text-align: center;
+    }
+    .fat-footer__social .social-button-list {
+        justify-content: center !important;
+        flex-wrap: wrap;
+    }
+}
+
+/* ── F. COOKIE BANNER LIGHT MODE — BUTTON CONTRAST ────────────
+   Ensure every action button is visually distinct. */
+html[data-theme="light"] .cookie-consent__button--accept-all {
+    background: linear-gradient(135deg, #6D9744 0%, #5a7f37 100%) !important;
+    color: #fff !important;
+    border: 1px solid transparent !important;
+    -webkit-text-fill-color: #fff !important;
+}
+html[data-theme="light"] .cookie-consent__button--accept-all *,
+html[data-theme="light"] .cookie-consent__button--save * {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+}
+html[data-theme="light"] .cookie-consent__button--save {
+    background: linear-gradient(135deg, #20234A 0%, #151730 100%) !important;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    border: 1px solid transparent !important;
+}
+html[data-theme="light"] .cookie-consent__button--reject-all {
+    background: #ffffff !important;
+    color: #20234A !important;
+    -webkit-text-fill-color: #20234A !important;
+    border: 1px solid rgba(32, 35, 74, 0.22) !important;
+}
+html[data-theme="light"] .cookie-consent__button--reject-all:hover {
+    background: rgba(32, 35, 74, 0.06) !important;
+}
+
+/* ── G. COOKIE-BANNER MOBILE — SAFE-AREA + HEIGHT ─────────────
+   On small phones the actions/footer rows could clip the last
+   toggle when the banner approaches viewport height. */
+@media (max-width: 480px) {
+    .cookie-consent {
+        max-height: 90dvh !important;
+    }
+    .cookie-consent__actions {
+        padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px)) !important;
+    }
+}
+
+/* ── H. CUSTOM CURSOR — DISABLE ON TOUCH DEVICES ──────────────
+   Tablets (>768px) without hover capability still rendered the
+   cursor-glow JS layer; remove entirely on coarse pointers. */
+@media (hover: none) and (pointer: coarse) {
+    .ibc-cursor-glow,
+    #ibcCursorGlow {
+        display: none !important;
+    }
+}
+
+/* ── I. FÖRDERKREIS-CARDS — UPGRADED VISUAL POLISH ────────────
+   Adds depth, gradient accent, larger logo area, refined typo. */
+.fk-card {
+    border-radius: 22px !important;
+    border: 1px solid rgba(32, 35, 74, 0.08) !important;
+    box-shadow:
+        0 1px 3px rgba(32, 35, 74, 0.04),
+        0 12px 32px -16px rgba(32, 35, 74, 0.12) !important;
+    background:
+        linear-gradient(135deg, rgba(109,151,68,0.03), rgba(255,255,255,0)) ,
+        var(--bg-primary, #fff) !important;
+}
+[data-theme="dark"] .fk-card {
+    border-color: rgba(255, 255, 255, 0.08) !important;
+    background:
+        linear-gradient(135deg, rgba(109,151,68,0.06), rgba(255,255,255,0)),
+        var(--bg-elevated, #12152a) !important;
+}
+.fk-card::before {
+    width: 4px !important;
+    background: linear-gradient(180deg, #6D9744, #4F8EF7) !important;
+}
+.fk-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow:
+        0 4px 12px rgba(32, 35, 74, 0.06),
+        0 24px 56px -16px rgba(32, 35, 74, 0.18),
+        0 4px 16px rgba(109, 151, 68, 0.10) !important;
+    border-color: rgba(109, 151, 68, 0.28) !important;
+}
+.fk-card__logo-area {
+    flex: 0 0 180px !important;
+    background:
+        radial-gradient(circle at 30% 30%, rgba(109,151,68,0.08), transparent 60%),
+        rgba(109, 151, 68, 0.025) !important;
+    padding: 1.75rem !important;
+    border-right: 1px solid rgba(32, 35, 74, 0.06) !important;
+}
+[data-theme="dark"] .fk-card__logo-area {
+    background:
+        radial-gradient(circle at 30% 30%, rgba(109,151,68,0.12), transparent 60%),
+        rgba(255, 255, 255, 0.02) !important;
+    border-right-color: rgba(255, 255, 255, 0.06) !important;
+}
+.fk-card__logo {
+    max-width: 140px !important;
+    max-height: 90px !important;
+    filter: drop-shadow(0 2px 8px rgba(32, 35, 74, 0.08));
+}
+.fk-card__body {
+    padding: 1.75rem 2rem !important;
+    gap: 0.6rem !important;
+}
+.fk-card__name {
+    font-size: 1.15rem !important;
+    letter-spacing: -0.01em !important;
+    font-weight: 700 !important;
+}
+.fk-card__name::after {
+    content: '';
+    display: block;
+    width: 32px; height: 2px;
+    margin-top: 0.55rem;
+    background: linear-gradient(90deg, #6D9744, transparent);
+    border-radius: 2px;
+    transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.fk-card:hover .fk-card__name::after {
+    width: 64px;
+}
+.fk-card__desc {
+    font-size: 0.92rem !important;
+    line-height: 1.65 !important;
+}
+@media (max-width: 575.98px) {
+    .fk-card__logo-area {
+        flex: 0 0 auto !important;
+        border-right: none !important;
+        border-bottom: 1px solid rgba(32, 35, 74, 0.06) !important;
+        padding: 1.5rem !important;
+    }
+}

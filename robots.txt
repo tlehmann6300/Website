@@ -1,0 +1,39 @@
+User-agent: *
+Allow: /
+Allow: /assets/img/
+Allow: /css/
+Allow: /js/
+
+Disallow: /impressum.html
+Disallow: /datenschutzerklaerung.html
+Disallow: /cookie-richtlinie-eu.html
+Disallow: /403.html
+Disallow: /404.html
+Disallow: /500.html
+Disallow: /maintenance.html
+Disallow: /send_mail.php
+Disallow: /translate.php
+Disallow: /config.php
+Disallow: /get_csrf.php
+Disallow: /uptime_check.php
+Disallow: /assets/data/
+Disallow: /private/
+Disallow: /vendor/
+Disallow: /*?lang=
+Disallow: /*?subject=
+
+# Block AI scrapers (training-data harvesters)
+User-agent: GPTBot
+Disallow: /
+User-agent: Google-Extended
+Disallow: /
+User-agent: CCBot
+Disallow: /
+User-agent: anthropic-ai
+Disallow: /
+User-agent: ClaudeBot
+Disallow: /
+User-agent: PerplexityBot
+Disallow: /
+
+Sitemap: https://business-consulting.de/sitemap.xml

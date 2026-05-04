@@ -629,6 +629,9 @@
     /* ── Pointer-drag (Maus-Drag für Desktop) ──────────────── */
     function onPointerDown(e) {
       if (e.pointerType === 'touch') return; /* touch handled natively */
+      /* Don't hijack clicks meant for the accordion trigger or any
+         interactive element inside a card */
+      if (e.target.closest('.competency-card__trigger, .competency-btn-clean, button, a')) return;
       isDragging  = true;
       dragStartX  = e.clientX;
       dragScrollX = grid.scrollLeft;
