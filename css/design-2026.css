@@ -65,6 +65,7 @@ body.homepage {
     --hero-depth: 0px;
     --hero-pointer-x: 0deg;
     --hero-pointer-y: 0deg;
+    --hero-cube-depth: clamp(4.5rem, 10vw, 8rem);
     position: absolute;
     z-index: -1;
     top: 50%;
@@ -108,12 +109,12 @@ body.homepage {
     -webkit-backdrop-filter: blur(4px);
 }
 
-.hero-3d-face--front  { transform: translateZ(8rem); }
-.hero-3d-face--back   { transform: rotateY(180deg) translateZ(8rem); }
-.hero-3d-face--right  { transform: rotateY(90deg) translateZ(8rem); }
-.hero-3d-face--left   { transform: rotateY(-90deg) translateZ(8rem); }
-.hero-3d-face--top    { transform: rotateX(90deg) translateZ(8rem); }
-.hero-3d-face--bottom { transform: rotateX(-90deg) translateZ(8rem); }
+.hero-3d-face--front  { transform: translateZ(var(--hero-cube-depth)); }
+.hero-3d-face--back   { transform: rotateY(180deg) translateZ(var(--hero-cube-depth)); }
+.hero-3d-face--right  { transform: rotateY(90deg) translateZ(var(--hero-cube-depth)); }
+.hero-3d-face--left   { transform: rotateY(-90deg) translateZ(var(--hero-cube-depth)); }
+.hero-3d-face--top    { transform: rotateX(90deg) translateZ(var(--hero-cube-depth)); }
+.hero-3d-face--bottom { transform: rotateX(-90deg) translateZ(var(--hero-cube-depth)); }
 
 .hero-3d-ring {
     position: absolute;
@@ -124,7 +125,7 @@ body.homepage {
     border: 1px solid rgba(210, 245, 181, 0.42);
     border-radius: 50%;
     box-shadow: 0 0 2.75rem rgba(143, 205, 84, 0.22), inset 0 0 2.75rem rgba(143, 205, 84, 0.12);
-    transform: rotateX(68deg) rotateZ(calc(var(--hero-scroll) * -1));
+    transform: rotateX(68deg) rotateZ(calc(0deg - var(--hero-scroll)));
     transition: transform 0.6s var(--d26-ease-out);
 }
 
@@ -1045,13 +1046,8 @@ html.d26-motion .fat-footer__cta-btn:hover::after {
         width: 27rem;
         height: 27rem;
         opacity: 0.55;
+        --hero-cube-depth: 4.5rem;
     }
     .hero-3d-orbit { transform: translate3d(6rem, var(--hero-depth), 0) rotateX(62deg) rotateY(var(--hero-scroll)); }
     .hero-3d-object { width: 9rem; }
-    .hero-3d-face--front  { transform: translateZ(4.5rem); }
-    .hero-3d-face--back   { transform: rotateY(180deg) translateZ(4.5rem); }
-    .hero-3d-face--right  { transform: rotateY(90deg) translateZ(4.5rem); }
-    .hero-3d-face--left   { transform: rotateY(-90deg) translateZ(4.5rem); }
-    .hero-3d-face--top    { transform: rotateX(90deg) translateZ(4.5rem); }
-    .hero-3d-face--bottom { transform: rotateX(-90deg) translateZ(4.5rem); }
 }
