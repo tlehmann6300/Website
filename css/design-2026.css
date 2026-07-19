@@ -67,6 +67,7 @@ body.homepage {
     --hero-pointer-y: 0deg;
     --hero-cube-depth: clamp(4.5rem, 10vw, 8rem);
     --hero-perspective: 1100px;
+    --hero-rotation-duration: 22s;
     position: absolute;
     z-index: -1;
     top: 50%;
@@ -98,7 +99,7 @@ body.homepage {
 }
 
 html.d26-motion .hero-3d-object {
-    animation: d26ObjectRotate 22s linear infinite;
+    animation: hero3dObjectRotate var(--hero-rotation-duration) linear infinite;
 }
 
 .hero-3d-face {
@@ -133,7 +134,7 @@ html.d26-motion .hero-3d-object {
     transition: transform 0.6s var(--d26-ease-out);
 }
 
-@keyframes d26ObjectRotate {
+@keyframes hero3dObjectRotate {
     from { transform: rotateZ(0deg) rotateY(0deg); }
     to { transform: rotateZ(360deg) rotateY(240deg); }
 }
