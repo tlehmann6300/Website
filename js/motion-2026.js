@@ -83,6 +83,11 @@
        ──────────────────────────────────────────────────────── */
     var heroContent = document.querySelector('#hero-section .container');
     var heroSection = document.getElementById('hero-section');
+    var heroScene = document.querySelector('.hero-3d-scene');
+    var HERO_SCROLL_ROTATION_DEG_MAX = 28;
+    var HERO_SCROLL_DEPTH_PX_MAX = -36;
+    var HERO_POINTER_X_DEG_MAX = 14;
+    var HERO_POINTER_Y_DEG_MAX = -10;
     var parallaxEls = [
         { el: document.querySelector('.competencies-orb-1'), speed: -0.06 },
         { el: document.querySelector('.competencies-orb-2'), speed: 0.05 },
@@ -109,6 +114,11 @@
             heroContent.style.transform =
                 'translateY(' + (y * 0.32).toFixed(1) + 'px) scale(' + (1 - p * 0.07).toFixed(4) + ')';
             heroContent.style.opacity = String(Math.max(1 - p * 1.15, 0));
+
+            if (heroScene) {
+                heroScene.style.setProperty('--hero-scroll', (p * HERO_SCROLL_ROTATION_DEG_MAX).toFixed(2) + 'deg');
+                heroScene.style.setProperty('--hero-depth', (p * HERO_SCROLL_DEPTH_PX_MAX).toFixed(1) + 'px');
+            }
         }
 
         /* Ambient-Orbs: gegenläufiger Parallax */
@@ -127,6 +137,26 @@
        3 · Pointer-Effekte (nur echte Maus, kein Touch)
        ──────────────────────────────────────────────────────── */
     if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+        if (heroScene && heroSection) {
+            var sceneFrame = null;
+
+            heroSection.addEventListener('pointermove', function (e) {
+                if (sceneFrame) return;
+                sceneFrame = requestAnimationFrame(function () {
+                    sceneFrame = null;
+                    var rect = heroSection.getBoundingClientRect();
+                    var x = (e.clientX - rect.left) / rect.width - 0.5;
+                    var y = (e.clientY - rect.top) / rect.height - 0.5;
+                    heroScene.style.setProperty('--hero-pointer-x', (x * HERO_POINTER_X_DEG_MAX).toFixed(2) + 'deg');
+                    heroScene.style.setProperty('--hero-pointer-y', (y * HERO_POINTER_Y_DEG_MAX).toFixed(2) + 'deg');
+                });
+            });
+
+            heroSection.addEventListener('pointerleave', function () {
+                heroScene.style.setProperty('--hero-pointer-x', '0deg');
+                heroScene.style.setProperty('--hero-pointer-y', '0deg');
+            });
+        }
 
         /* 3a · 3D-Tilt + Glanzlicht */
         var TILT_MAX = 5; /* Grad */
@@ -196,6 +226,12 @@
         if (heroContent) {
             heroContent.style.transform = '';
             heroContent.style.opacity = '';
+        }
+        if (heroScene) {
+            heroScene.style.removeProperty('--hero-scroll');
+            heroScene.style.removeProperty('--hero-depth');
+            heroScene.style.removeProperty('--hero-pointer-x');
+            heroScene.style.removeProperty('--hero-pointer-y');
         }
         parallaxEls.forEach(function (p) { p.el.style.transform = ''; });
     });
