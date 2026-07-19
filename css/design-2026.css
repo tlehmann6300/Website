@@ -66,6 +66,7 @@ body.homepage {
     --hero-pointer-x: 0deg;
     --hero-pointer-y: 0deg;
     --hero-cube-depth: clamp(4.5rem, 10vw, 8rem);
+    --hero-perspective: 1100px;
     position: absolute;
     z-index: -1;
     top: 50%;
@@ -73,7 +74,7 @@ body.homepage {
     width: min(54vw, 42rem);
     height: min(54vw, 42rem);
     pointer-events: none;
-    perspective: 1100px;
+    perspective: var(--hero-perspective);
     transform: translate3d(-50%, -50%, 0);
     will-change: transform;
 }

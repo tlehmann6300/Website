@@ -84,6 +84,10 @@
     var heroContent = document.querySelector('#hero-section .container');
     var heroSection = document.getElementById('hero-section');
     var heroScene = document.querySelector('.hero-3d-scene');
+    var HERO_SCROLL_ROTATION = 28;
+    var HERO_SCROLL_DEPTH = -36;
+    var HERO_POINTER_X = 14;
+    var HERO_POINTER_Y = -10;
     var parallaxEls = [
         { el: document.querySelector('.competencies-orb-1'), speed: -0.06 },
         { el: document.querySelector('.competencies-orb-2'), speed: 0.05 },
@@ -112,8 +116,8 @@
             heroContent.style.opacity = String(Math.max(1 - p * 1.15, 0));
 
             if (heroScene) {
-                heroScene.style.setProperty('--hero-scroll', (p * 28).toFixed(2) + 'deg');
-                heroScene.style.setProperty('--hero-depth', (p * -36).toFixed(1) + 'px');
+                heroScene.style.setProperty('--hero-scroll', (p * HERO_SCROLL_ROTATION).toFixed(2) + 'deg');
+                heroScene.style.setProperty('--hero-depth', (p * HERO_SCROLL_DEPTH).toFixed(1) + 'px');
             }
         }
 
@@ -143,8 +147,8 @@
                     var rect = heroSection.getBoundingClientRect();
                     var x = (e.clientX - rect.left) / rect.width - 0.5;
                     var y = (e.clientY - rect.top) / rect.height - 0.5;
-                    heroScene.style.setProperty('--hero-pointer-x', (x * 14).toFixed(2) + 'deg');
-                    heroScene.style.setProperty('--hero-pointer-y', (y * -10).toFixed(2) + 'deg');
+                    heroScene.style.setProperty('--hero-pointer-x', (x * HERO_POINTER_X).toFixed(2) + 'deg');
+                    heroScene.style.setProperty('--hero-pointer-y', (y * HERO_POINTER_Y).toFixed(2) + 'deg');
                 });
             });
 
