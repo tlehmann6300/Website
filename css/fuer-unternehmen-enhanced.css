@@ -1,0 +1,609 @@
+/*
+ * fuer-unternehmen-enhanced.css
+ * Design-Verbesserungen für fuer-unternehmen.html
+ * Betrifft: Hero, Service-Cards, Sektions-Übersichten, CTA, Timeline, Mobile
+ * Flip-Cards werden NICHT verändert.
+ *
+ * Breakpoints:
+ *   xs  < 480px   (sehr kleine Smartphones)
+ *   sm  480–767px (Smartphones)
+ *   md  768–991px (Tablets)
+ *   lg  992–1199px (große Tablets / kleines Desktop)
+ *   xl  ≥ 1200px  (Desktop)
+ */
+
+/* ============================================================
+   §1  HERO — Mobile-Optimierung & CTA-Verbesserungen
+   ============================================================ */
+
+/* Hero-Wave: auf Mobilgeräten flacher */
+@media (max-width: 575px) {
+    .hero-wave svg {
+        height: clamp(32px, 6vw, 56px);
+    }
+
+    /* CTA-Buttons stacken auf Mobilgeräten */
+    .hero-cta-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        padding: 0 1.5rem;
+    }
+
+    .hero-cta-row .btn,
+    .hero-cta-row .ethereal-button,
+    .page-hero-section .hero-btn-secondary {
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .page-hero-section .ibc-heading,
+    .page-hero-section h1 {
+        font-size: clamp(2rem, 9vw, 2.8rem) !important;
+        letter-spacing: -0.03em;
+    }
+
+    .page-hero-section .ibc-lead,
+    .page-hero-section .lead {
+        font-size: clamp(0.95rem, 4vw, 1.1rem) !important;
+        padding: 0 0.5rem;
+    }
+
+    .hero-eyebrow {
+        font-size: 0.72rem;
+        padding: 0.35rem 0.85rem;
+    }
+}
+
+/* ============================================================
+   §2  BERATUNGSFELD-ÜBERSICHTS-CARDS — Verbesserungen
+   ============================================================ */
+
+/* Karte erhält einen sanften Glow beim Hover */
+.beratungsfeld-card-link:hover .beratungsfeld-card {
+    box-shadow: 0 20px 48px rgba(32,35,74,0.14), 0 0 0 1px rgba(109,151,68,0.18);
+}
+
+/* Beschriftung immer vollständig sichtbar (kein Abschneiden) */
+.beratungsfeld-card__desc {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@media (max-width: 480px) {
+    .beratungsfeld-card {
+        min-height: auto;
+        padding: 1.5rem 1.25rem;
+    }
+    .beratungsfeld-card__icon {
+        width: 58px;
+        height: 58px;
+        min-width: 58px;
+        min-height: 58px;
+        font-size: 1.4rem;
+    }
+    .beratungsfeld-card__desc {
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================================================
+   §3  SERVICE-CARD-SEKTIONEN — komplettes Redesign
+   §3a Icons: Kreis-Container statt Gradient-Text
+   ============================================================ */
+
+/* Icon-Container: Kreis mit farbigem Hintergrund */
+#marketing .angebot-card i,
+#schulungen .angebot-card i,
+#business .angebot-card i,
+#digitalisierung .angebot-card i {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    font-size: 2.1rem !important;
+
+    /* Kreis-Hintergrund: sanfter grüner Gradient */
+    background: linear-gradient(
+        135deg,
+        rgba(109,151,68,0.13) 0%,
+        rgba(32,35,74,0.07) 100%
+    ) !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+
+    /* Icon-Farbe */
+    -webkit-text-fill-color: var(--ibc-green, #6D9744) !important;
+    color: var(--ibc-green, #6D9744) !important;
+
+    border: 2px solid rgba(109,151,68,0.22);
+    box-shadow: 0 4px 14px rgba(109,151,68,0.12);
+    margin-bottom: 1.5rem;
+    flex-shrink: 0;
+    transition:
+        background 0.4s cubic-bezier(0.16,1,0.3,1),
+        box-shadow 0.4s ease,
+        transform 0.4s cubic-bezier(0.16,1,0.3,1),
+        border-color 0.4s ease,
+        color 0.3s ease;
+}
+
+/* Hover: Icon dreht und füllt sich mit Farbe */
+#marketing .angebot-card:hover i,
+#schulungen .angebot-card:hover i,
+#business .angebot-card:hover i,
+#digitalisierung .angebot-card:hover i {
+    background: linear-gradient(
+        135deg,
+        var(--ibc-green, #6D9744) 0%,
+        #4a7a2e 100%
+    ) !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #fff !important;
+    color: #fff !important;
+    border-color: transparent;
+    box-shadow: 0 10px 28px rgba(109,151,68,0.38);
+    transform: scale(1.1) rotate(8deg) !important;
+}
+
+/* ============================================================
+   §3b  CARD-CONTAINER — verbesserte Optik & Hover-Effekte
+   ============================================================ */
+
+#marketing .angebot-card,
+#schulungen .angebot-card,
+#business .angebot-card,
+#digitalisierung .angebot-card {
+    /* Kein starker Top-Border mehr, stattdessen subtile linke Akzent-Linie */
+    border-top: none !important;
+    border-left: 4px solid transparent;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 3px 18px rgba(32,35,74,0.07);
+    padding: clamp(1.75rem, 3vw, 2.5rem) clamp(1.25rem, 2.5vw, 2rem);
+    transition:
+        transform 0.35s cubic-bezier(0.16,1,0.3,1),
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Dezente obere Akzent-Linie */
+#marketing .angebot-card::before,
+#schulungen .angebot-card::before,
+#business .angebot-card::before,
+#digitalisierung .angebot-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--ibc-green, #6D9744), var(--ibc-blue, #20234A));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    border-radius: 0 0 2px 2px;
+}
+#marketing .angebot-card:hover::before,
+#schulungen .angebot-card:hover::before,
+#business .angebot-card:hover::before,
+#digitalisierung .angebot-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Hover: Karte hebt sich + linke Akzentlinie */
+#marketing .angebot-card:hover,
+#schulungen .angebot-card:hover,
+#business .angebot-card:hover,
+#digitalisierung .angebot-card:hover {
+    transform: translateY(-7px) !important;
+    box-shadow: 0 20px 50px rgba(32,35,74,0.13) !important;
+    border-left: 4px solid var(--ibc-green, #6D9744) !important;
+}
+
+/* Card-Titel verbessert */
+#marketing .angebot-card h3,
+#schulungen .angebot-card h3,
+#business .angebot-card h3,
+#digitalisierung .angebot-card h3 {
+    font-size: clamp(1.05rem, 1.8vw, 1.2rem);
+    font-weight: 700;
+    color: var(--ibc-blue, #20234A);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    transition: color 0.3s ease;
+}
+
+#marketing .angebot-card:hover h3,
+#schulungen .angebot-card:hover h3,
+#business .angebot-card:hover h3,
+#digitalisierung .angebot-card:hover h3 {
+    color: var(--ibc-green, #6D9744) !important;
+}
+
+/* Card-Text */
+#marketing .angebot-card p,
+#schulungen .angebot-card p,
+#business .angebot-card p,
+#digitalisierung .angebot-card p {
+    font-size: 0.95rem;
+    color: #5a6275;
+    line-height: 1.68;
+    flex-grow: 1;
+}
+
+/* Shimmer-Overlay auf Hover */
+#marketing .angebot-card::after,
+#schulungen .angebot-card::after,
+#business .angebot-card::after,
+#digitalisierung .angebot-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(109,151,68,0.035) 0%,
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 0;
+}
+#marketing .angebot-card:hover::after,
+#schulungen .angebot-card:hover::after,
+#business .angebot-card:hover::after,
+#digitalisierung .angebot-card:hover::after {
+    opacity: 1;
+}
+
+/* Sicherstellen, dass Text über dem Overlay liegt */
+#marketing .angebot-card i,
+#marketing .angebot-card h3,
+#marketing .angebot-card p,
+#schulungen .angebot-card i,
+#schulungen .angebot-card h3,
+#schulungen .angebot-card p,
+#business .angebot-card i,
+#business .angebot-card h3,
+#business .angebot-card p,
+#digitalisierung .angebot-card i,
+#digitalisierung .angebot-card h3,
+#digitalisierung .angebot-card p {
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================================
+   §3c  SECTION-VISUAL-DESIGN — Hintergründe & Trennlinien
+   ============================================================ */
+
+/* Sektionsübergänge mit sanftem Gradient-Übergang */
+#marketing {
+    background: linear-gradient(180deg, #fff 0%, #fafbfc 100%);
+}
+#schulungen {
+    background: linear-gradient(180deg, #f3f7f0 0%, #eef5ea 100%);
+}
+#business {
+    background: linear-gradient(180deg, #fff 0%, #fafbfc 100%);
+}
+#digitalisierung {
+    background: linear-gradient(180deg, #f3f7f0 0%, #eef5ea 100%);
+}
+
+/* Sektion-Chip-Label: verbesserte Optik */
+.section-category-chip {
+    background: linear-gradient(135deg, rgba(109,151,68,0.12), rgba(32,35,74,0.06)) !important;
+    border: 1px solid rgba(109,151,68,0.25) !important;
+    box-shadow: 0 2px 8px rgba(109,151,68,0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.section-category-chip:hover {
+    box-shadow: 0 4px 12px rgba(109,151,68,0.18);
+}
+
+/* Sektion-Heading: konsistente Unterstreichung */
+#marketing .section-heading,
+#schulungen .section-heading,
+#business .section-heading,
+#digitalisierung .section-heading {
+    color: var(--ibc-blue, #20234A);
+    -webkit-text-fill-color: currentColor;
+}
+
+/* ============================================================
+   §4  INFOABEND / CTA — Verbesserungen
+   ============================================================ */
+
+/* Vertrauens-Chips unter dem Button */
+.infoabend-section .cta-trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 1;
+}
+.cta-trust-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.85rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50px;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.82);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+/* Backdrop-blur nur auf Geräten mit GPU-Unterstützung */
+@supports (backdrop-filter: blur(1px)) {
+    .cta-trust-chip {
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+    }
+}
+.cta-trust-chip i {
+    color: rgba(168,224,99,0.9);
+    font-size: 0.9em;
+}
+
+/* Mobile CTA-Bereich */
+@media (max-width: 575px) {
+    .infoabend-section {
+        padding: 4rem 1.25rem;
+    }
+    .infoabend-section .ibc-heading,
+    .infoabend-section h2 {
+        font-size: clamp(1.7rem, 7vw, 2.2rem) !important;
+    }
+    .infoabend-section .ibc-lead,
+    .infoabend-section p.ibc-lead {
+        font-size: 0.95rem;
+    }
+    .infoabend-section .btn.ethereal-button {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+}
+
+/* ============================================================
+   §5  TIMELINE — mobile Verbesserungen
+   ============================================================ */
+
+/* Karte: Fokus-Ring */
+.timeline-card-new:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(109,151,68,0.3), 0 6px 28px rgba(32,35,74,0.07);
+}
+
+/* Kontakt-Button im Timeline-Card füllt auf Mobile die volle Breite */
+@media (max-width: 575px) {
+    .timeline-btn-new {
+        width: 100%;
+        display: block;
+        text-align: center;
+    }
+    .timeline-section-new .container.mb-5 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* ============================================================
+   §6  MOBILE-RESPONSIVENESS — Alle Sektionen
+   ============================================================ */
+
+/* 2 Spalten auf Tablet, 1 Spalte auf kleinen Phones */
+@media (max-width: 767px) {
+    #marketing .row.g-4,
+    #schulungen .row.g-4,
+    #business .row.g-4,
+    #digitalisierung .row.g-4 {
+        gap: 1rem !important;
+    }
+
+    #marketing .angebot-card,
+    #schulungen .angebot-card,
+    #business .angebot-card,
+    #digitalisierung .angebot-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    #marketing .angebot-card i,
+    #schulungen .angebot-card i,
+    #business .angebot-card i,
+    #digitalisierung .angebot-card i {
+        width: 68px;
+        height: 68px;
+        font-size: 1.75rem !important;
+        margin-bottom: 1.1rem;
+    }
+
+    #marketing .angebot-card h3,
+    #schulungen .angebot-card h3,
+    #business .angebot-card h3,
+    #digitalisierung .angebot-card h3 {
+        font-size: 1.05rem;
+        margin-bottom: 0.6rem;
+    }
+
+    #marketing .angebot-card p,
+    #schulungen .angebot-card p,
+    #business .angebot-card p,
+    #digitalisierung .angebot-card p {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Auf sehr kleinen Bildschirmen: eine Spalte */
+    #marketing .col-md-6,
+    #schulungen .col-md-6,
+    #business .col-md-6,
+    #digitalisierung .col-md-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    /* CSS Grid: Icon links, Titel + Text rechts gestapelt */
+    #marketing .angebot-card,
+    #schulungen .angebot-card,
+    #business .angebot-card,
+    #digitalisierung .angebot-card {
+        display: grid;
+        grid-template-columns: 56px 1fr;
+        grid-template-rows: auto auto;
+        column-gap: 1rem;
+        align-items: start;
+        text-align: left;
+        padding: 1.25rem 1rem;
+        border-left: none;
+        border-top: 3px solid transparent !important;
+    }
+
+    #marketing .angebot-card::before,
+    #schulungen .angebot-card::before,
+    #business .angebot-card::before,
+    #digitalisierung .angebot-card::before {
+        display: none;
+    }
+
+    #marketing .angebot-card:hover,
+    #schulungen .angebot-card:hover,
+    #business .angebot-card:hover,
+    #digitalisierung .angebot-card:hover {
+        border-top: 3px solid var(--ibc-green, #6D9744) !important;
+        border-left: none !important;
+    }
+
+    /* Icon: erste Spalte, überspannt beide Reihen, vertikal zentriert */
+    #marketing .angebot-card i,
+    #schulungen .angebot-card i,
+    #business .angebot-card i,
+    #digitalisierung .angebot-card i {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        align-self: center;
+        width: 52px !important;
+        height: 52px !important;
+        min-width: 52px;
+        font-size: 1.4rem !important;
+        margin-bottom: 0;
+    }
+
+    /* Titel: zweite Spalte, erste Reihe */
+    #marketing .angebot-card h3,
+    #schulungen .angebot-card h3,
+    #business .angebot-card h3,
+    #digitalisierung .angebot-card h3 {
+        grid-column: 2;
+        grid-row: 1;
+        font-size: 1rem;
+        margin-top: 0.1rem;
+        margin-bottom: 0.3rem;
+    }
+
+    /* Text: zweite Spalte, zweite Reihe */
+    #marketing .angebot-card p,
+    #schulungen .angebot-card p,
+    #business .angebot-card p,
+    #digitalisierung .angebot-card p {
+        grid-column: 2;
+        grid-row: 2;
+        font-size: 0.875rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+
+    /* Shimmer-Overlay bleibt absolut positioniert (kein Grid-Flow nötig) */
+
+    /* Übersichtssektionen: etwas weniger Padding */
+    #marketing,
+    #schulungen,
+    #business,
+    #digitalisierung {
+        padding: 3rem 0;
+    }
+
+    #uebersicht {
+        padding: 3rem 0;
+    }
+}
+
+/* ============================================================
+   §7  DESKTOP-OPTIMIERUNGEN (≥1200px)
+   ============================================================ */
+
+@media (min-width: 1200px) {
+    /* Service-Cards: mehr Platz auf großen Screens */
+    #marketing .angebot-card,
+    #schulungen .angebot-card,
+    #business .angebot-card,
+    #digitalisierung .angebot-card {
+        padding: 2.75rem 2.25rem;
+    }
+
+    #marketing .angebot-card i,
+    #schulungen .angebot-card i,
+    #business .angebot-card i,
+    #digitalisierung .angebot-card i {
+        width: 88px;
+        height: 88px;
+        font-size: 2.25rem !important;
+    }
+}
+
+/* ============================================================
+   §8  BARRIEREFREIHEIT — reduced-motion
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    #marketing .angebot-card::before,
+    #schulungen .angebot-card::before,
+    #business .angebot-card::before,
+    #digitalisierung .angebot-card::before,
+    #marketing .angebot-card::after,
+    #schulungen .angebot-card::after,
+    #business .angebot-card::after,
+    #digitalisierung .angebot-card::after,
+    #marketing .angebot-card i,
+    #schulungen .angebot-card i,
+    #business .angebot-card i,
+    #digitalisierung .angebot-card i,
+    #marketing .angebot-card,
+    #schulungen .angebot-card,
+    #business .angebot-card,
+    #digitalisierung .angebot-card {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    #marketing .angebot-card:hover,
+    #schulungen .angebot-card:hover,
+    #business .angebot-card:hover,
+    #digitalisierung .angebot-card:hover {
+        transform: none !important;
+    }
+
+    #marketing .angebot-card:hover i,
+    #schulungen .angebot-card:hover i,
+    #business .angebot-card:hover i,
+    #digitalisierung .angebot-card:hover i {
+        transform: none !important;
+    }
+}

@@ -63,12 +63,9 @@
             if (lang === 'fr') return 'fr';  // Französisch
             if (lang === 'de') return 'de';  // Explizit Deutsch
             
-            // Kein URL-Parameter: Gespeicherte Sprachpräferenz aus localStorage prüfen.
-            // 'language' is the primary key written by this module (switchLanguage).
-            // 'preferred-language' is a legacy/secondary key used by title-i18n.js.
-            // Both are written together in switchLanguage() to keep them in sync.
+            // Kein URL-Parameter: Gespeicherte Sprachpräferenz aus localStorage prüfen
             try {
-                const stored = localStorage.getItem('language') || localStorage.getItem('preferred-language');
+                const stored = localStorage.getItem('language');
                 if (stored === 'en' || stored === 'fr' || stored === 'de') return stored;
             } catch (e) { /* localStorage nicht verfügbar (z.B. privater Modus) – weiter mit Cookie-Fallback */ }
             
@@ -141,11 +138,9 @@
         }
         async init() {
             this.translations = await this.loadTranslations();
-            // Always set up the toggle button so language switching works
-            // even when the translations file fails to load
-            this.setupToggleButton();
             if (this.translations && Object.keys(this.translations).length > 0) {
                 this.applyTranslations();
+                this.setupToggleButton();
                 this.updateAllLinks();
                 this.updateHtmlLang();
                 window.dispatchEvent(new CustomEvent('languageChanged', {
@@ -190,9 +185,6 @@
                 }
             });
         }
-        getCurrentLanguage() {
-            return this.currentLang || 'de';
-        }
         getTranslation(key) {
             if (this.translations && this.translations[key] && this.translations[key][this.currentLang]) {
                 return this.translations[key][this.currentLang];
@@ -203,27 +195,21 @@
             return `[Translation missing: ${key}]`;
         }
         setupToggleButton() {
-            const toggleBtn = document.querySelector('.lang-toggle, .language-selected, #langBtn');
-            const options = document.querySelectorAll('.lang-item, .language-option, .lang-option');
+            const toggleBtn = document.querySelector('.lang-toggle, .language-selected');
+            const options = document.querySelectorAll('.lang-item, .language-option');
             if (toggleBtn) {
                 this.updateButtonContent(toggleBtn);
             }
             this.updateActiveLanguageOption(options);
-            /* Only add click handlers if new-navbar.js hasn't already set them up.
-               new-navbar.js handles #langMenu .lang-option and .mobile-lang-option clicks
-               and calls ibcLanguageSwitcher.switchLanguage() from there. */
-            const hasNavbarLangElements = document.getElementById('langMenu') && document.getElementById('currentLang');
-            if (!hasNavbarLangElements) {
-                options.forEach((option) => {
-                    option.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const targetLang = option.getAttribute('data-lang');
-                        if (targetLang && targetLang !== this.currentLang) {
-                            this.switchLanguage(targetLang);
-                        }
-                    });
+            options.forEach((option) => {
+                option.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetLang = option.getAttribute('data-lang');
+                    if (targetLang && targetLang !== this.currentLang) {
+                        this.switchLanguage(targetLang);
+                    }
                 });
-            }
+            });
         }
         updateActiveLanguageOption(options) {
             options.forEach((option) => {
@@ -231,31 +217,29 @@
                 if (!optionLang) return;
                 if (optionLang === this.currentLang) {
                     option.setAttribute('aria-current', 'true');
-                    option.classList.add('active');
                 } else {
                     option.removeAttribute('aria-current');
-                    option.classList.remove('active');
                 }
             });
         }
         updateButtonContent(button) {
             const flagImg = button.querySelector('#activeFlag, .flag-img');
-            const currentLangLabel = document.getElementById('currentLang');
+            if (!flagImg) {
+                console.warn('No flag image found in language toggle button');
+                return;
+            }
             const flagUrls = {
-                'de': 'assets/img/flags/de.svg',
-                'en': 'assets/img/flags/gb.svg',
-                'fr': 'assets/img/flags/fr.svg'
+                'de': 'https://flagcdn.com/w80/de.png',
+                'en': 'https://flagcdn.com/w80/gb.png',
+                'fr': 'https://flagcdn.com/w80/fr.png'
             };
             const langNames = {
                 'de': 'Deutsch',
                 'en': 'English',
                 'fr': 'Français'
             };
-            if (flagImg && flagUrls[this.currentLang]) {
+            if (flagUrls[this.currentLang]) {
                 flagImg.src = flagUrls[this.currentLang];
-            }
-            if (currentLangLabel) {
-                currentLangLabel.textContent = this.currentLang.toUpperCase();
             }
             if (langNames[this.currentLang]) {
                 const currentLangName = langNames[this.currentLang];
@@ -271,15 +255,10 @@
                 newLang = 'de';
             }
             this.currentLang = newLang;
-            const options = document.querySelectorAll('.lang-item, .language-option, .lang-option');
+            const options = document.querySelectorAll('.lang-item, .language-option');
             this.updateActiveLanguageOption(options);
-            try {
-                localStorage.setItem('language', newLang);
-                localStorage.setItem('preferred-language', newLang);
-            } catch (e) { /* localStorage nicht verfügbar */ }
-            try {
-                document.cookie = `language=${newLang}; path=/; max-age=31536000; SameSite=Strict`;
-            } catch (e) { /* Cookies nicht verfügbar */ }
+            localStorage.setItem('language', newLang);
+            document.cookie = `language=${newLang}; path=/; max-age=31536000; SameSite=Strict`;
             const url = new URL(window.location.href);
             if (newLang === 'en' || newLang === 'fr') {
                 url.searchParams.set('lang', newLang);
@@ -287,21 +266,10 @@
                 url.searchParams.delete('lang');
             }
             window.history.replaceState({}, '', url.toString());
-            // If translations haven't loaded yet, wait for them then apply
-            if (!this.translations || Object.keys(this.translations).length === 0) {
-                this.loadTranslations().then(data => {
-                    this.translations = data;
-                    this.applyTranslations();
-                    this.updateAllLinks();
-                    this.updateHtmlLang();
-                    window.dispatchEvent(new CustomEvent('languageChanged', { detail: { language: newLang } }));
-                });
-                return;
-            }
             this.applyTranslations();
             this.updateAllLinks();
             this.updateHtmlLang();
-            const toggleBtn = document.querySelector('.lang-toggle, .language-selected, #langBtn');
+            const toggleBtn = document.querySelector('.lang-toggle, .language-selected');
             if (toggleBtn) {
                 this.updateButtonContent(toggleBtn);
             }
@@ -313,21 +281,17 @@
         updateAllLinks() {
             const links = document.querySelectorAll('a[href]');
             links.forEach(link => {
-                // Always work from the clean base path (strip any existing ?lang=)
-                const raw = link.getAttribute('href');
-                if (!raw ||
-                    raw.startsWith('http') ||
-                    raw.startsWith('#') ||
-                    raw.startsWith('mailto:') ||
-                    raw.startsWith('tel:')) return;
-                // Only .html internal links
-                const basePath = raw.split('?')[0];
-                if (!basePath.endsWith('.html')) return;
-                if (this.currentLang === 'en' || this.currentLang === 'fr') {
-                    link.setAttribute('href', basePath + '?lang=' + this.currentLang);
-                } else {
-                    // German = default: remove lang param
-                    link.setAttribute('href', basePath);
+                const href = link.getAttribute('href');
+                if (href &&
+                    !href.startsWith('http') &&
+                    !href.startsWith('#') &&
+                    !href.startsWith('mailto:') &&
+                    !href.startsWith('tel:') &&
+                    href.endsWith('.html')) {
+                    if (this.currentLang === 'en' || this.currentLang === 'fr') {
+                        const separator = href.includes('?') ? '&' : '?';
+                        link.setAttribute('href', href + separator + 'lang=' + this.currentLang);
+                    }
                 }
             });
         }

@@ -2,50 +2,12 @@
 document.addEventListener('DOMContentLoaded', function () {
     'use strict';
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-    /* ── Count-up animation for stats banner ── */
-    const countEls = document.querySelectorAll('.fu-stat__num[data-count]');
-    if (countEls.length) {
-        const animateCount = (el) => {
-            const target = parseInt(el.dataset.count, 10);
-            const span = el.querySelector('.fu-stat__count');
-            if (!span) return;
-            const duration = 1400;
-            const startTime = performance.now();
-            const easeOut = (t) => 1 - Math.pow(1 - t, 3);
-            const step = (now) => {
-                const elapsed = now - startTime;
-                const progress = Math.min(elapsed / duration, 1);
-                span.textContent = Math.round(easeOut(progress) * target);
-                if (progress < 1) requestAnimationFrame(step);
-                else span.textContent = target;
-            };
-            requestAnimationFrame(step);
-        };
-        if (prefersReducedMotion) {
-            countEls.forEach(el => {
-                const span = el.querySelector('.fu-stat__count');
-                if (span) span.textContent = el.dataset.count;
-            });
-        } else {
-            const countObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCount(entry.target);
-                        countObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 });
-            countEls.forEach(el => countObserver.observe(el));
-        }
-    }
+    const isSubpage = document.querySelector('.page-hero-section') !== null;
     const nav = document.querySelector('.navbar');
     const handleNavState = () => {
-        if (nav && window.scrollY > 50) {
-            nav.classList.remove('at-top');
+        if (nav && (isSubpage || window.scrollY > 50)) {
             nav.classList.add('scrolled');
         } else if (nav) {
-            nav.classList.add('at-top');
             nav.classList.remove('scrolled');
         }
     };

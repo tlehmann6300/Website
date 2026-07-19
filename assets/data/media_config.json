@@ -65,7 +65,11 @@
     "haug": "assets/img/whatsapp_bild_2025_05_29_um_20.37.29_5f346a9b.webp",
     "_kommentar_haug": "Profilbild von Haug",
     "schanbacher": "assets/img/schanbacher.webp",
-    "_kommentar_schanbacher": "Profilbild von Schanbacher"
+    "_kommentar_schanbacher": "Profilbild von Schanbacher",
+    "katz": "assets/img/katz.webp",
+    "_kommentar_katz": "Profilbild von Dozentin Tarah Katz",
+    "azarhoushang": "assets/img/azarhoushang.webp",
+    "_kommentar_azarhoushang": "Profilbild von Prof. Dr.-Ing. Bahman Azarhoushang"
   },
   "students": {
     "_kommentar": "Bilder von Events und Veranstaltungen für Studierende",

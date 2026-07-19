@@ -1,0 +1,587 @@
+/**
+ * Card Glassmorphism Design System – IBC Website
+ *
+ * Requirements:
+ * 1. Remove all visible border lines from Bootstrap cards
+ * 2. Glassmorphism layering: backdrop-filter blur(40px) with saturate(180%)
+ * 3. Fine 1px outline visible only on hover (light-incidence effect)
+ * 4. Magazine-inspired typography: character spacing + generous line-height
+ */
+
+/* ============================================================
+   CSS DESIGN TOKENS – Glass Card System
+   ============================================================ */
+:root {
+    /* Glass backgrounds */
+    --glass-card-bg:       rgba(255, 255, 255, 0.55);
+    --glass-card-bg-hover: rgba(255, 255, 255, 0.72);
+    --glass-card-bg-active: rgba(255, 255, 255, 0.75);
+
+    /* Extreme blur as specified */
+    --glass-card-blur: blur(40px);
+
+    /* Outline: transparent at rest, revealed on hover (light-incidence) */
+    --glass-card-outline-rest:  1px solid transparent;
+    --glass-card-outline-hover: 1px solid rgba(255, 255, 255, 0.78);
+
+    /* Layered box-shadows for depth */
+    --glass-card-shadow:
+        0 2px 8px  rgba(32, 35, 74, 0.04),
+        0 8px 32px rgba(32, 35, 74, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.50);
+    --glass-card-shadow-hover:
+        0 8px 20px  rgba(32, 35, 74, 0.08),
+        0 25px 50px rgba(32, 35, 74, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.80);
+
+    /* Magazine-style typography */
+    --card-heading-letter-spacing:   -0.02em;
+    --card-body-letter-spacing:       0.015em;
+    --card-uppercase-letter-spacing:  0.07em;  /* wider spacing for uppercase text */
+    --card-heading-line-height:       1.3;
+    --card-body-line-height:          1.85;
+    --card-title-line-height:         1.4;
+    --card-quote-line-height:         1.9;     /* extra air for pull-quote text */
+}
+
+/* ============================================================
+   BOOTSTRAP .card – global override
+   ============================================================ */
+.card {
+    background:              var(--glass-card-bg) !important;
+    backdrop-filter:         var(--glass-card-blur) saturate(180%) !important;
+    -webkit-backdrop-filter: var(--glass-card-blur) saturate(180%) !important;
+    border:                  none !important;
+    outline:                 var(--glass-card-outline-rest);
+    box-shadow:              var(--glass-card-shadow) !important;
+    transition:
+        transform     0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow    0.4s ease,
+        outline-color 0.3s ease,
+        background    0.3s ease !important;
+}
+
+.card:hover {
+    background:   var(--glass-card-bg-hover) !important;
+    box-shadow:   var(--glass-card-shadow-hover) !important;
+    outline:      var(--glass-card-outline-hover);
+}
+
+/* ============================================================
+   SERVICE / MEMBER / TEAM CARDS – style.css
+   ============================================================ */
+.service-card,
+.member-card,
+.team-card {
+    background:              var(--glass-card-bg) !important;
+    backdrop-filter:         var(--glass-card-blur) saturate(180%) !important;
+    -webkit-backdrop-filter: var(--glass-card-blur) saturate(180%) !important;
+    border:                  none !important;
+    outline:                 var(--glass-card-outline-rest);
+    box-shadow:              var(--glass-card-shadow) !important;
+    transition:
+        transform     0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow    0.4s ease,
+        outline-color 0.3s ease !important;
+}
+
+.service-card:hover,
+.member-card:hover,
+.team-card:hover {
+    box-shadow: var(--glass-card-shadow-hover) !important;
+    outline:    var(--glass-card-outline-hover);
+    border:     none !important;
+}
+
+.member-card h3 {
+    letter-spacing: var(--card-heading-letter-spacing) !important;
+    line-height:    var(--card-title-line-height) !important;
+}
+
+.member-card p {
+    letter-spacing: var(--card-body-letter-spacing) !important;
+    line-height:    var(--card-body-line-height) !important;
+}
+
+/* ============================================================
+   ANGEBOT CARDS (Offer Cards) – fuer-studierende.html
+   ============================================================ */
+.angebot-card {
+    background:              var(--glass-card-bg) !important;
+    backdrop-filter:         var(--glass-card-blur) saturate(180%) !important;
+    -webkit-backdrop-filter: var(--glass-card-blur) saturate(180%) !important;
+    border:                  none !important;
+    border-top:              none !important;
+    outline:                 var(--glass-card-outline-rest);
+    box-shadow:              var(--glass-card-shadow) !important;
+    transition:
+        transform     0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow    0.4s ease,
+        outline-color 0.3s ease !important;
+}
+
+.angebot-card:hover {
+    background:  var(--glass-card-bg-hover) !important;
+    box-shadow:  var(--glass-card-shadow-hover) !important;
+    outline:     var(--glass-card-outline-hover);
+    border:      none !important;
+    border-top:  none !important;
+}
+
+.angebot-card h3,
+.angebot-card h4 {
+    letter-spacing: var(--card-heading-letter-spacing);
+    line-height:    var(--card-heading-line-height);
+}
+
+.angebot-card p {
+    letter-spacing: var(--card-body-letter-spacing) !important;
+    line-height:    var(--card-body-line-height) !important;
+}
+
+/* ============================================================
+   BERATUNGSFELD CARDS (Consultation Area) – fuer-unternehmen.html
+   ============================================================ */
+.beratungsfeld-card {
+    background:              var(--glass-card-bg) !important;
+    backdrop-filter:         var(--glass-card-blur) saturate(180%) !important;
+    -webkit-backdrop-filter: var(--glass-card-blur) saturate(180%) !important;
+    border:                  none !important;
+    outline:                 var(--glass-card-outline-rest);
+    box-shadow:              var(--glass-card-shadow) !important;
+    transition:
+        transform     0.3s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow    0.3s ease,
+        outline-color 0.3s ease !important;
+}
+
+.beratungsfeld-card-link:hover .beratungsfeld-card,
+.beratungsfeld-card-link:focus-visible .beratungsfeld-card {
+    box-shadow: var(--glass-card-shadow-hover) !important;
+    border:     none !important;
+    outline:    var(--glass-card-outline-hover);
+}
+
+.beratungsfeld-card__title {
+    letter-spacing: var(--card-uppercase-letter-spacing) !important;
+    line-height:    var(--card-title-line-height) !important;
+}
+
+.beratungsfeld-card__desc {
+    letter-spacing: var(--card-body-letter-spacing);
+    line-height:    var(--card-body-line-height);
+}
+
+/* ============================================================
+   COMPETENCY CARDS – index.html, fuer-studierende.html, fuer-unternehmen.html
+   ============================================================ */
+.competency-card {
+    background:              var(--glass-card-bg) !important;
+    backdrop-filter:         var(--glass-card-blur) saturate(180%) !important;
+    -webkit-backdrop-filter: var(--glass-card-blur) saturate(180%) !important;
+    outline:                 var(--glass-card-outline-rest);
+    box-shadow:              var(--glass-card-shadow) !important;
+    transition:
+        transform     0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow    0.4s ease,
+        outline-color 0.3s ease !important;
+}
+
+.competency-card:hover {
+    box-shadow: var(--glass-card-shadow-hover) !important;
+    outline:    var(--glass-card-outline-hover);
+}
+
+.competency-card.is-active {
+    background: var(--glass-card-bg-active) !important;
+    outline:    1px solid rgba(109, 151, 68, 0.20);
+}
+
+.competency-card__title {
+    letter-spacing: var(--card-heading-letter-spacing) !important;
+    line-height:    var(--card-title-line-height) !important;
+}
+
+.competency-card__text {
+    letter-spacing: var(--card-body-letter-spacing) !important;
+    line-height:    var(--card-body-line-height) !important;
+}
+
+/* ============================================================
+   VALUE CARDS – index.html
+   ============================================================ */
+.value-card-new {
+    background:              var(--glass-card-bg) !important;
+    backdrop-filter:         var(--glass-card-blur) saturate(180%) !important;
+    -webkit-backdrop-filter: var(--glass-card-blur) saturate(180%) !important;
+    outline:                 var(--glass-card-outline-rest);
+    box-shadow:              var(--glass-card-shadow) !important;
+}
+
+.value-card-new:hover {
+    box-shadow: var(--glass-card-shadow-hover) !important;
+    outline:    var(--glass-card-outline-hover);
+}
+
+.value-card-new.is-active {
+    background: var(--glass-card-bg-active) !important;
+    border:     none !important;
+    outline:    1px solid rgba(109, 151, 68, 0.20);
+}
+
+.value-card__title {
+    letter-spacing: var(--card-heading-letter-spacing) !important;
+    line-height:    var(--card-title-line-height) !important;
+}
+
+.value-card__text {
+    letter-spacing: var(--card-body-letter-spacing) !important;
+    line-height:    var(--card-body-line-height) !important;
+}
+
+/* ============================================================
+   INFO GLASS CARDS – index.html
+   Already glass, update to blur(40px) and hover-only outline
+   ============================================================ */
+.info-glass-card {
+    backdrop-filter:         var(--glass-card-blur) saturate(180%) !important;
+    -webkit-backdrop-filter: var(--glass-card-blur) saturate(180%) !important;
+    border:                  none !important;
+    outline:                 var(--glass-card-outline-rest);
+    box-shadow:              var(--glass-card-shadow) !important;
+}
+
+.info-glass-card:hover,
+.info-glass-card:focus-within {
+    outline:    var(--glass-card-outline-hover);
+    box-shadow: var(--glass-card-shadow-hover) !important;
+    border:     none !important;
+}
+
+.info-glass-card h2,
+.info-glass-card h3 {
+    letter-spacing: var(--card-heading-letter-spacing) !important;
+    line-height:    var(--card-heading-line-height) !important;
+}
+
+.info-glass-card p {
+    letter-spacing: var(--card-body-letter-spacing) !important;
+    line-height:    var(--card-body-line-height) !important;
+}
+
+/* ============================================================
+   PARTNER CARDS – index.html, unser-netzwerk.html
+   ============================================================ */
+.partner-card {
+    background:              var(--glass-card-bg) !important;
+    backdrop-filter:         var(--glass-card-blur) saturate(180%) !important;
+    -webkit-backdrop-filter: var(--glass-card-blur) saturate(180%) !important;
+    border:                  none !important;
+    outline:                 var(--glass-card-outline-rest);
+    box-shadow:              var(--glass-card-shadow) !important;
+    transition:
+        transform     0.4s cubic-bezier(0.2, 1, 0.3, 1),
+        box-shadow    0.4s ease,
+        outline-color 0.3s ease !important;
+}
+
+.partner-card:hover {
+    box-shadow: var(--glass-card-shadow-hover) !important;
+    outline:    var(--glass-card-outline-hover);
+    border:     none !important;
+}
+
+/* ============================================================
+   TESTIMONIAL CARDS – index.html, fuer-studierende.html
+   ============================================================ */
+.testimonial-card {
+    background:              var(--glass-card-bg) !important;
+    backdrop-filter:         var(--glass-card-blur) saturate(180%) !important;
+    -webkit-backdrop-filter: var(--glass-card-blur) saturate(180%) !important;
+    border:                  none !important;
+    outline:                 var(--glass-card-outline-rest);
+    box-shadow:              var(--glass-card-shadow) !important;
+    transition:
+        transform     0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        box-shadow    0.4s ease,
+        outline-color 0.3s ease !important;
+}
+
+.testimonial-card:hover {
+    box-shadow: var(--glass-card-shadow-hover) !important;
+    outline:    var(--glass-card-outline-hover);
+}
+
+.testimonial-quote-text {
+    letter-spacing: var(--card-body-letter-spacing) !important;
+    line-height:    var(--card-quote-line-height) !important;
+}
+
+.testimonial-text {
+    letter-spacing: var(--card-body-letter-spacing) !important;
+    line-height:    var(--card-body-line-height) !important;
+}
+
+/* ============================================================
+   TIMELINE CARDS – fuer-unternehmen.html
+   ============================================================ */
+.timeline-card-new {
+    backdrop-filter:         var(--glass-card-blur) saturate(180%) !important;
+    -webkit-backdrop-filter: var(--glass-card-blur) saturate(180%) !important;
+    border:                  none !important;
+    outline:                 var(--glass-card-outline-rest);
+    box-shadow:              var(--glass-card-shadow) !important;
+}
+
+.timeline-card-new:hover,
+.timeline-item-new.active-focus .timeline-card-new {
+    box-shadow: var(--glass-card-shadow-hover) !important;
+    outline:    var(--glass-card-outline-hover);
+    border:     none !important;
+}
+
+.timeline-card-title-new {
+    letter-spacing: var(--card-heading-letter-spacing) !important;
+    line-height:    var(--card-title-line-height) !important;
+}
+
+.timeline-card-text-new {
+    letter-spacing: var(--card-body-letter-spacing) !important;
+    line-height:    var(--card-body-line-height) !important;
+}
+
+/* ============================================================
+   PROJECT CARDS – referenzen.html
+   ============================================================ */
+.project-card {
+    background:              var(--glass-card-bg) !important;
+    backdrop-filter:         var(--glass-card-blur) saturate(180%) !important;
+    -webkit-backdrop-filter: var(--glass-card-blur) saturate(180%) !important;
+    border:                  none !important;
+    outline:                 var(--glass-card-outline-rest);
+    box-shadow:              var(--glass-card-shadow) !important;
+    transition:
+        transform     0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow    0.4s ease,
+        outline-color 0.3s ease !important;
+}
+
+.project-card:hover {
+    box-shadow: var(--glass-card-shadow-hover) !important;
+    outline:    var(--glass-card-outline-hover);
+    border:     none !important;
+}
+
+.project-card h3 {
+    letter-spacing: var(--card-heading-letter-spacing) !important;
+    line-height:    var(--card-title-line-height) !important;
+}
+
+.project-card p {
+    letter-spacing: var(--card-body-letter-spacing) !important;
+    line-height:    var(--card-body-line-height) !important;
+}
+
+/* ============================================================
+   CTA CARDS – referenzen.html
+   ============================================================ */
+.cta-card {
+    border: none !important;
+    outline: var(--glass-card-outline-rest);
+}
+
+.cta-card:hover {
+    outline: var(--glass-card-outline-hover);
+    border:  none !important;
+}
+
+/* ============================================================
+   FLIP CARD FRONT FACE – kontakt.html, ueber-uns.html
+   ============================================================ */
+.flip-card-front {
+    background:              var(--glass-card-bg) !important;
+    backdrop-filter:         var(--glass-card-blur) saturate(180%) !important;
+    -webkit-backdrop-filter: var(--glass-card-blur) saturate(180%) !important;
+    border:                  none !important;
+    box-shadow:              var(--glass-card-shadow) !important;
+}
+
+/* ============================================================
+   MAGAZINE-STYLE GLOBAL TYPOGRAPHY ENHANCEMENTS
+   Applied to all card types for a premium, airy editorial feel
+   ============================================================ */
+
+/* Headings inside cards */
+.card h1, .card h2, .card h3, .card h4, .card h5, .card h6 {
+    letter-spacing: var(--card-heading-letter-spacing);
+    line-height:    var(--card-heading-line-height);
+}
+
+/* Body text inside cards */
+.card p {
+    letter-spacing: var(--card-body-letter-spacing);
+    line-height:    var(--card-body-line-height);
+}
+
+/* ============================================================
+   BENTO GRID LAYOUT SYSTEM
+   Desktop: 3-column grid; .featured spans 2 columns
+   Mobile:  all cards collapse to full width with inner-glow
+   ============================================================ */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+/* Featured card occupies the first two columns */
+.bento-grid .featured {
+    grid-column: span 2;
+}
+
+/* ============================================================
+   GLASS CARD – Premium Glassmorphism with Haptic Depth
+   backdrop-filter: blur(30px), asymmetric 1px outline (bright
+   top/left, dark bottom/right), inner-shadow layer that sweeps
+   on hover as if light is grazing across real glass
+   ============================================================ */
+.glass-card {
+    position:                relative;
+    background:              rgba(255, 255, 255, 0.10);
+    backdrop-filter:         blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border-radius:           1rem;
+    /* Asymmetric outline: bright on top/left (light source), dark on bottom/right (shadow side) */
+    border-top:              1px solid rgba(255, 255, 255, 0.45);
+    border-left:             1px solid rgba(255, 255, 255, 0.30);
+    border-bottom:           1px solid rgba(0, 0, 0, 0.15);
+    border-right:            1px solid rgba(0, 0, 0, 0.10);
+    box-shadow:
+        /* Outer ambient shadow */
+        0 4px 24px  rgba(0, 0, 0, 0.18),
+        /* Mid-range depth */
+        0 1px 6px   rgba(0, 0, 0, 0.10),
+        /* Top-edge inner light reflection */
+        inset 0  1px 0 rgba(255, 255, 255, 0.22),
+        /* Bottom-edge inner dark refraction */
+        inset 0 -1px 0 rgba(0, 0, 0, 0.09);
+    transition:
+        transform     0.4s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow    0.4s ease,
+        border-color  0.3s ease,
+        background    0.3s ease;
+    overflow: hidden;
+}
+
+/* Inner-shadow light layer – simulates light refracting through glass.
+   pointer-events: none ensures clicks always reach card content.
+   z-index: 1 layers the sheen above background but below any
+   positioned child element (add position: relative; z-index: 2 to
+   children that must appear above this overlay). */
+.glass-card::after {
+    content:        '';
+    position:       absolute;
+    inset:          0;
+    border-radius:  inherit;
+    background:     linear-gradient(
+                        135deg,
+                        rgba(255, 255, 255, 0.09) 0%,
+                        rgba(255, 255, 255, 0.00) 55%
+                    );
+    pointer-events: none;
+    transition:     background 0.4s ease;
+    z-index:        1;
+}
+
+.glass-card:hover {
+    background:          rgba(255, 255, 255, 0.16);
+    border-top-color:    rgba(255, 255, 255, 0.62);
+    border-left-color:   rgba(255, 255, 255, 0.44);
+    border-bottom-color: rgba(0, 0, 0, 0.18);
+    border-right-color:  rgba(0, 0, 0, 0.13);
+    box-shadow:
+        0 8px 40px  rgba(0, 0, 0, 0.22),
+        0 2px 10px  rgba(0, 0, 0, 0.12),
+        inset 0  1px 0 rgba(255, 255, 255, 0.40),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+/* On hover: light sweeps more intensely from the top-left corner */
+.glass-card:hover::after {
+    background: linear-gradient(
+        125deg,
+        rgba(255, 255, 255, 0.22) 0%,
+        rgba(255, 255, 255, 0.07) 45%,
+        rgba(255, 255, 255, 0.00) 65%
+    );
+}
+
+/* Headings inside .glass-card */
+.glass-card h1,
+.glass-card h2,
+.glass-card h3,
+.glass-card h4,
+.glass-card h5,
+.glass-card h6 {
+    letter-spacing: var(--card-heading-letter-spacing);
+    line-height:    var(--card-heading-line-height);
+}
+
+/* Body text inside .glass-card */
+.glass-card p {
+    letter-spacing: var(--card-body-letter-spacing);
+    line-height:    var(--card-body-line-height);
+}
+
+/* ============================================================
+   BENTO GRID – MOBILE RESPONSIVE
+   All cards → 100% width; inner-glow creates tactile depth
+   ============================================================ */
+@media (max-width: 767.98px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* Reset featured span so it also fills full width */
+    .bento-grid .featured {
+        grid-column: span 1;
+    }
+
+    /* Inner-glow on mobile to compensate for lost depth cues */
+    .glass-card {
+        box-shadow:
+            0 2px 12px  rgba(0, 0, 0, 0.14),
+            /* Warm inner-glow: subtle luminous edge */
+            inset 0 0 18px rgba(255, 255, 255, 0.08),
+            inset 0  1px 0  rgba(255, 255, 255, 0.22),
+            inset 0 -1px 0  rgba(0, 0, 0, 0.08);
+    }
+
+    .glass-card:hover {
+        transform: none;
+    }
+}
+
+/* ============================================================
+   REDUCED MOTION – respect accessibility preference
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+    .card,
+    .angebot-card,
+    .beratungsfeld-card,
+    .competency-card,
+    .value-card-new,
+    .info-glass-card,
+    .partner-card,
+    .testimonial-card,
+    .timeline-card-new,
+    .project-card,
+    .member-card,
+    .team-card,
+    .service-card,
+    .glass-card {
+        transition: none !important;
+    }
+}

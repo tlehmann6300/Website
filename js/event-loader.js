@@ -20,7 +20,7 @@
         }
         async loadEventConfig() {
             try {
-                const response = await fetch('assets/data/startup-event-config.json', { cache: 'no-cache' });
+                const response = await fetch('assets/data/startup-event-config.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -34,26 +34,12 @@
         detectLanguage() {
             const urlParams = new URLSearchParams(window.location.search);
             const langParam = urlParams.get('lang');
-            if (langParam === 'en' || langParam === 'fr' || langParam === 'de') {
-                this.currentLang = langParam;
-                return;
+            if (langParam === 'en') {
+                this.currentLang = 'en';
+            } else {
+                const htmlLang = document.documentElement.getAttribute('lang');
+                this.currentLang = (htmlLang === 'en') ? 'en' : 'de';
             }
-            try {
-                const stored = localStorage.getItem('language') || localStorage.getItem('preferred-language');
-                if (stored === 'en' || stored === 'fr' || stored === 'de') {
-                    this.currentLang = stored;
-                    return;
-                }
-            } catch (e) { /* localStorage unavailable */ }
-            const htmlLang = (document.documentElement.getAttribute('lang') || 'de').slice(0, 2).toLowerCase();
-            this.currentLang = (htmlLang === 'en' || htmlLang === 'fr') ? htmlLang : 'de';
-        }
-        pickLocalized(key) {
-            const cfg = this.eventConfig || {};
-            const tryKey = key + '_' + this.currentLang;
-            return (typeof cfg[tryKey] === 'string' && cfg[tryKey].length)
-                ? cfg[tryKey]
-                : (cfg[key + '_de'] || '');
         }
         updateEventSection() {
             if (!this.eventConfig) {
@@ -72,41 +58,23 @@
         updateEventDate() {
             const dateElement = document.getElementById('dynamic-event-date');
             if (!dateElement) return;
-            dateElement.textContent = this.pickLocalized('date');
+            const dateText = this.currentLang === 'en'
+                ? this.eventConfig.date_en
+                : this.eventConfig.date_de;
+            dateElement.textContent = dateText;
         }
         updateEventLocation() {
             const locationElement = document.getElementById('dynamic-event-location');
             if (!locationElement) return;
-            locationElement.textContent = this.pickLocalized('location');
+            const locationText = this.currentLang === 'en'
+                ? this.eventConfig.location_en
+                : this.eventConfig.location_de;
+            locationElement.textContent = locationText;
         }
         updateEventLink() {
             const linkElement = document.getElementById('dynamic-event-link');
             if (!linkElement) return;
-
-            const cfg = this.eventConfig || {};
-            const candidate = (typeof cfg.signupLink === 'string' && cfg.signupLink.length)
-                ? cfg.signupLink
-                : cfg.registrationLink;
-
-            const isValidHttps = typeof candidate === 'string'
-                && /^https:\/\/[^\s<>"']+$/i.test(candidate);
-
-            // Two flags: explicit per-button toggle (showSignupButton) AND link sanity
-            const showButton = cfg.showSignupButton === true && isValidHttps;
-
-            if (showButton) {
-                linkElement.setAttribute('href', candidate);
-                linkElement.removeAttribute('hidden');
-                linkElement.setAttribute('aria-hidden', 'false');
-                // Localized aria-label: "Zur Anmeldung — opens in new tab"
-                const label = (linkElement.querySelector('.infoabend-cta__label') || {}).textContent || 'Zur Anmeldung';
-                linkElement.setAttribute('aria-label', label);
-            } else {
-                linkElement.setAttribute('hidden', '');
-                linkElement.setAttribute('aria-hidden', 'true');
-                linkElement.setAttribute('href', '#');
-                linkElement.removeAttribute('aria-label');
-            }
+            linkElement.setAttribute('href', this.eventConfig.registrationLink);
         }
         hideEventSection() {
             const section = document.getElementById('infoabend-section');

@@ -35,3 +35,9 @@ yarn-debug.log*
 # Build output
 dist/
 build/
+
+# Team-Originalfotos (RAW-Material, nicht fuers Web)
+assets/img/team/originals/
+
+# Node
+node_modules/

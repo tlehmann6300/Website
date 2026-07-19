@@ -1,0 +1,279 @@
+/* ============================================================
+   IBC DESIGN REFRESH
+   Konsolidierter Polish-Layer – wird auf allen Seiten als
+   LETZTES Stylesheet geladen und vereinheitlicht das Design:
+
+   1. Tokens          – gemeinsame Verlaufs-/Schatten-Variablen
+   2. Typografie      – Silbentrennung, Umbrüche, Balance
+   3. Heroes          – ein Marken-Verlauf für alle Unterseiten
+   4. Buttons & CTAs  – Kontrast und Zustände
+   5. Karten          – Radius, Schatten, Hover
+   6. Sektionen       – Anker-Offsets, Kennzahlen-Reihe
+   7. Navigation      – Hover-Indikator
+   8. Floating CTA    – kompakt und unaufdringlich
+   ============================================================ */
+
+/* ── 1. TOKENS ─────────────────────────────────────────────── */
+:root {
+    /* Einheitlicher Marken-Verlauf für alle Unterseiten-Heroes:
+       sattes Grün oben links → tiefes Navy unten rechts */
+    --dr-hero-gradient:
+        radial-gradient(120% 130% at 88% 115%, rgba(21, 23, 48, 0.94) 0%, rgba(21, 23, 48, 0.42) 42%, transparent 68%),
+        radial-gradient(75% 85% at 6% -12%, rgba(125, 179, 86, 0.5) 0%, transparent 58%),
+        linear-gradient(150deg, #4e7534 0%, #3b5d28 52%, #26411d 100%);
+    --dr-shadow-card: 0 6px 24px -8px rgba(32, 35, 74, 0.1), 0 2px 6px rgba(32, 35, 74, 0.05);
+    --dr-shadow-card-hover: 0 22px 44px -12px rgba(32, 35, 74, 0.18), 0 4px 12px rgba(32, 35, 74, 0.06);
+    --dr-green-cta: linear-gradient(135deg, #7db356 0%, #557f36 100%);
+}
+
+/* ── 2. TYPOGRAFIE ─────────────────────────────────────────── */
+/* Keine automatische Silbentrennung in Überschriften und
+   Karten-Titeln ("Informatio-nen", "Imageana-lyse" etc.).
+   text-wrap: balance sorgt für gleichmäßige Zeilen. */
+h1, h2, h3, h4, h5, h6,
+.ibc-heading,
+.competency-card__title,
+.beratungsfeld-card__title,
+.timeline-card-title-new,
+.flip-card-front h3,
+.flip-card-back h3,
+.mission-pillar__title {
+    -webkit-hyphens: manual !important;
+    -ms-hyphens: manual !important;
+    hyphens: manual !important;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+}
+
+/* Fließtext: ausgewogene letzte Zeilen, keine Trennstriche
+   mitten in kurzen Karten-Texten */
+.ibc-lead,
+.competency-card__text,
+.beratungsfeld-card__desc {
+    -webkit-hyphens: manual !important;
+    hyphens: manual !important;
+    text-wrap: pretty;
+}
+
+/* Zu enge Laufweite der Hero-Headlines entschärfen */
+.page-hero-section h1,
+.page-hero-section .ibc-heading {
+    letter-spacing: -0.02em !important;
+    text-shadow: 0 2px 18px rgba(0, 0, 0, 0.28);
+}
+
+/* ── 3. HEROES ─────────────────────────────────────────────── */
+/* Ein Verlauf für alle Unterseiten – ersetzt die bisher
+   unterschiedlichen Grün-/Blau-Varianten pro Seite. */
+.page-hero-section {
+    background: var(--dr-hero-gradient) !important;
+    animation: none !important;
+    padding-top: clamp(7rem, 12vw, 9.5rem) !important;
+    padding-bottom: clamp(5.5rem, 9vw, 8rem) !important;
+}
+
+/* Wellen-Abschluss auf allen Unterseiten (Markup teils neu ergänzt) */
+.page-hero-section .hero-wave {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    z-index: 2;
+}
+.page-hero-section .hero-wave svg {
+    display: block;
+    width: 100%;
+    height: clamp(48px, 7vw, 96px);
+}
+
+/* Eyebrow/Badge über der Headline vereinheitlichen */
+.page-hero-section .hero-eyebrow,
+.page-hero-section .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.24) !important;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    border-radius: 999px;
+    padding: 0.45em 1.15em !important;
+    font-size: 0.78rem !important;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.92) !important;
+    text-shadow: none;
+}
+
+/* Kennzahlen-Streifen im Hero (unser-netzwerk) ans neue Grün anpassen */
+.page-hero-section .hero-stat-value {
+    color: #fff;
+}
+
+/* Mobile: lange Komposita ("Unternehmensberatung") ohne
+   hässlichen Umbruch unterbringen */
+@media (max-width: 480px) {
+    .page-hero-section h1,
+    .page-hero-section .ibc-heading,
+    #hero-section h1,
+    #hero-section .ibc-heading {
+        font-size: clamp(1.85rem, 8vw, 2.4rem) !important;
+    }
+}
+
+/* ── 4. BUTTONS & CTAS ─────────────────────────────────────── */
+/* Primär-CTA im Hero: Weiß auf Verlauf = maximaler Kontrast */
+.page-hero-section .btn.ethereal-button {
+    background: #ffffff !important;
+    color: var(--ibc-blue, #20234A) !important;
+    box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.35);
+}
+.page-hero-section .btn.ethereal-button span {
+    color: var(--ibc-blue, #20234A);
+}
+.page-hero-section .btn.ethereal-button::after {
+    display: none;
+}
+.page-hero-section .btn.ethereal-button::before {
+    background: linear-gradient(120deg, transparent, rgba(32, 35, 74, 0.08), transparent);
+}
+.page-hero-section .btn.ethereal-button:hover {
+    box-shadow: 0 14px 34px -8px rgba(0, 0, 0, 0.45);
+    color: var(--ibc-blue, #20234A) !important;
+}
+
+/* Sekundär-CTA im Hero: Glas-Optik mit klarer Kante */
+.page-hero-section .hero-btn-secondary {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.55) !important;
+    color: #fff !important;
+    border-radius: 50px;
+    font-weight: 600;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+.page-hero-section .hero-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.22) !important;
+    transform: translateY(-2px);
+}
+
+/* Buttons auf dunklen Bändern (Infoabend, Footer-CTA, Alumni …):
+   bisher Navy-auf-Navy und kaum sichtbar → sattes Grün mit Ring */
+.infoabend-section .btn.ethereal-button,
+.cta-section-students .btn.ethereal-button,
+.cta-section-companies .btn.ethereal-button,
+.alumni-section .btn.ethereal-button,
+.fat-footer__cta .ethereal-button {
+    background: var(--dr-green-cta) !important;
+    box-shadow: 0 10px 28px -6px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    color: #fff !important;
+}
+.infoabend-section .btn.ethereal-button:hover,
+.cta-section-students .btn.ethereal-button:hover,
+.cta-section-companies .btn.ethereal-button:hover,
+.alumni-section .btn.ethereal-button:hover,
+.fat-footer__cta .ethereal-button:hover {
+    box-shadow: 0 14px 34px -6px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+/* ── 5. KARTEN ─────────────────────────────────────────────── */
+/* Einheitliche Fläche: gleicher Radius, gleiche Schatten,
+   gleiche, ruhige Hover-Reaktion */
+.angebot-card,
+.stat-card,
+.beratungsfeld-card,
+.partner-card,
+.info-glass-card,
+.timeline-card-new,
+.contact-card {
+    border-radius: var(--border-radius-card, 24px);
+    box-shadow: var(--dr-shadow-card);
+    border: 1px solid rgba(32, 35, 74, 0.06);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 100%;
+}
+.angebot-card:hover,
+.stat-card:hover,
+.beratungsfeld-card:hover,
+.partner-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--dr-shadow-card-hover);
+}
+@media (prefers-reduced-motion: reduce) {
+    .angebot-card:hover,
+    .stat-card:hover,
+    .beratungsfeld-card:hover,
+    .partner-card:hover {
+        transform: none;
+    }
+}
+
+/* ── 6. SEKTIONEN ──────────────────────────────────────────── */
+/* Anker-Sprünge landen nicht mehr unter der fixierten Navbar */
+[id] {
+    scroll-margin-top: 110px;
+}
+
+/* Kennzahlen-Reihe (ueber-uns): stabiles 3er-Raster statt
+   2+1-Umbruch bei mittleren Breiten */
+@media (min-width: 481px) {
+    .mission-stats-row {
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: start;
+        justify-items: center;
+    }
+    .mission-stat-divider {
+        display: none;
+    }
+    .mission-stat__label {
+        white-space: normal;
+        text-align: center;
+    }
+}
+
+/* ── 7. NAVIGATION ─────────────────────────────────────────── */
+/* Dezenter Hover-/Aktiv-Indikator unter den Nav-Links */
+.navbar .nav-link {
+    position: relative;
+}
+.navbar .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 2px;
+    width: 0;
+    height: 2px;
+    border-radius: 1px;
+    background: var(--ibc-green, #6D9744);
+    transform: translateX(-50%);
+    transition: width 0.25s ease;
+}
+.navbar .nav-link:hover::after,
+.navbar .nav-link:focus-visible::after,
+.navbar .nav-link.active::after {
+    width: 55%;
+}
+
+/* ── 8. FLOATING CTA ───────────────────────────────────────── */
+/* Kompakter, damit weniger Inhalt verdeckt wird */
+#mobile-sticky-cta {
+    max-width: 280px;
+}
+#mobile-sticky-cta .mobile-cta-inner {
+    padding: 0.85rem 1rem 1rem;
+}
+#mobile-sticky-cta .mobile-cta-sub {
+    display: none;
+}
+#mobile-sticky-cta .mobile-cta-tagline {
+    margin-bottom: 0.5rem;
+}

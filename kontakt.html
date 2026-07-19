@@ -2,9 +2,6 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <script>
-    (function(){var t=localStorage.getItem('theme')||localStorage.getItem('ibc-theme');var d=(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':t;if(d==='dark'||d==='light')document.documentElement.setAttribute('data-theme',d);})();
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kontakt | IBC Furtwangen jetzt anfragen</title>
@@ -12,13 +9,6 @@
         content="Kontaktieren Sie IBC Furtwangen für Ihr Projekt! Schnelle Antwort garantiert. Adresse, E-Mail & Kontaktformular – wir freuen uns auf Ihre Anfrage.">
     <meta name="keywords" content="Kontakt, Unternehmensberatung, Furtwangen, HFU, Adresse, E-Mail">
     <meta property="og:type" content="website">
-    <meta name="theme-color" content="#20234A" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#6D9744" media="(prefers-color-scheme: light)">
-    <meta property="og:locale" content="de_DE">
-    <meta property="og:site_name" content="IBC Furtwangen — Institut für Business Consulting e.V.">
-    <meta name="format-detection" content="telephone=no">
-    <link rel="canonical" href="https://business-consulting.de/kontakt.html">
-    <meta name="robots" content="index, follow">
     <meta property="og:url" content="https://business-consulting.de/kontakt.html">
     <meta property="og:title" content="Kontakt | IBC Furtwangen jetzt anfragen">
     <meta property="og:description" content="Kontaktieren Sie IBC Furtwangen für Ihr Projekt! Schnelle Antwort garantiert. Adresse, E-Mail & Kontaktformular – wir freuen uns auf Ihre Anfrage.">
@@ -32,7 +22,18 @@
     <link rel="alternate" hreflang="en" href="https://business-consulting.de/kontakt.html?lang=en">
     <link rel="alternate" hreflang="fr" href="https://business-consulting.de/kontakt.html?lang=fr">
     <link rel="alternate" hreflang="x-default" href="https://business-consulting.de/kontakt.html">
-
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://www.googletagmanager.com">
+    <link rel="preconnect" href="https://www.google.com">
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+    <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/utility-golden.css">
+    <link rel="stylesheet" href="css/adaptive-typography.css">
+    <link rel="stylesheet" href="css/kontakt.css">
+    <link rel="stylesheet" href="css/send-button.css">
     <link rel="icon" href="assets/img/cropped_maskottchen_32x32.webp" type="image/webp" sizes="32x32" />
     <link rel="icon" href="assets/img/cropped_maskottchen_192x192.webp" type="image/webp" sizes="192x192" />
     <link rel="apple-touch-icon" href="assets/img/cropped_maskottchen_180x180.webp" />
@@ -69,649 +70,320 @@
         }
     }
     </script>
-
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="preload" href="fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="fonts/inter-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="css/fonts.css">
-    <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/wcag-accessibility.css">
     <link rel="stylesheet" href="css/mobile-first.css">
+    <link rel="stylesheet" href="css/card-glassmorphism.css">
+    <link rel="stylesheet" href="css/design-effects.css">
+    <link rel="stylesheet" href="css/ui-refactoring.css">
+    <link rel="stylesheet" href="css/responsive-improvements.css">
     <link rel="stylesheet" href="css/mobile-animations.css">
-    <link rel="stylesheet" href="css/wcag-accessibility.css">
-    <link rel="stylesheet" href="css/enhancements.css">
-    <link rel="stylesheet" href="css/pages.css">
-    <link rel="stylesheet" href="css/premium-redesign.css">
-    <link rel="stylesheet" href="css/ibc-improvements.css">
-    <link href="css/new-navbar.css" rel="stylesheet">
-    <link href="css/ibc-design-v3.css" rel="stylesheet">
-    <link href="css/ibc-buttons.css" rel="stylesheet">
-    <link href="css/ibc-updates-2025.css" rel="stylesheet">
-    <link href="css/ibc-design-v2.css" rel="stylesheet">
-    <link href="css/kontakt-v3.css" rel="stylesheet">
-    <link href="css/page-redesign.css" rel="stylesheet">
-
-    <!-- Final polish layer (loaded last) -->
-    <link rel="stylesheet" href="css/ibc-2026-polish.css">
-    <link rel="stylesheet" href="css/site-fixes.css">
+    <link rel="stylesheet" href="css/kontakt-improvements.css">
 </head>
-<body class="page-contact">
-
-<div class="scroll-progress" id="scrollProgress"></div>
-    <!-- Theme Transition Kreis -->
-    <div class="theme-transition" id="themeTransition"></div>
-    <!-- Navigation -->
-    <nav class="navbar at-top" id="navbar">
-        <div class="nav-container">
-            <!-- Logo: NUR BILD (ibc_logo_original.webp) -->
-            <a href="index.html" class="logo magnetic">
-                <div class="logo-wrapper">
-                    <img src="assets/img/ibc_logo_original_navbar.webp" alt="IBC Logo" width="75" height="75">
-                </div>
+<body>
+    <nav class="navbar navbar-expand-lg" aria-label="Hauptnavigation" role="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="index.html" aria-label="Zur Startseite">
+                <img src="assets/img/ibc_logo_original_navbar.webp" alt="IBC Logo" class="navbar-logo">
             </a>
-            <!-- Desktop Navigation -->
-            <div class="desktop-nav">
-                <ul class="nav-links">
-                    <li class="nav-item"><a href="index.html" class="nav-link" data-page="index.html" data-i18n="nav-home">Startseite</a>
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#mainNav"
+                    aria-controls="mainNav"
+                    aria-expanded="false"
+                    aria-label="Hauptmenü öffnen"
+                    data-i18n-aria="navbar-toggle">
+                <span class="toggler-icon" aria-hidden="true">
+                    <span class="toggler-bar"></span>
+                    <span class="toggler-bar"></span>
+                    <span class="toggler-bar"></span>
+                </span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center" role="menubar">
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="fuer-studierende.html" role="menuitem" data-i18n="nav-students">Für Studierende</a>
                     </li>
-                    <li class="nav-item"><a href="fuer-studierende.html" class="nav-link"
-                            data-page="fuer-studierende.html" data-i18n="nav-for-students">Für Studierende</a></li>
-                    <li class="nav-item"><a href="fuer-unternehmen.html" class="nav-link"
-                            data-page="fuer-unternehmen.html" data-i18n="nav-for-companies">Für Unternehmen</a></li>
-                    <li class="nav-item"><a href="ueber-uns.html" class="nav-link" data-page="ueber-uns.html" data-i18n="nav-about-us">Über uns</a></li>
-                    <li class="nav-item"><a href="unser-netzwerk.html" class="nav-link"
-                            data-page="unser-netzwerk.html" data-i18n="nav-link-network">Netzwerk</a></li>
-                    <li class="nav-item"><a href="referenzen.html" class="nav-link"
-                            data-page="referenzen.html" data-i18n="nav-references">Referenzen</a></li>
-                    <li class="nav-item"><a href="kontakt.html" class="nav-link" data-page="kontakt.html" data-i18n="nav-contact">Kontakt</a>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="fuer-unternehmen.html" role="menuitem" data-i18n="nav-companies">Für Unternehmen</a>
                     </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="ueber-uns.html" role="menuitem" data-i18n="nav-about">Über uns</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="unser-netzwerk.html" role="menuitem" data-i18n="nav-network">Unser Netzwerk</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="referenzen.html" role="menuitem" data-i18n="nav-references">Referenzen</a>
+                    </li>
+                    <li class="nav-item" role="none">
+                        <a class="nav-link" href="kontakt.html" role="menuitem" data-i18n="nav-contact">Kontakt</a>
+                    </li>
+                    <li class="nav-item dropdown ms-lg-3" role="none">
+                        <button class="lang-toggle dropdown-toggle"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                                aria-haspopup="true"
+                                aria-label="Sprache wählen"
+                                data-i18n-aria="navbar-lang-toggle">
+                            <img id="activeFlag" src="assets/img/flags/de.svg" alt="" class="flag-img" aria-hidden="true">
+                            <span class="d-lg-none ms-2" data-i18n="navbar-lang-change">Sprache ändern</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end lang-dropdown" role="menu" aria-label="Sprachauswahl" data-i18n-aria="navbar-lang-menu">
+                            <li role="none">
+                                <a class="lang-item"
+                                   href="?lang=de"
+                                   role="menuitem"
+                                   data-flag="assets/img/flags/de.svg"
+                                   data-lang="de"
+                                   aria-current="true"
+                                   aria-label="Deutsch">
+                                    <img src="assets/img/flags/de.svg" alt="" class="flag-img" aria-hidden="true">
+                                    <span>Deutsch</span>
+                                </a>
+                            </li>
+                            <li role="none">
+                                <a class="lang-item"
+                                   href="?lang=en"
+                                   role="menuitem"
+                                   data-flag="assets/img/flags/gb.svg"
+                                   data-lang="en"
+                                   aria-label="English">
+                                    <img src="assets/img/flags/gb.svg" alt="" class="flag-img" aria-hidden="true">
+                                    <span>English</span>
+                                </a>
+                            </li>
+                            <li role="none">
+                                <a class="lang-item"
+                                   href="?lang=fr"
+                                   role="menuitem"
+                                   data-flag="assets/img/flags/fr.svg"
+                                   data-lang="fr"
+                                   aria-label="Français">
+                                    <img src="assets/img/flags/fr.svg" alt="" class="flag-img" aria-hidden="true">
+                                    <span>Français</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
-            </div>
-            <!-- Utilities (Theme + Sprache) — auf Mobile absolut zentriert -->
-            <div class="nav-utilities">
-                <div class="theme-toggle" id="themeToggle" title="Theme wechseln">
-                    <div class="theme-toggle-ball"></div>
-                    <i class="theme-icon-pos theme-sun fas fa-sun"></i>
-                    <i class="theme-icon-pos theme-moon fas fa-moon"></i>
-                </div>
-                <div class="lang-dropdown">
-                    <button class="lang-btn" id="langBtn">
-                        <i class="fas fa-globe"></i>
-                        <span id="currentLang">DE</span>
-                        <i class="fas fa-chevron-down" style="font-size: 0.7rem;"></i>
-                    </button>
-                    <div class="lang-menu" id="langMenu">
-                        <div class="lang-option active" data-lang="de">🇩🇪 Deutsch</div>
-                        <div class="lang-option" data-lang="fr">🇫🇷 Français</div>
-                        <div class="lang-option" data-lang="en">🇬🇧 English</div>
-                    </div>
-                </div>
-            </div>
-            <!-- Hamburger — ganz rechts auf Mobile -->
-            <div class="mobile-toggle" id="mobileToggle">
-                <span></span>
-                <span></span>
-                <span></span>
             </div>
         </div>
     </nav>
-    <!-- Mobile Bottom Sheet Menu -->
-    <div class="mobile-menu-overlay" id="mobileOverlay"></div>
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-menu-handle" id="mobileHandle"></div>
-        <div class="mobile-menu-content">
-            <ul class="mobile-nav-links">
-                <li class="mobile-nav-item"><a href="index.html" class="mobile-nav-link" data-page="index.html"><i
-                            class="fas fa-home"></i> <span data-i18n="nav-home">Startseite</span></a></li>
-                <li class="mobile-nav-item"><a href="fuer-studierende.html" class="mobile-nav-link"
-                        data-page="fuer-studierende.html"><i class="fas fa-user-graduate"></i> <span data-i18n="nav-for-students">Für Studierende</span></a></li>
-                <li class="mobile-nav-item"><a href="fuer-unternehmen.html" class="mobile-nav-link"
-                        data-page="fuer-unternehmen.html"><i class="fas fa-building"></i> <span data-i18n="nav-for-companies">Für Unternehmen</span></a></li>
-                <li class="mobile-nav-item"><a href="ueber-uns.html" class="mobile-nav-link"
-                        data-page="ueber-uns.html"><i class="fas fa-info-circle"></i> <span data-i18n="nav-about-us">Über uns</span></a></li>
-                <li class="mobile-nav-item"><a href="unser-netzwerk.html" class="mobile-nav-link"
-                        data-page="unser-netzwerk.html"><i class="fas fa-network-wired"></i> <span data-i18n="nav-link-network">Netzwerk</span></a></li>
-                <li class="mobile-nav-item"><a href="referenzen.html" class="mobile-nav-link"
-                        data-page="referenzen.html"><i class="fas fa-star"></i> <span data-i18n="nav-references">Referenzen</span></a></li>
-                <li class="mobile-nav-item"><a href="kontakt.html" class="mobile-nav-link" data-page="kontakt.html"><i
-                            class="fas fa-envelope"></i> <span data-i18n="nav-contact">Kontakt</span></a></li>
-            </ul>
-            <div class="mobile-utilities">
-                <span class="mobile-theme-text" data-i18n="nav-mobile-appearance">Erscheinungsbild</span>
-                <div class="theme-toggle" id="mobileThemeToggle" style="width: 50px; height: 26px;">
-                    <div class="theme-toggle-ball" style="width: 18px; height: 18px; top: 2px; left: 2px;"></div>
-                    <i class="theme-icon-pos theme-sun fas fa-sun" style="right: 5px; font-size: 0.65rem;"></i>
-                    <i class="theme-icon-pos theme-moon fas fa-moon" style="left: 5px; font-size: 0.65rem;"></i>
-                </div>
-                <div class="mobile-lang-switcher">
-                    <span class="mobile-theme-text" data-i18n="nav-mobile-language">Sprache</span>
-                    <div class="mobile-lang-options">
-                        <button class="lang-option mobile-lang-option" data-lang="de">🇩🇪 DE</button>
-                        <button class="lang-option mobile-lang-option" data-lang="en">🇬🇧 EN</button>
-                        <button class="lang-option mobile-lang-option" data-lang="fr">🇫🇷 FR</button>
-                    </div>
-                </div>
-            </div>
+    <div class="preloader">
+        <div class="preloader-logo">
+            <img src="assets/img/Maskottchen.webp" alt="IBC Maskottchen" width="200" height="200" fetchpriority="high">
+        </div>
+        <div class="preloader-dots">
+            <div class="preloader-dot"></div>
+            <div class="preloader-dot"></div>
+            <div class="preloader-dot"></div>
         </div>
     </div>
-
-    <a class="skip-link" href="#main-content">Zum Hauptinhalt springen</a>
-
-    <div id="page-loader" role="presentation" aria-hidden="true">
-        <span class="lp lp-1" aria-hidden="true"></span>
-        <span class="lp lp-2" aria-hidden="true"></span>
-        <span class="lp lp-3" aria-hidden="true"></span>
-        <span class="lp lp-4" aria-hidden="true"></span>
-        <span class="lp lp-5" aria-hidden="true"></span>
-        <span class="lp lp-6" aria-hidden="true"></span>
-        <div class="loader-content">
-            <div class="loader-logo-wrap">
-                <img src="assets/img/ibc_logo_original_navbar.webp" alt="" width="200" height="auto">
-            </div>
-            <div class="loader-bar-track">
-                <div class="loader-bar-fill"></div>
-            </div>
-            <div class="loader-dots" aria-hidden="true">
-                <span class="loader-dot"></span>
-                <span class="loader-dot"></span>
-                <span class="loader-dot"></span>
-            </div>
-        </div>
-    </div>
-
-    
     <main id="main-content" tabindex="-1">
-
-<!-- ════════════════════════════════════════════
-     HERO
-════════════════════════════════════════════ -->
-<section class="kn-hero" id="kontakt-hero" aria-label="Kontakt Header">
-    <div class="kn-hero__bg" aria-hidden="true">
-        <div class="kn-hero__grid"></div>
-        <div class="kn-hero__orb kn-hero__orb--1"></div>
-        <div class="kn-hero__orb kn-hero__orb--2"></div>
-        <div class="kn-hero__orb kn-hero__orb--3"></div>
-    </div>
-    <div class="container">
-        <div class="kn-hero__inner">
-            <span class="kn-hero__eyebrow fade-in-up">
-                <i class="fas fa-paper-plane" aria-hidden="true"></i>
-                Kontakt aufnehmen
-            </span>
-            <h1 class="kn-hero__title fade-in-up" style="transition-delay:.1s" data-i18n="contact-hero-title">
-                Sprechen Sie <span class="kn-hero__gradient">uns an</span>
-            </h1>
-            <p class="kn-hero__sub fade-in-up" style="transition-delay:.2s" data-i18n="contact-hero-subtitle">
-                Wir freuen uns auf Ihre Nachricht und melden uns schnell zurück — kostenlos, unverbindlich und mit echtem Mehrwert.
-            </p>
-            <div class="kn-hero__actions fade-in-up" style="transition-delay:.3s">
-                <a href="#kontakt-main" class="ethereal-button btn-shimmer">
-                    <i class="fas fa-arrow-down" aria-hidden="true"></i>
-                    Jetzt schreiben
-                </a>
-                <a href="fuer-unternehmen.html" class="kn-hero__ghost-btn">
-                    <i class="fas fa-building" aria-hidden="true"></i>
-                    Für Unternehmen
-                </a>
+        <section class="page-hero-section">
+            <div class="container text-center js-reveal">
+                <h1 class="ibc-heading" data-i18n="contact-hero-title" aria-label="Kontakt"><span class="text-gradient">Kontakt</span></h1>
+                <p class="ibc-lead" data-i18n="contact-hero-subtitle">Wir freuen uns auf Ihre Nachricht.</p>
             </div>
-            <div class="kn-hero__badges fade-in-up" style="transition-delay:.4s" aria-label="Vorteile">
-                <span class="kn-hero__badge"><i class="fas fa-clock" aria-hidden="true"></i> Antwort in 24h</span>
-                <span class="kn-hero__badge"><i class="fas fa-shield-alt" aria-hidden="true"></i> Sicher &amp; verschlüsselt</span>
-                <span class="kn-hero__badge"><i class="fas fa-heart" aria-hidden="true"></i> Kostenlos &amp; unverbindlich</span>
-            </div>
-        </div>
-    </div>
-    <a href="#kontakt-main" class="kn-hero__scroll" aria-label="Zum Formular scrollen">
-        <i class="fas fa-chevron-down" aria-hidden="true"></i>
-    </a>
-</section>
-
-<!-- ════════════════════════════════════════════
-     STATS BAND
-════════════════════════════════════════════ -->
-<div class="kn-stats" aria-label="Kennzahlen">
-    <div class="container">
-        <div class="kn-stats__inner k-stagger">
-            <div class="kn-stat">
-                <span class="kn-stat__num counter-animated">25+</span>
-                <span class="kn-stat__label">Jahre Erfahrung</span>
-            </div>
-            <div class="kn-stat__div" aria-hidden="true"></div>
-            <div class="kn-stat">
-                <span class="kn-stat__num counter-animated">300+</span>
-                <span class="kn-stat__label">Projekte</span>
-            </div>
-            <div class="kn-stat__div" aria-hidden="true"></div>
-            <div class="kn-stat">
-                <span class="kn-stat__num counter-animated">24h</span>
-                <span class="kn-stat__label">Antwortzeit</span>
-            </div>
-            <div class="kn-stat__div" aria-hidden="true"></div>
-            <div class="kn-stat">
-                <span class="kn-stat__num counter-animated">100%</span>
-                <span class="kn-stat__label">Kostenlos</span>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ════════════════════════════════════════════
-     MAIN — Form + Info side by side
-════════════════════════════════════════════ -->
-<section class="kn-main" id="kontakt-main" aria-labelledby="kn-form-heading">
-    <div class="container">
-
-        <!-- Section header -->
-        <div class="kn-main__header fade-in-up">
-            <span class="section-chip"><i class="fas fa-envelope" aria-hidden="true"></i> Schreiben Sie uns</span>
-            <h2 id="kn-form-heading" class="ibc-heading">
-                Ihr direkter <span class="text-gradient">Draht zu uns</span>
-            </h2>
-            <p class="section-intro-text">
-                Nutzen Sie das Formular für Projektanfragen, Kooperationen oder allgemeine Anliegen.
-            </p>
-        </div>
-
-        <div class="kn-grid">
-
-            <!-- ═══ LEFT: Form card ═══ -->
-            <article class="kn-form-card k-reveal k-reveal-left" aria-label="Kontaktformular">
-
-                <!-- Decorative top-bar -->
-                <div class="kn-form-card__bar" aria-hidden="true"></div>
-
-                <div class="kn-form-card__body">
-
-                    <form id="contact-form" novalidate>
-                        <div id="form-status-message" class="form-status-message" role="alert" aria-live="polite"></div>
-
-                        <!-- Name + Email row -->
-                        <div class="k-form-row">
-                            <div class="k-field">
-                                <input type="text" class="k-field__input" id="name" name="name"
-                                       placeholder=" " required autocomplete="name"
+        </section>
+        <section class="py-5">
+            <div class="container py-4">
+                <div class="row g-5">
+                    <div class="col-lg-6 fade-in-up js-reveal">
+                        <h2 class="ibc-heading" data-i18n="contact-form-heading" aria-label="Schreiben Sie uns"><span class="text-gradient">Schreiben</span> <span class="text-gradient">Sie</span> <span class="text-gradient">uns</span></h2>
+                        <div class="contact-card mt-4">
+                            <form id="contact-form" novalidate>
+                            <div id="form-status-message" class="form-status-message" role="alert" aria-live="polite"></div>
+                            <div class="form-group-animated mb-3">
+                                <input type="text" class="form-control" id="name" name="name"
+                                       data-i18n-placeholder="contact-form-name-placeholder" placeholder="Max Mustermann"
+                                       required
+                                       autocomplete="name"
                                        aria-describedby="name-error">
-                                <label class="k-field__label" for="name">
-                                    <span data-i18n="contact-form-name">Name</span>
-                                    <span class="k-field__required" aria-hidden="true">*</span>
-                                </label>
-                                <i class="fas fa-check k-field__valid-icon" aria-hidden="true"></i>
-                                <div class="k-field__error invalid-feedback" id="name-error" role="alert" data-i18n="contact-form-name-error">Bitte geben Sie Ihren Namen ein.</div>
+                                <label for="name"><span data-i18n="contact-form-name">Name</span> <span class="text-danger" aria-hidden="true">*</span></label>
+                                <div class="invalid-feedback" id="name-error" role="alert" data-i18n="contact-form-name-error">Bitte geben Sie Ihren Namen ein.</div>
                             </div>
-                            <div class="k-field">
-                                <input type="email" class="k-field__input" id="email" name="email"
-                                       placeholder=" " required autocomplete="email"
+                            <div class="form-group-animated mb-3">
+                                <input type="email" class="form-control" id="email" name="email"
+                                       data-i18n-placeholder="contact-form-email-placeholder" placeholder="max.mustermann@beispiel.de"
+                                       required
+                                       autocomplete="email"
                                        aria-describedby="email-error">
-                                <label class="k-field__label" for="email">
-                                    <span data-i18n="contact-form-email">E-Mail</span>
-                                    <span class="k-field__required" aria-hidden="true">*</span>
-                                </label>
-                                <i class="fas fa-check k-field__valid-icon" aria-hidden="true"></i>
-                                <div class="k-field__error invalid-feedback" id="email-error" role="alert" data-i18n="contact-form-email-error">Bitte geben Sie eine gültige E-Mail-Adresse ein.</div>
+                                <label for="email"><span data-i18n="contact-form-email">E-Mail-Adresse</span> <span class="text-danger" aria-hidden="true">*</span></label>
+                                <div class="invalid-feedback" id="email-error" role="alert" data-i18n="contact-form-email-error">Bitte geben Sie eine gültige E-Mail-Adresse ein.</div>
                             </div>
-                        </div>
-
-                        <!-- Subject -->
-                        <div class="k-field">
-                            <input type="text" class="k-field__input" id="subject-freitext" name="subject"
-                                   placeholder=" " required maxlength="200" autocomplete="off"
-                                   aria-describedby="subject-error">
-                            <label class="k-field__label" for="subject-freitext">
-                                <span data-i18n="contact-form-subject">Betreff</span>
-                                <span class="k-field__required" aria-hidden="true">*</span>
-                            </label>
-                            <span class="k-field__counter" id="subject-counter" aria-hidden="true">0/200</span>
-                            <i class="fas fa-check k-field__valid-icon" aria-hidden="true"></i>
-                            <div class="k-field__error invalid-feedback" id="subject-error" role="alert" data-i18n="contact-form-subject-error">Bitte geben Sie einen Betreff ein.</div>
-                        </div>
-
-                        <!-- Message -->
-                        <div class="k-field k-field--textarea">
-                            <textarea class="k-field__textarea" id="message" name="message" rows="5"
-                                      placeholder=" " required
-                                      aria-describedby="message-error"></textarea>
-                            <label class="k-field__label" for="message">
-                                <span data-i18n="contact-form-message">Nachricht</span>
-                                <span class="k-field__required" aria-hidden="true">*</span>
-                            </label>
-                            <i class="fas fa-check k-field__valid-icon" aria-hidden="true"></i>
-                            <div class="k-field__error invalid-feedback" id="message-error" role="alert" data-i18n="contact-form-message-error">Bitte geben Sie eine Nachricht ein.</div>
-                        </div>
-
-                        <p class="k-required-note"><span>*</span> <span data-i18n="contact-form-required">Erforderliches Feld</span></p>
-
-                        <!-- Privacy checkbox -->
-                        <div class="k-check">
-                            <input type="checkbox" class="k-check__input" id="privacy-checkbox" name="privacy_accepted" required>
-                            <label class="k-check__label" for="privacy-checkbox">
-                                <span data-i18n="form-privacy-label">Ich akzeptiere die allgemeinen</span>
-                                <a href="datenschutzerklaerung.html" data-i18n="form-privacy-link"> Datenschutzbestimmungen</a><span class="k-field__required" aria-hidden="true">*</span>
-                                <div class="k-check__error invalid-feedback" role="alert" data-i18n="form-privacy-error">Bitte akzeptieren Sie die Datenschutzbestimmungen.</div>
-                            </label>
-                        </div>
-
-                        <!-- HubSpot consent -->
-                        <div class="k-check hubspot-consent-section">
-                            <input type="checkbox" class="k-check__input" id="hubspot-consent-checkbox" name="hubspot_consent" aria-describedby="hubspot-consent-info">
-                            <label class="k-check__label" for="hubspot-consent-checkbox">
-                                <span data-i18n="form-hubspot-consent-label">Ich stimme zu, dass meine Daten zur Bearbeitung über HubSpot verarbeitet werden (Server in der EU). <strong>(Optional)</strong></span>
-                                <div class="k-hubspot-note" id="hubspot-consent-info">
+                            <div class="form-group-animated mb-3">
+                                <select class="form-control" id="subject-select" name="subject" required
+                                        aria-describedby="subject-error">
+                                    <option value="" selected disabled hidden></option>
+                                    <option value="App-Entwicklung" data-i18n="contact-subject-app-dev">App-Entwicklung</option>
+                                    <option value="Web-Entwicklung" data-i18n="contact-subject-web-dev">Web-Entwicklung</option>
+                                    <option value="Marktanalyse" data-i18n="contact-subject-market-analysis">Marktanalyse</option>
+                                    <option value="Prozessoptimierung" data-i18n="contact-subject-process-opt">Prozessoptimierung</option>
+                                    <option value="Schulung / Workshop" data-i18n="contact-subject-training">Schulung / Workshop</option>
+                                    <option value="Individuelle Lösung" data-i18n="contact-subject-custom">Individuelle Lösung</option>
+                                    <option value="Bild und Videobearbeitung" data-i18n="contact-subject-image-video">Bild und Videobearbeitung</option>
+                                    <option value="Social Media Management" data-i18n="contact-subject-social-media">Social Media Management</option>
+                                    <option value="Projektanfrage" data-i18n="contact-subject-project">Projektanfrage</option>
+                                    <option value="Beitrittsanfrage (Studierende)" data-i18n="contact-subject-student">Beitrittsanfrage (Studierende)</option>
+                                    <option value="Kooperationsanfrage (Unternehmen)" data-i18n="contact-subject-company">Kooperationsanfrage (Unternehmen)</option>
+                                    <option value="Netzwerk & Alumni" data-i18n="contact-subject-alumni">Netzwerk & Alumni</option>
+                                    <option value="Presseanfrage" data-i18n="contact-subject-press">Presseanfrage</option>
+                                    <option value="Allgemeine Anfrage" data-i18n="contact-subject-general">Allgemeine Anfrage</option>
+                                    <option value="Sonstiges" data-i18n="contact-subject-other">Sonstiges</option>
+                                </select>
+                                <label for="subject-select"><span data-i18n="contact-form-subject">Betreff</span> <span class="text-danger" aria-hidden="true">*</span></label>
+                                <div class="invalid-feedback" id="subject-error" role="alert" data-i18n="contact-form-subject-error">Bitte wählen Sie einen Betreff aus.</div>
+                            </div>
+                            <div class="form-group-animated mb-4">
+                                <textarea class="form-control" id="message" name="message" rows="5"
+                                          data-i18n-placeholder="contact-form-message-placeholder" placeholder="Ich möchte gerne mehr Informationen über Ihre Dienstleistungen erfahren..."
+                                          required
+                                          aria-describedby="message-error"></textarea>
+                                <label for="message"><span data-i18n="contact-form-message">Nachricht</span> <span class="text-danger" aria-hidden="true">*</span></label>
+                                <div class="invalid-feedback" id="message-error" role="alert" data-i18n="contact-form-message-error">Bitte geben Sie eine Nachricht ein.</div>
+                            </div>
+                            <p class="small text-dark mb-3"><span class="text-danger">*</span> <span data-i18n="contact-form-required">Erforderliches Feld</span></p>
+                            <div class="form-check mb-3">
+                                <input type="checkbox" class="form-check-input" id="privacy-checkbox" name="privacy_accepted" required>
+                                <label class="form-check-label" for="privacy-checkbox">
+                                    <span data-i18n="form-privacy-label">Ich akzeptiere die allgemeinen</span>
+                                    <a href="datenschutzerklaerung.html" data-i18n="form-privacy-link">Datenschutzbestimmungen</a>
+                                    <span class="text-danger">*</span>
+                                </label>
+                                <div class="invalid-feedback" role="alert" data-i18n="form-privacy-error">Bitte akzeptieren Sie die Datenschutzbestimmungen.</div>
+                            </div>
+                            <div class="form-check mb-3 hubspot-consent-section">
+                                <input type="checkbox" class="form-check-input" id="hubspot-consent-checkbox" name="hubspot_consent" aria-describedby="hubspot-consent-info">
+                                <label class="form-check-label" for="hubspot-consent-checkbox">
+                                    <span data-i18n="form-hubspot-consent-label">Ich stimme zu, dass meine Daten zur Bearbeitung über HubSpot verarbeitet werden (Server in der EU). <strong>(Optional)</strong></span>
+                                </label>
+                                <div id="hubspot-consent-info" class="form-text small text-muted">
                                     <span data-i18n="form-hubspot-consent-info">✓ Mit Zustimmung: Bessere Nachverfolgung über unser CRM-System.<br>✗ Ohne Zustimmung: Ihre Anfrage wird nur per E-Mail versendet.</span>
                                 </div>
-                            </label>
-                        </div>
-
-                        <!-- reCAPTCHA note -->
-                        <div class="k-recaptcha-note" id="k-recaptcha-note" role="note">
-                            <span class="k-recaptcha-note__icon" aria-hidden="true"><i class="fas fa-shield-alt"></i></span>
-                            <div>
-                                <strong>Spamschutz erforderlich</strong>
-                                Um Spam zu vermeiden, verwendet dieses Formular Google reCAPTCHA. Durch das Absenden stimmen Sie der Nutzung zu.
                             </div>
-                        </div>
-
-                        <!-- reCAPTCHA consent notice -->
-                        <div id="recaptcha-consent-notice" role="alert">
-                            <i class="fas fa-cookie-bite me-1" aria-hidden="true"></i>
-                            <span data-i18n="form-recaptcha-consent-notice">Bitte aktivieren Sie den Spamschutz in den Cookie-Einstellungen.</span>
-                            <button type="button" id="open-consent-settings-btn" class="btn btn-link btn-sm p-0 ms-1">
-                                <span data-i18n="form-open-consent-settings">Cookie-Einstellungen öffnen</span>
-                            </button>
-                        </div>
-
-                        <!-- reCAPTCHA widget -->
-                        <div class="recaptcha-wrapper text-center mb-3">
-                            <div class="g-recaptcha"
-                                 data-sitekey="6LfzQyUsAAAAALhJXnwV810IjeSKTW4WxPyA7xly"
-                                 data-callback="onRecaptchaComplete"
-                                 data-expired-callback="onRecaptchaExpired"></div>
-                        </div>
-
-                        <!-- Actions -->
-                        <div class="k-form-actions">
-                            <button id="contact-send-btn" class="send-button" type="submit">
-                                <span class="btn-content">
-                                    <span class="btn-text" data-i18n="form.button.send">Senden</span>
-                                    <span class="icon-wrapper" aria-hidden="true">
-                                        <svg class="icon-svg icon-spinner" viewBox="0 0 24 24">
-                                            <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
-                                            <path class="spinner-rotate" d="M12 2a10 10 0 0 1 10 10"></path>
-                                        </svg>
-                                        <svg class="icon-svg icon-check" viewBox="0 0 24 24">
-                                            <path d="M20 6L9 17l-5-5"></path>
-                                        </svg>
-                                        <svg class="icon-svg icon-cross" viewBox="0 0 24 24">
-                                            <path d="M18 6L6 18M6 6l12 12"></path>
-                                        </svg>
+                            <div id="recaptcha-consent-notice" class="alert alert-warning text-center mb-3" role="alert">
+                                <i class="fas fa-shield-alt mb-2 consent-icon-large" aria-hidden="true"></i>
+                                <p class="mb-2" data-i18n="form-recaptcha-consent-notice">
+                                    <strong>Spamschutz erforderlich:</strong><br>
+                                    Um das Kontaktformular zu nutzen, aktivieren Sie bitte den Spamschutz (ReCAPTCHA) in den Cookie-Einstellungen.
+                                </p>
+                                <button type="button" id="open-consent-settings-btn" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-cookie-bite me-1" aria-hidden="true"></i>
+                                    <span data-i18n="form-open-consent-settings">Cookie-Einstellungen öffnen</span>
+                                </button>
+                            </div>
+                            <div class="recaptcha-wrapper text-center mb-3">
+                                <div class="g-recaptcha" data-sitekey="6LfzQyUsAAAAALhJXnwV810IjeSKTW4WxPyA7xly"></div>
+                            </div>
+                            <div class="form-buttons-container d-flex flex-column flex-md-row align-items-stretch justify-content-center gap-3 mb-4">
+                                <button id="contact-send-btn" class="send-button flex-md-grow-1" type="submit">
+                                    <span class="btn-content">
+                                        <span class="btn-text" data-i18n="form.button.send">Senden</span>
+                                        <span class="icon-wrapper" aria-hidden="true">
+                                            <svg class="icon-svg icon-spinner" viewBox="0 0 24 24">
+                                                <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                                                <path class="spinner-rotate" d="M12 2a10 10 0 0 1 10 10"></path>
+                                            </svg>
+                                            <svg class="icon-svg icon-check" viewBox="0 0 24 24">
+                                                <path d="M20 6L9 17l-5-5"></path>
+                                            </svg>
+                                            <svg class="icon-svg icon-cross" viewBox="0 0 24 24">
+                                                <path d="M18 6L6 18M6 6l12 12"></path>
+                                            </svg>
+                                        </span>
                                     </span>
-                                </span>
-                            </button>
-                            <div id="statusMessage" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
-                            <button type="button" class="btn-reset-form" id="open-modal-btn-desktop" aria-label="Formular zurücksetzen">
-                                <i class="fas fa-redo-alt icon" aria-hidden="true"></i>
-                                <span data-i18n="contact-form-reset">Zurücksetzen</span>
-                            </button>
+                                </button>
+                                <div id="statusMessage" class="visually-hidden" role="status" aria-live="polite" aria-atomic="true"></div>
+                                <button type="button" class="btn-reset-form flex-md-grow-1" id="open-modal-btn-desktop" aria-label="Formular zurücksetzen">
+                                    <i class="fas fa-redo-alt icon" aria-hidden="true"></i>
+                                    <span data-i18n="contact-form-reset">Zurücksetzen</span>
+                                </button>
+                            </div>
+                            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response-input">
+                        </form>
                         </div>
-
-                        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response-input">
-                    </form>
-
-                </div><!-- /.kn-form-card__body -->
-            </article><!-- /.kn-form-card -->
-
-            <!-- ═══ RIGHT: Info panel ═══ -->
-            <aside class="kn-info-panel k-reveal k-reveal-right" aria-label="Kontaktinformationen">
-
-                <!-- Dark glass info card -->
-                <div class="kn-info-card">
-                    <div class="kn-info-card__bg" aria-hidden="true">
-                        <div class="kn-info-card__orb kn-info-card__orb--1"></div>
-                        <div class="kn-info-card__orb kn-info-card__orb--2"></div>
                     </div>
-
-                    <div class="kn-info-card__inner">
-                        <div class="kn-info-card__eyebrow" aria-hidden="true">
-                            <i class="fas fa-location-dot"></i> Kontaktdaten
-                        </div>
-                        <h2 class="kn-info-card__title" data-i18n="contact-info-heading">
-                            So erreichen<br>Sie uns
-                        </h2>
-                        <p class="kn-info-card__sub">
-                            Fragen, Projektideen oder Kooperationswünsche — wir sind für Sie da.
-                        </p>
-
-                        <!-- Info items -->
-                        <div class="kn-info-items k-stagger">
-
-                            <div class="kn-info-item">
-                                <div class="kn-info-item__icon" aria-hidden="true">
-                                    <i class="fas fa-map-marker-alt"></i>
-                                </div>
-                                <div class="kn-info-item__body">
-                                    <span class="kn-info-item__label" data-i18n="contact-info-address-label">Adresse</span>
-                                    <div class="kn-info-item__value" data-i18n="contact-info-address-text">
-                                        Robert-Gerwig-Platz 1, Geb. I<br>78120 Furtwangen i.Schw.
+                    <div class="col-lg-6 fade-in-up js-reveal" data-animation-delay="200ms">
+                        <h2 class="ibc-heading" data-i18n="contact-info-heading" aria-label="So finden Sie uns"><span class="text-gradient">So</span> <span class="text-gradient">finden</span> <span class="text-gradient">Sie</span> <span class="text-gradient">uns</span></h2>
+                        <div class="contact-info mt-4">
+                            <div class="info-item">
+                                <svg viewBox="0 0 296 296" class="svg-icon svg-icon-large svg-icon-contact-info" aria-hidden="true">
+                                    <g>
+                                        <path d="M158.429,220.288l50.876,-80.641c7.019,-11.186 11.077,-24.414 11.077,-38.582c0,-40.149 -32.596,-72.745 -72.745,-72.745c-40.149,0 -72.745,32.596 -72.745,72.745c0,14.168 4.058,27.396 11.077,38.582l50.876,80.641l10.792,17.106l10.792,-17.106Zm-10.792,-161.594c23.386,0 42.372,18.986 42.372,42.372c0,23.386 -18.986,42.372 -42.372,42.372c-23.386,0 -42.372,-18.986 -42.372,-42.372c0,-23.386 18.986,-42.372 42.372,-42.372Z" fill="currentColor"></path>
+                                        <path d="M128.112,229.872l-54.066,0l-18.628,37.083l184.44,-0l-18.628,-37.083l-54.068,-0l-14.239,22.57c-1.145,1.815 -3.14,2.915 -5.286,2.915c-2.146,0 -4.141,-1.101 -5.286,-2.915l-14.239,-22.57Z" fill="currentColor"></path>
+                                    </g>
+                                </svg>
+                                <div>
+                                    <strong data-i18n="contact-info-address-label">Adresse</strong>
+                                    <p data-i18n="contact-info-address-text">Robert-Gerwig-Platz 1, Gebäude I<br>78120 Furtwangen im Schwarzwald</p>
+                                    <div class="contact-actions">
+                                        <button class="custom-copy-btn" data-copy-text="Robert-Gerwig-Platz 1, Gebäude I, 78120 Furtwangen im Schwarzwald" aria-label="Adresse kopieren">
+                                            <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <rect x="9" y="9" width="10" height="10" rx="2" />
+                                                <rect x="5" y="5" width="10" height="10" rx="2" />
+                                            </svg>
+                                            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <path d="M20 6L9 17l-5-5"/>
+                                            </svg>
+                                        </button>
                                     </div>
-                                    <button class="k-copy-btn kn-copy-btn" data-copy-text="Robert-Gerwig-Platz 1, Gebäude I, 78120 Furtwangen im Schwarzwald" aria-label="Adresse kopieren">
-                                        <i class="fas fa-copy icon-copy" aria-hidden="true"></i>
-                                        <i class="fas fa-check icon-check" aria-hidden="true"></i>
-                                        <span>Kopieren</span>
-                                    </button>
                                 </div>
                             </div>
-
-                            <div class="kn-info-item">
-                                <div class="kn-info-item__icon" aria-hidden="true">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="kn-info-item__body">
-                                    <span class="kn-info-item__label" data-i18n="contact-info-email-label">E-Mail</span>
-                                    <div class="kn-info-item__value">
-                                        <a href="mailto:vorstand@business-consulting.de" id="emailAddress" class="kn-email-link">vorstand@business-consulting.de</a>
+                            <div class="info-item">
+                                <img src="assets/icons/envelope-closed.svg" class="svg-icon svg-icon-large contact-icon-green" alt="" aria-hidden="true">
+                                <div>
+                                    <strong data-i18n="contact-info-email-label">E-Mail</strong>
+                                    <p><a href="mailto:vorstand@business-consulting.de" id="emailAddress">vorstand@business-consulting.de</a></p>
+                                    <div class="contact-actions">
+                                        <button class="custom-copy-btn" data-copy-text="vorstand@business-consulting.de" aria-label="E-Mail-Adresse kopieren">
+                                            <svg class="icon-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <rect x="9" y="9" width="10" height="10" rx="2" />
+                                                <rect x="5" y="5" width="10" height="10" rx="2" />
+                                            </svg>
+                                            <svg class="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <path d="M20 6L9 17l-5-5"/>
+                                            </svg>
+                                        </button>
                                     </div>
-                                    <button class="k-copy-btn kn-copy-btn" data-copy-text="vorstand@business-consulting.de" aria-label="E-Mail kopieren">
-                                        <i class="fas fa-copy icon-copy" aria-hidden="true"></i>
-                                        <i class="fas fa-check icon-check" aria-hidden="true"></i>
-                                        <span>Kopieren</span>
-                                    </button>
                                 </div>
                             </div>
-
-                        </div><!-- /.kn-info-items -->
-
-                        <!-- Divider -->
-                        <div class="kn-info-divider" aria-hidden="true"></div>
-
-                        <!-- Social -->
-                        <div class="kn-social-section">
-                            <span class="kn-social__label" data-i18n="contact-info-social-label">Folgen Sie uns</span>
-                            <div class="kn-social-row">
-                                <a href="https://www.facebook.com/IBC.Furtwangen/" data-link-id="link-facebook"
-                                   class="kn-social-btn kn-social-btn--fb"
-                                   target="_blank" rel="noopener noreferrer"
-                                   aria-label="IBC auf Facebook (öffnet in neuem Tab)">
-                                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
-                                    <span>Facebook</span>
-                                </a>
-                                <a href="https://www.instagram.com/ibc_e.v/" data-link-id="link-instagram"
-                                   class="kn-social-btn kn-social-btn--ig"
-                                   target="_blank" rel="noopener noreferrer"
-                                   aria-label="IBC auf Instagram (öffnet in neuem Tab)">
-                                    <i class="fab fa-instagram" aria-hidden="true"></i>
-                                    <span>Instagram</span>
-                                </a>
-                                <a href="https://www.linkedin.com/company/institut-f%C3%BCr-business-consulting-e-v/" data-link-id="link-linkedin"
-                                   class="kn-social-btn kn-social-btn--li"
-                                   target="_blank" rel="noopener noreferrer"
-                                   aria-label="IBC auf LinkedIn (öffnet in neuem Tab)">
-                                    <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-                                    <span>LinkedIn</span>
-                                </a>
+                            <div class="info-item">
+                                <i class="fas fa-globe" aria-hidden="true"></i>
+                                <div>
+                                    <strong data-i18n="contact-info-social-label">Social Media</strong>
+                                    <div class="social-buttons">
+                                        <a href="https://www.facebook.com/IBC.Furtwangen/" data-link-id="link-facebook" class="btn facebook" target="_blank" rel="noopener noreferrer" aria-label="IBC auf Facebook besuchen (öffnet in neuem Tab)"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                                        <a href="https://www.instagram.com/ibc_e.v/" data-link-id="link-instagram" class="btn instagram" target="_blank" rel="noopener noreferrer" aria-label="IBC auf Instagram besuchen (öffnet in neuem Tab)"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                                        <a href="https://www.linkedin.com/company/institut-f%C3%BCr-business-consulting-e-v/" data-link-id="link-linkedin" class="btn linkedin" target="_blank" rel="noopener noreferrer" aria-label="IBC auf LinkedIn besuchen (öffnet in neuem Tab)"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-
-                        <!-- Divider -->
-                        <div class="kn-info-divider" aria-hidden="true"></div>
-
-                        <!-- Availability indicator -->
-                        <div class="kn-availability">
-                            <span class="kn-availability__dot" aria-hidden="true"></span>
-                            <span>Wir antworten in der Regel innerhalb von <strong>24 Stunden</strong>.</span>
-                        </div>
-
-                    </div><!-- /.kn-info-card__inner -->
-                </div><!-- /.kn-info-card -->
-
-            </aside><!-- /.kn-info-panel -->
-
-        </div><!-- /.kn-grid -->
-    </div><!-- /.container -->
-</section><!-- /.kn-main -->
-
-<!-- ════════════════════════════════════════════
-     MAP SECTION
-════════════════════════════════════════════ -->
-<section class="kn-map-section" aria-labelledby="kn-map-heading">
-    <div class="container">
-
-        <div class="kn-map-header fade-in-up">
-            <span class="section-chip"><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Standort</span>
-            <h2 id="kn-map-heading" class="ibc-heading">
-                Finden Sie <span class="text-gradient">uns</span>
-            </h2>
-        </div>
-
-        <div class="kn-map-grid k-reveal">
-
-            <!-- Left: address details -->
-            <div class="kn-map-info">
-                <div class="kn-map-address">
-                    <div class="kn-map-address-row">
-                        <div class="kn-map-address-row__icon" aria-hidden="true">
-                            <i class="fas fa-university"></i>
-                        </div>
-                        <span>Hochschule Furtwangen University</span>
-                    </div>
-                    <div class="kn-map-address-row">
-                        <div class="kn-map-address-row__icon" aria-hidden="true">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <span>Robert-Gerwig-Platz 1, Gebäude I<br>78120 Furtwangen im Schwarzwald</span>
-                    </div>
-                    <div class="kn-map-address-row">
-                        <div class="kn-map-address-row__icon" aria-hidden="true">
-                            <i class="fas fa-door-open"></i>
-                        </div>
-                        <span>Büro I 1.23 · 1. Obergeschoss</span>
-                    </div>
-                    <div class="kn-map-address-row">
-                        <div class="kn-map-address-row__icon" aria-hidden="true">
-                            <i class="fas fa-car"></i>
-                        </div>
-                        <span>Parkplatz am Campus verfügbar</span>
                     </div>
                 </div>
-                <a href="https://maps.google.com/?q=Robert-Gerwig-Platz+1,+78120+Furtwangen"
-                   class="kn-map-directions-btn ethereal-button btn-shimmer"
-                   target="_blank" rel="noopener noreferrer"
-                   aria-label="Route in Google Maps öffnen">
-                    <i class="fas fa-route" aria-hidden="true"></i>
-                    Route planen
-                </a>
             </div>
-
-            <!-- Right: map embed with consent overlay -->
-            <div class="kn-map-embed">
-                <div class="map-placeholder" id="map-placeholder">
-                    <div class="map-placeholder-background"></div>
-                    <div class="map-consent-content">
-                        <div class="kn-map-consent-icon" aria-hidden="true">
-                            <i class="fas fa-map-marked-alt"></i>
-                        </div>
-                        <h3 class="map-consent-heading" data-i18n="map-load-heading">Karte laden</h3>
-                        <p class="kn-map-consent-text">
-                            <span data-i18n="map-consent-text-start">Mit dem Laden der Karte akzeptieren Sie die</span>
-                            <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-i18n="map-privacy-link-text">Datenschutzerklärung von Google</a>.
-                            <span data-i18n="map-consent-text-end">Es werden Daten an Google übermittelt.</span>
-                        </p>
-                        <button id="load-map-btn" class="kn-map-load-btn" data-i18n="map-load-button">
-                            <i class="fas fa-map" aria-hidden="true"></i>
-                            Karte einmalig laden
-                        </button>
-                    </div>
+        </section>
+        <section class="map-section fade-in-up">
+            <div class="map-placeholder" id="map-placeholder">
+                <div class="map-placeholder-background"></div>
+                <div class="map-consent-content">
+                    <i class="fas fa-map-marked-alt map-consent-icon" aria-hidden="true"></i>
+                    <h3 class="map-consent-heading" data-i18n="map-load-heading">Karte laden</h3>
+                    <p class="small text-muted mb-3">
+                        <span data-i18n="map-consent-text-start">Mit dem Laden der Karte akzeptieren Sie die</span> <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" data-i18n="map-privacy-link-text">Datenschutzerklärung von Google</a>. <span data-i18n="map-consent-text-end">Es werden Daten an Google übermittelt.</span>
+                    </p>
+                    <button id="load-map-btn" class="btn btn-ibc" data-i18n="map-load-button">
+                        Karte einmalig laden
+                    </button>
                 </div>
-                <div id="map-container"></div>
             </div>
-
-        </div><!-- /.kn-map-grid -->
-    </div><!-- /.container -->
-</section>
-
-<script src="js/google-maps-2click.js"></script>
-
-<!-- Scroll-reveal + interactivity -->
-<script>
-(function(){
-    if (!window.IntersectionObserver) {
-        document.querySelectorAll('.k-reveal,.k-stagger,.fade-in-up').forEach(function(e){
-            e.classList.add('revealed','is-visible');
-        });
-        return;
-    }
-    var revIO = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-            if (!e.isIntersecting) return;
-            e.target.classList.add('revealed');
-            revIO.unobserve(e.target);
-        });
-    }, { rootMargin: '0px 0px -60px 0px', threshold: 0.07 });
-    document.querySelectorAll('.k-reveal,.k-stagger').forEach(function(el){ revIO.observe(el); });
-
-    var fadeIO = new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-            if (!e.isIntersecting) return;
-            e.target.classList.add('is-visible');
-            fadeIO.unobserve(e.target);
-        });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.fade-in-up').forEach(function(el){ fadeIO.observe(el); });
-})();
-
-// Character counter for subject field
-(function(){
-    var inp = document.getElementById('subject-freitext');
-    var counter = document.getElementById('subject-counter');
-    if (!inp || !counter) return;
-    inp.addEventListener('input', function(){
-        var len = this.value.length;
-        counter.textContent = len + '/200';
-        counter.classList.toggle('warn', len >= 180);
-    });
-})();
-
-// Copy buttons
-(function(){
-    document.querySelectorAll('.k-copy-btn').forEach(function(btn){
-        btn.addEventListener('click', function(){
-            var text = btn.getAttribute('data-copy-text');
-            if (!text) return;
-            navigator.clipboard.writeText(text).then(function(){
-                btn.classList.add('copied');
-                setTimeout(function(){ btn.classList.remove('copied'); }, 2000);
-            }).catch(function(){
-                var ta = document.createElement('textarea');
-                ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
-                document.body.appendChild(ta); ta.select();
-                document.execCommand('copy'); document.body.removeChild(ta);
-                btn.classList.add('copied');
-                setTimeout(function(){ btn.classList.remove('copied'); }, 2000);
-            });
-        });
-    });
-})();
-</script>
-
+            <div id="map-container"></div>
+        </section>
+        <script src="js/google-maps-2click.js"></script>
     </main>
     <div class="my-modal-scrim" id="modal-scrim"></div>
     <div class="my-modal-box" id="modal-box" role="dialog" aria-labelledby="modal-title" aria-modal="true">
@@ -828,7 +500,7 @@
             <h3 class="fat-footer__connect-title footer-column-title footer-title-uniform footer-heading-uniform footer-title-main footer-heading-standard">Let's Connect</h3>
             <address class="fat-footer__connect-address">
                 <div class="fat-footer__connect-item">
-                    <span class="fat-footer__connect-icon-wrap"><img loading="lazy" decoding="async" src="assets/icons/Markierung.svg" class="fat-footer__connect-icon svg-icon" alt="" aria-hidden="true"></span>
+                    <span class="fat-footer__connect-icon-wrap"><img src="assets/icons/Markierung.svg" class="fat-footer__connect-icon svg-icon" alt="" aria-hidden="true"></span>
                     <div class="fat-footer__connect-text">
                         <span class="fat-footer__connect-label" data-i18n="footer-location-heading">Finden Sie uns</span>
                         <a href="https://maps.google.com/?q=Robert-Gerwig-Platz+1,+78120+Furtwangen"
@@ -840,14 +512,14 @@
                     </div>
                 </div>
                 <div class="fat-footer__connect-item email-cta">
-                    <span class="fat-footer__connect-icon-wrap"><img loading="lazy" decoding="async" src="assets/icons/envelope-closed.svg" class="fat-footer__connect-icon svg-icon" alt="" aria-hidden="true"></span>
+                    <span class="fat-footer__connect-icon-wrap"><img src="assets/icons/envelope-closed.svg" class="fat-footer__connect-icon svg-icon" alt="" aria-hidden="true"></span>
                     <div class="fat-footer__connect-text">
                         <span class="fat-footer__connect-label" data-i18n="footer-email-heading">Mailen Sie uns</span>
                         <a href="#" class="copy-email-link fat-footer__connect-link">vorstand@business-consulting.de</a>
                     </div>
                 </div>
             </address>
-            <h3 class="fat-footer__heading fat-footer__heading--secondary footer-column-title footer-title-uniform footer-heading-uniform footer-title-main footer-heading-standard" data-i18n="footer-intra-heading">Internes</h3>
+            <h3 class="fat-footer__heading fat-footer__heading--secondary footer-column-title footer-title-uniform footer-heading-uniform footer-title-main footer-heading-standard" data-i18n="footer-intra-heading">Intranet</h3>
             <nav aria-label="Interne Links Footer">
                 <ul class="fat-footer__nav-list">
                     <li><a href="https://ibcfurtwangen.sharepoint.com/SitePages/home.aspx" target="_blank" rel="noopener noreferrer" data-i18n="footer-intra-sharepoint">SharePoint<span class="visually-hidden"> (öffnet in neuem Tab)</span></a></li>
@@ -937,43 +609,31 @@
         </ul>
         <div class="fab-lang-row">
             <a href="?lang=de" class="fab-lang-btn" aria-label="Deutsch">
-                <img loading="lazy" decoding="async" src="assets/img/flags/de.svg" alt="" aria-hidden="true"><span>DE</span>
+                <img src="assets/img/flags/de.svg" alt="" aria-hidden="true"><span>DE</span>
             </a>
             <a href="?lang=en" class="fab-lang-btn" aria-label="English">
-                <img loading="lazy" decoding="async" src="assets/img/flags/gb.svg" alt="" aria-hidden="true"><span>EN</span>
+                <img src="assets/img/flags/gb.svg" alt="" aria-hidden="true"><span>EN</span>
             </a>
             <a href="?lang=fr" class="fab-lang-btn" aria-label="Français">
-                <img loading="lazy" decoding="async" src="assets/img/flags/fr.svg" alt="" aria-hidden="true"><span>FR</span>
+                <img src="assets/img/flags/fr.svg" alt="" aria-hidden="true"><span>FR</span>
             </a>
-        </div>
-        <div class="fab-dark-mode-row">
-            <button class="dark-mode-toggle fab-dark-mode-btn" type="button"
-                    aria-label="Dark Mode aktivieren" aria-pressed="false">
-                <i class="fas fa-moon" aria-hidden="true"></i>
-                <span class="fab-dark-mode-label">Dark Mode</span>
-            </button>
         </div>
     </nav>
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="js/app.js" defer></script>
     <script src="js/main.js" defer></script>
+    <script src="js/navbar-scroll.js" defer></script>
     <script src="js/language-switcher.js" defer></script>
+    <script src="js/index-page.js" defer></script>
     <script src="js/cookie-consent.js" defer></script>
-    <script src="js/content-loader.js" defer></script>
-    <script src="js/fade-in-animation.js" defer></script>
-    <script src="js/icon-loader.js" defer></script>
     <script src="js/contact-form.js" defer></script>
     <script src="js/send-button.js" defer></script>
     <script src="js/kontakt-page.js" defer></script>
     <script type="text/plain" data-cookiecategory="security" src="https://www.google.com/recaptcha/api.js" async defer referrerpolicy="strict-origin-when-cross-origin"></script>
+    <script src="js/content-loader.js" defer></script>
+    <script src="js/scroll-progress.js" defer></script>
+    <script src="js/fade-in-animation.js" defer></script>
+    <script src="js/icon-loader.js" defer></script>
     <script src="js/keyboard-nav.js" defer></script>
-    <script src="js/index-page.js" defer></script>
     <script src="js/design-effects.js" defer></script>
-    <script src="js/premium-animations.js" defer></script>
-    <script src="js/new-navbar.js" defer></script>
-    <script src="js/ibc-updates-2025.js" defer></script>
-    <script src="js/ibc-buttons.js" defer></script>
-
-<script src="js/a11y-enhancer.js" defer></script>
-    <script src="js/site-fixes.js" defer></script>
+</body>
 </html>

@@ -160,6 +160,14 @@
         if (mapsIframe && data.iframes?.googleMaps && isValidUrl(data.iframes.googleMaps)) {
             mapsIframe.setAttribute('src', data.iframes.googleMaps);
         }
+        const instagramIframes = document.querySelectorAll('[data-instagram-embed]');
+        if (instagramIframes.length > 0 && data.iframes?.instagramEmbeds) {
+            instagramIframes.forEach((iframe, index) => {
+                if (data.iframes.instagramEmbeds[index] && isValidUrl(data.iframes.instagramEmbeds[index])) {
+                    iframe.setAttribute('src', data.iframes.instagramEmbeds[index]);
+                }
+            });
+        }
     }
     async function loadMediaConfig() {
         if (!dataCache.mediaConfig) {
@@ -310,7 +318,9 @@
             'testimonial-schanbacher': data.testimonials.schanbacher,
             'testimonial-eisenbiegler': data.testimonials.eisenbiegler,
             'testimonial-siestrup': data.testimonials.siestrup,
-            'testimonial-haug': data.testimonials.haug
+            'testimonial-haug': data.testimonials.haug,
+            'testimonial-katz': data.testimonials.katz,
+            'testimonial-azarhoushang': data.testimonials.azarhoushang
         };
         for (const [id, url] of Object.entries(testimonialMappings)) {
             const element = document.querySelector(`[data-media-id="${id}"]`);
@@ -438,7 +448,6 @@
         return Math.min(Math.max(delayMs, 0), CONFIG.MAX_ANIMATION_DELAY_MS);
     }
     function createTeamCardElement(member, lang, delay) {
-        const IBC_LINKEDIN = 'https://www.linkedin.com/company/institut-f%C3%BCr-business-consulting-e-v/';
         const position = member.position?.[lang] || member.position?.de || '';
         const imageSrc = member.image || 'assets/img/placeholder-avatar.png';
         const memberName = member.name || 'Unbekannt';
@@ -451,17 +460,11 @@
             altText = `Porträt von ${memberName}`;
         }
         const sanitizedDelay = sanitizeDelay(delay);
-
-        // ── column wrapper ──────────────────────────────────
         const colDiv = document.createElement('div');
         colDiv.className = 'col-lg-4 col-md-6 fade-in-up';
         colDiv.setAttribute('data-animation-delay', `${sanitizedDelay}ms`);
-
-        // ── card shell ──────────────────────────────────────
         const teamCard = document.createElement('div');
-        teamCard.className = 'team-card team-card--v2';
-
-        // ── image area ──────────────────────────────────────
+        teamCard.className = 'team-card';
         const imgWrapper = document.createElement('div');
         imgWrapper.className = 'team-card-img-wrapper';
         const img = document.createElement('img');
@@ -469,62 +472,50 @@
         img.alt = altText;
         img.loading = 'lazy';
         imgWrapper.appendChild(img);
-
-        // position badge over image
-        if (position) {
-            const badge = document.createElement('span');
-            badge.className = 'team-card-position-badge';
-            badge.textContent = position;
-            imgWrapper.appendChild(badge);
-        }
-
-        // ── card body ───────────────────────────────────────
         const cardBody = document.createElement('div');
         cardBody.className = 'team-card-body';
-
         const h3 = document.createElement('h3');
         h3.textContent = memberName;
-
-        // social icons row
+        const h4 = document.createElement('h4');
+        h4.textContent = position;
+        const tasksList = document.createElement('ul');
+        tasksList.className = 'team-card-tasks';
         const socialDiv = document.createElement('div');
         socialDiv.className = 'team-card-social';
-
-        // Email button
         if (member.email) {
             const emailUrl = `mailto:${member.email}`;
             if (isValidUrl(emailUrl)) {
                 const emailLink = document.createElement('a');
                 emailLink.href = emailUrl;
-                emailLink.className = 'team-social-btn team-social-btn--email';
-                emailLink.setAttribute('aria-label', `E-Mail an ${memberName}`);
-                emailLink.setAttribute('title', member.email);
-                emailLink.innerHTML = '<i class="fas fa-envelope" aria-hidden="true"></i>';
+                emailLink.className = 'copy-email-link';
+                emailLink.setAttribute('aria-label', `E-Mail-Adresse von ${memberName} kopieren`);
+                const emailIcon = document.createElement('i');
+                emailIcon.className = 'fas fa-envelope';
+                emailLink.appendChild(emailIcon);
                 socialDiv.appendChild(emailLink);
             } else {
                 console.warn('SECURITY: Blocked invalid email URL:', emailUrl);
             }
         }
-
-        // LinkedIn button — personal profile or IBC company page as fallback
-        const linkedinUrl = (member.linkedin && isValidUrl(member.linkedin))
-            ? member.linkedin
-            : IBC_LINKEDIN;
-        const linkedinLink = document.createElement('a');
-        linkedinLink.href = linkedinUrl;
-        linkedinLink.target = '_blank';
-        linkedinLink.rel = 'noopener noreferrer';
-        const isPersonal = member.linkedin && isValidUrl(member.linkedin);
-        linkedinLink.className = 'team-social-btn team-social-btn--linkedin';
-        linkedinLink.setAttribute('aria-label',
-            isPersonal ? `LinkedIn Profil von ${memberName}` : 'IBC auf LinkedIn');
-        linkedinLink.setAttribute('title',
-            isPersonal ? `${memberName} auf LinkedIn` : 'IBC auf LinkedIn');
-        linkedinLink.innerHTML = '<i class="fab fa-linkedin-in" aria-hidden="true"></i>';
-        socialDiv.appendChild(linkedinLink);
-
+        if (member.linkedin) {
+            if (isValidUrl(member.linkedin)) {
+                const linkedinLink = document.createElement('a');
+                linkedinLink.href = member.linkedin;
+                linkedinLink.target = '_blank';
+                linkedinLink.rel = 'noopener noreferrer';
+                linkedinLink.setAttribute('aria-label', `LinkedIn Profil von ${memberName}`);
+                const linkedinIcon = document.createElement('i');
+                linkedinIcon.className = 'fab fa-linkedin-in';
+                linkedinLink.appendChild(linkedinIcon);
+                socialDiv.appendChild(linkedinLink);
+            } else {
+                console.warn('SECURITY: Blocked invalid LinkedIn URL:', member.linkedin);
+            }
+        }
         cardBody.appendChild(h3);
+        cardBody.appendChild(h4);
+        cardBody.appendChild(tasksList);
         cardBody.appendChild(socialDiv);
-
         teamCard.appendChild(imgWrapper);
         teamCard.appendChild(cardBody);
         colDiv.appendChild(teamCard);

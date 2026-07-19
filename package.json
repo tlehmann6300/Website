@@ -1,16 +1,22 @@
 {
-  "name": "website",
+  "name": "ibc-website",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
+  "description": "Website des Institut für Business Consulting e.V. (IBC), Hochschule Furtwangen",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "php": "php -S 127.0.0.1:8788"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.5.1",
     "bootstrap": "^5.3.2"
+  },
+  "devDependencies": {
+    "typescript": "^7.0.2",
+    "vite": "^8.1.5"
   }
 }

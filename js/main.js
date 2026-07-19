@@ -94,8 +94,8 @@
     },
     // Intersection Observer Einstellungen
     observer: {
-      threshold: 0.12,              // Schwellenwert (12%) für Sichtbarkeit von Elementen
-      rootMargin: '-50px 0px'       // Margin-Offset für Observer-Trigger
+      threshold: 0.05,              // niedriger Schwellenwert: früh einblenden, nichts bleibt „hängen"
+      rootMargin: '0px 0px'         // kein negativer Offset – sonst erscheinen Sektionen erst spät
     },
     // Preloader-Einstellungen
     preloader: {
@@ -231,6 +231,12 @@ const initButtonAnimations = () => {
     });
   };
   const initScrollAnimations = () => {
+    // Nutzer mit reduzierter Bewegung: alles sofort sichtbar, keine Observer
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('.fade-in-up, .fade-in, .js-reveal, .section-heading, .section-heading-animated, .reveal-fx, .value-card, .stat-card, .info-card, .testimonial-quote, .service-card, .partner-card, .info-stagger-in, .info-glass-card, .fade-in-up-value')
+        .forEach(el => el.classList.add('is-visible'));
+      return;
+    }
     const observerOptions = {
       threshold: config.observer.threshold,
       rootMargin: config.observer.rootMargin
@@ -248,7 +254,7 @@ const initButtonAnimations = () => {
         }
       });
     }, observerOptions);
-    document.querySelectorAll('.fade-in-up, .fade-in, .section-heading, .section-heading-animated, .reveal-fx, .value-card, .stat-card, .info-card, .testimonial-quote, .service-card, .partner-card, .info-stagger-in, .info-glass-card, .fade-in-up-value')
+    document.querySelectorAll('.fade-in-up, .fade-in, .js-reveal, .section-heading, .section-heading-animated, .reveal-fx, .value-card, .stat-card, .info-card, .testimonial-quote, .service-card, .partner-card, .info-stagger-in, .info-glass-card, .fade-in-up-value')
       .forEach(el => observer.observe(el));
 
     // Fast-scroll safety net: after scrolling stops, force .is-visible on any
@@ -261,9 +267,12 @@ const initButtonAnimations = () => {
       const vp = window.innerHeight;
       const pending = [];
       document.querySelectorAll(
-        '.reveal-fx:not(.is-visible), .fade-in-up:not(.is-visible), .fade-in:not(.is-visible)'
+        '.reveal-fx:not(.is-visible), .fade-in-up:not(.is-visible), .fade-in:not(.is-visible), .js-reveal:not(.is-visible)'
       ).forEach(el => {
-        if (el.getBoundingClientRect().bottom <= vp + revealBufferPx) {
+        const rect = el.getBoundingClientRect();
+        // reveal if the element is anywhere inside the viewport (or already
+        // scrolled past) – not only when its bottom edge has passed
+        if (rect.top < vp - revealBufferPx || rect.bottom <= vp + revealBufferPx) {
           pending.push(el);
         }
       });
@@ -551,7 +560,6 @@ const initButtonAnimations = () => {
         }, 100);
       }, { passive: true });
     }
-
     const carousels = document.querySelectorAll('.carousel');
     carousels.forEach(carousel => {
       new bootstrap.Carousel(carousel, {
@@ -1004,10 +1012,9 @@ const initButtonAnimations = () => {
       let wordIndex = 0;
       const processNode = (node) => {
         if (node.nodeType === Node.TEXT_NODE) {
-          const raw = node.textContent;
-          const parts = raw.split(' ');
-          const nonEmpty = parts.filter(p => p.trim() !== '');
-          nonEmpty.forEach((part, idx) => {
+          const parts = node.textContent.split(' ');
+          parts.forEach((part) => {
+            if (part.trim() === '') return;
             const wordWrap = document.createElement('span');
             wordWrap.className = 'word-wrapper';
             const wordInner = document.createElement('span');
@@ -1016,20 +1023,12 @@ const initButtonAnimations = () => {
             wordInner.style.setProperty('--delay', `${wordIndex * 0.08}s`);
             wordWrap.appendChild(wordInner);
             heading.appendChild(wordWrap);
-            // Add space between words within this text node
-            if (idx < nonEmpty.length - 1) {
-              heading.appendChild(document.createTextNode(' '));
-            }
             wordIndex++;
           });
-          // If this text node ended with a space, preserve it (separates from next sibling)
-          if (nonEmpty.length > 0 && raw.endsWith(' ')) {
-            heading.appendChild(document.createTextNode(' '));
-          }
         } else if (node.nodeType === Node.ELEMENT_NODE) {
           const parts = node.textContent.split(' ');
-          const nonEmpty = parts.filter(p => p.trim() !== '');
-          nonEmpty.forEach((part, idx) => {
+          parts.forEach((part) => {
+            if (part.trim() === '') return;
             const wordWrap = document.createElement('span');
             wordWrap.className = 'word-wrapper';
             const wordInner = document.createElement('span');
@@ -1044,10 +1043,6 @@ const initButtonAnimations = () => {
             wordInner.style.setProperty('--delay', `${wordIndex * 0.08}s`);
             wordWrap.appendChild(wordInner);
             heading.appendChild(wordWrap);
-            // Add space between words within this element's text
-            if (idx < nonEmpty.length - 1) {
-              heading.appendChild(document.createTextNode(' '));
-            }
             wordIndex++;
           });
         }
@@ -1070,6 +1065,17 @@ const initButtonAnimations = () => {
     document.querySelectorAll('.ibc-lead').forEach(lead => {
       observer.observe(lead.closest('.js-reveal') || lead);
     });
+
+    // Cross-browser safety net: some browsers don't fire the
+    // IntersectionObserver for elements already inside the viewport on load,
+    // which would leave .ibc-heading words (opacity:0) and reveal sections
+    // permanently invisible. Force-reveal after a short delay as a fallback.
+    window.setTimeout(() => {
+      headings.forEach(h => h.classList.add('is-in-view'));
+      revealSections.forEach(s => s.classList.add('is-visible'));
+      document.querySelectorAll('.reveal-fx:not(.is-visible)')
+        .forEach(el => el.classList.add('is-visible'));
+    }, 1200);
   };
   const initFooterUtilities = () => {
     const yearSpan = document.getElementById('current-year');
@@ -1352,7 +1358,7 @@ const initButtonAnimations = () => {
     const mainNav  = document.getElementById('mainNav');
     if (!toggler || !mainNav) return;
 
-    const MOBILE_BP = 1200;
+    const MOBILE_BP = 992; /* muss zum navbar-expand-lg Breakpoint passen */
     const isMobile  = () => window.innerWidth < MOBILE_BP;
 
     /* ── Build overlay element ──────────────────────────────── */

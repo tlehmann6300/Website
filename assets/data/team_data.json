@@ -9,7 +9,7 @@
       "_kommentar_person": "ERSTES VORSTANDSMITGLIED - Vorstandsvorsitzender",
       "name": "Alexandra Dercho",
       "_kommentar_name": "Vollständiger Name der Person",
-      "image": "assets/img/team/Maskottchen.webp",
+      "image": "assets/img/team/alexandra-dercho.jpg",
       "_kommentar_image": "Pfad zum Profilbild - Bild muss in assets/img/team/ Ordner existieren",
       "position": {
         "_kommentar": "Position in drei Sprachen - ALLE drei Sprachen müssen ausgefüllt sein!",
@@ -25,7 +25,7 @@
     {
       "_kommentar_person": "ZWEITES VORSTANDSMITGLIED - Stellvertretender Vorstandsvorsitzender",
       "name": "Alexander Boev",
-      "image": "assets/img/team/Maskottchen.webp",
+      "image": "assets/img/team/alexander-boev.jpg",
       "position": {
         "de": "Stellv. Vorstandsvorsitzender",
         "en": "Vice Chairman",
@@ -37,7 +37,7 @@
     {
       "_kommentar_person": "DRITTES VORSTANDSMITGLIED - Vorstand Finanzen & Recht",
       "name": "Tom Lehmann",
-      "image": "assets/img/team/Maskottchen.webp",
+      "image": "assets/img/team/tom-lehmann.jpg",
       "position": {
         "de": "Vorstand für Finanz & Recht",
         "en": "Board Member Finance & Legal",
@@ -52,8 +52,7 @@
       "_kommentar_bereich": "RESSORTS - Hier stehen die Ressortleiter (Leiter von Fachbereichen)",
       "_kommentar_ressort": "IT-Ressort",
       "name": "Richard Lämmle",
-      "image": "assets/img/team/Maskottchen.webp",
-      "_kommentar_bild": "Hier wird das Maskottchen als Platzhalterbild verwendet",
+      "image": "assets/img/team/richard-laemmle.jpg",
       "position": {
         "de": "Ressortleitung IT",
         "en": "Head of IT",
@@ -65,7 +64,7 @@
     {
       "_kommentar_ressort": "Human Resources-Ressort",
       "name": "Dario Trombello",
-      "image": "assets/img/team/Maskottchen.webp",
+      "image": "assets/img/team/dario-trombello.jpg",
       "position": {
         "de": "Ressortleitung Human Resources",
         "en": "Head of Human Resources",
@@ -76,8 +75,8 @@
     },
     {
       "_kommentar_ressort": "Akquise-Ressort",
-      "name": "Kilian Hermann",
-      "image": "assets/img/team/Maskottchen.webp",
+      "name": "Kilian Herrmann",
+      "image": "assets/img/team/kilian-herrmann.jpg",
       "position": {
         "de": "Ressortleitung Akquise",
         "en": "Head of Acquisition",
@@ -89,7 +88,7 @@
     {
       "_kommentar_ressort": "Qualitätsmanagement-Ressort",
       "name": "Julius Schilling",
-      "image": "assets/img/team/Maskottchen.webp",
+      "image": "assets/img/team/julius-schilling.jpg",
       "position": {
         "de": "Ressortleitung Qualitätsmanagement",
         "en": "Head of Quality Management",
@@ -101,7 +100,7 @@
     {
       "_kommentar_ressort": "Marketing-Ressort",
       "name": "Leander Hegmann",
-      "image": "assets/img/team/Maskottchen.webp",
+      "image": "assets/img/team/leander-hegmann.jpg",
       "position": {
         "de": "Ressortleitung Marketing",
         "en": "Head of Marketing",
@@ -116,7 +115,7 @@
       "_kommentar_bereich": "PLATTFORM - Hier stehen Manager für digitale Plattformen (SharePoint, Social Media)",
       "_kommentar_plattform": "SharePoint-Manager",
       "name": "Alp-Tuna Karakaya",
-      "image": "assets/img/team/Maskottchen.webp",
+      "image": "assets/img/team/alp-tuna-karakaya.jpg",
       "position": {
         "de": "SharePoint-Manager",
         "en": "SharePoint Manager",
@@ -128,7 +127,7 @@
     {
       "_kommentar_plattform": "Social Media Managerin",
       "name": "Erza Tetova",
-      "image": "assets/img/team/Maskottchen.webp",
+      "image": "assets/img/team/erza-tetova.jpg",
       "position": {
         "de": "Social-Media-Managerin",
         "en": "Social Media Manager",

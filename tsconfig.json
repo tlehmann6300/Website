@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    /* Strikt für neuen TS-Code */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "forceConsistentCasingInFileNames": true,
+
+    /* Vite übernimmt das Transpilieren – tsc prüft nur Typen */
+    "noEmit": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+
+    /* Altbestand in js/ bleibt außen vor, bis er migriert ist */
+    "allowJs": false
+  },
+  "include": ["src/**/*.ts"]
+}

@@ -24,14 +24,5 @@
   "_kommentar_location_fr": "Ort/Raum des Events auf Französisch",
   
   "registrationLink": "https://forms.office.com/e/0hyfcKWkwL",
-  "_kommentar_registrationLink": "Link zum Anmeldeformular - muss mit https:// beginnen",
-
-  "showSignupButton": false,
-  "_kommentar_showSignupButton": "Steuert ob der Anmelden-Button angezeigt wird (true/false). Standard: false",
-
-  "showApplyButton": false,
-  "_kommentar_showApplyButton": "Steuert ob der 'Jetzt bewerben'-Button auf allen Seiten angezeigt wird (true/false). Standard: false",
-
-  "applyLink": "https://forms.office.com/e/0hyfcKWkwL",
-  "_kommentar_applyLink": "Link für den 'Jetzt bewerben'-Button - z.B. ein Bewerbungsformular. Muss mit https:// beginnen. Wird nur verwendet wenn showApplyButton: true ist."
+  "_kommentar_registrationLink": "Link zum Anmeldeformular - muss mit https:// beginnen"
 }

@@ -3,13 +3,12 @@
     'use strict';
     const initNavigationAndScrollAnimations = () => {
         const nav = document.querySelector('.navbar');
+        const isSubpage = document.querySelector('.page-hero-section') !== null;
         if (nav) {
             const handleNavState = () => {
-                if (window.scrollY > 50) {
-                    nav.classList.remove('at-top');
+                if (isSubpage || window.scrollY > 50) {
                     nav.classList.add('scrolled');
                 } else {
-                    nav.classList.add('at-top');
                     nav.classList.remove('scrolled');
                 }
             };
@@ -251,15 +250,11 @@
             body.style.width = '100%';
             body.classList.add('modal-open');
             document.documentElement.classList.add('modal-is-open');
-            /* Show the modal overlay and box (CSS requires .active class) */
-            if (scrim) scrim.classList.add('active');
-            if (modalBox) modalBox.classList.add('active');
-            setTimeout(() => closeYesBtn && closeYesBtn.focus(), 100);
+            setTimeout(() => closeYesBtn.focus(), 100);
         }
         function closeModal() {
-            /* Hide modal elements */
-            if (scrim) scrim.classList.remove('active');
-            if (modalBox) modalBox.classList.remove('active');
+            scrim.style.transition = 'none';
+            modalBox.style.transition = 'none';
             document.documentElement.classList.remove('modal-is-open');
             document.documentElement.style.scrollBehavior = 'auto';
             body.classList.remove('modal-open');
@@ -269,6 +264,8 @@
             window.scrollTo(0, scrollPos);
             setTimeout(() => {
                 document.documentElement.style.scrollBehavior = '';
+                scrim.style.transition = '';
+                modalBox.style.transition = '';
             }, 50);
             if (previouslyFocusedElement) {
                 previouslyFocusedElement.focus({ preventScroll: true });
