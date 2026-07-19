@@ -94,6 +94,9 @@ body.homepage {
     width: clamp(9rem, 20vw, 16rem);
     aspect-ratio: 1;
     transform-style: preserve-3d;
+}
+
+html.d26-motion .hero-3d-object {
     animation: d26ObjectRotate 22s linear infinite;
 }
 

@@ -224,7 +224,10 @@
             heroContent.style.opacity = '';
         }
         if (heroScene) {
-            heroScene.style.cssText = '';
+            heroScene.style.removeProperty('--hero-scroll');
+            heroScene.style.removeProperty('--hero-depth');
+            heroScene.style.removeProperty('--hero-pointer-x');
+            heroScene.style.removeProperty('--hero-pointer-y');
         }
         parallaxEls.forEach(function (p) { p.el.style.transform = ''; });
     });
