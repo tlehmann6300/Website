@@ -68,6 +68,9 @@ body.homepage {
     --hero-cube-depth: clamp(4.5rem, 10vw, 8rem);
     --hero-perspective: 1100px;
     --hero-rotation-duration: 22s;
+    --hero-orbit-offset-x: 20vw;
+    --hero-base-rotation-x: 62deg;
+    --hero-ring-rotation-x: 68deg;
     position: absolute;
     z-index: -1;
     top: 50%;
@@ -85,7 +88,7 @@ body.homepage {
     inset: 0;
     display: grid;
     place-items: center;
-    transform: translate3d(20vw, var(--hero-depth), 0) rotateX(calc(62deg + var(--hero-pointer-y))) rotateY(calc(var(--hero-scroll) + var(--hero-pointer-x)));
+    transform: translate3d(var(--hero-orbit-offset-x), var(--hero-depth), 0) rotateX(calc(var(--hero-base-rotation-x) + var(--hero-pointer-y))) rotateY(calc(var(--hero-scroll) + var(--hero-pointer-x)));
     transform-style: preserve-3d;
     transition: transform 0.6s var(--d26-ease-out);
     will-change: transform;
@@ -130,7 +133,7 @@ html.d26-motion .hero-3d-object {
     border: 1px solid rgba(210, 245, 181, 0.42);
     border-radius: 50%;
     box-shadow: 0 0 2.75rem rgba(143, 205, 84, 0.22), inset 0 0 2.75rem rgba(143, 205, 84, 0.12);
-    transform: rotateX(68deg) rotateZ(calc(0deg - var(--hero-scroll)));
+    transform: rotateX(var(--hero-ring-rotation-x)) rotateZ(calc(0deg - var(--hero-scroll)));
     transition: transform 0.6s var(--d26-ease-out);
 }
 
@@ -1052,7 +1055,8 @@ html.d26-motion .fat-footer__cta-btn:hover::after {
         height: 27rem;
         opacity: 0.55;
         --hero-cube-depth: 4.5rem;
+        --hero-orbit-offset-x: 6rem;
     }
-    .hero-3d-orbit { transform: translate3d(6rem, var(--hero-depth), 0) rotateX(62deg) rotateY(var(--hero-scroll)); }
+    .hero-3d-orbit { transform: translate3d(var(--hero-orbit-offset-x), var(--hero-depth), 0) rotateX(var(--hero-base-rotation-x)) rotateY(var(--hero-scroll)); }
     .hero-3d-object { width: 9rem; }
 }
