@@ -135,7 +135,7 @@ html.d26-motion .hero-3d-object {
 
 @keyframes d26ObjectRotate {
     from { transform: rotateZ(0deg) rotateY(0deg); }
-    to { transform: rotateZ(360deg) rotateY(360deg); }
+    to { transform: rotateZ(360deg) rotateY(240deg); }
 }
 
 #hero-section .hero-eyebrow-badge {
