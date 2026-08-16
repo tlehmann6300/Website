@@ -1,0 +1,191 @@
+body {
+    padding-top: 0;
+}
+.page-hero-section {
+    padding: clamp(6rem, 10vw, 8rem) 0 clamp(6rem, 10vw, 8rem) 0;
+    background: linear-gradient(125deg, var(--ibc-blue), var(--ibc-green), var(--ibc-blue));
+    background-size: 400% 400%;
+    color: var(--ibc-white);
+    animation: animatedGradient 18s ease infinite;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    transition: padding 0.4s ease;
+    margin-top: 0;
+}
+.page-hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+.page-hero-section h1 {
+    color: var(--ibc-white);
+    font-size: clamp(3rem, 7vw, 4.5rem);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+}
+.page-hero-section .ibc-lead {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1.15rem, 3vw, 1.5rem);
+    max-width: 800px;
+    margin: 1rem auto 0 auto;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.2);
+}
+@keyframes animatedGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.cookie-section {
+    padding: 5rem 0 6rem 0;
+    background-color: var(--ibc-light-grey);
+}
+.cookie-content {
+    background-color: var(--ibc-white);
+    padding: 3rem 3.5rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+    border-top: 5px solid;
+    border-image: linear-gradient(to right, var(--ibc-green), var(--ibc-blue)) 1;
+    opacity: 1;
+    transform: translateY(0);
+    transition: none;
+    line-height: 1.8;
+}
+
+.cookie-content h2 {
+    font-weight: 700;
+    color: var(--ibc-dark);
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    margin-top: 3.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    display: flex;
+    align-items: center;
+}
+.cookie-content h2 .icon {
+    color: var(--ibc-green);
+    margin-right: 1.25rem;
+    font-size: 1.8rem;
+}
+.cookie-content h3 {
+    font-size: 1.6rem;
+    margin-top: 3.5rem;
+    margin-bottom: 2rem;
+    color: var(--ibc-blue);
+    font-weight: 600;
+    position: relative;
+    padding-left: 2rem;
+}
+.cookie-content h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 25px;
+    height: 4px;
+    background-color: var(--ibc-blue);
+    border-radius: 2px;
+}
+.cookie-content p, .cookie-content ul, .cookie-content li {
+    color: var(--ibc-text-primary);
+    line-height: var(--base-line-height, 1.8);
+    font-size: 1.05rem;
+    margin-bottom: 1.8rem;
+}
+.cookie-content ul {
+    padding-left: 1.5rem;
+    list-style-type: none;
+}
+.cookie-content ul li {
+    position: relative;
+    padding-left: 1.75rem;
+}
+.cookie-content ul li::before {
+    content: '\f101';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: var(--ibc-green);
+    position: absolute;
+    left: 0;
+    top: 5px;
+    font-size: 0.9rem;
+}
+.cookie-content a {
+    color: var(--ibc-green);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 2px;
+    transition: color 0.3s ease;
+}
+.cookie-content a:hover {
+    color: var(--ibc-dark);
+}
+.cookie-content table {
+    margin: 2rem 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+.cookie-content table th {
+    background-color: var(--ibc-light-grey, #f8f9fa);
+    color: var(--ibc-dark);
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 2px solid var(--ibc-green);
+}
+.cookie-content table td {
+    padding: 0.875rem 1rem;
+    border-bottom: 1px solid #e9ecef;
+}
+.cookie-content table tbody tr:hover {
+    background-color: rgba(109, 151, 68, 0.05);
+    transition: background-color 0.2s ease;
+}
+.cookie-content .btn {
+    transition: all 0.3s ease;
+}
+.cookie-content .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.cookie-content strong {
+    color: var(--ibc-dark);
+    font-weight: 600;
+}
+@media (max-width: 768px) {
+    .page-hero-section {
+        padding: clamp(6rem, 12vw, 10rem) 0 clamp(5rem, 8vw, 7rem) 0;
+    }
+     .page-hero-section h1 {
+        font-size: clamp(2.5rem, 6vw, 3.5rem);
+    }
+     .page-hero-section .ibc-lead {
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+    }
+    .cookie-content {
+        padding: 2rem 1.5rem;
+    }
+    .cookie-content h2 {
+        font-size: 1.8rem;
+    }
+    .cookie-content h3 {
+        font-size: 1.4rem;
+        padding-left: 1.5rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1.5rem;
+    }
+     .cookie-content h3::before {
+        width: 20px;
+    }
+    .cookie-content p, .cookie-content ul, .cookie-content li {
+        font-size: 1rem;
+    }
+     .cookie-content ul li {
+        padding-left: 1.5rem;
+    }
+}

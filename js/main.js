@@ -94,8 +94,8 @@
     },
     // Intersection Observer Einstellungen
     observer: {
-      threshold: 0.05,              // niedriger Schwellenwert: früh einblenden, nichts bleibt „hängen"
-      rootMargin: '0px 0px'         // kein negativer Offset – sonst erscheinen Sektionen erst spät
+      threshold: 0.12,              // Schwellenwert (12%) für Sichtbarkeit von Elementen
+      rootMargin: '-50px 0px'       // Margin-Offset für Observer-Trigger
     },
     // Preloader-Einstellungen
     preloader: {
@@ -231,12 +231,6 @@ const initButtonAnimations = () => {
     });
   };
   const initScrollAnimations = () => {
-    // Nutzer mit reduzierter Bewegung: alles sofort sichtbar, keine Observer
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      document.querySelectorAll('.fade-in-up, .fade-in, .js-reveal, .section-heading, .section-heading-animated, .reveal-fx, .value-card, .stat-card, .info-card, .testimonial-quote, .service-card, .partner-card, .info-stagger-in, .info-glass-card, .fade-in-up-value')
-        .forEach(el => el.classList.add('is-visible'));
-      return;
-    }
     const observerOptions = {
       threshold: config.observer.threshold,
       rootMargin: config.observer.rootMargin
@@ -269,10 +263,7 @@ const initButtonAnimations = () => {
       document.querySelectorAll(
         '.reveal-fx:not(.is-visible), .fade-in-up:not(.is-visible), .fade-in:not(.is-visible), .js-reveal:not(.is-visible)'
       ).forEach(el => {
-        const rect = el.getBoundingClientRect();
-        // reveal if the element is anywhere inside the viewport (or already
-        // scrolled past) – not only when its bottom edge has passed
-        if (rect.top < vp - revealBufferPx || rect.bottom <= vp + revealBufferPx) {
+        if (el.getBoundingClientRect().bottom <= vp + revealBufferPx) {
           pending.push(el);
         }
       });
@@ -1358,7 +1349,7 @@ const initButtonAnimations = () => {
     const mainNav  = document.getElementById('mainNav');
     if (!toggler || !mainNav) return;
 
-    const MOBILE_BP = 992; /* muss zum navbar-expand-lg Breakpoint passen */
+    const MOBILE_BP = 1200;
     const isMobile  = () => window.innerWidth < MOBILE_BP;
 
     /* ── Build overlay element ──────────────────────────────── */

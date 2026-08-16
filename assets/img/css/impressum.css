@@ -1,0 +1,171 @@
+body {
+    padding-top: 0;
+}
+.page-hero-section {
+    padding: clamp(6rem, 10vw, 8rem) 0 clamp(6rem, 10vw, 8rem) 0;
+    background: linear-gradient(125deg, var(--ibc-blue), var(--ibc-green), var(--ibc-blue));
+    background-size: 400% 400%;
+    color: var(--ibc-white);
+    animation: animatedGradient 18s ease infinite;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    transition: padding 0.4s ease;
+    margin-top: 0;
+}
+.page-hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+.page-hero-section h1 {
+    color: var(--ibc-white);
+    font-size: clamp(3rem, 7vw, 4.5rem);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.45);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+}
+.page-hero-section .lead {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: clamp(1.15rem, 3vw, 1.5rem);
+    max-width: 800px;
+    margin: 1rem auto 0 auto;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.2);
+}
+@keyframes animatedGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+.impressum-section {
+    padding: 5rem 0 6rem 0;
+    background-color: var(--ibc-light-grey);
+}
+.impressum-card {
+    background-color: var(--ibc-white);
+    padding: 3rem 3.5rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+    border-top: 5px solid;
+    border-image: linear-gradient(to right, var(--ibc-green), var(--ibc-blue)) 1;
+    margin-bottom: 2.5rem;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+.impressum-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo);
+    transition-delay: var(--animation-delay, 0s);
+}
+.impressum-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.12);
+}
+.impressum-card h2,
+.impressum-card h3 {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+}
+.impressum-card h2 {
+    color: var(--ibc-dark);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+.impressum-card h3 {
+    color: var(--ibc-blue);
+    font-size: 1.4rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #f0f0f0;
+}
+.impressum-card h2 .icon,
+.impressum-card h3 .icon {
+    margin-right: 1.25rem;
+    font-size: 1.8rem;
+    color: var(--ibc-green);
+    width: 35px;
+    text-align: center;
+}
+.impressum-card h3 .icon {
+    font-size: 1.3rem;
+    color: var(--ibc-blue);
+}
+.impressum-card p,
+.impressum-card ul {
+    color: var(--ibc-text-primary);
+    line-height: 1.8;
+    font-size: 1.05rem;
+    margin-bottom: 1rem;
+}
+.impressum-card strong {
+    color: var(--ibc-dark);
+    font-weight: 600;
+}
+.contact-info-block {
+    list-style-type: none;
+    padding-left: 0;
+}
+.contact-info-block li {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+    font-size: 1.05rem;
+}
+.contact-info-block .icon {
+    font-size: 1.2rem;
+    color: var(--ibc-blue);
+    margin-right: 1.5rem;
+    margin-top: 0.3rem;
+    width: 25px;
+    text-align: center;
+}
+.impressum-card a {
+    color: var(--ibc-green);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    padding-bottom: 2px;
+}
+.impressum-card a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--ibc-dark);
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.impressum-card a:hover {
+    color: var(--ibc-dark);
+}
+.impressum-card a:hover::after {
+    width: 100%;
+}
+@media (max-width: 768px) {
+    .page-hero-section {
+        padding: clamp(6rem, 12vw, 10rem) 0 clamp(5rem, 8vw, 7rem) 0;
+    }
+     .page-hero-section h1 {
+        font-size: clamp(2.5rem, 6vw, 3.5rem);
+    }
+     .page-hero-section .lead {
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+    }
+    .impressum-card {
+        padding: 2rem 1.5rem;
+    }
+    .impressum-card h2 {
+        font-size: 1.8rem;
+    }
+    .impressum-card h3 {
+        font-size: 1.4rem;
+    }
+    .contact-info-block .icon {
+        margin-right: 1rem;
+    }
+}

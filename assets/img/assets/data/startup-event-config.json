@@ -1,0 +1,28 @@
+{
+  "_kommentar_datei": "Diese Datei steuert die Anzeige des nächsten Events/Informationsabends auf der Website",
+  "_kommentar_verwendung": "Die Datei wird von event-loader.js geladen und verarbeitet",
+  
+  "isActive": true,
+  "_kommentar_isActive": "Steuert ob das Event angezeigt wird: true = Event wird angezeigt, false = Event wird versteckt",
+  
+  "date_de": "15. Oktober um 19:00 Uhr",
+  "_kommentar_date_de": "Datum und Uhrzeit des Events auf Deutsch - wird Besuchern mit deutscher Sprache angezeigt",
+  
+  "date_en": "October 15 at 7:00 PM",
+  "_kommentar_date_en": "Datum und Uhrzeit des Events auf Englisch - wird Besuchern mit englischer Sprache angezeigt",
+  
+  "date_fr": "15 octobre à 19h00",
+  "_kommentar_date_fr": "Datum und Uhrzeit des Events auf Französisch - wird Besuchern mit französischer Sprache angezeigt",
+  
+  "location_de": "Raum C.014",
+  "_kommentar_location_de": "Ort/Raum des Events auf Deutsch",
+  
+  "location_en": "Room C.014",
+  "_kommentar_location_en": "Ort/Raum des Events auf Englisch",
+  
+  "location_fr": "Salle C.014",
+  "_kommentar_location_fr": "Ort/Raum des Events auf Französisch",
+  
+  "registrationLink": "https://forms.office.com/e/0hyfcKWkwL",
+  "_kommentar_registrationLink": "Link zum Anmeldeformular - muss mit https:// beginnen"
+}

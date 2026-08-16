@@ -1,0 +1,531 @@
+/* ==========================================================================
+ * mobile-animations.css  –  IBC Website / index.html
+ *
+ * Mobile-optimised animation overrides.
+ * All desktop rules in style.css / index.css are left untouched.
+ * These rules only fire inside narrow-viewport media-query blocks so the
+ * desktop experience is completely unaffected.
+ *
+ * Load order: last stylesheet, after responsive-improvements.css
+ *
+ * Sections
+ * §1  reveal-fx  – remove GPU-heavy blur filter, fast 0.5s transition
+ * §2  Hero title  – disable infinite gradient shimmer
+ * §3  Hero secondary elements  – tighter entrance timing
+ * §4  Background blob animations  – disable for battery savings
+ * §5  Hero blur orbs  – reduce blur intensity
+ * §6  Stagger delays  – compress for snappier UX
+ * §7  Info stagger-in  – faster entrance
+ * §8  Stats fade-in-up  – shorter transition
+ * §9  Touch interaction states  – :active replaces hover
+ * §10 Extra-small (≤ 480 px)  – maximum simplification
+ * §11 Competency swipe carousel  – guarantee visibility for all carousel cards
+ * §12 headingReveal keyframe  – remove blur from heading entrance on mobile
+ * §13 stripe-reveal keyframe  – remove blur from stripe entrance on mobile
+ * ========================================================================== */
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 1  reveal-fx
+   Desktop uses filter:blur(10px) for a cinematic blur-in, but that requires
+   a full off-screen composited layer on mobile GPUs.  On mobile we keep the
+   translate + opacity fade and drop the blur entirely.
+   transition-duration is hard-set to 0.5s (down from desktop 1.2s) and
+   translateY is reduced to 20px (down from desktop 40px) so elements snap
+   into the viewport quickly.  opacity:1 is made explicit in .is-visible so
+   the final state cannot be overridden by earlier cascade rules.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .reveal-fx {
+        filter: none !important;
+        transform: translateY(20px) !important;
+        will-change: opacity, transform !important;
+        transition: opacity 0.5s ease, transform 0.5s ease !important;
+        /* Remove any stagger delay – scroll reveals must fire immediately */
+        transition-delay: 0s !important;
+    }
+
+    .reveal-fx.is-visible {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: translateY(0) !important;
+        transition-delay: 0s !important;
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 2  Hero title  –  disable heroGradientShimmer on mobile
+   Desktop combines heroTitleReveal (entrance) with heroGradientShimmer
+   (infinite background-size loop).  The shimmer continuously re-rasterises
+   the gradient text clipping path on the GPU.  On mobile we keep the entrance
+   animation but replace both with a single, simple fade-up.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    @keyframes heroTitleRevealMobile {
+        from {
+            opacity: 0;
+            transform: translateY(14px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    #hero-section h1 {
+        /* Drop heroGradientShimmer; keep a fast, blur-free entrance */
+        animation: heroTitleRevealMobile 0.7s 0.25s forwards ease-out !important;
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 3  Hero secondary elements  –  consistent entrance timing on mobile
+   The hero badge and subtitle currently appear immediately (no animation)
+   while the h1 fades in, causing a visual jump.  On mobile we add a short
+   staggered fade-up so every hero element enters in sequence.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    /* Hero eyebrow badge */
+    .hero-eyebrow-badge,
+    [data-i18n="hero-eyebrow"].badge {
+        opacity: 0;
+        animation: fadeInUp 0.5s 0.1s forwards ease-out !important;
+    }
+
+    /* Hero subtitle (p.fs-5 in hero) */
+    #hero-section p.fs-5 {
+        opacity: 0;
+        animation: fadeInUp 0.55s 0.45s forwards ease-out !important;
+    }
+
+    /* Hero CTA buttons (if present) */
+    #hero-section .btn {
+        animation: fadeInUp 0.55s 0.5s forwards ease-out !important;
+    }
+
+    /* Hero accent line */
+    .hero-accent-line {
+        animation: fadeInUp 0.45s 0.3s forwards ease-out !important;
+    }
+
+    /* Scroll indicator  –  shorter entrance delay */
+    .hero-scroll-indicator {
+        animation: fadeInUp 0.5s 0.75s forwards ease-out !important;
+    }
+
+    /* Dot pulse in hero eyebrow – keep it, but it's harmless even if removed */
+    .hero-eyebrow-dot {
+        animation: hero-dot-pulse 2.4s ease-in-out infinite !important;
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 4  Background blob animations  –  disable on mobile
+   Three sections run continuous floating animations on decorative
+   pseudo-elements / divs (floatStatBlob, moveInfoBlob, physics-float).
+   These loop indefinitely and prevent the browser from fully sleeping
+   compositor threads, draining battery on mobile.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    /* ── Stats section pseudo-element blobs ── */
+    .stats-section::before,
+    .stats-section::after {
+        animation: none !important;
+    }
+
+    /* ── Info-cards section ambient blobs ── */
+    .info-ambient-blob {
+        animation: none !important;
+        /* Keep a very faint static glow instead of removing entirely */
+        opacity: 0.4 !important;
+    }
+
+    /* ── Physics / values section blobs ── */
+    .physics-blob {
+        animation: none !important;
+    }
+
+    /* ── Competencies orbs ── */
+    .competencies-orb {
+        animation: none !important;
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 5  Hero blur orbs  –  reduce blur radius on mobile
+   Desktop orbs use filter:blur(90px) to create large, soft glows.
+   On mobile that resolution of blur compositing is expensive.
+   40 px still produces the ambient glow effect at a fraction of the cost.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .hero-blur-orb {
+        filter: blur(40px) !important;
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 6  Stagger delays  –  compress for snappier reveal on mobile
+   Desktop uses 100/200/300 ms stagger.  On mobile, long staggered delays
+   make content feel slow to appear after the user scrolls down.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    /* CSS-custom-property-based delays (used by style.css / index.css) and
+       nth-child stagger delays (.stagger-in, .service-card).
+       On mobile, all stagger delays are removed so scroll reveals fire instantly. */
+    .delay-100,
+    .delay-200,
+    .delay-300,
+    .delay-400,
+    .delay-500,
+    .delay-600,
+    .delay-700,
+    .delay-800,
+    .delay-900,
+    .delay-1000,
+    .stagger-in,
+    .service-card {
+        --animation-delay: 0s !important;
+        transition-delay: 0s !important;
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 7  Info stagger-in  –  shorter entrance on mobile
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .info-stagger-in {
+        transform: translateY(20px) !important;
+        transition: opacity 0.5s ease, transform 0.5s ease !important;
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 8  Stats fade-in-up  –  tighter timing
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .stats-section .fade-in-up {
+        transition: opacity 0.4s ease-out, transform 0.4s ease-out !important;
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 9  Touch interaction states
+   On touch screens :hover never fires during a tap – it fires only after the
+   finger lifts, which causes a visual flash but no real hover experience.
+   We neutralise hover-only lift transforms and add :active press states so
+   every tappable element gives immediate tactile feedback.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (hover: none) and (pointer: coarse) {
+
+    /* ── Stat cards ── */
+    .stats-section .stat-card:hover {
+        transform: none !important;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+        z-index: auto !important;
+    }
+    .stats-section .stat-card:active {
+        transform: scale(0.97) !important;
+        transition-duration: 0.1s !important;
+    }
+
+    /* ── Info glass cards ── */
+    .info-glass-card:hover {
+        transform: none !important;
+        box-shadow: var(--info-shadow-card, 0 2px 8px rgba(0,0,0,.06)) !important;
+    }
+    .info-glass-card-link:active .info-glass-card {
+        transform: scale(0.99) !important;
+        transition-duration: 0.1s !important;
+    }
+
+    /* ── Physics / values cards ── */
+    /* Neutralise all hover effects – on touch the browser fires :hover on
+       tap-release, causing a visible flash of shadow/icon-colour changes. */
+    .physics-card-wrap:hover .physics-card {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02),
+                    0 15px 35px rgba(32, 35, 74, 0.06) !important;
+        border-color: transparent !important;
+    }
+    .physics-card-wrap:hover .physics-card::before {
+        opacity: 0 !important;
+    }
+    .physics-card-wrap:hover .physics-icon-box {
+        background: #ffffff !important;
+        color: var(--ibc-green, #6D9744) !important;
+        transform: none !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04) !important;
+    }
+    .physics-card-wrap:active .physics-card {
+        transform: scale(0.97) !important;
+        transition-duration: 0.1s !important;
+    }
+
+    /* ── Instagram cards ── */
+    .instagram-card:hover {
+        transform: none !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08) !important;
+    }
+    .instagram-card:active {
+        transform: scale(0.98) !important;
+        transition-duration: 0.1s !important;
+    }
+
+    /* ── Hero secondary CTA button ── */
+    .hero-btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.07) !important;
+        border-color: rgba(255, 255, 255, 0.45) !important;
+    }
+    .hero-btn-secondary:active {
+        background: rgba(255, 255, 255, 0.18) !important;
+        transform: scale(0.97) !important;
+        transition-duration: 0.1s !important;
+    }
+
+    /* ── Testimonial / Jan Pfeiffer ── */
+    .jan-pfeiffer-footer:hover {
+        transform: none !important;
+    }
+    .jan-pfeiffer-footer:active {
+        transform: scale(0.98) !important;
+        transition-duration: 0.1s !important;
+    }
+    .jan-pfeiffer-image:hover {
+        transform: none !important;
+    }
+    .jan-pfeiffer-image:active {
+        transform: scale(0.97) !important;
+        transition-duration: 0.1s !important;
+    }
+
+    /* ── Competency card CTA buttons ── */
+    .competency-btn-clean:hover {
+        transform: none !important;
+    }
+    .competency-btn-clean:active {
+        transform: scale(0.97) !important;
+        transition-duration: 0.1s !important;
+    }
+
+    /* ── Info btn (stat-card info button) ── */
+    .info-btn:hover {
+        transform: none !important;
+    }
+    .info-btn:active {
+        transform: scale(1.05) !important;
+        background-color: var(--ibc-green, #6D9744) !important;
+        color: var(--ibc-white, #ffffff) !important;
+        transition-duration: 0.1s !important;
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 10  Extra-small devices (≤ 480 px)  –  maximum simplification
+   At the smallest viewport we go even further: completely hide decorative
+   ambient layers and use the shortest possible animation timings.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+
+    /* Completely hide decorative ambient layers */
+    .physics-ambient-layer,
+    .competencies-ambient-layer {
+        display: none !important;
+    }
+
+    /* Even faster reveal for tiny screens */
+    .reveal-fx {
+        transform: translateY(12px) !important;
+        transition: opacity 0.4s ease, transform 0.4s ease !important;
+    }
+
+    /* Hero title: fastest possible entrance */
+    #hero-section h1 {
+        animation: heroTitleRevealMobile 0.5s 0.15s forwards ease-out !important;
+    }
+
+    /* Hero subtitle */
+    #hero-section p.fs-5 {
+        animation: fadeInUp 0.45s 0.35s forwards ease-out !important;
+    }
+
+    /* Tightest stagger – elements appear together */
+    .delay-100,
+    .delay-200,
+    .delay-300,
+    .delay-400,
+    .delay-500,
+    .delay-600,
+    .delay-700,
+    .delay-800,
+    .delay-900,
+    .delay-1000 { --animation-delay: 0s !important; transition-delay: 0s !important; }
+
+    /* Hero glass panel: reduce backdrop-filter cost */
+    .hero-glass-panel {
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+    }
+
+    /* Hero scroll indicator: reduce blur-orb intensity further */
+    .hero-blur-orb {
+        filter: blur(24px) !important;
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 11  Competency accordion cards  –  guarantee visibility on mobile
+   The competency cards use the reveal-fx entrance animation (opacity 0 → 1,
+   translateY → 0).  On mobile the cards are in a vertical accordion so the
+   IntersectionObserver fires correctly as the user scrolls.  We ensure all
+   cards are revealed cleanly without blur and with a short stagger so the
+   accordion feels fast and responsive.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+    /* All competency cards: fast, blur-free reveal */
+    .competencies-cards-grid .competency-card.reveal-fx {
+        filter: none !important;
+        transition: opacity 0.4s ease, transform 0.4s ease !important;
+        transition-delay: 0s !important;
+    }
+
+    .competencies-cards-grid .competency-card.reveal-fx.is-visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        filter: none !important;
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 12  headingReveal keyframe  –  remove blur on mobile
+   The desktop headingReveal keyframe animates filter:blur(4px) → blur(1px)
+   → blur(0).  Each blur value forces a separate GPU rasterisation pass.
+   On mobile we redefine the keyframe without any blur steps: only opacity
+   and translateY are animated, matching what mobile GPUs handle efficiently.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    @keyframes headingReveal {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 13  stripe-reveal keyframe  –  remove blur on mobile
+   The desktop stripe-reveal keyframe starts with filter:blur(5px) and ends
+   at blur(0), causing a costly composited-layer repaint on each frame.
+   On mobile we redefine the keyframe using only opacity + transform so that
+   the GPU can handle the animation with a single composited layer.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    @keyframes stripe-reveal {
+        0% {
+            opacity: 0;
+            transform: translateY(110%) rotate(5deg);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) rotate(0deg);
+        }
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 14  fade-in-up & section-heading  –  0.5 s transition, no stagger delay
+   Desktop .fade-in-up uses 0.8 s; .section-heading uses 1.0–1.2 s.
+   On mobile we cap both at 0.5 s and remove any residual transition-delay so
+   elements cannot remain invisible after the IntersectionObserver fires.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    /* fade-in-up: faster transition, no delay */
+    .fade-in-up.is-visible {
+        transition: opacity 0.5s ease, transform 0.5s ease !important;
+        transition-delay: 0s !important;
+    }
+
+    /* section-heading span: shorten base transition from 1 s to 0.5 s */
+    .section-heading span {
+        transition: opacity 0.5s ease, transform 0.5s ease !important;
+    }
+
+    /* section-heading reveal animation: cap at 0.5 s */
+    .section-heading.is-visible span {
+        animation-duration: 0.5s !important;
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 15  Unsere Werte – physics cards mobile adaptations
+   The desktop physics cards use backdrop-filter:blur(12px) and
+   transition:all which are GPU-heavy on mobile.  The icon boxes run an
+   infinite idle-pulse that drains battery on low-powered devices.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    /* Replace transition:all with specific properties – avoids compositing
+       backdrop-filter on every frame and reduces layout-thrashing risk. */
+    .physics-card {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+                    border-color 0.3s ease !important;
+    }
+
+    /* Disable the infinite idle-pulse on icon boxes – saves battery and
+       prevents visual noise on small screens where the pulse is distracting. */
+    .physics-icon-box.icon-animate-idle {
+        animation: none !important;
+    }
+
+    /* Fast, blur-free reveal entrance for physics value cards */
+    .physics-values-section .reveal-fx {
+        filter: none !important;
+        transition: opacity 0.45s ease, transform 0.45s ease !important;
+        transition-delay: 0s !important;
+    }
+    .physics-values-section .reveal-fx.is-visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+}
+
+
+/* ──────────────────────────────────────────────────────────────────────────
+   § 16  Footer navigation links – remove hover effects on mobile
+   On mobile-width screens the footer nav links (Startseite, Für Studierende,
+   etc.) must not show hover colour/glow/lift effects – tap interactions
+   should be visually neutral.  This complements the existing
+   @media (hover:none) rule in style.css with a viewport-width guard so
+   hybrid devices at mobile size are also covered.
+   ────────────────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    /* Remove transition so no animated flash occurs on tap */
+    .fat-footer__nav-list a {
+        transition: none !important;
+    }
+
+    /* Reset all hover-state styles back to base */
+    .fat-footer__nav-list a:hover {
+        color: var(--fat-footer-link, #e2e8f0) !important;
+        text-shadow: none !important;
+        transform: none !important;
+    }
+}

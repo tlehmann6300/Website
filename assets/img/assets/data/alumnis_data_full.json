@@ -1,0 +1,92 @@
+{
+  "_kommentar_datei": "Diese Datei enthält Erfahrungsberichte (Testimonials) von ehemaligen IBC-Mitgliedern",
+  "_kommentar_verwendung": "Wird auf der Startseite als Slider (automatisch wechselnde Zitate) angezeigt",
+  "_kommentar_wichtig": "Jedes Zitat muss in allen drei Sprachen (de, en, fr) vorhanden sein!",
+
+  "config": {
+    "_kommentar": "Konfigurationseinstellungen für den Testimonials-Slider",
+    "duration": 15000,
+    "_kommentar_duration": "Anzeigedauer pro Testimonial in Millisekunden",
+    "defaultLang": "de",
+    "_kommentar_defaultLang": "Standard-Sprache, wenn keine andere erkannt wird"
+  },
+
+  "labels": {
+    "_kommentar": "Beschriftungen und Button-Texte",
+    "stories": {
+      "de": "Erfolgsgeschichten",
+      "en": "Success Stories",
+      "fr": "Histoires de réussite"
+    },
+    "heading": {
+      "de": "Was unsere <span class=\"highlight-gradient\">Mitglieder</span> sagen",
+      "en": "What Our <span class=\"highlight-gradient\">Members</span> Say",
+      "fr": "Ce que disent nos <span class=\"highlight-gradient\">membres</span>"
+    },
+    "prevSlide": {
+      "de": "Vorheriges Testimonial",
+      "en": "Previous Testimonial",
+      "fr": "Témoignage précédent"
+    },
+    "nextSlide": {
+      "de": "Nächstes Testimonial",
+      "en": "Next Testimonial",
+      "fr": "Témoignage suivant"
+    },
+    "playPause": {
+      "de": "Autoplay starten/stoppen",
+      "en": "Start/stop autoplay",
+      "fr": "Démarrer/arrêter la lecture automatique"
+    }
+  },
+
+  "slides": [
+    {
+      "_kommentar_testimonial": "TESTIMONIAL - Jens Steinel",
+      "name": "Jens Steinel",
+      "img": "assets/img/alumnis/jens_steinel.webp",
+      "role": {
+        "de": "Alumni",
+        "en": "Alumni",
+        "fr": "Alumni"
+      },
+      "text": {
+        "de": "Das IBC war für mich der ideale Einstieg in die Praxis: echte Projekte, ein starkes Alumni-Netzwerk und Erfahrungen, die mir im Beruf jeden Tag weiterhelfen.",
+        "en": "For me, the IBC was the ideal entry into practical experience: real projects, a strong alumni network, and experiences that help me every day in my professional life.",
+        "fr": "Pour moi, l’IBC a été une entrée idéale dans la pratique : de vrais projets, un solide réseau d’anciens élèves et des expériences qui m’aident chaque jour dans ma vie professionnelle."
+      }
+    },
+    {
+      "_kommentar_testimonial": "TESTIMONIAL - Jakob",
+      "name": "Jakob Krömer",
+      "img": "",
+      "role": {
+        "de": "Alumni",
+        "en": "Alumni",
+        "fr": "Alumni"
+      },
+      "text": {
+        "de": "Durch das IBC konnte ich früh Verantwortung übernehmen und wertvolle Praxiserfahrung sammeln, die mir den Einstieg ins Berufsleben deutlich erleichtert hat.",
+        "en": "Through the IBC, I was able to take on responsibility early and gain valuable practical experience that significantly eased my entry into professional life.",
+        "fr": "Grâce à l’IBC, j’ai pu assumer des responsabilités très tôt et acquérir une expérience pratique précieuse qui a grandement facilité mon entrée dans la vie professionnelle."
+      }
+    },
+    {
+      "_kommentar_testimonial": "TESTIMONIAL - XXX (Platzhalter)",
+      "name": "XXX",
+      "img": "https://images.unsplash.com/photo-1544725176-7c40e5a2c9f9?q=80&w=800&auto=format&fit=crop",
+      "role": {
+        "de": "Alumni",
+        "en": "Alumni",
+        "fr": "Alumni"
+      },
+      "text": {
+        "de": "Die Zeit im IBC hat mir gezeigt, wie wichtig Teamarbeit, Eigeninitiative und praxisnahes Lernen für den späteren beruflichen Erfolg sind.",
+        "en": "My time at the IBC showed me how important teamwork, initiative, and hands-on learning are for later professional success.",
+        "fr": "Mon passage à l’IBC m’a montré à quel point le travail d’équipe, l’initiative personnelle et l’apprentissage pratique sont essentiels pour la réussite professionnelle."
+      }
+    }
+  ],
+
+  "_kommentar_wichtig_drei_sprachen": "Alle Texte sind vollständig in Deutsch, Englisch und Französisch vorhanden"
+}

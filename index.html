@@ -32,6 +32,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/utility-golden.css">
     <link rel="stylesheet" href="css/adaptive-typography.css">
+    <link rel="stylesheet" href="css/index.css">
     <link rel="icon" href="assets/img/cropped_maskottchen_32x32.webp" type="image/webp" sizes="32x32" />
     <link rel="icon" href="assets/img/cropped_maskottchen_192x192.webp" type="image/webp" sizes="192x192" />
     <link rel="apple-touch-icon" href="assets/img/cropped_maskottchen_180x180.webp" />
@@ -70,11 +71,14 @@
     </script>
     <link rel="stylesheet" href="css/wcag-accessibility.css">
     <link rel="stylesheet" href="css/mobile-first.css">
-    <link rel="stylesheet" href="css/design-2026.css">
-    <link rel="stylesheet" href="css/site-relaunch.css">
+    <link rel="stylesheet" href="css/card-glassmorphism.css">
+    <link rel="stylesheet" href="css/design-effects.css">
+    <link rel="stylesheet" href="css/ui-refactoring.css">
+    <link rel="stylesheet" href="css/responsive-improvements.css">
+    <link rel="stylesheet" href="css/mobile-animations.css">
 </head>
 <body class="homepage">
-    <nav class="navbar navbar-expand-lg" aria-label="Hauptnavigation" role="navigation">
+    <nav class="navbar navbar-expand-xl" aria-label="Hauptnavigation" role="navigation">
         <div class="container">
             <a class="navbar-brand" href="index.html" aria-label="Zur Startseite">
                 <img src="assets/img/ibc_logo_original_navbar.webp" alt="IBC Logo" class="navbar-logo">
@@ -193,19 +197,6 @@
                 <div class="hero-blur-orb hero-blur-orb-1"></div>
                 <div class="hero-blur-orb hero-blur-orb-2"></div>
             </div>
-            <div class="hero-3d-scene" aria-hidden="true">
-                <div class="hero-3d-orbit">
-                    <div class="hero-3d-object">
-                        <span class="hero-3d-face hero-3d-face--front"></span>
-                        <span class="hero-3d-face hero-3d-face--back"></span>
-                        <span class="hero-3d-face hero-3d-face--right"></span>
-                        <span class="hero-3d-face hero-3d-face--left"></span>
-                        <span class="hero-3d-face hero-3d-face--top"></span>
-                        <span class="hero-3d-face hero-3d-face--bottom"></span>
-                    </div>
-                </div>
-                <div class="hero-3d-ring"></div>
-            </div>
             <div class="container js-reveal">
                 <div class="row justify-content-center">
                     <div class="col-lg-10 col-xl-10 text-center text-white">
@@ -225,31 +216,6 @@
                 <path d="M0,50 C240,10 480,80 720,40 C960,0 1200,70 1440,50 L1440,80 L0,80 Z" fill="#f8f9fa"/>
                 <path d="M0,60 C300,20 600,75 900,45 C1100,25 1300,65 1440,55 L1440,80 L0,80 Z" fill="rgba(248,249,250,0.6)"/>
             </svg>
-        </div>
-        <!-- Endlos-Marquee der Kompetenzen (dekorativ, nutzt vorhandene i18n-Keys) -->
-        <div class="d26-marquee" aria-hidden="true">
-            <div class="d26-marquee__inner">
-                <div class="d26-marquee__track">
-                    <span data-i18n="app-development-title">App-Entwicklung</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="website-title">Webseiten</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="market-analysis-title">Marktanalysen</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="process-optimization-title">Prozessoptimierung</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="training-title">Schulungen</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="individual-solutions-title">Individuallösungen</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="image-video-editing-title">Bild und Videobearbeitung</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="social-media-management-title">Social Media Management</span><i class="d26-marquee__dot"></i>
-                </div>
-                <div class="d26-marquee__track">
-                    <span data-i18n="app-development-title">App-Entwicklung</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="website-title">Webseiten</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="market-analysis-title">Marktanalysen</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="process-optimization-title">Prozessoptimierung</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="training-title">Schulungen</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="individual-solutions-title">Individuallösungen</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="image-video-editing-title">Bild und Videobearbeitung</span><i class="d26-marquee__dot"></i>
-                    <span data-i18n="social-media-management-title">Social Media Management</span><i class="d26-marquee__dot"></i>
-                </div>
-            </div>
         </div>
         <section class="competencies-section section-gs-lg" id="competencies-section" aria-labelledby="competencies-heading-main">
             <div class="competencies-ambient-layer" aria-hidden="true">
@@ -932,9 +898,10 @@
     <script src="js/cookie-consent.js" defer></script>
     <script src="js/content-loader.js" defer></script>
     <script src="js/scroll-progress.js" defer></script>
+    <script src="js/scroll-blob-story.js" defer></script>
     <script src="js/fade-in-animation.js" defer></script>
     <script src="js/icon-loader.js" defer></script>
     <script src="js/keyboard-nav.js" defer></script>
-    <script src="js/motion-2026.js" defer></script>
+    <script src="js/design-effects.js" defer></script>
 </body>
 </html>

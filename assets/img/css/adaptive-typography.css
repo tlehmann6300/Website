@@ -1,0 +1,402 @@
+/* ==========================================================================
+ * adaptive-typography.css
+ * Adaptive Typography System — IBC Website
+ *
+ * 1. Golden Ratio (φ = 1.618034) line-height scale for luxury typesetting
+ * 2. Context-aware heading colours: dark text on light backgrounds,
+ *    white text only on explicitly dark section backgrounds
+ * 3. CSS :has() progressive enhancement for container-based detection
+ * 4. Safety overrides preventing white-on-white text collisions
+ * 5. Prose-flow enhancements: p/li/blockquote explicit line-heights,
+ *    letter-spacing tokens, and .at-prose reading-width utility
+ *
+ * Load order: after utility-golden.css, before wcag-accessibility.css
+ * ========================================================================== */
+
+/* --------------------------------------------------------------------------
+ * 1. Golden Ratio CSS Custom Properties
+ *    φ = 1.618034 (golden ratio)
+ *    Heading line-heights use the scale φ^(n/k) so that each level steps
+ *    closer to φ, producing a harmonious, luxurious rhythm.
+ *
+ *    h1 (largest text): φ^(1/2) ≈ 1.272  — tight; large glyphs need less air
+ *    h2:                φ^(2/3) ≈ 1.382
+ *    h3:               (φ^(1/2) + φ^(2/3)) / 2 ≈ 1.444  — midpoint step
+ *    h4–h6 & body:      φ       = 1.618  — exact golden ratio
+ * -------------------------------------------------------------------------- */
+:root {
+  /* φ — golden ratio reference value */
+  --phi: 1.618;
+
+  /* Heading line-heights */
+  --at-lh-h1:   1.272;   /* φ^(1/2) */
+  --at-lh-h2:   1.382;   /* φ^(2/3) */
+  --at-lh-h3:   1.444;   /* midpoint step */
+  --at-lh-h4:   1.618;   /* exact φ */
+  --at-lh-h5:   1.618;   /* exact φ */
+  --at-lh-h6:   1.618;   /* exact φ */
+
+  /* Body & lead text */
+  --at-lh-body:       1.618;   /* exact φ — luxurious body rhythm */
+  --at-lh-lead:       1.618;   /* exact φ */
+  --at-lh-blockquote: 1.618;   /* exact φ */
+  --at-lh-caption:    1.500;   /* slightly tighter for small caption text */
+  --at-lh-code:       1.618;   /* exact φ — code blocks need breathing room */
+
+  /* Heading letter-spacing tokens
+   *   Large display glyphs benefit from slight optical tightening;
+   *   smaller headings stay neutral.  Values are in em so they scale
+   *   proportionally with font-size.                                          */
+  --at-ls-h1:  -0.02em;  /* subtle tightening at display sizes */
+  --at-ls-h2:  -0.01em;  /* mild tightening */
+  --at-ls-h3:   0;      /* neutral */
+  --at-ls-h4:   0;      /* neutral */
+  --at-ls-h5:   0.01em;  /* very slight opening for small caps feel */
+  --at-ls-h6:   0.01em;
+
+  /* Optimal reading measure: 65–72 characters per line */
+  --at-prose-width: 72ch;
+
+  /* Default heading colour (dark text, readable on any background) */
+  --at-heading-color:        var(--ibc-blue, #20234A);
+  --at-heading-fill-color:   var(--ibc-blue, #20234A);
+}
+
+/* --------------------------------------------------------------------------
+ * 2. Apply golden-ratio line-heights globally
+ *    These override the tighter values set in style.css to produce the
+ *    luxurious spacing requested while keeping font-size untouched.
+ *    Letter-spacing tokens add optical polish at display sizes.
+ * -------------------------------------------------------------------------- */
+h1, .h1,
+.display-1, .display-2, .display-3 {
+  line-height: var(--at-lh-h1);
+  letter-spacing: var(--at-ls-h1);
+}
+
+h2, .h2,
+.section-heading {
+  line-height: var(--at-lh-h2);
+  letter-spacing: var(--at-ls-h2);
+}
+
+h3, .h3 {
+  line-height: var(--at-lh-h3);
+  letter-spacing: var(--at-ls-h3);
+}
+
+h4, .h4 {
+  line-height: var(--at-lh-h4);
+  letter-spacing: var(--at-ls-h4);
+}
+
+h5 {
+  line-height: var(--at-lh-h5);
+  letter-spacing: var(--at-ls-h5);
+}
+
+h6 {
+  line-height: var(--at-lh-h6);
+  letter-spacing: var(--at-ls-h6);
+}
+
+/* Body & lead: align to φ */
+body {
+  line-height: var(--at-lh-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.lead,
+.ibc-lead {
+  line-height: var(--at-lh-lead);
+}
+
+/* --------------------------------------------------------------------------
+ * 3. Section-context colour tokens
+ *
+ *    Each section class declares the --at-heading-color token for headings
+ *    within its scope.  Headings then inherit via the rule in section 4.
+ *
+ *    LIGHT BACKGROUND sections → force --ibc-blue (dark navy) on headings
+ * -------------------------------------------------------------------------- */
+
+/* Bootstrap utility classes */
+.bg-white,
+.bg-light,
+/* IBC sections with white or near-white backgrounds */
+.competencies-section,
+.info-cards-section,
+.physics-values-section,
+.infoabend-section,
+.cta-section-students,
+.cta-section-companies,
+.ibc-testimonials-section,
+.timeline-section-new,
+.alumni-section,
+/* unser-netzwerk.html sections */
+.foerderkreis-section,
+.kooperationspartner-section,
+.kuratorium-section,
+/* fuer-studierende.html light sections */
+#angebot,
+#events,
+/* fuer-unternehmen.html offer sections */
+#marketing,
+#schulungen,
+#business,
+#digitalisierung,
+/* ueber-uns.html team sections */
+#team,
+#ressorts,
+#plattform {
+  --at-heading-color:      var(--ibc-blue, #20234A);
+  --at-heading-fill-color: var(--ibc-blue, #20234A);
+}
+
+/* DARK BACKGROUND sections → allow white headings */
+.stats-section,
+.physics-values-section-dark,
+.page-hero-section,
+.fat-footer,
+.footer-section,
+.alumni-netzwerk-section {
+  --at-heading-color:      var(--ibc-white, #ffffff);
+  --at-heading-fill-color: var(--ibc-white, #ffffff);
+}
+
+/* --------------------------------------------------------------------------
+ * 4. Apply --at-heading-color to heading elements inside their sections
+ *    Only sets `color` (not -webkit-text-fill-color) so that gradient-text
+ *    elements like .text-gradient retain their visual effect.
+ * -------------------------------------------------------------------------- */
+
+/* Light-background sections — dark headings */
+.bg-white h1, .bg-white h2, .bg-white h3,
+.bg-white h4, .bg-white h5, .bg-white h6,
+.bg-light h1, .bg-light h2, .bg-light h3,
+.bg-light h4, .bg-light h5, .bg-light h6,
+.competencies-section h1, .competencies-section h2, .competencies-section h3,
+.competencies-section h4, .competencies-section h5, .competencies-section h6,
+.info-cards-section h1, .info-cards-section h2, .info-cards-section h3,
+.info-cards-section h4, .info-cards-section h5, .info-cards-section h6,
+.physics-values-section h1, .physics-values-section h2, .physics-values-section h3,
+.physics-values-section h4, .physics-values-section h5, .physics-values-section h6,
+.infoabend-section h1, .infoabend-section h2, .infoabend-section h3,
+.infoabend-section h4, .infoabend-section h5, .infoabend-section h6,
+.cta-section-students h1, .cta-section-students h2, .cta-section-students h3,
+.cta-section-students h4, .cta-section-students h5, .cta-section-students h6,
+.cta-section-companies h1, .cta-section-companies h2, .cta-section-companies h3,
+.cta-section-companies h4, .cta-section-companies h5, .cta-section-companies h6,
+.ibc-testimonials-section h1, .ibc-testimonials-section h2, .ibc-testimonials-section h3,
+.ibc-testimonials-section h4, .ibc-testimonials-section h5, .ibc-testimonials-section h6,
+.timeline-section-new h1, .timeline-section-new h2, .timeline-section-new h3,
+.timeline-section-new h4, .timeline-section-new h5, .timeline-section-new h6,
+.alumni-section h1, .alumni-section h2, .alumni-section h3,
+.alumni-section h4, .alumni-section h5, .alumni-section h6,
+/* unser-netzwerk.html sections */
+.foerderkreis-section h1, .foerderkreis-section h2, .foerderkreis-section h3,
+.foerderkreis-section h4, .foerderkreis-section h5, .foerderkreis-section h6,
+.kooperationspartner-section h1, .kooperationspartner-section h2, .kooperationspartner-section h3,
+.kooperationspartner-section h4, .kooperationspartner-section h5, .kooperationspartner-section h6,
+.kuratorium-section h1, .kuratorium-section h2, .kuratorium-section h3,
+.kuratorium-section h4, .kuratorium-section h5, .kuratorium-section h6,
+/* fuer-studierende.html light sections */
+#angebot h1, #angebot h2, #angebot h3,
+#angebot h4, #angebot h5, #angebot h6,
+#events h1, #events h2, #events h3,
+#events h4, #events h5, #events h6,
+/* fuer-unternehmen.html offer sections */
+#marketing h1, #marketing h2, #marketing h3,
+#marketing h4, #marketing h5, #marketing h6,
+#schulungen h1, #schulungen h2, #schulungen h3,
+#schulungen h4, #schulungen h5, #schulungen h6,
+#business h1, #business h2, #business h3,
+#business h4, #business h5, #business h6,
+#digitalisierung h1, #digitalisierung h2, #digitalisierung h3,
+#digitalisierung h4, #digitalisierung h5, #digitalisierung h6,
+/* ueber-uns.html team sections */
+#team h1, #team h2, #team h3,
+#team h4, #team h5, #team h6,
+#ressorts h1, #ressorts h2, #ressorts h3,
+#ressorts h4, #ressorts h5, #ressorts h6,
+#plattform h1, #plattform h2, #plattform h3,
+#plattform h4, #plattform h5, #plattform h6 {
+  color: var(--at-heading-color);
+  /* Ensure plain text nodes (after i18n replaces gradient spans) remain visible.
+     Child spans with .text-gradient / .highlight-gradient override this via their
+     own explicit -webkit-text-fill-color: transparent rule. */
+  -webkit-text-fill-color: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+ * 5. :has() progressive enhancement
+ *    In supporting browsers (Chrome 105+, Firefox 121+, Safari 15.4+):
+ *    detect any section whose background class reveals a light surface and
+ *    enforce the dark heading colour automatically — even for dynamically
+ *    added sections that lack an explicit section-class mapping above.
+ * -------------------------------------------------------------------------- */
+@supports selector(:has(*)) {
+  /* Section or div wrapping a Bootstrap light-background element */
+  section:has(.bg-white) h1, section:has(.bg-white) h2,
+  section:has(.bg-white) h3, section:has(.bg-white) h4,
+  section:has(.bg-white) h5, section:has(.bg-white) h6,
+  section:has(.bg-light) h1, section:has(.bg-light) h2,
+  section:has(.bg-light) h3, section:has(.bg-light) h4,
+  section:has(.bg-light) h5, section:has(.bg-light) h6,
+  div:has(> .bg-white) h1, div:has(> .bg-white) h2,
+  div:has(> .bg-white) h3, div:has(> .bg-white) h4,
+  div:has(> .bg-white) h5, div:has(> .bg-white) h6,
+  div:has(> .bg-light) h1, div:has(> .bg-light) h2,
+  div:has(> .bg-light) h3, div:has(> .bg-light) h4,
+  div:has(> .bg-light) h5, div:has(> .bg-light) h6 {
+    color: var(--ibc-blue, #20234A);
+  }
+
+  /* Bootstrap card-body (white background by default) */
+  .card-body h1, .card-body h2, .card-body h3,
+  .card-body h4, .card-body h5, .card-body h6 {
+    color: var(--ibc-blue, #20234A);
+  }
+
+  /* Bootstrap alerts with light backgrounds */
+  .alert:not(.alert-dark):not(.alert-primary) h1,
+  .alert:not(.alert-dark):not(.alert-primary) h2,
+  .alert:not(.alert-dark):not(.alert-primary) h3,
+  .alert:not(.alert-dark):not(.alert-primary) h4,
+  .alert:not(.alert-dark):not(.alert-primary) h5,
+  .alert:not(.alert-dark):not(.alert-primary) h6 {
+    color: var(--ibc-blue, #20234A);
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * 6. Safety override: neutralise .h2-white on light backgrounds
+ *
+ *    .h2-white forces color:#ffffff and -webkit-text-fill-color:#ffffff,
+ *    creating invisible (white-on-white) text if placed inside a light
+ *    section by mistake.  These rules detect that combination and restore
+ *    legible navy text.
+ * -------------------------------------------------------------------------- */
+.bg-white .h2-white,
+.bg-light .h2-white,
+.competencies-section .h2-white,
+.info-cards-section .h2-white,
+.physics-values-section .h2-white,
+.infoabend-section .h2-white,
+.cta-section-students .h2-white,
+.cta-section-companies .h2-white,
+.ibc-testimonials-section .h2-white,
+.timeline-section-new .h2-white,
+.alumni-section .h2-white {
+  color: var(--ibc-blue, #20234A) !important;
+  -webkit-text-fill-color: var(--ibc-blue, #20234A) !important;
+  -moz-text-fill-color: var(--ibc-blue, #20234A) !important;
+}
+
+/* Also catch text-gradient children inside .h2-white on a light background */
+.bg-white .h2-white .text-gradient,
+.bg-light .h2-white .text-gradient,
+.competencies-section .h2-white .text-gradient,
+.info-cards-section .h2-white .text-gradient,
+.physics-values-section .h2-white .text-gradient,
+.infoabend-section .h2-white .text-gradient,
+.cta-section-students .h2-white .text-gradient,
+.cta-section-companies .h2-white .text-gradient,
+.ibc-testimonials-section .h2-white .text-gradient,
+.timeline-section-new .h2-white .text-gradient,
+.alumni-section .h2-white .text-gradient {
+  color: var(--ibc-blue, #20234A) !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: var(--ibc-blue, #20234A) !important;
+  -moz-text-fill-color: var(--ibc-blue, #20234A) !important;
+}
+
+/* :has()-powered safety net for any future light container that may
+   accidentally contain a .h2-white heading */
+@supports selector(:has(*)) {
+  section:has(.bg-white) .h2-white,
+  section:has(.bg-light) .h2-white {
+    color: var(--ibc-blue, #20234A) !important;
+    -webkit-text-fill-color: var(--ibc-blue, #20234A) !important;
+    -moz-text-fill-color: var(--ibc-blue, #20234A) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+ * 7. Prose-flow enhancements
+ *    Explicit line-heights for every text-bearing element so the golden-
+ *    ratio rhythm holds even when style.css provides a conflicting value.
+ *    These rules load after style.css, so they win the cascade.
+ * -------------------------------------------------------------------------- */
+
+/* Paragraphs and list items inherit the golden-ratio body rhythm */
+p {
+  line-height: var(--at-lh-body);
+}
+
+li {
+  line-height: var(--at-lh-body);
+}
+
+/* Block-level quotations */
+blockquote,
+.blockquote {
+  line-height: var(--at-lh-blockquote);
+}
+
+/* Captions and small descriptive text */
+figcaption,
+caption {
+  line-height: var(--at-lh-caption);
+}
+
+/* Definition list terms and descriptions */
+dt,
+dd {
+  line-height: var(--at-lh-body);
+}
+
+/* Code blocks — breathing room aids scanning */
+pre,
+pre code {
+  line-height: var(--at-lh-code);
+}
+
+/* --------------------------------------------------------------------------
+ * 8. Optimal reading measure (.at-prose utility)
+ *    Apply .at-prose to any prose container (article, .content-body, etc.)
+ *    to cap its line length at 72 characters — the scientifically accepted
+ *    sweet spot for comfortable silent reading (65–75 ch).
+ *    The class is intentionally non-breaking: it only constrains max-width
+ *    and never forces a fixed width, so it is safe in any layout context.
+ * -------------------------------------------------------------------------- */
+.at-prose {
+  max-width: var(--at-prose-width);
+}
+
+/* Center .at-prose blocks when they appear as standalone content */
+.at-prose-centered {
+  max-width: var(--at-prose-width);
+  margin-inline: auto;
+}
+
+/* --------------------------------------------------------------------------
+ * 9. Responsive letter-spacing adjustments
+ *    On small screens headings are smaller, so tight letter-spacing can
+ *    look cramped.  Loosen slightly below 768 px.
+ * -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  h1, .h1,
+  .display-1, .display-2, .display-3 {
+    letter-spacing: 0;   /* neutral on mobile – glyphs already small */
+  }
+
+  h2, .h2,
+  .section-heading {
+    letter-spacing: 0;
+  }
+}

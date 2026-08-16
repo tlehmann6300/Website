@@ -1,0 +1,33 @@
+/* ==========================================================================
+ * responsive-improvements.css  –  IBC Website
+ *
+ * The rules previously contained in this file have been consolidated
+ * into css/mobile-first.css (§6) to centralise all mobile/responsive
+ * fixes and avoid cascade conflicts.
+ *
+ * This file is intentionally left empty.  All HTML pages that reference
+ * it continue to load it without error; the real rules are in
+ * mobile-first.css which is loaded before this file.
+ *
+ * Known cascade conflicts resolved (single source of truth in mobile-first.css
+ * and mobile-animations.css):
+ *
+ *   • index.css @media (max-width: 768px) .info-glass-card { padding }
+ *     → Fixed to padding: 1.5rem (uniform), matching mobile-first.css §3a.
+ *
+ *   • index.css @media (hover: none) .competency-card__trigger { padding }
+ *     → Fixed to padding: 1.5rem (uniform), matching mobile-first.css §3b.
+ *
+ *   • ui-refactoring.css @media (max-width: 768px) .competency-card__trigger
+ *     → Fixed to padding: 1.5rem !important (uniform), matching mobile-first.css §3b.
+ *
+ *   • ui-refactoring.css @media (max-width: 768px) .competency-card__content
+ *     → Fixed horizontal padding to 1.5rem !important, matching mobile-first.css §3b.
+ *
+ *   • Animation blur keyframes (headingReveal, stripe-reveal) in style.css
+ *     → Overridden by mobile-animations.css §12/§13 with blur-free versions.
+ *
+ *   • reveal-fx will-change hint includes 'filter' even on mobile
+ *     → mobile-animations.css §1 now sets will-change: opacity, transform !important
+ *       to remove the unused filter compositing hint on mobile GPUs.
+ * ========================================================================== */

@@ -1,0 +1,1023 @@
+/*
+ * fuer-unternehmen-redesign.css
+ * Comprehensive redesign for fuer-unternehmen.html
+ * Fixes: card overflow/truncation, blank sections, spacing inconsistencies
+ * Improves: hero, overview cards, service sections, CTA
+ * Does NOT touch: Timeline (#projektablauf), Navbar, Footer, Cookie Popup
+ */
+
+/* ============================================================
+   §0  RESET / BASE — page-level fixes
+   ============================================================ */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+/* ============================================================
+   §1  PAGE HERO — polished dark gradient header
+   ============================================================ */
+
+.page-hero-section {
+    padding: clamp(6.5rem, 12vw, 9rem) 0 0 0;
+    background: linear-gradient(135deg,
+        #0d1030 0%,
+        #20234A 25%,
+        #1a3a60 55%,
+        #153320 85%,
+        #0d1030 100%) !important;
+    background-size: 300% 300% !important;
+    animation: heroGradientFlow 20s ease infinite !important;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+@keyframes heroGradientFlow {
+    0%   { background-position: 0%   50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0%   50%; }
+}
+
+/* Noise texture overlay for depth */
+.page-hero-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Floating orbs — override existing */
+.hero-deco-orb-1 {
+    background: radial-gradient(circle, rgba(109,151,68,0.3) 0%, transparent 70%) !important;
+    width: clamp(280px, 45vw, 600px) !important;
+    height: clamp(280px, 45vw, 600px) !important;
+    top: -20% !important;
+    right: -8% !important;
+}
+.hero-deco-orb-2 {
+    background: radial-gradient(circle, rgba(44,122,185,0.18) 0%, transparent 70%) !important;
+    width: clamp(200px, 32vw, 450px) !important;
+    height: clamp(200px, 32vw, 450px) !important;
+    bottom: 0 !important;
+    left: -5% !important;
+}
+
+.page-hero-section .container {
+    position: relative;
+    z-index: 1;
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+/* Hero heading */
+.page-hero-section .ibc-heading,
+.page-hero-section h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem) !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.055em !important;
+    line-height: 1.07 !important;
+    color: #fff !important;
+    text-shadow: 0 4px 32px rgba(0,0,0,0.55) !important;
+    margin-bottom: 1.5rem !important;
+}
+
+/* Hero subtitle */
+.page-hero-section .ibc-lead {
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem) !important;
+    color: rgba(255,255,255,0.88) !important;
+    max-width: 640px !important;
+    margin: 0 auto 2rem !important;
+    line-height: 1.7 !important;
+    text-shadow: 0 2px 12px rgba(0,0,0,0.3) !important;
+}
+
+/* Hero CTA row */
+.hero-cta-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 1rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+/* Wave divider — clean */
+.hero-wave svg {
+    height: clamp(50px, 7vw, 90px) !important;
+}
+.hero-wave svg path {
+    fill: #f8f9fa !important;
+}
+
+/* ============================================================
+   §2  OVERVIEW CARDS (#uebersicht) — clean card grid
+   ============================================================ */
+
+#uebersicht {
+    background: #f8f9fa !important;
+    padding: clamp(4rem, 7vw, 5.5rem) 0 !important;
+    position: relative;
+}
+
+#uebersicht > .container > header {
+    margin-bottom: clamp(2rem, 4vw, 3rem) !important;
+}
+
+/* Card link wrapper */
+.beratungsfeld-card-link {
+    display: block;
+    text-decoration: none;
+    height: 100%;
+    border-radius: 20px;
+    transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+.beratungsfeld-card-link:hover {
+    transform: translateY(-6px);
+}
+.beratungsfeld-card-link:focus-visible {
+    outline: 3px solid var(--ibc-green, #6D9744);
+    outline-offset: 4px;
+    border-radius: 20px;
+}
+
+/* Card body */
+.beratungsfeld-card {
+    height: 100%;
+    background: #fff;
+    border-radius: 20px;
+    padding: clamp(1.75rem, 3vw, 2.25rem) clamp(1.25rem, 2.5vw, 1.75rem);
+    border: 1px solid rgba(32,35,74,0.08);
+    box-shadow: 0 4px 24px rgba(32,35,74,0.07);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* Top accent bar */
+.beratungsfeld-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #6D9744, #20234A);
+    transform: scaleX(0);
+    transform-origin: left;
+    border-radius: 0 0 3px 3px;
+    transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.beratungsfeld-card-link:hover .beratungsfeld-card::before,
+.beratungsfeld-card-link:focus-visible .beratungsfeld-card::before {
+    transform: scaleX(1);
+}
+.beratungsfeld-card-link:hover .beratungsfeld-card,
+.beratungsfeld-card-link:focus-visible .beratungsfeld-card {
+    border-color: rgba(109,151,68,0.28);
+    box-shadow: 0 16px 48px rgba(32,35,74,0.12);
+}
+
+/* Icon container */
+.beratungsfeld-card__icon {
+    width: 72px;
+    height: 72px;
+    min-width: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(109,151,68,0.12), rgba(32,35,74,0.06));
+    border: 2px solid rgba(109,151,68,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: #6D9744;
+    margin-bottom: 1rem;
+    transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.beratungsfeld-card-link:hover .beratungsfeld-card__icon {
+    background: linear-gradient(135deg, #6D9744, #20234A);
+    border-color: transparent;
+    color: #fff;
+    transform: scale(1.1) rotate(6deg);
+    box-shadow: 0 8px 24px rgba(109,151,68,0.3);
+}
+
+/* Title — FIX: ensure proper text wrapping, no overflow */
+.beratungsfeld-card__title {
+    font-size: clamp(0.9rem, 1.6vw, 1.05rem) !important;
+    font-weight: 700 !important;
+    color: #20234A !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.06em !important;
+    margin: 0 0 0.6rem !important;
+    line-height: 1.3 !important;
+    overflow-wrap: break-word !important;
+    width: 100% !important;
+    transition: color 0.3s ease !important;
+}
+.beratungsfeld-card-link:hover .beratungsfeld-card__title {
+    color: #6D9744 !important;
+}
+
+/* Description */
+.beratungsfeld-card__desc {
+    font-size: 0.88rem;
+    color: #495057;
+    line-height: 1.6;
+    flex-grow: 1;
+    margin: 0 0 1rem;
+    overflow-wrap: break-word;
+}
+
+/* Arrow */
+.beratungsfeld-card__arrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #6D9744;
+    margin-top: auto;
+    opacity: 0.75;
+    transition: opacity 0.3s ease, gap 0.3s ease;
+}
+.beratungsfeld-card-link:hover .beratungsfeld-card__arrow {
+    opacity: 1;
+    gap: 10px;
+}
+
+/* Responsive overview cards */
+@media (max-width: 767px) {
+    #uebersicht .col-lg-3 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+@media (max-width: 480px) {
+    #uebersicht .col-lg-3 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+/* ============================================================
+   §3  SERVICE SECTIONS — #marketing, #schulungen, #business, #digitalisierung
+         KEY FIX: remove oversized padding, fix overflow
+   ============================================================ */
+
+/* Section backgrounds: alternating */
+#marketing    { background: #fff !important; }
+#schulungen   { background: #f3f6f0 !important; }
+#business     { background: #fff !important; }
+#digitalisierung { background: #f3f6f0 !important; }
+
+/* All service sections */
+#marketing,
+#schulungen,
+#business,
+#digitalisierung {
+    padding: clamp(4rem, 7vw, 5.5rem) 0 !important;
+    position: relative;
+}
+
+/* Subtle top accent on alternating sections */
+#schulungen,
+#digitalisierung {
+    border-top: 3px solid rgba(109,151,68,0.15);
+}
+
+/* Section header */
+#marketing .text-center.mb-5,
+#schulungen .text-center.mb-5,
+#business .text-center.mb-5,
+#digitalisierung .text-center.mb-5 {
+    margin-bottom: clamp(2rem, 3.5vw, 3rem) !important;
+}
+
+/* Category chip */
+.section-category-chip {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+    padding: 0.3rem 1rem !important;
+    background: rgba(109,151,68,0.1) !important;
+    color: #4a7a2e !important;
+    border-radius: 50px !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
+    border: 1px solid rgba(109,151,68,0.22) !important;
+    margin-bottom: 0.9rem !important;
+    box-shadow: none !important;
+}
+
+/* Section lead */
+#marketing .ibc-lead,
+#schulungen .ibc-lead,
+#business .ibc-lead,
+#digitalisierung .ibc-lead {
+    font-size: clamp(0.95rem, 1.8vw, 1.08rem) !important;
+    color: #5a6275 !important;
+    max-width: 560px !important;
+    margin: 0 auto !important;
+    line-height: 1.65 !important;
+}
+
+/* ── CARD BASE — KEY FIX: proper padding so content fits ── */
+#marketing .angebot-card,
+#schulungen .angebot-card,
+#business .angebot-card,
+#digitalisierung .angebot-card {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-decoration: none !important;
+    background: #fff !important;
+    border-radius: 18px !important;
+    /* FIX: reduced horizontal padding to prevent overflow */
+    padding: 2rem 1.25rem !important;
+    text-align: center !important;
+    height: 100% !important;
+    border: 1px solid rgba(32,35,74,0.09) !important;
+    border-top: 3px solid transparent !important;
+    box-shadow: 0 4px 20px rgba(32,35,74,0.06) !important;
+    overflow: hidden !important;
+    position: relative !important;
+    transition:
+        transform 0.3s cubic-bezier(0.16,1,0.3,1),
+        box-shadow 0.3s ease,
+        border-top-color 0.3s ease !important;
+}
+
+/* Hover state */
+#marketing .angebot-card:hover,
+#schulungen .angebot-card:hover,
+#business .angebot-card:hover,
+#digitalisierung .angebot-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 20px 48px rgba(32,35,74,0.12) !important;
+    border-top: 3px solid #6D9744 !important;
+}
+
+/* Focus */
+#marketing .angebot-card:focus-visible,
+#schulungen .angebot-card:focus-visible,
+#business .angebot-card:focus-visible,
+#digitalisierung .angebot-card:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 4px rgba(109,151,68,0.3), 0 8px 28px rgba(32,35,74,0.1) !important;
+}
+
+/* Icon — circle container */
+#marketing .angebot-card i,
+#schulungen .angebot-card i,
+#business .angebot-card i,
+#digitalisierung .angebot-card i {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 72px !important;
+    height: 72px !important;
+    min-width: 72px !important;
+    border-radius: 50% !important;
+    font-size: 1.75rem !important;
+    background: linear-gradient(135deg, rgba(109,151,68,0.12), rgba(32,35,74,0.06)) !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #6D9744 !important;
+    color: #6D9744 !important;
+    border: 2px solid rgba(109,151,68,0.2) !important;
+    box-shadow: 0 4px 14px rgba(109,151,68,0.1) !important;
+    margin-bottom: 1.25rem !important;
+    flex-shrink: 0 !important;
+    transition:
+        background 0.35s ease,
+        color 0.35s ease,
+        transform 0.35s cubic-bezier(0.16,1,0.3,1),
+        box-shadow 0.35s ease !important;
+}
+
+#marketing .angebot-card:hover i,
+#schulungen .angebot-card:hover i,
+#business .angebot-card:hover i,
+#digitalisierung .angebot-card:hover i {
+    background: linear-gradient(135deg, #6D9744, #4a6b2c) !important;
+    -webkit-text-fill-color: #fff !important;
+    color: #fff !important;
+    border-color: transparent !important;
+    box-shadow: 0 10px 28px rgba(109,151,68,0.38) !important;
+    transform: scale(1.12) rotate(8deg) !important;
+}
+
+/* Title — FIX: proper word-break, no overflow */
+#marketing .angebot-card h3,
+#schulungen .angebot-card h3,
+#business .angebot-card h3,
+#digitalisierung .angebot-card h3 {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem) !important;
+    font-weight: 700 !important;
+    color: #20234A !important;
+    margin-bottom: 0.7rem !important;
+    line-height: 1.35 !important;
+    letter-spacing: -0.01em !important;
+    transition: color 0.3s ease !important;
+    overflow-wrap: break-word !important;
+    hyphens: auto !important;
+    width: 100% !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+#marketing .angebot-card:hover h3,
+#schulungen .angebot-card:hover h3,
+#business .angebot-card:hover h3,
+#digitalisierung .angebot-card:hover h3 {
+    color: #4a7a2e !important;
+}
+
+/* Body text */
+#marketing .angebot-card p,
+#schulungen .angebot-card p,
+#business .angebot-card p,
+#digitalisierung .angebot-card p {
+    font-size: 0.9rem !important;
+    color: #5a6275 !important;
+    line-height: 1.65 !important;
+    flex-grow: 1 !important;
+    margin-bottom: 0 !important;
+    overflow-wrap: break-word !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Shimmer overlay */
+#marketing .angebot-card::after,
+#schulungen .angebot-card::after,
+#business .angebot-card::after,
+#digitalisierung .angebot-card::after {
+    content: '' !important;
+    position: absolute !important;
+    inset: 0 !important;
+    background: linear-gradient(135deg, rgba(109,151,68,0.04) 0%, transparent 65%) !important;
+    opacity: 0 !important;
+    transition: opacity 0.35s ease !important;
+    pointer-events: none !important;
+    border-radius: inherit !important;
+    z-index: 0 !important;
+}
+#marketing .angebot-card:hover::after,
+#schulungen .angebot-card:hover::after,
+#business .angebot-card:hover::after,
+#digitalisierung .angebot-card:hover::after {
+    opacity: 1 !important;
+}
+
+/* Decorative top-bar reveal on hover */
+#marketing .angebot-card::before,
+#schulungen .angebot-card::before,
+#business .angebot-card::before,
+#digitalisierung .angebot-card::before {
+    content: none !important;
+}
+
+/* ── RESPONSIVE CARDS ── */
+
+/* Tablet: 2 cols */
+@media (max-width: 991px) {
+    #marketing .angebot-card,
+    #schulungen .angebot-card,
+    #business .angebot-card,
+    #digitalisierung .angebot-card {
+        padding: 1.75rem 1.25rem !important;
+    }
+    #marketing .angebot-card i,
+    #schulungen .angebot-card i,
+    #business .angebot-card i,
+    #digitalisierung .angebot-card i {
+        width: 62px !important;
+        height: 62px !important;
+        font-size: 1.5rem !important;
+    }
+}
+
+/* Mobile: 1 col, horizontal layout */
+@media (max-width: 575px) {
+    #marketing .angebot-card,
+    #schulungen .angebot-card,
+    #business .angebot-card,
+    #digitalisierung .angebot-card {
+        flex-direction: row !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+        gap: 1rem !important;
+        padding: 1.25rem !important;
+    }
+    #marketing .angebot-card i,
+    #schulungen .angebot-card i,
+    #business .angebot-card i,
+    #digitalisierung .angebot-card i {
+        width: 50px !important;
+        height: 50px !important;
+        min-width: 50px !important;
+        font-size: 1.25rem !important;
+        margin-bottom: 0 !important;
+        flex-shrink: 0 !important;
+    }
+    #marketing .angebot-card h3,
+    #schulungen .angebot-card h3,
+    #business .angebot-card h3,
+    #digitalisierung .angebot-card h3 {
+        font-size: 0.95rem !important;
+        margin-bottom: 0.4rem !important;
+    }
+    #marketing .angebot-card p,
+    #schulungen .angebot-card p,
+    #business .angebot-card p,
+    #digitalisierung .angebot-card p {
+        font-size: 0.85rem !important;
+    }
+}
+
+/* ── ALT SECTION BACKGROUND CARDS (green bg sections) ── */
+#schulungen .angebot-card,
+#digitalisierung .angebot-card {
+    background: #fff !important;
+}
+
+/* ============================================================
+   §4  CTA SECTION (.infoabend-section) — polished dark CTA
+   ============================================================ */
+
+.infoabend-section {
+    background: linear-gradient(135deg,
+        #0d1030 0%,
+        #20234A 35%,
+        #1e4a30 75%,
+        #0d1030 100%) !important;
+    background-size: 300% 300% !important;
+    animation: ctaFlow 18s ease infinite !important;
+    padding: clamp(4.5rem, 8vw, 6.5rem) 0 !important;
+    position: relative !important;
+    overflow: hidden !important;
+    text-align: center !important;
+}
+
+@keyframes ctaFlow {
+    0%   { background-position: 0%   50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0%   50%; }
+}
+
+/* Glowing blobs */
+.infoabend-section::before,
+.infoabend-section::after {
+    content: '' !important;
+    position: absolute !important;
+    border-radius: 50% !important;
+    pointer-events: none !important;
+}
+.infoabend-section::before {
+    width: clamp(250px, 45vw, 560px) !important;
+    height: clamp(250px, 45vw, 560px) !important;
+    background: radial-gradient(circle, rgba(109,151,68,0.22) 0%, transparent 65%) !important;
+    top: -25% !important;
+    left: -12% !important;
+    animation: ctaBlobFloat 22s ease-in-out infinite !important;
+}
+.infoabend-section::after {
+    width: clamp(200px, 35vw, 450px) !important;
+    height: clamp(200px, 35vw, 450px) !important;
+    background: radial-gradient(circle, rgba(86,178,220,0.12) 0%, transparent 65%) !important;
+    bottom: -20% !important;
+    right: -10% !important;
+    animation: ctaBlobFloat 26s ease-in-out infinite reverse !important;
+}
+
+@keyframes ctaBlobFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    40%       { transform: translate(30px, -35px) scale(1.05); }
+    70%       { transform: translate(-20px, 20px) scale(0.96); }
+}
+
+.infoabend-section .container {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Heading */
+.infoabend-section .ibc-heading,
+.infoabend-section h2 {
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+    font-size: clamp(1.8rem, 4.5vw, 2.8rem) !important;
+    font-weight: 800 !important;
+    margin-bottom: 1.1rem !important;
+    text-shadow: 0 3px 20px rgba(0,0,0,0.4) !important;
+    letter-spacing: -0.03em !important;
+}
+
+/* Lead */
+.infoabend-section .ibc-lead,
+.infoabend-section p.ibc-lead {
+    color: rgba(255,255,255,0.88) !important;
+    font-size: clamp(1rem, 2vw, 1.15rem) !important;
+    max-width: 640px !important;
+    margin: 0 auto 2rem !important;
+    line-height: 1.72 !important;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.25) !important;
+}
+
+/* CTA button */
+.infoabend-section .btn.ethereal-button,
+.infoabend-section .ethereal-button {
+    background: linear-gradient(135deg, #6D9744, #4a6b2c) !important;
+    color: #fff !important;
+    padding: 0.9rem 2.4rem !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    font-size: 1rem !important;
+    border: none !important;
+    box-shadow: 0 8px 30px rgba(109,151,68,0.4) !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+.infoabend-section .btn.ethereal-button:hover,
+.infoabend-section .ethereal-button:hover {
+    transform: translateY(-4px) scale(1.03) !important;
+    box-shadow: 0 16px 42px rgba(109,151,68,0.5) !important;
+}
+
+/* Trust chips */
+.infoabend-section .cta-trust-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 0.75rem !important;
+    margin-top: 1.5rem !important;
+}
+.cta-trust-chip {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+    padding: 0.3rem 0.9rem !important;
+    background: rgba(255,255,255,0.1) !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+    border-radius: 50px !important;
+    font-size: 0.78rem !important;
+    color: rgba(255,255,255,0.85) !important;
+    font-weight: 600 !important;
+}
+.cta-trust-chip i {
+    color: #a8e063 !important;
+}
+
+/* ============================================================
+   §5  SECTION HEADINGS — consistent gradient & underline
+   ============================================================ */
+
+/* Ensure heading gradient works */
+.heading-premium-gradient,
+.ibc-heading.section-heading {
+    background: linear-gradient(135deg, #20234A 0%, #2c5f9e 50%, #6D9744 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* On dark backgrounds: override to solid white */
+.infoabend-section .heading-premium-gradient,
+.page-hero-section .heading-premium-gradient {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    background-clip: unset !important;
+    -webkit-text-fill-color: #fff !important;
+    color: #fff !important;
+}
+
+/* Highlight gradient */
+.highlight-gradient {
+    background: linear-gradient(90deg, #6D9744, #3a6b20);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.page-hero-section .highlight-gradient,
+.infoabend-section .highlight-gradient {
+    background: linear-gradient(90deg, #a8e063 10%, #78d4a0 90%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+/* Heading underline decoration */
+.heading-underline {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.6rem;
+}
+.heading-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #6D9744, #20234A);
+    border-radius: 2px;
+}
+
+/* ============================================================
+   §6  ANIMATION — always-visible fallback (no blank sections)
+   ============================================================ */
+
+/* Elements animate in, but are guaranteed visible after a delay */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1),
+                transform 0.65s cubic-bezier(0.16,1,0.3,1);
+}
+.fade-in-up.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Fallback: if JS doesn't run, make everything visible after CSS animation */
+@keyframes fadeUpReveal {
+    0%   { opacity: 0; transform: translateY(24px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up:not(.is-visible) {
+    animation: fadeUpReveal 0.65s cubic-bezier(0.16,1,0.3,1) both;
+    animation-delay: 0.8s; /* fallback: show after 0.8s even without scroll */
+}
+
+/* ============================================================
+   §7  REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .fade-in-up {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        transition: none !important;
+    }
+    #marketing .angebot-card,
+    #schulungen .angebot-card,
+    #business .angebot-card,
+    #digitalisierung .angebot-card,
+    .beratungsfeld-card,
+    .infoabend-section::before,
+    .infoabend-section::after,
+    .hero-deco-orb {
+        animation: none !important;
+        transition: none !important;
+    }
+    #marketing .angebot-card:hover,
+    #schulungen .angebot-card:hover,
+    #business .angebot-card:hover,
+    #digitalisierung .angebot-card:hover {
+        transform: none !important;
+    }
+    #marketing .angebot-card:hover i,
+    #schulungen .angebot-card:hover i,
+    #business .angebot-card:hover i,
+    #digitalisierung .angebot-card:hover i {
+        transform: none !important;
+    }
+}
+
+/* ============================================================
+   §8  MISC — row gap consistency
+   ============================================================ */
+
+#marketing .row.g-4,
+#schulungen .row.g-4,
+#business .row.g-4,
+#digitalisierung .row.g-4,
+#uebersicht .row.g-4 {
+    --bs-gutter-x: 1.25rem;
+    --bs-gutter-y: 1.25rem;
+}
+
+/* Ensure col padding plays nicely with the new card padding */
+#marketing .col-lg-3,
+#marketing .col-md-6,
+#schulungen .col-lg-3,
+#schulungen .col-md-6,
+#business .col-lg-3,
+#business .col-md-6,
+#digitalisierung .col-lg-3,
+#digitalisierung .col-md-6 {
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
+}
+
+/* ============================================================
+   §9  HERO — STATS ROW (social proof numbers below CTAs)
+   ============================================================ */
+
+/* Stats row injected via this CSS — appended to hero container via JS,
+   but we style the hero-stats class in advance */
+.hero-stats-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.hero-stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.hero-stat-item__number {
+    font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(90deg, #a8e063, #78d4a0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-stat-item__label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+
+/* Divider between stats */
+.hero-stat-divider {
+    width: 1px;
+    height: 40px;
+    background: rgba(255,255,255,0.18);
+    align-self: center;
+}
+
+@media (max-width: 575px) {
+    .hero-stats-row {
+        gap: 1.25rem;
+    }
+    .hero-stat-divider {
+        display: none;
+    }
+}
+
+/* ============================================================
+   §10  SECTION TRANSITION BARS
+   ============================================================ */
+
+/* Subtle green accent top-border for green-background sections */
+#schulungen,
+#digitalisierung {
+    border-top: none !important;
+    position: relative;
+}
+
+#schulungen::before,
+#digitalisierung::before {
+    content: none !important;
+}
+
+/* Wave divider between hero and overview */
+#uebersicht::before {
+    content: none;
+}
+
+/* ============================================================
+   §11  CARD EQUAL HEIGHT — ensure all cards in a row align
+   ============================================================ */
+
+/* Overview card rows */
+#uebersicht .row.g-4 {
+    align-items: stretch;
+}
+
+#uebersicht .col-lg-3 {
+    display: flex;
+}
+
+.beratungsfeld-card-link {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+}
+
+.beratungsfeld-card {
+    flex: 1 !important;
+}
+
+/* Service card rows */
+#marketing .row.g-4,
+#schulungen .row.g-4,
+#business .row.g-4,
+#digitalisierung .row.g-4 {
+    align-items: stretch;
+}
+
+#marketing .col-lg-3,
+#marketing .col-md-6,
+#schulungen .col-lg-3,
+#schulungen .col-md-6,
+#business .col-lg-3,
+#business .col-md-6,
+#digitalisierung .col-lg-3,
+#digitalisierung .col-md-6 {
+    display: flex;
+}
+
+/* ============================================================
+   §12  SECTION HEADING VISUAL IMPROVEMENTS
+   ============================================================ */
+
+/* Section heading sub-line (decorative) */
+#marketing .section-heading,
+#schulungen .section-heading,
+#business .section-heading,
+#digitalisierung .section-heading {
+    font-size: clamp(1.9rem, 4vw, 2.8rem) !important;
+    letter-spacing: -0.04em !important;
+}
+
+/* Overview section heading */
+#uebersicht .ibc-heading.section-heading {
+    font-size: clamp(1.9rem, 4vw, 2.7rem) !important;
+    letter-spacing: -0.04em !important;
+}
+
+/* Section category chip — make it feel more like a badge */
+.section-category-chip {
+    font-weight: 700 !important;
+    font-size: 0.73rem !important;
+    letter-spacing: 0.12em !important;
+}
+
+/* ============================================================
+   §13  MOBILE FINAL TWEAKS
+   ============================================================ */
+
+@media (max-width: 767px) {
+    /* On mobile, overview cards: 2 columns */
+    #uebersicht .col-lg-3 {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+
+    /* Service sections: 1 column on small mobile */
+    #marketing .col-lg-3,
+    #schulungen .col-lg-3,
+    #business .col-lg-3,
+    #digitalisierung .col-lg-3 {
+        flex: 0 0 50% !important;
+        max-width: 50% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #uebersicht .col-lg-3,
+    #marketing .col-lg-3,
+    #schulungen .col-lg-3,
+    #business .col-lg-3,
+    #digitalisierung .col-lg-3 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* On very small screens, single column cards */
+    #uebersicht .col-md-6,
+    #marketing .col-md-6,
+    #schulungen .col-md-6,
+    #business .col-md-6,
+    #digitalisierung .col-md-6 {
+        flex: 0 0 100% !important;
+        max-width: 100% !important;
+    }
+}
+
+/* Hero CTA button – slightly lighter gradient per design feedback */
+.page-hero-section .hero-cta-row .btn.ethereal-button {
+    background: linear-gradient(135deg, var(--ibc-green-light, #7db356), #4054B2);
+    box-shadow: 0 4px 12px rgba(125, 179, 86, 0.3);
+}
+.page-hero-section .hero-cta-row .btn.ethereal-button:hover {
+    box-shadow: 0 6px 20px rgba(125, 179, 86, 0.4), 0 0 12px rgba(125, 179, 86, 0.2);
+}

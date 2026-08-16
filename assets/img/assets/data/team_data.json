@@ -1,0 +1,149 @@
+{
+  "_kommentar_datei": "Diese Datei enthält alle Informationen über Team-Mitglieder des IBC",
+  "_kommentar_verwendung": "Die Datei wird von content-loader.js geladen und auf der 'Über uns' Seite angezeigt",
+  "_kommentar_struktur": "Die Datei ist in drei Bereiche unterteilt: vorstand (Vorstandsmitglieder), ressorts (Ressortleiter) und plattform (Plattform-Manager)",
+  "_kommentar_wichtig": "Jedes Mitglied muss einen Namen, ein Bild, eine Position in 3 Sprachen und eine E-Mail haben. LinkedIn ist optional.",
+  "vorstand": [
+    {
+      "_kommentar_bereich": "VORSTAND - Hier stehen die drei Vorstandsmitglieder des IBC",
+      "_kommentar_person": "ERSTES VORSTANDSMITGLIED - Vorstandsvorsitzender",
+      "name": "Alexandra Dercho",
+      "_kommentar_name": "Vollständiger Name der Person",
+      "image": "assets/img/team/Maskottchen.webp",
+      "_kommentar_image": "Pfad zum Profilbild - Bild muss in assets/img/team/ Ordner existieren",
+      "position": {
+        "_kommentar": "Position in drei Sprachen - ALLE drei Sprachen müssen ausgefüllt sein!",
+        "de": "Vorstandsvorsitzender",
+        "en": "Chairman",
+        "fr": "Président du directoire"
+      },
+      "email": "alexandra.dercho@business-consulting.de",
+      "_kommentar_email": "E-Mail-Adresse - wird auf der Website angezeigt und kann von Besuchern kopiert werden",
+      "linkedin": null,
+      "_kommentar_linkedin": "LinkedIn-Profil URL - muss mit https:// beginnen. Wenn kein Profil: 'null' eintragen (ohne Anführungszeichen)"
+    },
+    {
+      "_kommentar_person": "ZWEITES VORSTANDSMITGLIED - Stellvertretender Vorstandsvorsitzender",
+      "name": "Alexander Boev",
+      "image": "assets/img/team/Maskottchen.webp",
+      "position": {
+        "de": "Stellv. Vorstandsvorsitzender",
+        "en": "Vice Chairman",
+        "fr": "Vice-président du directoire"
+      },
+      "email": "alexander.boev@business-consulting.de",
+      "linkedin": null
+    },
+    {
+      "_kommentar_person": "DRITTES VORSTANDSMITGLIED - Vorstand Finanzen & Recht",
+      "name": "Tom Lehmann",
+      "image": "assets/img/team/Maskottchen.webp",
+      "position": {
+        "de": "Vorstand für Finanz & Recht",
+        "en": "Board Member Finance & Legal",
+        "fr": "Directeur Finances et Droit"
+      },
+      "email": "tom.lehmann@business-consulting.de",
+      "linkedin": null
+    }
+  ],
+  "ressorts": [
+    {
+      "_kommentar_bereich": "RESSORTS - Hier stehen die Ressortleiter (Leiter von Fachbereichen)",
+      "_kommentar_ressort": "IT-Ressort",
+      "name": "Richard Lämmle",
+      "image": "assets/img/team/Maskottchen.webp",
+      "_kommentar_bild": "Hier wird das Maskottchen als Platzhalterbild verwendet",
+      "position": {
+        "de": "Ressortleitung IT",
+        "en": "Head of IT",
+        "fr": "Responsable IT"
+      },
+      "email": "richard.laemmle@business-consulting.de",
+      "linkedin": null
+    },
+    {
+      "_kommentar_ressort": "Human Resources-Ressort",
+      "name": "Dario Trombello",
+      "image": "assets/img/team/Maskottchen.webp",
+      "position": {
+        "de": "Ressortleitung Human Resources",
+        "en": "Head of Human Resources",
+        "fr": "Responsable Ressources Humaines"
+      },
+      "email": "dario.trombello@business-consulting.de",
+      "linkedin": null
+    },
+    {
+      "_kommentar_ressort": "Akquise-Ressort",
+      "name": "Kilian Hermann",
+      "image": "assets/img/team/Maskottchen.webp",
+      "position": {
+        "de": "Ressortleitung Akquise",
+        "en": "Head of Acquisition",
+        "fr": "Responsable Acquisition"
+      },
+      "email": "kilian.hermann@business-consulting.de",
+      "linkedin": null
+    },
+    {
+      "_kommentar_ressort": "Qualitätsmanagement-Ressort",
+      "name": "Julius Schilling",
+      "image": "assets/img/team/Maskottchen.webp",
+      "position": {
+        "de": "Ressortleitung Qualitätsmanagement",
+        "en": "Head of Quality Management",
+        "fr": "Responsable Qualité"
+      },
+      "email": "julius.schilling@business-consulting.de",
+      "linkedin": null
+    },
+    {
+      "_kommentar_ressort": "Marketing-Ressort",
+      "name": "Leander Hegmann",
+      "image": "assets/img/team/Maskottchen.webp",
+      "position": {
+        "de": "Ressortleitung Marketing",
+        "en": "Head of Marketing",
+        "fr": "Responsable Marketing"
+      },
+      "email": "leander.hegmann@business-consulting.de",
+      "linkedin": null
+    }
+  ],
+  "plattform": [
+    {
+      "_kommentar_bereich": "PLATTFORM - Hier stehen Manager für digitale Plattformen (SharePoint, Social Media)",
+      "_kommentar_plattform": "SharePoint-Manager",
+      "name": "Alp-Tuna Karakaya",
+      "image": "assets/img/team/Maskottchen.webp",
+      "position": {
+        "de": "SharePoint-Manager",
+        "en": "SharePoint Manager",
+        "fr": "Gestionnaire SharePoint"
+      },
+      "email": "alp-tuna.karakaya@business-consulting.de",
+      "linkedin": null
+    },
+    {
+      "_kommentar_plattform": "Social Media Managerin",
+      "name": "Erza Tetova",
+      "image": "assets/img/team/Maskottchen.webp",
+      "position": {
+        "de": "Social-Media-Managerin",
+        "en": "Social Media Manager",
+        "fr": "Responsable Réseaux Sociaux"
+      },
+      "email": "erza.tetova@business-consulting.de",
+      "linkedin": null
+    }
+  ],
+  "datenschutzbeauftragter": {
+    "_kommentar_bereich": "DATENSCHUTZBEAUFTRAGTER - Dieser Eintrag wird auf der Datenschutzerklärungsseite angezeigt. Kein Vorstandsmitglied, sondern eine eigene Person.",
+    "name": "Kevin Hilzinger",
+    "_kommentar_name": "Vollständiger Name des Datenschutzbeauftragten"
+  },
+  "_kommentar_anleitung_neues_mitglied": "Um ein neues Mitglied hinzuzufügen: 1) Kopieren Sie einen Eintrag von { bis }, 2) Fügen Sie ein Komma nach dem letzten Eintrag ein, 3) Fügen Sie den kopierten Eintrag ein, 4) Ändern Sie alle Daten",
+  "_kommentar_anleitung_mitglied_entfernen": "Um ein Mitglied zu entfernen: Löschen Sie den gesamten Eintrag von { bis } inklusive Komma davor oder danach",
+  "_kommentar_anleitung_bild": "Bilder müssen im Ordner Website/assets/img/team/ liegen. Empfohlenes Format: .webp, Auflösung: mindestens 400x400 Pixel"
+}

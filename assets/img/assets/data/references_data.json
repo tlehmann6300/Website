@@ -1,0 +1,514 @@
+{
+  "_kommentar_datei": "Referenzen des IBC - Komplett neu strukturiert mit allen Kategorien",
+  "_kommentar_verwendung": "Die Datei wird von references-loader.js geladen und auf der 'Referenzen' Seite angezeigt",
+  "_kommentar_kategorien": "Exakte Kategorien: App-Entwicklung, Webseiten, Marktanalysen, Prozessoptimierung, Schulungen, Individuallösungen, Bild und Videobearbeitung, Social Media Management",
+  
+  "filterOptions": {
+    "years": ["2024", "2023", "2022", "2021"],
+    "categories": {
+      "de": [
+        "App-Entwicklung",
+        "Webseiten",
+        "Marktanalysen",
+        "Prozessoptimierung",
+        "Schulungen",
+        "Individuallösungen",
+        "Bild und Videobearbeitung",
+        "Social Media Management"
+      ],
+      "en": [
+        "App Development",
+        "Websites",
+        "Market Analysis",
+        "Process Optimization",
+        "Training",
+        "Custom Solutions",
+        "Image and Video Editing",
+        "Social Media Management"
+      ],
+      "fr": [
+        "Développement d'applications",
+        "Sites web",
+        "Analyses de marché",
+        "Optimisation des processus",
+        "Formations",
+        "Solutions personnalisées",
+        "Montage image et vidéo",
+        "Gestion des réseaux sociaux"
+      ]
+    }
+  },
+  
+  "references": [
+    {
+      "id": "ref-app-001",
+      "client_name": "DigitalFlow GmbH",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/app-development.webp",
+      "image_url": "assets/img/competencies/app-development.webp",
+      "year": "2024",
+      "category": "App-Entwicklung",
+      "category_label": {
+        "de": "App-Entwicklung",
+        "en": "App Development",
+        "fr": "Développement d'applications"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Mobile Kundenportal für Versicherungsunternehmen",
+        "en": "Mobile Customer Portal for Insurance Company",
+        "fr": "Portail client mobile pour compagnie d'assurance"
+      },
+      "description": {
+        "de": "Entwicklung einer nativen iOS- und Android-App mit Schadensmeldung, Dokumentenverwaltung und Live-Chat-Funktion für über 10.000 aktive Nutzer.",
+        "en": "Development of a native iOS and Android app with claim reporting, document management, and live chat functionality for over 10,000 active users.",
+        "fr": "Développement d'une application native iOS et Android avec déclaration de sinistres, gestion de documents et chat en direct pour plus de 10 000 utilisateurs actifs."
+      },
+      "testimonial": {
+        "de": "Die App hat unsere Kundenzufriedenheit um 40% gesteigert. Professionelle Umsetzung vom ersten Tag an.",
+        "en": "The app increased our customer satisfaction by 40%. Professional implementation from day one.",
+        "fr": "L'application a augmenté notre satisfaction client de 40%. Mise en œuvre professionnelle dès le premier jour."
+      }
+    },
+    {
+      "id": "ref-app-002",
+      "client_name": "FitTrack Solutions",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/app-development.webp",
+      "image_url": "assets/img/competencies/app-development.webp",
+      "year": "2023",
+      "category": "App-Entwicklung",
+      "category_label": {
+        "de": "App-Entwicklung",
+        "en": "App Development",
+        "fr": "Développement d'applications"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Fitness-Tracking App mit KI-gestützter Trainingsplanung",
+        "en": "Fitness Tracking App with AI-Powered Training Planning",
+        "fr": "Application de suivi fitness avec planification d'entraînement assistée par IA"
+      },
+      "description": {
+        "de": "Entwicklung einer Cross-Platform-App mit Machine Learning-Algorithmen zur personalisierten Trainingsempfehlung und Ernährungsberatung.",
+        "en": "Development of a cross-platform app with machine learning algorithms for personalized training recommendations and nutritional advice.",
+        "fr": "Développement d'une application multiplateforme avec des algorithmes d'apprentissage automatique pour des recommandations d'entraînement personnalisées et des conseils nutritionnels."
+      },
+      "testimonial": {
+        "de": "Die KI-Funktionen übertreffen alle Erwartungen. Unsere Nutzerbasis wächst exponentiell.",
+        "en": "The AI features exceed all expectations. Our user base is growing exponentially.",
+        "fr": "Les fonctionnalités d'IA dépassent toutes les attentes. Notre base d'utilisateurs croît de manière exponentielle."
+      }
+    },
+    {
+      "id": "ref-web-001",
+      "client_name": "Boutique Elegance",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/web-development.webp",
+      "image_url": "assets/img/competencies/web-development.webp",
+      "year": "2024",
+      "category": "Webseiten",
+      "category_label": {
+        "de": "Webseiten",
+        "en": "Websites",
+        "fr": "Sites web"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "E-Commerce-Website mit Premium-Design",
+        "en": "E-Commerce Website with Premium Design",
+        "fr": "Site e-commerce avec design premium"
+      },
+      "description": {
+        "de": "Entwicklung eines hochmodernen Online-Shops mit integriertem CMS, mehrsprachiger Unterstützung und fortschrittlicher Produktfilterung. Umsatzsteigerung von 150%.",
+        "en": "Development of a state-of-the-art online shop with integrated CMS, multilingual support, and advanced product filtering. Revenue increase of 150%.",
+        "fr": "Développement d'une boutique en ligne de pointe avec CMS intégré, support multilingue et filtrage de produits avancé. Augmentation du chiffre d'affaires de 150%."
+      },
+      "testimonial": {
+        "de": "Die Website ist nicht nur wunderschön, sondern auch unglaublich benutzerfreundlich. Unsere Conversion-Rate hat sich verdoppelt.",
+        "en": "The website is not only beautiful but also incredibly user-friendly. Our conversion rate has doubled.",
+        "fr": "Le site web est non seulement magnifique, mais aussi incroyablement convivial. Notre taux de conversion a doublé."
+      }
+    },
+    {
+      "id": "ref-web-002",
+      "client_name": "TechStart Innovation Hub",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/web-development.webp",
+      "image_url": "assets/img/competencies/web-development.webp",
+      "year": "2023",
+      "category": "Webseiten",
+      "category_label": {
+        "de": "Webseiten",
+        "en": "Websites",
+        "fr": "Sites web"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Corporate Website mit interaktiven Animationen",
+        "en": "Corporate Website with Interactive Animations",
+        "fr": "Site web d'entreprise avec animations interactives"
+      },
+      "description": {
+        "de": "Gestaltung und Entwicklung einer modernen Unternehmenswebsite mit innovativen Scroll-Animationen, 3D-Elementen und vollständiger Barrierefreiheit.",
+        "en": "Design and development of a modern corporate website with innovative scroll animations, 3D elements, and full accessibility.",
+        "fr": "Conception et développement d'un site web d'entreprise moderne avec animations de défilement innovantes, éléments 3D et accessibilité complète."
+      }
+    },
+    {
+      "id": "ref-market-001",
+      "client_name": "GlobalTech Ventures",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/market-analysis.webp",
+      "image_url": "assets/img/competencies/market-analysis.webp",
+      "year": "2024",
+      "category": "Marktanalysen",
+      "category_label": {
+        "de": "Marktanalysen",
+        "en": "Market Analysis",
+        "fr": "Analyses de marché"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Marktpotenzialanalyse für KI-gestützte Softwarelösung",
+        "en": "Market Potential Analysis for AI-Powered Software Solution",
+        "fr": "Analyse du potentiel de marché pour une solution logicielle basée sur l'IA"
+      },
+      "description": {
+        "de": "Umfassende Analyse des europäischen Marktes mit Wettbewerbsanalyse, Zielgruppensegmentierung und Markteintrittsstrategie. Identifikation von 8 Millionen € Marktpotenzial.",
+        "en": "Comprehensive analysis of the European market with competitive analysis, target audience segmentation, and market entry strategy. Identification of €8 million market potential.",
+        "fr": "Analyse complète du marché européen avec analyse concurrentielle, segmentation du public cible et stratégie d'entrée sur le marché. Identification d'un potentiel de marché de 8 millions d'euros."
+      },
+      "testimonial": {
+        "de": "Die detaillierte Marktanalyse hat uns geholfen, unsere Strategie präzise auszurichten und erfolgreich zu expandieren.",
+        "en": "The detailed market analysis helped us precisely align our strategy and expand successfully.",
+        "fr": "L'analyse de marché détaillée nous a aidés à aligner précisément notre stratégie et à nous développer avec succès."
+      }
+    },
+    {
+      "id": "ref-market-002",
+      "client_name": "EcoInnovate GmbH",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/market-analysis.webp",
+      "image_url": "assets/img/competencies/market-analysis.webp",
+      "year": "2023",
+      "category": "Marktanalysen",
+      "category_label": {
+        "de": "Marktanalysen",
+        "en": "Market Analysis",
+        "fr": "Analyses de marché"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Wettbewerbsanalyse für nachhaltige Verpackungslösungen",
+        "en": "Competitive Analysis for Sustainable Packaging Solutions",
+        "fr": "Analyse concurrentielle pour solutions d'emballage durables"
+      },
+      "description": {
+        "de": "Systematische Bewertung von 50+ Wettbewerbern, Trendanalyse und Entwicklung von Differenzierungsstrategien für den B2B-Markt.",
+        "en": "Systematic evaluation of 50+ competitors, trend analysis, and development of differentiation strategies for the B2B market.",
+        "fr": "Évaluation systématique de plus de 50 concurrents, analyse des tendances et développement de stratégies de différenciation pour le marché B2B."
+      }
+    },
+    {
+      "id": "ref-process-001",
+      "client_name": "Logistics Pro AG",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/process-optimization.webp",
+      "image_url": "assets/img/competencies/process-optimization.webp",
+      "year": "2024",
+      "category": "Prozessoptimierung",
+      "category_label": {
+        "de": "Prozessoptimierung",
+        "en": "Process Optimization",
+        "fr": "Optimisation des processus"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Digitalisierung der Lagerverwaltung",
+        "en": "Digitalization of Warehouse Management",
+        "fr": "Numérisation de la gestion d'entrepôt"
+      },
+      "description": {
+        "de": "Analyse und Optimierung der Lager- und Logistikprozesse mit Implementierung eines digitalen Warehouse-Management-Systems. Durchlaufzeit um 45% reduziert.",
+        "en": "Analysis and optimization of warehouse and logistics processes with implementation of a digital warehouse management system. Lead time reduced by 45%.",
+        "fr": "Analyse et optimisation des processus d'entrepôt et de logistique avec mise en œuvre d'un système de gestion d'entrepôt numérique. Temps de passage réduit de 45%."
+      },
+      "testimonial": {
+        "de": "Die Prozessoptimierung hat unsere Effizienz revolutioniert. ROI bereits nach 6 Monaten erreicht.",
+        "en": "The process optimization revolutionized our efficiency. ROI achieved after just 6 months.",
+        "fr": "L'optimisation des processus a révolutionné notre efficacité. ROI atteint après seulement 6 mois."
+      }
+    },
+    {
+      "id": "ref-process-002",
+      "client_name": "MedCare Solutions",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/process-optimization.webp",
+      "image_url": "assets/img/competencies/process-optimization.webp",
+      "year": "2023",
+      "category": "Prozessoptimierung",
+      "category_label": {
+        "de": "Prozessoptimierung",
+        "en": "Process Optimization",
+        "fr": "Optimisation des processus"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Optimierung der Patientenaufnahme-Prozesse",
+        "en": "Optimization of Patient Admission Processes",
+        "fr": "Optimisation des processus d'admission des patients"
+      },
+      "description": {
+        "de": "Redesign der Patientenaufnahme mit digitalem Workflow, automatisierter Dokumentenverarbeitung und verbesserter Patientenerfahrung.",
+        "en": "Redesign of patient admission with digital workflow, automated document processing, and improved patient experience.",
+        "fr": "Refonte de l'admission des patients avec flux de travail numérique, traitement automatisé des documents et expérience patient améliorée."
+      }
+    },
+    {
+      "id": "ref-training-001",
+      "client_name": "InnovateCorp",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/custom-solutions.webp",
+      "image_url": "assets/img/competencies/custom-solutions.webp",
+      "year": "2024",
+      "category": "Schulungen",
+      "category_label": {
+        "de": "Schulungen",
+        "en": "Training",
+        "fr": "Formations"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Agile Projektmanagement-Schulung",
+        "en": "Agile Project Management Training",
+        "fr": "Formation en gestion de projet agile"
+      },
+      "description": {
+        "de": "Durchführung einer 3-tägigen intensiven Schulung zu Scrum, Kanban und agilen Methoden für 40 Führungskräfte. Inklusive Zertifizierung und Praxisprojekten.",
+        "en": "Conducting a 3-day intensive training on Scrum, Kanban, and agile methods for 40 executives. Including certification and practical projects.",
+        "fr": "Réalisation d'une formation intensive de 3 jours sur Scrum, Kanban et les méthodes agiles pour 40 cadres. Incluant certification et projets pratiques."
+      },
+      "testimonial": {
+        "de": "Die beste Schulung, die unser Team je hatte. Praxisnah, kompetent und motivierend.",
+        "en": "The best training our team has ever had. Practical, competent, and motivating.",
+        "fr": "La meilleure formation que notre équipe ait jamais eue. Pratique, compétente et motivante."
+      }
+    },
+    {
+      "id": "ref-training-002",
+      "client_name": "TechSkills Academy",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/market-analysis.webp",
+      "image_url": "assets/img/competencies/market-analysis.webp",
+      "year": "2023",
+      "category": "Schulungen",
+      "category_label": {
+        "de": "Schulungen",
+        "en": "Training",
+        "fr": "Formations"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Digital Marketing Workshop für KMUs",
+        "en": "Digital Marketing Workshop for SMEs",
+        "fr": "Atelier de marketing numérique pour PME"
+      },
+      "description": {
+        "de": "Workshop-Reihe zu Social Media Marketing, SEO, Content-Marketing und Google Analytics für kleine und mittlere Unternehmen.",
+        "en": "Workshop series on social media marketing, SEO, content marketing, and Google Analytics for small and medium-sized enterprises.",
+        "fr": "Série d'ateliers sur le marketing des réseaux sociaux, le référencement, le marketing de contenu et Google Analytics pour les petites et moyennes entreprises."
+      }
+    },
+    {
+      "id": "ref-custom-001",
+      "client_name": "AutoParts Direct",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/custom-solutions.webp",
+      "image_url": "assets/img/competencies/custom-solutions.webp",
+      "year": "2024",
+      "category": "Individuallösungen",
+      "category_label": {
+        "de": "Individuallösungen",
+        "en": "Custom Solutions",
+        "fr": "Solutions personnalisées"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Maßgeschneiderte ERP-Integration",
+        "en": "Custom ERP Integration",
+        "fr": "Intégration ERP personnalisée"
+      },
+      "description": {
+        "de": "Entwicklung einer individuellen Schnittstelle zur nahtlosen Integration von SAP mit E-Commerce-Plattform und CRM-System. Automatisierung von 95% aller Bestellprozesse.",
+        "en": "Development of a custom interface for seamless integration of SAP with e-commerce platform and CRM system. Automation of 95% of all order processes.",
+        "fr": "Développement d'une interface personnalisée pour l'intégration transparente de SAP avec la plateforme e-commerce et le système CRM. Automatisation de 95% de tous les processus de commande."
+      },
+      "testimonial": {
+        "de": "Die maßgeschneiderte Lösung hat unsere Arbeitsabläufe komplett transformiert. Einfach perfekt auf unsere Bedürfnisse zugeschnitten.",
+        "en": "The custom solution completely transformed our workflows. Simply perfectly tailored to our needs.",
+        "fr": "La solution personnalisée a complètement transformé nos flux de travail. Simplement parfaitement adaptée à nos besoins."
+      }
+    },
+    {
+      "id": "ref-custom-002",
+      "client_name": "HealthTech Systems",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/custom-solutions.webp",
+      "image_url": "assets/img/competencies/custom-solutions.webp",
+      "year": "2023",
+      "category": "Individuallösungen",
+      "category_label": {
+        "de": "Individuallösungen",
+        "en": "Custom Solutions",
+        "fr": "Solutions personnalisées"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Spezialisierte Patientendaten-Plattform",
+        "en": "Specialized Patient Data Platform",
+        "fr": "Plateforme de données patient spécialisée"
+      },
+      "description": {
+        "de": "Entwicklung einer DSGVO-konformen, hochsicheren Plattform zur Verwaltung sensibler Patientendaten mit Anbindung an bestehende Krankenhaus-IT-Systeme.",
+        "en": "Development of a GDPR-compliant, highly secure platform for managing sensitive patient data with connection to existing hospital IT systems.",
+        "fr": "Développement d'une plateforme hautement sécurisée et conforme au RGPD pour la gestion des données sensibles des patients avec connexion aux systèmes informatiques hospitaliers existants."
+      }
+    },
+    {
+      "id": "ref-media-001",
+      "client_name": "CreativeVision Studio",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/mime2022_scaled.webp",
+      "image_url": "assets/img/competencies/mime2022_scaled.webp",
+      "year": "2024",
+      "category": "Bild und Videobearbeitung",
+      "category_label": {
+        "de": "Bild und Videobearbeitung",
+        "en": "Image and Video Editing",
+        "fr": "Montage image et vidéo"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Imagefilm-Produktion für Mittelstandsunternehmen",
+        "en": "Corporate Video Production for Mid-Sized Company",
+        "fr": "Production de film d'entreprise pour société de taille moyenne"
+      },
+      "description": {
+        "de": "Konzeption, Dreh und Postproduktion eines hochwertigen Imagefilms mit Drohnenaufnahmen, professionellem Color Grading und Motion Graphics. 200.000+ Views auf YouTube.",
+        "en": "Conception, filming, and post-production of a high-quality corporate video with drone footage, professional color grading, and motion graphics. 200,000+ views on YouTube.",
+        "fr": "Conception, tournage et post-production d'un film d'entreprise de haute qualité avec prises de vue par drone, étalonnage professionnel et motion graphics. Plus de 200 000 vues sur YouTube."
+      },
+      "testimonial": {
+        "de": "Der Imagefilm hat uns perfekt in Szene gesetzt. Professionelle Arbeit auf höchstem Niveau.",
+        "en": "The corporate video showcased us perfectly. Professional work at the highest level.",
+        "fr": "Le film d'entreprise nous a parfaitement mis en valeur. Travail professionnel au plus haut niveau."
+      }
+    },
+    {
+      "id": "ref-media-002",
+      "client_name": "EventMasters GmbH",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/mime2022_scaled.webp",
+      "image_url": "assets/img/competencies/mime2022_scaled.webp",
+      "year": "2023",
+      "category": "Bild und Videobearbeitung",
+      "category_label": {
+        "de": "Bild und Videobearbeitung",
+        "en": "Image and Video Editing",
+        "fr": "Montage image et vidéo"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Veranstaltungsdokumentation mit Live-Schnitt",
+        "en": "Event Documentation with Live Editing",
+        "fr": "Documentation d'événement avec montage en direct"
+      },
+      "description": {
+        "de": "Professionelle Bild- und Videodokumentation einer 3-tägigen Konferenz mit 500+ Teilnehmern. Highlight-Video am selben Abend fertiggestellt.",
+        "en": "Professional photo and video documentation of a 3-day conference with 500+ participants. Highlight video completed the same evening.",
+        "fr": "Documentation photo et vidéo professionnelle d'une conférence de 3 jours avec plus de 500 participants. Vidéo des moments forts terminée le soir même."
+      }
+    },
+    {
+      "id": "ref-social-001",
+      "client_name": "FashionTrend Boutique",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/web-development.webp",
+      "image_url": "assets/img/competencies/web-development.webp",
+      "year": "2024",
+      "category": "Social Media Management",
+      "category_label": {
+        "de": "Social Media Management",
+        "en": "Social Media Management",
+        "fr": "Gestion des réseaux sociaux"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Ganzheitliche Social-Media-Strategie",
+        "en": "Holistic Social Media Strategy",
+        "fr": "Stratégie de médias sociaux holistique"
+      },
+      "description": {
+        "de": "Entwicklung und Umsetzung einer 360°-Social-Media-Strategie über Instagram, TikTok und Pinterest. Content-Erstellung, Community Management und Influencer-Kooperationen. Follower-Wachstum von 300%.",
+        "en": "Development and implementation of a 360° social media strategy across Instagram, TikTok, and Pinterest. Content creation, community management, and influencer collaborations. Follower growth of 300%.",
+        "fr": "Développement et mise en œuvre d'une stratégie de médias sociaux à 360° sur Instagram, TikTok et Pinterest. Création de contenu, gestion de communauté et collaborations avec des influenceurs. Croissance des abonnés de 300%."
+      },
+      "testimonial": {
+        "de": "Unsere Social-Media-Präsenz ist jetzt auf einem völlig neuen Level. Engagement und Verkäufe steigen kontinuierlich.",
+        "en": "Our social media presence is now on a completely new level. Engagement and sales are continuously increasing.",
+        "fr": "Notre présence sur les réseaux sociaux est maintenant à un niveau complètement nouveau. L'engagement et les ventes augmentent continuellement."
+      }
+    },
+    {
+      "id": "ref-social-002",
+      "client_name": "RestaurantGroup Excellence",
+      "logo": "assets/img/placeholder-logo.webp",
+      "image": "assets/img/competencies/app-development.webp",
+      "image_url": "assets/img/competencies/app-development.webp",
+      "year": "2023",
+      "category": "Social Media Management",
+      "category_label": {
+        "de": "Social Media Management",
+        "en": "Social Media Management",
+        "fr": "Gestion des réseaux sociaux"
+      },
+      "link": "kontakt.html",
+      "title": {
+        "de": "Social Media Marketing für Gastronomie-Kette",
+        "en": "Social Media Marketing for Restaurant Chain",
+        "fr": "Marketing sur les réseaux sociaux pour chaîne de restaurants"
+      },
+      "description": {
+        "de": "Betreuung von 5 Restaurant-Standorten auf Facebook, Instagram und Google My Business. Food-Fotografie, Storytelling und gezielte Werbekampagnen. Reservierungen um 80% gesteigert.",
+        "en": "Management of 5 restaurant locations on Facebook, Instagram, and Google My Business. Food photography, storytelling, and targeted advertising campaigns. Reservations increased by 80%.",
+        "fr": "Gestion de 5 emplacements de restaurants sur Facebook, Instagram et Google My Business. Photographie culinaire, storytelling et campagnes publicitaires ciblées. Réservations augmentées de 80%."
+      }
+    },
+    {
+      "id": "ref-cta-001",
+      "type": "cta",
+      "title": {
+        "de": "Ihr Projekt hier?",
+        "en": "Your Project Here?",
+        "fr": "Votre projet ici ?"
+      },
+      "subtitle": {
+        "de": "Jetzt Kontakt aufnehmen",
+        "en": "Get in Touch Now",
+        "fr": "Contactez-nous maintenant"
+      },
+      "description": {
+        "de": "Lassen Sie uns gemeinsam Ihr nächstes erfolgreiches Projekt realisieren. Wir freuen uns auf Ihre Herausforderung!",
+        "en": "Let's realize your next successful project together. We look forward to your challenge!",
+        "fr": "Réalisons ensemble votre prochain projet réussi. Nous attendons avec impatience votre défi !"
+      },
+      "button_text": {
+        "de": "Zur Kontaktseite",
+        "en": "To Contact Page",
+        "fr": "Vers la page de contact"
+      },
+      "link": "kontakt.html"
+    }
+  ]
+}

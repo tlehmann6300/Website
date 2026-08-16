@@ -152,7 +152,7 @@ body.homepage .navbar.scrolled .nav-link {
    centred in the viewport with a solid dark-blue background,
    white nav-link text and a light elevation shadow.
    ============================================================ */
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
     .navbar.scrolled {
         /* Floating pill – 70 % wide, centred */
         width: 70% !important;
@@ -202,7 +202,7 @@ body.homepage .navbar.scrolled .nav-link {
    vertical centre.  The pill is widened from 70 % to min(90%, 1100px)
    to accommodate the extra horizontal space required by nowrap text.
    ============================================================ */
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     .navbar.scrolled {
         width: min(90%, 1100px) !important;
     }
@@ -469,7 +469,7 @@ body.homepage .navbar.scrolled .nav-link {
 }
 
 /* Prevent body scroll when overlay is open (mobile/tablet only) */
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
     body.mobile-nav-open {
         overflow: hidden !important;
         touch-action: none;
@@ -477,11 +477,51 @@ body.homepage .navbar.scrolled .nav-link {
 }
 
 /* The overlay is only for mobile – hide on desktop */
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     .mobile-nav-overlay {
         display: none !important;
     }
 }
+
+/* ============================================================
+   TABLET OVERLAY NAV (992 px – 1199 px)
+   ============================================================
+   The full-screen mobile overlay is active from 0 to 1199 px.
+   Tablets in the 992 px – 1199 px range have considerably more
+   horizontal space than phones and users typically interact
+   with a single finger or stylus, requiring:
+     · A wider nav-list container (420 px → 560 px) that uses
+       the extra viewport width without stretching edge-to-edge.
+     · More generous horizontal padding (28 px → 40 px) so the
+       entire card surface is an easy tap target.
+     · A larger font (20 px → 22 px) that reads comfortably at
+       tablet viewing distances.
+     · Taller touch targets (60 px → 68 px) for reliable taps.
+     · A slightly larger gap (10 px → 14 px) between items to
+       reduce accidental adjacent-item taps.
+     · Proportionally increased language-switcher targets.
+   ============================================================ */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .mobile-nav-list {
+        max-width: 560px;
+        gap: 14px;
+    }
+
+    .mobile-nav-list .nav-link {
+        padding: 1.25rem 2.5rem !important;
+        font-size: 22px !important;
+        min-height: 68px !important;
+        border-radius: 24px !important;
+        letter-spacing: 0.02em;
+    }
+
+    .mobile-nav-list .lang-item {
+        padding: 0.75rem 1.25rem !important;
+        min-height: 52px !important;
+        font-size: 16px !important;
+    }
+}
+
 
 /* ============================================================
    2. THUMB-FRIENDLY TOUCH TARGETS (≥ 44 × 44 px)
@@ -492,7 +532,7 @@ body.homepage .navbar.scrolled .nav-link {
    the tap area without affecting layout.
    ============================================================ */
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
 
     /* Navbar toggler */
     .navbar-toggler {
@@ -1048,9 +1088,7 @@ body.homepage .navbar.scrolled .nav-link {
     background: #ffffff;
     border-radius: 20px;
     max-width: 300px;
-    /* leave room for #nav-fab (56px + 16px right offset) so the
-       toast and the FAB never overlap on narrow screens */
-    width: calc(100vw - 96px);
+    width: calc(100vw - 40px);
     overflow: hidden;
     /* Layered depth shadow */
     box-shadow:
@@ -1170,20 +1208,6 @@ body.homepage .navbar.scrolled .nav-link {
     margin: 0 0 1rem;
 }
 
-/* Compact toast on phones: keep header, tagline and button – drop
-   the sub-copy so the toast covers less of the viewport */
-@media (max-width: 576px) {
-    #mobile-sticky-cta .mobile-cta-sub {
-        display: none;
-    }
-    #mobile-sticky-cta .mobile-cta-tagline {
-        margin-bottom: 0.6rem;
-    }
-    #mobile-sticky-cta .mobile-cta-inner {
-        padding: 0.8rem 0.95rem 0.95rem;
-    }
-}
-
 /* CTA action button */
 #mobile-sticky-cta .mobile-cta-btn {
     display: flex;
@@ -1269,9 +1293,8 @@ body.homepage .navbar.scrolled .nav-link {
         left: 12px;
         right: auto;
         bottom: 16px;
-        /* keep clear of #nav-fab (56px wide, 16px from the right edge) */
-        max-width: calc(100vw - 88px);
-        width: calc(100vw - 88px);
+        max-width: calc(100vw - 24px);
+        width: calc(100vw - 24px);
     }
 }
 
@@ -1343,8 +1366,7 @@ body.homepage .navbar.scrolled .nav-link {
     #hero-section h1 {
         font-size: clamp(1.75rem, 7vw, 2.5rem) !important;
         line-height: 1.15 !important;
-        word-break: normal;
-        hyphens: auto;
+        word-break: break-word;
     }
     #hero-section .fs-5 {
         font-size: clamp(0.9rem, 3.5vw, 1.1rem) !important;
@@ -1416,7 +1438,7 @@ body.homepage .navbar.scrolled .nav-link {
    ============================================================ */
 
 /* Hide hamburger toggler when FAB is active */
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
     body.fab-active .navbar-toggler {
         opacity: 0 !important;
         pointer-events: none !important;
@@ -1664,7 +1686,7 @@ body.fab-active .navbar-toggler {
 
 
 /* Only show FAB/overlay on mobile */
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     #nav-fab,
     #fab-overlay-menu {
         display: none !important;

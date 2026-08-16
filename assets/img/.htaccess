@@ -1,0 +1,164 @@
+# 1. GRUNDLEGENDE SICHERHEIT & OPTIONEN
+# 2. FEHLERSEITEN
+# 3. HTTPS & CANONICAL REDIRECTS
+# 4. SCHUTZ SENSIBLER DATEIEN
+# 5. SECURITY HEADERS
+# 6. MIME-TYPES & CACHING
+# 7. GZIP-KOMPRIMIERUNG
+# 8. WARTUNG & SPEZIELLE REDIRECTS
+
+
+# ----------------------------------------------------------------------
+# 1. GRUNDLEGENDE SICHERHEIT & OPTIONEN
+# ----------------------------------------------------------------------
+
+# Verhindert Directory Listing
+Options -Indexes
+
+# Erlaubt symbolische Links (für mod_rewrite nötig)
+Options +FollowSymLinks
+
+# Versteckt Apache-Serverinfos
+ServerSignature Off
+
+# Standard-Zeichensatz
+AddDefaultCharset UTF-8
+
+
+# ----------------------------------------------------------------------
+# 2. FEHLERSEITEN (Error Pages)
+# ----------------------------------------------------------------------
+
+ErrorDocument 403 /403.html
+ErrorDocument 404 /404.html
+ErrorDocument 500 /500.html
+
+
+# ----------------------------------------------------------------------
+# 3. HTTPS ERZWINGEN (SSL)
+# ----------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Erzwingt HTTPS
+    RewriteCond %{HTTPS} off
+    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+    # OPTIONAL: www entfernen (nur aktivieren, wenn gewünscht)
+    # RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    # RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+
+# ----------------------------------------------------------------------
+# 4. SCHUTZ SENSIBLER DATEIEN & ORDNER
+# ----------------------------------------------------------------------
+
+# Sperrt versteckte Dateien (.env, .git usw.)
+# Ausnahme: .well-known (für SSL)
+<FilesMatch "^\\.(?!well-known)">
+    Require all denied
+</FilesMatch>
+
+# Sperrt typische sensible Dateien
+RewriteRule ^(composer\.json|composer\.lock|package\.json|README\.md|LICENSE|CHANGELOG\.md|.*\.sql|.*\.log|.*\.ini)$ - [F,L]
+
+# Sperrt den privaten Ordner komplett
+RewriteRule ^private/ - [F,L]
+RewriteRule ^kuerzel/private/ - [F,L]
+
+# OPTIONAL: config.php sperren (nur wenn nie direkt aufgerufen!)
+# <Files "config.php">
+#     Require all denied
+# </Files>
+
+
+# ----------------------------------------------------------------------
+# 5. SICHERHEITS-HEADER
+# ----------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # HSTS (nur aktivieren, wenn HTTPS sicher funktioniert!)
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    
+    # Content Security Policy (CSP)
+    # Updates:
+    # - script-src: www.google.com, www.gstatic.com hinzugefügt (reCAPTCHA)
+    # - frame-src: www.google.com hinzugefügt (reCAPTCHA iframe)
+    # - img-src: www.gstatic.com hinzugefügt (reCAPTCHA Bilder)
+    # - connect-src: data: hinzugefügt (FidelityFX CAS Shader via data-URI)
+    # - worker-src: data: 'self' hinzugefügt (CSS Houdini Paint Worklets via data-URI)
+    Header set Content-Security-Policy "default-src 'self'; \
+    script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://www.instagram.com https://static.cdninstagram.com https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com 'unsafe-inline'; \
+    style-src 'self' https://static.cdninstagram.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline'; \
+    img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://images.unsplash.com https://*.cdninstagram.com https://flagcdn.com https://www.gstatic.com; \
+    font-src 'self' https://static.cdninstagram.com https://cdnjs.cloudflare.com; \
+    connect-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://www.instagram.com https://static.cdninstagram.com https://cdn.jsdelivr.net https://www.google.com; \
+    worker-src 'self' data:; \
+    frame-src 'self' https://www.instagram.com https://www.google.com; \
+    base-uri 'self'; \
+    form-action 'self'"
+</IfModule>
+
+
+# ----------------------------------------------------------------------
+# 6. MIME-TYPES & CACHING
+# ----------------------------------------------------------------------
+
+<IfModule mod_mime.c>
+    AddType image/webp .webp
+    AddType font/woff2 .woff2
+    AddType application/json .json
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+
+    ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+# ----------------------------------------------------------------------
+# 7. PERFORMANCE: GZIP-KOMPRIMIERUNG
+# ----------------------------------------------------------------------
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE font/woff2
+    AddOutputFilterByType DEFLATE application/font-woff2
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+</IfModule>
+
+
+# ----------------------------------------------------------------------
+# 8. WARTUNG & SPEZIELLE REDIRECTS
+# ----------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # referenzen.html auf maintenance.html umleiten
+    RewriteRule ^referenzen\.html$ /maintenance.html [R=302,L]
+</IfModule>

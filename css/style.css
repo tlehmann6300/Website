@@ -819,7 +819,7 @@ a:not(.btn):not(.nav-link):not(.social-button-list a):not(.ethereal-button):not(
 a:not(.btn):not(.nav-link):not(.social-button-list a):not(.ethereal-button):not(.team-card-social a):not([aria-label*="LinkedIn"]):not(.competency-btn-clean):not(.footer-logo a):not(.navbar-brand):hover {
     background-size: 100% 2px;
 }
-/* Icons in team-cards, social-button-list, and contact-info should remain white */
+   Icons in team-cards, social-button-list, and contact-info should remain white */
 a[aria-label*="LinkedIn"]:hover,
 a[aria-label*="LinkedIn Profil"]:hover {
     background-image: none !important;
@@ -1365,7 +1365,7 @@ button[type="submit"] {
     text-align: center !important;
     margin-bottom: clamp(0.75rem, 1.8vw, 1.25rem);
     white-space: normal;
-    hyphens: auto;
+    hyphens: manual;
     overflow-wrap: break-word;
 }
 #hero-section h1 .text-gradient,
@@ -2024,7 +2024,7 @@ a:hover {
         background-position: 0% 50%;
     }
 }
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
     body {
         padding-top: 70px;
     }
@@ -2115,8 +2115,8 @@ a:hover {
         font-size: clamp(1.6rem, 1.2rem + 2.5vw, 2.25rem) !important;
         white-space: normal;
         overflow-wrap: break-word;
-        word-break: normal;
-        hyphens: auto;
+        word-break: break-word;
+        hyphens: manual;
     }
 }
 @media (max-width: 576px) {
@@ -2129,8 +2129,8 @@ a:hover {
         white-space: normal;
         letter-spacing: -0.025em;
         overflow-wrap: break-word;
-        word-break: normal;
-        hyphens: auto;
+        word-break: break-word;
+        hyphens: manual;
     }
     #hero-section p.lead,
     #hero-section .ibc-lead {
@@ -3948,17 +3948,13 @@ footer::before {
     max-height: 90vh;
     max-height: 90dvh;
     overflow-y: auto;
-    /* Thin but visible scrollbar so users see there is more content */
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+    /* Hide scrollbar track while keeping touch/wheel scrolling */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     color: #ffffff;
 }
 .cookie-consent::-webkit-scrollbar {
-    width: 6px;
-}
-.cookie-consent::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.35);
-    border-radius: 3px;
+    display: none;
 }
 .cookie-consent--visible {
     transform: translateY(0);
@@ -4131,13 +4127,6 @@ footer::before {
     flex-direction: column;
     gap: 0.75rem;
     justify-content: stretch;
-    /* Keep the action buttons visible even when the banner content
-       scrolls (low viewports) – WCAG/GDPR: consent must be reachable */
-    position: sticky;
-    bottom: 0;
-    background: rgba(32, 35, 74, 0.97);
-    padding-top: 0.5rem;
-    padding-bottom: 0.25rem;
 }
 .cookie-consent__button {
     padding: 0.75rem 1.25rem;
@@ -6427,16 +6416,6 @@ body.homepage .navbar:not(.scrolled) .nav-link {
     color: var(--blue);
     font-size: 15px;
     letter-spacing: -0.01em;
-}
-/* Tablet-Desktop (992–1199px): volle Navigation einzeilig halten –
-   ohne nowrap + kompakteres Padding brechen die Links zweizeilig um */
-@media (min-width: 992px) and (max-width: 1199px) {
-    .navbar .nav-link {
-        white-space: nowrap;
-        hyphens: manual;
-        padding: 16px 11px !important;
-        font-size: 14px;
-    }
 }
 .nav-link::before {
     content: "";
